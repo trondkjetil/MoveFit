@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="TestApp.TestApp" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="22" />
+  <!-- Google Maps for Android v2 requires OpenGL ES v2 -->
+  <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+  <!-- We need to be able to download map tiles and access Google Play Services-->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- Allow the application to access Google web-based services. -->
+  <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+  <!-- Google Maps for Android v2 will cache map tiles on external storage -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <!-- Permission to receive remote notifications from Google Play Services -->
+  <!-- Notice here that we have the package name of our application as a prefix on the permissions. -->
+  <!-- These are optional, but recommended. They will allow Maps to use the My Location provider. -->
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.READ_CONTACTS" />
+  <uses-permission android:name="android.permission.ACCESS_COURSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_GPS" />
+  <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+  <uses-permission android:name="android.permission.LOCATION_HARDWARE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <application android:label="TestApp" android:icon="@drawable/icon" android:name="mono.android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="975161479232108" />
+    <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="TestApp" />
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity" />
+    <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
+    <activity android:label="Socialize" android:name="md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity" />
+    <activity android:label="@string/app_name" android:name="md5cf27010e14af20e69784a5a54418b85f.FacebookMessenger">
+      <intent-filter>
+        <action android:name="android.intent.action.PICK" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150311" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.PICK" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
+      </intent-filter>
+    </activity>
+    <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
+    <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
+    <activity android:label="Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
+    <activity android:label="Friends" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
+    <activity android:label="Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />
+    <activity android:label="People Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.StartCardView" />
+    <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />
+    <activity android:label="SimpleService" android:name="md5cf27010e14af20e69784a5a54418b85f.StartSimpleService" />
+    <activity android:label="ResultBoardActivity" android:name="md5cf27010e14af20e69784a5a54418b85f.ResultBoardActivity" />
+    <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
+    <activity android:label="LoginActivity" android:name="md5cf27010e14af20e69784a5a54418b85f.LoginActivity" />
+    <activity android:icon="@drawable/tt" android:label="MoveFit-MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:label="User" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.UserOverview" />
+    <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.ToDoActivity" />
+    <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity" />
+    <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople" />
+    <activity android:label="DrawerMenu" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.MainStart" />
+    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.FormAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md550f8a10a740eb4fb6376baab8337ce22.FormAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity" />
+    <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.facebook.ads.InterstitialAdActivity" />
+    <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent" />
+    <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity" android:theme="@style/Theme.IAPTheme" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="TestApp.TestApp.mono.MonoRuntimeProvider.__mono_init__" />
+    <!--suppress ExportedReceiver-->
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.TestApp.TestApp" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>
+<!--  android:theme="@style/Theme.AppCompat.Light" -->
