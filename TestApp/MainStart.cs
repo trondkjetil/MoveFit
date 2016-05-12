@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Query;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestApp
 	{
@@ -35,7 +36,13 @@ namespace TestApp
     /// 
     /// sql = select * from stores where lat!='' and lng!='' and ( 3959 * acos( cos( radians(" . $centerpoints['lat'] . ") ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(" . $centerpoints['lng'] . ") ) + sin( radians(" . $centerpoints['lat'] . ") ) * sin( radians( lat ) ) ) ) < " . $distanceInMile
     /// </summary>
+    //This Is the main class
+    
+    public class MyTestClass
+    {
 
+    }
+   
     [Activity (Label = "DrawerMenu",Theme = "@style/MyTheme",ScreenOrientation = ScreenOrientation.Portrait)]
 		public class MainStart : ActionBarActivity,ILocationListener,IMobileServiceLocalStore
 		{
