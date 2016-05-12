@@ -164,7 +164,7 @@ namespace TestApp
 				mLeftDataSet.Add ("Profile");
 				mLeftDataSet.Add ("Map");
 				mLeftDataSet.Add ("Score board");
-				mLeftDataSet.Add ("Slide menu test");
+				mLeftDataSet.Add ("Calculator");
 				mLeftDataSet.Add ("Routes");
 				mLeftDataSet.Add ("People Map");
                 
@@ -193,7 +193,7 @@ namespace TestApp
 						myIntent = new Intent (this, typeof(ScoreBoardActivity));
 						StartActivity(myIntent);
 					}else if(e.Position == 3){
-						myIntent = new Intent (this, typeof(MenuActivity));
+						myIntent = new Intent (this, typeof(Calculator));
 						StartActivity(myIntent);
 					}else if(e.Position == 4){
                         myIntent = new Intent(this, typeof(UsersRoutes));

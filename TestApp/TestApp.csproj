@@ -132,6 +132,7 @@
     <Compile Include="Azure\ToDoItemAdapter.cs" />
     <Compile Include="Azure\Routes.cs" />
     <Compile Include="Azure\UserFriends.cs" />
+    <Compile Include="Health\Calculator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccelerometerActivity.cs" />
@@ -265,6 +266,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\userRouteContent.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\calculator.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
