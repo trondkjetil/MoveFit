@@ -15,38 +15,98 @@ namespace TestApp
     [Activity(Label = "Calculator")]
     public class Calculator : Activity
     {
-        public double bmr { get; set;}
-        public double bmi { get; set; }
-        public int weight { get; set;}
-        public int height { get; set; }
-        public int age { get; set; }
-        public bool gender { get; set; }
-
-        public bool kcals { get; set; }
+        public static double bmr;
+       // public static double bmi;
+        public static double weight;
+        public static double height;
+        public static int age;
+        public static bool gender;
+        public static bool kcals;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.calculator);
 
 
-            TextView age = FindViewById<TextView>(Resource.Id.textView1);
-            TextView height = FindViewById<TextView>(Resource.Id.textView2);
-            TextView weight = FindViewById<TextView>(Resource.Id.textView3);
-            TextView result = FindViewById<TextView>(Resource.Id.textView3);
+            TextView ageView = FindViewById<TextView>(Resource.Id.textView1);
+            TextView heightView = FindViewById<TextView>(Resource.Id.textView2);
+            TextView weightView = FindViewById<TextView>(Resource.Id.textView3);
+            TextView resultView = FindViewById<TextView>(Resource.Id.textView4);
 
-            EditText _age = FindViewById<EditText>(Resource.Id.editText1);
+            RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
+            RadioButton radioButton = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
+            RadioButton radioButton2 = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
+
+
+            EditText _age = FindViewById<EditText>(Resource.Id.editText1);  
             EditText _height = FindViewById<EditText>(Resource.Id.editText2);
             EditText _weight = FindViewById<EditText>(Resource.Id.editText3);
+
+
+            gender = true;
+
+            try
+            {
+
+                radioGroup.CheckedChange += (s, e) =>
+                {
+
+                    if (radioButton.Checked)
+                    {
+                        gender = true;
+
+                    }
+                    else
+                        gender = false;
+
+                };
+
+
+
+
+                _age.TextChanged += (sender, e) =>
+                {
+                    age = Convert.ToInt32(_age.Text.ToString());
+                    
+                };
+                _height.TextChanged += (sender, e) =>
+                {
+                    height = Convert.ToDouble(_height.Text.ToString());
+                    
+                };
+                _weight.TextChanged += (sender, e) =>
+                {
+                    weight = Convert.ToDouble(_weight.Text.ToString());
+                   
+                };
+
+
+            }catch(Exception e)
+            {
+               
+            }
 
             Button calculate = FindViewById<Button>(Resource.Id.results);
 
             calculate.Click += (sender, e) => {
                 string results = "";
+                if (gender)
+                {
 
-                results = CalcBmi(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text) , Convert.ToInt32(_weight.Text) );
+                    results = "Female: ";
+                   
+                }
+                else
+                {
+                    results = "Male: ";
+                    
 
-                result.Text = results + System.Environment.NewLine + "Calories needed to maintain current weight: " + CalcNeededKcals(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text), Convert.ToInt32(_weight.Text)) + System.Environment.NewLine +
-               "BMR is: " + CalcBmr(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text), Convert.ToInt32(_weight.Text));
+                }
+                //   results = CalcBmi(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text) , Convert.ToInt32(_weight.Text) );
+                results = results + CalcBmi(height,weight);
+                resultView.Text = results + System.Environment.NewLine + System.Environment.NewLine + "Calories needed to maintain current weight: " + CalcNeededKcals(age,height,weight) + System.Environment.NewLine +
+               "BMR is: " + CalcBmr(age, height,weight, gender);
 
 
 
@@ -56,7 +116,7 @@ namespace TestApp
         }
 
 
-        public double CalcNeededKcals(int age, int height, int weight)
+        public double CalcNeededKcals(double age, double height, double weight)
         {
 
             double calories = (66 + (13.7 * weight) + (5 * height) - (6.8 * age)); //finally we calculate the final variable which is the number of calories equal to the rest metabolic rate
@@ -68,11 +128,31 @@ namespace TestApp
             return calories;
         }
 
-        public string CalcBmi(int age, int height, int weight)
+        public string CalcBmi(double height, double weight)
         {
-            string result = "";          
-            string bmiDescription = string.Empty;
-            bmi = weight / height * height;
+
+            string res = "";
+            string bmiDescription = "";
+            double bmi = 0;
+
+           
+            string testen = height.ToString();
+
+            testen = testen.Substring(0, 1) + "." + testen.Substring(1, 2);
+
+         try
+            {
+                Toast.MakeText(this, testen, ToastLength.Long).Show();
+
+                bmi = weight / (Convert.ToDouble(testen) * Convert.ToDouble(testen));
+
+
+
+            }
+            catch (Exception en)
+            {
+
+            }
 
             if (bmi < 16.5)
                 
@@ -101,13 +181,14 @@ namespace TestApp
             else
                 bmiDescription = "morbidly obese";
 
-            result = string.Format("Your Body Mass Index (BMI) is: {0}. This would be considered {1}.", bmi, bmiDescription);
 
-            return result;
+            res = string.Format("Your Body Mass Index (BMI) is: {0}. This would be considered {1}.", bmi, bmiDescription);
+
+            return res;
         }
 
 
-        public double CalcBmr(int age,int height,int weight)
+        public double CalcBmr(double age,double height,double weight, bool gender)
         {
 
             //BMR = 10 * weight(kg) + 6.25 * height(cm) - 5 * age(y) + 5         (man)

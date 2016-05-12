@@ -121,7 +121,6 @@ C:\testForError\Backup 2 29.04\TestApp\obj\Debug\res\drawable\startflag.png
 C:\testForError\Backup 2 29.04\TestApp\obj\Debug\res\drawable\maps.png
 C:\testForError\Backup 2 29.04\TestApp\obj\Debug\TestApp.dll.mdb
 C:\testForError\Backup 2 29.04\TestApp\bin\Debug\TestApp.dll.mdb
-C:\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\TestApp\TestApp\obj\Debug\TestApp.pdb
 C:\TestApp\TestApp\bin\Debug\TestApp.dll.config
@@ -243,3 +242,6 @@ C:\TestApp\TestApp\obj\Debug\res\drawable\startflag.png
 C:\TestApp\TestApp\obj\Debug\res\drawable\maps.png
 C:\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\TestApp\TestApp\obj\Debug\uploadflags.txt
+C:\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+C:\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
+C:\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

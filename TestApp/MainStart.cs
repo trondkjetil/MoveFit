@@ -24,7 +24,6 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Query;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestApp
 	{
