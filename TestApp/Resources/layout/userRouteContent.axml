@@ -75,19 +75,19 @@
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:paddingRight="5dp">
-            <!--<TextView
-                    android:text="15m"
+                <TextView
+                    android:text="Reviews: "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtTime"
                     android:gravity="center_horizontal"
-                    android:paddingTop="5dp" />-->
+                    android:paddingTop="5dp" />
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart"
                     android:button="@android:drawable/btn_star" />
-                <CheckBox
+            <!--<CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart1"
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart2"
-                    android:button="@android:drawable/btn_star" />
+                    android:button="@android:drawable/btn_star" />-->
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -122,7 +122,7 @@
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
             <ImageButton
-                android:src="@drawable/ic_action_forward"
+                android:src="@drawable/green"
                 android:layout_width="0dp"
                 android:layout_weight="33"
                 android:layout_height="match_parent"

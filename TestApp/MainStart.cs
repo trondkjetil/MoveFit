@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Query;
+using Android.Provider;
 
 namespace TestApp
 	{
@@ -58,8 +59,8 @@ namespace TestApp
 			 public string[] table;
 			 public string text;
 			 public string userID;
-			 ImageView profilePicture;
-		     Bitmap profilePic;
+			 public ImageView profilePicture;
+		     public Bitmap profilePic;
 			
 			TextView latText;
 			TextView longText;
@@ -127,10 +128,15 @@ namespace TestApp
 				mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
 				mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 				mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
-				mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
-				Switch location = FindViewById<Switch> (Resource.Id.switch1);
-				TextView textview1 = FindViewById<TextView> (Resource.Id.textView1);
-				
+             // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
+
+                mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
+
+                Switch location = FindViewById<Switch> (Resource.Id.switch1);
+			    TextView textview1 = FindViewById<TextView> (Resource.Id.textView1);
+
+
+        
 
                 loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
 
@@ -141,7 +147,6 @@ namespace TestApp
 				profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
                  profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
                  profilePicture.SetImageBitmap(profilePic);
-
                 loadingImage.Visibility = ViewStates.Invisible;
 
             //Removes the whole progress bar view, showing only the profile picture
@@ -155,9 +160,9 @@ namespace TestApp
               userID = array [2];
 
 				mLeftDrawer.Tag = 0;
-				mRightDrawer.Tag = 1;
-
-				SetSupportActionBar(mToolbar);
+            //mRightDrawer.Tag = 1;
+            mRightDrawer.Tag = 1;
+            SetSupportActionBar(mToolbar);
 
 				mLeftDataSet = new List<string>();
 				mLeftDataSet.Add ("Profile");
@@ -166,10 +171,13 @@ namespace TestApp
 				mLeftDataSet.Add ("Calculator");
 				mLeftDataSet.Add ("Routes");
 				mLeftDataSet.Add ("People Map");
-                
+            mLeftDataSet.Add ("Friends");
+            mLeftDataSet.Add ("People nearby");
+            mLeftDataSet.Add ("Social");
+
 
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
-				mLeftDrawer.Adapter = mLeftAdapter;
+			mLeftDrawer.Adapter = mLeftAdapter;
 
 				mLeftDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
 					var item =	mLeftAdapter.GetItem (e.Position);
@@ -204,32 +212,42 @@ namespace TestApp
                         StartActivity(myIntent);
 
 				    }
-
-                };
-
-
-				mRightDataSet = new List<string>();
-				mRightDataSet.Add ("Friends");
-				mRightDataSet.Add ("People nearby");
-				mRightDataSet.Add ("Social");
-
-				mRightAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mRightDataSet);
-				mRightDrawer.Adapter = mRightAdapter;
-
-				mRightDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
-					var item =	mLeftAdapter.GetItem (e.Position);
-					if(e.Position == 0){
+                    if (e.Position == 6)
+                    {
                         myIntent = new Intent(this, typeof(UsersFriends));
                         StartActivity(myIntent);
                     }
-                    else if(e.Position == 1){
-						myIntent = new Intent (this, typeof(UsersNearby));
-						StartActivity(myIntent);
-					}else if(e.Position == 2){
-						myIntent = new Intent (this, typeof(FaceBookFriendsActivity));
-						StartActivity(myIntent);
-					}
-				};
+                    else if (e.Position == 7)
+                    {
+                        myIntent = new Intent(this, typeof(UsersNearby));
+                        StartActivity(myIntent);
+                    }
+                    else if (e.Position == 8)
+                    {
+                        myIntent = new Intent(this, typeof(FaceBookFriendsActivity));
+                        StartActivity(myIntent);
+                    }
+
+                };
+
+               var RightAdapter = new ContactsAdapter(this);
+          //  var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
+            mRightDrawer.Adapter = RightAdapter;
+
+    //        mRightDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+				//	var item =	mLeftAdapter.GetItem (e.Position);
+				//	if(e.Position == 0){
+    //                    myIntent = new Intent(this, typeof(UsersFriends));
+    //                    StartActivity(myIntent);
+    //                }
+    //                else if(e.Position == 1){
+				//		myIntent = new Intent (this, typeof(UsersNearby));
+				//		StartActivity(myIntent);
+				//	}else if(e.Position == 2){
+				//		myIntent = new Intent (this, typeof(FaceBookFriendsActivity));
+				//		StartActivity(myIntent);
+				//	}
+				//};
 
 
 
@@ -583,7 +601,115 @@ namespace TestApp
         {
             throw new NotImplementedException();
         }
+
+
+
+        public class ContactsAdapter : BaseAdapter
+        {
+            List<Contact> _contactList;
+            Activity _activity;
+
+            public ContactsAdapter(Activity activity)
+            {
+                _activity = activity;
+                FillContacts();
+            }
+
+            void FillContacts()
+            {
+               
+
+             
+
+                _contactList = new List<Contact>();
+
+                        _contactList.Add(new Contact
+                        {
+                            Id = 123,
+                            DisplayName = "123"
+                  
+                        
+                        });
+                    
+                
+            }
+
+            class Contact
+            {
+                public long Id { get; set; }
+                public string DisplayName { get; set; }
+              //  public string PhotoId { get; set; }
+            }
+       
+
+        public override int Count
+        {
+            get { return _contactList.Count; }
+        }
+
+        public override Java.Lang.Object GetItem(int position)
+        {
+            // could wrap a Contact in a Java.Lang.Object
+            // to return it here if needed
+            return null;
+        }
+
+        public override long GetItemId(int position)
+        {
+            return _contactList[position].Id;
+        }
+
+        public override View GetView(int position, View convertView, ViewGroup parent)
+        {
+            var view = convertView ?? _activity.LayoutInflater.Inflate(
+                Resource.Layout.ContactListItem, parent, false);
+            var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
+            var contactImage = view.FindViewById<ImageView>(Resource.Id.ContactImage);
+            contactName.Text = _contactList[position].DisplayName;
+
+           
+              
+           
+           
+            return view;
+        }
+
+        }
+
+
+
     }
 	}
 
 
+//public override View GetView(int position, View convertView, ViewGroup parent)
+//{
+//    //      var view = convertView ?? _activity.LayoutInflater.Inflate( Resource.Layout.ContactListItem, parent, false);
+//    var view = _activity.LayoutInflater.Inflate(Resource.Layout.ContactListItem, parent, false);
+
+//    TextView latText;
+//    TextView longText;
+//    TextView altText;
+//    TextView speedText;
+//    TextView bearText;
+//    TextView accText;
+
+//    latText = view.FindViewById<TextView>(Resource.Id.lat);
+//    longText = view.FindViewById<TextView>(Resource.Id.longx);
+//    altText = view.FindViewById<TextView>(Resource.Id.alt);
+//    speedText = view.FindViewById<TextView>(Resource.Id.speed);
+//    bearText = view.FindViewById<TextView>(Resource.Id.bear);
+//    accText = view.FindViewById<TextView>(Resource.Id.acc);
+
+//    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
+//    TextView textview1 = view.FindViewById<TextView>(Resource.Id.textView1);
+//    textview1.Text = userName;
+
+//    ImageView profilePicture;
+//    profilePicture = view.FindViewById<ImageView>(Resource.Id.profilePicture);
+//    // profilePicture.SetImageBitmap(tt);
+
+//    profilePicture.SetImageResource(Resource.Drawable.tt);
+
+//    return view;
+//}

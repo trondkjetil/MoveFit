@@ -242,7 +242,12 @@ C:\TestApp\TestApp\obj\Debug\res\drawable\startflag.png
 C:\TestApp\TestApp\obj\Debug\res\drawable\maps.png
 C:\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\TestApp\TestApp\obj\Debug\uploadflags.txt
-C:\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\TestApp\TestApp\obj\Debug\res\values\itemsactivitylevel.xml
+C:\TestApp\TestApp\obj\Debug\res\drawable\green.png
+C:\TestApp\TestApp\obj\Debug\res\drawable\orange.png
+C:\TestApp\TestApp\obj\Debug\res\drawable\red.png
+C:\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+C:\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
+C:\TestApp\TestApp\obj\Debug\res\layout\contactlistitem.xml
 C:\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

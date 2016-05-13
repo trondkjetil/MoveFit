@@ -13,7 +13,6 @@
         android:background="@android:color/holo_blue_light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-<!--  Color for tab      "?attr/colorPrimary"-->
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -176,7 +175,7 @@
             android:divider="#818181"
             android:dividerHeight="1dp"
             android:background="#FFFFFF" />
-        <ListView
+    <!--<ListView
             android:id="@+id/right_drawer"
             android:layout_width="240dp"
             android:layout_height="match_parent"
@@ -184,6 +183,15 @@
             android:choiceMode="singleChoice"
             android:divider="#E2E2E2"
             android:dividerHeight="1dp"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF" />-->
+        <ListView
+            android:id="@+id/ContactsListView"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:choiceMode="singleChoice"
+            android:divider="#E2E2E2"
+            android:dividerHeight="1dp"
+            android:background="#FF00FF" />
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

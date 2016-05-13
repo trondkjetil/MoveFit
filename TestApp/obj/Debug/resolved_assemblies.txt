@@ -2,6 +2,7 @@ C:\TestApp\TestApp\obj\Debug\assemblies\TestApp.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Auth0Client.Android.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Bolts.AppLinks.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Bolts.Tasks.dll
+C:\TestApp\TestApp\obj\Debug\assemblies\Microsoft.AspNet.SignalR.Client.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Microsoft.WindowsAzure.Mobile.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Microsoft.WindowsAzure.Mobile.Ext.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll
@@ -79,6 +80,7 @@ C:\TestApp\TestApp\obj\Debug\assemblies\System.Threading.Timer.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\System.Xml.ReaderWriter.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\System.Xml.XDocument.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\System.Xml.XmlSerializer.dll
+C:\TestApp\TestApp\obj\Debug\assemblies\System.Net.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\System.Runtime.Serialization.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\System.ServiceModel.Internals.dll
 C:\TestApp\TestApp\obj\Debug\assemblies\Microsoft.CSharp.dll

@@ -49,6 +49,9 @@
     <Reference Include="Auth0Client.Android">
       <HintPath>..\..\..\Users\Trond\Desktop\Components\Auth0Client-0.5.0\lib\android\Auth0Client.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\Components\signalr-2.1.2.2\lib\android\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -270,6 +273,9 @@
     <AndroidResource Include="Resources\layout\calculator.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\ContactListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -292,6 +298,11 @@
     <XamarinComponentReference Include="Auth0Client">
       <Visible>False</Visible>
       <Version>0.5.0</Version>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="signalr">
+      <Visible>False</Visible>
+      <Version>2.1.2.2</Version>
+      <InstallationInProgress>True</InstallationInProgress>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
       <Version>23.1.1.1</Version>
@@ -361,5 +372,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\itemsActivityLevel.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\red.png" />
   </ItemGroup>
 </Project>
