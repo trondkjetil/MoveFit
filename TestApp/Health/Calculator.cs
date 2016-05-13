@@ -22,12 +22,20 @@ namespace TestApp
         public static int age;
         public static bool gender;
         public static bool kcals;
+        public static double activityLevel;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.calculator);
 
+
+
+            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinneren);
+            spinner.ItemSelected += spinner_ItemSelected;
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_array, Android.Resource.Layout.SimpleSpinnerItem);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinner.Adapter = adapter;
 
             TextView ageView = FindViewById<TextView>(Resource.Id.textView1);
             TextView heightView = FindViewById<TextView>(Resource.Id.textView2);
@@ -46,8 +54,7 @@ namespace TestApp
 
             gender = true;
 
-            try
-            {
+          
 
                 radioGroup.CheckedChange += (s, e) =>
                 {
@@ -67,25 +74,49 @@ namespace TestApp
 
                 _age.TextChanged += (sender, e) =>
                 {
-                    age = Convert.ToInt32(_age.Text.ToString());
-                    
+                    try
+                    {
+                        age = Convert.ToInt32(_age.Text.ToString());
+                    }
+                    catch(Exception ex)
+                    {
+                        displayErrorMessage();
+
+                    }
+                   
+
                 };
                 _height.TextChanged += (sender, e) =>
                 {
-                    height = Convert.ToDouble(_height.Text.ToString());
+                    try
+                    {
+                        height = Convert.ToDouble(_height.Text.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+
+                        displayErrorMessage();
+                    }
+                  
                     
                 };
                 _weight.TextChanged += (sender, e) =>
                 {
-                    weight = Convert.ToDouble(_weight.Text.ToString());
+                    try
+                    {
+                        weight = Convert.ToDouble(_weight.Text.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        displayErrorMessage();
+
+                    }
+                    
                    
                 };
 
 
-            }catch(Exception e)
-            {
-               
-            }
+          
 
             Button calculate = FindViewById<Button>(Resource.Id.results);
 
@@ -125,7 +156,7 @@ namespace TestApp
 
             //     System.out.println(name + ", the ammount of calories you need to intake in order to maintain your weight is " + calories * activity); //and in the process of displaying it we multiply it by the activity coefficient and display the final result to the user.
 
-            return calories;
+            return calories * activityLevel;
         }
 
         public string CalcBmi(double height, double weight)
@@ -135,13 +166,15 @@ namespace TestApp
             string bmiDescription = "";
             double bmi = 0;
 
-           
-            string testen = height.ToString();
-
-            testen = testen.Substring(0, 1) + "." + testen.Substring(1, 2);
+       
 
          try
             {
+
+
+                string testen = height.ToString();
+
+                testen = testen.Substring(0, 1) + "." + testen.Substring(1, 2);
                 Toast.MakeText(this, testen, ToastLength.Long).Show();
 
                 bmi = weight / (Convert.ToDouble(testen) * Convert.ToDouble(testen));
@@ -202,8 +235,68 @@ namespace TestApp
             else
                 bmr = 10 * weight + 6.25 * height - 5 * age - 161;
 
-            return bmr;
+            return bmr * activityLevel;
         }
+
+
+        public void displayErrorMessage()
+        {
+
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Invalid input");
+            alert.SetMessage("You can only write numbers!");
+            alert.SetNeutralButton("Ok", (senderAlert, args) => {
+                //Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
+            });
+
+            alert.Create().Show();
+           
+           // Dialog dialog = alert.Create().Show();
+            //dialog.Show();
+        }
+
+
+
+
+        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+
+            if (e.Position == 0)
+            {
+                activityLevel = 1.2;
+            }
+            else if (e.Position == 1)
+            {
+                activityLevel = 1.375;
+
+
+            }
+            else if (e.Position == 2)
+            {
+
+                activityLevel = 1.55;
+            }
+            else if (e.Position == 3)
+            {
+                activityLevel = 1.725;
+
+            }
+            else if (e.Position == 4)
+            {
+
+                activityLevel = 1.9;
+            }
+           
+           
+        }
+
+
+
+
+
+
 
 
 
