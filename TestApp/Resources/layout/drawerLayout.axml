@@ -192,6 +192,6 @@
             android:choiceMode="singleChoice"
             android:divider="#E2E2E2"
             android:dividerHeight="1dp"
-            android:background="#FF00FF" />
+            android:background="#FFFFFF" />
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

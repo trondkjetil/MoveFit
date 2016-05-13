@@ -1,5 +1,7 @@
 ﻿using System;
 using Android.App;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
@@ -45,7 +47,7 @@ namespace TestApp
    
     [Activity (Label = "DrawerMenu",Theme = "@style/MyTheme",ScreenOrientation = ScreenOrientation.Portrait)]
 		public class MainStart : ActionBarActivity,ILocationListener,IMobileServiceLocalStore
-		{
+    {
 			 readonly string logTag = "MainActivity";
 			 SupportToolbar mToolbar;
 			 MyActionBarDrawerToggle mDrawerToggle;
@@ -604,11 +606,11 @@ namespace TestApp
 
 
 
-        public class ContactsAdapter : BaseAdapter
+        public class ContactsAdapter :BaseAdapter, IOnMapReadyCallback
         {
             List<Contact> _contactList;
             Activity _activity;
-
+            GoogleMap mMap;
             public ContactsAdapter(Activity activity)
             {
                 _activity = activity;
@@ -617,10 +619,7 @@ namespace TestApp
 
             void FillContacts()
             {
-               
-
-             
-
+              
                 _contactList = new List<Contact>();
 
                         _contactList.Add(new Contact
@@ -631,8 +630,14 @@ namespace TestApp
                         
                         });
                     
-                
             }
+
+
+            public void OnMapReady(GoogleMap googleMap)
+            {
+                mMap = googleMap;
+            }
+          
 
             class Contact
             {
@@ -667,11 +672,37 @@ namespace TestApp
             var contactImage = view.FindViewById<ImageView>(Resource.Id.ContactImage);
             contactName.Text = _contactList[position].DisplayName;
 
-           
-              
-           
-           
-            return view;
+                MapFragment mapFrag = (MapFragment)_activity.FragmentManager.FindFragmentById(Resource.Id.map);
+                GoogleMap map = mapFrag.Map;
+                if (map != null)
+                {
+                    map.MapType = GoogleMap.MapTypeSatellite;  // The GoogleMap object is ready to go.
+                }
+
+                TextView latText;
+                TextView longText;
+                TextView altText;
+                TextView speedText;
+                TextView bearText;
+                TextView accText;
+
+                latText = view.FindViewById<TextView>(Resource.Id.lat);
+                longText = view.FindViewById<TextView>(Resource.Id.longx);
+                altText = view.FindViewById<TextView>(Resource.Id.alt);
+                speedText = view.FindViewById<TextView>(Resource.Id.speed);
+                bearText = view.FindViewById<TextView>(Resource.Id.bear);
+                accText = view.FindViewById<TextView>(Resource.Id.acc);
+
+                Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
+
+                ImageView profilePicture;
+                profilePicture = view.FindViewById<ImageView>(Resource.Id.profilePicture);
+                // profilePicture.SetImageBitmap(tt);
+
+                profilePicture.SetImageResource(Resource.Drawable.tt);
+
+
+                return view;
         }
 
         }

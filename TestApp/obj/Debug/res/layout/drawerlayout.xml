@@ -6,4 +6,4 @@
             android:choiceMode="singleChoice"
             android:divider="#E2E2E2"
             android:dividerHeight="1dp"
-            android:background="#FFFFFF" />--><ListView android:id="@+id/ContactsListView" android:layout_width="300dp" android:layout_height="match_parent" android:layout_gravity="right" android:choiceMode="singleChoice" android:divider="#E2E2E2" android:dividerHeight="1dp" android:background="#FF00FF" /></android.support.v4.widget.DrawerLayout></LinearLayout>
+            android:background="#FFFFFF" />--><ListView android:id="@+id/ContactsListView" android:layout_width="300dp" android:layout_height="match_parent" android:layout_gravity="right" android:choiceMode="singleChoice" android:divider="#E2E2E2" android:dividerHeight="1dp" android:background="#FFFFFF" /></android.support.v4.widget.DrawerLayout></LinearLayout>

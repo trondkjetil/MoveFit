@@ -4,7 +4,8 @@ package md5cf27010e14af20e69784a5a54418b85f;
 public class MainStart_ContactsAdapter
 	extends android.widget.BaseAdapter
 	implements
-		mono.android.IGCUserPeer
+		mono.android.IGCUserPeer,
+		com.google.android.gms.maps.OnMapReadyCallback
 {
 	static final String __md_methods;
 	static {
@@ -13,6 +14,7 @@ public class MainStart_ContactsAdapter
 			"n_getItem:(I)Ljava/lang/Object;:GetGetItem_IHandler\n" +
 			"n_getItemId:(I)J:GetGetItemId_IHandler\n" +
 			"n_getView:(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;:GetGetView_ILandroid_view_View_Landroid_view_ViewGroup_Handler\n" +
+			"n_onMapReady:(Lcom/google/android/gms/maps/GoogleMap;)V:GetOnMapReady_Lcom_google_android_gms_maps_GoogleMap_Handler:Android.Gms.Maps.IOnMapReadyCallbackInvoker, Xamarin.GooglePlayServices.Maps\n" +
 			"";
 		mono.android.Runtime.register ("TestApp.MainStart+ContactsAdapter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainStart_ContactsAdapter.class, __md_methods);
 	}
@@ -63,6 +65,14 @@ public class MainStart_ContactsAdapter
 	}
 
 	private native android.view.View n_getView (int p0, android.view.View p1, android.view.ViewGroup p2);
+
+
+	public void onMapReady (com.google.android.gms.maps.GoogleMap p0)
+	{
+		n_onMapReady (p0);
+	}
+
+	private native void n_onMapReady (com.google.android.gms.maps.GoogleMap p0);
 
 	java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
