@@ -37,9 +37,9 @@ namespace TestApp
 		LatLng currentPos;
 		Button findPeople;
 
-		Azure azure;
-		public MobileServiceClient client;
-		public IMobileServiceSyncTable<User> userTable;
+		//Azure azure;
+		//public MobileServiceClient client;
+		//public IMobileServiceSyncTable<User> userTable;
 
        public List<User> users;
 
@@ -66,7 +66,7 @@ namespace TestApp
 
                 RunOnUiThread(async() =>
                 {
-                    Toast.MakeText(this, "Making call to get Users on map", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Showing friends on the map", ToastLength.Short).Show();
 
                     users = await Azure.getImagesOnMap();
 

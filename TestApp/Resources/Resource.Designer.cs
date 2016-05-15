@@ -2169,11 +2169,11 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00db
 			public const int ContactImage = 2131427547;
 			
-			// aapt resource value: 0x7f0b00a4
-			public const int ContactName = 2131427492;
+			// aapt resource value: 0x7f0b00a2
+			public const int ContactName = 2131427490;
 			
-			// aapt resource value: 0x7f0b00a6
-			public const int ContactsListView = 2131427494;
+			// aapt resource value: 0x7f0b00a4
+			public const int ContactsListView = 2131427492;
 			
 			// aapt resource value: 0x7f0b006f
 			public const int LinearLayout1 = 2131427439;
@@ -2181,8 +2181,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00b3
 			public const int ServicesLayout = 2131427507;
 			
-			// aapt resource value: 0x7f0b00a0
-			public const int acc = 2131427488;
+			// aapt resource value: 0x7f0b009e
+			public const int acc = 2131427486;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int accelerometer_text = 2131427436;
@@ -2256,8 +2256,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b004c
 			public const int alertTitle = 2131427404;
 			
-			// aapt resource value: 0x7f0b009e
-			public const int alt = 2131427486;
+			// aapt resource value: 0x7f0b009c
+			public const int alt = 2131427484;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int always = 2131427367;
@@ -2268,8 +2268,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0038
 			public const int automatic = 2131427384;
 			
-			// aapt resource value: 0x7f0b00a1
-			public const int bear = 2131427489;
+			// aapt resource value: 0x7f0b009f
+			public const int bear = 2131427487;
 			
 			// aapt resource value: 0x7f0b0024
 			public const int beginning = 2131427364;
@@ -2280,8 +2280,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0030
 			public const int box_count = 2131427376;
 			
-			// aapt resource value: 0x7f0b00aa
-			public const int btnDialogEmail = 2131427498;
+			// aapt resource value: 0x7f0b00a8
+			public const int btnDialogEmail = 2131427496;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int button = 2131427377;
@@ -2292,8 +2292,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0047
 			public const int buttonPanel = 2131427399;
 			
-			// aapt resource value: 0x7f0b00ab
-			public const int cancel = 2131427499;
+			// aapt resource value: 0x7f0b00a9
+			public const int cancel = 2131427497;
 			
 			// aapt resource value: 0x7f0b00c3
 			public const int cancel_action = 2131427523;
@@ -2379,8 +2379,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0039
 			public const int display_always = 2131427385;
 			
-			// aapt resource value: 0x7f0b00af
-			public const int drawer_layout = 2131427503;
+			// aapt resource value: 0x7f0b00ad
+			public const int drawer_layout = 2131427501;
 			
 			// aapt resource value: 0x7f0b007e
 			public const int editText1 = 2131427454;
@@ -2421,8 +2421,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00bc
 			public const int get_address_button = 2131427516;
 			
-			// aapt resource value: 0x7f0b009b
-			public const int gpsReadings = 2131427483;
+			// aapt resource value: 0x7f0b0099
+			public const int gpsReadings = 2131427481;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int home = 2131427333;
@@ -2478,8 +2478,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b003b
 			public const int large = 2131427387;
 			
-			// aapt resource value: 0x7f0b009c
-			public const int lat = 2131427484;
+			// aapt resource value: 0x7f0b009a
+			public const int lat = 2131427482;
 			
 			// aapt resource value: 0x7f0b0036
 			public const int left = 2131427382;
@@ -2493,8 +2493,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0016
 			public const int light = 2131427350;
 			
-			// aapt resource value: 0x7f0b00a2
-			public const int lin2 = 2131427490;
+			// aapt resource value: 0x7f0b00a0
+			public const int lin2 = 2131427488;
 			
 			// aapt resource value: 0x7f0b00c7
 			public const int line1 = 2131427527;
@@ -2532,14 +2532,14 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0075
 			public const int loginWithWidgetAndRefreshToken = 2131427445;
 			
-			// aapt resource value: 0x7f0b009d
-			public const int longx = 2131427485;
+			// aapt resource value: 0x7f0b009b
+			public const int longx = 2131427483;
 			
 			// aapt resource value: 0x7f0b00b6
 			public const int mailSend = 2131427510;
 			
-			// aapt resource value: 0x7f0b00a5
-			public const int map = 2131427493;
+			// aapt resource value: 0x7f0b00a3
+			public const int map = 2131427491;
 			
 			// aapt resource value: 0x7f0b00c5
 			public const int media_actions = 2131427525;
@@ -2553,8 +2553,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00ff
 			public const int menu_refresh = 2131427583;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int message = 2131427497;
+			// aapt resource value: 0x7f0b00a7
+			public const int message = 2131427495;
 			
 			// aapt resource value: 0x7f0b00c1
 			public const int messenger_send_button = 2131427521;
@@ -2595,8 +2595,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00e0
 			public const int profileImage_score = 2131427552;
 			
-			// aapt resource value: 0x7f0b009a
-			public const int profilePicture = 2131427482;
+			// aapt resource value: 0x7f0b00af
+			public const int profilePicture = 2131427503;
 			
 			// aapt resource value: 0x7f0b00b0
 			public const int progressBar = 2131427504;
@@ -2727,8 +2727,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0048
 			public const int spacer = 2131427400;
 			
-			// aapt resource value: 0x7f0b009f
-			public const int speed = 2131427487;
+			// aapt resource value: 0x7f0b009d
+			public const int speed = 2131427485;
 			
 			// aapt resource value: 0x7f0b00b2
 			public const int spinner = 2131427506;
@@ -2751,8 +2751,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0012
 			public const int standard = 2131427346;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int startRoute = 2131427501;
+			// aapt resource value: 0x7f0b00ab
+			public const int startRoute = 2131427499;
 			
 			// aapt resource value: 0x7f0b00ee
 			public const int startService = 2131427566;
@@ -2769,8 +2769,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00ef
 			public const int stopService = 2131427567;
 			
-			// aapt resource value: 0x7f0b00a7
-			public const int subject = 2131427495;
+			// aapt resource value: 0x7f0b00a5
+			public const int subject = 2131427493;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int submit_area = 2131427432;
@@ -2778,8 +2778,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b008a
 			public const int swipeLayout = 2131427466;
 			
-			// aapt resource value: 0x7f0b00a3
-			public const int switch1 = 2131427491;
+			// aapt resource value: 0x7f0b00a1
+			public const int switch1 = 2131427489;
 			
 			// aapt resource value: 0x7f0b00f5
 			public const int swp = 2131427573;
@@ -2787,8 +2787,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0018
 			public const int tabMode = 2131427352;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int targetsEmail = 2131427496;
+			// aapt resource value: 0x7f0b00a6
+			public const int targetsEmail = 2131427494;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int terrain = 2131427342;
@@ -2796,8 +2796,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0098
 			public const int test = 2131427480;
 			
-			// aapt resource value: 0x7f0b0099
-			public const int testïng = 2131427481;
+			// aapt resource value: 0x7f0b00ae
+			public const int testïng = 2131427502;
 			
 			// aapt resource value: 0x7f0b00cc
 			public const int text = 2131427532;
@@ -2841,8 +2841,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b004b
 			public const int title_template = 2131427403;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int toolbar = 2131427502;
+			// aapt resource value: 0x7f0b00ac
+			public const int toolbar = 2131427500;
 			
 			// aapt resource value: 0x7f0b0034
 			public const int top = 2131427380;
@@ -2853,8 +2853,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00e2
 			public const int txtAge = 2131427554;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int txtFirstName = 2131427500;
+			// aapt resource value: 0x7f0b00aa
+			public const int txtFirstName = 2131427498;
 			
 			// aapt resource value: 0x7f0b00e3
 			public const int txtGender = 2131427555;

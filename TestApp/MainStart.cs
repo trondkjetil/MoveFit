@@ -88,7 +88,9 @@ namespace TestApp
 
             public ProgressBar loadingImage;
 
-       
+
+
+           
         public bool Changed
         {
             get { return changed; }
@@ -351,6 +353,8 @@ namespace TestApp
             //    Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
 
             //}
+
+          
         }
 
 
@@ -519,15 +523,6 @@ namespace TestApp
 
 				});
 
-            //if (!changed)
-            //{
-
-            //    changed = true;
-            //    Azure.updateUserLocation(userName);
-            //    //  loc = currentLocation;
-            //    Toast.MakeText(this, "Your location has been updated!", ToastLength.Long).Show();
-            //}
-
 
             Changed = true;
             changed = true;
@@ -535,8 +530,6 @@ namespace TestApp
             {
                 chk = true;
             }
-
-
         }
 
 			public void HandleProviderDisabled(object sender, ProviderDisabledEventArgs e)
@@ -572,37 +565,35 @@ namespace TestApp
 
 			}
 
+            public Task InitializeAsync()
+            {
+                throw new NotImplementedException();
+            }
 
-		
-        public Task InitializeAsync()
-        {
-            throw new NotImplementedException();
-        }
+            public Task<global::Newtonsoft.Json.Linq.JToken> ReadAsync(MobileServiceTableQueryDescription query)
+            {
+                throw new NotImplementedException();
+            }
 
-        public Task<global::Newtonsoft.Json.Linq.JToken> ReadAsync(MobileServiceTableQueryDescription query)
-        {
-            throw new NotImplementedException();
-        }
+            public Task UpsertAsync(string tableName, IEnumerable<global::Newtonsoft.Json.Linq.JObject> items, bool ignoreMissingColumns)
+            {
+                throw new NotImplementedException();
+            }
 
-        public Task UpsertAsync(string tableName, IEnumerable<global::Newtonsoft.Json.Linq.JObject> items, bool ignoreMissingColumns)
-        {
-            throw new NotImplementedException();
-        }
+            public Task DeleteAsync(MobileServiceTableQueryDescription query)
+            {
+                throw new NotImplementedException();
+            }
 
-        public Task DeleteAsync(MobileServiceTableQueryDescription query)
-        {
-            throw new NotImplementedException();
-        }
+            public Task DeleteAsync(string tableName, IEnumerable<string> ids)
+            {
+                throw new NotImplementedException();
+            }
 
-        public Task DeleteAsync(string tableName, IEnumerable<string> ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<global::Newtonsoft.Json.Linq.JObject> LookupAsync(string tableName, string id)
-        {
-            throw new NotImplementedException();
-        }
+            public Task<global::Newtonsoft.Json.Linq.JObject> LookupAsync(string tableName, string id)
+            {
+                throw new NotImplementedException();
+            }
 
 
 
@@ -610,7 +601,11 @@ namespace TestApp
         {
             List<Contact> _contactList;
             Activity _activity;
-            GoogleMap mMap;
+
+    
+            public static GoogleMap mMap;
+            public static List<User> nearbyUsers;
+
             public ContactsAdapter(Activity activity)
             {
                 _activity = activity;
@@ -619,17 +614,12 @@ namespace TestApp
 
             void FillContacts()
             {
-              
                 _contactList = new List<Contact>();
-
                         _contactList.Add(new Contact
                         {
                             Id = 123,
-                            DisplayName = "123"
-                  
-                        
-                        });
-                    
+                            DisplayName = "1"
+                        });   
             }
 
 
@@ -638,24 +628,21 @@ namespace TestApp
                 mMap = googleMap;
             }
           
-
             class Contact
             {
                 public long Id { get; set; }
                 public string DisplayName { get; set; }
-              //  public string PhotoId { get; set; }
-            }
-       
 
-        public override int Count
+            }
+
+            public override int Count
         {
             get { return _contactList.Count; }
         }
 
         public override Java.Lang.Object GetItem(int position)
         {
-            // could wrap a Contact in a Java.Lang.Object
-            // to return it here if needed
+            
             return null;
         }
 
@@ -669,16 +656,18 @@ namespace TestApp
             var view = convertView ?? _activity.LayoutInflater.Inflate(
                 Resource.Layout.ContactListItem, parent, false);
             var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
-            var contactImage = view.FindViewById<ImageView>(Resource.Id.ContactImage);
             contactName.Text = _contactList[position].DisplayName;
 
                 MapFragment mapFrag = (MapFragment)_activity.FragmentManager.FindFragmentById(Resource.Id.map);
-                GoogleMap map = mapFrag.Map;
-                if (map != null)
+                GoogleMap mMap = mapFrag.Map;
+
+                if (mMap != null)
                 {
-                    map.MapType = GoogleMap.MapTypeSatellite;  // The GoogleMap object is ready to go.
+                    mMap.MapType = GoogleMap.MapTypeNormal;  // The GoogleMap object is ready to go.
                 }
 
+
+                contactName.Text = "";
                 TextView latText;
                 TextView longText;
                 TextView altText;
@@ -692,55 +681,83 @@ namespace TestApp
                 speedText = view.FindViewById<TextView>(Resource.Id.speed);
                 bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 accText = view.FindViewById<TextView>(Resource.Id.acc);
-
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
 
-                ImageView profilePicture;
-                profilePicture = view.FindViewById<ImageView>(Resource.Id.profilePicture);
-                // profilePicture.SetImageBitmap(tt);
+                _activity.RunOnUiThread(async () =>
+                {
 
-                profilePicture.SetImageResource(Resource.Drawable.tt);
+                markOnMap(nearbyUsers, mMap);
 
 
+                });
+
+
+               
                 return view;
         }
 
-        }
+
+            public static void setMarker(LatLng myPosition, Bitmap pic, GoogleMap mMap)
+            {
+
+                MarkerOptions markerOpt1;
+
+                try
+                {
+                    //if (markerOpt1 != null)
+                    //    markerOpt1.Dispose();
+
+                    markerOpt1 = new MarkerOptions();
+                    markerOpt1.SetPosition(myPosition);
+                    markerOpt1.SetTitle("My Position");
+                    markerOpt1.SetSnippet("test");
+                    BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+                    markerOpt1.SetIcon(image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+                    mMap.AddMarker(markerOpt1);
+                  //  mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPosition, 15));
+                }
+                catch (Exception es)
+                {
+
+
+                }
+            }
+            public async static void markOnMap(List<User> users, GoogleMap mMap)
+            {
+
+                try
+                {
+
+                    nearbyUsers = await Azure.getImagesOnMap();
+                    foreach (User x in nearbyUsers)
+                    {
+                        setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
+
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+
+        }  // Contact adapter end
+
+
+
+
+
+
+
 
 
 
     }
-	}
 
 
-//public override View GetView(int position, View convertView, ViewGroup parent)
-//{
-//    //      var view = convertView ?? _activity.LayoutInflater.Inflate( Resource.Layout.ContactListItem, parent, false);
-//    var view = _activity.LayoutInflater.Inflate(Resource.Layout.ContactListItem, parent, false);
+	    }
 
-//    TextView latText;
-//    TextView longText;
-//    TextView altText;
-//    TextView speedText;
-//    TextView bearText;
-//    TextView accText;
-
-//    latText = view.FindViewById<TextView>(Resource.Id.lat);
-//    longText = view.FindViewById<TextView>(Resource.Id.longx);
-//    altText = view.FindViewById<TextView>(Resource.Id.alt);
-//    speedText = view.FindViewById<TextView>(Resource.Id.speed);
-//    bearText = view.FindViewById<TextView>(Resource.Id.bear);
-//    accText = view.FindViewById<TextView>(Resource.Id.acc);
-
-//    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
-//    TextView textview1 = view.FindViewById<TextView>(Resource.Id.textView1);
-//    textview1.Text = userName;
-
-//    ImageView profilePicture;
-//    profilePicture = view.FindViewById<ImageView>(Resource.Id.profilePicture);
-//    // profilePicture.SetImageBitmap(tt);
-
-//    profilePicture.SetImageResource(Resource.Drawable.tt);
-
-//    return view;
-//}
