@@ -31,7 +31,10 @@
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity" />
+    <activity android:label="StartRoute" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
+    <activity android:label="Route" android:name="md5cf27010e14af20e69784a5a54418b85f.Route" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
+    <activity android:label="SignalR_Client" android:name="md5cf27010e14af20e69784a5a54418b85f.MainActivity" />
     <activity android:label="Socialize" android:name="md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity" />
     <activity android:label="@string/app_name" android:name="md5cf27010e14af20e69784a5a54418b85f.FacebookMessenger">
       <intent-filter>
@@ -66,7 +69,7 @@
     <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.ToDoActivity" />
     <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity" />
     <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople" />
-    <activity android:label="DrawerMenu" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.MainStart" />
+    <activity android:label="MainMenu" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.MainStart" />
     <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.FormAuthenticatorActivity" />
     <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity" />
     <activity android:label="Web Authenticator" android:name="md550f8a10a740eb4fb6376baab8337ce22.FormAuthenticatorActivity" />

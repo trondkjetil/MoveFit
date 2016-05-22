@@ -31,21 +31,12 @@ using Android.Provider;
 namespace TestApp
 	{
 
-    /// <summary>
-    /// d=2*asin(sqrt((sin((lat1-lat2)/2))^2 + 
-    ///             cos(lat1)* cos(lat2)*(sin((lon1-lon2)/2))^2))
-    ///             
-    /// 
-    /// sql = select * from stores where lat!='' and lng!='' and ( 3959 * acos( cos( radians(" . $centerpoints['lat'] . ") ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(" . $centerpoints['lng'] . ") ) + sin( radians(" . $centerpoints['lat'] . ") ) * sin( radians( lat ) ) ) ) < " . $distanceInMile
-    /// </summary>
-    //This Is the main class
-    
     public class MyTestClass
     {
 
     }
    
-    [Activity (Label = "DrawerMenu",Theme = "@style/MyTheme",ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity (Label = "MainMenu",Theme = "@style/MyTheme",ScreenOrientation = ScreenOrientation.Portrait)]
 		public class MainStart : ActionBarActivity,ILocationListener,IMobileServiceLocalStore
     {
 			 readonly string logTag = "MainActivity";
@@ -74,23 +65,16 @@ namespace TestApp
 			Intent myIntent;
 
 			public Azure azure;
-
 		    public static bool changed;
 		    public static Location loc;
 		    public static Location currentLocation;
-
 		    public static string userName;
             public static String[] array;
-
             public List<User> user;
-
             public static bool chk;
-
             public ProgressBar loadingImage;
 
 
-
-           
         public bool Changed
         {
             get { return changed; }
@@ -135,15 +119,9 @@ namespace TestApp
              // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
 
                 mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
-
                 Switch location = FindViewById<Switch> (Resource.Id.switch1);
 			    TextView textview1 = FindViewById<TextView> (Resource.Id.textView1);
-
-
-        
-
                 loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
-
 
                 array = Intent.GetStringArrayExtra ("MyData");
 				textview1.Text = "Greetings "+ array[0] + "!";
@@ -158,15 +136,12 @@ namespace TestApp
             //Fix to remove space from profile pic and loadingbar
             //  ((ViewGroup)loadingImage.Parent).RemoveView(loadingImage);
             
-                 
-
-
-              userID = array [2];
-
+   
+                userID = array [2];
 				mLeftDrawer.Tag = 0;
-            //mRightDrawer.Tag = 1;
-            mRightDrawer.Tag = 1;
-            SetSupportActionBar(mToolbar);
+                //mRightDrawer.Tag = 1;
+                mRightDrawer.Tag = 1;
+                SetSupportActionBar(mToolbar);
 
 				mLeftDataSet = new List<string>();
 				mLeftDataSet.Add ("Profile");
@@ -175,9 +150,11 @@ namespace TestApp
 				mLeftDataSet.Add ("Calculator");
 				mLeftDataSet.Add ("Routes");
 				mLeftDataSet.Add ("People Map");
-            mLeftDataSet.Add ("Friends");
-            mLeftDataSet.Add ("People nearby");
-            mLeftDataSet.Add ("Social");
+                mLeftDataSet.Add ("Friends");
+                mLeftDataSet.Add ("People nearby");
+                mLeftDataSet.Add ("Social");
+                mLeftDataSet.Add("Messages");
+                mLeftDataSet.Add("Create Route");
 
 
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
@@ -212,9 +189,7 @@ namespace TestApp
                     }
                     else if(e.Position == 5){
                         myIntent = new Intent (this, typeof(GoogleMapsPeople));
-                     //   myIntent.PutExtras(MobileServiceClient);
                         StartActivity(myIntent);
-
 				    }
                     if (e.Position == 6)
                     {
@@ -229,6 +204,16 @@ namespace TestApp
                     else if (e.Position == 8)
                     {
                         myIntent = new Intent(this, typeof(FaceBookFriendsActivity));
+                        StartActivity(myIntent);
+                    }
+                    else if (e.Position == 9)
+                    {
+                        myIntent = new Intent(this, typeof(MainActivity));
+                        StartActivity(myIntent);
+                    }
+                    else if (e.Position == 10)
+                    {
+                        myIntent = new Intent(this, typeof(Route));
                         StartActivity(myIntent);
                     }
 
@@ -300,7 +285,6 @@ namespace TestApp
 				accText = FindViewById<TextView> (Resource.Id.acc);
     
                 initPersonTracker();
-
                 profilePicture = FindViewById<ImageView> (Resource.Id.profilePicture);
 
 				location.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e) {
@@ -582,6 +566,7 @@ namespace TestApp
 
             public Task DeleteAsync(MobileServiceTableQueryDescription query)
             {
+           
                 throw new NotImplementedException();
             }
 
@@ -675,6 +660,7 @@ namespace TestApp
                 TextView bearText;
                 TextView accText;
 
+              
                 latText = view.FindViewById<TextView>(Resource.Id.lat);
                 longText = view.FindViewById<TextView>(Resource.Id.longx);
                 altText = view.FindViewById<TextView>(Resource.Id.alt);
@@ -682,6 +668,37 @@ namespace TestApp
                 bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 accText = view.FindViewById<TextView>(Resource.Id.acc);
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
+                location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
+                    if (e.IsChecked == true)
+                    {
+                        Toast.MakeText(_activity, "Tracking...", ToastLength.Long).Show();
+                        //StartService(new Intent(this, typeof(LocationService)));
+                        //	StartService(new Intent(this, typeof(SimpleService)));
+                       // initPersonTracker();
+                       // Azure.SetUserOnline(userName, true);
+                        Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
+                        alertMessage.SetTitle("User location tracking");
+                        alertMessage.SetMessage("Your location tracking has been turned on");
+                        alertMessage.Show();
+
+                    }
+                    else
+                    {
+                        Toast.MakeText(_activity, "Tracking stopped!", ToastLength.Long).Show();
+                       // StopService(new Intent(this, typeof(LocationService)));
+                        // StopService(new Intent(this, typeof(SimpleService)));
+                      //  Azure.SetUserOnline(userName, false);
+
+                        Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
+                        alertMessage.SetTitle("User location tracking");
+                        alertMessage.SetMessage("Your location tracking has been turned off");
+                        alertMessage.Show();
+
+
+
+                    }
+                };
+
 
                 _activity.RunOnUiThread(async () =>
                 {

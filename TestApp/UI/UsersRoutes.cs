@@ -131,6 +131,7 @@ namespace TestApp
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
             public ImageView mProfilePicture { get; set; }
+            public ImageButton mStartRouteFlag { get; set; }
 
             public MyView (View view) : base(view)
             {
@@ -143,25 +144,30 @@ namespace TestApp
         {
 
                 //card view
-                View userFriendsContent = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
+                View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
 
-                ImageView profile = userFriendsContent.FindViewById<ImageView>(Resource.Id.profilePicture);
-                TextView name = userFriendsContent.FindViewById<TextView>(Resource.Id.nameId);
-                TextView status = userFriendsContent.FindViewById<TextView>(Resource.Id.statusId);
-                TextView text = userFriendsContent.FindViewById<TextView>(Resource.Id.textId);
+                ImageView profile = userRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
+                TextView name = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
+                TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
+                TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
+                ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
 
-                MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile };
-                return view;
+
+                 MyView view = new MyView(userRoutes) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mStartRouteFlag = startRoute };
+
+            return view;
   
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
+
+            // First view
                 Bitmap userImage;
-                //First view
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
+                myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
 
                 userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
 
@@ -174,7 +180,6 @@ namespace TestApp
                 myHolder.mStatus.Text = "Offline";
             }
                
-
                 myHolder.mText.Text = mUsers[position].Text;
 
             userImage = null;
@@ -184,10 +189,6 @@ namespace TestApp
             }
             else
                 myHolder.mProfilePicture.SetImageBitmap(userImage);
-
-
-
-
             if (position > mCurrentPosition)
             {
                 int currentAnim = Resource.Animation.slide_left_to_right;
@@ -198,6 +199,25 @@ namespace TestApp
 
 
         }
+
+        private void StartRouteFlag_Click(object sender, EventArgs e)
+        {
+
+
+            string test = "test";
+
+            //test = myHolder.mUserName.Text;
+            Bundle b = new Bundle();
+            b.PutStringArray("MyData", new String[] {
+            test
+
+                 });
+
+            Intent myIntent = new Intent(mContext, typeof(StartRoute));
+            myIntent.PutExtras(b);
+            mContext.StartActivity(myIntent);
+      
+    }
 
         private void SetAnimation(View view, int currentAnim)
         {

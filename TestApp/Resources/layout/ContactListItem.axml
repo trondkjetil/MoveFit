@@ -114,7 +114,7 @@
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="350dp"
                 class="com.google.android.gms.maps.MapFragment"
                 android:layout_weight="100"
                 android:layout_gravity="bottom"

@@ -14,6 +14,14 @@ TestApp.AccelerometerActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.Accel
 TestApp.AccelerometerActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity
 TestApp.AccelerometerActivity;md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity
 testapp.AccelerometerActivity;md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity
+TestApp.StartRoute, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartRoute
+TestApp.StartRoute, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartRoute
+TestApp.StartRoute;md5cf27010e14af20e69784a5a54418b85f.StartRoute
+testapp.StartRoute;md5cf27010e14af20e69784a5a54418b85f.StartRoute
+TestApp.Route, TestApp;md5cf27010e14af20e69784a5a54418b85f.Route
+TestApp.Route, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Route
+TestApp.Route;md5cf27010e14af20e69784a5a54418b85f.Route
+testapp.Route;md5cf27010e14af20e69784a5a54418b85f.Route
 TestApp.LocationService, TestApp;md5cf27010e14af20e69784a5a54418b85f.LocationService
 TestApp.LocationService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.LocationService
 TestApp.LocationService;md5cf27010e14af20e69784a5a54418b85f.LocationService
@@ -26,6 +34,14 @@ TestApp.LocationServiceConnection, TestApp;md5cf27010e14af20e69784a5a54418b85f.L
 TestApp.LocationServiceConnection, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.LocationServiceConnection
 TestApp.LocationServiceConnection;md5cf27010e14af20e69784a5a54418b85f.LocationServiceConnection
 testapp.LocationServiceConnection;md5cf27010e14af20e69784a5a54418b85f.LocationServiceConnection
+TestApp.GetInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.GetInfo
+TestApp.GetInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GetInfo
+TestApp.GetInfo;md5cf27010e14af20e69784a5a54418b85f.GetInfo
+testapp.GetInfo;md5cf27010e14af20e69784a5a54418b85f.GetInfo
+TestApp.MainActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.MainActivity
+TestApp.MainActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MainActivity
+TestApp.MainActivity;md5cf27010e14af20e69784a5a54418b85f.MainActivity
+testapp.MainActivity;md5cf27010e14af20e69784a5a54418b85f.MainActivity
 TestApp.FaceBookFriendsActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity
 TestApp.FaceBookFriendsActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity
 TestApp.FaceBookFriendsActivity;md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity
