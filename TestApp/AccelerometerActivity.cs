@@ -44,8 +44,16 @@ namespace TestApp
 			}
 
 		}
+        private void getSreenDimanstions()
+        {
 
-		protected override void OnCreate (Bundle savedInstanceState)
+            double width;
+            double height;
+            Display display = WindowManager.DefaultDisplay;
+            width = display.Width;
+            height = display.Height;
+        }
+        protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			RequestWindowFeature(WindowFeatures.NoTitle);

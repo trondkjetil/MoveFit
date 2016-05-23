@@ -1,3 +1,11 @@
+TestApp.LocationWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.LocationWrapper
+TestApp.LocationWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.LocationWrapper
+TestApp.LocationWrapper;md5cf27010e14af20e69784a5a54418b85f.LocationWrapper
+testapp.LocationWrapper;md5cf27010e14af20e69784a5a54418b85f.LocationWrapper
+TestApp.ReviewWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
+TestApp.ReviewWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
+TestApp.ReviewWrapper;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
+testapp.ReviewWrapper;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
 TestApp.RoutesWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
 TestApp.RoutesWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
 TestApp.RoutesWrapper;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper

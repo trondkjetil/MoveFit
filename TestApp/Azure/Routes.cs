@@ -6,8 +6,6 @@ namespace TestApp
     public class Routes
     {
 
-
-
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
@@ -19,15 +17,22 @@ namespace TestApp
         [JsonProperty(PropertyName = "review")]
         public string Review { get; set; }
 
+        [JsonProperty(PropertyName = "distance")]
+        public string Distance { get; set; }
+
+        [JsonProperty(PropertyName = "difficulty")]
+        public string Difficulty { get; set; }
+
+        [JsonProperty(PropertyName = "trips")]
+        public string Trips { get; set; }
+
         [JsonProperty(PropertyName = "lat")]
         public string Lat { get; set; }
 
         [JsonProperty(PropertyName = "long")]
         public string Lon { get; set; }
 
-       
-
-
+ 
     }
 
     public class RoutesWrapper : Java.Lang.Object

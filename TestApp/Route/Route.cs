@@ -11,24 +11,29 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Locations;
+using System.Collections;
+
 namespace TestApp
 {
     [Activity(Label = "Route")]
     public class Route : Activity, ILocationListener
     {
 
-        Location currentLocation;
+       
         LocationManager locationManager;
         string locationProvider;
-        TextView locationText;
         MarkerOptions markerOpt1;
         public static GoogleMap mMap;
+        ArrayList locationPoints;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.createRoute);
-            
+
+            locationPoints  = new ArrayList();
+
+
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             GoogleMap mMap = mapFrag.Map;
 
@@ -48,7 +53,7 @@ namespace TestApp
             Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
-            InitializeLocationManager();
+          
 
 
             //FragmentTransaction transaction = FragmentManager.BeginTransaction();
@@ -59,6 +64,8 @@ namespace TestApp
             start.Click += (sender, e) =>
             {
                 Toast.MakeText(this,"Starting route...",ToastLength.Short).Show();
+
+                InitializeLocationManager();
             };
             end.Click += (sender, e) =>
             {
@@ -97,14 +104,20 @@ namespace TestApp
             {
                 locationProvider = string.Empty;
             }
-          
+
+            long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+            long minDistance = 5; // Minimum distance change for update in meters, i.e. 10 meters.
+
+            locationManager.RequestLocationUpdates(this.locationProvider, minTime,
+                      minDistance, this);
+
         }
 
 
         protected override void OnResume()
         {
             base.OnResume();
-            locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+            //locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
         }
 
         protected override void OnPause()
@@ -129,11 +142,19 @@ namespace TestApp
         {
 
         }
-
-        public async void OnLocationChanged(Location location)
+        
+        public void OnLocationChanged(Location location)
         {
-            
-            
+
+            locationPoints.Add(location.ToString());
+            Toast.MakeText(this, "Location point taken", ToastLength.Long).Show();
+
+          //  CameraUpdate center = CameraUpdateFactory.NewLatLng(new LatLng(location.Latitude, location.Longitude));
+           // mMap.MoveCamera(center);
+
+          //  CameraUpdate zoom = CameraUpdateFactory.ZoomTo(15);
+         //   mMap.AnimateCamera(zoom);
+
         }
 
 

@@ -143,6 +143,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Azure\Locations.cs" />
+    <Compile Include="Azure\Review.cs" />
     <Compile Include="Azure\ToDo\ToDoActivity.cs" />
     <Compile Include="Azure\ToDo\ToDoItem.cs" />
     <Compile Include="Azure\ToDo\ToDoItemAdapter.cs" />
