@@ -32,23 +32,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
         android:layout_gravity="center" />-->
-    <EditText
-        android:id="@+id/txtFirstName"
+    <TextView
+        android:text="Please name the route: "
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="30dp"
+        android:id="@+id/namePropt"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="30dp" />
+    <EditText
+        android:id="@+id/nameOfroute"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
-        android:height="200dp"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        android:editable="false"
+        android:height="50dp"
+        android:textColor="@android:color/background_dark"
+        android:editable="true"
         android:focusable="true"
-        android:text="Do you want to start route X now? (This dialog is only starting when a user is close to the starting point of a route)" />
+        android:text="" />
     <Button
-        android:text="Start"
+        android:text="Done"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_weight="25"

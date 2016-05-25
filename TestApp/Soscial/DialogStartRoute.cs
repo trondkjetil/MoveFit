@@ -8,8 +8,9 @@ namespace TestApp
 {
 	 class DialogStartRoute : DialogFragment
 	{
-
-		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        public event EventHandler<DialogEventArgs> DialogClosed;
+        public EditText routeName;
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.dialogStartRoute, container,false);
@@ -17,8 +18,10 @@ namespace TestApp
 
 			Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
-		
-			dismiss.Click += (sender, e) => Dismiss();
+            TextView route = view.FindViewById<TextView>(Resource.Id.namePropt);
+             routeName  = view.FindViewById<EditText>(Resource.Id.nameOfroute);
+
+            dismiss.Click += (sender, e) => Dismiss();
 			startRoute.Click += (sender, e) => Dismiss();
 
 
@@ -26,9 +29,17 @@ namespace TestApp
 		}
 
 
+        public override void OnDismiss(Android.Content.IDialogInterface dialog)
+        {
+            base.OnDismiss(dialog);
+            if (DialogClosed != null)
+            {
+                DialogClosed(this, new DialogEventArgs { ReturnValue = routeName.Text });
+            }
 
+        }
 
-		public override void OnActivityCreated (Bundle savedInstanceState)
+        public override void OnActivityCreated (Bundle savedInstanceState)
 		{
 			Dialog.Window.RequestFeature (WindowFeatures.NoTitle); //set the title bar to invisible
 			base.OnActivityCreated (savedInstanceState);
@@ -38,7 +49,16 @@ namespace TestApp
 		
 		}
 
-	}
+
+
+        public class DialogEventArgs
+        {
+            //you can put other properties here that may be relevant to check from activity
+            //for example: if a cancel button was clicked, other text values, etc.
+
+            public string ReturnValue { get; set; }
+        }
+    }
 }
 
 

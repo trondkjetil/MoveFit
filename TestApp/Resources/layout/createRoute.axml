@@ -4,6 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@android:color/white">
+        <TextView
+            android:text="Route creator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/routeTitle"
+            android:textColor="@android:color/background_dark"
+            android:gravity="center"
+            android:textSize="30dp" />
+        <ImageView
+            android:src="@drawable/green"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:id="@+id/imageStatus"
+            android:background="@android:color/transparent"
+            android:layout_gravity="bottom"
+            android:layout_weight="10" />
+    </LinearLayout>
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
@@ -15,13 +37,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
-        android:textColor="#ffffffff" />
+        android:textColor="@android:color/background_dark" />
     <Spinner
         android:id="@+id/spinnerRouteTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:prompt="@string/planet_prompt"
-        android:textColor="#ffffffff"
+        android:textColor="@android:color/background_dark"
         android:layout_y="20dp" />
     <Button
         android:text="Create a new route"

@@ -155,7 +155,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccelerometerActivity.cs" />
     <Compile Include="Route\StartRoute.cs" />
-    <Compile Include="Route\Route.cs" />
+    <Compile Include="Route\CreateRoute.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\LocationServiceBinder.cs" />
     <Compile Include="Services\LocationServiceConnection.cs" />

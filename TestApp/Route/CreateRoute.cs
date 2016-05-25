@@ -25,6 +25,8 @@ namespace TestApp
         MarkerOptions markerOpt1;
         public static GoogleMap mMap;
         ArrayList locationPoints;
+
+        public static string givenRouteName;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -48,17 +50,16 @@ namespace TestApp
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
 
+            ImageView statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
+            TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
+          //  TextView routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
 
             Button start = FindViewById<Button>(Resource.Id.startRoute);
             Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
-          
-
-
-            //FragmentTransaction transaction = FragmentManager.BeginTransaction();
-            //DialogStartRoute newDialog = new DialogStartRoute();
-            //newDialog.Show(transaction, "Start Route");
+  
+            
 
 
             start.Click += (sender, e) =>
@@ -66,20 +67,38 @@ namespace TestApp
                 Toast.MakeText(this,"Starting route...",ToastLength.Short).Show();
 
                 InitializeLocationManager();
+
+                statusImage.SetImageResource(Resource.Drawable.green);
+           //     routeStatus.Text = "Route creator status: Creating...";
             };
             end.Click += (sender, e) =>
             {
                 Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
+                statusImage.SetImageResource(Resource.Drawable.red);
+              //  routeStatus.Text = "Route creator status: Idle";
+
+                FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                DialogStartRoute newDialog = new DialogStartRoute();
+                newDialog.DialogClosed += OnDialogClosed; 
+                newDialog.Show(transaction, "Start Route");
+
+               
+
             };
             cancel.Click += (sender, e) =>
             {
-               
+                
                 Finish();
             };
 
 
         }
 
+        void OnDialogClosed(object sender, DialogStartRoute.DialogEventArgs e)
+        {
+            givenRouteName = e.ReturnValue;
+            Toast.MakeText(this, givenRouteName, ToastLength.Long).Show();
+        }
 
         public void OnMapReady(GoogleMap googleMap)
         {
