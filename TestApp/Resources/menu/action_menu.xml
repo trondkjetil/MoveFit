@@ -13,5 +13,10 @@
 		android:title="About"
 		myapp:showAsAction="always"/>
 
+  <item android:id="@+id/action_alarm"
+		android:icon="@drawable/ic_alarm"
+		android:title="Alarm"
+		myapp:showAsAction="always"/>
+
 </menu>
 

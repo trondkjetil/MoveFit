@@ -66,8 +66,8 @@ namespace TestApp
            
 			Log.Debug (logTag, string.Format ("You are about to get location updates via {0}", locationProvider));
 
-			// Get an initial fix on location
-			LocMgr.RequestLocationUpdates(locationProvider, 2000, 0, this);
+			// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
+			LocMgr.RequestLocationUpdates(locationProvider, 20000, 0, this);
 
 			Log.Debug (logTag, "Now sending location updates");
 		}
@@ -82,7 +82,7 @@ namespace TestApp
 		// ILocationListener is a way for the Service to subscribe for updates
 		// from the System location Service
 
-		public void OnLocationChanged (Android.Locations.Location location)
+		public void OnLocationChanged (Location location)
 		{
 			this.LocationChanged (this, new LocationChangedEventArgs (location));
 
@@ -98,17 +98,17 @@ namespace TestApp
 
 		public void OnProviderDisabled (string provider)
 		{
-			this.ProviderDisabled (this, new ProviderDisabledEventArgs (provider));
+			ProviderDisabled (this, new ProviderDisabledEventArgs (provider));
 		}
 
 		public void OnProviderEnabled (string provider)
 		{
-			this.ProviderEnabled (this, new ProviderEnabledEventArgs (provider));
+			ProviderEnabled (this, new ProviderEnabledEventArgs (provider));
 		}
 
 		public void OnStatusChanged (string provider, Availability status, Bundle extras)
 		{
-			this.StatusChanged (this, new StatusChangedEventArgs (provider, status, extras));
+			StatusChanged (this, new StatusChangedEventArgs (provider, status, extras));
 		} 
 
 		#endregion

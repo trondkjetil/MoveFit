@@ -66,9 +66,6 @@ namespace TestApp
            
 
 
-            //FragmentTransaction transaction = FragmentManager.BeginTransaction();
-            //DialogStartRoute newDialog = new DialogStartRoute();
-            //newDialog.Show(transaction, "Start Route");
 
 
             start.Click += (sender, e) =>
@@ -156,7 +153,13 @@ namespace TestApp
             mMap = googleMap;
         }
 
+        public void startDialog()
+        {
 
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            DialogStartRoute newDialog = new DialogStartRoute();
+            newDialog.Show(transaction, "End route");
+        }
         void InitializeLocationManager()
         {
             locationManager = (LocationManager)GetSystemService(LocationService);
@@ -176,12 +179,12 @@ namespace TestApp
             }
             Location location = locationManager.GetLastKnownLocation(locationProvider);
 
-            //initialize the location
-            if (location != null)
-            {
+            ////initialize the location
+            //if (location != null)
+            //{
 
-                OnLocationChanged(location);
-            }
+            //    OnLocationChanged(location);
+            //}
         }
 
 
@@ -218,14 +221,14 @@ namespace TestApp
         {
 
 
-            locationPoints.Add(location.ToString());
-            Toast.MakeText(this, "Location point taken", ToastLength.Long).Show();
+            //locationPoints.Add(location.ToString());
+            //Toast.MakeText(this, "Location point taken", ToastLength.Long).Show();
 
-            CameraUpdate center = CameraUpdateFactory.NewLatLng(new LatLng(location.Latitude, location.Longitude));
-            mMap.MoveCamera(center);
+            //CameraUpdate center = CameraUpdateFactory.NewLatLng(new LatLng(location.Latitude, location.Longitude));
+            ////mMap.MoveCamera(center);
 
-            CameraUpdate zoom = CameraUpdateFactory.ZoomTo(15);
-            mMap.AnimateCamera(zoom);
+            //CameraUpdate zoom = CameraUpdateFactory.ZoomTo(15);
+           // mMap.AnimateCamera(zoom);
 
         }
 

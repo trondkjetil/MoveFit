@@ -9,11 +9,11 @@
 //using Microsoft.WindowsAzure.MobileServices.Sync;
 //using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 //using System.IO;
+//using TestApp;
 
 //namespace TestApp
 //{
-//    [Activity (Label="@string/app_name",
-//               Theme="@style/AppTheme")]
+//    [Activity( Label = "Appsa")]
 //    public class ToDoActivity : Activity
 //    {
 //        //Mobile Service Client reference
@@ -28,36 +28,36 @@
 //        //EditText containing the "New ToDo" text
 //        private EditText textNewToDo;
 
-//        const string applicationURL = @"https://movefit.azure-mobile.net/";
-//        const string applicationKey = @"vaLLzAEGOZguaHOsXqTPkoRsqBYNGP34";
+//        const string applicationURL = @"https://movefitt.azurewebsites.net";
 
-//        const string localDbFilename = "localstore1.db";
-//        protected override async void OnCreate (Bundle bundle)
+//        const string localDbFilename = "localstore.db";
+
+//        protected override async void OnCreate(Bundle bundle)
 //        {
-//            base.OnCreate (bundle);
+//            base.OnCreate(bundle);
 
 //            // Set our view from the "main" layout resource
-//            SetContentView (Resource.Layout.Activity_To_Do);
+//            SetContentView(Resource.Layout.Activity_To_Do);
 
-//            CurrentPlatform.Init ();
+//            CurrentPlatform.Init();
 
 //            // Create the Mobile Service Client instance, using the provided
-//            // Mobile Service URL and key
-//            client = new MobileServiceClient (applicationURL, applicationKey);
+//            // Mobile Service URL
+//            client = new MobileServiceClient(applicationURL);
 //            await InitLocalStoreAsync();
 
 //            // Get the Mobile Service sync table instance to use
-//            toDoTable = client.GetSyncTable <ToDoItem> ();
+//            toDoTable = client.GetSyncTable<ToDoItem>();
 
-//            textNewToDo = FindViewById<EditText> (Resource.Id.textNewToDo);
+//            textNewToDo = FindViewById<EditText>(Resource.Id.textNewToDo);
 
 //            // Create an adapter to bind the items with the view
-//            adapter = new ToDoItemAdapter (this, Resource.Layout.Row_List_To_Do);
-//            var listViewToDo = FindViewById<ListView> (Resource.Id.listViewToDo);
+//            adapter = new ToDoItemAdapter(this, Resource.Layout.Row_List_To_Do);
+//            var listViewToDo = FindViewById<ListView>(Resource.Id.listViewToDo);
 //            listViewToDo.Adapter = adapter;
 
 //            // Load the items from the Mobile Service
-//            OnRefreshItemsSelected ();
+//            OnRefreshItemsSelected();
 //        }
 
 //        private async Task InitLocalStoreAsync()
@@ -67,12 +67,10 @@
 
 //            if (!File.Exists(path))
 //            {
-//               // File.Delete(path);
 //                File.Create(path).Dispose();
 //            }
 
 //            var store = new MobileServiceSQLiteStore(path);
-           
 //            store.DefineTable<ToDoItem>();
 
 //            // Uses the default conflict handler, which fails on conflict
@@ -81,120 +79,143 @@
 //        }
 
 //        //Initializes the activity menu
-//        public override bool OnCreateOptionsMenu (IMenu menu)
+//        public override bool OnCreateOptionsMenu(IMenu menu)
 //        {
-//            MenuInflater.Inflate (Resource.Menu.activity_main, menu);
+//            MenuInflater.Inflate(Resource.Menu.activity_main, menu);
 //            return true;
 //        }
 
 //        //Select an option from the menu
-//        public override bool OnOptionsItemSelected (IMenuItem item)
+//        public override bool OnOptionsItemSelected(IMenuItem item)
 //        {
-//            if (item.ItemId == Resource.Id.menu_refresh) {
+//            if (item.ItemId == Resource.Id.menu_refresh)
+//            {
 //                item.SetEnabled(false);
 
-//                OnRefreshItemsSelected ();
-                
+//                OnRefreshItemsSelected();
+
 //                item.SetEnabled(true);
 //            }
 //            return true;
 //        }
 
-//        private async Task SyncAsync()
+//        private async Task SyncAsync(bool pullData = false)
 //        {
-//			try {
-//	            await client.SyncContext.PushAsync();
-//	            await toDoTable.PullAsync("allTodoItems", toDoTable.CreateQuery()); // query ID is used for incremental sync
-//			} catch (Java.Net.MalformedURLException) {
-//				CreateAndShowDialog (new Exception ("There was an error creating the Mobile Service. Verify the URL"), "Error");
-//			} catch (Exception e) {
-//				CreateAndShowDialog (e, "Error");
-//			}
+//            try
+//            {
+//                await client.SyncContext.PushAsync();
+
+//                if (pullData)
+//                {
+//                    await toDoTable.PullAsync("allTodoItems", toDoTable.CreateQuery()); // query ID is used for incremental sync
+//                }
+//            }
+//            catch (Java.Net.MalformedURLException)
+//            {
+//                CreateAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
+//            }
+//            catch (Exception e)
+//            {
+//                CreateAndShowDialog(e, "Error");
+//            }
 //        }
 
 //        // Called when the refresh menu option is selected
-//        private async void OnRefreshItemsSelected ()
+//        private async void OnRefreshItemsSelected()
 //        {
-//            await SyncAsync(); // get changes from the mobile service
+//            await SyncAsync(pullData: true); // get changes from the mobile service
 //            await RefreshItemsFromTableAsync(); // refresh view using local database
 //        }
 
 //        //Refresh the list with the items in the local database
-//        private async Task RefreshItemsFromTableAsync ()
+//        private async Task RefreshItemsFromTableAsync()
 //        {
-//            try {
+//            try
+//            {
 //                // Get the items that weren't marked as completed and add them in the adapter
-//                var list = await toDoTable.Where (item => item.Complete == false).ToListAsync ();
+//                var list = await toDoTable.Where(item => item.Complete == false).ToListAsync();
 
-//                adapter.Clear ();
+//                adapter.Clear();
 
 //                foreach (ToDoItem current in list)
-//                    adapter.Add (current);
+//                    adapter.Add(current);
 
-//            } catch (Exception e) {
-//                CreateAndShowDialog (e, "Error");
+//            }
+//            catch (Exception e)
+//            {
+//                CreateAndShowDialog(e, "Error");
 //            }
 //        }
 
-//        public async Task CheckItem (ToDoItem item)
+//        public async Task CheckItem(ToDoItem item)
 //        {
-//            if (client == null) {
+//            if (client == null)
+//            {
 //                return;
 //            }
 
 //            // Set the item as completed and update it in the table
 //            item.Complete = true;
-//            try {
+//            try
+//            {
 //                await toDoTable.UpdateAsync(item); // update the new item in the local database
 //                await SyncAsync(); // send changes to the mobile service
 
 //                if (item.Complete)
-//                    adapter.Remove (item);
+//                    adapter.Remove(item);
 
-//            } catch (Exception e) {
-//                CreateAndShowDialog (e, "Error");
+//            }
+//            catch (Exception e)
+//            {
+//                CreateAndShowDialog(e, "Error");
 //            }
 //        }
 
 //        [Java.Interop.Export()]
-//        public async void AddItem (View view)
+//        public async void AddItem(View view)
 //        {
-//            if (client == null || string.IsNullOrWhiteSpace (textNewToDo.Text)) {
+//            if (client == null || string.IsNullOrWhiteSpace(textNewToDo.Text))
+//            {
 //                return;
 //            }
 
 //            // Create a new item
-//            var item = new ToDoItem {
+//            var item = new ToDoItem
+//            {
 //                Text = textNewToDo.Text,
 //                Complete = false
 //            };
 
-//            try {
+//            try
+//            {
 //                await toDoTable.InsertAsync(item); // insert the new item into the local database
 //                await SyncAsync(); // send changes to the mobile service
 
-//                if (!item.Complete) {
-//                    adapter.Add (item);
+//                if (!item.Complete)
+//                {
+//                    adapter.Add(item);
 //                }
-//            } catch (Exception e) {
-//                CreateAndShowDialog (e, "Error");
+//            }
+//            catch (Exception e)
+//            {
+//                CreateAndShowDialog(e, "Error");
 //            }
 
 //            textNewToDo.Text = "";
 //        }
 
-//        private void CreateAndShowDialog (Exception exception, String title)
+//        private void CreateAndShowDialog(Exception exception, String title)
 //        {
-//            CreateAndShowDialog (exception.Message, title);
+//            CreateAndShowDialog(exception.Message, title);
 //        }
 
-//        private void CreateAndShowDialog (string message, string title)
+//        private void CreateAndShowDialog(string message, string title)
 //        {
-//            AlertDialog.Builder builder = new AlertDialog.Builder (this);
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-//            builder.SetMessage (message);
-//            builder.SetTitle (title);
-//            builder.Create ().Show ();
+//            builder.SetMessage(message);
+//            builder.SetTitle(title);
+//            builder.Create().Show();
 //        }
 //    }
 //}

@@ -18,6 +18,8 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -63,8 +65,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Components\Auth0Client-0.5.0\lib\android\Auth0Client.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Bolts.AppLinks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bolts.1.4.0\lib\MonoAndroid403\Bolts.AppLinks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bolts.Tasks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bolts.1.4.0\lib\MonoAndroid403\Bolts.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client">
       <HintPath>..\Components\signalr-2.1.2.2\lib\android\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.2.0.1\lib\monoandroid\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.2.0.1\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
@@ -74,20 +96,19 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Android.Export" />
-    <Reference Include="Bolts.AppLinks">
-      <HintPath>..\packages\Bolts.1.3.0\lib\MonoAndroid403\Bolts.AppLinks.dll</HintPath>
-    </Reference>
-    <Reference Include="Bolts.Tasks">
-      <HintPath>..\packages\Bolts.1.3.0\lib\MonoAndroid403\Bolts.Tasks.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Auth.Android">
       <HintPath>..\..\..\Users\Trond\Desktop\Components\Auth0Client-0.5.0\lib\android\Xamarin.Auth.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Facebook">
-      <HintPath>..\packages\Xamarin.Facebook.Android.4.10.0.0\lib\MonoAndroid403\Xamarin.Facebook.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
@@ -101,6 +122,14 @@
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Facebook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Facebook.Android.4.11.0\lib\MonoAndroid403\Xamarin.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Facebook.AudienceNetwork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Facebook.AudienceNetwork.Android.4.11.0\lib\MonoAndroid41\Xamarin.Facebook.AudienceNetwork.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Basement">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Basement.dll</HintPath>
     </Reference>
@@ -113,17 +142,8 @@
     <Reference Include="Xamarin.GooglePlayServices.Maps">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Facebook.AudienceNetwork">
-      <HintPath>..\packages\Xamarin.Facebook.AudienceNetwork.Android.4.10.0.0\lib\MonoAndroid41\Xamarin.Facebook.AudienceNetwork.dll</HintPath>
-    </Reference>
     <Reference Include="Refractored.GifImageView">
       <HintPath>..\packages\Refractored.GifImageView.1.2.0.0\lib\monoandroid\Refractored.GifImageView.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\monoandroid\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\monoandroid\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="SQLitePCL">
@@ -132,28 +152,20 @@
     <Reference Include="SQLitePCL.Ext">
       <HintPath>..\packages\SQLitePCL.3.8.7.2\lib\MonoAndroid\SQLitePCL.Ext.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile">
-      <HintPath>..\packages\WindowsAzure.MobileServices.1.3.1\lib\monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
-      <HintPath>..\packages\WindowsAzure.MobileServices.1.3.1\lib\monoandroid\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore">
-      <HintPath>..\packages\WindowsAzure.MobileServices.SQLiteStore.1.0.4\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Azure\Locations.cs" />
     <Compile Include="Azure\Review.cs" />
+    <Compile Include="Azure\Route.cs" />
     <Compile Include="Azure\ToDo\ToDoActivity.cs" />
     <Compile Include="Azure\ToDo\ToDoItem.cs" />
     <Compile Include="Azure\ToDo\ToDoItemAdapter.cs" />
-    <Compile Include="Azure\Routes.cs" />
     <Compile Include="Azure\UserFriends.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AccelerometerActivity.cs" />
+    <Compile Include="Health\ActivityLevelTracker.cs" />
+    <Compile Include="Route\DialogEndRoute .cs" />
     <Compile Include="Route\StartRoute.cs" />
     <Compile Include="Route\CreateRoute.cs" />
     <Compile Include="Services\LocationService.cs" />
@@ -162,8 +174,6 @@
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\MainActivity.cs" />
-    <Compile Include="Soscial\FaceBookFriendsActivity.cs" />
-    <Compile Include="Soscial\FacebookMessenger.cs" />
     <Compile Include="UI\ScoreBoardActivity.cs" />
     <Compile Include="UI\ScoreBoardAnimation.cs" />
     <Compile Include="UI\ScoreBoardExtMethods.cs" />
@@ -176,17 +186,12 @@
     <Compile Include="UI\UsersRoutes.cs" />
     <Compile Include="UI\UsersFriends.cs" />
     <Compile Include="UI\UsersNearby.cs" />
-    <Compile Include="UI\StartCardView.cs" />
     <Compile Include="Services\SimpleService.cs" />
-    <Compile Include="Services\StartSimpleService.cs" />
-    <Compile Include="UI\ResultBoardActivity.cs" />
-    <Compile Include="Soscial\Dialog.cs" />
-    <Compile Include="Soscial\DialogStartRoute.cs" />
-    <Compile Include="UI\ContactsAdapter.cs" />
+    <Compile Include="Route\DialogStartRoute.cs" />
     <Compile Include="Login\AuthActivity.cs" />
     <Compile Include="Login\LoginActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
-    <Compile Include="UserOverview.cs" />
+    <Compile Include="Login\UserOverview.cs" />
     <Compile Include="Utilz\helpClass.cs" />
     <Compile Include="Utilz\TestAuth.cs" />
     <Compile Include="Utilz\IO.cs" />
@@ -198,8 +203,6 @@
     <Compile Include="Azure\AzureActivity.cs" />
     <Compile Include="Maps\GoogleMapsRoutes.cs" />
     <Compile Include="Maps\GoogleMapsPeople.cs" />
-    <Compile Include="UI\Email.cs" />
-    <Compile Include="PersonTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainStart.cs" />
@@ -213,10 +216,8 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\accelerometer.axml" />
-    <AndroidResource Include="Resources\layout\faceBookLayout.axml" />
     <AndroidResource Include="Resources\layout\resultList.axml" />
     <AndroidResource Include="Resources\layout\auth.axml" />
-    <AndroidResource Include="Resources\layout\dialogPopup.axml" />
     <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
     <AndroidResource Include="Resources\anim\slide_up.xml" />
     <AndroidResource Include="Resources\anim\slide_right.xml" />
@@ -229,9 +230,7 @@
     <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable\Thumbs.db" />
     <AndroidResource Include="Resources\drawable\xs.png" />
-    <AndroidResource Include="Resources\layout\facebookMessenger.axml" />
     <AndroidResource Include="Resources\drawable\tree.jpg" />
-    <AndroidResource Include="Resources\layout\progressBar.axml" />
     <AndroidResource Include="Resources\drawable\customLoadbar.xml" />
     <AndroidResource Include="Resources\Raw\moveIt.mp3" />
     <AndroidResource Include="Resources\drawable\ic_action_search.png" />
@@ -242,8 +241,6 @@
     <AndroidResource Include="Resources\drawable\test.png" />
     <AndroidResource Include="Resources\drawable\bike.png" />
     <AndroidResource Include="Resources\drawable\sign.png" />
-    <AndroidResource Include="Resources\layout\simpleServiceLayout.axml" />
-    <AndroidResource Include="Resources\layout\cardViewMain.axml" />
     <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
     <AndroidResource Include="Resources\drawable\ic_action_new.png" />
     <AndroidResource Include="Resources\drawable\ic_action_read.png" />
@@ -265,7 +262,6 @@
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
     <AndroidResource Include="Resources\layout\scoreBoardMain.axml" />
-    <AndroidResource Include="Resources\layout\customListView.axml" />
     <AndroidResource Include="Resources\layout\Activity_To_Do.axml" />
     <AndroidResource Include="Resources\layout\Row_List_To_Do.axml" />
     <AndroidResource Include="Resources\menu\activity_main.xml" />
@@ -293,7 +289,7 @@
     <AndroidResource Include="Resources\layout\calculator.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ContactListItem.axml">
+    <AndroidResource Include="Resources\layout\rightDrawerMenu.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -329,10 +325,6 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
       <Version>23.1.1.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="facebookandroid">
-      <Version>4.10.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7appcompat">
@@ -408,4 +400,17 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\itemsRouteTypes.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lupe.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_alarm.png" />
+  </ItemGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
 </Project>

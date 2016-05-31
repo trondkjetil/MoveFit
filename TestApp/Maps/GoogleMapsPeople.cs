@@ -61,9 +61,7 @@ namespace TestApp
 
          //.Result;
 
-            findPeople = FindViewById<Button> (Resource.Id.friendsMap);
-			findPeople.Click += (sender, e) => {
-
+         
                 RunOnUiThread(async() =>
                 {
                     Toast.MakeText(this, "Showing friends on the map", ToastLength.Short).Show();
@@ -79,7 +77,6 @@ namespace TestApp
 
                 });
 
-            };
 
 		}
 

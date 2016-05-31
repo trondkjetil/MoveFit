@@ -16,6 +16,7 @@ public class MainStart
 			"n_onSaveInstanceState:(Landroid/os/Bundle;)V:GetOnSaveInstanceState_Landroid_os_Bundle_Handler\n" +
 			"n_onPostCreate:(Landroid/os/Bundle;)V:GetOnPostCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onConfigurationChanged:(Landroid/content/res/Configuration;)V:GetOnConfigurationChanged_Landroid_content_res_Configuration_Handler\n" +
+			"n_onStop:()V:GetOnStopHandler\n" +
 			"n_onPause:()V:GetOnPauseHandler\n" +
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
@@ -82,6 +83,14 @@ public class MainStart
 	}
 
 	private native void n_onConfigurationChanged (android.content.res.Configuration p0);
+
+
+	public void onStop ()
+	{
+		n_onStop ();
+	}
+
+	private native void n_onStop ();
 
 
 	public void onPause ()

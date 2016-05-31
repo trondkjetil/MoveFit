@@ -13,11 +13,4 @@
         android:layout_weight="100"
         android:layout_gravity="bottom"
         android:layout_y="210dp" />
-    <Button
-        android:text="Show Friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/friendsMap"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace TestApp
 {
 
-	[Activity (Label = "MoveFit-MoveFit", Icon = "@drawable/tt",  MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait)]			
+	[Activity (Label = "MoveFit", Icon = "@drawable/tt",  MainLauncher = true,ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class WelcomeScreen : Activity
 	{
 
@@ -47,13 +47,10 @@ namespace TestApp
 			RequestWindowFeature(WindowFeatures.NoTitle);
 			SetContentView(Resource.Layout.welcome);
 
-            //azure = new Azure ();
-
-            CurrentPlatform.Init ();
+           //New database in Azure requires initialisation with ToDoItem setup in order to work
+          //  CurrentPlatform.Init ();
             Azure.initAzure();
-		
-			// Starts movement tracker (indoor)
-			StartService(new Intent(this, typeof(SimpleService)));
+	
 			//	startMain ();
 
 			loginWithWidget ();

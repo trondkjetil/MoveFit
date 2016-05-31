@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -16,35 +16,56 @@
             android:id="@+id/routeTitle"
             android:textColor="@android:color/background_dark"
             android:gravity="center"
-            android:textSize="30dp" />
+            android:textSize="28dp" />
         <ImageView
-            android:src="@drawable/green"
+            android:src="@drawable/orange"
             android:layout_width="wrap_content"
-            android:layout_height="3dp"
+            android:layout_height="match_parent"
             android:id="@+id/imageStatus"
             android:background="@android:color/transparent"
             android:layout_gravity="bottom"
-            android:layout_weight="10" />
-    </LinearLayout>
+            android:layout_weight="10"
+            android:layout_below="@+id/routeTitle" />
+        <TextView
+            android:text="Status: "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/statusRoute"
+            android:textColor="@android:color/background_dark"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:layout_weight="40"
+            android:layout_toRightOf="@+id/imageStatus"
+            android:layout_below="@+id/routeTitle"
+            android:layout_marginLeft="25dp" />
+    </RelativeLayout>
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_weight="60" />
-    <TextView
-        android:text="Route types: "
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textColor="@android:color/background_dark" />
-    <Spinner
-        android:id="@+id/spinnerRouteTypes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:prompt="@string/planet_prompt"
-        android:textColor="@android:color/background_dark"
-        android:layout_y="20dp" />
+        android:layout_height="80dp"
+        android:background="@android:color/white">
+        <TextView
+            android:text="Route types: "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1"
+            android:textColor="@android:color/background_dark" />
+        <Spinner
+            android:id="@+id/spinnerRouteTypes"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:prompt="@string/planet_prompt"
+            android:textColor="@android:color/background_dark"
+            android:layout_y="20dp"
+            android:layout_toRightOf="@+id/textView1"
+            android:layout_below="@+id/map" />
+    </RelativeLayout>
     <Button
         android:text="Create a new route"
         android:layout_width="match_parent"

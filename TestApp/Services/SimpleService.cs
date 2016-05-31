@@ -23,16 +23,28 @@ namespace TestApp
 		private float mAccel;
 		private float mAccelCurrent;
 		private float mAccelLast;
+
+        public static bool status;
+        public static bool Status {
+
+            get { return status; }
+            set
+            {
+                status = value;
+            }
+        }
 		static int counter { get; set;}
 	
-	public	ThreadStart th;
-	public	Thread childThread;
+	public ThreadStart th;
+	public Thread childThread;
 
 		public SimpleService ()
 		{
 
 		}
 
+
+      
 		// Equivalent to oncreate method
 			public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 			{
@@ -67,13 +79,13 @@ namespace TestApp
 				mAccelCurrent = SensorManager.GravityEarth;
 				mAccelLast = SensorManager.GravityEarth;
 
-				sensorManager.RegisterListener(this,
+				    sensorManager.RegisterListener(this,
 					sensorManager.GetDefaultSensor(SensorType.Accelerometer),
 					SensorDelay.Ui);
 	
 				 th = new ThreadStart (Counter);
 				 childThread = new Thread(th);
-				childThread.Start();
+				 childThread.Start();
 
 				Thread.Sleep (1000);
 
@@ -81,32 +93,31 @@ namespace TestApp
 
 				
 			}).Start();
-				
-
 
 				return StartCommandResult.NotSticky;
 			}
+       
 
-
-	public	static void Counter(){
+	    public static void Counter(){
 			Log.Debug (TAG, "Starting at: {0}", DateTime.UtcNow);
 
 			try{
-			counter = 0;
+			        counter = 0;
 				for (int teller = 0; teller <= 150; teller++){
 				Thread.Sleep(1000);
 					counter++;
 				Log.Debug (TAG, "Counter: {0}, startid={1}", counter, DateTime.UtcNow);
 
 			}
-				Thread.CurrentThread.Abort();
-			}catch (ThreadAbortException e){
+                Thread.CurrentThread.Abort();
+            }
+            catch (ThreadAbortException e){
 				Console.WriteLine("Thread Abort Exception" + e.Message);
 				}
 				finally {
-				
-				}
-
+                Thread.CurrentThread.Abort();
+            }
+       
 			//Only use thread abort() to quit
 //				Thread.CurrentThread.IsBackground = true; 
 
@@ -116,14 +127,16 @@ namespace TestApp
 
 		public override void OnDestroy()
 		{
-			base.OnDestroy();
-			counter = 0;
-			mAccel = 0.00f;
-			var inte = new Intent (this, typeof(AccelerometerActivity));
-			inte.AddFlags (ActivityFlags.NewTask);
-			StartActivity (inte);
-			sensorManager.UnregisterListener (this);
-			Log.Debug(TAG, "SimpleService destroyed at {0}.", DateTime.UtcNow);
+
+            childThread.Abort();
+            StopService(new Intent(this, typeof(SimpleService)));
+            sensorManager.UnregisterListener(this);
+            Log.Debug(TAG, "SimpleService destroyed at {0}.", DateTime.UtcNow);
+
+
+            base.OnDestroy();
+           
+			
 		}
 
 	
@@ -158,10 +171,13 @@ namespace TestApp
 
 			if(mAccel < 5 && counter > 150 ){ 
 				counter = 0;
-				StopService (new Intent (this, typeof(SimpleService)));
+                mAccel = 0.00f;
+                var inte = new Intent(this, typeof(ActivityLevelTracker));
+                inte.AddFlags(ActivityFlags.NewTask);
+                StartActivity(inte);
 
-			
-			}
+
+            }
 		
 		}
 

@@ -30,48 +30,30 @@
     <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="TestApp" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
-    <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.AccelerometerActivity" />
+    <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
     <activity android:label="StartRoute" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
-    <activity android:label="Route" android:name="md5cf27010e14af20e69784a5a54418b85f.Route" />
+    <activity android:label="Route" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <activity android:label="SignalR_Client" android:name="md5cf27010e14af20e69784a5a54418b85f.MainActivity" />
-    <activity android:label="Socialize" android:name="md5cf27010e14af20e69784a5a54418b85f.FaceBookFriendsActivity" />
-    <activity android:label="@string/app_name" android:name="md5cf27010e14af20e69784a5a54418b85f.FacebookMessenger">
-      <intent-filter>
-        <action android:name="android.intent.action.PICK" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150311" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="android.intent.action.PICK" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
-      </intent-filter>
-    </activity>
     <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
     <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
     <activity android:label="Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
     <activity android:label="Friends" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
     <activity android:label="Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />
-    <activity android:label="People Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.StartCardView" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />
-    <activity android:label="SimpleService" android:name="md5cf27010e14af20e69784a5a54418b85f.StartSimpleService" />
-    <activity android:label="ResultBoardActivity" android:name="md5cf27010e14af20e69784a5a54418b85f.ResultBoardActivity" />
     <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
-    <activity android:label="LoginActivity" android:name="md5cf27010e14af20e69784a5a54418b85f.LoginActivity" />
-    <activity android:icon="@drawable/tt" android:label="MoveFit-MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
+    <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <activity android:label="User" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.UserOverview" />
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.ToDoActivity" />
     <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity" />
     <activity android:label="Maps" android:theme="@android:style/Theme.NoTitleBar" android:name="md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople" />
     <activity android:label="MainMenu" android:screenOrientation="portrait" android:theme="@style/MyTheme" android:name="md5cf27010e14af20e69784a5a54418b85f.MainStart" />
-    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.FormAuthenticatorActivity" />
-    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md56fe4ce61dba0ba6ccd099078d75ab71d.FormAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md56fe4ce61dba0ba6ccd099078d75ab71d.WebAuthenticatorActivity" />
     <activity android:label="Web Authenticator" android:name="md550f8a10a740eb4fb6376baab8337ce22.FormAuthenticatorActivity" />
     <activity android:label="Web Authenticator" android:name="md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity" />
     <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.facebook.ads.InterstitialAdActivity" />

@@ -7,15 +7,19 @@ namespace TestApp
     {
 
         public string Id { get; set; }
-        [JsonProperty(PropertyName = "locations")]
-        public string Locationn { get; set; }
 
-  
+        [JsonProperty(PropertyName = "location")]
+        public string Location { get; set; }
+
+        [JsonProperty(PropertyName = "route_id")]
+        public string Route_id { get; set; }
+
+
     }
 
-    public class LocationWrapper : Java.Lang.Object
+    public class LocationsWrapper : Java.Lang.Object
     {
-        public LocationWrapper(Locations item)
+        public LocationsWrapper(Locations item)
         {
             Locations = item;
         }

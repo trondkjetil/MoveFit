@@ -39,7 +39,7 @@
         android:id="@+id/namePropt"
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
     <EditText
         android:id="@+id/nameOfroute"
         android:layout_width="match_parent"
@@ -49,7 +49,51 @@
         android:textColor="@android:color/background_dark"
         android:editable="true"
         android:focusable="true"
-        android:text="" />
+        android:hint="Route Name"
+        android:text=""
+        android:layout_marginTop="50dp" />
+    <TextView
+        android:text="Please give some info about route: "
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/infoPropt"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="130dp" />
+    <EditText
+        android:id="@+id/routeInfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text_style"
+        android:height="50dp"
+        android:textColor="@android:color/background_dark"
+        android:editable="true"
+        android:focusable="true"
+        android:hint="Route Info"
+        android:text=""
+        android:layout_marginTop="180dp" />
+    <TextView
+        android:text="Please rate the difficulty "
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/difficultyPrompt"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="230dp" />
+    <EditText
+        android:id="@+id/difficultyInfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text_style"
+        android:height="50dp"
+        android:textColor="@android:color/background_dark"
+        android:editable="true"
+        android:focusable="true"
+        android:hint="Difficulty"
+        android:text=""
+        android:layout_marginTop="270dp" />
     <Button
         android:text="Done"
         android:layout_width="150dp"
