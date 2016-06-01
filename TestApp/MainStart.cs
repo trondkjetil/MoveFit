@@ -274,8 +274,6 @@ namespace TestApp
         }
 
 
-
-
         public bool Changed
         {
             get { return changed; }
@@ -288,7 +286,6 @@ namespace TestApp
 
                     updateLocationTimer();
                 }
-
 
             }
         }

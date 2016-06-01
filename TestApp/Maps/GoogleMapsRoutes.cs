@@ -52,11 +52,6 @@ namespace TestApp
 
 			InitializeLocationManager ();
 
-
-
-
-
-
 			Button mark = FindViewById<Button> (Resource.Id.setmark);
 			Button pos = FindViewById<Button> (Resource.Id.mypos);
 

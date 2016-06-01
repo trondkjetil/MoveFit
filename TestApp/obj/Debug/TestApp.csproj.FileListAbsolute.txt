@@ -291,10 +291,8 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\welcome.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\tt.jpg
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\map.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\facebooklayout.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\resultlist.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\auth.xml
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\dialogpopup.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\anim\slide_right.xml
@@ -307,9 +305,7 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\values\themes.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_overflow.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\thumbs.db
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\xs.png
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\facebookmessenger.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\tree.jpg
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\progressbar.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\customloadbar.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\raw\moveit.mp3
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_search.png
@@ -320,8 +316,6 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\values\itemsdropdownlist.xm
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\test.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\bike.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\sign.png
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\simpleservicelayout.xml
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\cardviewmain.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_forward.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_new.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.png
@@ -343,7 +337,6 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_help.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refresh.png
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\scoreboardmain.xml
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\customlistview.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\activity_to_do.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\row_list_to_do.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\menu\activity_main.xml
@@ -355,7 +348,6 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\userfriendscontent.x
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\usersroutes.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\userroutecontent.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\contactlistitem.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\main.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\getinfo.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\values\strings.xml
@@ -383,8 +375,6 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\startroute.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\values\itemsroutetypes.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\createroute.xml
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
-C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
-C:\Users\Trond\Desktop\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\NoGitTestApp\TestApp\bin\Debug\TestApp.dll.config
 C:\Users\Trond\Desktop\NoGitTestApp\TestApp\bin\Debug\TestApp.dll
 C:\Users\Trond\Desktop\NoGitTestApp\TestApp\bin\Debug\TestApp.pdb
@@ -641,3 +631,8 @@ C:\nyTest\NoGitTestApp\TestApp\obj\Debug\R.cs.flag
 C:\nyTest\NoGitTestApp\TestApp\obj\Debug\uploadflags.txt
 C:\nyTest\NoGitTestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\nyTest\NoGitTestApp\TestApp\bin\Debug\TestApp.dll.mdb
+C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\rightdrawermenu.xml
+C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\lupe.jpg
+C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\drawable\ic_alarm.png
+C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
+C:\Users\Trond\Desktop\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

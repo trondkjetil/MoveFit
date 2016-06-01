@@ -47,7 +47,7 @@ namespace TestApp
             base.OnDismiss(dialog);
             if (DialogClosed != null)
             {
-                valueReturned = routeName.Text + "," + routeInfoData.Text;
+                valueReturned = routeName.Text + "," + routeInfoData.Text + "," + difficulty.Text;
                 DialogClosed(this, new DialogEventArgs { ReturnValue = valueReturned });
             }
 
