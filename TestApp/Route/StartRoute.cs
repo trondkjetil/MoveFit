@@ -63,7 +63,7 @@ namespace TestApp
             ratingbar.RatingBarChange += (o, e) => {
                 Toast.MakeText(this, "New Rating: " + ratingbar.Rating.ToString(), ToastLength.Short).Show();
             };
-           
+           //
 
             start.Click += (sender, e) =>
             {
