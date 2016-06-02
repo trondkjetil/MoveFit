@@ -22,7 +22,7 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private List<User> users;
+        private List<Route> routes;
 		
 
 		SwipeRefreshLayout mSwipeRefreshLayout;
@@ -47,17 +47,17 @@ namespace TestApp
 
 
 
-            users = new List<User>();
-            List<User> userList = await Azure.getPeople();
+            routes = new List<Route>();
+            List<Route> routeList = await Azure.getRoutes();
 
-            foreach (User x in userList)
+            foreach (Route x in routeList)
             {
 
-                users.Add(x);
+                routes.Add(x);
             }
 
 
-            mAdapter = new UsersRoutesAdapter(userList, mRecyclerView, this);
+            mAdapter = new UsersRoutesAdapter(routeList, mRecyclerView, this);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -111,14 +111,14 @@ namespace TestApp
 
     public class UsersRoutesAdapter : RecyclerView.Adapter
     {
-        private List<User> mUsers;
+        private List<Route> mRoutes;
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
 
-		public UsersRoutesAdapter(List<User> users, RecyclerView recyclerView, Context context)
+		public UsersRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
         {
-            mUsers = users;
+            mRoutes = routes;
             mRecyclerView = recyclerView;
             mContext = context;
 
@@ -130,6 +130,7 @@ namespace TestApp
             public TextView mUserName { get; set; }
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
+            public TextView mReview { get; set; }
             public ImageView mProfilePicture { get; set; }
             public ImageButton mStartRouteFlag { get; set; }
 
@@ -146,14 +147,15 @@ namespace TestApp
                 //card view
                 View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
 
-                ImageView profile = userRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
-                TextView name = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
-                TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
-                TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
                 ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
+                ImageView routeIcon = userRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
+                TextView routeName = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
+                TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
+                TextView routeInfo = userRoutes.FindViewById<TextView>(Resource.Id.textId);
+                TextView review = userRoutes.FindViewById<TextView>(Resource.Id.txtTime);
 
 
-                 MyView view = new MyView(userRoutes) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mStartRouteFlag = startRoute };
+            MyView view = new MyView(userRoutes) { mUserName = routeName, mStatus = status, mText = routeInfo, mProfilePicture = routeIcon, mStartRouteFlag = startRoute, mReview = review };
 
             return view;
   
@@ -166,29 +168,20 @@ namespace TestApp
                 Bitmap userImage;
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
-                myHolder.mUserName.Text = mUsers[position].UserName;
+                myHolder.mUserName.Text = mRoutes[position].Name;
                 myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
+                myHolder.mText.Text = mRoutes[position].Info;
+                myHolder.mStatus.Text = mRoutes[position].RouteType;
+                myHolder.mReview.Text = mRoutes[position].Review;
 
-                userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
-
-            if (mUsers[position].Online)
-            {
-                myHolder.mStatus.Text = "Online";
-            }
-            else
-            {
-                myHolder.mStatus.Text = "Offline";
-            }
-               
-                myHolder.mText.Text = mUsers[position].Text;
-
-            userImage = null;
+                userImage = null;
             if (userImage == null)
             {
                 myHolder.mProfilePicture.SetImageResource(Resource.Drawable.maps);
             }
             else
                 myHolder.mProfilePicture.SetImageBitmap(userImage);
+
             if (position > mCurrentPosition)
             {
                 int currentAnim = Resource.Animation.slide_left_to_right;
@@ -231,12 +224,12 @@ namespace TestApp
         void mMainView_Click(object sender, EventArgs e)
         {
             int position = mRecyclerView.GetChildPosition((View)sender);
-            Console.WriteLine(mUsers[position].UserName);
+           
         }
 
         public override int ItemCount
         {
-            get { return mUsers.Count; }
+            get { return mRoutes.Count; }
         }
     }
 }

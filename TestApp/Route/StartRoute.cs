@@ -65,9 +65,6 @@ namespace TestApp
             };
            
 
-
-
-
             start.Click += (sender, e) =>
             {
                 Toast.MakeText(this,"Starting route...",ToastLength.Short).Show();

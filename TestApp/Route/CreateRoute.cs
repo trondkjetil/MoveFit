@@ -12,18 +12,20 @@ using Android.Views;
 using Android.Widget;
 using Android.Locations;
 using System.Collections;
+using Android.Content.PM;
+
 
 namespace TestApp
 {
-    [Activity(Label = "Route")]
+    [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CreateRoute : Activity, ILocationListener, IOnMapReadyCallback
     {
         
-       public LocationManager locationManager;
-       public string locationProvider;
-       public MarkerOptions markerOpt1;
+        public LocationManager locationManager;
+        public string locationProvider;
+        public MarkerOptions markerOpt1;
         public MarkerOptions markerOpt2;
-        public  GoogleMap mMap;
+        public GoogleMap mMap;
        
         public List<User> me;
         public static string givenRouteName;
@@ -46,6 +48,8 @@ namespace TestApp
         public static bool isChecked;
         public static bool alreadyDone;
         public static bool isReady;
+        public TextView routeStatus;
+        public ImageView statusImage;
         public bool Ischecked
         {
 
@@ -91,9 +95,9 @@ namespace TestApp
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
 
-            ImageView statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
+            statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
             TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
-            TextView routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
+            routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
             routeStatus.Text = "Stauts: Idle";
             Button start = FindViewById<Button>(Resource.Id.startRoute);
             Button end = FindViewById<Button>(Resource.Id.endRoute);
@@ -106,7 +110,7 @@ namespace TestApp
 
             start.Click += (sender, e) =>
             {
-
+                mMap.Clear();
                 // fire an application-specified Intent when the device enters the proximity of a given geographical location.
                 //locationManager.RemoveProximityAlert();
 
@@ -118,8 +122,8 @@ namespace TestApp
                 locationManager.RequestLocationUpdates(this.locationProvider, minTime,
                           minDistance, this);
                 //  InitializeLocationManager();
-                statusImage.SetImageResource(Resource.Drawable.green);
-                routeStatus.Text = "Stauts: Creating...";
+               
+                routeStatus.Text = "Aquiring your position...";
 
                 startDialogNameRoute();
              
@@ -128,26 +132,38 @@ namespace TestApp
             end.Click += (sender, e) =>
             {
                 routeStatus.Text = "Stauts: Stopped";
-                string dist = "";
+                double dist = 0;
                 Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
                 statusImage.SetImageResource(Resource.Drawable.red);
              
 
                 endLocation = locationManager.GetLastKnownLocation(locationProvider);
-                dist =  getDistanceForRoute(startLocation,endLocation);
 
-                //Not connected
-                calculateDistance();
-
-                if (dist == "" || dist.Equals(null))
+                try
                 {
-                    dist = "Uknown";
-                }
-                Azure.AddRoute(givenRouteName, routeInfo, dist, "RouteReview", 1, routeDifficulty, routeType, routeUserId);
+                    dist = getDistanceForRoute(startLocation, endLocation);
 
-                locationManager.RemoveUpdates(this);
-                uploadLocation();
-                drawRoute();
+
+                    if (dist == 0 || dist.Equals(null))
+                    {
+                        dist = 0;
+                    }
+                    Azure.AddRoute(givenRouteName, routeInfo, dist.ToString() + " Start to end" + " Whole distance" + calculateDistance().ToString(), "RouteReview", 1, routeDifficulty, routeType, routeUserId);
+
+                    locationManager.RemoveUpdates(this);
+                    uploadLocation();
+                    drawRoute();
+
+                }
+                catch (Exception)
+                {
+
+                   
+                }
+               
+
+          
+
                 
             };
             cancel.Click += (sender, e) =>
@@ -199,29 +215,29 @@ namespace TestApp
 
      public void startRouteSettings()
         {
+
             try
             {
+               
                 startLocation = locationManager.GetLastKnownLocation(locationProvider);
                 foreach (var item in me)
                 {
                     routeUserId = item.Id;
                 }
-               
+
                 //CameraUpdate center = CameraUpdateFactory.NewLatLng(new LatLng(startLocation.Latitude, startLocation.Longitude));
                 //mMap.MoveCamera(center);
 
                 //CameraUpdate zoom = CameraUpdateFactory.ZoomTo(12);
                 //mMap.AnimateCamera(zoom);
+                statusImage.SetImageResource(Resource.Drawable.green);
+                routeStatus.Text = "Stauts: Creating...";
 
-
-                
             }
             catch (Exception)
             {
                 throw;
-
             }
-
         }
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -234,7 +250,7 @@ namespace TestApp
             locationManager = (LocationManager)GetSystemService(LocationService);
             Criteria criteriaForLocationService = new Criteria
             {
-                Accuracy = Accuracy.Fine
+                Accuracy = Accuracy.Medium
             };
             IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
 
@@ -267,7 +283,6 @@ namespace TestApp
             base.OnPause();
            // locationManager.RemoveUpdates(this);
         }
-
 
 
         public void OnProviderDisabled(string provider)
@@ -344,13 +359,13 @@ namespace TestApp
 
         }
 
-       public string getDistanceForRoute(Location start,Location end)
+       public double getDistanceForRoute(Location start,Location end)
         {
 
-            string distance = "";
+            double distance = 0;
             try
             {
-                distance = calculateDistance(start.Latitude, start.Longitude, end.Latitude, end.Longitude).ToString(); 
+                distance = calculateDistance(start.Latitude, start.Longitude, end.Latitude, end.Longitude); 
             }
             catch (Exception)
             {
@@ -382,15 +397,13 @@ namespace TestApp
             LatLng source = new LatLng(fromLatitude, fromLongitude);
             LatLng destination = new LatLng(toLatitude, toLongitude);
 
-
             try
             {
                 Location.DistanceBetween(fromLatitude, fromLongitude, toLatitude, toLongitude, results);
             }
             catch (Exception e)
             {
-                if (e != null)
-                    Console.Write(e.Message);
+               
             }
             if (source.Equals(destination))
             {
@@ -398,26 +411,15 @@ namespace TestApp
             }
             else
             {
-                int dist = (int)results[0];
-                if (dist <= 0)
-                    return 0D;
-
-                //DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                //results[0] /= 1000D;
-                //distance = decimalFormat.format(results[0]);
-                //double d = Double.parseDouble(distance);
-                //double speed = 40;
-                //double time = d / speed;
-                //ts = manual(time);
-
-
-
+                distance = (int)results[0];
+              
+               
             }
             return distance;
         }
 
 
-        //Må fikses
+    
        public void drawRoute()
         {
             Location lastItem = points.LastOrDefault();

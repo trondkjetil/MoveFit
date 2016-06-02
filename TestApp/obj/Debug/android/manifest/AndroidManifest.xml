@@ -32,7 +32,7 @@
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
     <activity android:label="StartRoute" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
-    <activity android:label="Route" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
+    <activity android:label="Route" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <activity android:label="SignalR_Client" android:name="md5cf27010e14af20e69784a5a54418b85f.MainActivity" />
     <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
