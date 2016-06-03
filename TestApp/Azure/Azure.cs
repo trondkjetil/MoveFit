@@ -103,6 +103,16 @@ namespace TestApp
 
         }
 
+
+             public static async Task<List<Route>> getMyRoutes(string userId)
+        {
+            
+             List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).ToListAsync();
+            return routeList;
+
+        }
+
+
         public static async Task<List<Locations>> getLocationsForRoute(string providedRouteID)
         {
 

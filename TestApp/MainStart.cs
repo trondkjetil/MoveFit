@@ -49,7 +49,7 @@ namespace TestApp
 			 List<string> mRightDataSet;
 			 public string[] table;
 			 public string text;
-			 public string userID;
+			 public static string userID;
 			 public ImageView profilePicture;
 		     public Bitmap profilePic;
 			
@@ -129,7 +129,7 @@ namespace TestApp
                 mLeftDataSet.Add ("Friends");
                 mLeftDataSet.Add ("People nearby");
                 mLeftDataSet.Add("Messages");
-                mLeftDataSet.Add("Create Route");
+             
 
 
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
@@ -159,7 +159,7 @@ namespace TestApp
 						myIntent = new Intent (this, typeof(Calculator));
 						StartActivity(myIntent);
 					}else if(e.Position == 4){
-                        myIntent = new Intent(this, typeof(UsersRoutes));
+                        myIntent = new Intent(this, typeof(RouteOverview));
                         StartActivity(myIntent);
                     }
                   
@@ -179,11 +179,7 @@ namespace TestApp
                         myIntent = new Intent(this, typeof(MainActivity));
                         StartActivity(myIntent);
                     }
-                    else if (e.Position == 8)
-                    {
-                        myIntent = new Intent(this, typeof(CreateRoute));
-                        StartActivity(myIntent);
-                    }
+                   
 
                 };
 

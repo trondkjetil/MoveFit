@@ -26,6 +26,10 @@ TestApp.DialogEndRoute, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogEndRou
 TestApp.DialogEndRoute, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogEndRoute
 TestApp.DialogEndRoute;md5cf27010e14af20e69784a5a54418b85f.DialogEndRoute
 testapp.DialogEndRoute;md5cf27010e14af20e69784a5a54418b85f.DialogEndRoute
+TestApp.RouteOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.RouteOverview
+TestApp.RouteOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.RouteOverview
+TestApp.RouteOverview;md5cf27010e14af20e69784a5a54418b85f.RouteOverview
+testapp.RouteOverview;md5cf27010e14af20e69784a5a54418b85f.RouteOverview
 TestApp.StartRoute, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartRoute
 TestApp.StartRoute, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartRoute
 TestApp.StartRoute;md5cf27010e14af20e69784a5a54418b85f.StartRoute
@@ -86,6 +90,18 @@ TestApp.SlidingTabStrip, TestApp;md5cf27010e14af20e69784a5a54418b85f.SlidingTabS
 TestApp.SlidingTabStrip, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.SlidingTabStrip
 TestApp.SlidingTabStrip;md5cf27010e14af20e69784a5a54418b85f.SlidingTabStrip
 testapp.SlidingTabStrip;md5cf27010e14af20e69784a5a54418b85f.SlidingTabStrip
+TestApp.UserMyRoutes, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes
+TestApp.UserMyRoutes, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes
+TestApp.UserMyRoutes;md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes
+testapp.UserMyRoutes;md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes
+TestApp.MyRoutesAdapter, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter
+TestApp.MyRoutesAdapter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter
+TestApp.MyRoutesAdapter;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter
+testapp.MyRoutesAdapter;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter
+TestApp.MyRoutesAdapter/MyView, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
+TestApp.MyRoutesAdapter+MyView, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
+TestApp.MyRoutesAdapter.MyView;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
+testapp.MyRoutesAdapter_MyView;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
 TestApp.UsersRoutes, TestApp;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes
 TestApp.UsersRoutes, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes
 TestApp.UsersRoutes;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes

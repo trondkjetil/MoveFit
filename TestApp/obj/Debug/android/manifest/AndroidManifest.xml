@@ -31,13 +31,15 @@
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
+    <activity android:label="RouteOverview" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
     <activity android:label="Route" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <activity android:label="SignalR_Client" android:name="md5cf27010e14af20e69784a5a54418b85f.MainActivity" />
     <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
     <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
-    <activity android:label="Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
+    <activity android:label="MyRoutes" android:name="md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes" />
+    <activity android:label="Routes all" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
     <activity android:label="Friends" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
     <activity android:label="Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />

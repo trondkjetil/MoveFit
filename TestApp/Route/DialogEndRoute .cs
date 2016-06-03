@@ -16,7 +16,7 @@ namespace TestApp
 			var view = inflater.Inflate (Resource.Layout.dialogStartRoute, container,false);
 
        
-        Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
+            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
             TextView route = view.FindViewById<TextView>(Resource.Id.namePropt);
              routeName  = view.FindViewById<EditText>(Resource.Id.nameOfroute);
