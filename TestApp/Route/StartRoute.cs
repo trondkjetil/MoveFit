@@ -12,72 +12,110 @@ using Android.Views;
 using Android.Widget;
 using Android.Locations;
 using System.Collections;
+using Android.Content.PM;
 
 namespace TestApp
 {
-    [Activity(Label = "StartRoute")]
+    [Activity(Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait)]
     public class StartRoute : Activity, ILocationListener
     {
 
-        Location currentLocation;
         LocationManager locationManager;
-        public string locationProvider;
-        TextView locationText;
+        string locationProvider;
         MarkerOptions markerOpt1;
-        public static GoogleMap mMap;
-        public static String[] array;
+        MarkerOptions markerOpt2;
+        GoogleMap mMap;
 
-        public ArrayList locationPoints;
-        protected override void OnCreate(Bundle savedInstanceState)
+        public static String[] array;
+        public List<Locations> locationPointsForRoute;
+
+        private string routeName;
+        private string routeInfo;
+        private string routeRating;
+        private string routeDifficulty;
+        private string routeLength;
+        private string routeType;
+        private string routeTrips;
+        private string routeId;
+
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.startRoute);
 
-
-            locationPoints = new ArrayList();
-
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapForStartingRoute);
-            GoogleMap mMap = mapFrag.Map;
+            mMap = mapFrag.Map;
 
             if (mMap != null)
             {
-                mMap.MapType = GoogleMap.MapTypeNormal;  // The GoogleMap object is ready to go.
+                mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
             }
 
-            InitializeLocationManager();
-
             array = Intent.GetStringArrayExtra("MyData");
+            routeId = array[7];
+            locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
+
+
             TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
             TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
             TextView length = FindViewById<TextView>(Resource.Id.startRouteLength);
             TextView difficulty = FindViewById<TextView>(Resource.Id.startRouteDiff);
             TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
+            TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
+            TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
             Button start = FindViewById<Button>(Resource.Id.startRoute);
+            Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
             RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
+            routeName = array[0];
+            routeInfo = array[1];
+            routeDifficulty = array[2];
+            routeLength = array[3];
+            routeType = array[4];
+            routeRating = array[5];
+            routeTrips = array[6];
+           
 
-            name.Text ="Name: " +  array[0];
+            name.Text = "Name:" + routeName;
+            description.Text = "Description: "+routeInfo;
+            difficulty.Text = "Difficulty: "+ routeDifficulty;
+            length.Text = "Length: " + routeLength;
+            rating.Text = "Rating: "+routeRating;
+            type.Text = "Type: "+routeType;
+            trips.Text ="Trips: " + routeTrips;
+
+            
+            drawRoute();
+
 
             ratingbar.RatingBarChange += (o, e) => {
                 Toast.MakeText(this, "New Rating: " + ratingbar.Rating.ToString(), ToastLength.Short).Show();
             };
-           //
+          
 
             start.Click += (sender, e) =>
             {
                 Toast.MakeText(this,"Starting route...",ToastLength.Short).Show();
 
+                InitializeLocationManager();
 
-                long minTime = 2 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
-                long minDistance = 1; // Minimum distance change for update in meters, i.e. 10 meters.
-                
-                 locationManager.RequestLocationUpdates(this.locationProvider, minTime,
-                        minDistance,this);
-                
-                
+                long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+                long minDistance = 5; // Minimum distance change for update in meters, i.e. 10 meters.
+                locationManager.RequestLocationUpdates(this.locationProvider, minTime, minDistance, this);
+
+
             };
+
+            end.Click += (sender, e) =>
+            {
+                Toast.MakeText(this, "Route ended! You will not get any points", ToastLength.Long).Show();
+                if(locationManager != null)
+                    locationManager.RemoveUpdates(this);
+
+            };
+
             cancel.Click += (sender, e) =>
             {
                
@@ -86,49 +124,6 @@ namespace TestApp
 
 
         }
-
-        public double calculateDistance(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude)
-        {
-
-            float[] results = new float[1];
-            int distance = 0;
-            LatLng source = new LatLng(fromLatitude,fromLongitude);
-            LatLng destination = new LatLng(toLatitude,toLongitude);
-            
-
-            try
-            {
-                Location.DistanceBetween(fromLatitude, fromLongitude, toLatitude, toLongitude, results);
-            }
-            catch (Exception e)
-            {
-                if (e != null)
-                   Console.Write( e.Message);
-            }
-            if (source.Equals(destination))
-            {
-                distance = 0;
-            }
-            else
-            {
-                int dist = (int)results[0];
-                if (dist <= 0)
-                    return 0D;
-
-                //DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                //results[0] /= 1000D;
-                //distance = decimalFormat.format(results[0]);
-                //double d = Double.parseDouble(distance);
-                //double speed = 40;
-                //double time = d / speed;
-                //ts = manual(time);
-              
-
-
-            }
-            return distance;
-        }
-
 
         private bool isGooglePlayServicesAvailable()
         {
@@ -150,19 +145,12 @@ namespace TestApp
             mMap = googleMap;
         }
 
-        public void startDialog()
-        {
-
-            FragmentTransaction transaction = FragmentManager.BeginTransaction();
-            DialogStartRoute newDialog = new DialogStartRoute();
-            newDialog.Show(transaction, "End route");
-        }
         void InitializeLocationManager()
         {
             locationManager = (LocationManager)GetSystemService(LocationService);
             Criteria criteriaForLocationService = new Criteria
             {
-                Accuracy = Accuracy.Fine
+                Accuracy = Accuracy.Medium
             };
             IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
 
@@ -174,27 +162,23 @@ namespace TestApp
             {
                 locationProvider = string.Empty;
             }
-            Location location = locationManager.GetLastKnownLocation(locationProvider);
 
-            ////initialize the location
-            //if (location != null)
-            //{
-
-            //    OnLocationChanged(location);
-            //}
+         
         }
 
 
         protected override void OnResume()
         {
             base.OnResume();
+            if(locationManager != null)
             locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            locationManager.RemoveUpdates(this);
+            if (locationManager != null)
+                locationManager.RemoveUpdates(this);
         }
 
 
@@ -214,20 +198,123 @@ namespace TestApp
 
         }
 
-        public  void OnLocationChanged(Location location)
+        public void OnLocationChanged(Location location)
         {
 
+      
+            //try
+            //{
+            //    mMap.UiSettings.ZoomControlsEnabled = true;
+            //    mMap.UiSettings.CompassEnabled = true;
+            //    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
-            //locationPoints.Add(location.ToString());
-            //Toast.MakeText(this, "Location point taken", ToastLength.Long).Show();
-
-            //CameraUpdate center = CameraUpdateFactory.NewLatLng(new LatLng(location.Latitude, location.Longitude));
-            ////mMap.MoveCamera(center);
-
-            //CameraUpdate zoom = CameraUpdateFactory.ZoomTo(15);
-           // mMap.AnimateCamera(zoom);
+            //}
+            //catch (Exception e)
+            //{
+            //   // throw;
+            //}
 
         }
+
+
+
+        public override void OnBackPressed()
+        {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            alert.SetTitle("Exit route creation");
+            alert.SetMessage("Do you want to abort the current route creation?");
+            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            {
+               
+                base.OnBackPressed();
+            });
+
+            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            {
+             
+
+            });
+            //run the alert in UI thread to display in the screen
+            RunOnUiThread(() =>
+            {
+                alert.Show();
+            });
+
+
+        }
+
+
+        public async void drawRoute() {
+
+            locationPointsForRoute = locationPointsForRoute;
+
+            mMap.UiSettings.MyLocationButtonEnabled = true;
+            mMap.UiSettings.RotateGesturesEnabled = false;
+            mMap.UiSettings.ScrollGesturesEnabled = false;
+
+            try
+            {
+              
+
+            if(locationPointsForRoute.Count == 0)
+            {
+                Toast.MakeText(this, "No routes found for: " + routeId, ToastLength.Long).Show();
+
+                return;
+            }
+
+
+            Locations lastItem = locationPointsForRoute.LastOrDefault();
+            Locations firstElement = locationPointsForRoute.First();
+
+            string[] LatLngLast = lastItem.Location.Split(',');
+            string[] LatLngFirst = firstElement.Location.Split(',');
+
+         
+            markerOpt1 = new MarkerOptions();
+            markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
+            markerOpt1.SetTitle("Starting Point");
+            markerOpt1.Draggable(false);
+            markerOpt1.SetSnippet("Starting point of route");
+            markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+            mMap.AddMarker(markerOpt1);
+
+            markerOpt2 = new MarkerOptions();
+            markerOpt2.SetPosition(new LatLng(Convert.ToDouble(LatLngLast[0]), Convert.ToDouble(LatLngLast[1])));
+            markerOpt2.SetTitle("Ending Point");
+            markerOpt2.Draggable(false);
+            markerOpt2.SetSnippet("End point of route");
+            markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+            mMap.AddMarker(markerOpt2);
+
+            mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])), 14));
+
+            PolylineOptions opt = new PolylineOptions();
+
+            string[] loc;
+            foreach (var item in locationPointsForRoute)
+            {
+                loc = null;
+                loc = item.Location.Split(',');
+                opt.Add(new LatLng(Convert.ToDouble(loc[0]), Convert.ToDouble(loc[1])));
+            }
+
+            mMap.AddPolyline(opt);
+
+
+            }catch(Exception e)
+            {
+
+                throw;
+            }
+
+
+        }
+
 
 
     }

@@ -28,7 +28,8 @@ public final class R {
     }
     public static final class array {
         public static int activity_array=0x7f0d0000;
-        public static int activity_routeTypes=0x7f0d0002;
+        public static int activity_routeDifficulty=0x7f0d0002;
+        public static int activity_routeTypes=0x7f0d0003;
         public static int planets_array=0x7f0d0001;
     }
     public static final class attr {
@@ -2302,7 +2303,7 @@ containing a value of this type.
         public static int acc=0x7f0b00b0;
         public static int accelerometer_text=0x7f0b006c;
         public static int action0=0x7f0b00c8;
-        public static int action_alarm=0x7f0b010c;
+        public static int action_alarm=0x7f0b010e;
         public static int action_bar=0x7f0b005d;
         public static int action_bar_activity_content=0x7f0b0001;
         public static int action_bar_container=0x7f0b005c;
@@ -2312,15 +2313,15 @@ containing a value of this type.
         public static int action_bar_title=0x7f0b003d;
         public static int action_context_bar=0x7f0b005e;
         public static int action_divider=0x7f0b00cc;
-        public static int action_help=0x7f0b010b;
+        public static int action_help=0x7f0b010d;
         public static int action_menu_divider=0x7f0b0003;
         public static int action_menu_presenter=0x7f0b0004;
         public static int action_mode_bar=0x7f0b005a;
         public static int action_mode_bar_stub=0x7f0b0059;
         public static int action_mode_close_button=0x7f0b003f;
-        public static int action_refresh=0x7f0b010a;
+        public static int action_refresh=0x7f0b010c;
         public static int activity_chooser_view_content=0x7f0b0040;
-        public static int add=0x7f0b010e;
+        public static int add=0x7f0b0110;
         public static int address_text=0x7f0b00c6;
         public static int adjust_height=0x7f0b000f;
         public static int adjust_width=0x7f0b0010;
@@ -2366,7 +2367,6 @@ containing a value of this type.
         public static int dark=0x7f0b0015;
         public static int decor_content_parent=0x7f0b005b;
         public static int default_activity_button=0x7f0b0043;
-        public static int difficultyInfo=0x7f0b00a4;
         public static int difficultyPrompt=0x7f0b00a3;
         public static int disableHome=0x7f0b0019;
         public static int display_always=0x7f0b0039;
@@ -2395,7 +2395,7 @@ containing a value of this type.
         public static int imageButton2=0x7f0b00de;
         public static int imageButton3=0x7f0b00df;
         public static int imageStatus=0x7f0b0097;
-        public static int imageView1=0x7f0b0109;
+        public static int imageView1=0x7f0b010b;
         public static int imgView=0x7f0b00e9;
         public static int info=0x7f0b00d3;
         public static int infoPropt=0x7f0b00a1;
@@ -2427,13 +2427,13 @@ containing a value of this type.
         public static int map=0x7f0b0099;
         public static int mapForStartingRoute=0x7f0b00f9;
         public static int media_actions=0x7f0b00cb;
-        public static int menu=0x7f0b010f;
-        public static int menu_refresh=0x7f0b0110;
+        public static int menu=0x7f0b0111;
+        public static int menu_refresh=0x7f0b0112;
         public static int messenger_send_button=0x7f0b00c7;
         public static int middle=0x7f0b0026;
         public static int multiply=0x7f0b001f;
         public static int myRoutes=0x7f0b00e4;
-        public static int myRoutesId=0x7f0b0101;
+        public static int myRoutesId=0x7f0b0103;
         public static int mypos=0x7f0b00c4;
         public static int nameId=0x7f0b00d8;
         public static int nameOfroute=0x7f0b00a0;
@@ -2459,11 +2459,11 @@ containing a value of this type.
         public static int radioGroup=0x7f0b00b9;
         public static int radioGroup1=0x7f0b0083;
         public static int radioRed=0x7f0b00ba;
-        public static int ratingbar=0x7f0b00ff;
-        public static int recycleUserFriends=0x7f0b0103;
-        public static int recycleUserMyRoutes=0x7f0b0105;
-        public static int recycleUserNearby=0x7f0b0107;
-        public static int recycleUserRoutes=0x7f0b0108;
+        public static int ratingbar=0x7f0b0101;
+        public static int recycleUserFriends=0x7f0b0105;
+        public static int recycleUserMyRoutes=0x7f0b0107;
+        public static int recycleUserNearby=0x7f0b0109;
+        public static int recycleUserRoutes=0x7f0b010a;
         public static int refreshWithIdToken=0x7f0b007a;
         public static int refreshWithRefreshToken=0x7f0b007b;
         public static int results=0x7f0b0088;
@@ -2477,7 +2477,7 @@ containing a value of this type.
         public static int scrollIndicatorDown=0x7f0b0051;
         public static int scrollIndicatorUp=0x7f0b004e;
         public static int scrollView=0x7f0b004f;
-        public static int search=0x7f0b010d;
+        public static int search=0x7f0b010f;
         public static int search_badge=0x7f0b0061;
         public static int search_bar=0x7f0b0060;
         public static int search_button=0x7f0b0062;
@@ -2499,6 +2499,7 @@ containing a value of this type.
         public static int spacer=0x7f0b0048;
         public static int speed=0x7f0b00af;
         public static int spinner=0x7f0b00b5;
+        public static int spinnerRouteDifficulty=0x7f0b00a4;
         public static int spinnerRouteTypes=0x7f0b009a;
         public static int spinneren=0x7f0b0087;
         public static int split_action_bar=0x7f0b0008;
@@ -2512,13 +2513,15 @@ containing a value of this type.
         public static int startRouteLength=0x7f0b00fc;
         public static int startRouteName=0x7f0b00fa;
         public static int startRouteRating=0x7f0b00fe;
+        public static int startRouteTrips=0x7f0b0100;
+        public static int startRouteType=0x7f0b00ff;
         public static int statusId=0x7f0b00d9;
         public static int statusRoute=0x7f0b0098;
         public static int status_bar_latest_event_content=0x7f0b00ca;
         public static int stop=0x7f0b006d;
         public static int submit_area=0x7f0b0068;
         public static int switch1=0x7f0b00e0;
-        public static int swp=0x7f0b0106;
+        public static int swp=0x7f0b0108;
         public static int tabMode=0x7f0b0018;
         public static int terrain=0x7f0b000e;
         public static int test=0x7f0b00a7;
@@ -2560,9 +2563,9 @@ containing a value of this type.
         public static int unknown=0x7f0b002f;
         public static int up=0x7f0b0009;
         public static int useLogo=0x7f0b001e;
-        public static int userFriends=0x7f0b0100;
-        public static int userRoutecontent=0x7f0b0102;
-        public static int userRoutes=0x7f0b0104;
+        public static int userFriends=0x7f0b0102;
+        public static int userRoutecontent=0x7f0b0104;
+        public static int userRoutes=0x7f0b0106;
         public static int viewpager=0x7f0b00b7;
         public static int webLoadingIcon=0x7f0b006e;
         public static int wide=0x7f0b0013;

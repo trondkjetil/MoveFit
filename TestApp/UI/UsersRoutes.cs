@@ -116,7 +116,18 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
 
-		public UsersRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
+        private string routeName;
+        private string routeInfo;
+        private string routeRating;
+        private string routeDifficulty;
+        private string routeLength;
+        private string routeType;
+        private int routeTrips;
+        private string routeId;
+
+
+
+        public UsersRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
         {
             mRoutes = routes;
             mRecyclerView = recyclerView;
@@ -127,16 +138,21 @@ namespace TestApp
         public class MyView : RecyclerView.ViewHolder
         {
             public View mMainView { get; set; }
-            public TextView mUserName { get; set; }
+            public TextView mRouteName { get; set; }
             public TextView mStatus { get; set; }
-            public TextView mText { get; set; }
-            public ImageView mProfilePicture { get; set; }
+            public TextView mRouteInfo { get; set; }
+            //public TextView mLenght { get; set; }
+            //public TextView mDifficulty{ get; set; }
+            //public TextView mrating { get; set; }
+            public ImageView mIconForRoute { get; set; }
             public ImageButton mStartRouteFlag { get; set; }
+            public ImageButton mRouteDifficulty { get; set; }
 
             public MyView (View view) : base(view)
             {
                 mMainView = view;
             }
+          
         }
 
      
@@ -151,7 +167,9 @@ namespace TestApp
                 TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
                 ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
-                MyView view = new MyView(userRoutes) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mStartRouteFlag = startRoute };
+                 ImageButton routeDifficultyImage = userRoutes.FindViewById<ImageButton>(Resource.Id.imageButton3);
+
+            MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage };
 
             return view;
   
@@ -164,17 +182,43 @@ namespace TestApp
                 Bitmap userImage;
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
-                myHolder.mUserName.Text = mRoutes[position].Name;
+                myHolder.mRouteName.Text = mRoutes[position].Name;
                 myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
-                myHolder.mText.Text = mRoutes[position].Info;
+                myHolder.mRouteInfo.Text = mRoutes[position].Info;
 
-                 userImage = null;
+            if(mRoutes[position].Difficulty == "Easy")
+            {
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.green);
+            }
+            else if(mRoutes[position].Difficulty == "Medium")
+            {
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.orange);
+
+            }
+            else if (mRoutes[position].Difficulty == "Hard")
+            {
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.red);
+
+            }
+
+
+
+            routeName = mRoutes[position].Name;
+                routeInfo = mRoutes[position].Info;
+                routeDifficulty = mRoutes[position].Difficulty;
+                routeLength = mRoutes[position].Distance;
+                routeType =  mRoutes[position].RouteType;
+                routeRating = mRoutes[position].Review;
+                routeTrips = mRoutes[position].Trips;
+                routeId = mRoutes[position].Id;
+
+            userImage = null;
             if (userImage == null)
             {
-                myHolder.mProfilePicture.SetImageResource(Resource.Drawable.maps);
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.maps);
             }
             else
-                myHolder.mProfilePicture.SetImageBitmap(userImage);
+                myHolder.mIconForRoute.SetImageBitmap(userImage);
 
             if (position > mCurrentPosition)
             {
@@ -190,21 +234,25 @@ namespace TestApp
         private void StartRouteFlag_Click(object sender, EventArgs e)
         {
 
-
-            string test = "test";
-
-            //test = myHolder.mUserName.Text;
             Bundle b = new Bundle();
             b.PutStringArray("MyData", new String[] {
-            test
 
-                 });
+            routeName,
+            routeInfo,
+            routeDifficulty,
+            routeLength,
+            routeType,
+            routeRating,
+            routeTrips.ToString(),
+            routeId
+
+        });
 
             Intent myIntent = new Intent(mContext, typeof(StartRoute));
             myIntent.PutExtras(b);
             mContext.StartActivity(myIntent);
-      
-    }
+
+        }
 
         private void SetAnimation(View view, int currentAnim)
         {
@@ -226,5 +274,10 @@ namespace TestApp
             get { return mRoutes.Count; }
         }
     }
+
+
+
+
+
 }
 

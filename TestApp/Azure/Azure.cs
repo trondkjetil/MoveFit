@@ -104,7 +104,17 @@ namespace TestApp
         }
 
 
-             public static async Task<List<Route>> getMyRoutes(string userId)
+        public static async Task<List<Route>> getLatestRouteId(string userId)
+        {
+
+            List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).OrderByDescending(Route => Route.User_id).ToListAsync();
+            routeList = routeList;
+            return routeList;
+
+        }
+
+
+        public static async Task<List<Route>> getMyRoutes(string userId)
         {
             
              List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).ToListAsync();
@@ -116,8 +126,7 @@ namespace TestApp
         public static async Task<List<Locations>> getLocationsForRoute(string providedRouteID)
         {
 
-            //  List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id == providedRouteID).ToListAsync();
-            List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id != null).ToListAsync();
+             List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id == providedRouteID).ToListAsync();
 
             return locationsList;
 
@@ -141,6 +150,24 @@ namespace TestApp
             //  var inserted 
             await table.UpdateAsync(user);
             return userList;
+
+        }
+
+        public static async Task<List<Locations>> updateLocationRouteID(string routeIdOld, string RouteIdNew)
+        {
+
+            List<Locations> LocationsList = await locationsTable.Where(Locations => Locations.Route_id == routeIdOld).ToListAsync();
+            LocationsList.Find(Locations => Locations.Route_id == routeIdOld).Route_id = RouteIdNew;
+
+            List<Locations> newRouteInstanceUpdated = LocationsList.FindAll(Locations => Locations.Route_id == RouteIdNew);
+            //  var inserted 
+
+            foreach (var item in newRouteInstanceUpdated)
+            {
+                await locationsTable.UpdateAsync(item);
+            }
+            
+            return LocationsList;
 
         }
 
@@ -195,7 +222,7 @@ namespace TestApp
         }
 
         [Java.Interop.Export()]
-        public static async void AddRoute(string routeName, string routeInfo,string routeDistance, string routeReview,int routeTrips, string routeDifficulty,string routeType, string routeUserId)
+        public static async Task<List<Route>> AddRoute(string routeName, string routeInfo,string routeDistance, string routeReview,int routeTrips, string routeDifficulty,string routeType, string routeUserId)
 
         {
             var route = new Route
@@ -212,13 +239,15 @@ namespace TestApp
             };
 
 
+            List<Route> rList = new List<Route>();
+            rList.Add(route);
             try
             {
 
                 //ToDoItem im = new ToDoItem { Text = "Awesome item" };
                 //await client.GetTable<ToDoItem>().InsertAsync(im);
-                await tableRoute.InsertAsync(route); // insert the new item into the local database
-                await SyncAsync(); // send changes to the mobile service
+               await tableRoute.InsertAsync(route); // insert the new item into the local database
+             await SyncAsync(); // send changes to the mobile service
 
 
             }
@@ -227,7 +256,7 @@ namespace TestApp
                 CreateAndShowDialog(e, "Error");
             }
 
-
+            return rList;
 
         }
 

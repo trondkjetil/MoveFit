@@ -28,7 +28,8 @@ public final class R {
     }
     public static final class array {
         public static final int activity_array=0x7f0d0000;
-        public static final int activity_routeTypes=0x7f0d0002;
+        public static final int activity_routeDifficulty=0x7f0d0002;
+        public static final int activity_routeTypes=0x7f0d0003;
         public static final int planets_array=0x7f0d0001;
     }
     public static final class attr {
@@ -2302,7 +2303,7 @@ containing a value of this type.
         public static final int acc=0x7f0b00b0;
         public static final int accelerometer_text=0x7f0b006c;
         public static final int action0=0x7f0b00c8;
-        public static final int action_alarm=0x7f0b010c;
+        public static final int action_alarm=0x7f0b010e;
         public static final int action_bar=0x7f0b005d;
         public static final int action_bar_activity_content=0x7f0b0001;
         public static final int action_bar_container=0x7f0b005c;
@@ -2312,15 +2313,15 @@ containing a value of this type.
         public static final int action_bar_title=0x7f0b003d;
         public static final int action_context_bar=0x7f0b005e;
         public static final int action_divider=0x7f0b00cc;
-        public static final int action_help=0x7f0b010b;
+        public static final int action_help=0x7f0b010d;
         public static final int action_menu_divider=0x7f0b0003;
         public static final int action_menu_presenter=0x7f0b0004;
         public static final int action_mode_bar=0x7f0b005a;
         public static final int action_mode_bar_stub=0x7f0b0059;
         public static final int action_mode_close_button=0x7f0b003f;
-        public static final int action_refresh=0x7f0b010a;
+        public static final int action_refresh=0x7f0b010c;
         public static final int activity_chooser_view_content=0x7f0b0040;
-        public static final int add=0x7f0b010e;
+        public static final int add=0x7f0b0110;
         public static final int address_text=0x7f0b00c6;
         public static final int adjust_height=0x7f0b000f;
         public static final int adjust_width=0x7f0b0010;
@@ -2366,7 +2367,6 @@ containing a value of this type.
         public static final int dark=0x7f0b0015;
         public static final int decor_content_parent=0x7f0b005b;
         public static final int default_activity_button=0x7f0b0043;
-        public static final int difficultyInfo=0x7f0b00a4;
         public static final int difficultyPrompt=0x7f0b00a3;
         public static final int disableHome=0x7f0b0019;
         public static final int display_always=0x7f0b0039;
@@ -2395,7 +2395,7 @@ containing a value of this type.
         public static final int imageButton2=0x7f0b00de;
         public static final int imageButton3=0x7f0b00df;
         public static final int imageStatus=0x7f0b0097;
-        public static final int imageView1=0x7f0b0109;
+        public static final int imageView1=0x7f0b010b;
         public static final int imgView=0x7f0b00e9;
         public static final int info=0x7f0b00d3;
         public static final int infoPropt=0x7f0b00a1;
@@ -2427,13 +2427,13 @@ containing a value of this type.
         public static final int map=0x7f0b0099;
         public static final int mapForStartingRoute=0x7f0b00f9;
         public static final int media_actions=0x7f0b00cb;
-        public static final int menu=0x7f0b010f;
-        public static final int menu_refresh=0x7f0b0110;
+        public static final int menu=0x7f0b0111;
+        public static final int menu_refresh=0x7f0b0112;
         public static final int messenger_send_button=0x7f0b00c7;
         public static final int middle=0x7f0b0026;
         public static final int multiply=0x7f0b001f;
         public static final int myRoutes=0x7f0b00e4;
-        public static final int myRoutesId=0x7f0b0101;
+        public static final int myRoutesId=0x7f0b0103;
         public static final int mypos=0x7f0b00c4;
         public static final int nameId=0x7f0b00d8;
         public static final int nameOfroute=0x7f0b00a0;
@@ -2459,11 +2459,11 @@ containing a value of this type.
         public static final int radioGroup=0x7f0b00b9;
         public static final int radioGroup1=0x7f0b0083;
         public static final int radioRed=0x7f0b00ba;
-        public static final int ratingbar=0x7f0b00ff;
-        public static final int recycleUserFriends=0x7f0b0103;
-        public static final int recycleUserMyRoutes=0x7f0b0105;
-        public static final int recycleUserNearby=0x7f0b0107;
-        public static final int recycleUserRoutes=0x7f0b0108;
+        public static final int ratingbar=0x7f0b0101;
+        public static final int recycleUserFriends=0x7f0b0105;
+        public static final int recycleUserMyRoutes=0x7f0b0107;
+        public static final int recycleUserNearby=0x7f0b0109;
+        public static final int recycleUserRoutes=0x7f0b010a;
         public static final int refreshWithIdToken=0x7f0b007a;
         public static final int refreshWithRefreshToken=0x7f0b007b;
         public static final int results=0x7f0b0088;
@@ -2477,7 +2477,7 @@ containing a value of this type.
         public static final int scrollIndicatorDown=0x7f0b0051;
         public static final int scrollIndicatorUp=0x7f0b004e;
         public static final int scrollView=0x7f0b004f;
-        public static final int search=0x7f0b010d;
+        public static final int search=0x7f0b010f;
         public static final int search_badge=0x7f0b0061;
         public static final int search_bar=0x7f0b0060;
         public static final int search_button=0x7f0b0062;
@@ -2499,6 +2499,7 @@ containing a value of this type.
         public static final int spacer=0x7f0b0048;
         public static final int speed=0x7f0b00af;
         public static final int spinner=0x7f0b00b5;
+        public static final int spinnerRouteDifficulty=0x7f0b00a4;
         public static final int spinnerRouteTypes=0x7f0b009a;
         public static final int spinneren=0x7f0b0087;
         public static final int split_action_bar=0x7f0b0008;
@@ -2512,13 +2513,15 @@ containing a value of this type.
         public static final int startRouteLength=0x7f0b00fc;
         public static final int startRouteName=0x7f0b00fa;
         public static final int startRouteRating=0x7f0b00fe;
+        public static final int startRouteTrips=0x7f0b0100;
+        public static final int startRouteType=0x7f0b00ff;
         public static final int statusId=0x7f0b00d9;
         public static final int statusRoute=0x7f0b0098;
         public static final int status_bar_latest_event_content=0x7f0b00ca;
         public static final int stop=0x7f0b006d;
         public static final int submit_area=0x7f0b0068;
         public static final int switch1=0x7f0b00e0;
-        public static final int swp=0x7f0b0106;
+        public static final int swp=0x7f0b0108;
         public static final int tabMode=0x7f0b0018;
         public static final int terrain=0x7f0b000e;
         public static final int test=0x7f0b00a7;
@@ -2560,9 +2563,9 @@ containing a value of this type.
         public static final int unknown=0x7f0b002f;
         public static final int up=0x7f0b0009;
         public static final int useLogo=0x7f0b001e;
-        public static final int userFriends=0x7f0b0100;
-        public static final int userRoutecontent=0x7f0b0102;
-        public static final int userRoutes=0x7f0b0104;
+        public static final int userFriends=0x7f0b0102;
+        public static final int userRoutecontent=0x7f0b0104;
+        public static final int userRoutes=0x7f0b0106;
         public static final int viewpager=0x7f0b00b7;
         public static final int webLoadingIcon=0x7f0b006e;
         public static final int wide=0x7f0b0013;

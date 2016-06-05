@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mapForStartingRoute"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="220dp"
         class="com.google.android.gms.maps.MapFragment" />
     <TextView
         android:text="Route:"
@@ -39,6 +39,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/startRouteRating"
         android:textColor="#000000" />
+    <TextView
+        android:text="Route type:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startRouteType"
+        android:textColor="#000000" />
+    <TextView
+        android:text="Route trips:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startRouteTrips"
+        android:textColor="#000000" />
     <RatingBar
         android:id="@+id/ratingbar"
         android:layout_width="wrap_content"
@@ -54,10 +66,17 @@
         android:textColor="#ffffffff"
         android:background="@android:color/holo_green_light" />
     <Button
+        android:text="End route"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/endRoute"
+        android:textColor="#ffffffff"
+        android:background="@android:color/holo_red_dark" />
+    <Button
         android:text="Cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cancelRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_red_dark" />
+        android:background="@android:color/holo_orange_light" />
 </LinearLayout>

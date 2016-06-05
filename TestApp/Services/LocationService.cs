@@ -67,7 +67,7 @@ namespace TestApp
 			Log.Debug (logTag, string.Format ("You are about to get location updates via {0}", locationProvider));
 
 			// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
-			LocMgr.RequestLocationUpdates(locationProvider, 20000, 0, this);
+			LocMgr.RequestLocationUpdates(locationProvider, 15000, 0, this);
 
 			Log.Debug (logTag, "Now sending location updates");
 		}

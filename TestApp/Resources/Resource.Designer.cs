@@ -97,7 +97,10 @@ namespace TestApp
 			public const int activity_array = 2131558400;
 			
 			// aapt resource value: 0x7f0d0002
-			public const int activity_routeTypes = 2131558402;
+			public const int activity_routeDifficulty = 2131558402;
+			
+			// aapt resource value: 0x7f0d0003
+			public const int activity_routeTypes = 2131558403;
 			
 			// aapt resource value: 0x7f0d0001
 			public const int planets_array = 2131558401;
@@ -2196,8 +2199,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00c8
 			public const int action0 = 2131427528;
 			
-			// aapt resource value: 0x7f0b010c
-			public const int action_alarm = 2131427596;
+			// aapt resource value: 0x7f0b010e
+			public const int action_alarm = 2131427598;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int action_bar = 2131427421;
@@ -2226,8 +2229,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00cc
 			public const int action_divider = 2131427532;
 			
-			// aapt resource value: 0x7f0b010b
-			public const int action_help = 2131427595;
+			// aapt resource value: 0x7f0b010d
+			public const int action_help = 2131427597;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -2244,14 +2247,14 @@ namespace TestApp
 			// aapt resource value: 0x7f0b003f
 			public const int action_mode_close_button = 2131427391;
 			
-			// aapt resource value: 0x7f0b010a
-			public const int action_refresh = 2131427594;
+			// aapt resource value: 0x7f0b010c
+			public const int action_refresh = 2131427596;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int activity_chooser_view_content = 2131427392;
 			
-			// aapt resource value: 0x7f0b010e
-			public const int add = 2131427598;
+			// aapt resource value: 0x7f0b0110
+			public const int add = 2131427600;
 			
 			// aapt resource value: 0x7f0b00c6
 			public const int address_text = 2131427526;
@@ -2388,9 +2391,6 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0043
 			public const int default_activity_button = 2131427395;
 			
-			// aapt resource value: 0x7f0b00a4
-			public const int difficultyInfo = 2131427492;
-			
 			// aapt resource value: 0x7f0b00a3
 			public const int difficultyPrompt = 2131427491;
 			
@@ -2475,8 +2475,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b0097
 			public const int imageStatus = 2131427479;
 			
-			// aapt resource value: 0x7f0b0109
-			public const int imageView1 = 2131427593;
+			// aapt resource value: 0x7f0b010b
+			public const int imageView1 = 2131427595;
 			
 			// aapt resource value: 0x7f0b00e9
 			public const int imgView = 2131427561;
@@ -2571,11 +2571,11 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00cb
 			public const int media_actions = 2131427531;
 			
-			// aapt resource value: 0x7f0b010f
-			public const int menu = 2131427599;
+			// aapt resource value: 0x7f0b0111
+			public const int menu = 2131427601;
 			
-			// aapt resource value: 0x7f0b0110
-			public const int menu_refresh = 2131427600;
+			// aapt resource value: 0x7f0b0112
+			public const int menu_refresh = 2131427602;
 			
 			// aapt resource value: 0x7f0b00c7
 			public const int messenger_send_button = 2131427527;
@@ -2589,8 +2589,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00e4
 			public const int myRoutes = 2131427556;
 			
-			// aapt resource value: 0x7f0b0101
-			public const int myRoutesId = 2131427585;
+			// aapt resource value: 0x7f0b0103
+			public const int myRoutesId = 2131427587;
 			
 			// aapt resource value: 0x7f0b00c4
 			public const int mypos = 2131427524;
@@ -2667,20 +2667,20 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00ba
 			public const int radioRed = 2131427514;
 			
-			// aapt resource value: 0x7f0b00ff
-			public const int ratingbar = 2131427583;
-			
-			// aapt resource value: 0x7f0b0103
-			public const int recycleUserFriends = 2131427587;
+			// aapt resource value: 0x7f0b0101
+			public const int ratingbar = 2131427585;
 			
 			// aapt resource value: 0x7f0b0105
-			public const int recycleUserMyRoutes = 2131427589;
+			public const int recycleUserFriends = 2131427589;
 			
 			// aapt resource value: 0x7f0b0107
-			public const int recycleUserNearby = 2131427591;
+			public const int recycleUserMyRoutes = 2131427591;
 			
-			// aapt resource value: 0x7f0b0108
-			public const int recycleUserRoutes = 2131427592;
+			// aapt resource value: 0x7f0b0109
+			public const int recycleUserNearby = 2131427593;
+			
+			// aapt resource value: 0x7f0b010a
+			public const int recycleUserRoutes = 2131427594;
 			
 			// aapt resource value: 0x7f0b007a
 			public const int refreshWithIdToken = 2131427450;
@@ -2721,8 +2721,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b004f
 			public const int scrollView = 2131427407;
 			
-			// aapt resource value: 0x7f0b010d
-			public const int search = 2131427597;
+			// aapt resource value: 0x7f0b010f
+			public const int search = 2131427599;
 			
 			// aapt resource value: 0x7f0b0061
 			public const int search_badge = 2131427425;
@@ -2787,6 +2787,9 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00b5
 			public const int spinner = 2131427509;
 			
+			// aapt resource value: 0x7f0b00a4
+			public const int spinnerRouteDifficulty = 2131427492;
+			
 			// aapt resource value: 0x7f0b009a
 			public const int spinnerRouteTypes = 2131427482;
 			
@@ -2826,6 +2829,12 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00fe
 			public const int startRouteRating = 2131427582;
 			
+			// aapt resource value: 0x7f0b0100
+			public const int startRouteTrips = 2131427584;
+			
+			// aapt resource value: 0x7f0b00ff
+			public const int startRouteType = 2131427583;
+			
 			// aapt resource value: 0x7f0b00d9
 			public const int statusId = 2131427545;
 			
@@ -2844,8 +2853,8 @@ namespace TestApp
 			// aapt resource value: 0x7f0b00e0
 			public const int switch1 = 2131427552;
 			
-			// aapt resource value: 0x7f0b0106
-			public const int swp = 2131427590;
+			// aapt resource value: 0x7f0b0108
+			public const int swp = 2131427592;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int tabMode = 2131427352;
@@ -2970,14 +2979,14 @@ namespace TestApp
 			// aapt resource value: 0x7f0b001e
 			public const int useLogo = 2131427358;
 			
-			// aapt resource value: 0x7f0b0100
-			public const int userFriends = 2131427584;
-			
 			// aapt resource value: 0x7f0b0102
-			public const int userRoutecontent = 2131427586;
+			public const int userFriends = 2131427586;
 			
 			// aapt resource value: 0x7f0b0104
-			public const int userRoutes = 2131427588;
+			public const int userRoutecontent = 2131427588;
+			
+			// aapt resource value: 0x7f0b0106
+			public const int userRoutes = 2131427590;
 			
 			// aapt resource value: 0x7f0b00b7
 			public const int viewpager = 2131427511;

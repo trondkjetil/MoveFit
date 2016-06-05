@@ -31,9 +31,14 @@ namespace TestApp
         public string RouteType { get; set; }
 
         [JsonProperty(PropertyName = "user_id")]
-        public string User_id { get; set; } 
+        public string User_id { get; set; }
 
- 
+        //Last edited / added
+
+        [JsonProperty(PropertyName = "createdat")]
+        public string CreatedAt { get; set; }
+
+
     }
 
     public class RoutesWrapper : Java.Lang.Object

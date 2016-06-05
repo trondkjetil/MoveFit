@@ -13,13 +13,20 @@ namespace TestApp
         public EditText routeInfoData;
         public EditText difficulty;
         public static string valueReturned;
+        public static string givenDifficulty;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.dialogStartRoute, container,false);
-		
 
-			Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
+            Spinner spinner = view.FindViewById<Spinner>(Resource.Id.spinnerRouteDifficulty);
+            spinner.ItemSelected += spinner_ItemSelected;
+            var adapter = ArrayAdapter.CreateFromResource(view.Context, Resource.Array.activity_routeDifficulty, Android.Resource.Layout.SimpleSpinnerItem);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinner.Adapter = adapter;
+
+
+            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
 
 
@@ -31,7 +38,7 @@ namespace TestApp
 
 
             TextView routeDifficulty = view.FindViewById<TextView>(Resource.Id.difficultyPrompt);
-            difficulty = view.FindViewById<EditText>(Resource.Id.difficultyInfo);
+          //  difficulty = view.FindViewById<EditText>(Resource.Id.difficultyInfo);
 
             dismiss.Click += (sender, e) => Dismiss();
 			startRoute.Click += (sender, e) => Dismiss();
@@ -47,20 +54,34 @@ namespace TestApp
             base.OnDismiss(dialog);
             if (DialogClosed != null)
             {
-                valueReturned = routeName.Text + "," + routeInfoData.Text + "," + difficulty.Text;
+                valueReturned = routeName.Text + "," + routeInfoData.Text + "," + givenDifficulty;
                 DialogClosed(this, new DialogEventArgs { ReturnValue = valueReturned });
             }
 
         }
+        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
 
+            if (e.Position == 0)
+            {
+                givenDifficulty = "Easy";
+            }
+            else if (e.Position == 1)
+            {
+                givenDifficulty = "Medium";
+            }
+            else if (e.Position == 2)
+            {
+                givenDifficulty = "Hard";
+            }
+        }
         public override void OnActivityCreated (Bundle savedInstanceState)
 		{
 			Dialog.Window.RequestFeature (WindowFeatures.NoTitle); //set the title bar to invisible
 			base.OnActivityCreated (savedInstanceState);
 			Dialog.Window.Attributes.WindowAnimations = Resource.Style.dialog_animation;  // set the animation
 
-
-		
 		}
 
 

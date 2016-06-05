@@ -74,7 +74,7 @@
         android:text=""
         android:layout_marginTop="180dp" />
     <TextView
-        android:text="Please rate the difficulty "
+        android:text="Please set the difficulty"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/difficultyPrompt"
@@ -82,7 +82,15 @@
         android:layout_gravity="center"
         android:textSize="20dp"
         android:layout_marginTop="230dp" />
-    <EditText
+    <Spinner
+        android:id="@+id/spinnerRouteDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:prompt="@string/planet_prompt"
+        android:textColor="@android:color/background_dark"
+        android:layout_y="20dp"
+        android:layout_below="@+id/difficultyPrompt" />
+<!--<EditText
         android:id="@+id/difficultyInfo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -93,7 +101,7 @@
         android:focusable="true"
         android:hint="Difficulty"
         android:text=""
-        android:layout_marginTop="270dp" />
+        android:layout_marginTop="270dp" />-->
     <Button
         android:text="Done"
         android:layout_width="150dp"
