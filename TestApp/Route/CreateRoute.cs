@@ -171,7 +171,7 @@ namespace TestApp
                         dist = 0;
                     }
 
-                    List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString() + "-" + calculateDistance().ToString(), "review", 1, routeDifficulty, routeType, routeUserId);
+                    List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString() + "-" + calculateDistance().ToString(), "4", 1, routeDifficulty, routeType, routeUserId);
 
                     locationManager.RemoveUpdates(this);
                    
@@ -186,7 +186,6 @@ namespace TestApp
 
 
                     // uploadLocation();
-
 
 
                     string routeID = "";

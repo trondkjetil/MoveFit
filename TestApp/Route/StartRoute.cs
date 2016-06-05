@@ -51,76 +51,150 @@ namespace TestApp
             {
                 mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
             }
-
-            array = Intent.GetStringArrayExtra("MyData");
-            routeId = array[7];
-            locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
-
-
-            TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
-            TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
-            TextView length = FindViewById<TextView>(Resource.Id.startRouteLength);
-            TextView difficulty = FindViewById<TextView>(Resource.Id.startRouteDiff);
-            TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
-            TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
-            TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
-            Button start = FindViewById<Button>(Resource.Id.startRoute);
-            Button end = FindViewById<Button>(Resource.Id.endRoute);
-            Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
-            RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
-
-            routeName = array[0];
-            routeInfo = array[1];
-            routeDifficulty = array[2];
-            routeLength = array[3];
-            routeType = array[4];
-            routeRating = array[5];
-            routeTrips = array[6];
-           
-
-            name.Text = "Name:" + routeName;
-            description.Text = "Description: "+routeInfo;
-            difficulty.Text = "Difficulty: "+ routeDifficulty;
-            length.Text = "Length: " + routeLength;
-            rating.Text = "Rating: "+routeRating;
-            type.Text = "Type: "+routeType;
-            trips.Text ="Trips: " + routeTrips;
-
-            
-            drawRoute();
-
-
-            ratingbar.RatingBarChange += (o, e) => {
-                Toast.MakeText(this, "New Rating: " + ratingbar.Rating.ToString(), ToastLength.Short).Show();
-            };
-          
-
-            start.Click += (sender, e) =>
             {
-                Toast.MakeText(this,"Starting route...",ToastLength.Short).Show();
+                mMap.UiSettings.ZoomControlsEnabled = true;
+                mMap.UiSettings.CompassEnabled = true;
+                mMap.UiSettings.MapToolbarEnabled = true;
+                mMap.UiSettings.MyLocationButtonEnabled = true;
 
-                InitializeLocationManager();
-
-                long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
-                long minDistance = 5; // Minimum distance change for update in meters, i.e. 10 meters.
-                locationManager.RequestLocationUpdates(this.locationProvider, minTime, minDistance, this);
+                array = Intent.GetStringArrayExtra("MyData");
+                routeId = array[7];
+                locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
 
 
-            };
+                TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
+                TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
+                TextView length = FindViewById<TextView>(Resource.Id.startRouteLength);
+                TextView difficulty = FindViewById<TextView>(Resource.Id.startRouteDiff);
+                TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
+                TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
+                TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
+                Button start = FindViewById<Button>(Resource.Id.startRoute);
+                Button end = FindViewById<Button>(Resource.Id.endRoute);
+                Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
+                RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
+                ratingbar.Clickable = false;
+                ratingbar.Visibility = ViewStates.Visible;
 
-            end.Click += (sender, e) =>
-            {
-                Toast.MakeText(this, "Route ended! You will not get any points", ToastLength.Long).Show();
-                if(locationManager != null)
-                    locationManager.RemoveUpdates(this);
+                routeName = array[0];
+                routeInfo = array[1];
+                routeDifficulty = array[2];
+                routeLength = array[3];
+                routeType = array[4];
+                routeRating = array[5];
+                routeTrips = array[6];
 
-            };
-
-            cancel.Click += (sender, e) =>
-            {
                
-                Finish();
-            };
+                name.Text = "Name:" + routeName;
+                description.Text = "Description: " + routeInfo;
+                difficulty.Text = "Difficulty: " + routeDifficulty;
+                length.Text = "Length: " + routeLength;
+                type.Text = "Type: " + routeType;
+                trips.Text = "Trips: " + routeTrips;
+
+                try
+                {
+                    if (Convert.ToInt32(routeRating) == 0)
+                    {
+                        rating.Text = "Rating: Not rated yet!";
+                    }
+                    else
+                        rating.Text = "Rating: " + routeRating;
+
+                       ratingbar.Rating = Convert.ToInt32(routeRating);
+                   
+                }
+                catch (Exception)
+                {
+
+                }
+               
+                drawRoute();
+
+                start.Click += (sender, e) =>
+                {
+
+                    InitializeLocationManager();
+
+                    long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+                    long minDistance = 5; // Minimum distance change for update in meters, i.e. 10 meters.
+                    locationManager.RequestLocationUpdates(this.locationProvider, minTime, minDistance, this);
+
+
+                    double distance = 0;
+                    Location myLocation = locationManager.GetLastKnownLocation(locationProvider);
+                    Locations firstElement = locationPointsForRoute.First();
+                    float[] results = new float[1];
+                    string[] LatLngFirst = firstElement.Location.Split(',');
+                    Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
+                    distance = (int)results[0];
+
+
+                    if (distance <= 100)
+                    {
+                        Toast.MakeText(this, "Starting route...", ToastLength.Short).Show();
+                    }
+                    else
+                        Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
+
+                };
+
+                end.Click += (sender, e) =>
+                {
+
+
+                    double distance = 0;
+                    Location myLocation = locationManager.GetLastKnownLocation(locationProvider);
+                    Locations firstElement = locationPointsForRoute.LastOrDefault();
+                    float[] results = new float[1];
+                    string[] LatLngFirst = firstElement.Location.Split(',');
+                    Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
+                    distance = (int)results[0];
+
+
+                    if (distance <= 60)
+                    {
+                        Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
+                        startDialogNameRoute();
+                        if (locationManager != null)
+                            locationManager.RemoveUpdates(this);
+
+                    }
+                    else
+                        Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finish - point is: "+ distance, ToastLength.Long).Show();
+
+
+
+                };
+
+                cancel.Click += (sender, e) =>
+                {
+                    Toast.MakeText(this, "Route ended! You will not get any points", ToastLength.Long).Show();
+
+                    Finish();
+                };
+
+
+            }
+
+        }
+
+
+        public void startDialogNameRoute()
+        {
+
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            DialogEndRoute newDialog = new DialogEndRoute();
+            newDialog.DialogClosed += OnDialogClosed;
+            newDialog.Show(transaction, "End Route");
+        }
+
+     
+         async void OnDialogClosed(object sender, DialogEndRoute.DialogEventArgs e)
+        {
+
+            routeRating = e.ReturnValue.ToString();
+            await Azure.giveRouteRating(routeId, "TestUserID", routeRating);
 
 
         }
@@ -201,19 +275,17 @@ namespace TestApp
         public void OnLocationChanged(Location location)
         {
 
-      
-            //try
-            //{
-            //    mMap.UiSettings.ZoomControlsEnabled = true;
-            //    mMap.UiSettings.CompassEnabled = true;
-            //    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-            //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
-            //}
-            //catch (Exception e)
-            //{
-            //   // throw;
-            //}
+            try { 
+         
+              //  mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+             //   mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
+
+            }
+            catch (Exception e)
+            {
+                // throw;
+            }
 
         }
 
@@ -247,13 +319,10 @@ namespace TestApp
         }
 
 
-        public async void drawRoute() {
+        public  void drawRoute() {
 
-            locationPointsForRoute = locationPointsForRoute;
-
-            mMap.UiSettings.MyLocationButtonEnabled = true;
-            mMap.UiSettings.RotateGesturesEnabled = false;
-            mMap.UiSettings.ScrollGesturesEnabled = false;
+          mMap.UiSettings.RotateGesturesEnabled = false;
+          mMap.UiSettings.ScrollGesturesEnabled = false;
 
             try
             {
@@ -314,6 +383,11 @@ namespace TestApp
 
 
         }
+
+
+    
+
+
 
 
 

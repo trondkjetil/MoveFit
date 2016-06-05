@@ -153,21 +153,21 @@ namespace TestApp
 
         }
 
-        public static async Task<List<Locations>> updateLocationRouteID(string routeIdOld, string RouteIdNew)
+        public static async Task<List<Route>> giveRouteRating(string routeId, string userID, string rating)
         {
 
-            List<Locations> LocationsList = await locationsTable.Where(Locations => Locations.Route_id == routeIdOld).ToListAsync();
-            LocationsList.Find(Locations => Locations.Route_id == routeIdOld).Route_id = RouteIdNew;
+            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeId).ToListAsync();
+            routeList.Find(Route => Route.Id == routeId).Review = rating;
 
-            List<Locations> newRouteInstanceUpdated = LocationsList.FindAll(Locations => Locations.Route_id == RouteIdNew);
+            List<Route> newRouteInstanceUpdated = routeList.FindAll(Route => Route.Id == routeId);
             //  var inserted 
 
             foreach (var item in newRouteInstanceUpdated)
             {
-                await locationsTable.UpdateAsync(item);
+                await routeTable.UpdateAsync(item);
             }
             
-            return LocationsList;
+            return routeList;
 
         }
 

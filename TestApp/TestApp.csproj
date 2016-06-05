@@ -165,7 +165,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Health\ActivityLevelTracker.cs" />
-    <Compile Include="Route\DialogEndRoute .cs" />
+    <Compile Include="Route\DialogEndRouteRate .cs" />
     <Compile Include="Route\RouteOverview.cs" />
     <Compile Include="Route\StartRoute.cs" />
     <Compile Include="Route\CreateRoute.cs" />
@@ -311,6 +311,7 @@
     <AndroidResource Include="Resources\layout\userMyRoutesContent.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialogEndRouteRating.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

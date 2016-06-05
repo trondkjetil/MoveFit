@@ -9,17 +9,28 @@ namespace TestApp
 	 class DialogEndRoute : DialogFragment
 	{
         public event EventHandler<DialogEventArgs> DialogClosed;
-        public EditText routeName;
+
+        public string rate;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 			base.OnCreateView (inflater, container, savedInstanceState);
-			var view = inflater.Inflate (Resource.Layout.dialogStartRoute, container,false);
+			var view = inflater.Inflate (Resource.Layout.dialogEndRouteRating, container,false);
 
        
-            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
-			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
-            TextView route = view.FindViewById<TextView>(Resource.Id.namePropt);
-             routeName  = view.FindViewById<EditText>(Resource.Id.nameOfroute);
+            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel1);
+			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute1);
+            TextView rating = view.FindViewById<TextView>(Resource.Id.ratingPropt);
+           
+            TextView finish = view.FindViewById<TextView>(Resource.Id.finish);
+            finish.Text = "Congratulations!" + System.Environment.NewLine + "You have finished the route!";
+            RatingBar ratingbar = view. FindViewById<RatingBar>(Resource.Id.ratingbarEndRoute);
+            ratingbar.Visibility = ViewStates.Visible;
+
+            ratingbar.RatingBarChange += (o, e) =>
+            {
+                rate = ratingbar.Rating.ToString();
+            };
+
 
             dismiss.Click += (sender, e) => Dismiss();
 			startRoute.Click += (sender, e) => Dismiss();
@@ -31,10 +42,12 @@ namespace TestApp
 
         public override void OnDismiss(Android.Content.IDialogInterface dialog)
         {
+            String data = "";
             base.OnDismiss(dialog);
             if (DialogClosed != null)
             {
-                DialogClosed(this, new DialogEventArgs { ReturnValue = routeName.Text });
+                data = rate;
+                DialogClosed(this, new DialogEventArgs { ReturnValue = rate });
             }
 
         }
