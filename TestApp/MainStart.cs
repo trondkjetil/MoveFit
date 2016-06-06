@@ -75,6 +75,7 @@ namespace TestApp
 
             public static TextView _address;
             public Address oldAddress;
+            public static GoogleMap mMap;
 
         protected override async void OnCreate (Bundle savedInstanceState)
 			{
@@ -553,6 +554,9 @@ namespace TestApp
             else
             {
 
+               mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
+
                 //_address.Text = string.Format("{0:f6},{1:f6}", currentLocation.Latitude, currentLocation.Longitude);
 
                 Address address = await ReverseGeocodeCurrentLocation();
@@ -618,10 +622,10 @@ namespace TestApp
         public class ContactsAdapter :BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
         {
             List<Contact> _contactList;
-            Activity _activity;
+           public  Activity _activity;
 
     
-            public static GoogleMap mMap;
+            //public static GoogleMap mMap;
             public static List<User> nearbyUsers;
             public static ImageButton findMoreFriends;
           
@@ -678,14 +682,16 @@ namespace TestApp
             contactName.Text = _contactList[position].DisplayName;
 
                 MapFragment mapFrag = (MapFragment)_activity.FragmentManager.FindFragmentById(Resource.Id.map);
-                GoogleMap mMap = mapFrag.Map;
+                mMap = mapFrag.Map;
 
                 if (mMap != null)
                 {
                     mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
                 }
+                mMap.UiSettings.ZoomControlsEnabled = true;
+                mMap.UiSettings.RotateGesturesEnabled = false;
+                mMap.UiSettings.ScrollGesturesEnabled = false;
 
-                
                 contactName.Text = "";
            
                 TextView altText;
@@ -807,7 +813,7 @@ namespace TestApp
                 Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
                 _activity.StartActivity(myIntent);
             }
-        }  // Contact adapter end
+        }  
 
 
 

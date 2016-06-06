@@ -38,6 +38,10 @@ namespace TestApp
         private string routeTrips;
         private string routeId;
 
+
+        const long MIN_TIME = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+        const long MIN_DISTANCE = 5;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -59,7 +63,10 @@ namespace TestApp
 
                 array = Intent.GetStringArrayExtra("MyData");
                 routeId = array[7];
+               
                 locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
+
+                Toast.MakeText(this, array[7] + "|----|" + locationPointsForRoute.First().Route_id, ToastLength.Long).Show();
 
 
                 TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
@@ -73,6 +80,7 @@ namespace TestApp
                 Button end = FindViewById<Button>(Resource.Id.endRoute);
                 Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
                 RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
+
                 ratingbar.Clickable = false;
                 ratingbar.Visibility = ViewStates.Visible;
 
@@ -109,16 +117,14 @@ namespace TestApp
 
                 }
                
-                drawRoute();
+               drawRoute();
 
                 start.Click += (sender, e) =>
                 {
 
                     InitializeLocationManager();
-
-                    long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
-                    long minDistance = 5; // Minimum distance change for update in meters, i.e. 10 meters.
-                    locationManager.RequestLocationUpdates(this.locationProvider, minTime, minDistance, this);
+                     // Minimum distance change for update in meters, i.e. 10 meters.
+                    locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
 
 
                     double distance = 0;
@@ -245,14 +251,21 @@ namespace TestApp
         {
             base.OnResume();
             if(locationManager != null)
-            locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+                locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
+
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            if (locationManager != null)
-                locationManager.RemoveUpdates(this);
+            //if (locationManager != null)
+            //    locationManager.RemoveUpdates(this);
+        }
+        protected override void OnStop()
+        {
+            base.OnStop();
+            //if (locationManager != null)
+            //    locationManager.RemoveUpdates(this);
         }
 
 
@@ -321,19 +334,21 @@ namespace TestApp
 
         public  void drawRoute() {
 
-          mMap.UiSettings.RotateGesturesEnabled = false;
-          mMap.UiSettings.ScrollGesturesEnabled = false;
+           
+            if(locationPointsForRoute.Count == 0)
+                Toast.MakeText(this, "No routes found for: " + routeId, ToastLength.Long).Show();
+            else
+            {
 
+            
             try
             {
-              
 
-            if(locationPointsForRoute.Count == 0)
-            {
-                Toast.MakeText(this, "No routes found for: " + routeId, ToastLength.Long).Show();
 
-                return;
-            }
+                mMap.UiSettings.RotateGesturesEnabled = false;
+                mMap.UiSettings.ScrollGesturesEnabled = false;
+
+
 
 
             Locations lastItem = locationPointsForRoute.LastOrDefault();
@@ -378,14 +393,14 @@ namespace TestApp
             }catch(Exception e)
             {
 
-                throw;
+                throw e;
             }
 
 
         }
+        }
 
 
-    
 
 
 

@@ -56,9 +56,12 @@ namespace TestApp
                 mAdapter = new MyRoutesAdapter(routeList, mRecyclerView, this);
                 mRecyclerView.SetAdapter(mAdapter);
             }
-            else
+            else { 
                 Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
-  
+                
+                Intent myInt = new Intent(this, typeof(RouteOverview));
+                StartActivity(myInt);
+            }
 
         }
 

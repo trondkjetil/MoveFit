@@ -638,5 +638,6 @@ C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\values\itemsroutedifficulty
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\uploadflags.txt
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\res\layout\dialogendrouterating.xml
+C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

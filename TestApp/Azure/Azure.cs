@@ -98,7 +98,7 @@ namespace TestApp
         public static async Task<List<Route>> getRoutes()
         {
 
-            List<Route> routeList = await routeTable.Where(Route => Route.Id != null || Route.Id != "").ToListAsync();
+            List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
             return routeList;
 
         }
