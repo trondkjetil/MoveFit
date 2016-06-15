@@ -7,7 +7,8 @@ public class StreetViewPanorama_OnStreetViewPanoramaLongClickListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.maps.StreetViewPanorama.OnStreetViewPanoramaLongClickListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onStreetViewPanoramaLongClick:(Lcom/google/android/gms/maps/model/StreetViewPanoramaOrientation;)V:GetOnStreetViewPanoramaLongClick_Lcom_google_android_gms_maps_model_StreetViewPanoramaOrientation_Handler:Android.Gms.Maps.StreetViewPanorama/IOnStreetViewPanoramaLongClickListenerInvoker, Xamarin.GooglePlayServices.Maps\n" +
@@ -31,7 +32,7 @@ public class StreetViewPanorama_OnStreetViewPanoramaLongClickListenerImplementor
 
 	private native void n_onStreetViewPanoramaLongClick (com.google.android.gms.maps.model.StreetViewPanoramaOrientation p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

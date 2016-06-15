@@ -7,7 +7,8 @@ public class MediationRewardedVideoAdListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.reward.mediation.MediationRewardedVideoAdListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onAdClicked:(Lcom/google/android/gms/ads/reward/mediation/MediationRewardedVideoAdAdapter;)V:GetOnAdClicked_Lcom_google_android_gms_ads_reward_mediation_MediationRewardedVideoAdAdapter_Handler:Android.Gms.Ads.Reward.Mediation.IMediationRewardedVideoAdListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -112,7 +113,7 @@ public class MediationRewardedVideoAdListenerImplementor
 
 	private native void n_onVideoStarted (com.google.android.gms.ads.reward.mediation.MediationRewardedVideoAdAdapter p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

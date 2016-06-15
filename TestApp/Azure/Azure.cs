@@ -7,6 +7,7 @@ using System.IO;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Android.Views;
 using System.Collections.Generic;
+using System.Linq;
 using Android.Util;
 using Android.Widget;
 using Newtonsoft.Json.Linq;
@@ -16,9 +17,6 @@ namespace TestApp
 {
     public class Azure
     {
-
-        //const string applicationURL = @"https://movefit.azure-mobile.net/";
-        //const string applicationKey = @"vaLLzAEGOZguaHOsXqTPkoRsqBYNGP34";
 
         const string applicationURL = @"https://movefitt.azurewebsites.net";
         //  const string applicationKey = @"vaLLzAEGOZguaHOsXqTPkoRsqBYNGP34";
@@ -33,11 +31,16 @@ namespace TestApp
         public static IMobileServiceSyncTable<Locations> locTable { get; set; }
         public static IMobileServiceSyncTable<Route> tableRoute { get; set; }
 
+        public static IMobileServiceSyncTable<Review> tableReview { get; set; }
+
 
         //Online storage
         public static IMobileServiceTable<Route> routeTable { get; set; }
         public static IMobileServiceTable<Locations> locationsTable { get; set; }
         public static IMobileServiceTable<User> table { get; set; }
+
+        public static IMobileServiceTable<Review> reviewTable { get; set; }
+
         //  private static IMobileServiceSyncTable<ToDoItem> toDoTable;
 
         public List<User> userList;
@@ -55,10 +58,12 @@ namespace TestApp
             userTable = client.GetSyncTable<User>();
             locTable = client.GetSyncTable<Locations>();
             tableRoute = client.GetSyncTable<Route>();
+            tableReview = client.GetSyncTable<Review>();
             //Cloud 
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
             routeTable = client.GetTable<Route>();
+            reviewTable = client.GetTable<Review>();
 
 
             //   toDoTable = client.GetSyncTable<ToDoItem>();
@@ -72,6 +77,35 @@ namespace TestApp
             //			}
         }
 
+
+
+        public static async Task<List<Route>> giveRouteRating(string routeId, string rating)
+        {
+
+            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeId).ToListAsync();
+            routeList.Find(Route => Route.Id == routeId).Review = rating;
+            Route newRouteInstanceUpdated = routeList.Find(Route => Route.Id == routeId);
+
+            await routeTable.UpdateAsync(newRouteInstanceUpdated);
+
+            return routeList;
+
+        }
+
+        public static async Task<List<Review>> getRouteReview(string routeID)
+        {
+            List<Review> reviewList = await reviewTable.Where(Review => Review.RouteId == routeID).ToListAsync();
+            return reviewList;
+
+
+        }
+        public static async Task<User> getMyPoints(string userId)
+        {
+
+            List<User> pointlist = await table.Where(user => user.Id == userId).ToListAsync();
+            return pointlist.First();
+
+        }
 
         public static async Task<List<User>> getImagesOnMap()
         {
@@ -108,7 +142,7 @@ namespace TestApp
         {
 
             List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).OrderByDescending(Route => Route.User_id).ToListAsync();
-            routeList = routeList;
+
             return routeList;
 
         }
@@ -116,8 +150,8 @@ namespace TestApp
 
         public static async Task<List<Route>> getMyRoutes(string userId)
         {
-            
-             List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).ToListAsync();
+
+            List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).ToListAsync();
             return routeList;
 
         }
@@ -126,7 +160,7 @@ namespace TestApp
         public static async Task<List<Locations>> getLocationsForRoute(string providedRouteID)
         {
 
-             List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id == providedRouteID).ToListAsync();
+            List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id == providedRouteID).ToListAsync();
 
             return locationsList;
 
@@ -153,23 +187,7 @@ namespace TestApp
 
         }
 
-        public static async Task<List<Route>> giveRouteRating(string routeId, string userID, string rating)
-        {
 
-            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeId).ToListAsync();
-            routeList.Find(Route => Route.Id == routeId).Review = rating;
-
-            List<Route> newRouteInstanceUpdated = routeList.FindAll(Route => Route.Id == routeId);
-            //  var inserted 
-
-            foreach (var item in newRouteInstanceUpdated)
-            {
-                await routeTable.UpdateAsync(item);
-            }
-            
-            return routeList;
-
-        }
 
         public static async Task<List<User>> userRegisteredOnline(string userName)
         {
@@ -187,6 +205,65 @@ namespace TestApp
             return userList;
         }
 
+
+        public static async Task<User> addToMyPoints(string userId, int points)
+        {
+            List<User> userlist = await table.Where(User => User.Id == userId).ToListAsync();
+
+            userlist.Find(User => User.Id == userId).Points = points;
+            User user = userlist.Find(User => User.Id == userId);
+
+            await table.UpdateAsync(user);
+            return user;
+
+        }
+
+        public static async Task<Route> increaseTripCount(string routeID)
+        {
+            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeID).ToListAsync();
+
+            routeList.Find(Route => Route.Id == routeID).Trips = routeList.Find(Route => Route.Id == routeID).Trips + 1;
+            Route route = routeList.Find(Route => Route.Id == routeID);
+
+            await routeTable.UpdateAsync(route);
+            return route;
+
+        }
+
+
+
+        [Java.Interop.Export()]
+        public static async void AddReview(string routeId, int rate, string userId)
+
+        {
+            var review = new Review
+            {
+
+                Rating = rate,
+                RouteId = routeId,
+                UserId = userId
+
+            };
+
+
+            try
+            {
+
+                //ToDoItem im = new ToDoItem { Text = "Awesome item" };
+                //await client.GetTable<ToDoItem>().InsertAsync(im);
+                await reviewTable.InsertAsync(review); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+
+            }
+            catch (Exception e)
+            {
+                CreateAndShowDialog(e, "Error");
+            }
+
+
+
+        }
 
 
         [Java.Interop.Export()]
@@ -222,7 +299,7 @@ namespace TestApp
         }
 
         [Java.Interop.Export()]
-        public static async Task<List<Route>> AddRoute(string routeName, string routeInfo,string routeDistance, string routeReview,int routeTrips, string routeDifficulty,string routeType, string routeUserId)
+        public static async Task<List<Route>> AddRoute(string routeName, string routeInfo, string routeDistance, string routeReview, int routeTrips, string routeDifficulty, string routeType, string routeUserId, string time)
 
         {
             var route = new Route
@@ -235,7 +312,9 @@ namespace TestApp
                 Trips = routeTrips,
                 Difficulty = routeDifficulty,
                 RouteType = routeType,
-                User_id = routeUserId
+                User_id = routeUserId,
+                Time = time
+
             };
 
 
@@ -246,8 +325,8 @@ namespace TestApp
 
                 //ToDoItem im = new ToDoItem { Text = "Awesome item" };
                 //await client.GetTable<ToDoItem>().InsertAsync(im);
-               await tableRoute.InsertAsync(route); // insert the new item into the local database
-             await SyncAsync(); // send changes to the mobile service
+                await tableRoute.InsertAsync(route); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
 
 
             }
@@ -267,12 +346,11 @@ namespace TestApp
             // Create a new item
             var user = new User
             {
-                Text = "test",
-                Complete = false,
+                AboutMe = "testInfo",
                 UserName = MainStart.userName,
                 Sex = "Male",
                 Age = 27,
-                Points = 100,
+                Points = 0,
                 ProfilePicture = MainStart.array[1],
                 Lat = "0",//MainStart.currentLocation.Latitude.ToString(),
                 Lon = "0", //MainStart.currentLocation.Longitude.ToString()
@@ -330,6 +408,7 @@ namespace TestApp
                 await userTable.PullAsync("allUsers", userTable.CreateQuery()); // query ID is used for incremental sync
                 await tableRoute.PullAsync("allRoutes", tableRoute.CreateQuery());
                 await locTable.PullAsync("allLocations", locTable.CreateQuery());
+                await tableReview.PullAsync("allReviews", locTable.CreateQuery());
             }
 
             catch (Java.Net.MalformedURLException)
@@ -352,10 +431,13 @@ namespace TestApp
                 File.Create(path).Dispose();
             }
 
+
+            //sPV RINGE KUNDESERVICE +47915 0055
             var store = new MobileServiceSQLiteStore(path);
             store.DefineTable<User>();
             store.DefineTable<Locations>();
             store.DefineTable<Route>();
+            store.DefineTable<Review>();
             // Uses the default conflict handler, which fails on conflict
             // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
             await client.SyncContext.InitializeAsync(store);

@@ -7,7 +7,8 @@ public class CustomEventListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.ads.mediation.customevent.CustomEventListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onDismissScreen:()V:GetOnDismissScreenHandler:Google.Ads.Mediation.CustomEvent.ICustomEventListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -58,7 +59,7 @@ public class CustomEventListenerImplementor
 
 	private native void n_onPresentScreen ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

@@ -175,7 +175,7 @@ namespace TestApp
             }
                
 
-                myHolder.mText.Text = mUsers[position].Text;
+                myHolder.mText.Text = mUsers[position].AboutMe;
 
 
             if (userImage == null)
@@ -207,7 +207,8 @@ namespace TestApp
 
         void mMainView_Click(object sender, EventArgs e)
         {
-            int position = mRecyclerView.GetChildPosition((View)sender);
+            //   int position = mRecyclerView.GetChildPosition((View)sender);
+            int position = mRecyclerView.GetChildAdapterPosition((View)sender);
             Console.WriteLine(mUsers[position].UserName);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Android.Content;
 using Android.OS;
 using Android.Util;
+using Android.Widget;
 
 namespace TestApp
 {
@@ -29,8 +30,15 @@ namespace TestApp
 		// running Service 
 		public void OnServiceConnected (ComponentName name, IBinder service)
 		{
-			// cast the binder located by the OS as our local binder subclass
-			LocationServiceBinder serviceBinder = service as LocationServiceBinder;
+
+
+            //CreateRoute.activity.RunOnUiThread(() =>
+            //{
+            //    Toast.MakeText(CreateRoute.activity, name + " is connected", ToastLength.Long).Show();
+
+            //});
+            // cast the binder located by the OS as our local binder subclass
+            LocationServiceBinder serviceBinder = service as LocationServiceBinder;
 			if (serviceBinder != null) {
 				this.binder = serviceBinder;
 				this.binder.IsBound = true;

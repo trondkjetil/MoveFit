@@ -7,7 +7,8 @@ public class CustomEventListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.mediation.customevent.CustomEventListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onAdClicked:()V:GetOnAdClickedHandler:Android.Gms.Ads.Mediation.CustomEvent.ICustomEventListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -67,7 +68,7 @@ public class CustomEventListenerImplementor
 
 	private native void n_onAdOpened ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

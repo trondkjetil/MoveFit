@@ -7,7 +7,8 @@ public class InAppPurchaseListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.purchase.InAppPurchaseListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onInAppPurchaseRequested:(Lcom/google/android/gms/ads/purchase/InAppPurchase;)V:GetOnInAppPurchaseRequested_Lcom_google_android_gms_ads_purchase_InAppPurchase_Handler:Android.Gms.Ads.Purchase.IInAppPurchaseListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -31,7 +32,7 @@ public class InAppPurchaseListenerImplementor
 
 	private native void n_onInAppPurchaseRequested (com.google.android.gms.ads.purchase.InAppPurchase p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

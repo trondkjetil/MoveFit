@@ -9,14 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@android:color/white">
-        <TextView
-            android:text="Route creator"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/routeTitle"
-            android:textColor="@android:color/background_dark"
-            android:gravity="center"
-            android:textSize="28dp" />
         <ImageView
             android:src="@drawable/orange"
             android:layout_width="wrap_content"
@@ -25,7 +17,8 @@
             android:background="@android:color/transparent"
             android:layout_gravity="bottom"
             android:layout_weight="10"
-            android:layout_below="@+id/routeTitle" />
+            android:layout_below="@+id/routeTitle"
+            android:layout_marginLeft="12dp" />
         <TextView
             android:text="Status: "
             android:layout_width="wrap_content"
@@ -37,7 +30,7 @@
             android:layout_weight="40"
             android:layout_toRightOf="@+id/imageStatus"
             android:layout_below="@+id/routeTitle"
-            android:layout_marginLeft="25dp" />
+            android:layout_marginLeft="18dp" />
     </RelativeLayout>
     <fragment
         android:id="@+id/map"

@@ -1,11 +1,10 @@
-﻿using System;
-using SupportActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
+﻿using SupportActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
 
 namespace TestApp
 {
-	public class MyActionBarDrawerToggle : SupportActionBarDrawerToggle
+    public class MyActionBarDrawerToggle : SupportActionBarDrawerToggle
 	{
 		private ActionBarActivity mHostActivity;
 		private int mOpenedResource;

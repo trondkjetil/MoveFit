@@ -7,7 +7,8 @@ public class ContentFrameLayout_OnAttachListenerImplementor
 		mono.android.IGCUserPeer,
 		android.support.v7.widget.ContentFrameLayout.OnAttachListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onAttachedFromWindow:()V:GetOnAttachedFromWindowHandler:Android.Support.V7.Widget.ContentFrameLayout/IOnAttachListenerInvoker, Xamarin.Android.Support.v7.AppCompat\n" +
@@ -40,7 +41,7 @@ public class ContentFrameLayout_OnAttachListenerImplementor
 
 	private native void n_onDetachedFromWindow ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

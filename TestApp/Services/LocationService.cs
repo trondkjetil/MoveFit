@@ -1,10 +1,11 @@
 using System;
-
 using Android.App;
 using Android.Util;
 using Android.Content;
 using Android.OS;
 using Android.Locations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TestApp
 {
@@ -16,12 +17,16 @@ namespace TestApp
 		public event EventHandler<ProviderEnabledEventArgs> ProviderEnabled = delegate { };
 		public event EventHandler<StatusChangedEventArgs> StatusChanged = delegate { };
 
-		public LocationService() 
+        public string locationProvider;
+
+        Location currentLocation;
+
+        public LocationService() 
 		{
 		}
 
-		// Set our location manager as the system location service
-		protected LocationManager LocMgr = Android.App.Application.Context.GetSystemService ("location") as LocationManager;
+        // Set our location manager as the system location service
+        protected LocationManager LocMgr; //= Application.Context.GetSystemService ("location") as LocationManager;
 
 		readonly string logTag = "LocationService";
 		IBinder binder;
@@ -54,23 +59,51 @@ namespace TestApp
 		// Handle location updates from the location manager
 		public void StartLocationUpdates () 
 		{
-			//we can set different location criteria based on requirements for our app -
-			//for example, we might want to preserve power, or get extreme accuracy
-			var locationCriteria = new Criteria();
-			
-			locationCriteria.Accuracy = Accuracy.Medium;
-			locationCriteria.PowerRequirement = Power.NoRequirement;
+            //we can set different location criteria based on requirements for our app -
+            //for example, we might want to preserve power, or get extreme accuracy
 
-			// get provider: GPS, Network, etc.
-			var locationProvider = LocMgr.GetBestProvider(locationCriteria, true);
-           
-			Log.Debug (logTag, string.Format ("You are about to get location updates via {0}", locationProvider));
 
-			// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
-			LocMgr.RequestLocationUpdates(locationProvider, 15000, 0, this);
 
-			Log.Debug (logTag, "Now sending location updates");
+            LocMgr = (LocationManager)GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Medium,
+                PowerRequirement = Power.Medium
+
+
+            };
+            IList<string> acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
+
+            if (acceptableLocationProviders.Any())
+            {
+                locationProvider = acceptableLocationProviders.First();
+            }
+            else
+            {
+                locationProvider = string.Empty;
+            }
+            LocMgr.RequestLocationUpdates(locationProvider, 8000, 0, this);
+
+
+
+
+            //         var locationCriteria = new Criteria();
+
+            //locationCriteria.Accuracy = Accuracy.Medium;
+            //locationCriteria.PowerRequirement = Power.Medium;
+
+            //// get provider: GPS, Network, etc.
+            //var locationProvider = LocMgr.GetBestProvider(locationCriteria, true);
+
+            //Log.Debug (logTag, string.Format ("You are about to get location updates via {0}", locationProvider));
+
+            //// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
+            //LocMgr.RequestLocationUpdates(locationProvider, 10000, 0, this);
+
+            Log.Debug (logTag, "Now sending location updates");
 		}
+
+
 
 		public override void OnDestroy ()
 		{
@@ -84,7 +117,9 @@ namespace TestApp
 
 		public void OnLocationChanged (Location location)
 		{
-			this.LocationChanged (this, new LocationChangedEventArgs (location));
+            currentLocation = location;
+
+            this.LocationChanged (this, new LocationChangedEventArgs (location));
 
 			// This should be updating every time we request new location updates
 			// both when teh app is in the background, and in the foreground
@@ -95,7 +130,7 @@ namespace TestApp
 			Log.Debug (logTag, String.Format ("Accuracy is {0}", location.Accuracy));
 			Log.Debug (logTag, String.Format ("Bearing is {0}", location.Bearing));
 		}
-
+      
 		public void OnProviderDisabled (string provider)
 		{
 			ProviderDisabled (this, new ProviderDisabledEventArgs (provider));
@@ -112,6 +147,15 @@ namespace TestApp
 		} 
 
 		#endregion
+
+
+
+
+        public Location getLastKnownLocation()
+        {
+         
+            return LocMgr.GetLastKnownLocation(locationProvider);
+        }
 
 	}
 }

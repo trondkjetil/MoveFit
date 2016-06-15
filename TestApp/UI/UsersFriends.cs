@@ -1,13 +1,11 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
 using System.Collections.Generic;
-using Android.Views.Animations;
 using Android.Animation;
 using Android.Graphics;
 using Android.Support.V4.Widget;
@@ -175,7 +173,7 @@ namespace TestApp
             }
                
 
-                myHolder.mText.Text = mUsers[position].Text;
+                myHolder.mText.Text = mUsers[position].AboutMe;
 
 
             if (userImage == null)
@@ -207,7 +205,9 @@ namespace TestApp
 
         void mMainView_Click(object sender, EventArgs e)
         {
-            int position = mRecyclerView.GetChildPosition((View)sender);
+            //int position = mRecyclerView.GetChildPosition((View)sender);
+            int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
             Console.WriteLine(mUsers[position].UserName);
         }
 

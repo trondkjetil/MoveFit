@@ -7,7 +7,8 @@ public class RewardedVideoAdListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.reward.RewardedVideoAdListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onRewarded:(Lcom/google/android/gms/ads/reward/RewardItem;)V:GetOnRewarded_Lcom_google_android_gms_ads_reward_RewardItem_Handler:Android.Gms.Ads.Reward.IRewardedVideoAdListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -85,7 +86,7 @@ public class RewardedVideoAdListenerImplementor
 
 	private native void n_onRewardedVideoStarted ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

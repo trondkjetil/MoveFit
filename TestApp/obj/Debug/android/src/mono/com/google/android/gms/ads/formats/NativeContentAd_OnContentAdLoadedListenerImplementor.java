@@ -7,7 +7,8 @@ public class NativeContentAd_OnContentAdLoadedListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.formats.NativeContentAd.OnContentAdLoadedListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onContentAdLoaded:(Lcom/google/android/gms/ads/formats/NativeContentAd;)V:GetOnContentAdLoaded_Lcom_google_android_gms_ads_formats_NativeContentAd_Handler:Android.Gms.Ads.Formats.NativeContentAd/IOnContentAdLoadedListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -31,7 +32,7 @@ public class NativeContentAd_OnContentAdLoadedListenerImplementor
 
 	private native void n_onContentAdLoaded (com.google.android.gms.ads.formats.NativeContentAd p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

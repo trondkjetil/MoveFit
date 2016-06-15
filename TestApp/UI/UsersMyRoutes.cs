@@ -1,16 +1,12 @@
-﻿
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
 using System.Collections.Generic;
-using Android.Views.Animations;
 using Android.Animation;
-using Android.Graphics;
 using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
@@ -26,7 +22,7 @@ namespace TestApp
         private string UserID;
         List<Route> routeList;
 
-        SwipeRefreshLayout mSwipeRefreshLayout;
+       SwipeRefreshLayout mSwipeRefreshLayout;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -117,6 +113,17 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
 
+
+
+        public string routeName;
+        public string routeInfo;
+        public string routeRating;
+        public string routeDifficulty;
+        public string routeLength;
+        public string routeType;
+        public int routeTrips;
+        public string routeId;
+
         public MyRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
         {
             mMyRoutes = routes;
@@ -124,21 +131,22 @@ namespace TestApp
             mContext = context;
 
         }
-
         public class MyView : RecyclerView.ViewHolder
         {
             public View mMainView { get; set; }
-            public TextView mUserName { get; set; }
+            public TextView mRouteName { get; set; }
             public TextView mStatus { get; set; }
-            public TextView mText { get; set; }
-            public TextView mReview { get; set; }
-            public ImageView mProfilePicture { get; set; }
+            public TextView mRouteInfo { get; set; }
+          
+            public ImageView mIconForRoute { get; set; }
             public ImageButton mStartRouteFlag { get; set; }
+            public ImageButton mRouteDifficulty { get; set; }
 
             public MyView(View view) : base(view)
             {
                 mMainView = view;
             }
+
         }
 
 
@@ -146,17 +154,17 @@ namespace TestApp
         {
 
             //card view
-            View userMyRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userMyRoutesContent, parent, false);
+            View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userMyRoutesContent, parent, false);
 
-            ImageButton startRoute = userMyRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
-            ImageView routeIcon = userMyRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
-            TextView routeName = userMyRoutes.FindViewById<TextView>(Resource.Id.nameId);
-            TextView status = userMyRoutes.FindViewById<TextView>(Resource.Id.statusId);
-            TextView routeInfo = userMyRoutes.FindViewById<TextView>(Resource.Id.textId);
-            TextView review = userMyRoutes.FindViewById<TextView>(Resource.Id.txtTime);
+            ImageView profile = userRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
+            TextView name = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
+            TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
+            TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
+            ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
+            ImageButton routeDifficultyImage = userRoutes.FindViewById<ImageButton>(Resource.Id.imageButton3);
 
 
-            MyView view = new MyView(userMyRoutes) { mUserName = routeName, mStatus = status, mText = routeInfo, mProfilePicture = routeIcon, mStartRouteFlag = startRoute, mReview = review };
+            MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage };
 
             return view;
 
@@ -165,23 +173,43 @@ namespace TestApp
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
 
-            // First view
-            Bitmap userImage;
+
+            routeName = "";
+            routeInfo = "";
+            routeRating = "";
+            routeDifficulty = "";
+            routeLength = "";
+            routeType = "";
+            routeTrips = 1;
+            routeId = "";
             MyView myHolder = holder as MyView;
             myHolder.mMainView.Click += mMainView_Click;
-            myHolder.mUserName.Text = mMyRoutes[position].Name;
-            myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
-            myHolder.mText.Text = mMyRoutes[position].Info;
-            myHolder.mStatus.Text = mMyRoutes[position].RouteType;
-            myHolder.mReview.Text = mMyRoutes[position].Review;
+            myHolder.mRouteName.Text = mMyRoutes[position].Name;
+            //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
+            myHolder.mRouteInfo.Text = mMyRoutes[position].Distance;
+            myHolder.mStatus.Text = mMyRoutes[position].Info;
 
-            userImage = null;
-            if (userImage == null)
+
+
+
+            if (mMyRoutes[position].Difficulty == "Easy")
             {
-                myHolder.mProfilePicture.SetImageResource(Resource.Drawable.maps);
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.green);
             }
-            else
-                myHolder.mProfilePicture.SetImageBitmap(userImage);
+            else if (mMyRoutes[position].Difficulty == "Medium")
+            {
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.orange);
+
+            }
+            else if (mMyRoutes[position].Difficulty == "Hard")
+            {
+                myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.red);
+
+            }
+
+
+
+            myHolder.mIconForRoute.SetImageResource(Resource.Drawable.maps);
 
             if (position > mCurrentPosition)
             {
@@ -190,26 +218,28 @@ namespace TestApp
                 mCurrentPosition = position;
             }
 
-
-
         }
 
         private void StartRouteFlag_Click(object sender, EventArgs e)
         {
 
+            //    Bundle b = new Bundle();
+            //    b.PutStringArray("MyData", new String[] {
 
-            string test = "test";
+            //    routeName,
+            //    routeInfo,
+            //    routeDifficulty,
+            //    routeLength,
+            //    routeType,
+            //    routeRating,
+            //    routeTrips.ToString(),
+            //    routeId
 
-            //test = myHolder.mUserName.Text;
-            Bundle b = new Bundle();
-            b.PutStringArray("MyData", new String[] {
-            test
+            //});
 
-                 });
-
-            Intent myIntent = new Intent(mContext, typeof(StartRoute));
-            myIntent.PutExtras(b);
-            mContext.StartActivity(myIntent);
+            //Intent myIntent = new Intent(mContext, typeof(StartRoute));
+            //myIntent.PutExtras(b);
+            //mContext.StartActivity(myIntent);
 
         }
 
@@ -224,7 +254,49 @@ namespace TestApp
 
         void mMainView_Click(object sender, EventArgs e)
         {
-            int position = mRecyclerView.GetChildPosition((View)sender);
+            //   int position = mRecyclerView.GetChildPosition((View)sender);
+
+            try
+            {
+
+                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+                routeName = mMyRoutes[position].Name;
+                routeInfo = mMyRoutes[position].Info;
+                routeDifficulty = mMyRoutes[position].Difficulty;
+                routeLength = mMyRoutes[position].Distance;
+                routeType = mMyRoutes[position].RouteType;
+                routeRating = mMyRoutes[position].Review;
+                routeTrips = mMyRoutes[position].Trips;
+                routeId = mMyRoutes[position].Id;
+
+                Bundle b = new Bundle();
+                b.PutStringArray("MyData", new String[] {
+
+            routeName,
+            routeInfo,
+            routeDifficulty,
+            routeLength,
+            routeType,
+            routeRating,
+            routeTrips.ToString(),
+            routeId
+
+        });
+
+                Intent myIntent = new Intent(mContext, typeof(StartRoute));
+                myIntent.PutExtras(b);
+                mContext.StartActivity(myIntent);
+
+                // Toast.MakeText(mContext, "" + position.ToString() + " " +routeId + " RouteINFo: "+ routeName, ToastLength.Long).Show();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
 
         }
 
@@ -233,5 +305,10 @@ namespace TestApp
             get { return mMyRoutes.Count; }
         }
     }
+
+
+
+
+
 }
 

@@ -46,6 +46,14 @@ namespace TestApp
 
 
             List<Route> routeList = await Azure.getRoutes();
+
+            if(routeList.Count == 0)
+            {
+                Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
+
+                Intent myInt = new Intent(this, typeof(RouteOverview));
+                StartActivity(myInt);
+            }
           
             mAdapter = new UsersRoutesAdapter(routeList, mRecyclerView, this);
             mRecyclerView.SetAdapter(mAdapter);
@@ -183,7 +191,7 @@ namespace TestApp
                 myHolder.mRouteName.Text = mRoutes[position].Name;
               //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
                 myHolder.mRouteInfo.Text = mRoutes[position].Distance;
-                myHolder.mStatus.Text = mRoutes[position].Id;
+                myHolder.mStatus.Text = mRoutes[position].Info;
               
                
 

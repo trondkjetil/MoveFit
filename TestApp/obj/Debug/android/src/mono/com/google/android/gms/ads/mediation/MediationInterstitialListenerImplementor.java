@@ -7,7 +7,8 @@ public class MediationInterstitialListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.mediation.MediationInterstitialListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onAdClicked:(Lcom/google/android/gms/ads/mediation/MediationInterstitialAdapter;)V:GetOnAdClicked_Lcom_google_android_gms_ads_mediation_MediationInterstitialAdapter_Handler:Android.Gms.Ads.Mediation.IMediationInterstitialListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -76,7 +77,7 @@ public class MediationInterstitialListenerImplementor
 
 	private native void n_onAdOpened (com.google.android.gms.ads.mediation.MediationInterstitialAdapter p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

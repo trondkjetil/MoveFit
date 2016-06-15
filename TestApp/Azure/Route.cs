@@ -39,6 +39,10 @@ namespace TestApp
         public string CreatedAt { get; set; }
 
 
+        [JsonProperty(PropertyName = "time")]
+        public string Time { get; set; }
+
+
     }
 
     public class RoutesWrapper : Java.Lang.Object

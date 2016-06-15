@@ -15,7 +15,6 @@ using System;
 using System.Threading;
 using Android.Content.PM;
 using Microsoft.WindowsAzure.MobileServices;
-using Xamarin.Facebook;
 using System.Collections.Generic;
 
 namespace TestApp

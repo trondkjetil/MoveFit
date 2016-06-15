@@ -7,7 +7,8 @@ public class RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor
 		mono.android.IGCUserPeer,
 		android.support.v7.widget.RecyclerView.ItemAnimator.ItemAnimatorFinishedListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onAnimationsFinished:()V:GetOnAnimationsFinishedHandler:Android.Support.V7.Widget.RecyclerView/ItemAnimator/IItemAnimatorFinishedListenerInvoker, Xamarin.Android.Support.v7.RecyclerView\n" +
@@ -31,7 +32,7 @@ public class RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor
 
 	private native void n_onAnimationsFinished ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

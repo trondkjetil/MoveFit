@@ -7,14 +7,10 @@ namespace TestApp
     {
 
 
-
         public string Id { get; set; }
 
-        //[JsonProperty(PropertyName = "about")]
-        //public string About { get; set; }
-
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; set; }
+        [JsonProperty(PropertyName = "aboutme")]
+        public string AboutMe { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }

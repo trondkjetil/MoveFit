@@ -7,7 +7,8 @@ public class MediationBannerListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.ads.mediation.MediationBannerListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onClick:(Lcom/google/ads/mediation/MediationBannerAdapter;)V:GetOnClick_Lcom_google_ads_mediation_MediationBannerAdapter_Handler:Google.Ads.Mediation.IMediationBannerListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -76,7 +77,7 @@ public class MediationBannerListenerImplementor
 
 	private native void n_onReceivedAd (com.google.ads.mediation.MediationBannerAdapter p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

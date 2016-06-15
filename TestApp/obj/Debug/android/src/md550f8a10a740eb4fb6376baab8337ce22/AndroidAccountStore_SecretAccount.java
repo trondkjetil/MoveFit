@@ -9,7 +9,8 @@ public class AndroidAccountStore_SecretAccount
 		java.security.Key,
 		java.io.Serializable
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_getAlgorithm:()Ljava/lang/String;:GetGetAlgorithmHandler:Java.Security.IKeyInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
@@ -51,7 +52,7 @@ public class AndroidAccountStore_SecretAccount
 
 	private native byte[] n_getEncoded ();
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

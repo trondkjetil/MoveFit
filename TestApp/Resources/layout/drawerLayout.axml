@@ -66,67 +66,19 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/holo_blue_light">
                     <TextView
-                        android:text="Location updates..."
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
+                        android:text="Score: "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#ff3e2723"
-                        android:id="@+id/textView1" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/points"
+                        android:textColor="#ff000000" />
+                <!--<TextView
+                        android:text="Routes created: "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/lat"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="10dp" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/longx"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="20dp" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/alt"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="30dp" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/speed"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="40dp" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/acc"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="50dp" />
-                    <TextView
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/bear"
-                        android:textSize="10sp"
-                        android:paddingLeft="25dp"
-                        android:textColor="#ff3e2723"
-                        android:layout_marginTop="60dp" />
+                        android:id="@+id/routesCreated"
+                        android:textColor="#ff000000" />-->
                 </RelativeLayout>
                 <LinearLayout
                     android:id="@+id/lin2"
@@ -135,32 +87,11 @@
                     android:layout_height="fill_parent"
                     android:background="@android:color/white">
                     <TextView
-                        android:text="Track movement"
+                        android:text=""
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView2"
-                        android:textColor="#ff000000" />
-                <!--<Switch
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textOn="On"
-                        android:textOff="Off"
-                        android:id="@+id/switch1" />-->
-                    <TextView
-                        android:text="Your level is: 1"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
-                        android:textColor="#ff000000" />
-                    <TextView
-                        android:text="Your score is: 0"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
                         android:textColor="#ff000000" />
                 </LinearLayout>
             </LinearLayout>

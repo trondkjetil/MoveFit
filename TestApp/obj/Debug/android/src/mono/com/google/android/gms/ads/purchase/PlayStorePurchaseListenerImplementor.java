@@ -7,7 +7,8 @@ public class PlayStorePurchaseListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.purchase.PlayStorePurchaseListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_isValidPurchase:(Ljava/lang/String;)Z:GetIsValidPurchase_Ljava_lang_String_Handler:Android.Gms.Ads.Purchase.IPlayStorePurchaseListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -40,7 +41,7 @@ public class PlayStorePurchaseListenerImplementor
 
 	private native void n_onInAppPurchaseFinished (com.google.android.gms.ads.purchase.InAppPurchaseResult p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

@@ -1,18 +1,14 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
-
 using Android.Content;
 using Android.Util;
-
-using TestApp;
 
 /// <summary>
 /// Singleton class for Application wide objects. 
 /// </summary>
 namespace TestApp
 {
-	public class App
+    public class App
 	{
 		// events
 		public event EventHandler<ServiceConnectedEventArgs> LocationServiceConnected = delegate {};

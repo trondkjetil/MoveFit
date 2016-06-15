@@ -7,7 +7,8 @@ public class GifImageView_OnFrameAvailableListenerImplementor
 		mono.android.IGCUserPeer,
 		com.felipecsl.gifimageview.library.GifImageView.OnFrameAvailableListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onFrameAvailable:(Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;:GetOnFrameAvailable_Landroid_graphics_Bitmap_Handler:Felipecsl.GifImageViewLibrary.GifImageView/IOnFrameAvailableListenerInvoker, Refractored.GifImageView\n" +
@@ -31,7 +32,7 @@ public class GifImageView_OnFrameAvailableListenerImplementor
 
 	private native android.graphics.Bitmap n_onFrameAvailable (android.graphics.Bitmap p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

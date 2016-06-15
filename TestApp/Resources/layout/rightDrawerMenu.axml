@@ -23,33 +23,7 @@
                 android:textColor="#ff3e2723"
                 android:layout_marginBottom="15dp"
                 android:layout_y="60dp" />
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/alt"
-                android:textSize="10sp"
-                android:paddingLeft="25dp"
-                android:textColor="#ff3e2723"
-                android:layout_marginTop="30dp" />
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/speed"
-                android:textSize="10sp"
-                android:paddingLeft="25dp"
-                android:textColor="#ff3e2723"
-                android:layout_marginTop="40dp" />
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/acc"
-                android:textSize="10sp"
-                android:paddingLeft="25dp"
-                android:textColor="#ff3e2723"
-                android:layout_marginTop="50dp" />
+           
             <TextView
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
@@ -98,7 +72,7 @@
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="300dp"
                 class="com.google.android.gms.maps.MapFragment"
                 android:layout_weight="100"
                 android:layout_gravity="bottom"

@@ -7,7 +7,8 @@ public class NativeCustomTemplateAd_OnCustomTemplateAdLoadedListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.formats.NativeCustomTemplateAd.OnCustomTemplateAdLoadedListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onCustomTemplateAdLoaded:(Lcom/google/android/gms/ads/formats/NativeCustomTemplateAd;)V:GetOnCustomTemplateAdLoaded_Lcom_google_android_gms_ads_formats_NativeCustomTemplateAd_Handler:Android.Gms.Ads.Formats.INativeCustomTemplateAdOnCustomTemplateAdLoadedListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -31,7 +32,7 @@ public class NativeCustomTemplateAd_OnCustomTemplateAdLoadedListenerImplementor
 
 	private native void n_onCustomTemplateAdLoaded (com.google.android.gms.ads.formats.NativeCustomTemplateAd p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

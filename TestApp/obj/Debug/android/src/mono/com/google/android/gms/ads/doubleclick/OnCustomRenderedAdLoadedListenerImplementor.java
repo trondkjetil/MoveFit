@@ -7,7 +7,8 @@ public class OnCustomRenderedAdLoadedListenerImplementor
 		mono.android.IGCUserPeer,
 		com.google.android.gms.ads.doubleclick.OnCustomRenderedAdLoadedListener
 {
-	static final String __md_methods;
+/** @hide */
+	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onCustomRenderedAdLoaded:(Lcom/google/android/gms/ads/doubleclick/CustomRenderedAd;)V:GetOnCustomRenderedAdLoaded_Lcom_google_android_gms_ads_doubleclick_CustomRenderedAd_Handler:Android.Gms.Ads.DoubleClick.IOnCustomRenderedAdLoadedListenerInvoker, Xamarin.GooglePlayServices.Ads\n" +
@@ -31,7 +32,7 @@ public class OnCustomRenderedAdLoadedListenerImplementor
 
 	private native void n_onCustomRenderedAdLoaded (com.google.android.gms.ads.doubleclick.CustomRenderedAd p0);
 
-	java.util.ArrayList refList;
+	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)
