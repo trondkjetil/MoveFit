@@ -463,19 +463,17 @@ namespace TestApp
 
         protected async override void OnDestroy()
         {
-            var t = await Azure.SetUserOnline(userName, false);
-            logOff();
+          
             Log.Debug(logTag, "Location app is becoming inactive");
             base.OnDestroy();
-            //  StopService(new Intent(this, typeof(LocationService)));
-
+            
             var a = await Azure.SetUserOnline(userName, false);
-            logOff();
+          //  logOff();
 
             Finish();
 
         }
-
+        
         public async void logOff()
         {
             user = await Azure.SetUserOnline(userName, false);

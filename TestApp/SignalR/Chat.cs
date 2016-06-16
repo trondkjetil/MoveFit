@@ -34,8 +34,10 @@ namespace TestApp
         {
             UserName = e.TxtName;
             BackgroundColor = e.BackgroundColor;
+
+            
             // http://movefit.azurewebsites.net/  http://cforbeginners.com:901"
-            var hubConnection = new HubConnection("http://movefit.azurewebsites.net/");
+            var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
             chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>

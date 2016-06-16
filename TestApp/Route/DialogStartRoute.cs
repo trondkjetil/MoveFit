@@ -11,7 +11,7 @@ namespace TestApp
         public event EventHandler<DialogEventArgs> DialogClosed;
         public EditText routeName;
         public EditText routeInfoData;
-        public EditText difficulty;
+        
         public static string valueReturned;
         public static string givenDifficulty;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -26,7 +26,7 @@ namespace TestApp
             spinner.Adapter = adapter;
 
 
-            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
+            //Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
 
 
@@ -38,9 +38,8 @@ namespace TestApp
 
 
             TextView routeDifficulty = view.FindViewById<TextView>(Resource.Id.difficultyPrompt);
-          //  difficulty = view.FindViewById<EditText>(Resource.Id.difficultyInfo);
-
-            dismiss.Click += (sender, e) => Dismiss();
+         
+            //dismiss.Click += (sender, e) => Dismiss();
 			startRoute.Click += (sender, e) => Dismiss();
 
 

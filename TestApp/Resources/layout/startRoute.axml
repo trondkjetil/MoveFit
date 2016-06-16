@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mapForStartingRoute"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="200dp"
         class="com.google.android.gms.maps.MapFragment" />
     <TextView
         android:text="Route:"
@@ -51,32 +51,47 @@
         android:layout_height="wrap_content"
         android:id="@+id/startRouteTrips"
         android:textColor="#000000" />
-    <RatingBar
-        android:id="@+id/ratingbar"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0"
-        android:textColor="#000000" />
+        android:background="@android:color/white">
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0"
+        
+            android:layout_below="@+id/startRouteTrips"
+            android:visibility="visible"
+            android:backgroundTint="#f0f8ffff" />
+    </RelativeLayout>
     <Button
         android:text="Start Route"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_green_light" />
+        android:background="@android:color/holo_green_light"
+        android:layout_gravity="bottom"
+        android:layout_weight="25" />
     <Button
         android:text="End route"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/endRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_red_dark" />
+        android:background="@android:color/holo_red_dark"
+        android:layout_gravity="bottom"
+        android:layout_weight="25" />
     <Button
         android:text="Cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cancelRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_orange_light" />
+        android:background="@android:color/holo_orange_light"
+        android:layout_gravity="bottom"
+        android:layout_weight="25" />
 </LinearLayout>

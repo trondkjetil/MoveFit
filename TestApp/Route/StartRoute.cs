@@ -15,6 +15,8 @@ using System.Collections;
 using System.Diagnostics;
 using Android.Content.PM;
 using TestApp.Points;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace TestApp
 {
@@ -72,8 +74,7 @@ namespace TestApp
 
                 locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
 
-                Toast.MakeText(this, array[7] + "|----|" + locationPointsForRoute.First().Route_id, ToastLength.Long).Show();
-
+                
 
                 TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
                 TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
@@ -87,6 +88,10 @@ namespace TestApp
                 Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
                 RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
+                LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
+                stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+                stars.GetDrawable(0).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+                stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
                 ratingbar.Clickable = false;
                 ratingbar.Visibility = ViewStates.Visible;
 
@@ -109,8 +114,9 @@ namespace TestApp
                 try
                 {
 
-                    var rate = await Azure.getRouteReview(routeId);
+                    List<Review> rate = await Azure.getRouteReview(routeId);
 
+                    if (rate.Count != 0)
                     routeRating = rate.First().Rating.ToString();
 
                     if (Convert.ToInt32(routeRating) == 0)
@@ -118,10 +124,17 @@ namespace TestApp
                         rating.Text = "Rating: Not rated yet!";
                     }
                     else
+                    {
                         rating.Text = "Rating: " + routeRating;
-
                         ratingbar.Rating = Convert.ToInt32(routeRating);
-                        drawRoute();
+
+                    }
+
+
+
+                    
+
+                    drawRoute();
 
                 }
                 catch (Exception ex)
@@ -204,7 +217,7 @@ namespace TestApp
 
                         int mypoints = MyPoints.calculatePoints(routeType, (int)Math.Round(distance));
                         var done = Azure.addToMyPoints(routeId, mypoints);
-
+                        var complete = Azure.increaseTripCount(routeId);
                         Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
 
 
@@ -212,7 +225,7 @@ namespace TestApp
                     else
                         Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finish - point is: " + distance, ToastLength.Long).Show();
 
-                    var complete = Azure.increaseTripCount(routeId);
+                    
 
                 };
 

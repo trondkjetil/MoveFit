@@ -89,46 +89,80 @@ namespace TestApp
             User me = list.FirstOrDefault();
 
             HarvesineCalc calc = new HarvesineCalc();
-            List<User> userList;
+            //  List<User> userList;
 
             //  var r = calc.Distance(me, p, DistanceType.Kilometers);
             //   Convert.ToDouble(p.Lat), Convert.ToDouble(p.Lon), userLat, userLong
-            try {
 
 
-                // var que = table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35);
+            //try {
 
-                //   IMobileServiceTableQuery<User> query = table.CreateQuery().Select(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35) as IMobileServiceTableQuery<User>;
 
-                // IMobileServiceTableQuery<User> query = table.CreateQuery().Query = "";
+            // var que = table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35);
 
-                IMobileServiceTableQuery<User> query = (from q in table.CreateQuery()
-                                                        where calc.Distance(me, q, DistanceType.Kilometers) <= 35
-                                                        select q);
+            //   IMobileServiceTableQuery<User> query = table.CreateQuery().Select(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35) as IMobileServiceTableQuery<User>;
 
-                //getDis(Convert.ToDouble(q.Lat), Convert.ToDouble(q.Lon), 11.9443326, 108.4343983) < 100
+            // IMobileServiceTableQuery<User> query = table.CreateQuery().Query = "";
 
-                userList = await query.ToListAsync();
+            //IMobileServiceTableQuery<User> query = (from q in table.CreateQuery()
+            //                                        where calc.Distance(me, q, DistanceType.Kilometers) <= 35
+            //                                        select q);
 
-                userList = userList;
+            //IMobileServiceTableQuery<User> query = (from q in table.CreateQuery()
+            //                                        where (3960 * Math.Acos(Math.Cos(toRadian(11.9443326)) *
+            //                                               Math.Cos(toRadian( Convert.ToDouble(q.Lat)) ) * Math.Cos(toRadian(Convert.ToDouble(q.Lon)) - toRadian(108.4343983)) +
+            //                                               Math.Sin(toRadian(11.9443326)) * Math.Sin(toRadian(Convert.ToDouble(q.Lat))))) < 100
+            //                                            select q);
+
+
+            //IMobileServiceTableQuery<User> query = (from q in table.CreateQuery()
+            //                                        where q.Id != null
+            //                                        select q);
+
+
+            //getDis(Convert.ToDouble(q.Lat), Convert.ToDouble(q.Lon), 11.9443326, 108.4343983) < 100
+            //   List<User> userList = await query.ToListAsync();
+
+            List<User> userList = await table.Where(User => User.Id != null).ToListAsync();
+            //  userList.FindAll(Route => Route.Id == routeId);
+
+           
+
+            //List<User> list2 = await table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35).ToListAsync();
+
+            //list2 = list2;
 
             string names = "";
+            float[] result = new float[1];
             foreach (var item in userList)
             {
-                names += " " + item.UserName;
-                Log.Debug("SQL", item.UserName + "******************************");
-                System.Diagnostics.Debug.WriteLine(item.UserName + "********************************************************");
+                Location.DistanceBetween(Convert.ToDouble(item.Lat), Convert.ToDouble(item.Lon), 11.9443326, 108.4343983, result);
+                if (result[0] < 100)
+                {
+                    names += " " + item.UserName;
+                }
             }
+            if (names == "")
+                names = "nuthing";
+               // userList = userList;
 
-         AlertDialog alertMessage = new Android.App.AlertDialog.Builder(MainStart.mainActivity).Create();
+            //string names = "";
+            //foreach (var item in userList)
+            //{
+            //    names += " " + item.UserName;
+            //    Log.Debug("SQL", item.UserName + "******************************");
+            //    System.Diagnostics.Debug.WriteLine(item.UserName + "********************************************************");
+            //}
+
+         AlertDialog alertMessage = new AlertDialog.Builder(MainStart.mainActivity).Create();
             alertMessage.SetTitle("Info");
             alertMessage.SetMessage(names);
             alertMessage.Show();
 
-            }catch(Exception e)
-            {
-                throw e;
-            }
+            //}catch(Exception e)
+            //{
+            //    throw e;
+            //}
 
             //var members = (from member in db.Stops_edited_smalls
             //               where Math.Abs(Convert.ToDouble(member.Latitude) - curLatitude) < 0.05
@@ -136,11 +170,14 @@ namespace TestApp
             //               select new { member, DistanceFromAddress = Math.Sqrt(Math.Pow(Convert.ToDouble(member.Latitude) - curLatitude, 2) + Math.Pow(Convert.ToDouble(member.Longitude) - curLongitude, 2)) * 62.1371192 }).Take(25);
 
 
-            return userList;
+            return null;
 
         }
 
-
+        public static double toRadian(double val)
+        {
+            return (Math.PI / 180) * val;
+        }
         public static  double getDis(double a, double b, double c, double d)
         {
 

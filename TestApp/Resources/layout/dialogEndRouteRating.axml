@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@android:color/background_light"
+    android:background="@android:color/holo_blue_light"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:minWidth="300dp"
-    android:minHeight="400dp">
-    <Button
+    android:minWidth="340dp"
+    android:minHeight="350dp">
+<!--<Button
         android:text="Cancel"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -24,7 +24,8 @@
         android:layout_y="100dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="500dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true" />-->
+  
     <TextView
         android:text=""
         android:layout_width="match_parent"
@@ -33,6 +34,7 @@
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="30dp" />
+
     <TextView
         android:text="Please rate the route: "
         android:layout_width="match_parent"
@@ -48,26 +50,20 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="1.0"
-        android:textColor="#000000"
         android:layout_marginTop="160dp" />
     <Button
         android:text="Done"
-        android:layout_width="150dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_weight="25"
         android:id="@+id/startRoute1"
         android:textSize="20dp"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        android:paddingRight="5dp"
         android:height="70dp"
-        android:paddingTop="2dp"
         android:background="@drawable/dialogstartbutton"
         android:layout_centerHorizontal="true"
         android:layout_x="260dp"
         android:layout_gravity="bottom"
-        android:layout_marginTop="500dp"
-        android:layout_alignParentRight="true" />
+        android:layout_marginTop="480dp" />
 </RelativeLayout>

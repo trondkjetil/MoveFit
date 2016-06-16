@@ -154,12 +154,14 @@ namespace TestApp
             // fire an application-specified Intent when the device enters the proximity of a given geographical location.
             //locationManager.RemoveProximityAlert();
 
+           
+
             start.Click += (sender, e) =>
             {
 
                 if (StartRouteService.serviceIsRunning == true)
                 {
-                    Toast.MakeText(this, "Cannot start a route while creating one!", ToastLength.Long).Show();
+                    Toast.MakeText(this, "Cannot create a route while doing one!!", ToastLength.Long).Show();
 
                     return;
                 }
@@ -182,6 +184,17 @@ namespace TestApp
 
                 routeStatus.Text = "Aquiring your position...";
 
+                var loc =  App.Current.LocationService.getLastKnownLocation();
+
+                if(loc != null)
+                {
+                    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
+
+                }
+
+
+
                 StartService(new Intent(this, typeof(CreateRouteService)));
 
                 mMap.Clear();
@@ -191,9 +204,6 @@ namespace TestApp
 
                 stopWatch = new Stopwatch();
                 stopWatch.Start();
-
-                
-
                 spinner.Visibility = ViewStates.Invisible;
 
             
@@ -273,9 +283,7 @@ namespace TestApp
                 routeStatus.Text = "Waiting to upload the route...";
                 dist = calculateDistance();
                 
-
-
-                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "4", 1, routeDifficulty, routeType, routeUserId, elapsedTime);
+                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime);
 
                 string routeID = "";
 

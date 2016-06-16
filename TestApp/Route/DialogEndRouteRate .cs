@@ -17,7 +17,7 @@ namespace TestApp
 			var view = inflater.Inflate (Resource.Layout.dialogEndRouteRating, container,false);
 
        
-            Button dismiss = (Button) view.FindViewById(Resource.Id.cancel1);
+          //  Button dismiss = (Button) view.FindViewById(Resource.Id.cancel1);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute1);
             TextView rating = view.FindViewById<TextView>(Resource.Id.ratingPropt);
            
@@ -32,7 +32,7 @@ namespace TestApp
             };
 
 
-            dismiss.Click += (sender, e) => Dismiss();
+            //dismiss.Click += (sender, e) => Dismiss();
 			startRoute.Click += (sender, e) => Dismiss();
 
 
