@@ -16,6 +16,7 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using static Android.Gms.Maps.GoogleMap;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
@@ -67,13 +68,15 @@ namespace TestApp
         public static TextView _address;
         public Address oldAddress;
         public static GoogleMap mMap;
-        
+
+        TextView points;
+        public static Activity mainActivity;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
-
+            mainActivity = this;
             changed = false;
             user = null;
             chk = false;
@@ -89,7 +92,7 @@ namespace TestApp
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
             TextView textview1 = FindViewById<TextView>(Resource.Id.textView1);
-            TextView points = FindViewById<TextView>(Resource.Id.points);
+             points = FindViewById<TextView>(Resource.Id.points);
 
             loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
 
@@ -213,18 +216,20 @@ namespace TestApp
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
+            User waitingUpload = null;
 
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
                 if (user.Count == 0)
                 {
-                    Azure.AddUser();
-                    Toast.MakeText(this, "Added to item in azure!", ToastLength.Short).Show();
+                    waitingUpload = await Azure.AddUser();
+                    Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
                 }
+                else
+                    waitingUpload = user.FirstOrDefault();
 
-                //Azure.AddLocation();
-                //Azure.AddRoute();
+
                 var setOnline = await Azure.SetUserOnline(userName, true);
 
             }
@@ -256,21 +261,26 @@ namespace TestApp
 
 
 
+             if(waitingUpload != null)
+            {
+                setPoints();
+            }
+            else
+                points.Text = "Score: Zero";
 
-
-
-
-            List<User> userInstance = await Azure.getUserId(userName);
-
-            userId = userInstance.First().Id;
-
-            User userPoints = await Azure.getMyPoints(userId);
-            if(userPoints!=null)
-            points.Text = "Score: " + userPoints.Points.ToString();
 
         }
 
-
+        public async void setPoints()
+        {
+            List<User> userInstance = await Azure.getUserId(userName);
+            if (userInstance.Count != 0)
+            {
+                userId = userInstance.First().Id;
+                User userPoints = await Azure.getMyPoints(userId);
+                points.Text = "Score: " + userPoints.Points.ToString();
+            }
+        }
         public bool Changed
         {
             get { return changed; }
@@ -366,6 +376,8 @@ namespace TestApp
 
                 // Starts movement tracker (indoor)
                 case Resource.Id.action_alarm:
+
+                   var waiting = Azure.findNearBy(userName);
 
                     if (SimpleService.status == false || SimpleService.Status == false)
                     {

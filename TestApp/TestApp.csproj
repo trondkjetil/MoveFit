@@ -183,6 +183,7 @@
     <Compile Include="Login\LoginActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
     <Compile Include="Login\UserOverview.cs" />
+    <Compile Include="Utilz\Haversine .cs" />
     <Compile Include="Utilz\IO.cs" />
     <Compile Include="UI\MyActionBarDrawerToggle.cs" />
     <Compile Include="Azure\UserAdapter.cs" />

@@ -12,6 +12,8 @@ using Android.Util;
 using Android.Widget;
 using Newtonsoft.Json.Linq;
 using TestApp;
+using Android.Locations;
+using Android.OS;
 
 namespace TestApp
 {
@@ -76,6 +78,78 @@ namespace TestApp
             //				userTable.DeleteAsync (u);
             //			}
         }
+
+
+
+           public static async Task<List<User>> findNearBy(string userName)
+        {
+
+         
+            var list = await getUserId(userName);
+            User me = list.FirstOrDefault();
+
+            HarvesineCalc calc = new HarvesineCalc();
+            List<User> userList;
+
+            //  var r = calc.Distance(me, p, DistanceType.Kilometers);
+            //   Convert.ToDouble(p.Lat), Convert.ToDouble(p.Lon), userLat, userLong
+            try {
+
+
+                // var que = table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35);
+
+                //   IMobileServiceTableQuery<User> query = table.CreateQuery().Select(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35) as IMobileServiceTableQuery<User>;
+
+                // IMobileServiceTableQuery<User> query = table.CreateQuery().Query = "";
+
+                IMobileServiceTableQuery<User> query = (from q in table.CreateQuery()
+                                                        where calc.Distance(me, q, DistanceType.Kilometers) <= 35
+                                                        select q);
+
+                //getDis(Convert.ToDouble(q.Lat), Convert.ToDouble(q.Lon), 11.9443326, 108.4343983) < 100
+
+                userList = await query.ToListAsync();
+
+                userList = userList;
+
+            string names = "";
+            foreach (var item in userList)
+            {
+                names += " " + item.UserName;
+                Log.Debug("SQL", item.UserName + "******************************");
+                System.Diagnostics.Debug.WriteLine(item.UserName + "********************************************************");
+            }
+
+         AlertDialog alertMessage = new Android.App.AlertDialog.Builder(MainStart.mainActivity).Create();
+            alertMessage.SetTitle("Info");
+            alertMessage.SetMessage(names);
+            alertMessage.Show();
+
+            }catch(Exception e)
+            {
+                throw e;
+            }
+
+            //var members = (from member in db.Stops_edited_smalls
+            //               where Math.Abs(Convert.ToDouble(member.Latitude) - curLatitude) < 0.05
+            //               && Math.Abs(Convert.ToDouble(member.Longitude) - curLongitude) < 0.05
+            //               select new { member, DistanceFromAddress = Math.Sqrt(Math.Pow(Convert.ToDouble(member.Latitude) - curLatitude, 2) + Math.Pow(Convert.ToDouble(member.Longitude) - curLongitude, 2)) * 62.1371192 }).Take(25);
+
+
+            return userList;
+
+        }
+
+
+        public static  double getDis(double a, double b, double c, double d)
+        {
+
+            float[] result = new float[1];
+            Location.DistanceBetween(123211, 21312, 3213, 32131, result);
+
+            return result[0];
+        }
+
 
 
 
@@ -341,7 +415,7 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async void AddUser()
+        public static async Task<User> AddUser()
         {
             // Create a new item
             var user = new User
@@ -371,6 +445,8 @@ namespace TestApp
             {
                 CreateAndShowDialog(e, "Error");
             }
+
+            return user;
 
         }
 

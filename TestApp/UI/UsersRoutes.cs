@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace TestApp
 {
-    [Activity(Label = "Routes all")]
+    [Activity(Label = "Routes nearby")]
     public class UsersRoutes : Activity
     {
         private RecyclerView mRecyclerView;
@@ -29,7 +29,7 @@ namespace TestApp
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            RequestWindowFeature(WindowFeatures.NoTitle);
+           // RequestWindowFeature(WindowFeatures.NoTitle);
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersRoutes);
 

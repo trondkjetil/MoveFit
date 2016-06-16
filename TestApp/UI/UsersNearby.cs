@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace TestApp
 {
-    [Activity(Label = "Around Me")]
+    [Activity(Label = "People Nearby")]
     public class UsersNearby : Activity
     {
         private RecyclerView mRecyclerView;
@@ -30,7 +30,7 @@ namespace TestApp
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            RequestWindowFeature(WindowFeatures.NoTitle);
+        //    RequestWindowFeature(WindowFeatures.NoTitle);
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersNearby);
 
@@ -44,20 +44,21 @@ namespace TestApp
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
+
+
+
+
           
-            
-
-
-            users = new List<User>();
             List<User> userList = await Azure.getPeople();
-
-            foreach (User x in userList)
+            if (userList.Count == 0)
             {
+                Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
-                users.Add(x);
+                Intent myInt = new Intent(this, typeof(RouteOverview));
+                StartActivity(myInt);
             }
 
-            mAdapter = new UsersAdapter(users, mRecyclerView, this);
+            mAdapter = new UsersAdapter(userList, mRecyclerView, this);
             mRecyclerView.SetAdapter(mAdapter);
 
 
