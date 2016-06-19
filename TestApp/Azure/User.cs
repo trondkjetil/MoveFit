@@ -43,6 +43,9 @@ namespace TestApp
         [JsonProperty(PropertyName = "activitylevel")]
         public string ActivityLevel { get; set; }
 
+        [JsonProperty(PropertyName = "deleted")]
+        public bool Deleted { get; set; }
+
     }
 
     public class UserWrapper : Java.Lang.Object

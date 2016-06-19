@@ -140,6 +140,7 @@ namespace TestApp
             mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("Friends");
             mLeftDataSet.Add("People nearby");
+            mLeftDataSet.Add("Friend Requests");
             mLeftDataSet.Add("Routes");
 
 
@@ -174,8 +175,12 @@ namespace TestApp
                     myIntent = new Intent(this, typeof(UsersNearby));
                     StartActivity(myIntent);
                 }
-
                 else if (e.Position == 5)
+                {
+                    myIntent = new Intent(this, typeof(UserFriendRequest));
+                    StartActivity(myIntent);
+                }
+                else if (e.Position == 6)
                 {
                     myIntent = new Intent(this, typeof(RouteOverview));
                     StartActivity(myIntent);
@@ -340,7 +345,7 @@ namespace TestApp
 
                 case Resource.Id.action_refresh:
                     Toast.MakeText(this, "Refreshing...", ToastLength.Short).Show();
-                    this.Recreate();
+                    //this.Recreate();
                     return true;
 
                 case Resource.Id.action_help:
@@ -460,11 +465,11 @@ namespace TestApp
 
         protected async override void OnDestroy()
         {
-          
+            var a = await Azure.SetUserOnline(userName, false);
             Log.Debug(logTag, "Location app is becoming inactive");
             base.OnDestroy();
             
-            var a = await Azure.SetUserOnline(userName, false);
+            var b = await Azure.SetUserOnline(userName, false);
           //  logOff();
 
             Finish();
@@ -824,7 +829,33 @@ namespace TestApp
             }
         }
 
+        public override void OnBackPressed()
+        {
 
+            Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+
+            alert.SetTitle("Exit app");
+            alert.SetMessage("Do you want to exit the application?");
+            alert.SetPositiveButton("Yes", (senderAlert, args) => {
+                //change value write your own set of instructions
+                //you can also create an event for the same in xamarin
+                //instead of writing things here
+               
+                base.OnBackPressed();
+               
+            });
+
+            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                //perform your own task for this conditional button click
+
+            });
+            //run the alert in UI thread to display in the screen
+            RunOnUiThread(() => {
+                alert.Show();
+            });
+
+
+        }
 
         async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
         {

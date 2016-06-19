@@ -89,7 +89,7 @@ namespace TestApp
 				markerOpt1.SetPosition(currentPos);
 				markerOpt1.SetTitle("My Position");
 				markerOpt1.SetSnippet ("This is where i am");
-				BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.bike);
+				BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.tt);
 				markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
 				mMap.AddMarker (markerOpt1);
 

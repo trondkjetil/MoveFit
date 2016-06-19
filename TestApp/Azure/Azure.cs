@@ -235,7 +235,7 @@ namespace TestApp
         public static async Task<List<User>> getPeople()
         {
 
-            List<User> userList = await table.Where(user => user.Id != null || user.Id != "").ToListAsync();
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return userList;
 
         }
@@ -252,6 +252,8 @@ namespace TestApp
 
             List<User> userList = await table.Where(user => user.UserName == providedUserName).ToListAsync();
              await  table.DeleteAsync(userList.FirstOrDefault());
+           
+
             return userList;
 
         }

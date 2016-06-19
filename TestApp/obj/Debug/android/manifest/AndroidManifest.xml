@@ -43,6 +43,7 @@
     <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
     <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
     <activity android:label="MyRoutes" android:name="md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes" />
+    <activity android:label="People Nearby" android:name="md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest" />
     <activity android:label="Routes nearby" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
     <activity android:label="Friends" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
     <activity android:label="People Nearby" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />

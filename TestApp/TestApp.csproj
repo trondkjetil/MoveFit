@@ -181,6 +181,7 @@
     <Compile Include="UI\SlidingTabsFragment.cs" />
     <Compile Include="UI\SlidingTabStrip.cs" />
     <Compile Include="UI\UsersMyRoutes.cs" />
+    <Compile Include="UI\UsersFriendRequest.cs" />
     <Compile Include="UI\UsersRoutes.cs" />
     <Compile Include="UI\UsersFriends.cs" />
     <Compile Include="UI\UsersNearby.cs" />
@@ -222,7 +223,6 @@
     <AndroidResource Include="Resources\menu\actionbar.xml" />
     <AndroidResource Include="Resources\values\itemsDropDownList.xml" />
     <AndroidResource Include="Resources\drawable\test.png" />
-    <AndroidResource Include="Resources\drawable\bike.png" />
     <AndroidResource Include="Resources\drawable\sign.png" />
     <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
     <AndroidResource Include="Resources\drawable\ic_action_new.png" />
@@ -283,6 +283,8 @@
     <AndroidResource Include="Resources\layout\UsersRoutes.axml" />
     <AndroidResource Include="Resources\layout\welcome.axml" />
     <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
+    <AndroidResource Include="Resources\layout\UsersFriendRequest.axml" />
+    <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
