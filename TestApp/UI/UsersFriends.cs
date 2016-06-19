@@ -20,11 +20,26 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private List<User> users;
+        public Activity activity;
+       
 		
 
 		SwipeRefreshLayout mSwipeRefreshLayout;
 
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+           // Recreate();
+        }
+
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+           // Recreate();
+        }
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,7 +47,9 @@ namespace TestApp
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersFriends);
 
-			mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
+            activity = this;
+
+            mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
 			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
 			mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
@@ -44,6 +61,7 @@ namespace TestApp
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
 
+        
 
          
             List<User> userList = await Azure.getPeople();
@@ -51,7 +69,7 @@ namespace TestApp
   
             if (userList.Count == 0)
             {
-                Toast.MakeText(this, "Your friendlist is empty!", ToastLength.Long).Show();
+                Toast.MakeText(this, "Your friendlist is empty!", ToastLength.Short).Show();
 
                 Intent myInt = new Intent(this, typeof(RouteOverview));
                 StartActivity(myInt);
@@ -62,7 +80,7 @@ namespace TestApp
             mRecyclerView.SetAdapter(mAdapter);
 
 
-
+         
         }
 
 
@@ -85,28 +103,7 @@ namespace TestApp
 			Thread.Sleep(3000);
 		}
 
-
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.actionbar_cardview, menu);
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
-
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //    switch(item.ItemId)
-        //    {
-        //        case Resource.Id.add:
-        //            //Add button clicked
-        //          //  users.Add(new Email() { Name = "New Name", Subject = "New Subject", Message = "New Message" });
-        //            mAdapter.NotifyItemInserted(users.Count - 1);
-        //            return true;
-        //    }
-        //    return base.OnOptionsItemSelected(item);
-        //}
-
-
-
+       
 
     }
 
@@ -133,6 +130,7 @@ namespace TestApp
             public TextView mText { get; set; }
             public ImageView mProfilePicture { get; set; }
 
+            public ImageButton mDeleteFriend { get; set; }
             public MyView (View view) : base(view)
             {
                 mMainView = view;
@@ -150,8 +148,13 @@ namespace TestApp
                 TextView name = userFriendsContent.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = userFriendsContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userFriendsContent.FindViewById<TextView>(Resource.Id.textId);
+                ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
+                deleteFriend.Focusable = false;
+                deleteFriend.FocusableInTouchMode = false;
+                deleteFriend.Clickable = true;
 
-                MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile };
+
+                MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile,mDeleteFriend = deleteFriend };
                 return view;
   
         }
@@ -163,8 +166,49 @@ namespace TestApp
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
+           
 
-                userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
+
+            myHolder.mDeleteFriend.Click += (sender, args) =>
+            {
+                
+                var pos = ((View)sender).Tag;
+               
+                var wait = Azure.removeUser(mUsers[position].UserName);
+                deleteIndex(position);
+                NotifyDataSetChanged();
+
+                //  Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Deleted", ToastLength.Long).Show();
+
+
+
+
+            };
+
+
+            // myHolder.mDeleteFriend.Click += MDeleteFriend_Click;  //+= (e, a) => //{
+            // //  Azure.removeUser(mUsers[position].UserName);
+            //   AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+            //   alert.SetTitle("Delete friend");
+            //   alert.SetMessage("You want to delete " + mUsers[position].UserName + " ?");
+            //   alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            //   {
+            //       //change value write your own set of instructions
+            //       //you can also create an event for the same in xamarin
+            //       //instead of writing things here
+            //       Azure.removeUser(mUsers[position].UserName);
+            //   });
+
+            //   alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            //   {
+            //       //perform your own task for this conditional button click
+
+            //   });
+
+
+            //    };// 
+
+            userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
 
             if (mUsers[position].Online)
             {
@@ -175,10 +219,7 @@ namespace TestApp
                 myHolder.mStatus.Text = "Offline";
             }
                
-
                 myHolder.mText.Text = mUsers[position].AboutMe;
-
-
             if (userImage == null)
             {
                 myHolder.mProfilePicture.SetImageResource(Resource.Drawable.tt);
@@ -197,6 +238,7 @@ namespace TestApp
 
         }
 
+       
         private void SetAnimation(View view, int currentAnim)
         {
             Animator animator = AnimatorInflater.LoadAnimator(mContext, Resource.Animation.flip);
@@ -214,10 +256,49 @@ namespace TestApp
             Console.WriteLine(mUsers[position].UserName);
         }
 
+        void MDeleteFriend_Click(object sender, EventArgs e)
+        {
+            //int position = mRecyclerView.GetChildPosition((View)sender);
+          //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+            
+           // Azure.removeUser(mUsers[position].UserName);
+            //AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+            //alert.SetTitle("Delete friend");
+            //alert.SetMessage("You want to delete " + mUsers[position].UserName +" ?");
+            //alert.SetPositiveButton("Yes", (senderAlert, args) => {
+            //    //change value write your own set of instructions
+            //    //you can also create an event for the same in xamarin
+            //    //instead of writing things here
+            //    Azure.removeUser(mUsers[position].UserName);
+            //});
+
+            //alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+            //    //perform your own task for this conditional button click
+
+            //});
+            //Azure.removeUser(mUsers[position].UserName);
+            // Console.WriteLine(mUsers[position].UserName);
+        }
+
         public override int ItemCount
         {
             get { return mUsers.Count; }
         }
+
+        public void Clear()
+        {
+            mUsers.Clear();
+        }
+
+        
+        public  bool deleteIndex (int position)
+        {
+
+           
+            return mUsers.Remove(mUsers[position]);
+        }
+
     }
 }
 

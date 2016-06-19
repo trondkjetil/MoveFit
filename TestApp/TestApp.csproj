@@ -149,6 +149,7 @@
     <Compile Include="Azure\ToDo\ToDoItem.cs" />
     <Compile Include="Azure\ToDo\ToDoItemAdapter.cs" />
     <Compile Include="Azure\UserFriends.cs" />
+    <Compile Include="DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Points\MyPoints.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -281,6 +282,7 @@
     <AndroidResource Include="Resources\layout\UsersNearby.axml" />
     <AndroidResource Include="Resources\layout\UsersRoutes.axml" />
     <AndroidResource Include="Resources\layout\welcome.axml" />
+    <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

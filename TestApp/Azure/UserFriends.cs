@@ -7,13 +7,22 @@ namespace TestApp
     {
 
 
-        //Copy of user
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; set; }
+        [JsonProperty(PropertyName = "userLink1")]
+        public string UserLink1 { get; set; }
 
+        [JsonProperty(PropertyName = "userLink2")]
+        public string UserLink2 { get; set; }
 
+        [JsonProperty(PropertyName = "friendrequest")]
+        public bool FriendRequest { get; set; }
+
+        [JsonProperty(PropertyName = "isaccepted")]
+        public bool IsAccepted { get; set; }
+
+        [JsonProperty(PropertyName = "isdeleted")]
+        public bool IsDeleted { get; set; }
 
 
 

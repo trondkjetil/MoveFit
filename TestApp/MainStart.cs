@@ -44,6 +44,7 @@ namespace TestApp
         public static string userId;
         public ImageView profilePicture;
         public Bitmap profilePic;
+        public string profilePictureUrl;
 
         TextView latText;
         TextView longText;
@@ -71,6 +72,7 @@ namespace TestApp
 
         TextView points;
         public static Activity mainActivity;
+        User waitingUpload;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -99,9 +101,11 @@ namespace TestApp
             array = Intent.GetStringArrayExtra("MyData");
             textview1.Text = "Greetings " + array[0] + "!";
             userName = array[0];
+            profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             profilePicture.SetImageBitmap(profilePic);
+
             loadingImage.Visibility = ViewStates.Invisible;
             facebookUserId = array[2];
             //Removes the whole progress bar view, showing only the profile picture
@@ -216,57 +220,50 @@ namespace TestApp
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
-            User waitingUpload = null;
-
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
                 if (user.Count == 0)
                 {
-                    waitingUpload = await Azure.AddUser();
-                    Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+
+                    FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                    DialogUserInfo newDialog = new DialogUserInfo();
+                    newDialog.DialogClosed += OnDialogClosed;
+                    newDialog.Show(transaction, "User Info");
+                    //waitingUpload = await Azure.AddUser();
+                    //Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+
                 }
                 else
+                {
+
                     waitingUpload = user.FirstOrDefault();
+                    var setOnline = await Azure.SetUserOnline(userName, true);
+                    setPoints();
+                }
+                  
 
 
-                var setOnline = await Azure.SetUserOnline(userName, true);
+              
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
-
-
-
 
 
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
 
-            //var timer = new System.Threading.Timer((e) =>
-            //{
-            //    MyMethod();
-            //}, null, 0, TimeSpan.FromMinutes(5).TotalMilliseconds);
+            points.Text = "Score: Zero";
 
-            //Starts the counter for the location updater
-            //startTime = DateTime.UtcNow;
-            //if (startTime.AddSeconds(20) > DateTime.UtcNow && changed)
+            // if(waitingUpload != null)
             //{
-            //    Azure.updateUserLocation(userName);
-            //    Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
-
+            //    setPoints();
             //}
-
-
-
-             if(waitingUpload != null)
-            {
-                setPoints();
-            }
-            else
-                points.Text = "Score: Zero";
+            //else
+            //    points.Text = "Score: Zero";
 
 
         }
@@ -826,6 +823,41 @@ namespace TestApp
 
             }
         }
+
+
+
+        async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
+        {
+
+            String[] returnData;
+            returnData = e.ReturnValue.Split(',');
+            string gender = returnData[0];
+            string activityLevel = returnData[1];
+            string ageString = returnData[2];
+            int age = Convert.ToInt32(ageString);
+
+            try
+            {
+
+                waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
+
+                Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+                points.Text = "Score: 0";
+            
+               
+
+            }
+            catch (Exception )
+            {
+
+             
+
+            }
+
+
+        }
+
+
 
 
 

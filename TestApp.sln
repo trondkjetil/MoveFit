@@ -39,4 +39,7 @@ Global
 		$1.DirectoryNamespaceAssociation = None
 		$1.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = moveFitt\moveFitt.csproj
+	EndGlobalSection
 EndGlobal

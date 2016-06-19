@@ -14,6 +14,10 @@ TestApp.UserFriendsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserFrie
 TestApp.UserFriendsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 TestApp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 testapp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
+TestApp.DialogUserInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+TestApp.DialogUserInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+TestApp.DialogUserInfo;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+testapp.DialogUserInfo;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
 TestApp.Calculator, TestApp;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator

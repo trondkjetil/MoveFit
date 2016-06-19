@@ -22,7 +22,7 @@ namespace TestApp
 
         const string applicationURL = @"https://movefitt.azurewebsites.net";
         //  const string applicationKey = @"vaLLzAEGOZguaHOsXqTPkoRsqBYNGP34";
-        const string localDbFilename = "localstore.db";
+        const string localDbFilename = "localstore1.db";
 
 
         //Mobile Service Client reference
@@ -35,6 +35,8 @@ namespace TestApp
 
         public static IMobileServiceSyncTable<Review> tableReview { get; set; }
 
+        public static IMobileServiceSyncTable<UserFriends> tableUserFriends { get; set; }
+
 
         //Online storage
         public static IMobileServiceTable<Route> routeTable { get; set; }
@@ -43,7 +45,9 @@ namespace TestApp
 
         public static IMobileServiceTable<Review> reviewTable { get; set; }
 
-        //  private static IMobileServiceSyncTable<ToDoItem> toDoTable;
+        public static IMobileServiceTable<UserFriends> userFriendsTable { get; set; }
+
+      //private static IMobileServiceSyncTable<ToDoItem> toDoTable;
 
         public List<User> userList;
         public List<Route> routeList;
@@ -61,30 +65,32 @@ namespace TestApp
             locTable = client.GetSyncTable<Locations>();
             tableRoute = client.GetSyncTable<Route>();
             tableReview = client.GetSyncTable<Review>();
+            tableUserFriends = client.GetSyncTable<UserFriends>();
             //Cloud 
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
             routeTable = client.GetTable<Route>();
             reviewTable = client.GetTable<Review>();
+            userFriendsTable = client.GetTable<UserFriends>();
+
+            //Deletes all items in current table
+            //await userTable.PurgeAsync();
+            //await locTable.PurgeAsync();
+            //await tableRoute.PurgeAsync();
+            //await tableReview.PurgeAsync();
+            //await tableUserFriends.PurgeAsync();
 
 
-            //   toDoTable = client.GetSyncTable<ToDoItem>();
-            // Create an adapter to bind the items with the view
-
-            //			//Deletes all items in current table
-            //			userTable.PurgeAsync();
-            //			List<User> l = userTable.ToListAsync ().Result;
-            //			foreach (User u in l) {
-            //				userTable.DeleteAsync (u);
-            //			}
+            //List<User> l = userTable.ToListAsync().Result;
+            //foreach (User u in l)
+            //{
+            //    userTable.DeleteAsync(u);
+            //}
         }
-
-
 
            public static async Task<List<User>> findNearBy(string userName)
         {
 
-         
             var list = await getUserId(userName);
             User me = list.FirstOrDefault();
 
@@ -240,6 +246,15 @@ namespace TestApp
             return userList;
 
         }
+
+        public static async Task<List<User>> removeUser(String providedUserName)
+        {
+
+            List<User> userList = await table.Where(user => user.UserName == providedUserName).ToListAsync();
+             await  table.DeleteAsync(userList.FirstOrDefault());
+            return userList;
+
+        }
         public static async Task<List<Route>> getRoutes()
         {
 
@@ -341,6 +356,33 @@ namespace TestApp
 
         }
 
+        [Java.Interop.Export()]
+        public static async void AddFriendShip(string userId1, string userId2)
+
+        {
+            var friendship = new UserFriends
+            {
+                FriendRequest = true,
+                UserLink1 = userId1,
+                UserLink2 = userId2,
+                IsAccepted = false
+
+            };
+
+
+            try
+            {
+
+               
+                await userFriendsTable.InsertAsync(friendship); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
 
         [Java.Interop.Export()]
@@ -369,7 +411,7 @@ namespace TestApp
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Error");
+                throw e;
             }
 
 
@@ -402,10 +444,8 @@ namespace TestApp
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Error");
+                throw e;
             }
-
-
 
         }
 
@@ -434,8 +474,6 @@ namespace TestApp
             try
             {
 
-                //ToDoItem im = new ToDoItem { Text = "Awesome item" };
-                //await client.GetTable<ToDoItem>().InsertAsync(im);
                 await tableRoute.InsertAsync(route); // insert the new item into the local database
                 await SyncAsync(); // send changes to the mobile service
 
@@ -443,7 +481,7 @@ namespace TestApp
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Error");
+                throw e;
             }
 
             return rList;
@@ -452,27 +490,28 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async Task<User> AddUser()
+        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel)
         {
             // Create a new item
             var user = new User
             {
-                AboutMe = "testInfo",
-                UserName = MainStart.userName,
-                Sex = "Male",
-                Age = 27,
-                Points = 0,
-                ProfilePicture = MainStart.array[1],
+                AboutMe = aboutme,
+                UserName = userName ,//MainStart.userName,
+                Sex = gender,
+                Age = age,
+                Points = points,
+                ProfilePicture =  profileimage, //MainStart.array[1],
                 Lat = "0",//MainStart.currentLocation.Latitude.ToString(),
                 Lon = "0", //MainStart.currentLocation.Longitude.ToString()
-                Online = true
+                Online = online,
+                ActivityLevel = activityLevel
             };
 
             try
             {
 
-                //ToDoItem im = new ToDoItem { Text = "Awesome item" };
-                //await client.GetTable<ToDoItem>().InsertAsync(im);
+                
+               // await client.GetTable<User>().InsertAsync(user);
                 await userTable.InsertAsync(user); // insert the new item into the local database
                 await SyncAsync(); // send changes to the mobile service
 
@@ -480,38 +519,14 @@ namespace TestApp
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Error");
+                throw e;
             }
 
             return user;
 
         }
 
-        public async Task CheckItem(User item)
-        {
-            if (client == null)
-            {
-                return;
-            }
-
-            // Set the item as completed and update it in the table
-            item.Complete = true;
-            try
-            {
-                await userTable.UpdateAsync(item); // update the new item in the local database
-                await SyncAsync(); // send changes to the mobile service
-
-
-
-            }
-            catch (Exception e)
-            {
-                CreateAndShowDialog(e, "Error");
-            }
-        }
-
-
-
+     
 
         public static async Task SyncAsync()
         {
@@ -521,16 +536,17 @@ namespace TestApp
                 await userTable.PullAsync("allUsers", userTable.CreateQuery()); // query ID is used for incremental sync
                 await tableRoute.PullAsync("allRoutes", tableRoute.CreateQuery());
                 await locTable.PullAsync("allLocations", locTable.CreateQuery());
-                await tableReview.PullAsync("allReviews", locTable.CreateQuery());
+                await tableReview.PullAsync("allReviews", reviewTable.CreateQuery());
+                await tableReview.PullAsync("allUserFriends", userFriendsTable.CreateQuery());
             }
 
-            catch (Java.Net.MalformedURLException)
+            catch (Java.Net.MalformedURLException a)
             {
-                CreateAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
+                throw a;
             }
             catch (Exception e)
             {
-                CreateAndShowDialog(e, "Error");
+                throw e;
             }
         }
 
@@ -544,13 +560,12 @@ namespace TestApp
                 File.Create(path).Dispose();
             }
 
-
-            //sPV RINGE KUNDESERVICE +47915 0055
             var store = new MobileServiceSQLiteStore(path);
             store.DefineTable<User>();
             store.DefineTable<Locations>();
             store.DefineTable<Route>();
             store.DefineTable<Review>();
+            store.DefineTable<UserFriends>();
             // Uses the default conflict handler, which fails on conflict
             // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
             await client.SyncContext.InitializeAsync(store);
@@ -558,17 +573,7 @@ namespace TestApp
 
 
 
-        public static void CreateAndShowDialog(Exception exception, String title)
-        {
-            CreateAndShowDialog(exception.Message, title);
-        }
-
-        public static void CreateAndShowDialog(string message, string title)
-        {
-            Console.WriteLine(message + " " + title);
-        }
-
-
+  
 
     }
 }

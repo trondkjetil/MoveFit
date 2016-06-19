@@ -46,6 +46,7 @@ namespace TestApp
         private string routeType;
         private string routeTrips;
         private string routeId;
+        private string routeTime;
 
         public Stopwatch stopWatch;
         public string elapsedTime;
@@ -83,6 +84,9 @@ namespace TestApp
                 TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
                 TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
                 TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
+                TextView time = FindViewById<TextView>(Resource.Id.startRouteTime);
+
+
                 Button start = FindViewById<Button>(Resource.Id.startRoute);
                 Button end = FindViewById<Button>(Resource.Id.endRoute);
                 Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
@@ -103,6 +107,8 @@ namespace TestApp
                 routeRating = array[5];
                 routeTrips = array[6];
 
+                routeTime = array[8];
+
 
                 name.Text = "Name:" + routeName;
                 description.Text = "Description: " + routeInfo;
@@ -110,6 +116,7 @@ namespace TestApp
                 length.Text = "Length: " + routeLength;
                 type.Text = "Type: " + routeType;
                 trips.Text = "Trips: " + routeTrips;
+                time.Text = "Best time: " + routeTime;
 
                 try
                 {

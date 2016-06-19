@@ -40,6 +40,9 @@ namespace TestApp
         public bool Online { get; set; }
 
 
+        [JsonProperty(PropertyName = "activitylevel")]
+        public string ActivityLevel { get; set; }
+
     }
 
     public class UserWrapper : Java.Lang.Object

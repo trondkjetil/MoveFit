@@ -122,6 +122,7 @@ namespace TestApp
         public string routeType;
         public int routeTrips;
         public string routeId;
+        public string routeTime;
 
 
 
@@ -186,6 +187,8 @@ namespace TestApp
             routeType = "";
             routeTrips = 1;
             routeId = "";
+            routeTime = "";
+
             MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mRouteName.Text = mRoutes[position].Name;
@@ -265,7 +268,7 @@ namespace TestApp
 
                 int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
-                routeName = mRoutes[position].Name;
+            routeName = mRoutes[position].Name;
             routeInfo = mRoutes[position].Info;
             routeDifficulty = mRoutes[position].Difficulty;
             routeLength = mRoutes[position].Distance;
@@ -273,6 +276,7 @@ namespace TestApp
             routeRating = mRoutes[position].Review;
             routeTrips = mRoutes[position].Trips;
             routeId = mRoutes[position].Id;
+            routeTime = mRoutes[position].Time;
 
             Bundle b = new Bundle();
             b.PutStringArray("MyData", new String[] {
@@ -284,7 +288,8 @@ namespace TestApp
             routeType,
             routeRating,
             routeTrips.ToString(),
-            routeId
+            routeId,
+            routeTime
 
         });
 
