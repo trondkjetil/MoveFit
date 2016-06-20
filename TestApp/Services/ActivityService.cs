@@ -140,7 +140,7 @@ namespace TestApp
 			// Make this higher or lower according to how much
 			// motion you want to detect
 
-			if(mAccel < 5 && counter > 150 ){ 
+			if(mAccel < 8 && counter > 1800 ){ 
 				counter = 0;
                 mAccel = 0.00f;
                 var inte = new Intent(this, typeof(ActivityLevelTracker));

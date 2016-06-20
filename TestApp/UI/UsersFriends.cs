@@ -61,18 +61,20 @@ namespace TestApp
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
 
-        
 
-         
-            List<User> userList = await Azure.getPeople();
 
-  
+
+            //List<User> userList = await Azure.getPeople();
+            List<User> userList = await Azure.getUsersFriends(MainStart.userId);
+            
+
             if (userList.Count == 0)
             {
                 Toast.MakeText(this, "Your friendlist is empty!", ToastLength.Short).Show();
 
-                Intent myInt = new Intent(this, typeof(RouteOverview));
-                StartActivity(myInt);
+                //Intent myInt = new Intent(this, typeof(RouteOverview));
+                //StartActivity(myInt);
+                Finish();
             }
 
 
@@ -131,6 +133,9 @@ namespace TestApp
             public ImageView mProfilePicture { get; set; }
 
             public ImageButton mDeleteFriend { get; set; }
+            public ImageButton mSendMessage{ get; set; }
+
+            public ImageButton mOnlineStatus { get; set; }
             public MyView (View view) : base(view)
             {
                 mMainView = view;
@@ -148,13 +153,24 @@ namespace TestApp
                 TextView name = userFriendsContent.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = userFriendsContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userFriendsContent.FindViewById<TextView>(Resource.Id.textId);
-                ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
+
+                ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
+
+
+            ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
                 deleteFriend.Focusable = false;
                 deleteFriend.FocusableInTouchMode = false;
                 deleteFriend.Clickable = true;
 
+            ImageButton sendMessage = userFriendsContent.FindViewById<ImageButton>(Resource.Id.sendMsg);
+            deleteFriend.Focusable = false;
+            deleteFriend.FocusableInTouchMode = false;
+            deleteFriend.Clickable = true;
 
-                MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile,mDeleteFriend = deleteFriend };
+
+
+
+            MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile,mDeleteFriend = deleteFriend , mSendMessage = sendMessage, mOnlineStatus = online};
                 return view;
   
         }
@@ -166,16 +182,35 @@ namespace TestApp
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
-           
 
 
-            myHolder.mDeleteFriend.Click += (sender, args) =>
+            if (mUsers[position].Online)
+            {
+                myHolder.mOnlineStatus.SetImageResource(Resource.Drawable.greenonline);
+            }else
+                myHolder.mOnlineStatus.SetImageResource(Resource.Drawable.redoffline);
+
+
+            myHolder.mSendMessage.Click += (sender, args) =>
+            {
+
+              
+                    Intent myInt = new Intent(mContext, typeof(Chat));
+                    mContext.StartActivity(myInt);
+               
+                
+
+            };
+                myHolder.mDeleteFriend.Click += (sender, args) =>
             {
                 
                 var pos = ((View)sender).Tag;
 
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
+
+
+                // Deletes the user from the whole app....
                 var wait = Azure.removeUser(mUsers[position].UserName);
 
                 deleteIndex(position);
@@ -225,7 +260,7 @@ namespace TestApp
                 myHolder.mStatus.Text = "Offline";
             }
                
-                myHolder.mText.Text = mUsers[position].AboutMe;
+                myHolder.mText.Text = "Age " +mUsers[position].Age;
             if (userImage == null)
             {
                 myHolder.mProfilePicture.SetImageResource(Resource.Drawable.tt);

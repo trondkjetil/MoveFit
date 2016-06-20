@@ -22,10 +22,10 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private List<User> users;
-		
+        public static Activity act;
 
-		SwipeRefreshLayout mSwipeRefreshLayout;
+
+        SwipeRefreshLayout mSwipeRefreshLayout;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,7 +37,7 @@ namespace TestApp
 			mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swp);
 			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
 			mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
-
+            act = this;
 
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserNearby);
@@ -54,11 +54,13 @@ namespace TestApp
             {
                 Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
-                Intent myInt = new Intent(this, typeof(RouteOverview));
-                StartActivity(myInt);
+                //Intent myInt = new Intent(this, typeof(MainStart));
+                //StartActivity(myInt);
+
+                Finish();
             }
 
-            mAdapter = new UsersAdapter(userList, mRecyclerView, this);
+            mAdapter = new UsersAdapter(userList, mRecyclerView, this,act);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -116,13 +118,14 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
+        private Activity mActivity;
 
-		public UsersAdapter(List<User> users, RecyclerView recyclerView, Context context)
+		public UsersAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act)
         {
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
-
+            mActivity = act;
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -132,6 +135,9 @@ namespace TestApp
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
             public ImageView mProfilePicture { get; set; }
+
+            public ImageButton mSendFriendRequest { get; set; }
+            public ImageButton mGender { get; set; }
 
             public MyView (View view) : base(view)
             {
@@ -151,7 +157,17 @@ namespace TestApp
                 TextView status = peopleNearbyContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = peopleNearbyContent.FindViewById<TextView>(Resource.Id.textId);
 
-                MyView view = new MyView(peopleNearbyContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile };
+            ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
+            addToFriends.Focusable = false;
+            addToFriends.FocusableInTouchMode = false;
+            addToFriends.Clickable = true;
+
+
+            ImageButton gender = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.gender);
+         
+
+
+            MyView view = new MyView(peopleNearbyContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends , mGender = gender};
                 return view;
   
         }
@@ -164,7 +180,46 @@ namespace TestApp
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
 
+             
+
+
+            if (mUsers[position].Sex == "Male")
+            {
+                myHolder.mGender.SetImageResource(Resource.Drawable.male);
+            }else
+                myHolder.mGender.SetImageResource(Resource.Drawable.female);
+
+
+
+
                 userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
+
+
+                myHolder.mSendFriendRequest.Click += (sender, args) =>
+            {
+
+                var pos = ((View)sender).Tag;
+
+                Toast.MakeText(mContext,"Friend request is sent to " + mUsers[position].UserName.ToString(), ToastLength.Long).Show();
+
+                Azure.AddFriendShip(MainStart.userId, mUsers[position].Id);
+
+                deleteIndex(position);
+                NotifyDataSetChanged();
+
+                if (mUsers.Count == 0)
+                {
+
+                    //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                    //mContext.StartActivity(myInt);
+
+                    mActivity.Finish();
+                }
+
+
+
+            };
+
 
             if (mUsers[position].Online)
             {
@@ -174,9 +229,9 @@ namespace TestApp
             {
                 myHolder.mStatus.Text = "Offline";
             }
-               
 
-                myHolder.mText.Text = mUsers[position].AboutMe;
+
+            myHolder.mText.Text = "Age " + mUsers[position].Age;
 
 
             if (userImage == null)
@@ -212,7 +267,12 @@ namespace TestApp
             int position = mRecyclerView.GetChildAdapterPosition((View)sender);
             Console.WriteLine(mUsers[position].UserName);
         }
+        public bool deleteIndex(int position)
+        {
 
+
+            return mUsers.Remove(mUsers[position]);
+        }
         public override int ItemCount
         {
             get { return mUsers.Count; }

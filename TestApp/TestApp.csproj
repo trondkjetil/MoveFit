@@ -167,7 +167,6 @@
     <Compile Include="Services\LocationServiceConnection.cs" />
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
-    <Compile Include="Services\StartSimpleService.cs" />
     <Compile Include="SignalR\CustomUserIdProvider .cs" />
     <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\Chat.cs" />
@@ -214,7 +213,6 @@
     <AndroidResource Include="Resources\menu\actionbar_main.xml" />
     <AndroidResource Include="Resources\values\themes.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
-    <AndroidResource Include="Resources\drawable\Thumbs.db" />
     <AndroidResource Include="Resources\drawable\xs.png" />
     <AndroidResource Include="Resources\drawable\tree.jpg" />
     <AndroidResource Include="Resources\drawable\customLoadbar.xml" />
@@ -394,6 +392,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\itemsRouteDifficulty.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\greenonline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\redoffline.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

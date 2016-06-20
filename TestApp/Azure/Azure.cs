@@ -235,7 +235,7 @@ namespace TestApp
         public static async Task<List<User>> getPeople()
         {
 
-            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).ToListAsync();
             return userList;
 
         }
@@ -357,6 +357,109 @@ namespace TestApp
             return route;
 
         }
+
+
+
+
+
+
+
+
+        public static async Task<List<UserFriends>> setFriendAcceptance(string myId,string userId, bool accept)
+        {
+
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.UserLink1 == userId && UserFriends.UserLink2 == myId).ToListAsync();
+
+            UserFriends acceptRequest = userFriendList.FirstOrDefault();
+            acceptRequest.IsAccepted = accept;
+
+
+            /*Find(UserFriends => UserFriends.FriendRequest == true && UserFriends.UserLink2 == myId).IsAccepted = accept;
+*/
+
+
+            //  UserFriends acceptRequest = userFriendList.Find(UserFriends => UserFriends.FriendRequest == true && UserFriends.UserLink2 == myId);
+
+
+            await userFriendsTable.UpdateAsync(acceptRequest);
+            return userFriendList;
+        }
+
+        public static async Task<List<User>> getFriendRequests(string myUserId)
+        {
+
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == false && UserFriends.UserLink2 == myUserId).ToListAsync();
+
+
+            List<User> userList = await table.Where(user => user.Id != null && user.Id != myUserId).ToListAsync();
+
+            List<User> userProfiles = new List<User>();
+
+            for (int i = 0; i < userFriendList.Count; i++)
+            {
+
+                for (int x = 0; x < userList.Count; x++)
+                {
+
+                    if (userFriendList[i].UserLink1 == userList[x].Id)
+                    {
+                        userProfiles.Add(userList[x]);
+                    }
+                }
+
+            }
+         
+          
+            return userProfiles;
+
+        }
+
+        public static async Task<List<User>> getUsersFriends(string userId)
+        {
+
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && UserFriends.IsDeleted == false && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
+
+            List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
+
+            List<User> userProfiles = new List<User>();
+
+            for (int i = 0; i < userFriendList.Count; i++)
+            {
+
+                for (int x = 0; x < userList.Count; x++)
+                {
+
+                    if (userFriendList[i].UserLink2 == userList[x].Id || userFriendList[i].UserLink1 == userList[x].Id)
+                    {
+                        userProfiles.Add(userList[x]);
+                    }
+                }
+
+            }
+
+
+
+            //var commonUsers = userFriendList.Select((a => a.UserLink2)).Intersect(userList.Select(b => b.Id));
+
+            //List<User> userProfiles = await table.Where(user => commonUsers.Contains(user.Id)).ToListAsync();
+
+
+
+
+
+            //List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.IsAccepted == true && UserFriends.UserLink1 == userId).ToListAsync();
+
+            //List<User> userList = await table.Where(user => user.Id != null && user.Id != userId).ToListAsync();
+
+            //var commonUsers = userFriendList.Select(a => a.UserLink1).Intersect(userList.Select(b => b.Id));
+
+            //List<User> userProfiles = await table.Where(user => commonUsers.Contains(user.Id)).ToListAsync();
+
+
+            return userProfiles;
+        }
+
+
 
         [Java.Interop.Export()]
         public static async void AddFriendShip(string userId1, string userId2)

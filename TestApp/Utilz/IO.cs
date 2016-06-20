@@ -25,86 +25,86 @@ namespace TestApp
 		*/
 
 
-		public static Bitmap deCodeByte(byte[] image)
-		{
+		//public static Bitmap deCodeByte(byte[] image)
+		//{
 
-			Bitmap bit = BitmapFactory.DecodeByteArray (image, 0, image.Length);
+		//	Bitmap bit = BitmapFactory.DecodeByteArray (image, 0, image.Length);
 
-			return bit;
-		}
+		//	return bit;
+		//}
 
-		public static byte[] codeByte(Bitmap bitmap){
-				byte[] bitmapData = null;
-			using (var stream = new MemoryStream())
-			{
-			bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+		//public static byte[] codeByte(Bitmap bitmap){
+		//		byte[] bitmapData = null;
+		//	using (var stream = new MemoryStream())
+		//	{
+		//	bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
 
-			}
+		//	}
 
-			return bitmapData;
-		}
-
-
-		public static void listDir ()
-		{
-		var directories = Directory.EnumerateDirectories("./");
-		foreach (var directory in directories) {
-			Console.WriteLine(directory);
-		}
-		}
+		//	return bitmapData;
+		//}
 
 
-
-		void readFile(){
-			var text = File.ReadAllText("TestData/ReadMe.txt");
-			Console.WriteLine(text);
-		}
-
-		//xml serialization
-
-		void serializeXml(){
-
-			using (TextReader reader = new StreamReader("./TestData/test.xml")) {
-			//	XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
-				//var xml = (MyObject)serializer.Deserialize(reader);
-			}
-
-		}
+		//public static void listDir ()
+		//{
+		//var directories = Directory.EnumerateDirectories("./");
+		//foreach (var directory in directories) {
+		//	Console.WriteLine(directory);
+		//}
+		//}
 
 
 
-		void creatingFilesAndDir(){
+		//void readFile(){
+		//	var text = File.ReadAllText("TestData/ReadMe.txt");
+		//	Console.WriteLine(text);
+		//}
 
-			var documents =
-				Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments); 
-			var filename = System.IO.Path.Combine (documents, "Write.txt");
-			File.WriteAllText(filename, "Write this text into a file");
+		////xml serialization
 
-			 documents =
-				Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-			var directoryname = System.IO.Path.Combine (documents, "NewDirectory");
-			Directory.CreateDirectory(directoryname);
+		//void serializeXml(){
 
-		}
+		//	using (TextReader reader = new StreamReader("./TestData/test.xml")) {
+		//	//	XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
+		//		//var xml = (MyObject)serializer.Deserialize(reader);
+		//	}
+
+		//}
 
 
+
+		//void creatingFilesAndDir(){
+
+		//	var documents =
+		//		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments); 
+		//	var filename = System.IO.Path.Combine (documents, "Write.txt");
+		//	File.WriteAllText(filename, "Write this text into a file");
+
+		//	 documents =
+		//		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+		//	var directoryname = System.IO.Path.Combine (documents, "NewDirectory");
+		//	Directory.CreateDirectory(directoryname);
+
+		//}
 
 
 
 
 
 
-		public static void SaveFile(string directory, Bitmap bitmap)
-		{
-			var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
-			var filePath = System.IO.Path.Combine (sdCardPath, "MyFile");
-			string fileName = directory;
 
-			using (var os = new FileStream(filePath, FileMode.CreateNew))
-			{
-				bitmap.Compress(Bitmap.CompressFormat.Jpeg, 95, os);
-			}
-		}
+
+		//public static void SaveFile(string directory, Bitmap bitmap)
+		//{
+		//	var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
+		//	var filePath = System.IO.Path.Combine (sdCardPath, "MyFile");
+		//	string fileName = directory;
+
+		//	using (var os = new FileStream(filePath, FileMode.CreateNew))
+		//	{
+		//		bitmap.Compress(Bitmap.CompressFormat.Jpeg, 95, os);
+		//	}
+		//}
 	
 		public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
 			bool filter) {
@@ -121,28 +121,7 @@ namespace TestApp
 
 
 
-		public static Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
-			const int targetWidth = 110;
-			const int targetHeight = 110;
-			Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth, 
-				targetHeight,Bitmap.Config.Argb8888);
-
-			Canvas canvas = new Canvas(targetBitmap);
-			Android.Graphics.Path path = new Android.Graphics.Path();
-			path.AddCircle(((float) targetWidth - 1) / 2,
-				((float) targetHeight - 1) / 2,
-				(Math.Min(((float) targetWidth), 
-					((float) targetHeight)) / 2),
-				Android.Graphics.Path.Direction.Ccw);
-
-			canvas.ClipPath(path);
-			Bitmap sourceBitmap = scaleBitmapImage;
-			canvas.DrawBitmap(sourceBitmap, 
-				new Rect(0, 0, sourceBitmap.Width,
-					sourceBitmap.Height), 
-				new Rect(0, 0, targetWidth, targetHeight), null);
-			return targetBitmap;
-		}
+	
 
 
 		public static Bitmap GetImageBitmapFromUrl(string url)
@@ -165,18 +144,40 @@ namespace TestApp
 
 
 
+        public static Bitmap getRoundedShape(Bitmap scaleBitmapImage)
+        {
+            const int targetWidth = 95;
+            const int targetHeight = 95;
+            Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth,
+                targetHeight, Bitmap.Config.Argb8888);
+
+            Canvas canvas = new Canvas(targetBitmap);
+            Android.Graphics.Path path = new Android.Graphics.Path();
+            path.AddCircle(((float)targetWidth - 1) / 2,
+                ((float)targetHeight - 1) / 2,
+                (Math.Min(((float)targetWidth),
+                    ((float)targetHeight)) / 2),
+                Android.Graphics.Path.Direction.Ccw);
+
+            canvas.ClipPath(path);
+            Bitmap sourceBitmap = scaleBitmapImage;
+            canvas.DrawBitmap(sourceBitmap,
+                new Rect(0, 0, sourceBitmap.Width,
+                    sourceBitmap.Height),
+                new Rect(0, 0, targetWidth, targetHeight), null);
+            return targetBitmap;
+        }
+
+  //      public static Bitmap getProfileImage(string url){
+		//	string url_profilePic = url;
+		//	//profilePicture = GetImageBitmapFromUrl(url_profilePic);
+		//	WebClient web = new WebClient();
+		//	web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
+		//	web.DownloadDataAsync(new Uri(url_profilePic)); 
 
 
-		public static Bitmap getProfileImage(string url){
-			string url_profilePic = url;
-			//profilePicture = GetImageBitmapFromUrl(url_profilePic);
-			WebClient web = new WebClient();
-			web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
-			web.DownloadDataAsync(new Uri(url_profilePic)); 
-
-
-			return profileImage;
-		}
+		//	return profileImage;
+		//}
 
 		static void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
 		{

@@ -9,10 +9,10 @@ namespace TestApp
 
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "userLink1")]
+        [JsonProperty(PropertyName = "userlink1")]
         public string UserLink1 { get; set; }
 
-        [JsonProperty(PropertyName = "userLink2")]
+        [JsonProperty(PropertyName = "userlink2")]
         public string UserLink2 { get; set; }
 
         [JsonProperty(PropertyName = "friendrequest")]

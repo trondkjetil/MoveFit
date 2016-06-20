@@ -187,7 +187,7 @@ namespace TestApp
             myHolder.mRouteName.Text = mMyRoutes[position].Name;
             //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
             myHolder.mRouteInfo.Text = mMyRoutes[position].Distance;
-            myHolder.mStatus.Text = mMyRoutes[position].Info;
+            myHolder.mStatus.Text = mMyRoutes[position].RouteType;
 
 
 

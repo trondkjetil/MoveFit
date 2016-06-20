@@ -138,10 +138,11 @@ namespace TestApp
             mLeftDataSet.Add("Score board");
             mLeftDataSet.Add("Calculator");
             mLeftDataSet.Add("Messages");
-            mLeftDataSet.Add("Friends");
+           
+            mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("People nearby");
             mLeftDataSet.Add("Friend Requests");
-            mLeftDataSet.Add("Routes");
+            mLeftDataSet.Add("Friends");
 
 
 
@@ -167,7 +168,7 @@ namespace TestApp
                 }
                 if (e.Position == 3)
                 {
-                    myIntent = new Intent(this, typeof(UsersFriends));
+                    myIntent = new Intent(this, typeof(RouteOverview));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 4)
@@ -182,7 +183,7 @@ namespace TestApp
                 }
                 else if (e.Position == 6)
                 {
-                    myIntent = new Intent(this, typeof(RouteOverview));
+                    myIntent = new Intent(this, typeof( UsersFriends));
                     StartActivity(myIntent);
                 }
 

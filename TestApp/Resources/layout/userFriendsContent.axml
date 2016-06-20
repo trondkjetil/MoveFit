@@ -91,7 +91,7 @@
                     android:src="@drawable/offline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/cbxStart"
+                    android:id="@+id/onlineStatus"
                     android:background="@android:color/transparent" />
             <!--android:scaleType="fitCenter"-->
             </LinearLayout>
@@ -107,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="33"
                 android:layout_height="50dp"
-                android:id="@+id/imageButton1"
+                android:id="@+id/sendMsg"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
             <ImageButton

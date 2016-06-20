@@ -16,23 +16,26 @@ using System.Threading;
 
 namespace TestApp
 {
-    [Activity(Label = "People Nearby")]
+    [Activity(Label = "Friend Requests")]
     public class UserFriendRequest : Activity
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private List<User> users;
-		
+
+        public static Activity act;
 
 		SwipeRefreshLayout mSwipeRefreshLayout;
 
+       
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         //    RequestWindowFeature(WindowFeatures.NoTitle);
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersFriendRequest);
+
+            act = this;
 
 			mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swap);
 			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
@@ -48,17 +51,31 @@ namespace TestApp
 
 
 
-          
-            List<User> userList = await Azure.getPeople();
-            if (userList.Count == 0)
+            List<User> userList = null;
+
+            try
             {
-                Toast.MakeText(this, "Could not find any friend requests!", ToastLength.Long).Show();
+                 userList = await Azure.getFriendRequests(MainStart.userId);
 
-                Intent myInt = new Intent(this, typeof(RouteOverview));
-                StartActivity(myInt);
+                if (userList.Count == 0 || userList == null)
+                {
+                    Toast.MakeText(this, "Could not find any friend requests!", ToastLength.Long).Show();
+
+                    //Intent myInt = new Intent(this, typeof(F));
+                    //StartActivity(myInt);
+                    Finish();
+                }
+
             }
+            catch (Exception)
+            {
 
-            mAdapter = new UsersFriendRequestAdapter(userList, mRecyclerView, this);
+               
+            }
+            
+
+
+            mAdapter = new UsersFriendRequestAdapter(userList, mRecyclerView, this, act);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -95,9 +112,14 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
+        private Activity mActivity;
 
-		public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context)
+
+
+        public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act)
         {
+
+            mActivity = act;
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
@@ -133,10 +155,10 @@ namespace TestApp
                 TextView status = userFriendRequest.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userFriendRequest.FindViewById<TextView>(Resource.Id.textId);
 
-            ImageButton deleteFriend = userFriendRequest.FindViewById<ImageButton>(Resource.Id.rejectFriend);
-            deleteFriend.Focusable = false;
-            deleteFriend.FocusableInTouchMode = false;
-            deleteFriend.Clickable = true;
+            ImageButton rejectFriendReq = userFriendRequest.FindViewById<ImageButton>(Resource.Id.rejectFriend);
+            rejectFriendReq.Focusable = false;
+            rejectFriendReq.FocusableInTouchMode = false;
+            rejectFriendReq.Clickable = true;
 
 
             ImageButton acceptFriend = userFriendRequest.FindViewById<ImageButton>(Resource.Id.acceptFriend);
@@ -145,7 +167,7 @@ namespace TestApp
             acceptFriend.Clickable = true;
 
 
-            MyView view = new MyView(userFriendRequest) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mDeleteFriend = deleteFriend, mAcceptFriend = acceptFriend };
+            MyView view = new MyView(userFriendRequest) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mDeleteFriend = rejectFriendReq, mAcceptFriend = acceptFriend };
                 return view;
   
         }
@@ -153,14 +175,12 @@ namespace TestApp
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
                 Bitmap userImage;
-                //First view
+            
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
 
                 userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
-
-
 
 
             myHolder.mDeleteFriend.Click += (sender, args) =>
@@ -169,7 +189,7 @@ namespace TestApp
                 var pos = ((View)sender).Tag;
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Rejected", ToastLength.Long).Show();
 
-
+                var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id,false);
 
             };
 
@@ -177,16 +197,34 @@ namespace TestApp
 
             myHolder.mAcceptFriend.Click += (sender, args) =>
             {
+                if (mUsers.Count == 0)
+                {
+
+                    //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                    //mContext.StartActivity(myInt);
+
+                    mActivity.Finish();
+                }
 
                 var pos = ((View)sender).Tag;
-                Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Accepted!", ToastLength.Long).Show();
+                Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Added!", ToastLength.Long).Show();
 
+
+                var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id,true);
+
+                deleteIndex(position);
+                NotifyDataSetChanged();
+
+                if (mUsers.Count == 0)
+                {
+
+                    //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                    //mContext.StartActivity(myInt);
+                    mActivity.Finish();
+
+                }
 
             };
-
-
-
-
 
 
             if (mUsers[position].Online)
@@ -197,9 +235,9 @@ namespace TestApp
             {
                 myHolder.mStatus.Text = "Offline";
             }
-               
 
-                myHolder.mText.Text = mUsers[position].AboutMe;
+
+            myHolder.mText.Text = "Age " + mUsers[position].Age;
 
 
             if (userImage == null)

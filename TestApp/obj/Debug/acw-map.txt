@@ -66,10 +66,6 @@ TestApp.StartRouteService, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartRout
 TestApp.StartRouteService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 TestApp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 testapp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
-TestApp.StartSimpleService, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-TestApp.StartSimpleService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-TestApp.StartSimpleService;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-testapp.StartSimpleService;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
 TestApp.GetInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.GetInfo
 TestApp.GetInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GetInfo
 TestApp.GetInfo;md5cf27010e14af20e69784a5a54418b85f.GetInfo
