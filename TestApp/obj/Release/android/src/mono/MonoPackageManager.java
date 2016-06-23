@@ -115,12 +115,12 @@ class MonoPackageManager_Resources {
 		"Xamarin.Android.Support.v7.AppCompat.dll",
 		"Xamarin.Android.Support.v7.CardView.dll",
 		"Xamarin.Android.Support.v7.RecyclerView.dll",
+		"Xamarin.Auth.Android.dll",
 		"Xamarin.GooglePlayServices.Ads.dll",
 		"Xamarin.GooglePlayServices.Base.dll",
 		"Xamarin.GooglePlayServices.Basement.dll",
 		"Xamarin.GooglePlayServices.Maps.dll",
 		"Java.Interop.dll",
-		"Xamarin.Auth.Android.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

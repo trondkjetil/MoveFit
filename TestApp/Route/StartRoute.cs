@@ -384,32 +384,32 @@ namespace TestApp
 
 
 
-        public override void OnBackPressed()
-        {
+        //public override void OnBackPressed()
+        //{
 
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        //    AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-            alert.SetTitle("Exit route creation");
-            alert.SetMessage("Do you want to abort the current route creation?");
-            alert.SetPositiveButton("Yes", (senderAlert, args) =>
-            {
+        //    alert.SetTitle("Exit route creation");
+        //    alert.SetMessage("Do you want to abort the current route creation?");
+        //    alert.SetPositiveButton("Yes", (senderAlert, args) =>
+        //    {
 
-                base.OnBackPressed();
-            });
+        //        base.OnBackPressed();
+        //    });
 
-            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
-            {
-
-
-            });
-            //run the alert in UI thread to display in the screen
-            RunOnUiThread(() =>
-            {
-                alert.Show();
-            });
+        //    alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+        //    {
 
 
-        }
+        //    });
+        //    //run the alert in UI thread to display in the screen
+        //    RunOnUiThread(() =>
+        //    {
+        //        alert.Show();
+        //    });
+
+
+        //}
 
 
         public void drawRoute()

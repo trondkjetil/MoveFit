@@ -17,7 +17,7 @@ using Android.OS;
 
 namespace TestApp
 {
-    public class Azure
+    public class Azure //, IMobileServiceLocalStore
     {
 
         const string applicationURL = @"https://movefitt.azurewebsites.net";
@@ -678,7 +678,51 @@ namespace TestApp
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+        // Local stuff
+
+
+        //public Task InitializeAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task<global::Newtonsoft.Json.Linq.JToken> ReadAsync(MobileServiceTableQueryDescription query)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task UpsertAsync(string tableName, IEnumerable<global::Newtonsoft.Json.Linq.JObject> items, bool ignoreMissingColumns)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task DeleteAsync(MobileServiceTableQueryDescription query)
+        //{
+
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task DeleteAsync(string tableName, IEnumerable<string> ids)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task<global::Newtonsoft.Json.Linq.JObject> LookupAsync(string tableName, string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
     }
 }

@@ -36,12 +36,13 @@ namespace TestApp
 		MarkerOptions markerOpt1;
 		LatLng currentPos;
 		Button findPeople;
+        MapFragment mapFrag;
 
-		//Azure azure;
-		//public MobileServiceClient client;
-		//public IMobileServiceSyncTable<User> userTable;
+        //Azure azure;
+        //public MobileServiceClient client;
+        //public IMobileServiceSyncTable<User> userTable;
 
-       public List<User> users;
+        public List<User> users;
 
 
         protected override void OnCreate (Bundle savedInstanceState) {
@@ -49,9 +50,13 @@ namespace TestApp
 			RequestWindowFeature(WindowFeatures.NoTitle);
 			SetContentView (Resource.Layout.mapPeople);
 
-			SetUpMapIfNeeded ();	
+            //	SetUpMapIfNeeded ();	
 
-			InitializeLocationManager ();
+             mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+             mMap = mapFrag.Map;
+
+
+            InitializeLocationManager();
 
 			mMap.SetOnMarkerClickListener (this);
 			mMap.SetOnInfoWindowClickListener (this);
@@ -59,8 +64,7 @@ namespace TestApp
             //mMap.SetInfoWindowAdapter (new CustomInfoWindowAdapter (this));
 
 
-         //.Result;
-
+      
          
                 RunOnUiThread(async() =>
                 {
@@ -82,10 +86,20 @@ namespace TestApp
 
 
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Finish();
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Finish();
+        }
 
 
-
-		public void setMarker(LatLng myPosition, Bitmap pic){
+        public void setMarker(LatLng myPosition, Bitmap pic){
 			if (markerOpt1 != null)
 				markerOpt1.Dispose ();
 			
@@ -141,10 +155,15 @@ namespace TestApp
 		protected override void OnResume() 
 		{
 			base.OnResume ();
-			SetUpMapIfNeeded ();
+            if(mMap == null)
+            {
+                mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+                mMap = mapFrag.Map;
+            }
+    
 
-			//gps
-			locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+            //gps
+            locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
 		}
 
 		protected override void OnPause()
@@ -155,27 +174,27 @@ namespace TestApp
 			
 	
 
-		private void SetUpMapIfNeeded() 
-		{
-			// Do a null check to confirm that we have not already instantiated the map.
-			if (mMap == null) {
-				// Try to obtain the map from the SupportMapFragment.
-				mMap = (SupportFragmentManager.FindFragmentById (Resource.Id.map) as SupportMapFragment).Map;
-				if (mMap != null)
-				{
-					//mMap.InfoWindowClick += MapOnMarkerClick;
+		//private void SetUpMapIfNeeded() 
+		//{
+		//	// Do a null check to confirm that we have not already instantiated the map.
+		//	if (mMap == null) {
+		//		// Try to obtain the map from the SupportMapFragment.
+		//		mMap = (SupportFragmentManager.FindFragmentById (Resource.Id.map) as SupportMapFragment).Map;
+		//		if (mMap != null)
+		//		{
+		//			//mMap.InfoWindowClick += MapOnMarkerClick;
 
-				}
+		//		}
 					
-				//mMap = MapFragment.NewInstance;
+		//		//mMap = MapFragment.NewInstance;
 
-				//mMap = ((SupportMapFragment) SupportFragmentManager.FindFragmentById (Resource.Id.map)).Map;
-				// Check if we were successful in obtaining the map.
-				if (mMap != null) {
-					SetUpMap ();
-				}
-			}
-		}
+		//		//mMap = ((SupportMapFragment) SupportFragmentManager.FindFragmentById (Resource.Id.map)).Map;
+		//		// Check if we were successful in obtaining the map.
+		//		if (mMap != null) {
+		//			SetUpMap ();
+		//		}
+		//	}
+		//}
 
 		/**
      * This is where we can add markers or lines, add listeners or move the camera. In this case, we
@@ -317,14 +336,14 @@ namespace TestApp
 
 
 
-		public void OnMapReady (GoogleMap googleMap)
-		{
-			
-		}
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            mMap = googleMap;
+        }
 
 
 
-		}
+    }
 
 
 

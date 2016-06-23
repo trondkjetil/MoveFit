@@ -145,17 +145,15 @@
     <Compile Include="Azure\Locations.cs" />
     <Compile Include="Azure\Review.cs" />
     <Compile Include="Azure\Route.cs" />
-    <Compile Include="Azure\ToDo\ToDoActivity.cs" />
-    <Compile Include="Azure\ToDo\ToDoItem.cs" />
-    <Compile Include="Azure\ToDo\ToDoItemAdapter.cs" />
     <Compile Include="Azure\UserFriends.cs" />
-    <Compile Include="DialogUserInfo.cs" />
+    <Compile Include="ConnectionManagement.cs" />
+    <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Points\MyPoints.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Health\ActivityLevelTracker.cs" />
-    <Compile Include="Route\DialogEndRouteRate .cs" />
+    <Compile Include="Dialogs\DialogEndRouteRate .cs" />
     <Compile Include="Route\RouteOverview.cs" />
     <Compile Include="Route\StartRoute.cs" />
     <Compile Include="Route\CreateRoute.cs" />
@@ -170,6 +168,7 @@
     <Compile Include="SignalR\CustomUserIdProvider .cs" />
     <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\Chat.cs" />
+    <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="UI\ScoreBoardActivity.cs" />
     <Compile Include="UI\ScoreBoardAnimation.cs" />
     <Compile Include="UI\ScoreBoardExtMethods.cs" />
@@ -179,12 +178,12 @@
     <Compile Include="UI\SlidingTabScrollView.cs" />
     <Compile Include="UI\SlidingTabsFragment.cs" />
     <Compile Include="UI\SlidingTabStrip.cs" />
-    <Compile Include="UI\UsersMyRoutes.cs" />
-    <Compile Include="UI\UsersFriendRequest.cs" />
-    <Compile Include="UI\UsersRoutes.cs" />
-    <Compile Include="UI\UsersFriends.cs" />
-    <Compile Include="UI\UsersNearby.cs" />
-    <Compile Include="Route\DialogStartRoute.cs" />
+    <Compile Include="Social\UsersMyRoutes.cs" />
+    <Compile Include="Social\UsersFriendRequest.cs" />
+    <Compile Include="Social\UsersRoutes.cs" />
+    <Compile Include="Social\UsersFriends.cs" />
+    <Compile Include="Social\UsersNearby.cs" />
+    <Compile Include="Dialogs\DialogStartRoute.cs" />
     <Compile Include="Login\AuthActivity.cs" />
     <Compile Include="Login\LoginActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
@@ -283,6 +282,7 @@
     <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
     <AndroidResource Include="Resources\layout\UsersFriendRequest.axml" />
     <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />
+    <AndroidResource Include="Resources\layout\friendsOverview.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -398,6 +398,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\redoffline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\newAlarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\social.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

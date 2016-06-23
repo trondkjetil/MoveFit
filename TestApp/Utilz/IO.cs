@@ -4,6 +4,9 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Net;
 using Android.Widget;
+using Android.Net;
+using System.Threading.Tasks;
+using Android.App;
 
 namespace TestApp
 {
@@ -14,10 +17,17 @@ namespace TestApp
 
 		public IOUtilz ()
 		{
-		}
+                   }
+        public static bool isOnline(ConnectivityManager mng)
+        {
 
+            NetworkInfo activeConnection = mng.ActiveNetworkInfo;
+            bool isOnline = (activeConnection != null) && activeConnection.IsConnected;
 
-		/*
+            return isOnline;
+        }
+
+        /*
 		 * 
 		 * 
 		 * This code enumerates the subdirectories in the current directory (specified by the "./" parameter), which is the location of your application executable. 
@@ -25,88 +35,91 @@ namespace TestApp
 		*/
 
 
-		//public static Bitmap deCodeByte(byte[] image)
-		//{
+        //public static Bitmap deCodeByte(byte[] image)
+        //{
 
-		//	Bitmap bit = BitmapFactory.DecodeByteArray (image, 0, image.Length);
+        //	Bitmap bit = BitmapFactory.DecodeByteArray (image, 0, image.Length);
 
-		//	return bit;
-		//}
+        //	return bit;
+        //}
 
-		//public static byte[] codeByte(Bitmap bitmap){
-		//		byte[] bitmapData = null;
-		//	using (var stream = new MemoryStream())
-		//	{
-		//	bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+        //public static byte[] codeByte(Bitmap bitmap){
+        //		byte[] bitmapData = null;
+        //	using (var stream = new MemoryStream())
+        //	{
+        //	bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
 
-		//	}
+        //	}
 
-		//	return bitmapData;
-		//}
-
-
-		//public static void listDir ()
-		//{
-		//var directories = Directory.EnumerateDirectories("./");
-		//foreach (var directory in directories) {
-		//	Console.WriteLine(directory);
-		//}
-		//}
+        //	return bitmapData;
+        //}
 
 
-
-		//void readFile(){
-		//	var text = File.ReadAllText("TestData/ReadMe.txt");
-		//	Console.WriteLine(text);
-		//}
-
-		////xml serialization
-
-		//void serializeXml(){
-
-		//	using (TextReader reader = new StreamReader("./TestData/test.xml")) {
-		//	//	XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
-		//		//var xml = (MyObject)serializer.Deserialize(reader);
-		//	}
-
-		//}
+        //public static void listDir ()
+        //{
+        //var directories = Directory.EnumerateDirectories("./");
+        //foreach (var directory in directories) {
+        //	Console.WriteLine(directory);
+        //}
+        //}
 
 
 
-		//void creatingFilesAndDir(){
+        //void readFile(){
+        //	var text = File.ReadAllText("TestData/ReadMe.txt");
+        //	Console.WriteLine(text);
+        //}
 
-		//	var documents =
-		//		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments); 
-		//	var filename = System.IO.Path.Combine (documents, "Write.txt");
-		//	File.WriteAllText(filename, "Write this text into a file");
+        ////xml serialization
 
-		//	 documents =
-		//		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-		//	var directoryname = System.IO.Path.Combine (documents, "NewDirectory");
-		//	Directory.CreateDirectory(directoryname);
+        //void serializeXml(){
 
-		//}
+        //	using (TextReader reader = new StreamReader("./TestData/test.xml")) {
+        //	//	XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
+        //		//var xml = (MyObject)serializer.Deserialize(reader);
+        //	}
+
+        //}
 
 
+
+        //void creatingFilesAndDir(){
+
+        //	var documents =
+        //		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments); 
+        //	var filename = System.IO.Path.Combine (documents, "Write.txt");
+        //	File.WriteAllText(filename, "Write this text into a file");
+
+        //	 documents =
+        //		Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+        //	var directoryname = System.IO.Path.Combine (documents, "NewDirectory");
+        //	Directory.CreateDirectory(directoryname);
+
+        //}
 
 
 
 
 
 
-		//public static void SaveFile(string directory, Bitmap bitmap)
-		//{
-		//	var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
-		//	var filePath = System.IO.Path.Combine (sdCardPath, "MyFile");
-		//	string fileName = directory;
 
-		//	using (var os = new FileStream(filePath, FileMode.CreateNew))
-		//	{
-		//		bitmap.Compress(Bitmap.CompressFormat.Jpeg, 95, os);
-		//	}
-		//}
-	
-		public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+
+        //public static void SaveFile(string directory, Bitmap bitmap)
+        //{
+        //	var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
+        //	var filePath = System.IO.Path.Combine (sdCardPath, "MyFile");
+        //	string fileName = directory;
+
+        //	using (var os = new FileStream(filePath, FileMode.CreateNew))
+        //	{
+        //		bitmap.Compress(Bitmap.CompressFormat.Jpeg, 95, os);
+        //	}
+        //}
+
+      
+    
+
+        public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
 			bool filter) {
 
 			float ratio = Math.Min((float) maxImageSize / realImage.GetBitmapInfo ().Width,(float) maxImageSize / realImage.GetBitmapInfo ().Height);

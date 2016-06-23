@@ -59,6 +59,7 @@ namespace TestApp
 
                 Finish();
             }
+           
 
             mAdapter = new UsersAdapter(userList, mRecyclerView, this,act);
             mRecyclerView.SetAdapter(mAdapter);

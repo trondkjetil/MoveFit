@@ -3,9 +3,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:myapp="http://schemas.android.com/apk/res-auto">
 
-	<item android:id="@+id/action_refresh"
-		android:icon="@drawable/ic_action_refresh"
-		android:title="Refresh"
+	<item android:id="@+id/statusOnline"
+		android:icon="@drawable/greenonline"
+		android:title="Status"
 		myapp:showAsAction="always" />
 
 	<item android:id="@+id/action_help"
@@ -14,7 +14,7 @@
 		myapp:showAsAction="always"/>
 
   <item android:id="@+id/action_alarm"
-		android:icon="@drawable/ic_alarm"
+		android:icon="@drawable/newAlarm"
 		android:title="Alarm"
 		myapp:showAsAction="always"/>
 

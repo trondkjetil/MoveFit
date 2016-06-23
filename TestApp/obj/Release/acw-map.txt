@@ -14,6 +14,10 @@ TestApp.UserFriendsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserFrie
 TestApp.UserFriendsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 TestApp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 testapp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
+TestApp.DialogUserInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+TestApp.DialogUserInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+TestApp.DialogUserInfo;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
+testapp.DialogUserInfo;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
 TestApp.Calculator, TestApp;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
@@ -62,10 +66,6 @@ TestApp.StartRouteService, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartRout
 TestApp.StartRouteService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 TestApp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 testapp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
-TestApp.StartSimpleService, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-TestApp.StartSimpleService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-TestApp.StartSimpleService;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
-testapp.StartSimpleService;md5cf27010e14af20e69784a5a54418b85f.StartSimpleService
 TestApp.GetInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.GetInfo
 TestApp.GetInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GetInfo
 TestApp.GetInfo;md5cf27010e14af20e69784a5a54418b85f.GetInfo
@@ -74,6 +74,10 @@ TestApp.Chat, TestApp;md5cf27010e14af20e69784a5a54418b85f.Chat
 TestApp.Chat, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Chat
 TestApp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
 testapp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
+TestApp.FriendsOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
+TestApp.FriendsOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
+TestApp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
+testapp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.ScoreBoardActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
 TestApp.ScoreBoardActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
 TestApp.ScoreBoardActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
@@ -118,6 +122,18 @@ TestApp.MyRoutesAdapter/MyView, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyRo
 TestApp.MyRoutesAdapter+MyView, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
 TestApp.MyRoutesAdapter.MyView;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
 testapp.MyRoutesAdapter_MyView;md5cf27010e14af20e69784a5a54418b85f.MyRoutesAdapter_MyView
+TestApp.UserFriendRequest, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest
+TestApp.UserFriendRequest, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest
+TestApp.UserFriendRequest;md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest
+testapp.UserFriendRequest;md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest
+TestApp.UsersFriendRequestAdapter, TestApp;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter
+TestApp.UsersFriendRequestAdapter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter
+TestApp.UsersFriendRequestAdapter;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter
+testapp.UsersFriendRequestAdapter;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter
+TestApp.UsersFriendRequestAdapter/MyView, TestApp;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter_MyView
+TestApp.UsersFriendRequestAdapter+MyView, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter_MyView
+TestApp.UsersFriendRequestAdapter.MyView;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter_MyView
+testapp.UsersFriendRequestAdapter_MyView;md5cf27010e14af20e69784a5a54418b85f.UsersFriendRequestAdapter_MyView
 TestApp.UsersRoutes, TestApp;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes
 TestApp.UsersRoutes, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes
 TestApp.UsersRoutes;md5cf27010e14af20e69784a5a54418b85f.UsersRoutes
@@ -262,6 +278,18 @@ Android.Support.V7.Widget.RecyclerView/IRecyclerListenerImplementor, Xamarin.And
 Android.Support.V7.Widget.RecyclerView+IRecyclerListenerImplementor, Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
 Android.Support.V7.Widget.RecyclerView.IRecyclerListenerImplementor;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
 mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
+Xamarin.Auth.WebAuthenticatorActivity, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
+Xamarin.Auth.WebAuthenticatorActivity, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
+Xamarin.Auth.WebAuthenticatorActivity;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
+xamarin.auth.WebAuthenticatorActivity;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
+Xamarin.Auth.WebAuthenticatorActivity/State, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
+Xamarin.Auth.WebAuthenticatorActivity+State, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
+Xamarin.Auth.WebAuthenticatorActivity.State;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
+xamarin.auth.WebAuthenticatorActivity_State;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
+Xamarin.Auth.WebAuthenticatorActivity/Client, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
+Xamarin.Auth.WebAuthenticatorActivity+Client, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
+Xamarin.Auth.WebAuthenticatorActivity.Client;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
+xamarin.auth.WebAuthenticatorActivity_Client;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
 Android.Gms.Maps.GoogleMap/IOnCameraChangeListenerImplementor, Xamarin.GooglePlayServices.Maps;mono.com.google.android.gms.maps.GoogleMap_OnCameraChangeListenerImplementor
 Android.Gms.Maps.GoogleMap+IOnCameraChangeListenerImplementor, Xamarin.GooglePlayServices.Maps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.com.google.android.gms.maps.GoogleMap_OnCameraChangeListenerImplementor
 Android.Gms.Maps.GoogleMap.IOnCameraChangeListenerImplementor;mono.com.google.android.gms.maps.GoogleMap_OnCameraChangeListenerImplementor
@@ -318,15 +346,3 @@ Android.Gms.Maps.GoogleMap/IOnPolylineClickListenerImplementor, Xamarin.GooglePl
 Android.Gms.Maps.GoogleMap+IOnPolylineClickListenerImplementor, Xamarin.GooglePlayServices.Maps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.com.google.android.gms.maps.GoogleMap_OnPolylineClickListenerImplementor
 Android.Gms.Maps.GoogleMap.IOnPolylineClickListenerImplementor;mono.com.google.android.gms.maps.GoogleMap_OnPolylineClickListenerImplementor
 mono.com.google.android.gms.maps.GoogleMap_OnPolylineClickListenerImplementor;mono.com.google.android.gms.maps.GoogleMap_OnPolylineClickListenerImplementor
-Xamarin.Auth.WebAuthenticatorActivity, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
-Xamarin.Auth.WebAuthenticatorActivity, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
-Xamarin.Auth.WebAuthenticatorActivity;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
-xamarin.auth.WebAuthenticatorActivity;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity
-Xamarin.Auth.WebAuthenticatorActivity/State, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
-Xamarin.Auth.WebAuthenticatorActivity+State, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
-Xamarin.Auth.WebAuthenticatorActivity.State;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
-xamarin.auth.WebAuthenticatorActivity_State;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_State
-Xamarin.Auth.WebAuthenticatorActivity/Client, Xamarin.Auth.Android;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
-Xamarin.Auth.WebAuthenticatorActivity+Client, Xamarin.Auth.Android, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
-Xamarin.Auth.WebAuthenticatorActivity.Client;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client
-xamarin.auth.WebAuthenticatorActivity_Client;md550f8a10a740eb4fb6376baab8337ce22.WebAuthenticatorActivity_Client

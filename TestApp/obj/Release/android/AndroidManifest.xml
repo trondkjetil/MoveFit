@@ -14,6 +14,7 @@
   <!-- Permission to receive remote notifications from Google Play Services -->
   <!-- Notice here that we have the package name of our application as a prefix on the permissions. -->
   <!-- These are optional, but recommended. They will allow Maps to use the My Location provider. -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -22,7 +23,7 @@
   <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
   <uses-permission android:name="android.permission.LOCATION_HARDWARE" />
-  <application android:label="TestApp" android:icon="@drawable/icon" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+  <application android:label="TestApp" android:icon="@drawable/icon" android:debuggable="false" android:name="android.app.Application" android:allowBackup="true">
     <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="975161479232108" />
@@ -37,14 +38,15 @@
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRouteService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.StartRouteService" />
-    <activity android:label="SimpleService" android:name="md5cf27010e14af20e69784a5a54418b85f.StartSimpleService" />
-    <activity android:label="SignalR_Client" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
+    <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
+    <activity android:label="FriendsOverview" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity" />
     <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
     <activity android:label="MyRoutes" android:name="md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes" />
-    <activity android:label="Routes all" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
+    <activity android:label="Friend Requests" android:name="md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest" />
+    <activity android:label="Routes nearby" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersRoutes" />
     <activity android:label="Friends" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
-    <activity android:label="Around Me" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />
+    <activity android:label="People Nearby" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersNearby" />
     <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
     <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
       <intent-filter>

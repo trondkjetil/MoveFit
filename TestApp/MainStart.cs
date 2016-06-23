@@ -5,6 +5,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.Locations;
+using Android.Net;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
@@ -26,7 +27,7 @@ namespace TestApp
 
 
     [Activity(Label = "MainMenu", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainStart : ActionBarActivity, ILocationListener, IMobileServiceLocalStore
+    public class MainStart : ActionBarActivity, ILocationListener 
     {
         public readonly string logTag = "MainActivity";
         SupportToolbar mToolbar;
@@ -43,7 +44,7 @@ namespace TestApp
         public static string facebookUserId;
         public static string userId;
         public ImageView profilePicture;
-        public Bitmap profilePic;
+        public static Bitmap profilePic;
         public string profilePictureUrl;
 
         TextView latText;
@@ -73,6 +74,13 @@ namespace TestApp
         TextView points;
         public static Activity mainActivity;
         User waitingUpload;
+
+
+        public static bool isOnline;
+
+        public static ConnectivityManager connectivityManager;
+
+        public static IMenuItem menItem;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -83,8 +91,9 @@ namespace TestApp
             user = null;
             chk = false;
 
+            isOnline = false;
 
-
+            connectivityManager =  (ConnectivityManager)GetSystemService(ConnectivityService);
 
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -116,33 +125,27 @@ namespace TestApp
 
 
 
-
-            //numberOfRoute.Text = "Secret";
-
-            //loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
-
-
-
-
-
-
-
-
             mLeftDrawer.Tag = 0;
             //mRightDrawer.Tag = 1;
             mRightDrawer.Tag = 1;
             SetSupportActionBar(mToolbar);
 
             mLeftDataSet = new List<string>();
+            mLeftDataSet.Add("bump");
+            mLeftDataSet.Add("bump");
+            mLeftDataSet.Add("bump");
+            mLeftDataSet.Add("bump");
+            mLeftDataSet.Add("bump");
+
 
             mLeftDataSet.Add("Score board");
             mLeftDataSet.Add("Calculator");
             mLeftDataSet.Add("Messages");
-           
             mLeftDataSet.Add("Routes");
-            mLeftDataSet.Add("People nearby");
-            mLeftDataSet.Add("Friend Requests");
-            mLeftDataSet.Add("Friends");
+            mLeftDataSet.Add("Social");
+            //mLeftDataSet.Add("People nearby");
+            //mLeftDataSet.Add("Friend Requests");
+            //mLeftDataSet.Add("Friends");
 
 
 
@@ -173,19 +176,47 @@ namespace TestApp
                 }
                 else if (e.Position == 4)
                 {
-                    myIntent = new Intent(this, typeof(UsersNearby));
+                    myIntent = new Intent(this, typeof(FriendsOverview));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 5)
+
+
+
+                if (e.Position == 5)
                 {
-                    myIntent = new Intent(this, typeof(UserFriendRequest));
+                    myIntent = new Intent(this, typeof(ScoreBoardActivity));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
                 {
-                    myIntent = new Intent(this, typeof( UsersFriends));
+                    myIntent = new Intent(this, typeof(Calculator));
                     StartActivity(myIntent);
                 }
+                else if (e.Position == 7)
+                {
+                    myIntent = new Intent(this, typeof(Chat));
+                    StartActivity(myIntent);
+                }
+                else if (e.Position == 8)
+                {
+                    myIntent = new Intent(this, typeof(RouteOverview));
+                    StartActivity(myIntent);
+                }
+                else if (e.Position == 9)
+                {
+                    myIntent = new Intent(this, typeof(FriendsOverview));
+                    StartActivity(myIntent);
+                }
+                //else if (e.Position == 5)
+                //{
+                //    myIntent = new Intent(this, typeof(UserFriendRequest));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 6)
+                //{
+                //    myIntent = new Intent(this, typeof( UsersFriends));
+                //    StartActivity(myIntent);
+                //}
 
 
             };
@@ -246,33 +277,28 @@ namespace TestApp
                     waitingUpload = user.FirstOrDefault();
                     var setOnline = await Azure.SetUserOnline(userName, true);
                     setPoints();
+                    isOnline = true;
                 }
                   
-
-
-              
+ 
 
             }
             catch (Exception e)
             {
-                throw e;
+              
             }
 
 
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
 
-            points.Text = "Score: Zero";
+            points.Text = "Score: 0";
 
-            // if(waitingUpload != null)
-            //{
-            //    setPoints();
-            //}
-            //else
-            //    points.Text = "Score: Zero";
-
+        
+           
 
         }
+       
 
         public async void setPoints()
         {
@@ -344,10 +370,24 @@ namespace TestApp
                     mDrawerToggle.OnOptionsItemSelected(item);
                     return true;
 
-                case Resource.Id.action_refresh:
-                    Toast.MakeText(this, "Refreshing...", ToastLength.Short).Show();
-                    //this.Recreate();
+                case Resource.Id.statusOnline:
+                  
+                    if (isOnline)
+                    {
+                        item.SetIcon(Resource.Drawable.greenonline);
+                        isOnline = true;
+                        Toast.MakeText(this, "Showing as Online", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        item.SetIcon(Resource.Drawable.redoffline);
+                        isOnline = false;
+                        Toast.MakeText(this, "Showing as Offline", ToastLength.Short).Show();
+                    }
+
+                   
                     return true;
+     
 
                 case Resource.Id.action_help:
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
@@ -407,7 +447,10 @@ namespace TestApp
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+          
+
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
+            menItem = menu.FindItem(Resource.Id.statusOnline);
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -466,20 +509,24 @@ namespace TestApp
 
         protected async override void OnDestroy()
         {
-            var a = await Azure.SetUserOnline(userName, false);
+
+           await logOff();
+            //var a = await Azure.SetUserOnline(userName, false);
             Log.Debug(logTag, "Location app is becoming inactive");
             base.OnDestroy();
             
-            var b = await Azure.SetUserOnline(userName, false);
-          //  logOff();
+           // var b = await Azure.SetUserOnline(userName, false);
+           await logOff();
 
             Finish();
 
         }
         
-        public async void logOff()
+        public async Task<List<User>> logOff()
         {
-            user = await Azure.SetUserOnline(userName, false);
+           var user = await Azure.SetUserOnline(userName, false);
+
+            return user;
         }
 
         /// Updates UI with location data
@@ -488,8 +535,7 @@ namespace TestApp
             Location location = e.Location;
             currentLocation = location;
 
-            // these events are on a background thread, need to update on the UI thread
-
+      
 
             OnLocationChanged(location);
 
@@ -550,9 +596,39 @@ namespace TestApp
 
             else
             {
-                _address.Text = "Unable to determine the address. Try again in a few minutes.";
+                _address.Text = "Unable to determine the address";
             }
         }
+
+
+
+        public static void setMarker(LatLng myPosition, GoogleMap mMap)
+        {
+
+            MarkerOptions markerOpt1;
+
+            try
+            {
+
+                mMap.Clear();
+                markerOpt1 = new MarkerOptions();
+                markerOpt1.SetPosition(myPosition);
+                markerOpt1.SetTitle("My Position");
+                markerOpt1.SetSnippet("My Position");
+                BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); //(Resource.Drawable.test);
+                markerOpt1.SetIcon(image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+                mMap.AddMarker(markerOpt1);
+                //  mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPosition, 15));
+            }
+            catch (Exception es)
+            {
+
+
+            }
+        }
+
+
+
         public async void OnLocationChanged(Location location)
         {
             currentLocation = location;
@@ -563,21 +639,49 @@ namespace TestApp
             else
             {
 
-                mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
-                //_address.Text = string.Format("{0:f6},{1:f6}", currentLocation.Latitude, currentLocation.Longitude);
-
-                Address address = await ReverseGeocodeCurrentLocation();
-                if (oldAddress != address)
+                try
                 {
-                    oldAddress = address;
-                    DisplayAddress(address);
+
+                    if(IOUtilz.isOnline(connectivityManager))
+                    {
+
+                        //Toast.MakeText(this, "User is online", ToastLength.Long).Show();
+
+                        Address address = await ReverseGeocodeCurrentLocation();
+                        if (oldAddress != address)
+                        {
+                            oldAddress = address;
+                            DisplayAddress(address);
+
+                        }
+
+
+                    }
+
+
+                   var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
+
+                    setMarker(currentPos,mMap);
+
+                    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
+
+
+
+
 
                 }
+                catch (Exception)
+                {
 
-                //    currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
-                //setMarker(currentPos);
+                    
+                }
+               
+
+
+
+
 
 
             }
@@ -595,45 +699,13 @@ namespace TestApp
 
         }
 
-        public Task InitializeAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<global::Newtonsoft.Json.Linq.JToken> ReadAsync(MobileServiceTableQueryDescription query)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpsertAsync(string tableName, IEnumerable<global::Newtonsoft.Json.Linq.JObject> items, bool ignoreMissingColumns)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(MobileServiceTableQueryDescription query)
-        {
-
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(string tableName, IEnumerable<string> ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<global::Newtonsoft.Json.Linq.JObject> LookupAsync(string tableName, string id)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
+       
         public class ContactsAdapter : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
         {
             List<Contact> _contactList;
             public Activity _activity;
 
-
+        
             //public static GoogleMap mMap;
             public static List<User> nearbyUsers;
             public static ImageButton findMoreFriends;
@@ -724,6 +796,8 @@ namespace TestApp
                         _activity.StartService(new Intent(_activity, typeof(LocationService)));
 
                         var a = Azure.SetUserOnline(userName, true);
+                        isOnline = true;
+                        menItem.SetIcon(Resource.Drawable.greenonline);
                         Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
                         alertMessage.SetTitle("User location tracking");
                         alertMessage.SetMessage("Your location tracking has been turned on");
@@ -736,7 +810,8 @@ namespace TestApp
                         _activity.StopService(new Intent(_activity, typeof(LocationService)));
 
                         var b = Azure.SetUserOnline(userName, false);
-
+                        isOnline = false;
+                        menItem.SetIcon(Resource.Drawable.redoffline);
                         Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
                         alertMessage.SetTitle("User location tracking");
                         alertMessage.SetMessage("Your location tracking has been turned off");
@@ -770,31 +845,7 @@ namespace TestApp
                 return view;
             }
 
-            public static void setMarker(LatLng myPosition, Bitmap pic, GoogleMap mMap)
-            {
-
-                MarkerOptions markerOpt1;
-
-                try
-                {
-                    //if (markerOpt1 != null)
-                    //    markerOpt1.Dispose();
-
-                    markerOpt1 = new MarkerOptions();
-                    markerOpt1.SetPosition(myPosition);
-                    markerOpt1.SetTitle("My Position");
-                    markerOpt1.SetSnippet("test");
-                    BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
-                    markerOpt1.SetIcon(image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
-                    mMap.AddMarker(markerOpt1);
-                    //  mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPosition, 15));
-                }
-                catch (Exception es)
-                {
-
-
-                }
-            }
+        
             public async static void markOnMap(List<User> users, GoogleMap mMap)
             {
 
@@ -804,7 +855,7 @@ namespace TestApp
                     nearbyUsers = await Azure.getImagesOnMap();
                     foreach (User x in nearbyUsers)
                     {
-                        setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
+                       // setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
 
                     }
 

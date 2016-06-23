@@ -14,6 +14,10 @@ namespace TestApp
         
         public static string valueReturned;
         public static string givenDifficulty;
+
+        private bool oneCheck;
+        private bool twoCheck;
+     
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 			base.OnCreateView (inflater, container, savedInstanceState);
@@ -38,9 +42,42 @@ namespace TestApp
 
 
             TextView routeDifficulty = view.FindViewById<TextView>(Resource.Id.difficultyPrompt);
-         
+
             //dismiss.Click += (sender, e) => Dismiss();
-			startRoute.Click += (sender, e) => Dismiss();
+            startRoute.Click += (sender, e) =>
+            {
+
+
+                if (routeName.Text != "")
+                    oneCheck = true;
+
+                if (givenDifficulty != "")
+                    twoCheck = true;
+
+
+                if (oneCheck && twoCheck)
+                {
+
+                    Dismiss();
+
+                }
+                else
+                {
+                    routeInfo.Text = "Innput data missing!";
+                    routeInfo.SetBackgroundColor(Android.Graphics.Color.Red);
+                        
+                        
+                        }
+                   
+
+
+            };
+
+
+    
+            
+            
+          
 
 
 			return view;

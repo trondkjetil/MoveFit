@@ -10,6 +10,7 @@ using Android.Animation;
 using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
+using Android.Net;
 
 namespace TestApp
 {
@@ -23,7 +24,7 @@ namespace TestApp
         List<Route> routeList;
 
        SwipeRefreshLayout mSwipeRefreshLayout;
-
+        public static ConnectivityManager connectivityManager;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -35,29 +36,48 @@ namespace TestApp
             //mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
             //mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
-
+            connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserMyRoutes);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
             UserID = "";
 
-
-            List<User> user = await Azure.getUserId(MainStart.userName);
-            UserID = user[0].Id;
-          
-            routeList = await Azure.getMyRoutes(UserID);
-            if (routeList.Count != 0)
+            try
             {
-                mAdapter = new MyRoutesAdapter(routeList, mRecyclerView, this);
-                mRecyclerView.SetAdapter(mAdapter);
+                List<User> user = await Azure.getUserId(MainStart.userName);
+                UserID = user[0].Id;
+
+                routeList = await Azure.getMyRoutes(UserID);
+                if (routeList.Count != 0)
+                {
+                    mAdapter = new MyRoutesAdapter(routeList, mRecyclerView, this);
+                    mRecyclerView.SetAdapter(mAdapter);
+                }
+                else
+                {
+                    Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
+
+                    Intent myInt = new Intent(this, typeof(RouteOverview));
+                    StartActivity(myInt);
+                }
+
+                if (IOUtilz.isOnline(connectivityManager))
+                {
+                    Toast.MakeText(this, "Please connect to the internet!", ToastLength.Long).Show();
+
+                    //Intent myInt = new Intent(this, typeof(MainStart));
+                    //StartActivity(myInt);
+
+                    Finish();
+                }
             }
-            else { 
-                Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
-                
-                Intent myInt = new Intent(this, typeof(RouteOverview));
-                StartActivity(myInt);
+            catch (Exception)
+            {
+
+               
             }
+         
 
         }
 
