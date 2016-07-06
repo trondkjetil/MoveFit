@@ -98,7 +98,8 @@ namespace TestApp
 
             CreateRoute.activity.RunOnUiThread(() =>
             {
-                Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
+
+           //     Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
 
             });
 

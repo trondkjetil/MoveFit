@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="45dp"
+    android:weightSum="100"
+    android:paddingLeft="5dp"
+    android:paddingTop="2dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/profileImage_score"
+        android:layout_weight="20"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/routeName"
+        android:text="Route Name"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:textColor="#333333" />
+    <TextView
+        android:id="@+id/review"
+        android:text="Review"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:textColor="#333333" />
+    <TextView
+        android:id="@+id/distance"
+        android:text="Distance"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:textColor="#333333" />
+    <TextView
+        android:id="@+id/routeType"
+        android:text="Route type"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:textColor="#333333" />
+</LinearLayout>

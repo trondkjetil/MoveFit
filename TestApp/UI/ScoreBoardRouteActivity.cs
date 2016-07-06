@@ -13,13 +13,13 @@ namespace TestApp
 	[Activity(Label = "Scoreboard Routes", Icon = "@drawable/tt")]
 	public class ScoreBoardRouteActivity : Activity
 	{
-		private List<User> mUsers;
+		private List<Route> mRoutes;
 		private ListView mListView;
 		private EditText mSearch;
 		private LinearLayout mContainer;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
-		private UserAdapterScoreboard mAdapter;
+		private RouteAdapterScoreboard mAdapter;
 
 		private TextView mTxtHeaderFirstName;
 		private TextView mTxtHeaderLastName;
@@ -38,10 +38,10 @@ namespace TestApp
 			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.scoreBoardMain);
+			SetContentView(Resource.Layout.scoreBoardRoutes);
 			mListView = FindViewById<ListView>(Resource.Id.listView);
-			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
-			mContainer = FindViewById<LinearLayout>(Resource.Id.llContainer);
+			mSearch = FindViewById<EditText>(Resource.Id.search);
+			mContainer = FindViewById<LinearLayout>(Resource.Id.container);
 
 			//mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
 			mTxtHeaderLastName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
@@ -57,59 +57,63 @@ namespace TestApp
 
 			mSearch.Alpha = 0;
 			mContainer.BringToFront();
-
 			mSearch.TextChanged += mSearch_TextChanged;
 
 
             try
             {
-                mUsers = new List<User>();
+                mRoutes = new List<Route>();
+                //mRoutes.Add(new Route { CreatedAt = "", Name = "Test", Id = "Test", Difficulty = "33", Distance = "Male", Trips = 10, Info = "test", Review = "5", RouteType = "Walking", Time = "10", User_id = "121" });
 
-                mUsers = await Azure.getPeople();
+                mRoutes = await Azure.getRoutes();
+
+                if (mRoutes.Count > 0)
+                {
+                    mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, mRoutes);
+                    mListView.Adapter = mAdapter;
+                }
+                else
+                {
+                    //Intent myIntent = new Intent(this, typeof(MainStart));
+                    //  StartActivity(myIntent);
+                    Toast.MakeText(this, "No Routes found!", ToastLength.Long).Show();
+                    Finish();
+                }
+
+
+             
+                
+                // mRoutes = await Azure.getPeople();
             }
             catch (Exception)
             {
 
               
             }
-		
 
 
-   //        mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "33", Gender = "Male", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "45", Gender = "Male", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "2020", Gender = "Unknown", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "21", Gender = "Female", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "22", Gender = "Male", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "81", Gender = "Female", Score = "10" });
-			//mFriends.Add(new Friend { FirstName = "Test", LastName = "Test", Age = "54", Gender = "Female", Score = "10" });
 
 
-            if(mUsers.Count > 0)
-            {
-                mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, mUsers);
-                mListView.Adapter = mAdapter;
-            }
-            else
-            {
-              Intent myIntent = new Intent(this, typeof(MainStart));
-                StartActivity(myIntent);
-            }
-              
+
+
+
 
         }
 
+
+        //Route names
 		void mTxtHeaderScore_Click (object sender, EventArgs e)
 		{
-			List<User> filteredFriends;
+			List<Route> filteredFriends;
 
 			if (!mScoreAscending)
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.Points
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 
 
@@ -117,30 +121,32 @@ namespace TestApp
 
 			else
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.UserName descending
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name descending
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 			}
 
 			mFirstNameAscending = !mFirstNameAscending;
 		}
 
-		void mTxtHeaderFirstName_Click(object sender, EventArgs e)
+
+        //Route names
+        void mTxtHeaderFirstName_Click(object sender, EventArgs e)
 		{
-			List<User> filteredFriends;
+			List<Route> filteredFriends;
 
 			if (!mFirstNameAscending)
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.UserName
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name
+                                   select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 
 
@@ -148,12 +154,12 @@ namespace TestApp
 
 			else
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.UserName descending
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name descending
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 			}
 
@@ -162,16 +168,16 @@ namespace TestApp
 
 		void mTxtHeaderLastName_Click(object sender, EventArgs e)
 		{
-			List<User> filteredFriends;
+			List<Route> filteredFriends;
 
 			if (!mLastNameAscending)
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.UserName
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name
+                                   select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 
 
@@ -179,30 +185,37 @@ namespace TestApp
 
 			else
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.UserName descending
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Name descending
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 			}
 
 			mLastNameAscending = !mLastNameAscending;
 		}
 
+
+
+
+
+
+
+        //Route reviews
 		void mTxtHeaderAge_Click(object sender, EventArgs e)
 		{
-			List<User> filteredFriends;
+			List<Route> filteredFriends;
 
 			if (!mAgeAscending)
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.Age.ToString()
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Review.ToString()
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 
 
@@ -210,30 +223,32 @@ namespace TestApp
 
 			else
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.Age descending
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Review descending
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 			}
 
 			mAgeAscending = !mAgeAscending;
 		}
 
+
+        // Route distance
 		void mTxtHeaderGender_Click(object sender, EventArgs e)
 		{
-			List<User> filteredFriends;
+			List<Route> filteredFriends;
 
 			if (!mGenderAscending)
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.Sex
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Distance
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 
 
@@ -241,12 +256,12 @@ namespace TestApp
 
 			else
 			{
-				filteredFriends = (from friend in mUsers
-					orderby friend.Sex descending
-					select friend).ToList<User>();
+				filteredFriends = (from friend in mRoutes
+					orderby friend.Distance descending
+					select friend).ToList<Route>();
 
 				//Refresh the listview
-				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+				mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, filteredFriends);
 				mListView.Adapter = mAdapter;
 			}
 
@@ -255,19 +270,19 @@ namespace TestApp
 
 		void mSearch_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
 		{
-			List<User> searchedFriends = (from friend in mUsers
-				where friend.UserName.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.UserName.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
-				|| friend.Age.ToString().Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.Sex.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
-				select friend).ToList<User>();
+			List<Route> searchedFriends = (from friend in mRoutes
+				where friend.Name.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.Name.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
+				|| friend.Review.ToString().Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.Distance.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
+				select friend).ToList<Route>();
 
 			//Refreshes the listview
-			mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, searchedFriends);
+			mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, searchedFriends);
 			mListView.Adapter = mAdapter;
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			MenuInflater.Inflate(Resource.Menu.actionbar, menu);
+			MenuInflater.Inflate(Resource.Menu.actionbarRouteScoreBoard, menu);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
@@ -276,7 +291,14 @@ namespace TestApp
 			switch (item.ItemId)
 			{
 
-			case Resource.Id.search:
+                case Resource.Id.switchFriends:
+                     Intent myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
+                      StartActivity(myIntent);
+                    Finish();
+                    return true;
+
+
+                case Resource.Id.search:
 				//Search icon has been clicked
 
 				mSearch.Visibility = ViewStates.Visible;

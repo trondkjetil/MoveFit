@@ -37,6 +37,7 @@ namespace TestApp
             //mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
             connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserMyRoutes);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
@@ -58,21 +59,25 @@ namespace TestApp
                 {
                     Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
-                    Intent myInt = new Intent(this, typeof(RouteOverview));
-                    StartActivity(myInt);
+                    //Intent myInt = new Intent(this, typeof(RouteOverview));
+                    //StartActivity(myInt);
+                    Finish();
                 }
 
 
                 // Changed to check in internet is available
-                if (IOUtilz.isOnline(connectivityManager))
-                {
-                    Toast.MakeText(this, "Please connect to the internet!", ToastLength.Long).Show();
+                
+                //if (IOUtilz.isOnline(connectivityManager))
+                //{
+                //    Toast.MakeText(this, "Please connect to the internet!", ToastLength.Long).Show();
 
-                    //Intent myInt = new Intent(this, typeof(MainStart));
-                    //StartActivity(myInt);
+                //    //Intent myInt = new Intent(this, typeof(MainStart));
+                //    //StartActivity(myInt);
 
-                    Finish();
-                }
+                //    Finish();
+                //}
+
+
             }
             catch (Exception)
             {
@@ -208,7 +213,7 @@ namespace TestApp
             myHolder.mMainView.Click += mMainView_Click;
             myHolder.mRouteName.Text = mMyRoutes[position].Name;
             //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
-            myHolder.mRouteInfo.Text = mMyRoutes[position].Distance;
+            myHolder.mRouteInfo.Text = "Distance " + mMyRoutes[position].Distance + " meters";
             myHolder.mStatus.Text = mMyRoutes[position].RouteType;
 
 

@@ -138,7 +138,9 @@ namespace TestApp
             //mMap.SetOnMyLocationChangeListener;
 
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerRouteTypes);
-            
+
+            spinner.SetSelection(0);
+
             spinner.ItemSelected += spinner_ItemSelected;
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -167,6 +169,7 @@ namespace TestApp
                     isPaused = true;
                     StopService(new Intent(this, typeof(CreateRouteService)));
                     routeStatus.Text = "Route creation paused";
+                    start.Text = "Resume";
                 }
                 else
                 {
@@ -189,7 +192,9 @@ namespace TestApp
 
                 if (CreateRouteService.serviceIsRunning == true)
                 {
-                   bool val = routeIsRunning();
+                    Toast.MakeText(this, "Already creating one!", ToastLength.Long).Show();
+
+                    bool val = routeIsRunning();
                     if (val)
                         return;
                 }
@@ -203,18 +208,15 @@ namespace TestApp
 
                     StartService(new Intent(this, typeof(CreateRouteService)));
                     routeStatus.Text = "Resuming creation";
+                    start.Text = "Create Route";
 
                 }
-
-
-
-
-       else {
-
-
-                if (points.Count > 0)
+                else
                 {
-                    points.Clear();
+                    if (points.Count > 0)
+                    {
+
+                        points.Clear();
                 }
 
                 routeStatus.Text = "Aquiring your position...";
@@ -223,11 +225,10 @@ namespace TestApp
 
                 if(loc != null)
                 {
-                    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                        mMap.Clear();
+                        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                     mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
-
-
-
+            
                         MarkerOptions markerMe = new MarkerOptions();
                         markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
                         markerMe.SetTitle("My position");
@@ -243,7 +244,7 @@ namespace TestApp
 
                 StartService(new Intent(this, typeof(CreateRouteService)));
 
-                mMap.Clear();
+                //mMap.Clear();
                 isReady = false;
                 Ischecked = false;
                 alreadyDone = false;
@@ -266,6 +267,7 @@ namespace TestApp
                     return;
 
                 }
+                 
 
                 points = CreateRouteService.getPoints();
 
@@ -484,6 +486,7 @@ namespace TestApp
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
+          
 
             if (e.Position == 0)
             {

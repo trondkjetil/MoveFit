@@ -20,8 +20,11 @@ namespace TestApp
     public class Azure //, IMobileServiceLocalStore
     {
 
-        const string applicationURL = @"https://movefitt.azurewebsites.net";
-        //  const string applicationKey = @"vaLLzAEGOZguaHOsXqTPkoRsqBYNGP34";
+      //  const string applicationURL = @"https://movefitt.azurewebsites.net";
+
+        const string applicationURL = @"https://moveit.azurewebsites.net";
+
+
         const string localDbFilename = "localstore1.db";
 
 
@@ -236,6 +239,7 @@ namespace TestApp
         {
 
             List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).ToListAsync();
+          //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return userList;
 
         }

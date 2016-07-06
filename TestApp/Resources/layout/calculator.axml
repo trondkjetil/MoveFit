@@ -69,11 +69,13 @@
         android:id="@+id/levelActivity" />
     <Spinner
         android:id="@+id/spinneren"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:layout_width="match_parent"
         android:prompt="@string/activity_prompt"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/background_dark"
         android:popupBackground="@android:color/holo_orange_light"
-        android:layout_width="100dp" />
+        android:layout_y="20dp"
+        android:background="@android:color/holo_green_light" />
     <Button
         android:text="Calculate"
         android:layout_width="match_parent"

@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace TestApp
 {
-	[Activity(Label = "Scoreboard", Icon = "@drawable/tt")]
+	[Activity(Label = "Scoreboard People", Icon = "@drawable/tt")]
 	public class ScoreBoardPersonActivity : Activity
 	{
 		private List<User> mUsers;
@@ -57,15 +57,26 @@ namespace TestApp
 
 			mSearch.Alpha = 0;
 			mContainer.BringToFront();
-
 			mSearch.TextChanged += mSearch_TextChanged;
 
 
             try
             {
                 mUsers = new List<User>();
-
                 mUsers = await Azure.getPeople();
+
+                if (mUsers.Count > 0)
+                {
+                    mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, mUsers);
+                    mListView.Adapter = mAdapter;
+                }
+                else
+                {
+                    //Intent myIntent = new Intent(this, typeof(RouteOverview));
+                    //StartActivity(myIntent);
+                    Toast.MakeText(this, "No People found!", ToastLength.Long).Show();
+                    Finish();
+                }
 
             }
             catch (Exception)
@@ -75,16 +86,7 @@ namespace TestApp
             }
 		
 
-            if (mUsers.Count > 0)
-            {
-                mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, mUsers);
-                mListView.Adapter = mAdapter;
-            }
-            else
-            {
-                Intent myIntent = new Intent(this, typeof(MainStart));
-                StartActivity(myIntent);
-            }
+           
         }
 
 		void mTxtHeaderScore_Click (object sender, EventArgs e)
@@ -265,7 +267,13 @@ namespace TestApp
 			switch (item.ItemId)
 			{
 
-			case Resource.Id.search:
+                case Resource.Id.switchRoutes:
+                    Intent myIntent = new Intent(this, typeof(ScoreBoardRouteActivity));
+                    StartActivity(myIntent);
+                    Finish();
+                    return true;
+
+                case Resource.Id.search:
 				//Search icon has been clicked
 
 				mSearch.Visibility = ViewStates.Visible;

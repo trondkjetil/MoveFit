@@ -158,15 +158,16 @@ namespace TestApp
 
             if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
             {
-                mLeftDataSet.Add("STEP COUNTER 2");
+               // mLeftDataSet.Add("STEP COUNTER 2");
             }
 
-            mLeftDataSet.Add("Score board");
+            mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Calculator");
             mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("Step counter");
+          
             //mLeftDataSet.Add("People nearby");
             //mLeftDataSet.Add("Friend Requests");
             //mLeftDataSet.Add("Friends");
@@ -206,6 +207,11 @@ namespace TestApp
                 else if (e.Position == 10)
                 {
                     myIntent = new Intent(this, typeof(StepCounter));
+                    StartActivity(myIntent);
+                }
+                else if (e.Position == 11)
+                {
+                    myIntent = new Intent(this, typeof(ScoreBoardRouteActivity));
                     StartActivity(myIntent);
                 }
 
@@ -287,7 +293,9 @@ namespace TestApp
             else
             {
                 //This is the first the time the activity is ran
+
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
+             
             }
 
             try
@@ -326,19 +334,42 @@ namespace TestApp
             initPersonTracker();
 
             points.Text = "Score: 0";
+            try
+            {
+
+                List<User> topUsers = await Azure.getTop3People();
+
+                if (topUsers[0] != null)
+                {
+                    pers1.Text = topUsers[0].UserName; // "Test friend1 Score: 0";
+                    pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl( topUsers[0].ProfilePicture));
+                }else
+
+
+                if (topUsers[1] != null)
+                {
+                    pers2.Text = topUsers[1].UserName; ///"Test friend2 Score: 0";
+                    pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
+                }
+
+
+                if (topUsers[2] != null)
+                {
+                    pers3.Text = topUsers[2].UserName;  //"Test friend3 Score: 0";
+                    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+                }
+
+
+            } catch (Exception) { 
 
 
 
+               }
+           
 
-
-
-            pers1.Text = "test 0";
-            pers2.Text = " test testtest0";
-            pers3.Text = "test test test test testtetstte 0";
-
-            pictureFriend1.SetImageBitmap(profilePic);
-            pictureFriend2.SetImageBitmap(profilePic);
-            pictureFriend3.SetImageBitmap(profilePic);
+            //pictureFriend1.SetImageBitmap(profilePic);
+         //   pictureFriend2.SetImageBitmap(profilePic);
+       //     pictureFriend3.SetImageBitmap(profilePic);
 
 
            
@@ -373,7 +404,11 @@ namespace TestApp
 
         public void updateLocationTimer()
         {
-            Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
+
+
+            //Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
+
+
             var timer = new System.Threading.Timer((e) =>
             {
                 var timerTest = Azure.updateUserLocation(userName);
@@ -444,7 +479,7 @@ namespace TestApp
                     {
                         //Right Drawer is closed, open it and just in case close left drawer
                         mDrawerLayout.OpenDrawer(mRightDrawer);
-                        mDrawerLayout.CloseDrawer(mLeftDrawer);
+                      //  mDrawerLayout.CloseDrawer(mLeftDrawer);
                     }
 
                     Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
@@ -517,15 +552,32 @@ namespace TestApp
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            mDrawerToggle.SyncState();
+            try
+            {
+                mDrawerToggle.SyncState();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+           
         }
 
         public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            mDrawerToggle.OnConfigurationChanged(newConfig);
-        }
+            try
+            {
+                mDrawerToggle.OnConfigurationChanged(newConfig);
+            }
+            catch (Exception)
+            {
 
+             
+            }
+          
+        }
 
 
         protected override void OnStop()
@@ -555,7 +607,6 @@ namespace TestApp
         protected async override void OnDestroy()
         {
 
-           await logOff();
             //var a = await Azure.SetUserOnline(userName, false);
             Log.Debug(logTag, "Location app is becoming inactive");
             base.OnDestroy();
@@ -563,7 +614,7 @@ namespace TestApp
            // var b = await Azure.SetUserOnline(userName, false);
            await logOff();
 
-            Finish();
+       //     Finish();
 
         }
         
@@ -969,7 +1020,8 @@ namespace TestApp
 
                 waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
-                Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+               // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+
                 points.Text = "Score: 0";
             
                

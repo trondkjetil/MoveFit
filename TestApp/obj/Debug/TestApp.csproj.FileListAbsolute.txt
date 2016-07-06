@@ -685,8 +685,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\styles.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\actionbar_main.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\themes.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_overflow.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\xs.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tree.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\customloadbar.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\raw\moveit.mp3
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_search.png
@@ -757,6 +755,8 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usersfriendreques
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userfriendsrequestcontent.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendsoverview.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\stepcounter.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\scoreboardroutes.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row_route.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\strings.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\icon.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_launcher.png
@@ -784,8 +784,10 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\greenonline.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\redoffline.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\newalarm.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\social.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\actionbarroutescoreboard.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
@@ -807,7 +809,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Java.Interop.
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.Export.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\mscorlib.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Core.dll.mdb
@@ -820,5 +821,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Servic
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
