@@ -40,6 +40,7 @@ namespace TestApp
             var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
+         
             chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
             {
                 //UpdateChatMessage has been called from server

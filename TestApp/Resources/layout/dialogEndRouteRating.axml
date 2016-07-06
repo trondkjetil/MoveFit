@@ -25,7 +25,6 @@
         android:layout_gravity="bottom"
         android:layout_marginTop="500dp"
         android:layout_alignParentLeft="true" />-->
-  
     <TextView
         android:text=""
         android:layout_width="match_parent"
@@ -34,7 +33,15 @@
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="30dp" />
-
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:id="@+id/avgSpeed"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="60dp" />
     <TextView
         android:text="Please rate the route: "
         android:layout_width="match_parent"

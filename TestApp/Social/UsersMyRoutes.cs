@@ -62,6 +62,8 @@ namespace TestApp
                     StartActivity(myInt);
                 }
 
+
+                // Changed to check in internet is available
                 if (IOUtilz.isOnline(connectivityManager))
                 {
                     Toast.MakeText(this, "Please connect to the internet!", ToastLength.Long).Show();

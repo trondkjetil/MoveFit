@@ -51,6 +51,8 @@ namespace TestApp
         public Stopwatch stopWatch;
         public string elapsedTime;
 
+        public static float avgSpeed;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -200,6 +202,21 @@ namespace TestApp
                         return;
 
                     }
+
+
+                    List<float> speedList = StartRouteService.points;
+
+                    float sum = 0;
+                    avgSpeed = 0;
+
+                    foreach (var item in speedList)
+                    {
+
+                        sum += item;
+
+                    }
+
+                    avgSpeed = sum / speedList.Count();
 
                     StopService(new Intent(this, typeof(StartRouteService)));
 

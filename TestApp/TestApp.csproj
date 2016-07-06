@@ -149,6 +149,7 @@
     <Compile Include="ConnectionManagement.cs" />
     <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
+    <Compile Include="Health\StepCounter.cs" />
     <Compile Include="Points\MyPoints.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,14 +166,14 @@
     <Compile Include="Services\LocationServiceConnection.cs" />
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
-    <Compile Include="SignalR\CustomUserIdProvider .cs" />
     <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\Chat.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
-    <Compile Include="UI\ScoreBoardActivity.cs" />
+    <Compile Include="UI\ScoreBoardRouteActivity.cs" />
+    <Compile Include="UI\ScoreBoardPersonActivity.cs" />
     <Compile Include="UI\ScoreBoardAnimation.cs" />
     <Compile Include="UI\ScoreBoardExtMethods.cs" />
-    <Compile Include="UI\ScoreBoardFriend.cs" />
+    <Compile Include="UI\ScoreBoardRoutesAdapter.cs" />
     <Compile Include="UI\ScoreBoardFriendsAdapter.cs" />
     <Compile Include="UI\SlidingTabMenuActivity.cs" />
     <Compile Include="UI\SlidingTabScrollView.cs" />
@@ -195,7 +196,6 @@
     <Compile Include="Azure\User.cs" />
     <Compile Include="Azure\Azure.cs" />
     <Compile Include="Azure\AzureActivity.cs" />
-    <Compile Include="Maps\GoogleMapsRoutes.cs" />
     <Compile Include="Maps\GoogleMapsPeople.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,7 +248,9 @@
     <AndroidResource Include="Resources\layout\dialogEndRouteRating.axml" />
     <AndroidResource Include="Resources\layout\dialogPopup.axml" />
     <AndroidResource Include="Resources\layout\dialogStartRoute.axml" />
-    <AndroidResource Include="Resources\layout\drawerLayout.axml" />
+    <AndroidResource Include="Resources\layout\drawerLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\dropDownList.axml" />
     <AndroidResource Include="Resources\layout\fragment_sample.axml" />
     <AndroidResource Include="Resources\layout\getinfo.axml" />
@@ -283,6 +285,7 @@
     <AndroidResource Include="Resources\layout\UsersFriendRequest.axml" />
     <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />
     <AndroidResource Include="Resources\layout\friendsOverview.axml" />
+    <AndroidResource Include="Resources\layout\stepCounter.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

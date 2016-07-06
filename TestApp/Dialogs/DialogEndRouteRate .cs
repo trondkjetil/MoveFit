@@ -23,6 +23,11 @@ namespace TestApp
            
             TextView finish = view.FindViewById<TextView>(Resource.Id.finish);
             finish.Text = "Congratulations!" + System.Environment.NewLine + "You have finished the route!";
+
+            TextView speed = view.FindViewById<TextView>(Resource.Id.avgSpeed);
+            speed.Text = "Avg speed: " + StartRoute.avgSpeed + " km/h";
+            
+
             RatingBar ratingbar = view. FindViewById<RatingBar>(Resource.Id.ratingbarEndRoute);
             ratingbar.Visibility = ViewStates.Visible;
 

@@ -102,13 +102,32 @@ namespace TestApp
 
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
-            TextView textview1 = FindViewById<TextView>(Resource.Id.textView1);
-             points = FindViewById<TextView>(Resource.Id.points);
+            TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
+            TextView steps = FindViewById<TextView>(Resource.Id.steps);
+            TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
+
+          
+            ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
+            ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
+            ImageView pictureFriend3 = FindViewById<ImageView>(Resource.Id.pic3);
+
+            TextView pers1 = FindViewById<TextView>(Resource.Id.pers1);
+            TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
+            TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
+
+
+
+            steps.Text = "Steps: 0";
+            totalDistance.Text = "Total Distance: 0";
+
+
+
+            points = FindViewById<TextView>(Resource.Id.points);
 
             loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
 
             array = Intent.GetStringArrayExtra("MyData");
-            textview1.Text = "Greetings " + array[0] + "!";
+            greetings.Text = "Greetings " + array[0] + "!";
             userName = array[0];
             profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
@@ -137,12 +156,17 @@ namespace TestApp
             mLeftDataSet.Add("bump");
             mLeftDataSet.Add("bump");
 
+            if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
+            {
+                mLeftDataSet.Add("STEP COUNTER 2");
+            }
 
             mLeftDataSet.Add("Score board");
             mLeftDataSet.Add("Calculator");
             mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
+            mLeftDataSet.Add("Step counter");
             //mLeftDataSet.Add("People nearby");
             //mLeftDataSet.Add("Friend Requests");
             //mLeftDataSet.Add("Friends");
@@ -154,37 +178,9 @@ namespace TestApp
 
             mLeftDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                 var item = mLeftAdapter.GetItem(e.Position);
-                if (e.Position == 0)
-                {
-                    myIntent = new Intent(this, typeof(ScoreBoardActivity));
-                    StartActivity(myIntent);
-                }
-                else if (e.Position == 1)
-                {
-                    myIntent = new Intent(this, typeof(Calculator));
-                    StartActivity(myIntent);
-                }
-                else if (e.Position == 2)
-                {
-                    myIntent = new Intent(this, typeof( Chat));
-                    StartActivity(myIntent);
-                }
-                if (e.Position == 3)
-                {
-                    myIntent = new Intent(this, typeof(RouteOverview));
-                    StartActivity(myIntent);
-                }
-                else if (e.Position == 4)
-                {
-                    myIntent = new Intent(this, typeof(FriendsOverview));
-                    StartActivity(myIntent);
-                }
-
-
-
                 if (e.Position == 5)
                 {
-                    myIntent = new Intent(this, typeof(ScoreBoardActivity));
+                    myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -194,10 +190,10 @@ namespace TestApp
                 }
                 else if (e.Position == 7)
                 {
-                    myIntent = new Intent(this, typeof(Chat));
+                    myIntent = new Intent(this, typeof( Chat));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 8)
+                if (e.Position == 8)
                 {
                     myIntent = new Intent(this, typeof(RouteOverview));
                     StartActivity(myIntent);
@@ -207,6 +203,43 @@ namespace TestApp
                     myIntent = new Intent(this, typeof(FriendsOverview));
                     StartActivity(myIntent);
                 }
+                else if (e.Position == 10)
+                {
+                    myIntent = new Intent(this, typeof(StepCounter));
+                    StartActivity(myIntent);
+                }
+
+
+
+                //if (e.Position == 5)
+                //{
+                //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 6)
+                //{
+                //    myIntent = new Intent(this, typeof(Calculator));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 7)
+                //{
+                //    myIntent = new Intent(this, typeof(Chat));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 8)
+                //{
+                //    myIntent = new Intent(this, typeof(RouteOverview));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 9)
+                //{
+                //    myIntent = new Intent(this, typeof(FriendsOverview));
+                //    StartActivity(myIntent);
+                //}
+
+
+
+
                 //else if (e.Position == 5)
                 //{
                 //    myIntent = new Intent(this, typeof(UserFriendRequest));
@@ -294,9 +327,21 @@ namespace TestApp
 
             points.Text = "Score: 0";
 
-        
-           
 
+
+
+
+
+            pers1.Text = "test 0";
+            pers2.Text = " test testtest0";
+            pers3.Text = "test test test test testtetstte 0";
+
+            pictureFriend1.SetImageBitmap(profilePic);
+            pictureFriend2.SetImageBitmap(profilePic);
+            pictureFriend3.SetImageBitmap(profilePic);
+
+
+           
         }
        
 

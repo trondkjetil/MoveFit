@@ -61,6 +61,9 @@ namespace TestApp
         public Stopwatch stopWatch;
         public string elapsedTime;
         public static Activity activity;
+
+
+        public static bool isPaused;
         public bool Ischecked
         {
 
@@ -114,6 +117,7 @@ namespace TestApp
             SetContentView(Resource.Layout.createRoute);
 
             activity = this;
+            isPaused = false;
 
             points = new List<Location>();
             me = await Azure.getUserId(MainStart.userName);
@@ -145,23 +149,40 @@ namespace TestApp
             routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
             routeStatus.Text = "Stauts: Idle";
             Button start = FindViewById<Button>(Resource.Id.startRoute);
+            Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
             Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
-            //InitializeLocationManager();
+          
             routeId = "";
 
             // fire an application-specified Intent when the device enters the proximity of a given geographical location.
             //locationManager.RemoveProximityAlert();
 
-           
 
-            start.Click += (sender, e) =>
+            pause.Click += (sender, e) =>
+            {
+                if (CreateRouteService.serviceIsRunning == true)
+                {
+                    isPaused = true;
+                    StopService(new Intent(this, typeof(CreateRouteService)));
+                    routeStatus.Text = "Route creation paused";
+                }
+                else
+                {
+
+                    Toast.MakeText(this, "No routes to pause!", ToastLength.Long).Show();
+
+                }
+
+            };
+
+                start.Click += (sender, e) =>
             {
 
                 if (StartRouteService.serviceIsRunning == true)
                 {
-                    Toast.MakeText(this, "Cannot create a route while doing one!!", ToastLength.Long).Show();
+                    Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
 
                     return;
                 }
@@ -172,9 +193,23 @@ namespace TestApp
                     if (val)
                         return;
                 }
-                    
 
 
+                if (isPaused)
+                {
+
+
+                    isPaused = false;
+
+                    StartService(new Intent(this, typeof(CreateRouteService)));
+                    routeStatus.Text = "Resuming creation";
+
+                }
+
+
+
+
+       else {
 
 
                 if (points.Count > 0)
@@ -191,7 +226,18 @@ namespace TestApp
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                     mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
 
-                }
+
+
+                        MarkerOptions markerMe = new MarkerOptions();
+                        markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
+                        markerMe.SetTitle("My position");
+                        markerMe.Draggable(false);
+                        markerMe.SetSnippet("My Location");
+                        BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); 
+
+                        markerMe.SetIcon(image);
+                        mMap.AddMarker(markerMe);
+                    }
 
 
 
@@ -202,11 +248,15 @@ namespace TestApp
                 Ischecked = false;
                 alreadyDone = false;
 
+                   
                 stopWatch = new Stopwatch();
                 stopWatch.Start();
+
                 spinner.Visibility = ViewStates.Invisible;
 
-            
+                } // en Pause
+
+
             };
             end.Click +=  (sender, e) =>
             {

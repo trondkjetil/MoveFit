@@ -239,6 +239,22 @@ namespace TestApp
             return userList;
 
         }
+
+        public static async Task<List<User>> getTop3People()
+        {
+
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).OrderBy(User => User.Points).Take(3).ToListAsync();
+            return userList;
+
+        }
+        public static async Task<List<Route>> getTop3Routes()
+        {
+
+            List<Route> userList = await routeTable.Where(Route => Route.Id != null).OrderBy(Route => Route.Review).Take(3).ToListAsync();
+            return userList;
+
+        }
+
         public static async Task<List<User>> getUserId(String providedUserName)
         {
 

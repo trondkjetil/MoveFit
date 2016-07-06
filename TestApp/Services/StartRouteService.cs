@@ -6,6 +6,7 @@ using Android.OS;
 using System.Threading.Tasks;
 using Android.Locations;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace TestApp
 {
@@ -28,15 +29,19 @@ namespace TestApp
         Notification notification;
         NotificationManager notificationManager;
 
+        public static List<float> points;
 
-     
+
 
         void HandleCustomEvent(object e, LocationChangedEventArgs a)
         {
 
 
             currentLocation = a.Location;
-        
+
+            points.Add(a.Location.Speed);
+          
+               
     }
         
 
@@ -44,7 +49,7 @@ namespace TestApp
 			{
 
             new Task (() => {
-
+                points = new List<float>();
                 serviceIsRunning = true;
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 

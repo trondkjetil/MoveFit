@@ -22,6 +22,10 @@ TestApp.Calculator, TestApp;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
 testapp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
+TestApp.StepCounter, TestApp;md5cf27010e14af20e69784a5a54418b85f.StepCounter
+TestApp.StepCounter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StepCounter
+TestApp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
+testapp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
 TestApp.ActivityLevelTracker, TestApp;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
@@ -78,10 +82,14 @@ TestApp.FriendsOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.FriendsOver
 TestApp.FriendsOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 testapp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
-TestApp.ScoreBoardActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
-TestApp.ScoreBoardActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
-TestApp.ScoreBoardActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
-testapp.ScoreBoardActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardActivity
+TestApp.ScoreBoardRouteActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
+TestApp.ScoreBoardRouteActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
+TestApp.ScoreBoardRouteActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
+testapp.ScoreBoardRouteActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
+TestApp.ScoreBoardPersonActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity
+TestApp.ScoreBoardPersonActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity
+TestApp.ScoreBoardPersonActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity
+testapp.ScoreBoardPersonActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity
 TestApp.MyAnimation, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyAnimation
 TestApp.MyAnimation, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyAnimation
 TestApp.MyAnimation;md5cf27010e14af20e69784a5a54418b85f.MyAnimation
@@ -194,10 +202,6 @@ TestApp.UserWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 TestApp.UserWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 TestApp.UserWrapper;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 testapp.UserWrapper;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
-TestApp.GoogleMapsActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity
-TestApp.GoogleMapsActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity
-TestApp.GoogleMapsActivity;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity
-testapp.GoogleMapsActivity;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsActivity
 TestApp.GoogleMapsPeople, TestApp;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
 TestApp.GoogleMapsPeople, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
 TestApp.GoogleMapsPeople;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople

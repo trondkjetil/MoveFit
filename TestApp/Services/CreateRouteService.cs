@@ -160,7 +160,7 @@ namespace TestApp
 
                 Intent newIntent = new Intent(this, typeof(CreateRoute));
                 // Pass some information to SecondActivity:
-                newIntent.PutExtra("message", "Greetings from MainActivity!");
+                newIntent.PutExtra("message", "Greetings from main!");
 
                 // Create a task stack builder to manage the back stack:
                 TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);

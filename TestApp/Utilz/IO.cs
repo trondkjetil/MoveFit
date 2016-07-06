@@ -7,6 +7,8 @@ using Android.Widget;
 using Android.Net;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content.PM;
+using Android.OS;
 
 namespace TestApp
 {
@@ -116,8 +118,18 @@ namespace TestApp
         //	}
         //}
 
-      
-    
+
+        public static bool IsKitKatWithStepCounter(PackageManager pm)
+        {
+
+            // Require at least Android KitKat
+            int currentApiVersion = (int)Build.VERSION.SdkInt;
+            // Check that the device supports the step counter and detector sensors
+            return currentApiVersion >= 19
+            && pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureSensorStepCounter)
+            && pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureSensorStepDetector);
+
+        }
 
         public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
 			bool filter) {
