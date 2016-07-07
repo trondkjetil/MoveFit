@@ -195,9 +195,9 @@ namespace TestApp
               //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
                 myHolder.mRouteInfo.Text = "Distance " + mRoutes[position].Distance + " meters";
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
-              
-               
 
+
+      
 
             if (mRoutes[position].Difficulty == "Easy")
             {
@@ -230,23 +230,6 @@ namespace TestApp
         private void StartRouteFlag_Click(object sender, EventArgs e)
         {
 
-        //    Bundle b = new Bundle();
-        //    b.PutStringArray("MyData", new String[] {
-
-        //    routeName,
-        //    routeInfo,
-        //    routeDifficulty,
-        //    routeLength,
-        //    routeType,
-        //    routeRating,
-        //    routeTrips.ToString(),
-        //    routeId
-
-        //});
-
-            //Intent myIntent = new Intent(mContext, typeof(StartRoute));
-            //myIntent.PutExtras(b);
-            //mContext.StartActivity(myIntent);
 
         }
 
@@ -254,7 +237,10 @@ namespace TestApp
         {
             Animator animator = AnimatorInflater.LoadAnimator(mContext, Resource.Animation.flip);
             animator.SetTarget(view);
+           
             animator.Start();
+            
+
              //Animation anim = AnimationUtils.LoadAnimation(mContext, currentAnim);
              //view.StartAnimation(anim);
         }
@@ -267,7 +253,7 @@ namespace TestApp
             {
 
                 int position = mRecyclerView.GetChildAdapterPosition((View)sender);
-
+             
             routeName = mRoutes[position].Name;
             routeInfo = mRoutes[position].Info;
             routeDifficulty = mRoutes[position].Difficulty;
@@ -277,6 +263,9 @@ namespace TestApp
             routeTrips = mRoutes[position].Trips;
             routeId = mRoutes[position].Id;
             routeTime = mRoutes[position].Time;
+          
+
+
 
             Bundle b = new Bundle();
             b.PutStringArray("MyData", new String[] {

@@ -116,11 +116,23 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
 
-		public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context)
+
+
+
+        public string userName;
+        public string userGender;
+        public int userAge;
+        public string userProfileImage;
+        public int userPoints;
+        public string userAboutMe;
+        public string userID;
+
+        public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context)
         {
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
+            
 
         }
 
@@ -157,7 +169,7 @@ namespace TestApp
                 ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
 
 
-            ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
+                ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
                 deleteFriend.Focusable = false;
                 deleteFriend.FocusableInTouchMode = false;
                 deleteFriend.Clickable = true;
@@ -291,10 +303,48 @@ namespace TestApp
 
         void mMainView_Click(object sender, EventArgs e)
         {
-            //int position = mRecyclerView.GetChildPosition((View)sender);
-            int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+          //  int position = mRecyclerView.GetChildPosition((View)sender);
+            ///    int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+            
+            try
+            {
 
-            Console.WriteLine(mUsers[position].UserName);
+                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+                userName = mUsers[position].UserName;
+                userGender = mUsers[position].Sex;
+                userAge = mUsers[position].Age;
+                userProfileImage = mUsers[position].ProfilePicture;
+                userPoints =  mUsers[position].Points;
+                userAboutMe = mUsers[position].AboutMe;
+                userID = mUsers[position].Id;
+
+                Bundle b = new Bundle();
+                b.PutStringArray("MyData", new String[] {
+
+                userName,
+                userGender,
+                userAge.ToString(),
+                userProfileImage,
+                userPoints.ToString(),
+                userAboutMe,
+                userID
+
+            });
+
+                Intent myIntent = new Intent(mContext, typeof(UserProfile));
+                myIntent.PutExtras(b);
+                mContext.StartActivity(myIntent);
+
+             
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+
         }
 
         void MDeleteFriend_Click(object sender, EventArgs e)

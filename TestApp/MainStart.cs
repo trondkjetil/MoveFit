@@ -27,11 +27,11 @@ namespace TestApp
 
 
     [Activity(Label = "MainMenu", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainStart : ActionBarActivity, ILocationListener 
+    public class MainStart : AppCompatActivity, ILocationListener 
     {
         public readonly string logTag = "MainActivity";
         SupportToolbar mToolbar;
-        MyActionBarDrawerToggle mDrawerToggle;
+        ActionBarDrawerToggle mDrawerToggle;
         DrawerLayout mDrawerLayout;
         ListView mLeftDrawer;
         ListView mRightDrawer;
@@ -74,6 +74,7 @@ namespace TestApp
         TextView points;
         public static Activity mainActivity;
         User waitingUpload;
+        User userInstance;
 
 
         public static bool isOnline;
@@ -81,12 +82,15 @@ namespace TestApp
         public static ConnectivityManager connectivityManager;
 
         public static IMenuItem menItem;
+
+        AppCompatActivity main;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             mainActivity = this;
+            main = this;
             changed = false;
             user = null;
             chk = false;
@@ -150,11 +154,11 @@ namespace TestApp
             SetSupportActionBar(mToolbar);
 
             mLeftDataSet = new List<string>();
-            mLeftDataSet.Add("bump");
-            mLeftDataSet.Add("bump");
-            mLeftDataSet.Add("bump");
-            mLeftDataSet.Add("bump");
-            mLeftDataSet.Add("bump");
+            //mLeftDataSet.Add("bump");
+            //mLeftDataSet.Add("bump");
+            //mLeftDataSet.Add("bump");
+            //mLeftDataSet.Add("bump");
+            //mLeftDataSet.Add("bump");
 
             if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
             {
@@ -162,12 +166,13 @@ namespace TestApp
             }
 
             mLeftDataSet.Add("Scoreboard");
-            mLeftDataSet.Add("Calculator");
-            mLeftDataSet.Add("Messages");
-            mLeftDataSet.Add("Routes");
+            mLeftDataSet.Add("Routes");          
             mLeftDataSet.Add("Social");
+            mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("Step counter");
-          
+            mLeftDataSet.Add("Calculator");
+            mLeftDataSet.Add("My profile");
+
             //mLeftDataSet.Add("People nearby");
             //mLeftDataSet.Add("Friend Requests");
             //mLeftDataSet.Add("Friends");
@@ -179,40 +184,66 @@ namespace TestApp
 
             mLeftDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                 var item = mLeftAdapter.GetItem(e.Position);
-                if (e.Position == 5)
+                if (e.Position == 0)
                 {
                     myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 6)
-                {
-                    myIntent = new Intent(this, typeof(Calculator));
-                    StartActivity(myIntent);
-                }
-                else if (e.Position == 7)
-                {
-                    myIntent = new Intent(this, typeof( Chat));
-                    StartActivity(myIntent);
-                }
-                if (e.Position == 8)
+                if (e.Position == 1)
                 {
                     myIntent = new Intent(this, typeof(RouteOverview));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 9)
+                else if (e.Position == 2)
                 {
                     myIntent = new Intent(this, typeof(FriendsOverview));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 10)
+                else if (e.Position == 3)
+                {
+                    myIntent = new Intent(this, typeof( Chat));
+                    StartActivity(myIntent);
+                }
+               
+               
+                else if (e.Position == 4)
                 {
                     myIntent = new Intent(this, typeof(StepCounter));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 11)
+                else if (e.Position == 5)
                 {
-                    myIntent = new Intent(this, typeof(ScoreBoardRouteActivity));
+                 
+                    myIntent = new Intent(this, typeof(Calculator));
                     StartActivity(myIntent);
+                }
+                else if (e.Position == 6)
+                {
+
+
+                    User instance = user.FirstOrDefault();
+
+                    if (instance != null) {
+
+                        Bundle b = new Bundle();
+                        b.PutStringArray("MyData", new String[] {
+                        instance.UserName,
+                        instance.Sex,
+                        instance.Age.ToString(),
+                        instance.ProfilePicture,
+                        instance.Points.ToString(),
+                        instance.AboutMe,
+                        instance.Id
+
+
+                    });
+
+                    Intent myIntent = new Intent(this,typeof(UserProfile));
+                    myIntent.PutExtras(b);
+                    StartActivity(myIntent);
+
+                    }
+
                 }
 
 
@@ -246,16 +277,6 @@ namespace TestApp
 
 
 
-                //else if (e.Position == 5)
-                //{
-                //    myIntent = new Intent(this, typeof(UserFriendRequest));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 6)
-                //{
-                //    myIntent = new Intent(this, typeof( UsersFriends));
-                //    StartActivity(myIntent);
-                //}
 
 
             };
@@ -264,7 +285,9 @@ namespace TestApp
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
             mRightDrawer.Adapter = RightAdapter;
 
-            mDrawerToggle = new MyActionBarDrawerToggle(
+           
+
+            mDrawerToggle = new ActionBarDrawerToggle(
                 this,                           //Host Activity
                 mDrawerLayout,                  //DrawerLayout
                 Resource.String.openDrawer,     //Opened Message
@@ -275,7 +298,13 @@ namespace TestApp
             SupportActionBar.SetHomeButtonEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
             mDrawerToggle.SyncState();
-            SupportActionBar.SetTitle(Resource.String.openDrawer);
+
+            if (mToolbar != null)
+            {
+                SupportActionBar.SetTitle(Resource.String.openDrawer);
+                SetSupportActionBar(mToolbar);
+            }
+
 
             if (savedInstanceState != null)
             {
@@ -301,6 +330,7 @@ namespace TestApp
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
+               
                 if (user.Count == 0)
                 {
 
@@ -319,12 +349,14 @@ namespace TestApp
                     var setOnline = await Azure.SetUserOnline(userName, true);
                     setPoints();
                     isOnline = true;
+
+                    userInstance = waitingUpload;
                 }
                   
  
 
             }
-            catch (Exception e)
+            catch (Exception )
             {
               
             }
@@ -1020,6 +1052,7 @@ namespace TestApp
 
                 waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
+                userInstance = waitingUpload;
                // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";

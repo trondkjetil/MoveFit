@@ -168,6 +168,7 @@
     <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\Chat.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
+    <Compile Include="Social\UserProfile.cs" />
     <Compile Include="UI\ScoreBoardRouteActivity.cs" />
     <Compile Include="UI\ScoreBoardPersonActivity.cs" />
     <Compile Include="UI\ScoreBoardAnimation.cs" />
@@ -285,6 +286,9 @@
     <AndroidResource Include="Resources\layout\stepCounter.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardRoutes.axml" />
     <AndroidResource Include="Resources\layout\row_route.axml" />
+    <AndroidResource Include="Resources\layout\userProfile.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -409,6 +413,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\actionbarRouteScoreBoard.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\eexit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\action_menu_profile.xml" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

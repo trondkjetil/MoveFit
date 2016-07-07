@@ -41,16 +41,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@android:color/white">
+        android:background="#ccccff">
         <TextView
-            android:text="Route types: "
+            android:text="Route type"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="#ccccff"
             android:id="@+id/textView1"
             android:textColor="@android:color/background_dark" />
         <Spinner
             android:id="@+id/spinnerRouteTypes"
-            android:layout_width="250dp"
+            android:layout_width="247.0dp"
             android:layout_height="match_parent"
             android:prompt="@string/planet_prompt"
             android:textColor="@android:color/background_dark"
@@ -62,7 +63,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:background="#ccccff">
         <Button
             android:text="Create route"
             android:layout_width="150dp"

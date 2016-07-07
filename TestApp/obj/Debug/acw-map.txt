@@ -82,6 +82,10 @@ TestApp.FriendsOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.FriendsOver
 TestApp.FriendsOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 testapp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
+TestApp.UserProfile, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserProfile
+TestApp.UserProfile, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserProfile
+TestApp.UserProfile;md5cf27010e14af20e69784a5a54418b85f.UserProfile
+testapp.UserProfile;md5cf27010e14af20e69784a5a54418b85f.UserProfile
 TestApp.ScoreBoardRouteActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
 TestApp.ScoreBoardRouteActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity
 TestApp.ScoreBoardRouteActivity;md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity

@@ -2065,49 +2065,52 @@ containing a value of this type.
         public static final int deletefriend=0x7f020072;
         public static final int dialogstartbutton=0x7f020073;
         public static final int edit_text_style=0x7f020074;
-        public static final int faceshare=0x7f020075;
-        public static final int female=0x7f020076;
-        public static final int green=0x7f020077;
-        public static final int greenonline=0x7f020078;
-        public static final int ic_action_forward=0x7f020079;
-        public static final int ic_action_help=0x7f02007a;
-        public static final int ic_action_new=0x7f02007b;
-        public static final int ic_action_overflow=0x7f02007c;
-        public static final int ic_action_read=0x7f02007d;
-        public static final int ic_action_refresh=0x7f02007e;
-        public static final int ic_action_save=0x7f02007f;
-        public static final int ic_action_search=0x7f020080;
-        public static final int ic_alarm=0x7f020081;
-        public static final int ic_launcher=0x7f020082;
-        public static final int icon=0x7f020083;
-        public static final int isfriend=0x7f020084;
-        public static final int lupe=0x7f020085;
-        public static final int male=0x7f020086;
-        public static final int maps=0x7f020087;
-        public static final int messengerfb=0x7f020088;
-        public static final int newalarm=0x7f020089;
-        public static final int notification_template_icon_bg=0x7f020094;
-        public static final int offline=0x7f02008a;
-        public static final int online=0x7f02008b;
-        public static final int orange=0x7f02008c;
-        public static final int red=0x7f02008d;
-        public static final int redoffline=0x7f02008e;
-        public static final int sign=0x7f02008f;
-        public static final int social=0x7f020090;
-        public static final int startflag=0x7f020091;
-        public static final int test=0x7f020092;
-        public static final int tt=0x7f020093;
+        public static final int eexit=0x7f020075;
+        public static final int faceshare=0x7f020076;
+        public static final int female=0x7f020077;
+        public static final int green=0x7f020078;
+        public static final int greenonline=0x7f020079;
+        public static final int ic_action_forward=0x7f02007a;
+        public static final int ic_action_help=0x7f02007b;
+        public static final int ic_action_new=0x7f02007c;
+        public static final int ic_action_overflow=0x7f02007d;
+        public static final int ic_action_read=0x7f02007e;
+        public static final int ic_action_refresh=0x7f02007f;
+        public static final int ic_action_save=0x7f020080;
+        public static final int ic_action_search=0x7f020081;
+        public static final int ic_alarm=0x7f020082;
+        public static final int ic_launcher=0x7f020083;
+        public static final int icon=0x7f020084;
+        public static final int isfriend=0x7f020085;
+        public static final int lupe=0x7f020086;
+        public static final int male=0x7f020087;
+        public static final int maps=0x7f020088;
+        public static final int messengerfb=0x7f020089;
+        public static final int newalarm=0x7f02008a;
+        public static final int notification_template_icon_bg=0x7f020095;
+        public static final int offline=0x7f02008b;
+        public static final int online=0x7f02008c;
+        public static final int orange=0x7f02008d;
+        public static final int red=0x7f02008e;
+        public static final int redoffline=0x7f02008f;
+        public static final int sign=0x7f020090;
+        public static final int social=0x7f020091;
+        public static final int startflag=0x7f020092;
+        public static final int test=0x7f020093;
+        public static final int tt=0x7f020094;
     }
     public static final class id {
         public static final int ContactImage=0x7f0b00e2;
         public static final int ContactName=0x7f0b0086;
         public static final int ContactsListView=0x7f0b0090;
         public static final int LinearLayout1=0x7f0b005f;
+        public static final int aboutMe=0x7f0b011b;
+        public static final int aboutMeEdit=0x7f0b011c;
         public static final int acc=0x7f0b0082;
         public static final int accelerometer_text=0x7f0b005c;
-        public static final int acceptFriend=0x7f0b0113;
+        public static final int acceptFriend=0x7f0b0115;
         public static final int action0=0x7f0b00cd;
-        public static final int action_alarm=0x7f0b0121;
+        public static final int action_alarm=0x7f0b0128;
         public static final int action_bar=0x7f0b004d;
         public static final int action_bar_activity_content=0x7f0b0001;
         public static final int action_bar_container=0x7f0b004c;
@@ -2117,7 +2120,7 @@ containing a value of this type.
         public static final int action_bar_title=0x7f0b002d;
         public static final int action_context_bar=0x7f0b004e;
         public static final int action_divider=0x7f0b00d1;
-        public static final int action_help=0x7f0b0120;
+        public static final int action_help=0x7f0b0127;
         public static final int action_menu_divider=0x7f0b0003;
         public static final int action_menu_presenter=0x7f0b0004;
         public static final int action_mode_bar=0x7f0b004a;
@@ -2125,7 +2128,7 @@ containing a value of this type.
         public static final int action_mode_close_button=0x7f0b002f;
         public static final int activity_chooser_view_content=0x7f0b0030;
         public static final int actlevel=0x7f0b00a4;
-        public static final int add=0x7f0b0123;
+        public static final int add=0x7f0b012b;
         public static final int address_text=0x7f0b00cc;
         public static final int adjust_height=0x7f0b000f;
         public static final int adjust_width=0x7f0b0010;
@@ -2170,6 +2173,7 @@ containing a value of this type.
         public static final int endRoute=0x7f0b008e;
         public static final int end_padder=0x7f0b00d9;
         public static final int etSearch=0x7f0b00fd;
+        public static final int exit=0x7f0b0129;
         public static final int expand_activities_button=0x7f0b0031;
         public static final int expanded_menu=0x7f0b0044;
         public static final int findFriends=0x7f0b00bd;
@@ -2221,14 +2225,14 @@ containing a value of this type.
         public static final int map=0x7f0b0087;
         public static final int mapForStartingRoute=0x7f0b0104;
         public static final int media_actions=0x7f0b00d0;
-        public static final int menu=0x7f0b0124;
-        public static final int menu_refresh=0x7f0b0126;
+        public static final int menu=0x7f0b012c;
+        public static final int menu_refresh=0x7f0b012e;
         public static final int message=0x7f0b0098;
         public static final int middle=0x7f0b0026;
         public static final int multiply=0x7f0b001f;
         public static final int myFriends=0x7f0b00bb;
         public static final int myRoutes=0x7f0b00e3;
-        public static final int myRoutesId=0x7f0b0115;
+        public static final int myRoutesId=0x7f0b0117;
         public static final int mypos=0x7f0b00ca;
         public static final int nameId=0x7f0b00dd;
         public static final int nameOfroute=0x7f0b009b;
@@ -2237,7 +2241,7 @@ containing a value of this type.
         public static final int none=0x7f0b000b;
         public static final int normal=0x7f0b000c;
         public static final int numberPicker=0x7f0b00a3;
-        public static final int onlineStatus=0x7f0b0110;
+        public static final int onlineStatus=0x7f0b0112;
         public static final int parentPanel=0x7f0b0039;
         public static final int pauseRoute=0x7f0b008d;
         public static final int pers1=0x7f0b00b1;
@@ -2249,6 +2253,7 @@ containing a value of this type.
         public static final int pic3=0x7f0b00b4;
         public static final int points=0x7f0b00ab;
         public static final int profileImage_score=0x7f0b00ee;
+        public static final int profilePic2=0x7f0b0119;
         public static final int profilePicture=0x7f0b00a9;
         public static final int progressBar=0x7f0b00aa;
         public static final int progress_circular=0x7f0b0006;
@@ -2264,15 +2269,15 @@ containing a value of this type.
         public static final int ratingPropt=0x7f0b0093;
         public static final int ratingbar=0x7f0b010d;
         public static final int ratingbarEndRoute=0x7f0b0094;
-        public static final int recycleUserFriendRequest=0x7f0b0118;
-        public static final int recycleUserFriends=0x7f0b0119;
-        public static final int recycleUserMyRoutes=0x7f0b011b;
-        public static final int recycleUserNearby=0x7f0b011d;
-        public static final int recycleUserRoutes=0x7f0b011e;
+        public static final int recycleUserFriendRequest=0x7f0b011f;
+        public static final int recycleUserFriends=0x7f0b0120;
+        public static final int recycleUserMyRoutes=0x7f0b0122;
+        public static final int recycleUserNearby=0x7f0b0124;
+        public static final int recycleUserRoutes=0x7f0b0125;
         public static final int recyclerView=0x7f0b007b;
         public static final int refreshWithIdToken=0x7f0b006a;
         public static final int refreshWithRefreshToken=0x7f0b006b;
-        public static final int rejectFriend=0x7f0b0114;
+        public static final int rejectFriend=0x7f0b0116;
         public static final int results=0x7f0b0078;
         public static final int review=0x7f0b00f5;
         public static final int routeInfo=0x7f0b009d;
@@ -2299,7 +2304,7 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f0b005a;
         public static final int select_dialog_listview=0x7f0b005b;
         public static final int sendFriendRequest=0x7f0b00e0;
-        public static final int sendMsg=0x7f0b0111;
+        public static final int sendMsg=0x7f0b0113;
         public static final int setmark=0x7f0b00cb;
         public static final int shortcut=0x7f0b0046;
         public static final int showCustom=0x7f0b001b;
@@ -2330,21 +2335,23 @@ containing a value of this type.
         public static final int startRouteType=0x7f0b010a;
         public static final int startService=0x7f0b0100;
         public static final int statusId=0x7f0b00de;
-        public static final int statusOnline=0x7f0b011f;
+        public static final int statusOnline=0x7f0b0126;
         public static final int statusRoute=0x7f0b008a;
         public static final int status_bar_latest_event_content=0x7f0b00cf;
-        public static final int stepCounter=0x7f0b010e;
+        public static final int stepCounter=0x7f0b0110;
+        public static final int stepIntro=0x7f0b010e;
         public static final int steps=0x7f0b00ac;
+        public static final int stepsText=0x7f0b010f;
         public static final int stop=0x7f0b005d;
         public static final int stopService=0x7f0b0101;
         public static final int subject=0x7f0b0096;
         public static final int submit_area=0x7f0b0058;
-        public static final int swap=0x7f0b0117;
+        public static final int swap=0x7f0b011e;
         public static final int swipeLayout=0x7f0b007a;
         public static final int switch1=0x7f0b0085;
-        public static final int switchFriends=0x7f0b0125;
-        public static final int switchRoutes=0x7f0b0122;
-        public static final int swp=0x7f0b011c;
+        public static final int switchFriends=0x7f0b012d;
+        public static final int switchRoutes=0x7f0b012a;
+        public static final int swp=0x7f0b0123;
         public static final int tabMode=0x7f0b0018;
         public static final int targetsEmail=0x7f0b0097;
         public static final int terrain=0x7f0b000e;
@@ -2365,6 +2372,7 @@ containing a value of this type.
         public static final int title=0x7f0b0036;
         public static final int title_template=0x7f0b003b;
         public static final int toolbar=0x7f0b00a6;
+        public static final int toolbarNew=0x7f0b0118;
         public static final int topPanel=0x7f0b003a;
         public static final int txtAge=0x7f0b00f0;
         public static final int txtChat=0x7f0b00c7;
@@ -2385,10 +2393,11 @@ containing a value of this type.
         public static final int txtUserPassword=0x7f0b0068;
         public static final int up=0x7f0b0009;
         public static final int useLogo=0x7f0b001e;
-        public static final int userFriendRequest=0x7f0b0112;
-        public static final int userFriends=0x7f0b010f;
-        public static final int userRoutecontent=0x7f0b0116;
-        public static final int userRoutes=0x7f0b011a;
+        public static final int userFriendRequest=0x7f0b0114;
+        public static final int userFriends=0x7f0b0111;
+        public static final int userName=0x7f0b011a;
+        public static final int userRoutecontent=0x7f0b011d;
+        public static final int userRoutes=0x7f0b0121;
         public static final int viewpager=0x7f0b00b9;
         public static final int webLoadingIcon=0x7f0b005e;
         public static final int wide=0x7f0b0013;
@@ -2484,21 +2493,23 @@ containing a value of this type.
         public static final int userfriendscontent=0x7f03004d;
         public static final int userfriendsrequestcontent=0x7f03004e;
         public static final int usermyroutescontent=0x7f03004f;
-        public static final int userroutecontent=0x7f030050;
-        public static final int usersfriendrequest=0x7f030051;
-        public static final int usersfriends=0x7f030052;
-        public static final int usersmyroutes=0x7f030053;
-        public static final int usersnearby=0x7f030054;
-        public static final int usersroutes=0x7f030055;
-        public static final int welcome=0x7f030056;
+        public static final int userprofile=0x7f030050;
+        public static final int userroutecontent=0x7f030051;
+        public static final int usersfriendrequest=0x7f030052;
+        public static final int usersfriends=0x7f030053;
+        public static final int usersmyroutes=0x7f030054;
+        public static final int usersnearby=0x7f030055;
+        public static final int usersroutes=0x7f030056;
+        public static final int welcome=0x7f030057;
     }
     public static final class menu {
         public static final int action_menu=0x7f0e0000;
-        public static final int actionbar=0x7f0e0001;
-        public static final int actionbar_cardview=0x7f0e0002;
-        public static final int actionbar_main=0x7f0e0003;
-        public static final int actionbarroutescoreboard=0x7f0e0004;
-        public static final int activity_main=0x7f0e0005;
+        public static final int action_menu_profile=0x7f0e0001;
+        public static final int actionbar=0x7f0e0002;
+        public static final int actionbar_cardview=0x7f0e0003;
+        public static final int actionbar_main=0x7f0e0004;
+        public static final int actionbarroutescoreboard=0x7f0e0005;
+        public static final int activity_main=0x7f0e0006;
     }
     public static final class raw {
         public static final int moveit=0x7f050000;
@@ -2669,11 +2680,11 @@ containing a value of this type.
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f090138;
+        public static final int AppBaseTheme=0x7f090139;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090139;
+        public static final int AppTheme=0x7f09013a;
         public static final int Base_AlertDialog_AppCompat=0x7f090081;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f090082;
         public static final int Base_Animation_AppCompat_Dialog=0x7f090083;
@@ -2817,11 +2828,11 @@ containing a value of this type.
         public static final int CardView_Light=0x7f090003;
         /**  the theme applied to the application or activity 
          */
-        public static final int CustomActionBarTheme=0x7f09013a;
+        public static final int CustomActionBarTheme=0x7f09013b;
         /**  ActionBar styles 
          */
-        public static final int MyActionBar=0x7f09013b;
-        public static final int MyDrawerArrowStyle=0x7f090137;
+        public static final int MyActionBar=0x7f09013c;
+        public static final int MyDrawerArrowStyle=0x7f090138;
         /** 	These are styles for the side-menu 
          */
         public static final int MyTheme=0x7f090136;
@@ -2916,6 +2927,7 @@ containing a value of this type.
         public static final int Theme_AppCompat_Light_NoActionBar=0x7f0900ea;
         public static final int Theme_AppCompat_NoActionBar=0x7f0900eb;
         public static final int Theme_IAPTheme=0x7f090000;
+        public static final int Theme2=0x7f090137;
         public static final int ThemeOverlay_AppCompat=0x7f0900ec;
         public static final int ThemeOverlay_AppCompat_ActionBar=0x7f0900ed;
         public static final int ThemeOverlay_AppCompat_Dark=0x7f0900ee;

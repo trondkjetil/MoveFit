@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Hardware;
 using System.ComponentModel;
+using Android.Graphics;
 
 namespace TestApp
 {
@@ -36,14 +37,21 @@ namespace TestApp
 
           if(!IOUtilz.IsKitKatWithStepCounter(PackageManager))
             {
-                Toast.MakeText(this, "Version not compatible", ToastLength.Short).Show();
+                Toast.MakeText(this, "Device not compatible", ToastLength.Short).Show();
+                resultView.Text = "Sorry! Your device is not compatible with this step counter";
+                resultView.SetBackgroundColor(Color.Red);
+
+            }
+            else
+            {
+                RunOnUiThread(() =>
+                {
+                    resultView.Text = stepCounter.ToString();
+
+                });
             }
 
-            RunOnUiThread(() =>
-            {
-                resultView.Text = stepCounter.ToString();
-
-            });
+           
 
 
 
