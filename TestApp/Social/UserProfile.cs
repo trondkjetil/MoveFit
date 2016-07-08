@@ -20,6 +20,8 @@ namespace TestApp
         public static IMenuItem itemGender;
         public static IMenuItem itemAge;
         public static IMenuItem itemExit;
+        public EditText aboutMeEdit;
+
         SupportToolbar toolbar;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,7 +40,7 @@ namespace TestApp
             TextView points = FindViewById<TextView>(Resource.Id.points);
             TextView aboutMe = FindViewById<TextView>(Resource.Id.aboutMe);
 
-            EditText aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
+             aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
 
             try
@@ -50,7 +52,7 @@ namespace TestApp
 
             Bitmap bmp = IOUtilz.GetImageBitmapFromUrl(array[3]);
             BitmapDrawable icon = new BitmapDrawable(bmp);
-          // SupportActionBar.SetHomeButtonEnabled(true);
+        
             SupportActionBar.SetDisplayShowTitleEnabled(false);
              SupportActionBar.SetIcon(icon);
            
@@ -124,10 +126,16 @@ namespace TestApp
         {
             base.OnStart();
         }
-
-        protected override void OnDestroy()
+        protected async override void OnStop()
+        {
+            base.OnStop();
+            var instance = await Azure.setAboutMeInfo(array[6], aboutMeEdit.Text);
+        }
+        protected async override void OnDestroy()
         {
             base.OnDestroy();
+
+            var instance = await Azure.setAboutMeInfo(array[6],aboutMeEdit.Text);
         }
        
     }

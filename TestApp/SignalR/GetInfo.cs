@@ -27,13 +27,15 @@ namespace TestApp
         {
             View view = inflater.Inflate(Resource.Layout.getinfo, container, false);
 
-            EditText txtName = view.FindViewById<EditText>(Resource.Id.txtName);
+          //  EditText txtName = view.FindViewById<EditText>(Resource.Id.txtName);
             Button btnOkay = view.FindViewById<Button>(Resource.Id.btnOkay);
             RadioGroup radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup);
 
             btnOkay.Click += (o, e) =>
             {
-                var args = new OnGetInfoCompletEventArgs { TxtName = txtName.Text.Trim() };
+
+          //     var args = new OnGetInfoCompletEventArgs { TxtName = txtName.Text.Trim() };
+               var args = new OnGetInfoCompletEventArgs { TxtName = MainStart.userName};
 
                 switch (radioGroup.CheckedRadioButtonId)
                 {
@@ -48,9 +50,23 @@ namespace TestApp
                     case Resource.Id.radioBlue:
                         args.BackgroundColor = 3;
                         break;
+
+                         default:
+                        args.BackgroundColor = 1;
+                        break;
                 }
 
                 OnGetInfoComplete.Invoke(this, args);
+                //try
+                //{
+                   
+                //}
+                //catch (global::System.Exception)
+                //{
+
+                  
+                //}
+             
 
                 Dismiss();
             };

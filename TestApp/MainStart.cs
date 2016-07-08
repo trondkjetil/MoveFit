@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Common;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
@@ -73,8 +74,9 @@ namespace TestApp
 
         TextView points;
         public static Activity mainActivity;
+
         User waitingUpload;
-        User userInstance;
+        User userInstanceOne;
 
 
         public static bool isOnline;
@@ -82,18 +84,22 @@ namespace TestApp
         public static ConnectivityManager connectivityManager;
 
         public static IMenuItem menItem;
+      
 
-        AppCompatActivity main;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
+            TestIfGooglePlayServicesIsInstalled();
             mainActivity = this;
-            main = this;
+          
             changed = false;
             user = null;
             chk = false;
+
+            waitingUpload = null;
+            userInstanceOne = null;
 
             isOnline = false;
 
@@ -173,9 +179,17 @@ namespace TestApp
             mLeftDataSet.Add("Calculator");
             mLeftDataSet.Add("My profile");
 
-            //mLeftDataSet.Add("People nearby");
-            //mLeftDataSet.Add("Friend Requests");
-            //mLeftDataSet.Add("Friends");
+
+
+            //mLeftDataSet.Add("Scoreboard");
+            //mLeftDataSet.Add("Routes");
+            //mLeftDataSet.Add("Social");
+            //mLeftDataSet.Add("Messages");
+            //mLeftDataSet.Add("Step counter");
+            //mLeftDataSet.Add("Calculator");
+            //mLeftDataSet.Add("My profile");
+
+           
 
 
 
@@ -221,12 +235,29 @@ namespace TestApp
                 {
 
 
-                    User instance = user.FirstOrDefault();
+                    try
+                    {
 
-                    if (instance != null) {
 
-                        Bundle b = new Bundle();
-                        b.PutStringArray("MyData", new String[] {
+
+                        User instance = null;
+                        
+                        if (user.Count != 0 || userInstanceOne != null)
+                        {
+                            instance = user.FirstOrDefault();
+                          
+                            if (instance == null)
+                                instance = userInstanceOne;
+                       
+                        }
+
+                  
+
+                        if (instance != null)
+                        {
+
+                            Bundle b = new Bundle();
+                            b.PutStringArray("MyData", new String[] {
                         instance.UserName,
                         instance.Sex,
                         instance.Age.ToString(),
@@ -238,32 +269,31 @@ namespace TestApp
 
                     });
 
-                    Intent myIntent = new Intent(this,typeof(UserProfile));
-                    myIntent.PutExtras(b);
-                    StartActivity(myIntent);
+                            Intent myIntent = new Intent(this, typeof(UserProfile));
+                            myIntent.PutExtras(b);
+                            StartActivity(myIntent);
 
+                        }
+
+
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                      
                     }
 
                 }
 
 
-
-                //if (e.Position == 5)
+                //if (e.Position == 7)
                 //{
-                //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
+                //    myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
                 //    StartActivity(myIntent);
                 //}
-                //else if (e.Position == 6)
-                //{
-                //    myIntent = new Intent(this, typeof(Calculator));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 7)
-                //{
-                //    myIntent = new Intent(this, typeof(Chat));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 8)
+                //if (e.Position == 8)
                 //{
                 //    myIntent = new Intent(this, typeof(RouteOverview));
                 //    StartActivity(myIntent);
@@ -273,13 +303,91 @@ namespace TestApp
                 //    myIntent = new Intent(this, typeof(FriendsOverview));
                 //    StartActivity(myIntent);
                 //}
+                //else if (e.Position == 10)
+                //{
+                //    myIntent = new Intent(this, typeof(Chat));
+                //    StartActivity(myIntent);
+                //}
+
+
+                //else if (e.Position == 11)
+                //{
+                //    myIntent = new Intent(this, typeof(StepCounter));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 12)
+                //{
+
+                //    myIntent = new Intent(this, typeof(Calculator));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 13)
+                //{
+
+            
+                //    User instance = null;
+
+                //    if (user.Count != 0)
+                //    {
+                //        instance = user.FirstOrDefault();
+                //    }
+
+
+                //    if (instance != null)
+                //    {
+
+                //        Bundle b = new Bundle();
+                //        b.PutStringArray("MyData", new String[] {
+                //        instance.UserName,
+                //        instance.Sex,
+                //        instance.Age.ToString(),
+                //        instance.ProfilePicture,
+                //        instance.Points.ToString(),
+                //        instance.AboutMe,
+                //        instance.Id
+
+
+                //    });
+
+                //        Intent myIntent = new Intent(this, typeof(UserProfile));
+                //        myIntent.PutExtras(b);
+                //        StartActivity(myIntent);
+
+                //    }
+
+              //  }
+                    //if (e.Position == 5)
+                    //{
+                    //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
+                    //    StartActivity(myIntent);
+                    //}
+                    //else if (e.Position == 6)
+                    //{
+                    //    myIntent = new Intent(this, typeof(Calculator));
+                    //    StartActivity(myIntent);
+                    //}
+                    //else if (e.Position == 7)
+                    //{
+                    //    myIntent = new Intent(this, typeof(Chat));
+                    //    StartActivity(myIntent);
+                    //}
+                    //else if (e.Position == 8)
+                    //{
+                    //    myIntent = new Intent(this, typeof(RouteOverview));
+                    //    StartActivity(myIntent);
+                    //}
+                    //else if (e.Position == 9)
+                    //{
+                    //    myIntent = new Intent(this, typeof(FriendsOverview));
+                    //    StartActivity(myIntent);
+                    //}
 
 
 
 
 
 
-            };
+                };
 
             var RightAdapter = new ContactsAdapter(this);
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
@@ -350,7 +458,7 @@ namespace TestApp
                     setPoints();
                     isOnline = true;
 
-                    userInstance = waitingUpload;
+                    userInstanceOne = waitingUpload;
                 }
                   
  
@@ -469,7 +577,35 @@ namespace TestApp
             StartService(new Intent(this, typeof(LocationService)));
         }
 
+        public bool TestIfGooglePlayServicesIsInstalled()
+        {
+            int InstallGooglePlayServicesId = 1000;
+            int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (queryResult == ConnectionResult.Success)
+            {
+                Log.Info("", "Google Play Services is installed on this device.");
+                return true;
+            }
 
+            if (GoogleApiAvailability.Instance.IsUserResolvableError(queryResult))
+            {
+                string errorString = GoogleApiAvailability.Instance.GetErrorString(queryResult);
+                Log.Error("", "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
+                Dialog errorDialog = GoogleApiAvailability.Instance.GetErrorDialog(this, queryResult, InstallGooglePlayServicesId);
+                ErrorDialogFragment dialogFrag = new ErrorDialogFragment();
+
+
+                Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                alert.SetTitle("Google play service missing");
+                alert.SetMessage("Google play service missing!");
+                alert.SetNeutralButton("Ok", (senderAlert, args) => {
+
+                });
+
+                dialogFrag.Show(FragmentManager, "GooglePlayServicesDialog");
+            }
+            return false;
+        }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -516,17 +652,12 @@ namespace TestApp
 
                     Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
                     alertMessage.SetTitle("Info");
-                    alertMessage.SetMessage("User: " + facebookUserId + System.Environment.NewLine + System.Environment.NewLine + "About: This is a prototype app in a masters project. Developed blablabla.." + System.Environment.NewLine +
+                    alertMessage.SetMessage("User: " + facebookUserId + System.Environment.NewLine + System.Environment.NewLine + "About: This is a prototype app in a masters project. Developed...." + System.Environment.NewLine +
                     System.Environment.NewLine +
-                    "Instructions: Open right and left menu by sliding left and right" + System.Environment.NewLine
-                    + "Two services have been started, one that tracks the users location, and one that "
-                    + "tracks activity, e.g how much a user moves. The app triggers an alarm every three minutes, this will only be triggered" +
-                    " when the user has been inactive for an hour or so in the finished app.");
+                    "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    );
                     alertMessage.Show();
                     return true;
-
-
-
 
 
                 // Starts movement tracker (indoor)
@@ -814,6 +945,7 @@ namespace TestApp
 
             }
         }
+
         public void OnProviderDisabled(string provider)
         {
 
@@ -1052,7 +1184,7 @@ namespace TestApp
 
                 waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
-                userInstance = waitingUpload;
+                userInstanceOne = waitingUpload;
                // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";
@@ -1078,7 +1210,7 @@ namespace TestApp
 
 
 
-
+      
 
 
     }

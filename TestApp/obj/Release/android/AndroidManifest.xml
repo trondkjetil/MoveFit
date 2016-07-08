@@ -41,8 +41,9 @@
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.StartRouteService" />
     <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
     <activity android:label="FriendsOverview" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
+    <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
     <activity android:icon="@drawable/tt" android:label="Scoreboard Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
-    <activity android:icon="@drawable/tt" android:label="Scoreboard" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
+    <activity android:icon="@drawable/tt" android:label="Scoreboard People" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
     <activity android:label="Sliding Tab Layout" android:name="md5cf27010e14af20e69784a5a54418b85f.MenuActivity" />
     <activity android:label="MyRoutes" android:name="md5cf27010e14af20e69784a5a54418b85f.UserMyRoutes" />
     <activity android:label="Friend Requests" android:name="md5cf27010e14af20e69784a5a54418b85f.UserFriendRequest" />

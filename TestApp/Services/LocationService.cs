@@ -82,7 +82,17 @@ namespace TestApp
             {
                 locationProvider = string.Empty;
             }
-            LocMgr.RequestLocationUpdates(locationProvider, 8000, 0, this);
+
+            try
+            {
+                LocMgr.RequestLocationUpdates(locationProvider, 8000, 0, this);
+            }
+            catch (Exception)
+            {
+
+               
+            }
+           
 
 
 

@@ -7,12 +7,12 @@
     android:background="#808080"
     android:minWidth="400dp"
     android:minHeight="200dp">
-    <EditText
+    <!--<EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:hint="Username" />
+        android:hint="Username" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

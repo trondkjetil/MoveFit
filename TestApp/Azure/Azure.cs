@@ -379,7 +379,17 @@ namespace TestApp
         }
 
 
+        public static async Task<User> setAboutMeInfo(string userId,string info)
+        {
+            List<User> userList = await table.Where(User => User.Id == userId).ToListAsync();
 
+            userList.Find(User => User.Id == userId).AboutMe = info;
+            User userInstance = userList.FirstOrDefault();
+
+            await table.UpdateAsync(userInstance);
+            return userInstance;
+
+        }
 
 
 

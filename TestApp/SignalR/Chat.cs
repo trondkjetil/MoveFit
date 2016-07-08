@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using Microsoft.AspNet.SignalR.Client;
 using Android.Graphics;
+using TestApp;
 
 namespace TestApp
 {
@@ -18,7 +19,7 @@ namespace TestApp
 
         protected override void OnCreate(Bundle bundle)
         {
-
+            
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(bundle);
 
@@ -28,6 +29,8 @@ namespace TestApp
             GetInfo getInfo = new GetInfo();
             getInfo.OnGetInfoComplete += GetInfo_OnGetInfoComplete;
             getInfo.Show(FragmentManager, "GetInfo");
+
+          
         }
 
         private async void GetInfo_OnGetInfoComplete(object sender, GetInfo.OnGetInfoCompletEventArgs e)
@@ -35,9 +38,11 @@ namespace TestApp
             UserName = e.TxtName;
             BackgroundColor = e.BackgroundColor;
 
-            
+
             // http://movefit.azurewebsites.net/  http://cforbeginners.com:901"
-            var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
+            //    http://chatservices.azurewebsites.net
+            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
+            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
          
@@ -98,9 +103,24 @@ namespace TestApp
 
             FindViewById<Button>(Resource.Id.btnSend).Click += async (o, e2) =>
             {
+
+
                 var message = FindViewById<EditText>(Resource.Id.txtChat).Text;
 
+                
+
                 await chatHubProxy.Invoke("SendMessage", new object[] { message, BackgroundColor, UserName });
+
+                try
+                {
+                //    message = FindViewById<EditText>(Resource.Id.txtChat).Text;
+                }
+                catch (Exception)
+                {
+
+                   
+                }
+               
             };
 
         }

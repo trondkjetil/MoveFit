@@ -824,5 +824,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Servic
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
