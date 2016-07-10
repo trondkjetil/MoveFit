@@ -21,17 +21,17 @@ namespace TestApp
 		private bool mIsAnimating;
 		private RouteAdapterScoreboard mAdapter;
 
-		private TextView mTxtHeaderFirstName;
-		private TextView mTxtHeaderLastName;
-		private TextView mTxtHeaderAge;
-		private TextView mTxtHeaderGender;
-		private TextView mTxtHeaderScore;
+		//private TextView mTxtHeaderFirstName;
+		private TextView routeName;
+		private TextView review;
+		private TextView distance;
+		private TextView routeType;
 
 		private bool mFirstNameAscending;
 		private bool mLastNameAscending;
 		private bool mAgeAscending;
 		private bool mGenderAscending;
-		private bool mScoreAscending;
+	    private bool mScoreAscending;
 
 		protected async override void OnCreate(Bundle savedInstanceState)
 		{
@@ -44,16 +44,16 @@ namespace TestApp
 			mContainer = FindViewById<LinearLayout>(Resource.Id.container);
 
 			//mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
-			mTxtHeaderLastName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
-			mTxtHeaderAge = FindViewById<TextView>(Resource.Id.txtHeaderAge);
-			mTxtHeaderGender = FindViewById<TextView>(Resource.Id.txtHeaderGender);
-			mTxtHeaderScore = FindViewById<TextView>(Resource.Id.txtHeaderScore);
+			routeName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
+			review = FindViewById<TextView>(Resource.Id.txtHeaderAge);
+			distance = FindViewById<TextView>(Resource.Id.txtHeaderGender);
+			routeType = FindViewById<TextView>(Resource.Id.txtHeaderScore);
 
 			//mTxtHeaderFirstName.Click += mTxtHeaderFirstName_Click;
-			mTxtHeaderLastName.Click += mTxtHeaderLastName_Click;
-			mTxtHeaderAge.Click += mTxtHeaderAge_Click;
-			mTxtHeaderGender.Click += mTxtHeaderGender_Click;
-			mTxtHeaderScore.Click += mTxtHeaderScore_Click;
+			routeName.Click += mTxtHeaderName_Click;
+			review.Click += mTxtHeaderReview_Click;
+			distance.Click += mTxtHeaderDistance_Click;
+			routeType.Click += mTxtHeaderType_Click;
 
 			mSearch.Alpha = 0;
 			mContainer.BringToFront();
@@ -63,8 +63,7 @@ namespace TestApp
             try
             {
                 mRoutes = new List<Route>();
-                //mRoutes.Add(new Route { CreatedAt = "", Name = "Test", Id = "Test", Difficulty = "33", Distance = "Male", Trips = 10, Info = "test", Review = "5", RouteType = "Walking", Time = "10", User_id = "121" });
-
+              
                 mRoutes = await Azure.getRoutes();
 
                 if (mRoutes.Count > 0)
@@ -91,25 +90,18 @@ namespace TestApp
               
             }
 
-
-
-
-
-
-
-
         }
 
 
         //Route names
-		void mTxtHeaderScore_Click (object sender, EventArgs e)
+		void mTxtHeaderType_Click (object sender, EventArgs e)
 		{
 			List<Route> filteredFriends;
 
 			if (!mScoreAscending)
 			{
 				filteredFriends = (from friend in mRoutes
-					orderby friend.Name
+					orderby friend.RouteType
 					select friend).ToList<Route>();
 
 				//Refresh the listview
@@ -122,7 +114,7 @@ namespace TestApp
 			else
 			{
 				filteredFriends = (from friend in mRoutes
-					orderby friend.Name descending
+					orderby friend.RouteType descending
 					select friend).ToList<Route>();
 
 				//Refresh the listview
@@ -166,10 +158,10 @@ namespace TestApp
 			mFirstNameAscending = !mFirstNameAscending;
 		}
 
-		void mTxtHeaderLastName_Click(object sender, EventArgs e)
+		void mTxtHeaderName_Click(object sender, EventArgs e)
 		{
 			List<Route> filteredFriends;
-
+            
 			if (!mLastNameAscending)
 			{
 				filteredFriends = (from friend in mRoutes
@@ -204,14 +196,14 @@ namespace TestApp
 
 
         //Route reviews
-		void mTxtHeaderAge_Click(object sender, EventArgs e)
+		void mTxtHeaderReview_Click(object sender, EventArgs e)
 		{
 			List<Route> filteredFriends;
 
 			if (!mAgeAscending)
 			{
 				filteredFriends = (from friend in mRoutes
-					orderby friend.Review.ToString()
+					orderby friend.Review
 					select friend).ToList<Route>();
 
 				//Refresh the listview
@@ -237,7 +229,7 @@ namespace TestApp
 
 
         // Route distance
-		void mTxtHeaderGender_Click(object sender, EventArgs e)
+		void mTxtHeaderDistance_Click(object sender, EventArgs e)
 		{
 			List<Route> filteredFriends;
 
@@ -274,7 +266,7 @@ namespace TestApp
 				where friend.Name.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.Name.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
 				|| friend.Review.ToString().Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase) || friend.Distance.Contains(mSearch.Text, StringComparison.OrdinalIgnoreCase)
 				select friend).ToList<Route>();
-
+            
 			//Refreshes the listview
 			mAdapter = new RouteAdapterScoreboard(this, Resource.Layout.row_route, searchedFriends);
 			mListView.Adapter = mAdapter;

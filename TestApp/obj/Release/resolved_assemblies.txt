@@ -11,6 +11,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Refractored
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\SQLitePCL.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\SQLitePCL.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Net.Http.Extensions.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Net.Http.Primitives.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Xamarin.Android.Support.v4.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Xamarin.Android.Support.v7.AppCompat.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Xamarin.Android.Support.v7.CardView.dll
@@ -30,5 +31,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Net.
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Runtime.Serialization.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.ServiceModel.Internals.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Microsoft.CSharp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Mono.CSharp.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Json.dll

@@ -21,8 +21,7 @@ namespace TestApp
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private RecyclerView.Adapter mAdapter;
-
+        public RecyclerView.Adapter mAdapter;
         public static Activity act;
 
 		SwipeRefreshLayout mSwipeRefreshLayout;
@@ -48,9 +47,6 @@ namespace TestApp
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-
-
-
             List<User> userList = null;
 
             try
@@ -60,9 +56,6 @@ namespace TestApp
                 if (userList.Count == 0 || userList == null)
                 {
                     Toast.MakeText(this, "Could not find any friend requests!", ToastLength.Long).Show();
-
-                    //Intent myInt = new Intent(this, typeof(F));
-                    //StartActivity(myInt);
                     Finish();
                 }
 
@@ -75,7 +68,7 @@ namespace TestApp
             
 
 
-            mAdapter = new UsersFriendRequestAdapter(userList, mRecyclerView, this, act);
+            mAdapter = new UsersFriendRequestAdapter(userList, mRecyclerView, this, act,mAdapter);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -113,17 +106,17 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
         private Activity mActivity;
+        private RecyclerView.Adapter mAdapter;
 
 
-
-        public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act)
+        public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
 
             mActivity = act;
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
-
+            mAdapter = adapter;
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -183,13 +176,24 @@ namespace TestApp
                 userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
 
 
+            myHolder.mDeleteFriend.SetTag(Resource.Id.rejectFriend, position);
+            myHolder.mAcceptFriend.SetTag(Resource.Id.acceptFriend, position);
+
             myHolder.mDeleteFriend.Click += (sender, args) =>
             {
 
-                var pos = ((View)sender).Tag;
+               
+                int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.rejectFriend));
+
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Rejected", ToastLength.Long).Show();
 
                 var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id,false);
+
+                mUsers.RemoveAt(pos);
+                mAdapter = new UsersFriendRequestAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
 
             };
 
@@ -206,14 +210,21 @@ namespace TestApp
                     mActivity.Finish();
                 }
 
-                var pos = ((View)sender).Tag;
+                //    var pos = ((View)sender).Tag;
+
+                int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.acceptFriend));
+
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Added!", ToastLength.Long).Show();
 
+                var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id, true);
 
-                var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id,true);
+                mUsers.RemoveAt(pos);
+                mAdapter = new UsersFriendRequestAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
 
-                deleteIndex(position);
-                NotifyDataSetChanged();
+                //deleteIndex(position);
+                //NotifyDataSetChanged();
 
                 if (mUsers.Count == 0)
                 {

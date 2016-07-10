@@ -33,12 +33,7 @@ namespace TestApp
 
         public List<User> me;
         public static string givenRouteName;
-
-        static string routeName;
         static string routeInfo;
-        static string routeDistance;
-        static string routeReview;
-        static int routeTrips;
         static string routeDifficulty;
         static string routeType;
         static string routeUserId;

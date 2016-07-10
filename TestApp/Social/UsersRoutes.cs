@@ -53,6 +53,7 @@ namespace TestApp
 
                 Intent myInt = new Intent(this, typeof(RouteOverview));
                 StartActivity(myInt);
+                Finish();
             }
           
             mAdapter = new UsersRoutesAdapter(routeList, mRecyclerView, this);
@@ -81,27 +82,6 @@ namespace TestApp
 			//Will run on separate thread
 			Thread.Sleep(3000);
 		}
-
-
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.actionbar_cardview, menu);
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
-
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //    switch(item.ItemId)
-        //    {
-        //        case Resource.Id.add:
-        //            //Add button clicked
-        //          //  users.Add(new Email() { Name = "New Name", Subject = "New Subject", Message = "New Message" });
-        //            mAdapter.NotifyItemInserted(users.Count - 1);
-        //            return true;
-        //    }
-        //    return base.OnOptionsItemSelected(item);
-        //}
-
 
 
 
@@ -140,9 +120,6 @@ namespace TestApp
             public TextView mRouteName { get; set; }
             public TextView mStatus { get; set; }
             public TextView mRouteInfo { get; set; }
-            //public TextView mLenght { get; set; }
-            //public TextView mDifficulty{ get; set; }
-      
             public ImageView mIconForRoute { get; set; }
             public ImageButton mStartRouteFlag { get; set; }
             public ImageButton mRouteDifficulty { get; set; }
@@ -197,8 +174,6 @@ namespace TestApp
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
 
 
-      
-
             if (mRoutes[position].Difficulty == "Easy")
             {
                 myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.green);
@@ -215,7 +190,6 @@ namespace TestApp
             }
 
 
-
                 myHolder.mIconForRoute.SetImageResource(Resource.Drawable.maps);
           
             if (position > mCurrentPosition)
@@ -227,11 +201,7 @@ namespace TestApp
 
         }
 
-        private void StartRouteFlag_Click(object sender, EventArgs e)
-        {
-
-
-        }
+       
 
         private void SetAnimation(View view, int currentAnim)
         {
@@ -247,12 +217,12 @@ namespace TestApp
 
         void mMainView_Click(object sender, EventArgs e)
         {
-         //   int position = mRecyclerView.GetChildPosition((View)sender);
+        
           
             try
             {
 
-                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+            int position = mRecyclerView.GetChildAdapterPosition((View)sender);
              
             routeName = mRoutes[position].Name;
             routeInfo = mRoutes[position].Info;
@@ -285,8 +255,6 @@ namespace TestApp
             Intent myIntent = new Intent(mContext, typeof(StartRoute));
             myIntent.PutExtras(b);
             mContext.StartActivity(myIntent);
-
-                // Toast.MakeText(mContext, "" + position.ToString() + " " +routeId + " RouteINFo: "+ routeName, ToastLength.Long).Show();
 
             }
             catch (Exception )

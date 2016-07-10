@@ -10,7 +10,6 @@
         android:background="@android:color/white">
         <RelativeLayout
             android:id="@+id/gpsReadings"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_light">
@@ -23,7 +22,6 @@
                 android:textColor="#ff3e2723"
                 android:layout_marginBottom="15dp"
                 android:layout_y="60dp" />
-           
             <TextView
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
@@ -61,14 +59,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginLeft="5dp" />
-        <!--<fragment
-        android:id="@+id/mapMenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_weight="100"
-        android:layout_gravity="bottom"
-        android:layout_y="210dp" />-->
+        
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"

@@ -392,7 +392,7 @@ namespace TestApp
                 //   mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                
             }

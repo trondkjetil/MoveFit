@@ -1,18 +1,13 @@
 ﻿using System;
 using Android.Graphics;
-using System.IO;
-using System.Xml.Serialization;
 using System.Net;
-using Android.Widget;
 using Android.Net;
-using System.Threading.Tasks;
-using Android.App;
 using Android.Content.PM;
 using Android.OS;
 
 namespace TestApp
 {
-	public class IOUtilz
+    public class IOUtilz
 	{
 
 		public static Bitmap profileImage  {set;get;}

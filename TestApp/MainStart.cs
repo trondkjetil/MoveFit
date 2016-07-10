@@ -28,7 +28,7 @@ namespace TestApp
 
 
     [Activity(Label = "MainMenu", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainStart : AppCompatActivity, ILocationListener 
+    public class MainStart : AppCompatActivity, ILocationListener
     {
         public readonly string logTag = "MainActivity";
         SupportToolbar mToolbar;
@@ -84,7 +84,7 @@ namespace TestApp
         public static ConnectivityManager connectivityManager;
 
         public static IMenuItem menItem;
-      
+
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -93,7 +93,7 @@ namespace TestApp
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
             mainActivity = this;
-          
+
             changed = false;
             user = null;
             chk = false;
@@ -103,7 +103,7 @@ namespace TestApp
 
             isOnline = false;
 
-            connectivityManager =  (ConnectivityManager)GetSystemService(ConnectivityService);
+            connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -116,7 +116,7 @@ namespace TestApp
             TextView steps = FindViewById<TextView>(Resource.Id.steps);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
 
-          
+
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
             ImageView pictureFriend3 = FindViewById<ImageView>(Resource.Id.pic3);
@@ -129,12 +129,9 @@ namespace TestApp
 
             steps.Text = "Steps: 0";
             totalDistance.Text = "Total Distance: 0";
-
-
-
             points = FindViewById<TextView>(Resource.Id.points);
 
-            loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
+        
 
             array = Intent.GetStringArrayExtra("MyData");
             greetings.Text = "Greetings " + array[0] + "!";
@@ -144,14 +141,14 @@ namespace TestApp
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             profilePicture.SetImageBitmap(profilePic);
 
-            loadingImage.Visibility = ViewStates.Invisible;
+
+        //    loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
+            // loadingImage.Visibility = ViewStates.Invisible;
             facebookUserId = array[2];
             //Removes the whole progress bar view, showing only the profile picture
 
             //Fix to remove space from profile pic and loadingbar
             //  ((ViewGroup)loadingImage.Parent).RemoveView(loadingImage);
-
-
 
 
             mLeftDrawer.Tag = 0;
@@ -168,11 +165,11 @@ namespace TestApp
 
             if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
             {
-               // mLeftDataSet.Add("STEP COUNTER 2");
+                // mLeftDataSet.Add("STEP COUNTER 2");
             }
 
             mLeftDataSet.Add("Scoreboard");
-            mLeftDataSet.Add("Routes");          
+            mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("Step counter");
@@ -189,7 +186,7 @@ namespace TestApp
             //mLeftDataSet.Add("Calculator");
             //mLeftDataSet.Add("My profile");
 
-           
+
 
 
 
@@ -215,11 +212,11 @@ namespace TestApp
                 }
                 else if (e.Position == 3)
                 {
-                    myIntent = new Intent(this, typeof( Chat));
+                    myIntent = new Intent(this, typeof(Chat));
                     StartActivity(myIntent);
                 }
-               
-               
+
+
                 else if (e.Position == 4)
                 {
                     myIntent = new Intent(this, typeof(StepCounter));
@@ -227,7 +224,7 @@ namespace TestApp
                 }
                 else if (e.Position == 5)
                 {
-                 
+
                     myIntent = new Intent(this, typeof(Calculator));
                     StartActivity(myIntent);
                 }
@@ -241,17 +238,17 @@ namespace TestApp
 
 
                         User instance = null;
-                        
+
                         if (user.Count != 0 || userInstanceOne != null)
                         {
                             instance = user.FirstOrDefault();
-                          
+
                             if (instance == null)
                                 instance = userInstanceOne;
-                       
+
                         }
 
-                  
+
 
                         if (instance != null)
                         {
@@ -282,7 +279,7 @@ namespace TestApp
                     catch (Exception)
                     {
 
-                      
+
                     }
 
                 }
@@ -324,7 +321,7 @@ namespace TestApp
                 //else if (e.Position == 13)
                 //{
 
-            
+
                 //    User instance = null;
 
                 //    if (user.Count != 0)
@@ -355,45 +352,45 @@ namespace TestApp
 
                 //    }
 
-              //  }
-                    //if (e.Position == 5)
-                    //{
-                    //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
-                    //    StartActivity(myIntent);
-                    //}
-                    //else if (e.Position == 6)
-                    //{
-                    //    myIntent = new Intent(this, typeof(Calculator));
-                    //    StartActivity(myIntent);
-                    //}
-                    //else if (e.Position == 7)
-                    //{
-                    //    myIntent = new Intent(this, typeof(Chat));
-                    //    StartActivity(myIntent);
-                    //}
-                    //else if (e.Position == 8)
-                    //{
-                    //    myIntent = new Intent(this, typeof(RouteOverview));
-                    //    StartActivity(myIntent);
-                    //}
-                    //else if (e.Position == 9)
-                    //{
-                    //    myIntent = new Intent(this, typeof(FriendsOverview));
-                    //    StartActivity(myIntent);
-                    //}
+                //  }
+                //if (e.Position == 5)
+                //{
+                //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 6)
+                //{
+                //    myIntent = new Intent(this, typeof(Calculator));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 7)
+                //{
+                //    myIntent = new Intent(this, typeof(Chat));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 8)
+                //{
+                //    myIntent = new Intent(this, typeof(RouteOverview));
+                //    StartActivity(myIntent);
+                //}
+                //else if (e.Position == 9)
+                //{
+                //    myIntent = new Intent(this, typeof(FriendsOverview));
+                //    StartActivity(myIntent);
+                //}
 
 
 
 
 
 
-                };
+            };
 
             var RightAdapter = new ContactsAdapter(this);
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
             mRightDrawer.Adapter = RightAdapter;
 
-           
+
 
             mDrawerToggle = new ActionBarDrawerToggle(
                 this,                           //Host Activity
@@ -432,13 +429,13 @@ namespace TestApp
                 //This is the first the time the activity is ran
 
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
-             
+
             }
 
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
-               
+
                 if (user.Count == 0)
                 {
 
@@ -460,13 +457,13 @@ namespace TestApp
 
                     userInstanceOne = waitingUpload;
                 }
-                  
- 
+
+
 
             }
-            catch (Exception )
+            catch (Exception)
             {
-              
+
             }
 
 
@@ -482,8 +479,9 @@ namespace TestApp
                 if (topUsers[0] != null)
                 {
                     pers1.Text = topUsers[0].UserName; // "Test friend1 Score: 0";
-                    pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl( topUsers[0].ProfilePicture));
-                }else
+                    pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+                }
+                else
 
 
                 if (topUsers[1] != null)
@@ -500,21 +498,23 @@ namespace TestApp
                 }
 
 
-            } catch (Exception) { 
+            }
+            catch (Exception)
+            {
 
 
 
-               }
-           
+            }
+
 
             //pictureFriend1.SetImageBitmap(profilePic);
-         //   pictureFriend2.SetImageBitmap(profilePic);
-       //     pictureFriend3.SetImageBitmap(profilePic);
+            //   pictureFriend2.SetImageBitmap(profilePic);
+            //     pictureFriend3.SetImageBitmap(profilePic);
 
 
-           
+
         }
-       
+
 
         public async void setPoints()
         {
@@ -618,24 +618,24 @@ namespace TestApp
                     mDrawerToggle.OnOptionsItemSelected(item);
                     return true;
 
-                case Resource.Id.statusOnline:
-                  
-                    if (isOnline)
-                    {
-                        item.SetIcon(Resource.Drawable.greenonline);
-                        isOnline = true;
-                        Toast.MakeText(this, "Showing as Online", ToastLength.Short).Show();
-                    }
-                    else
-                    {
-                        item.SetIcon(Resource.Drawable.redoffline);
-                        isOnline = false;
-                        Toast.MakeText(this, "Showing as Offline", ToastLength.Short).Show();
-                    }
+                //case Resource.Id.statusOnline:
 
-                   
-                    return true;
-     
+                //    if (isOnline)
+                //    {
+                //        item.SetIcon(Resource.Drawable.greenonline);
+                //        isOnline = true;
+                //        Toast.MakeText(this, "Showing as Online", ToastLength.Short).Show();
+                //    }
+                //    else
+                //    {
+                //        item.SetIcon(Resource.Drawable.redoffline);
+                //        isOnline = false;
+                //        Toast.MakeText(this, "Showing as Offline", ToastLength.Short).Show();
+                //    }
+
+
+                //    return true;
+
 
                 case Resource.Id.action_help:
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
@@ -647,7 +647,7 @@ namespace TestApp
                     {
                         //Right Drawer is closed, open it and just in case close left drawer
                         mDrawerLayout.OpenDrawer(mRightDrawer);
-                      //  mDrawerLayout.CloseDrawer(mLeftDrawer);
+                        //  mDrawerLayout.CloseDrawer(mLeftDrawer);
                     }
 
                     Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
@@ -663,7 +663,7 @@ namespace TestApp
                 // Starts movement tracker (indoor)
                 case Resource.Id.action_alarm:
 
-                   var waiting = Azure.findNearBy(userName);
+                    var waiting = Azure.findNearBy(userName);
 
                     if (SimpleService.status == false || SimpleService.Status == false)
                     {
@@ -690,7 +690,7 @@ namespace TestApp
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-          
+
 
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
             menItem = menu.FindItem(Resource.Id.statusOnline);
@@ -722,9 +722,9 @@ namespace TestApp
             catch (Exception)
             {
 
-               
+
             }
-           
+
         }
 
         public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
@@ -737,9 +737,9 @@ namespace TestApp
             catch (Exception)
             {
 
-             
+
             }
-          
+
         }
 
 
@@ -773,17 +773,17 @@ namespace TestApp
             //var a = await Azure.SetUserOnline(userName, false);
             Log.Debug(logTag, "Location app is becoming inactive");
             base.OnDestroy();
-            
-           // var b = await Azure.SetUserOnline(userName, false);
-           await logOff();
 
-       //     Finish();
+            // var b = await Azure.SetUserOnline(userName, false);
+            await logOff();
+
+            //     Finish();
 
         }
-        
+
         public async Task<List<User>> logOff()
         {
-           var user = await Azure.SetUserOnline(userName, false);
+            var user = await Azure.SetUserOnline(userName, false);
 
             return user;
         }
@@ -794,7 +794,7 @@ namespace TestApp
             Location location = e.Location;
             currentLocation = location;
 
-      
+
 
             OnLocationChanged(location);
 
@@ -902,7 +902,7 @@ namespace TestApp
                 try
                 {
 
-                    if(IOUtilz.isOnline(connectivityManager))
+                    if (IOUtilz.isOnline(connectivityManager))
                     {
 
                         //Toast.MakeText(this, "User is online", ToastLength.Long).Show();
@@ -919,9 +919,9 @@ namespace TestApp
                     }
 
 
-                   var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
+                    var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 
-                    setMarker(currentPos,mMap);
+                    setMarker(currentPos, mMap);
 
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                     mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
@@ -934,9 +934,9 @@ namespace TestApp
                 catch (Exception)
                 {
 
-                    
+
                 }
-               
+
 
 
 
@@ -959,13 +959,13 @@ namespace TestApp
 
         }
 
-       
+
         public class ContactsAdapter : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
         {
             List<Contact> _contactList;
             public Activity _activity;
 
-        
+
             //public static GoogleMap mMap;
             public static List<User> nearbyUsers;
             public static ImageButton findMoreFriends;
@@ -1017,8 +1017,7 @@ namespace TestApp
 
             public override View GetView(int position, View convertView, ViewGroup parent)
             {
-                var view = convertView ?? _activity.LayoutInflater.Inflate(
-                    Resource.Layout.rightDrawerMenu, parent, false);
+                var view = convertView ?? _activity.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
                 contactName.Text = _contactList[position].DisplayName;
 
@@ -1029,39 +1028,44 @@ namespace TestApp
                 {
                     mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
                 }
+
+                mMap.SetOnMapClickListener(this);
+
                 mMap.UiSettings.ZoomControlsEnabled = true;
                 mMap.UiSettings.RotateGesturesEnabled = false;
                 mMap.UiSettings.ScrollGesturesEnabled = false;
 
                 contactName.Text = "";
 
-                TextView altText;
-                TextView speedText;
+                //TextView altText;
+                //TextView speedText;
                 TextView bearText;
-                TextView accText;
+                // TextView accText;
 
-                mMap.SetOnMapClickListener(this);
 
-                altText = view.FindViewById<TextView>(Resource.Id.alt);
-                speedText = view.FindViewById<TextView>(Resource.Id.speed);
+
+                //altText = view.FindViewById<TextView>(Resource.Id.alt);
+                //speedText = view.FindViewById<TextView>(Resource.Id.speed);
                 bearText = view.FindViewById<TextView>(Resource.Id.bear);
-                accText = view.FindViewById<TextView>(Resource.Id.acc);
+                //accText = view.FindViewById<TextView>(Resource.Id.acc);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
 
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
                 location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
                     if (e.IsChecked == true)
                     {
-                        Toast.MakeText(_activity, "Tracking...", ToastLength.Long).Show();
+                        Toast.MakeText(_activity, "Your location tracking has been turned on", ToastLength.Long).Show();
+
                         _activity.StartService(new Intent(_activity, typeof(LocationService)));
 
                         var a = Azure.SetUserOnline(userName, true);
                         isOnline = true;
+
                         menItem.SetIcon(Resource.Drawable.greenonline);
-                        Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
-                        alertMessage.SetTitle("User location tracking");
-                        alertMessage.SetMessage("Your location tracking has been turned on");
-                        alertMessage.Show();
+                        //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
+                        //alertMessage.SetTitle("User location tracking");
+                        //alertMessage.SetMessage("Your location tracking has been turned on");
+                        //alertMessage.Show();
 
                     }
                     else
@@ -1072,71 +1076,75 @@ namespace TestApp
                         var b = Azure.SetUserOnline(userName, false);
                         isOnline = false;
                         menItem.SetIcon(Resource.Drawable.redoffline);
-                        Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
-                        alertMessage.SetTitle("User location tracking");
-                        alertMessage.SetMessage("Your location tracking has been turned off");
-                        alertMessage.Show();
+                        //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
+                        //alertMessage.SetTitle("User location tracking");
+                        //alertMessage.SetMessage("Your location tracking has been turned off");
+                        //alertMessage.Show();
 
 
 
                     }
                 };
 
-                findMoreFriends = view.FindViewById<ImageButton>(Resource.Drawable.lupe);
-                _activity.RunOnUiThread(() =>
-                {
-                    try
-                    {
+                //  findMoreFriends = view.FindViewById<ImageButton>(Resource.Drawable.lupe);
 
-                        // markOnMap(nearbyUsers, mMap);
-                        // findMoreFriends.Click += startFriendMap_Click;
-                        //    await AddressInitiate();
-                    }
-                    catch (Exception e)
-                    {
+                //_activity.RunOnUiThread(() =>
+                //{
+                //    try
+                //    {
 
-                    }
+                //        // markOnMap(nearbyUsers, mMap);
+                //        // findMoreFriends.Click += startFriendMap_Click;
+                //        //    await AddressInitiate();
+                //    }
+                //    catch (Exception e)
+                //    {
+
+                //    }
 
 
-                });
+                //});
 
 
 
                 return view;
             }
 
-        
-            public async static void markOnMap(List<User> users, GoogleMap mMap)
-            {
 
-                try
-                {
+            //public async static void markOnMap(List<User> users, GoogleMap mMap)
+            //{
 
-                    nearbyUsers = await Azure.getImagesOnMap();
-                    foreach (User x in nearbyUsers)
-                    {
-                       // setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
+            //    try
+            //    {
 
-                    }
+            //        nearbyUsers = await Azure.getImagesOnMap();
+            //        foreach (User x in nearbyUsers)
+            //        {
+            //           // setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
+
+            //        }
 
 
-                }
-                catch (Exception ex)
-                {
+            //    }
+            //    catch (Exception ex)
+            //    {
 
-                }
+            //    }
 
-            }
+            //}
 
             public void OnMapClick(LatLng point)
             {
+                try
+                {
+                    Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
+                    _activity.StartActivity(myIntent);
+                }
+                catch (Exception)
+                {
 
-                Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
-                //  profilePic
 
-                _activity.StartActivity(myIntent);
-
-
+                }
 
             }
         }
@@ -1145,16 +1153,16 @@ namespace TestApp
         {
 
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
-
             alert.SetTitle("Exit app");
             alert.SetMessage("Do you want to exit the application?");
             alert.SetPositiveButton("Yes", (senderAlert, args) => {
                 //change value write your own set of instructions
                 //you can also create an event for the same in xamarin
                 //instead of writing things here
-               
+
                 base.OnBackPressed();
-               
+                var b = Azure.SetUserOnline(userName, false);
+
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -1185,17 +1193,17 @@ namespace TestApp
                 waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
                 userInstanceOne = waitingUpload;
-               // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+                // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";
-            
-               
+
+
 
             }
-            catch (Exception )
+            catch (Exception)
             {
 
-             
+
 
             }
 
@@ -1207,10 +1215,6 @@ namespace TestApp
 
 
 
-
-
-
-      
 
 
     }

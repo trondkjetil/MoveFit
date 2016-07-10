@@ -23,8 +23,6 @@ namespace TestApp
       //  const string applicationURL = @"https://movefitt.azurewebsites.net";
 
         const string applicationURL = @"https://moveit.azurewebsites.net";
-
-
         const string localDbFilename = "localstore1.db";
 
 
@@ -97,7 +95,7 @@ namespace TestApp
             var list = await getUserId(userName);
             User me = list.FirstOrDefault();
 
-            HarvesineCalc calc = new HarvesineCalc();
+           
             //  List<User> userList;
 
             //  var r = calc.Distance(me, p, DistanceType.Kilometers);
@@ -237,9 +235,9 @@ namespace TestApp
 
         public static async Task<List<User>> getPeople()
         {
-
-            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).ToListAsync();
-          //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
+            //
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).ToListAsync();  //
+                                                                                                                       //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return userList;
 
         }
@@ -267,14 +265,23 @@ namespace TestApp
 
         }
 
-        public static async Task<List<User>> removeUser(String providedUserName)
-        {
+        //public static async Task<List<UserFriends>> removeUser(String providedUserName)
+        //{
 
-            List<User> userList = await table.Where(user => user.UserName == providedUserName).ToListAsync();
-             await  table.DeleteAsync(userList.FirstOrDefault());
+        //    List<UserFriends> userList = await userFriendsTable.Where(user => user.UserName == providedUserName).ToListAsync();
+        //     await  table.DeleteAsync(userList.FirstOrDefault());
            
 
-            return userList;
+        //    return userList;
+
+        //}
+        public static async Task<List<UserFriends>> deleteFriend(string myUser, string providedUserName)
+        {
+            
+            List<UserFriends> friendShips = await userFriendsTable.Where(user => user.UserLink1 == myUser && user.UserLink2 == providedUserName || user.UserLink2 == myUser && user.UserLink1 == providedUserName).ToListAsync();
+            await userFriendsTable.DeleteAsync(friendShips.FirstOrDefault());
+
+            return friendShips;
 
         }
         public static async Task<List<Route>> getRoutes()
@@ -334,6 +341,7 @@ namespace TestApp
             return userList;
 
         }
+
 
 
 
@@ -492,7 +500,7 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async void AddFriendShip(string userId1, string userId2)
+        public static async Task AddFriendShip(string userId1, string userId2)
 
         {
             var friendship = new UserFriends
@@ -513,10 +521,12 @@ namespace TestApp
                 await SyncAsync(); // send changes to the mobile service
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+              
             }
+
+           
         }
 
 

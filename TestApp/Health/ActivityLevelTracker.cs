@@ -1,7 +1,6 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.Media;
 using Android.OS;
 using Android.Views;
@@ -33,26 +32,7 @@ namespace TestApp
 		public int level;
 	
 	
-		// Create check for time of day. Eg alarm only between 9 am - 9pm
-		public void timing(){
-			var start = DateTime.Now;
-			var oldDate = DateTime.Parse(timeOfday.ToString()); //DateTime.Parse("08/10/2011 23:50:31"); 
-
-			if(start.Subtract(oldDate) >= TimeSpan.FromMinutes(20)) 
-			{
-				//20 minutes were passed from start
-			}
-
-		}
-        private void getSreenDimanstions()
-        {
-
-            double width;
-            double height;
-            Display display = WindowManager.DefaultDisplay;
-            width = display.Width;
-            height = display.Height;
-        }
+       
         protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -77,20 +57,7 @@ namespace TestApp
 
 	
 
-		public String getImage(){
-			String gif;
-			int tall = rand.Next (0, 3);
-
-			if (tall == 1) {
-				gif = "file:///android_asset/Lem.gif";
-			}else if (tall == 2){
-				gif ="file:///android_asset/Hipp.gif";
-			}else {
-				gif ="file:///android_asset/Afro.gif";
-			}
-			return gif;
-		}
-
+		
 
 		public void stopAlarm(object sender, EventArgs e){
 			player.Stop ();
@@ -105,17 +72,7 @@ namespace TestApp
 
 
 		public void Alarm(){
-			webLoadingIcon = FindViewById<WebView> (Resource.Id.webLoadingIcon);
-			// expects to find the 'loading_icon_small.gif' file in the 'root' of the assets folder, compiled as AndroidAsset.
-			webLoadingIcon.LoadUrl (string.Format (getImage()));
-
-			//"file:///android_asset/Lem.gif"
-
-			webLoadingIcon.Settings.SetSupportZoom (true);
-
-			// this makes it transparent so you can load it over a background
-			webLoadingIcon.SetBackgroundColor (new Color (0, 0, 0, 0));
-			webLoadingIcon.SetLayerType (LayerType.Software, null);
+			
 
 			player = MediaPlayer.Create (this, Resource.Raw.moveIt);
 			player.SetVolume (100, 100);
@@ -128,7 +85,7 @@ namespace TestApp
 		{
             if(SimpleService.Status == true || SimpleService.status == true)
             {
-               // StartService(new Intent(this, typeof(SimpleService)));
+              
             }
 			
 			base.OnDestroy();

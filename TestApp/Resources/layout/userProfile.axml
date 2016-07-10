@@ -16,7 +16,6 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +27,17 @@
             android:id="@+id/profilePic1" />-->
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_toRightOf="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  
             android:id="@+id/profilePic2" />
+    <!--<Button
+            android:text="Edit image"
+            android:layout_below="@+id/profilePic2"
+            android:layout_width="104.0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editImage"
+            android:gravity="center"
+            android:layout_centerInParent="true" />-->
     </RelativeLayout>
     <TextView
         android:text=""
@@ -61,4 +67,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/aboutMeEdit"
         android:textColor="@android:color/black" />
+    <Button
+        android:text="Edit image"
+        android:layout_width="104.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editImage"
+        android:gravity="center"
+        android:layout_centerInParent="true" />
 </LinearLayout>

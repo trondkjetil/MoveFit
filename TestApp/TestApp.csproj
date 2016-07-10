@@ -38,14 +38,14 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
-    <AndroidLinkMode>Full</AndroidLinkMode>
-    <DebugSymbols>True</DebugSymbols>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <DebugSymbols>False</DebugSymbols>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
@@ -165,7 +165,6 @@
     <Compile Include="Services\LocationServiceConnection.cs" />
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
-    <Compile Include="SignalR\GetInfo.cs" />
     <Compile Include="SignalR\Chat.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserProfile.cs" />
@@ -175,10 +174,6 @@
     <Compile Include="UI\ScoreBoardExtMethods.cs" />
     <Compile Include="UI\ScoreBoardRoutesAdapter.cs" />
     <Compile Include="UI\ScoreBoardFriendsAdapter.cs" />
-    <Compile Include="UI\SlidingTabMenuActivity.cs" />
-    <Compile Include="UI\SlidingTabScrollView.cs" />
-    <Compile Include="UI\SlidingTabsFragment.cs" />
-    <Compile Include="UI\SlidingTabStrip.cs" />
     <Compile Include="Social\UsersMyRoutes.cs" />
     <Compile Include="Social\UsersFriendRequest.cs" />
     <Compile Include="Social\UsersRoutes.cs" />
@@ -186,10 +181,7 @@
     <Compile Include="Social\UsersNearby.cs" />
     <Compile Include="Dialogs\DialogStartRoute.cs" />
     <Compile Include="Login\AuthActivity.cs" />
-    <Compile Include="Login\LoginActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
-    <Compile Include="Login\UserOverview.cs" />
-    <Compile Include="Utilz\Haversine .cs" />
     <Compile Include="Utilz\IO.cs" />
     <Compile Include="UI\MyActionBarDrawerToggle.cs" />
     <Compile Include="Azure\UserAdapter.cs" />
@@ -202,28 +194,23 @@
     <Compile Include="MainStart.cs" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\drawable\tt.jpg" />
+    <AndroidResource Include="Resources\drawable\tt.png" />
     <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
     <AndroidResource Include="Resources\anim\slide_up.xml" />
     <AndroidResource Include="Resources\anim\slide_right.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\menu\actionbar_main.xml" />
     <AndroidResource Include="Resources\values\themes.xml" />
-    <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable\customLoadbar.xml" />
-    <AndroidResource Include="Resources\Raw\moveIt.mp3" />
     <AndroidResource Include="Resources\drawable\ic_action_search.png" />
     <AndroidResource Include="Resources\menu\actionbar.xml" />
     <AndroidResource Include="Resources\values\itemsDropDownList.xml" />
     <AndroidResource Include="Resources\drawable\test.png" />
-    <AndroidResource Include="Resources\drawable\sign.png" />
     <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_new.png" />
     <AndroidResource Include="Resources\drawable\ic_action_read.png" />
     <AndroidResource Include="Resources\drawable\ic_action_save.png" />
-    <AndroidResource Include="Resources\menu\actionbar_cardView..xml" />
     <AndroidResource Include="Resources\anim\slide_left_to_right.xml" />
     <AndroidResource Include="Resources\anim\cardView_up.xml" />
     <AndroidResource Include="Resources\anim\flip.xml" />
@@ -250,9 +237,8 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dropDownList.axml" />
-    <AndroidResource Include="Resources\layout\fragment_sample.axml" />
     <AndroidResource Include="Resources\layout\getinfo.axml" />
-    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout\chat.axml" />
     <AndroidResource Include="Resources\layout\map.axml" />
     <AndroidResource Include="Resources\layout\mapPeople.axml" />
     <AndroidResource Include="Resources\layout\pager_item.axml" />
@@ -268,7 +254,6 @@
     <AndroidResource Include="Resources\layout\row2.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardMain.axml" />
     <AndroidResource Include="Resources\layout\simpleServiceLayout.axml" />
-    <AndroidResource Include="Resources\layout\slideMenu.axml" />
     <AndroidResource Include="Resources\layout\startRoute.axml" />
     <AndroidResource Include="Resources\layout\test_Cardview.axml" />
     <AndroidResource Include="Resources\layout\userFriendsContent.axml" />
@@ -292,9 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -325,25 +307,15 @@
       <Version>23.1.1.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="GifImageViewAndroid">
-      <Version>1.2.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />
-    <AndroidAsset Include="Assets\Afro.gif" />
-    <AndroidAsset Include="Assets\Hipp.gif" />
-    <AndroidAsset Include="Assets\Lem.gif" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\faceShare.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\messengerFb.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\acceptfriend.png" />
@@ -391,9 +363,6 @@
     <AndroidResource Include="Resources\values\itemsRouteTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\lupe.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_alarm.png" />
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +388,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\action_menu_profile.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\Raw\moveIt.mp3" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

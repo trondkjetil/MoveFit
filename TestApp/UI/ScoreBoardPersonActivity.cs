@@ -21,7 +21,7 @@ namespace TestApp
 		private bool mIsAnimating;
 		private UserAdapterScoreboard mAdapter;
 
-		private TextView mTxtHeaderFirstName;
+		
 		private TextView mTxtHeaderLastName;
 		private TextView mTxtHeaderAge;
 		private TextView mTxtHeaderGender;
@@ -118,7 +118,12 @@ namespace TestApp
 			}
 
 			mFirstNameAscending = !mFirstNameAscending;
-		}
+
+
+            //EDITED UNKOWN EFFECT!
+            mScoreAscending = !mScoreAscending;
+
+        }
 
 		void mTxtHeaderFirstName_Click(object sender, EventArgs e)
 		{

@@ -19,11 +19,9 @@ namespace TestApp
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private RecyclerView.Adapter mAdapter;
-        public Activity activity;
+        public RecyclerView.Adapter mAdapter;
+        public Activity act;
        
-		
-
 		SwipeRefreshLayout mSwipeRefreshLayout;
 
 
@@ -47,7 +45,7 @@ namespace TestApp
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersFriends);
 
-            activity = this;
+            act = this;
 
             mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
 			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
@@ -78,7 +76,7 @@ namespace TestApp
             }
 
 
-            mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this);
+            mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this, act, mAdapter);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -126,13 +124,17 @@ namespace TestApp
         public int userPoints;
         public string userAboutMe;
         public string userID;
+        private RecyclerView.Adapter mAdapter;
+        private Activity mActivity;
 
-        public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context)
+        public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
-            
+            mActivity = act;
+            mAdapter = adapter;
+
 
         }
 
@@ -167,8 +169,6 @@ namespace TestApp
                 TextView text = userFriendsContent.FindViewById<TextView>(Resource.Id.textId);
 
                 ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
-
-
                 ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
                 deleteFriend.Focusable = false;
                 deleteFriend.FocusableInTouchMode = false;
@@ -194,7 +194,7 @@ namespace TestApp
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
-
+                
 
             if (mUsers[position].Online)
             {
@@ -218,17 +218,24 @@ namespace TestApp
                 
                 var pos = ((View)sender).Tag;
 
-                Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Deleted", ToastLength.Long).Show();
+                Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
 
 
                 // Deletes the user from the whole app....
-                var wait = Azure.removeUser(mUsers[position].UserName);
+                //    var wait = Azure.removeUser(mUsers[(int)pos].UserName);
 
-                deleteIndex(position);
-                NotifyDataSetChanged();
+                //deleteIndex(position);
+                //NotifyDataSetChanged();
 
-                if(mUsers.Count == 0)
+                var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
+
+                mUsers.RemoveAt((int) pos);
+                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+                if (mUsers.Count == 0)
                 {
 
                     Intent myInt = new Intent(mContext, typeof(RouteOverview));
@@ -272,7 +279,7 @@ namespace TestApp
                 myHolder.mStatus.Text = "Offline";
             }
                
-                myHolder.mText.Text = "Age " +mUsers[position].Age;
+                myHolder.mText.Text = "Age " + mUsers[position].Age;
             if (userImage == null)
             {
                 myHolder.mProfilePicture.SetImageResource(Resource.Drawable.tt);

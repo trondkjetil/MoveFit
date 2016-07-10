@@ -14,7 +14,8 @@
 	<!-- Permission to receive remote notifications from Google Play Services -->
 	<!-- Notice here that we have the package name of our application as a prefix on the permissions. -->
 	<!-- These are optional, but recommended. They will allow Maps to use the My Location provider. -->
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_OWNER_DATA" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -23,11 +24,10 @@
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 	<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
-	<application android:label="TestApp" android:icon="@drawable/Icon">
+	<application android:label="TestApp" android:icon="@drawable/tt">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="975161479232108" />
 		<activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="TestApp" />
 	</application>
 </manifest>
-<!--  android:theme="@style/Theme.AppCompat.Light" -->

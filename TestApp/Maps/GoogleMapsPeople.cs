@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Threading.Tasks;
 using Android.App;
 using Android.Gms.Maps;
@@ -10,19 +9,14 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.Locations;
 using Android.OS;
-using Android.Text;
-using Android.Text.Style;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using System.Threading.Tasks;
-using Android.Gms.Common;
-using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
 namespace TestApp
 {
-	[Activity (Label = "Maps",Theme = "@android:style/Theme.NoTitleBar")]
+    [Activity (Label = "Maps",Theme = "@android:style/Theme.NoTitleBar")]
 	public class GoogleMapsPeople : Android.Support.V4.App.FragmentActivity,IOnMapReadyCallback, GoogleMap.IInfoWindowAdapter, GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener,ILocationListener 
 	{
 		
@@ -35,7 +29,6 @@ namespace TestApp
 		string locationText;
 		MarkerOptions markerOpt1;
 		LatLng currentPos;
-		Button findPeople;
         MapFragment mapFrag;
 
         //Azure azure;
@@ -52,7 +45,9 @@ namespace TestApp
 
             //	SetUpMapIfNeeded ();	
 
-             mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+
+
+            mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
              mMap = mapFrag.Map;
 
 
@@ -68,6 +63,11 @@ namespace TestApp
          
                 RunOnUiThread(async() =>
                 {
+
+                    try
+                    {
+
+                  
                     Toast.MakeText(this, "Showing friends on the map", ToastLength.Short).Show();
 
                     users = await Azure.getImagesOnMap();
@@ -77,6 +77,14 @@ namespace TestApp
                         Log.Debug("PeopleMap", user.UserName);
                         setMarker(new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon)), IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture));
 
+                    }
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                       
                     }
 
                 });
@@ -110,7 +118,7 @@ namespace TestApp
 			BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap (pic); //(Resource.Drawable.test);
 			markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
 			mMap.AddMarker (markerOpt1);
-			mMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom (myPosition, 14));
+			//mMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom (myPosition, 14));
 		}
 
 
@@ -141,14 +149,14 @@ namespace TestApp
 			Marker marker = markerClickEventArgs.Marker;
 
 			//if (marker.Id.Equals(MyMarkerId)) // The ID of a specific marker the user clicked on.
-			if (marker.Id.Equals(this))
-			{
-				mMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(20.72110, -156.44776), 13));
-			}
-			else
-			{
-				Toast.MakeText(this, String.Format("You clicked on Marker ID {0}", marker.Id), ToastLength.Short).Show();
-			}
+			//if (marker.Id.Equals(this))
+			//{
+			//	mMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(20.72110, -156.44776), 13));
+			//}
+			//else
+			//{
+			//	Toast.MakeText(this, String.Format("You clicked on Marker ID {0}", marker.Id), ToastLength.Short).Show();
+			//}
 		}
 
 

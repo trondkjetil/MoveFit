@@ -15,12 +15,8 @@ namespace TestApp
 	{
 
 		static readonly string TAG = "YYY:" + typeof (StartRouteService).Name;
-
         public static bool serviceIsRunning;
-
-
-
-        Stopwatch stopWatch;
+      //  Stopwatch stopWatch;
         public LocationServiceConnection con;
         public IBinder binder;
 

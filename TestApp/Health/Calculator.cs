@@ -78,7 +78,7 @@ namespace TestApp
                     {
                         age = Convert.ToInt32(_age.Text.ToString());
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         displayErrorMessage();
 
@@ -92,7 +92,7 @@ namespace TestApp
                     {
                         height = Convert.ToDouble(_height.Text.ToString());
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
 
                         displayErrorMessage();
@@ -106,7 +106,7 @@ namespace TestApp
                     {
                         weight = Convert.ToDouble(_weight.Text.ToString());
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         displayErrorMessage();
 
@@ -182,7 +182,7 @@ namespace TestApp
 
 
             }
-            catch (Exception en)
+            catch (Exception)
             {
 
             }

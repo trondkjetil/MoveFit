@@ -11,6 +11,7 @@ using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
 using Android.Net;
+using Android.Graphics;
 
 namespace TestApp
 {
@@ -23,7 +24,8 @@ namespace TestApp
         private string UserID;
         List<Route> routeList;
 
-       SwipeRefreshLayout mSwipeRefreshLayout;
+        SwipeRefreshLayout mSwipeRefreshLayout;
+
         public static ConnectivityManager connectivityManager;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,9 +34,9 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.UsersMyRoutes);
 
-            //mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swp);
-            //mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
-            //mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
+            mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swp);
+            mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
+            mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
             connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
@@ -63,20 +65,6 @@ namespace TestApp
                     //StartActivity(myInt);
                     Finish();
                 }
-
-
-                // Changed to check in internet is available
-                
-                //if (IOUtilz.isOnline(connectivityManager))
-                //{
-                //    Toast.MakeText(this, "Please connect to the internet!", ToastLength.Long).Show();
-
-                //    //Intent myInt = new Intent(this, typeof(MainStart));
-                //    //StartActivity(myInt);
-
-                //    Finish();
-                //}
-
 
             }
             catch (Exception)
@@ -109,28 +97,6 @@ namespace TestApp
         }
 
 
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.actionbar_cardview, menu);
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
-
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //    switch(item.ItemId)
-        //    {
-        //        case Resource.Id.add:
-        //            //Add button clicked
-        //          //  users.Add(new Email() { Name = "New Name", Subject = "New Subject", Message = "New Message" });
-        //            mAdapter.NotifyItemInserted(users.Count - 1);
-        //            return true;
-        //    }
-        //    return base.OnOptionsItemSelected(item);
-        //}
-
-
-
-
     }
 
     public class MyRoutesAdapter : RecyclerView.Adapter
@@ -139,9 +105,6 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
-
-
-
         public string routeName;
         public string routeInfo;
         public string routeRating;

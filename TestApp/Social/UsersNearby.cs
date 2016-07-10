@@ -13,6 +13,7 @@ using Android.Graphics;
 using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace TestApp
 {
@@ -21,9 +22,9 @@ namespace TestApp
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
-        private RecyclerView.Adapter mAdapter;
+        public RecyclerView.Adapter mAdapter;
         public static Activity act;
-
+       
 
         SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -45,26 +46,16 @@ namespace TestApp
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-
-
-
-          
             List<User> userList = await Azure.getPeople();
             if (userList.Count == 0)
             {
-                Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
-
-                //Intent myInt = new Intent(this, typeof(MainStart));
-                //StartActivity(myInt);
-
+                Toast.MakeText(this, "Could not find anyone nearby!", ToastLength.Long).Show();
                 Finish();
             }
            
 
-            mAdapter = new UsersAdapter(userList, mRecyclerView, this,act);
+            mAdapter = new UsersAdapter(userList, mRecyclerView, this,act, mAdapter);
             mRecyclerView.SetAdapter(mAdapter);
-
-
 
         }
 
@@ -89,28 +80,6 @@ namespace TestApp
 		}
 
 
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.actionbar_cardview, menu);
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
-
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //    switch(item.ItemId)
-        //    {
-        //        case Resource.Id.add:
-        //            //Add button clicked
-        //          //  users.Add(new Email() { Name = "New Name", Subject = "New Subject", Message = "New Message" });
-        //            mAdapter.NotifyItemInserted(users.Count - 1);
-        //            return true;
-        //    }
-        //    return base.OnOptionsItemSelected(item);
-        //}
-
-
-
-
     }
 
     public class UsersAdapter : RecyclerView.Adapter
@@ -120,13 +89,15 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
         private Activity mActivity;
+        private RecyclerView.Adapter mAdapter;
 
-		public UsersAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act)
+        public UsersAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
             mActivity = act;
+            mAdapter = adapter;
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -136,7 +107,6 @@ namespace TestApp
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
             public ImageView mProfilePicture { get; set; }
-
             public ImageButton mSendFriendRequest { get; set; }
             public ImageButton mGender { get; set; }
 
@@ -157,70 +127,44 @@ namespace TestApp
                 TextView name = peopleNearbyContent.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = peopleNearbyContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = peopleNearbyContent.FindViewById<TextView>(Resource.Id.textId);
+                ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
+                addToFriends.Focusable = false;
+                addToFriends.FocusableInTouchMode = false;
+                addToFriends.Clickable = true;
+                ImageButton gender = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.gender);
 
-            ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
-            addToFriends.Focusable = false;
-            addToFriends.FocusableInTouchMode = false;
-            addToFriends.Clickable = true;
 
-
-            ImageButton gender = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.gender);
-         
-
+              //  addToFriends.Click += MSendFriendRequest_Click;
 
             MyView view = new MyView(peopleNearbyContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends , mGender = gender};
-                return view;
+
+            return view;
   
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-                Bitmap userImage;
-                //First view
-                MyView myHolder = holder as MyView;
-                myHolder.mMainView.Click += mMainView_Click;
-                myHolder.mUserName.Text = mUsers[position].UserName;
 
-             
+
+            Bitmap userImage;
+            MyView myHolder = holder as MyView;
+            myHolder.mMainView.Click += mMainView_Click;
+            myHolder.mUserName.Text = mUsers[position].UserName;
+
+            myHolder.mSendFriendRequest.SetTag(Resource.Id.sendFriendRequest, position);
+
+            myHolder.mSendFriendRequest.Click += MSendFriendRequest_Click;
 
 
             if (mUsers[position].Sex == "Male")
             {
                 myHolder.mGender.SetImageResource(Resource.Drawable.male);
-            }else
+            }
+            else {
                 myHolder.mGender.SetImageResource(Resource.Drawable.female);
+            }
 
-
-
-
-                userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
-
-
-                myHolder.mSendFriendRequest.Click += (sender, args) =>
-            {
-
-                var pos = ((View)sender).Tag;
-
-                Toast.MakeText(mContext,"Friend request is sent to " + mUsers[position].UserName.ToString(), ToastLength.Long).Show();
-
-                Azure.AddFriendShip(MainStart.userId, mUsers[position].Id);
-
-                deleteIndex(position);
-                NotifyDataSetChanged();
-
-                if (mUsers.Count == 0)
-                {
-
-                    //Intent myInt = new Intent(mContext, typeof(RouteOverview));
-                    //mContext.StartActivity(myInt);
-
-                    mActivity.Finish();
-                }
-
-
-
-            };
-
+            userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
 
             if (mUsers[position].Online)
             {
@@ -232,7 +176,7 @@ namespace TestApp
             }
 
 
-            myHolder.mText.Text = "Age " + mUsers[position].Age;
+                myHolder.mText.Text = "Age " + mUsers[position].Age;
 
 
             if (userImage == null)
@@ -250,7 +194,91 @@ namespace TestApp
             }
 
 
+            //myHolder.mSendFriendRequest.Click += (object sender, EventArgs e) =>
+            //{
 
+            //    try
+            //    {
+
+
+            //        int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
+
+            //        Toast.MakeText(mContext, "Friend request is sent to " + mUsers[pos].UserName.ToString(), ToastLength.Long).Show();
+
+            //        Azure.AddFriendShip(MainStart.userId, mUsers[pos].Id);
+            //        deleteIndex(pos);
+            //        NotifyDataSetChanged();
+
+            //        //   mAdapter.NotifyDataSetChanged();
+
+
+
+            //        if (mUsers.Count == 0)
+            //        {
+
+            //            mActivity.Finish();
+            //        }
+
+
+            //    }
+            //    catch (Exception)
+            //    {
+
+
+            //    }
+
+
+
+            //};
+
+
+
+            }
+
+
+
+       void  MSendFriendRequest_Click(object sender, EventArgs e)
+        {
+
+        
+
+
+            try
+            {
+
+              
+                int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
+
+                Toast.MakeText(mContext, "Friend request is sent to " + mUsers[pos].UserName.ToString(), ToastLength.Long).Show();
+
+                Azure.AddFriendShip(MainStart.userId, mUsers[pos].Id);
+                mUsers.RemoveAt(pos);
+                //deleteIndex(pos);
+                //NotifyDataSetChanged();
+
+                //   mAdapter.NotifyDataSetChanged();
+                mAdapter = new UsersAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+
+                if (mUsers.Count == 0)
+                {
+
+                    mActivity.Finish();
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+
+
+            
         }
 
         private void SetAnimation(View view, int currentAnim)
@@ -266,12 +294,13 @@ namespace TestApp
         {
             //   int position = mRecyclerView.GetChildPosition((View)sender);
             int position = mRecyclerView.GetChildAdapterPosition((View)sender);
-            Console.WriteLine(mUsers[position].UserName);
+            Toast.MakeText(mContext, "Position " + position.ToString(), ToastLength.Long).Show();
+
+
+
         }
         public bool deleteIndex(int position)
         {
-
-
             return mUsers.Remove(mUsers[position]);
         }
         public override int ItemCount

@@ -23,6 +23,7 @@ namespace TestApp
         public EditText aboutMeEdit;
 
         SupportToolbar toolbar;
+        ImageView profilePic2;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
@@ -34,17 +35,35 @@ namespace TestApp
             SetSupportActionBar(toolbar);
 
             // ImageView profilePic1 = FindViewById<ImageView>(Resource.Id.profilePic1);
-            ImageView profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
+            profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
 
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
             TextView points = FindViewById<TextView>(Resource.Id.points);
             TextView aboutMe = FindViewById<TextView>(Resource.Id.aboutMe);
+
+            Button editImage = FindViewById<Button>(Resource.Id.editImage);
 
              aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
 
             try
             {
+
+
+                editImage.Click += (object sender, EventArgs eventArgs) =>
+                {
+
+                    var imageIntent = new Intent();
+                    imageIntent.SetType("image/*");
+                    imageIntent.SetAction(Intent.ActionGetContent);
+                    StartActivityForResult(
+                     Intent.CreateChooser(imageIntent, "Select photo"), 0);
+
+
+                };
+
+
+
 
             if (array.Length == 0)
                 Finish();
@@ -70,13 +89,79 @@ namespace TestApp
 
 
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
              
             }
 
         }
+
+
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+        // Friendlist app crash, find a partner. update
+        // Crash trykker på map
+        //Chat crash send test
+
+
+
+
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            try
+            {
+
+
+
+                if ((resultCode == Result.Ok) && (data != null))
+                {
+                    Android.Net.Uri uri = data.Data;
+                    profilePic2.SetImageURI(uri);
+                    profilePic2.RefreshDrawableState();
+                }
+
+                else if (data.Data == null)
+                {
+                    profilePic2.SetImageResource(Resource.Drawable.test);
+                    Toast.MakeText(this, "Not able to load picture! " + data.Data.ToString(), ToastLength.Long).Show();
+                }
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
+
+
+
+
+
         public override bool OnCreateOptionsMenu(IMenu menu)
 
         {

@@ -110,14 +110,14 @@
                 android:id="@+id/sendMsg"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />
-            <ImageButton
+            <!--<ImageButton
                 android:src="@drawable/isfriend"
                 android:layout_width="0dp"
                 android:layout_weight="33"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton2"
                 android:background="@android:color/transparent"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter" />-->
             <ImageButton
                 android:src="@drawable/deletefriend"
                 android:layout_width="0dp"

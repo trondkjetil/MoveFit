@@ -1,13 +1,10 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Microsoft.AspNet.SignalR.Client;
 using Android.Graphics;
-using TestApp;
 
 namespace TestApp
 {
@@ -16,36 +13,32 @@ namespace TestApp
     {
         public string UserName;
         public int BackgroundColor;
-
-        protected override void OnCreate(Bundle bundle)
+        Button send;
+        EditText writeMessage;
+        protected override async void OnCreate(Bundle bundle)
         {
-            
+
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.chat);
 
-            GetInfo getInfo = new GetInfo();
-            getInfo.OnGetInfoComplete += GetInfo_OnGetInfoComplete;
-            getInfo.Show(FragmentManager, "GetInfo");
+        
 
-          
-        }
+             send = FindViewById<Button>(Resource.Id.btnSend);
+             send.SetBackgroundColor(Color.Green);
 
-        private async void GetInfo_OnGetInfoComplete(object sender, GetInfo.OnGetInfoCompletEventArgs e)
-        {
-            UserName = e.TxtName;
-            BackgroundColor = e.BackgroundColor;
+             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
 
+             UserName = MainStart.userName;
+             BackgroundColor = 0;
 
-            // http://movefit.azurewebsites.net/  http://cforbeginners.com:901"
-            //    http://chatservices.azurewebsites.net
-            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
-            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+                 //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
+                 var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
-         
+
             chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
             {
                 //UpdateChatMessage has been called from server
@@ -57,73 +50,73 @@ namespace TestApp
                     txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
                     txt.SetPadding(10, 10, 10, 10);
 
-                    switch (color)
+                    if (user == MainStart.userName)
                     {
-                        case 1:
-                            txt.SetTextColor(Color.Red);
-                            break;
-
-                        case 2:
-                            txt.SetTextColor(Color.DarkGreen);
-                            break;
-
-                        case 3:
-                            txt.SetTextColor(Color.Blue);
-                            break;
-
-                        default:
-                            txt.SetTextColor(Color.Black);
-                            break;
+                        txt.SetTextColor(Color.Blue);
 
                     }
+                    else
+                        txt.SetTextColor(Color.Red);
 
-                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+                    
+
+                    var grav = GravityFlags.Right;
+
+                    if (MainStart.userName == user)
                     {
-                        TopMargin = 10,
-                        BottomMargin = 10,
-                        LeftMargin = 10,
-                        RightMargin = 10,
-                        Gravity = GravityFlags.Right
-                    };
+                        grav = GravityFlags.Right;
+                    }
+                    else
+                        grav = GravityFlags.Left;
 
-                    FindViewById<LinearLayout>(Resource.Id.llChatMessages)
-                            .AddView(txt);
+
+                txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+                {
+                    TopMargin = 10,
+                    BottomMargin = 10,
+                    LeftMargin = 10,
+                    RightMargin = 10,
+                    Gravity = grav
+
+                };
+
+
+                    FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+
                 });
             });
 
-            try
+
+            await hubConnection.Start();
+
+            send.Click += async (o, e2) =>
             {
-                await hubConnection.Start();
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-
-            FindViewById<Button>(Resource.Id.btnSend).Click += async (o, e2) =>
-            {
-
-
-                var message = FindViewById<EditText>(Resource.Id.txtChat).Text;
-
-                
-
-                await chatHubProxy.Invoke("SendMessage", new object[] { message, BackgroundColor, UserName });
 
                 try
                 {
-                //    message = FindViewById<EditText>(Resource.Id.txtChat).Text;
+                    var message = writeMessage.Text;
+
+                    await chatHubProxy.Invoke("SendMessage", new object[] { message, BackgroundColor, UserName });
+
+                    writeMessage.Text = "";
                 }
                 catch (Exception)
                 {
 
-                   
+
                 }
-               
+
             };
 
+
+
+
+
+
+
         }
+
+
     }
 }
 
