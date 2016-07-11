@@ -36,7 +36,7 @@ namespace TestApp
 
                  //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
                  var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+                 var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
             chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
@@ -107,11 +107,6 @@ namespace TestApp
                 }
 
             };
-
-
-
-
-
 
 
         }

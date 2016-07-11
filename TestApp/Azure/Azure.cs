@@ -33,11 +33,8 @@ namespace TestApp
         public static IMobileServiceSyncTable<User> userTable { get; set; }
         public static IMobileServiceSyncTable<Locations> locTable { get; set; }
         public static IMobileServiceSyncTable<Route> tableRoute { get; set; }
-
         public static IMobileServiceSyncTable<Review> tableReview { get; set; }
-
         public static IMobileServiceSyncTable<UserFriends> tableUserFriends { get; set; }
-
 
         //Online storage
         public static IMobileServiceTable<Route> routeTable { get; set; }
@@ -133,8 +130,6 @@ namespace TestApp
             List<User> userList = await table.Where(User => User.Id != null).ToListAsync();
             //  userList.FindAll(Route => Route.Id == routeId);
 
-           
-
             //List<User> list2 = await table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35).ToListAsync();
 
             //list2 = list2;
@@ -193,8 +188,6 @@ namespace TestApp
 
             return result[0];
         }
-
-
 
 
         public static async Task<List<Route>> giveRouteRating(string routeId, string rating)

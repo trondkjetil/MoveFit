@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Microsoft.AspNet.SignalR.Client;
 using Microsoft.WindowsAzure.MobileServices.Query;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using System;
@@ -85,6 +86,7 @@ namespace TestApp
 
         public static IMenuItem menItem;
 
+        TextView messages;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -125,10 +127,17 @@ namespace TestApp
             TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
-
+            messages = FindViewById<TextView>(Resource.Id.messageInfo);
 
             steps.Text = "Steps: 0";
+
+            if(userInstanceOne != null)
+            {
+                totalDistance.Text = "Total Distance: ";
+            }
+            else
             totalDistance.Text = "Total Distance: 0";
+
             points = FindViewById<TextView>(Resource.Id.points);
 
         
@@ -171,9 +180,9 @@ namespace TestApp
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
-            mLeftDataSet.Add("Messages");
-            mLeftDataSet.Add("Step counter");
             mLeftDataSet.Add("Calculator");
+            mLeftDataSet.Add("Step counter");
+            mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("My profile");
 
 
@@ -212,7 +221,7 @@ namespace TestApp
                 }
                 else if (e.Position == 3)
                 {
-                    myIntent = new Intent(this, typeof(Chat));
+                    myIntent = new Intent(this, typeof(Calculator));
                     StartActivity(myIntent);
                 }
 
@@ -225,62 +234,64 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(Calculator));
+                    myIntent = new Intent(this, typeof(Chat));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
                 {
+                    myIntent = new Intent(this, typeof(StepCounter));
+                    StartActivity(myIntent);
 
-
-                    try
-                    {
-
-
-
-                        User instance = null;
-
-                        if (user.Count != 0 || userInstanceOne != null)
-                        {
-                            instance = user.FirstOrDefault();
-
-                            if (instance == null)
-                                instance = userInstanceOne;
-
-                        }
+                    
+                    //try
+                    //{
 
 
 
-                        if (instance != null)
-                        {
+                    //    User instance = null;
 
-                            Bundle b = new Bundle();
-                            b.PutStringArray("MyData", new String[] {
-                        instance.UserName,
-                        instance.Sex,
-                        instance.Age.ToString(),
-                        instance.ProfilePicture,
-                        instance.Points.ToString(),
-                        instance.AboutMe,
-                        instance.Id
+                    //    if (user.Count != 0 || userInstanceOne != null)
+                    //    {
+                    //        instance = user.FirstOrDefault();
 
+                    //        if (instance == null)
+                    //            instance = userInstanceOne;
 
-                    });
-
-                            Intent myIntent = new Intent(this, typeof(UserProfile));
-                            myIntent.PutExtras(b);
-                            StartActivity(myIntent);
-
-                        }
+                    //    }
 
 
 
+                    //    if (instance != null)
+                    //    {
 
-                    }
-                    catch (Exception)
-                    {
+                    //        Bundle b = new Bundle();
+                    //        b.PutStringArray("MyData", new String[] {
+                    //    instance.UserName,
+                    //    instance.Sex,
+                    //    instance.Age.ToString(),
+                    //    instance.ProfilePicture,
+                    //    instance.Points.ToString(),
+                    //    instance.AboutMe,
+                    //    instance.Id
 
 
-                    }
+                    //});
+
+                    //        Intent myIntent = new Intent(this, typeof(UserProfile));
+                    //        myIntent.PutExtras(b);
+                    //        StartActivity(myIntent);
+
+                    //    }
+
+
+
+
+                    //}
+                    //catch (Exception)
+                    //{
+
+
+                    //}
 
                 }
 
@@ -466,11 +477,18 @@ namespace TestApp
 
             }
 
-
+            messagePushNotification();
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
 
-            points.Text = "Score: 0";
+
+            if(userInstanceOne != null)
+            {
+                points.Text = userInstanceOne.Points.ToString();
+            }else
+             points.Text = "Score: 0";
+            
+            
             try
             {
 
@@ -511,6 +529,76 @@ namespace TestApp
             //   pictureFriend2.SetImageBitmap(profilePic);
             //     pictureFriend3.SetImageBitmap(profilePic);
 
+
+         
+        }
+
+        public async void messagePushNotification()
+        {
+            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            messages.Text = "No new messages";
+            //  int  messageCount = 0;
+
+            chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
+            {
+                //UpdateChatMessage has been called from server
+
+                
+                RunOnUiThread(() =>
+                {
+                   
+                    //TextView txt = new TextView(this);
+                    //txt.Text = user + ": " + message;
+                    //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+                    //txt.SetPadding(10, 10, 10, 10);
+
+                    if (user != MainStart.userName)
+                    {
+                        //messages.Text = "New message from:"+ System.Environment.NewLine +
+                        //user.ToString();
+
+                    }
+                    messages.Text = "New message from:" + System.Environment.NewLine +
+                    user.ToString();
+                    messageNotification(message);
+                });
+            });
+
+            await hubConnection.Start();
+          
+        }
+
+
+        public void messageNotification(string message)
+        {
+
+            Notification.Builder builder;
+            Notification notification;
+            NotificationManager notificationManager;
+
+
+            builder = new Notification.Builder(this)
+           //   .SetContentIntent(pendingIntent)
+              .SetContentTitle("MoveFit")
+              .SetContentText("You have a new message!"+System.Environment.NewLine+ message)
+              .SetDefaults(NotificationDefaults.Sound)
+              // .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
+              .SetSmallIcon(Resource.Drawable.tt);
+
+            // Build the notification:
+            notification = builder.Build();
+
+
+            // Get the notification manager:
+            notificationManager =
+           GetSystemService(Context.NotificationService) as NotificationManager;
+
+
+
+            // Publish the notification:
+            const int notificationId = 0;
+            notificationManager.Notify(notificationId, notification);
 
 
         }
@@ -1198,7 +1286,7 @@ namespace TestApp
                 points.Text = "Score: 0";
 
 
-
+                
             }
             catch (Exception)
             {

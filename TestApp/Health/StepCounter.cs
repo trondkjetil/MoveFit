@@ -33,26 +33,22 @@ namespace TestApp
 
 
              resultView = FindViewById<TextView>(Resource.Id.stepCounter);
+             RegisterListeners(SensorType.StepCounter);
 
-
-          if(!IOUtilz.IsKitKatWithStepCounter(PackageManager))
+          if (!IOUtilz.IsKitKatWithStepCounter(PackageManager))
             {
                 Toast.MakeText(this, "Device not compatible", ToastLength.Short).Show();
                 resultView.Text = "Sorry! Your device is not compatible with this step counter";
                 resultView.SetBackgroundColor(Color.Red);
 
             }
-            else
-            {
-                RunOnUiThread(() =>
-                {
-                    resultView.Text = stepCounter.ToString();
+            
+                //RunOnUiThread(() =>
+                //{
+                //    resultView.Text = stepCounter.ToString();
 
-                });
-            }
-
-           
-
+                //});
+            
 
 
             }
@@ -81,7 +77,7 @@ namespace TestApp
             var sensor = sensorManager.GetDefaultSensor(sensorType);
 
             sensorManager.RegisterListener(this, sensor, SensorDelay.Normal);
-            Console.WriteLine("Sensor listener registered of type: " + sensorType);
+            
         }
 
 
@@ -90,7 +86,7 @@ namespace TestApp
 
             var sensorManager = (SensorManager)GetSystemService(Context.SensorService);
             sensorManager.UnregisterListener(this);
-            Console.WriteLine("Sensor listener unregistered.");
+          
 
             isRunning = false;
         }
@@ -116,6 +112,10 @@ namespace TestApp
 
         public void OnSensorChanged(SensorEvent e)
         {
+
+
+            Toast.MakeText(this, "Step taken!", ToastLength.Short).Show();
+
             switch (e.Sensor.Type)
             {
                 case SensorType.StepDetector:

@@ -31,6 +31,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Microsoft.WindowsAzure.Mob
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Newtonsoft.Json.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\System.Net.Http.Extensions.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\System.Net.Http.Primitives.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.pdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\bin\TestApp.TestApp.apk
