@@ -35,8 +35,10 @@ namespace TestApp
         public static IMobileServiceSyncTable<Route> tableRoute { get; set; }
         public static IMobileServiceSyncTable<Review> tableReview { get; set; }
         public static IMobileServiceSyncTable<UserFriends> tableUserFriends { get; set; }
+        public static IMobileServiceSyncTable<UserImage> tableImage { get; set; }
 
         //Online storage
+        public static IMobileServiceTable<UserImage> imageTable { get; set; }
         public static IMobileServiceTable<Route> routeTable { get; set; }
         public static IMobileServiceTable<Locations> locationsTable { get; set; }
         public static IMobileServiceTable<User> table { get; set; }
@@ -64,7 +66,11 @@ namespace TestApp
             tableRoute = client.GetSyncTable<Route>();
             tableReview = client.GetSyncTable<Review>();
             tableUserFriends = client.GetSyncTable<UserFriends>();
+            tableImage = client.GetSyncTable<UserImage>();
+
+
             //Cloud 
+            imageTable = client.GetTable<UserImage>();
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
             routeTable = client.GetTable<Route>();
@@ -640,7 +646,7 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel,byte[] image)
+        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel)
         {
             // Create a new item
             var user = new User
@@ -654,8 +660,7 @@ namespace TestApp
                 Lat = "0",//MainStart.currentLocation.Latitude.ToString(),
                 Lon = "0", //MainStart.currentLocation.Longitude.ToString()
                 Online = online,
-                ActivityLevel = activityLevel,
-                Image = image
+                ActivityLevel = activityLevel
             };
 
             try
@@ -677,7 +682,38 @@ namespace TestApp
 
         }
 
-     
+
+        [Java.Interop.Export()]
+        public static async Task<UserImage> AddUserImage( string userId, byte[] img)
+        {
+            // Create a new item
+            var profilePic = new UserImage
+            {
+                UserId = userId,
+                Image = img
+
+            };
+
+            try
+            {
+
+
+                // await client.GetTable<User>().InsertAsync(user);
+                await imageTable.InsertAsync(profilePic); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return profilePic;
+
+        }
+
+
 
         public static async Task SyncAsync()
         {
@@ -688,7 +724,8 @@ namespace TestApp
                 await tableRoute.PullAsync("allRoutes", tableRoute.CreateQuery());
                 await locTable.PullAsync("allLocations", locTable.CreateQuery());
                 await tableReview.PullAsync("allReviews", reviewTable.CreateQuery());
-                await tableReview.PullAsync("allUserFriends", userFriendsTable.CreateQuery());
+                await tableUserFriends.PullAsync("allUserFriends", userFriendsTable.CreateQuery());
+                await tableImage.PullAsync("allUserImages", userFriendsTable.CreateQuery());
             }
 
             catch (Java.Net.MalformedURLException a)
@@ -717,6 +754,7 @@ namespace TestApp
             store.DefineTable<Route>();
             store.DefineTable<Review>();
             store.DefineTable<UserFriends>();
+            store.DefineTable<UserImage>();
             // Uses the default conflict handler, which fails on conflict
             // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
             await client.SyncContext.InitializeAsync(store);

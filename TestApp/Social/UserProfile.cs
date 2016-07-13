@@ -51,7 +51,9 @@ namespace TestApp
 
             aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
-         
+            byte[] init = new byte[3000000];
+
+            var insertBasicImage = Azure.AddUserImage(MainStart.userId, init);
 
             try
             {
@@ -131,11 +133,33 @@ namespace TestApp
                 if ((resultCode == Result.Ok) && (data != null))
                 {
                     Android.Net.Uri uri = data.Data;
+
+                  
+                    
+                   
+
                     profilePic2.SetImageURI(uri);
                     profilePic2.RefreshDrawableState();
                     profilePic2.BuildDrawingCache();
 
                     Bitmap bmap = profilePic2.GetDrawingCache(true);
+
+             
+
+
+                    Java.IO.File fil = new Java.IO.File(uri.Path, "profilePicture");
+
+                    if(fil.Length() < 3000000)
+                    {
+                        Toast.MakeText(this, "FILE IS MORE THAN 3MB!", ToastLength.Long).Show();
+                    }
+
+                    bmap = BitmapFactory.DecodeFile(fil.Name);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 150, 150, true);
+                    bmap.Recycle();
+
+                    profilePic2.SetImageBitmap(bmap);
+
                     var test =  Azure.setProfileImage(MainStart.userId, toByte(bmap));
                 }
 

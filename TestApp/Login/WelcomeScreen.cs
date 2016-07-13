@@ -46,15 +46,19 @@ namespace TestApp
 			RequestWindowFeature(WindowFeatures.NoTitle);
 			SetContentView(Resource.Layout.welcome);
 
-           //New database in Azure requires initialisation with ToDoItem setup in order to work
-          //  CurrentPlatform.Init ();
+            try
+            {
+
             Azure.initAzure();
-	
-			//	startMain ();
+            loginWithWidget ();
+            }
+            catch (Exception)
+            {
+                
+                loginWithWidget();
+            }
 
-			loginWithWidget ();
-
-		}
+        }
 
 		public async void loginWithWidget ()
 		{

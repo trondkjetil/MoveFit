@@ -243,9 +243,7 @@ namespace TestApp
                 }
                 else if (e.Position == 6)
                 {
-                    //myIntent = new Intent(this, typeof(UserProfile));
-                    //StartActivity(myIntent);
-
+                    
 
                     try
                     {
@@ -1280,10 +1278,13 @@ namespace TestApp
             string ageString = returnData[2];
             int age = Convert.ToInt32(ageString);
 
+
+          
+
             try
             {
 
-                waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, null);
+                waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
                 userInstanceOne = waitingUpload;
                 // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
@@ -1302,12 +1303,6 @@ namespace TestApp
 
 
         }
-
-
-
-
-
-
 
 
     }
