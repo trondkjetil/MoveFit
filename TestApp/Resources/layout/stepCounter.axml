@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="100dp"
+    android:minHeight="100dp"
+    android:background="@android:color/white">
+    <TextView
+        android:id="@+id/stepIntro"
+        android:text="Step Counter"
+        android:layout_width="match_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="55dp"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/stepsText"
+        android:text="Steps taken:"
+        android:layout_width="147.0dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp" />
+    <TextView
+        android:id="@+id/stepCounter"
+        android:layout_width="76.5dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/stepsText" />
+</RelativeLayout>
