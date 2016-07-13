@@ -46,8 +46,7 @@ namespace TestApp
         [JsonProperty(PropertyName = "deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty(PropertyName = "image")]
-        public byte [] Image { get; set; }
+      
 
 
     }

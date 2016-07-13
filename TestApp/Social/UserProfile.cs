@@ -51,14 +51,14 @@ namespace TestApp
 
             aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
-            byte[] init = new byte[3000000];
+            byte[] init = new byte[9000000];
 
-            var insertBasicImage = Azure.AddUserImage(MainStart.userId, init);
+          
 
             try
             {
+               
 
-             
 
                 editImage.Click += (object sender, EventArgs eventArgs) =>
                 {
@@ -92,10 +92,10 @@ namespace TestApp
 
                 userName.Text = array[0];
 
-                if(ich.Image != null)
-                {
-                    profilePic2.SetImageBitmap(toBitmap(ich.Image));
-                }else
+                //if(ich.Image != null)
+                //{
+                //    profilePic2.SetImageBitmap(toBitmap(ich.Image));
+                //}else
                 profilePic2.SetImageResource(Resource.Drawable.tt);
 
 
@@ -109,6 +109,12 @@ namespace TestApp
                 else
                     aboutMeEdit.Focusable = true;
 
+
+
+
+
+
+                var insertBasicImage = Azure.AddUserImage(MainStart.userId, init);
 
             }
             catch (Exception)
@@ -149,9 +155,9 @@ namespace TestApp
 
                     Java.IO.File fil = new Java.IO.File(uri.Path, "profilePicture");
 
-                    if(fil.Length() < 3000000)
+                    if(fil.Length() < 9000000)
                     {
-                        Toast.MakeText(this, "FILE IS MORE THAN 3MB!", ToastLength.Long).Show();
+                        Toast.MakeText(this, "FILE IS MORE THAN 9MB!", ToastLength.Long).Show();
                     }
 
                     bmap = BitmapFactory.DecodeFile(fil.Name);

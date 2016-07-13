@@ -285,9 +285,6 @@ namespace TestApp
 
                         }
 
-
-
-
                     }
                     catch (Exception)
                     {
@@ -1287,7 +1284,7 @@ namespace TestApp
                 waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
                 userInstanceOne = waitingUpload;
-                // Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
+                Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";
 

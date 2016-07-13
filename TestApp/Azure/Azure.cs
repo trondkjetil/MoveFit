@@ -231,15 +231,15 @@ namespace TestApp
             return userList;
 
         }
-        public static async Task<List<User>> setProfileImage(string userId, byte[] profileImage)
+        public static async Task<List<UserImage>> setProfileImage(string userId, byte[] profileImage)
         {
             
-            List<User> userList = await table.Where(User => User.Id == MainStart.userId && User.Deleted == false ).ToListAsync();
+            List<UserImage> userList = await tableImage.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
 
-            userList.Find(User => User.Id == userId).Image = profileImage;
-            User user = userList.Find(User => User.Id == userId);
+             userList.Find(UserImage => UserImage.Id == userId).Image = profileImage;
+            UserImage user = userList.Find(User => User.Id == userId);
 
-            await table.UpdateAsync(user);
+            await tableImage.UpdateAsync(user);
          
             return userList;
 

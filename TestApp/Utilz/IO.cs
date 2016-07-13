@@ -201,24 +201,24 @@ namespace TestApp
 		//	return profileImage;
 		//}
 
-		static void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-		{
-			if (e.Error != null)
-			{
+		//static void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+		//{
+		//	if (e.Error != null)
+		//	{
 				
-				Console.WriteLine (e.Result);
-			}
-			else
-			{
+		//		Console.WriteLine (e.Result);
+		//	}
+		//	else
+		//	{
 
-				Bitmap bm = BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
-				bm = IOUtilz.scaleDown (bm,180,false);
-				bm = IOUtilz.getRoundedShape (bm);
-				profileImage = bm;
+		//		Bitmap bm = BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+		//		bm = IOUtilz.scaleDown (bm,180,false);
+		//		bm = IOUtilz.getRoundedShape (bm);
+		//		profileImage = bm;
 					
-			}
+		//	}
 
-		}
+		//}
 
 	
 
