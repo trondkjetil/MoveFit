@@ -42,12 +42,8 @@ namespace TestApp
         public static IMobileServiceTable<Route> routeTable { get; set; }
         public static IMobileServiceTable<Locations> locationsTable { get; set; }
         public static IMobileServiceTable<User> table { get; set; }
-
         public static IMobileServiceTable<Review> reviewTable { get; set; }
-
         public static IMobileServiceTable<UserFriends> userFriendsTable { get; set; }
-
-      //private static IMobileServiceSyncTable<ToDoItem> toDoTable;
 
         public List<User> userList;
         public List<Route> routeList;
@@ -70,12 +66,14 @@ namespace TestApp
 
 
             //Cloud 
-            imageTable = client.GetTable<UserImage>();
+           
+
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
             routeTable = client.GetTable<Route>();
             reviewTable = client.GetTable<Review>();
             userFriendsTable = client.GetTable<UserFriends>();
+            imageTable = client.GetTable<UserImage>();
 
             //Deletes all items in current table
             //await userTable.PurgeAsync();
@@ -151,7 +149,7 @@ namespace TestApp
                 }
             }
             if (names == "")
-                names = "nuthing";
+                names = "None";
                // userList = userList;
 
             //string names = "";
@@ -234,16 +232,26 @@ namespace TestApp
         public static async Task<List<UserImage>> setProfileImage(string userId, byte[] profileImage)
         {
             
-            List<UserImage> userList = await tableImage.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
-
+            List<UserImage> userList = await imageTable.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
+            
              userList.Find(UserImage => UserImage.Id == userId).Image = profileImage;
             UserImage user = userList.Find(User => User.Id == userId);
 
-            await tableImage.UpdateAsync(user);
+            await imageTable.UpdateAsync(user);
          
             return userList;
 
         }
+
+
+        public static async Task<List<UserImage>> getUserProfileImage(string userId)
+        {
+            List<UserImage> userImages = await imageTable.Where(UserImage => UserImage.Id == userId || UserImage.Id != null).ToListAsync();
+                                                                                                                                                     //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync()
+            return userImages;
+        }
+
+
         public static async Task<List<User>> getPeople()
         {
             //
@@ -256,7 +264,7 @@ namespace TestApp
         public static async Task<List<User>> getTop3People()
         {
 
-            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).OrderBy(User => User.Points).Take(3).ToListAsync();
+            List<User> userList = await table.Where(user =>user.Deleted == false && MainStart.userId != user.Id).OrderBy(User => User.Points).Take(3).ToListAsync();
             return userList;
 
         }
@@ -684,12 +692,12 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async Task<UserImage> AddUserImage( string userId, byte[] img)
+        public static async Task<UserImage> AddUserImage(string userId, byte[] img)
         {
             // Create a new item
-            var profilePic = new UserImage
+            var imageToInsert = new UserImage
             {
-                UserId = userId,
+                Userid = userId,
                 Image = img
 
             };
@@ -697,11 +705,11 @@ namespace TestApp
             try
             {
 
-
+                
                 // await client.GetTable<User>().InsertAsync(user);
-                await imageTable.InsertAsync(profilePic); // insert the new item into the local database
+                await tableImage.InsertAsync(imageToInsert); // insert the new item into the local database
                 await SyncAsync(); // send changes to the mobile service
-
+              
 
             }
             catch (Exception e)
@@ -709,7 +717,7 @@ namespace TestApp
                 throw e;
             }
 
-            return profilePic;
+            return imageToInsert;
 
         }
 
@@ -720,13 +728,17 @@ namespace TestApp
             try
             {
                 await client.SyncContext.PushAsync();
+
                 await userTable.PullAsync("allUsers", userTable.CreateQuery()); // query ID is used for incremental sync
                 await tableRoute.PullAsync("allRoutes", tableRoute.CreateQuery());
                 await locTable.PullAsync("allLocations", locTable.CreateQuery());
-                await tableReview.PullAsync("allReviews", reviewTable.CreateQuery());
-                await tableUserFriends.PullAsync("allUserFriends", userFriendsTable.CreateQuery());
-                await tableImage.PullAsync("allUserImages", userFriendsTable.CreateQuery());
+                await tableReview.PullAsync("allReviews", tableReview.CreateQuery());
+                await tableUserFriends.PullAsync("allUserFriends", tableUserFriends.CreateQuery());
+                await tableImage.PullAsync("allUserImages", tableImage.CreateQuery());
             }
+
+
+
 
             catch (Java.Net.MalformedURLException a)
             {

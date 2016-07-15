@@ -50,10 +50,22 @@ namespace TestApp
             //  CurrentPlatform.Init ();
             Azure.initAzure();
 
-            //	startMain ();
+
+
+            try
+            {
+
+       
 
             loginWithWidget();
 
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
         }
 
         public async void loginWithWidget()

@@ -14,6 +14,8 @@ using Java.IO;
 using Java.Nio;
 using System.Collections.Generic;
 using System.Drawing;
+using Android.Provider;
+using Android.Database;
 
 namespace TestApp
 {
@@ -30,6 +32,11 @@ namespace TestApp
 
         SupportToolbar toolbar;
         ImageView profilePic2;
+        BitmapDrawable icon;
+        Bitmap bmp;
+        List<UserImage> instance;
+
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
 
@@ -37,27 +44,42 @@ namespace TestApp
 
             SetContentView(Resource.Layout.userProfile);
             array = Intent.GetStringArrayExtra("MyData");
+
+               instance = await Azure.getUserProfileImage(array[6]);
+
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbarNew);
             SetSupportActionBar(toolbar);
 
             // ImageView profilePic1 = FindViewById<ImageView>(Resource.Id.profilePic1);
             profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
-
+            profilePic2.SetImageResource(Resource.Drawable.tt);
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
             TextView points = FindViewById<TextView>(Resource.Id.points);
             TextView aboutMe = FindViewById<TextView>(Resource.Id.aboutMe);
 
-            Button editImage = FindViewById<Button>(Resource.Id.editImage);
-
             aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
-            byte[] init = new byte[9000000];
+            Button editImage = FindViewById<Button>(Resource.Id.editImage);
 
-          
+
+
+
+
+
+
 
             try
             {
+
+
                
+                if (array[6] != MainStart.userId)
+                {
+
+                    editImage.Visibility = ViewStates.Invisible;
+                }
+     
+                 
 
 
                 editImage.Click += (object sender, EventArgs eventArgs) =>
@@ -67,37 +89,27 @@ namespace TestApp
                     imageIntent.SetType("image/*");
                     imageIntent.SetAction(Intent.ActionGetContent);
                     StartActivityForResult(
-                     Intent.CreateChooser(imageIntent, "Select photo"), 0);
+                    Intent.CreateChooser(imageIntent, "Select photo"), 0);
 
 
                 };
 
+              
 
-                
+
 
                 if (array.Length == 0)
                     Finish();
 
-                List<User> me = await Azure.getUserId(MainStart.userId);
-                User ich = me[0];
 
-                Bitmap bmp = IOUtilz.GetImageBitmapFromUrl(array[3]);
-                BitmapDrawable icon = new BitmapDrawable(bmp);
+                 bmp = IOUtilz.GetImageBitmapFromUrl(array[3]);
+                 icon = new BitmapDrawable(bmp);
 
-
-                
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
                 SupportActionBar.SetIcon(icon);
 
 
                 userName.Text = array[0];
-
-                //if(ich.Image != null)
-                //{
-                //    profilePic2.SetImageBitmap(toBitmap(ich.Image));
-                //}else
-                profilePic2.SetImageResource(Resource.Drawable.tt);
-
 
                 points.Text = "Points: " + array[4];
                 aboutMeEdit.Text = array[5];
@@ -108,18 +120,22 @@ namespace TestApp
                 }
                 else
                     aboutMeEdit.Focusable = true;
+                var t = instance[0];
+                
+                if(instance[0].Image != null)
+                {
+                    profilePic2.SetImageBitmap(toBitmap(instance[0].Image));
+                }
+
+            
 
 
-
-
-
-
-                var insertBasicImage = Azure.AddUserImage(MainStart.userId, init);
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
+                Toast.MakeText(this,  e.Message , ToastLength.Long).Show();
 
             }
 
@@ -128,7 +144,7 @@ namespace TestApp
 
 
        
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
@@ -139,34 +155,74 @@ namespace TestApp
                 if ((resultCode == Result.Ok) && (data != null))
                 {
                     Android.Net.Uri uri = data.Data;
-
-                  
-                    
-                   
-
-                    profilePic2.SetImageURI(uri);
-                    profilePic2.RefreshDrawableState();
-                    profilePic2.BuildDrawingCache();
-
-                    Bitmap bmap = profilePic2.GetDrawingCache(true);
-
-             
+                    //profilePic2.SetImageURI(uri);
+                    //profilePic2.RefreshDrawableState();
+                    //profilePic2.BuildDrawingCache();
+                    //Bitmap bmap = profilePic2.GetDrawingCache(true);
 
 
-                    Java.IO.File fil = new Java.IO.File(uri.Path, "profilePicture");
+                    Java.IO.File imgFile = new Java.IO.File(GetPathToImage(uri));
 
-                    if(fil.Length() < 9000000)
+
+                    if (imgFile.Length() < 15000000)
                     {
-                        Toast.MakeText(this, "FILE IS MORE THAN 9MB!", ToastLength.Long).Show();
+                    Toast.MakeText(this, "FILE IS MORE THAN 15MB!" + imgFile.Name, ToastLength.Short).Show();
                     }
 
-                    bmap = BitmapFactory.DecodeFile(fil.Name);
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 150, 150, true);
+                   
+
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.InPreferredConfig = Bitmap.Config.Argb8888;
+                        Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
+                 
+           
+                   
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 280, 280, true);
                     bmap.Recycle();
+                    profilePic2.SetImageBitmap(bitmapScalled);
+                    profilePic2.RefreshDrawableState();
 
-                    profilePic2.SetImageBitmap(bmap);
 
-                    var test =  Azure.setProfileImage(MainStart.userId, toByte(bmap));
+
+                    //byte[] tested = System.IO.File.ReadAllBytes(imgFile.Path);
+
+                    using (var streamReader = new StreamReader(imgFile.Path))
+                    {
+                        var bytes = default(byte[]);
+                        using (var memstream = new MemoryStream())
+                        {
+                            streamReader.BaseStream.CopyTo(memstream);
+                            bytes = memstream.ToArray();
+
+
+                        }
+
+
+
+                        byte[] bitmapData;
+                        using (var stream = new MemoryStream())
+                        {
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
+                            bitmapData = stream.ToArray();
+                        }
+
+                       
+
+                        if (instance[0].Id == null)
+                        {
+                            var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
+
+                        }
+                        else
+                            await Azure.setProfileImage(MainStart.userId, bitmapData);
+
+                        //       profilePic2.SetImageBitmap(toBitmap(bitmapData));
+
+
+                    }
+
+
+                    // var test =  Azure.setProfileImage(MainStart.userId, toByte(bitmapScalled));
                 }
 
                 else if (data.Data == null)
@@ -176,13 +232,35 @@ namespace TestApp
                 }
 
             }
-            catch (Exception)
+            catch (Exception a)
             {
 
+                Toast.MakeText(this,  a.Message, ToastLength.Long).Show();
 
             }
 
         }
+
+
+        private string GetPathToImage(Android.Net.Uri uri)
+        {
+            string path = null;
+            // The projection contains the columns we want to return in our query.
+            string[] projection = new[] { MediaStore.Audio.Media.InterfaceConsts.Data };
+            using (ICursor cursor =  ManagedQuery(uri, projection, null, null,null))
+            {
+                if (cursor != null)
+                {
+                    int columnIndex = cursor.GetColumnIndexOrThrow(Android.Provider.MediaStore.Audio.Media.InterfaceConsts.Data);
+                    cursor.MoveToFirst();
+                    path = cursor.GetString(columnIndex);
+                }
+            }
+            return path;
+        }
+
+
+
         public Bitmap toBitmap(byte[] avatarBytes)
         {
             Bitmap imageBitmap = null;

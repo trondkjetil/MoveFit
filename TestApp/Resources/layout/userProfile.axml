@@ -7,29 +7,29 @@
     android:background="@android:color/white"
     android:minWidth="25px"
     android:minHeight="25px">
-  <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbarNew"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:minHeight="?attr/actionBarSize"
-      android:background="@android:color/holo_blue_light"
-      app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      app:background="?attr/colorPrimary"
-      app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@android:color/white">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarNew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
     <!--<ImageView
             android:src="@android:drawable/ic_menu_gallery"
             android:layout_width="185.5dp"
             android:layout_height="200dp"
             android:id="@+id/profilePic1" />-->
-    <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profilePic2" />
+        <ImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:id="@+id/profilePic2" />
     <!--<Button
             android:text="Edit image"
             android:layout_below="@+id/profilePic2"
@@ -38,40 +38,40 @@
             android:id="@+id/editImage"
             android:gravity="center"
             android:layout_centerInParent="true" />-->
-  </RelativeLayout>
-  <TextView
-      android:text=""
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/userName"
-      android:textColor="@android:color/black" />
-  <TextView
-      android:text=""
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/points"
-      android:textColor="@android:color/black" />
-  <TextView
-      android:text="About me: "
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/aboutMe"
-      android:textColor="@android:color/black" />
-  <EditText
-      android:text=""
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/aboutMeEdit"
-      android:textColor="@android:color/black" />
-  <Button
-      android:text="Edit image"
-      android:layout_width="104.0dp"
-      android:layout_height="wrap_content"
-      android:id="@+id/editImage"
-      android:gravity="center"
-      android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userName"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:text="About me: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aboutMe"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aboutMeEdit"
+        android:textColor="@android:color/black" />
+    <Button
+        android:text="Edit image"
+        android:layout_width="104.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editImage"
+        android:gravity="center"
+        android:layout_centerInParent="true" />
 </LinearLayout>

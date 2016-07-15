@@ -10,7 +10,7 @@ namespace TestApp
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "userid")]
-        public string UserId { get; set; }
+        public string Userid { get; set; }
 
         [JsonProperty(PropertyName = "image")]
         public byte [] Image { get; set; }

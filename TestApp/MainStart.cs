@@ -409,15 +409,22 @@ namespace TestApp
                 Resource.String.closeDrawer     //Closed Message
             );
 
+            //added
+            mDrawerToggle.DrawerIndicatorEnabled = true;
+
+
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
+           
+            //addedds
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            
+
             SupportActionBar.SetHomeButtonEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
             mDrawerToggle.SyncState();
 
 
 
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //SupportActionBar.SetHomeButtonEnabled(true);
 
             if (mToolbar != null)
             {
@@ -704,6 +711,10 @@ namespace TestApp
                     //all we need to do is ensure the right drawer is closed so the don't overlap
                     mDrawerLayout.CloseDrawer(mRightDrawer);
                     mDrawerToggle.OnOptionsItemSelected(item);
+
+
+                    //adde
+                    InvalidateOptionsMenu();
                     return true;
 
                 //case Resource.Id.statusOnline:
@@ -730,12 +741,18 @@ namespace TestApp
                     {
                         //Right Drawer is already open, close it
                         mDrawerLayout.CloseDrawer(mRightDrawer);
+
+                        //adde
+                        InvalidateOptionsMenu();
                     }
                     else
                     {
                         //Right Drawer is closed, open it and just in case close left drawer
                         mDrawerLayout.OpenDrawer(mRightDrawer);
                         //  mDrawerLayout.CloseDrawer(mLeftDrawer);
+
+                        //adde
+                        InvalidateOptionsMenu();
                     }
 
                     Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
@@ -767,6 +784,9 @@ namespace TestApp
                         SimpleService.status = false;
                         SimpleService.Status = false;
                     }
+
+                    //adde
+                    InvalidateOptionsMenu();
 
                     return true;
 
@@ -837,6 +857,9 @@ namespace TestApp
             // Clean up: shut down the service when the Activity is no longer visible.
 
 
+            //adde
+            InvalidateOptionsMenu();
+
             //Added!
             //  StopService(new Intent(this, typeof(SimpleService)));
             //   StopService(new Intent(this, typeof(LocationService)));
@@ -845,6 +868,9 @@ namespace TestApp
         {
             Log.Debug(logTag, "Location app is moving to background");
             base.OnPause();
+
+            //adde
+            InvalidateOptionsMenu();
         }
 
         protected override void OnResume()
@@ -1281,7 +1307,7 @@ namespace TestApp
             try
             {
 
-                waitingUpload = await Azure.AddUser("testInfo", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
+                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
 
                 userInstanceOne = waitingUpload;
                 Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
