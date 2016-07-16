@@ -184,7 +184,7 @@ namespace TestApp
 
 
 
-                    //byte[] tested = System.IO.File.ReadAllBytes(imgFile.Path);
+                    ///byte[] tested = System.IO.File.ReadAllBytes(imgFile.Path);
 
                     using (var streamReader = new StreamReader(imgFile.Path))
                     {
