@@ -132,16 +132,13 @@ namespace TestApp
                 if(instance.Count > 0 && instance[0].Image[0] != 0)
                 {
 
-                   var deCompressed = Decompress(instance[0].Image);
+                //   var deCompressed = Decompress(instance[0].Image);
 
-                   var imageBitmap = BitmapFactory.DecodeByteArray(deCompressed, 0, deCompressed.Length);
+                   var imageBitmap = BitmapFactory.DecodeByteArray(instance[0].Image, 0, instance[0].Image.Length);
                     profilePic2.SetImageBitmap(imageBitmap);
                 }
 
             
-
-
-
             }
             catch (Exception e)
             {
@@ -188,7 +185,7 @@ namespace TestApp
                  
            
                    
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 300, 250, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
                     bmap.Recycle();
                     profilePic2.SetImageBitmap(bitmapScalled);
                     profilePic2.RefreshDrawableState();
@@ -213,17 +210,25 @@ namespace TestApp
 
 
                         byte[] bitmapData;
+                    // bitmapData = Compress(toByte(bitmapScalled));
 
 
-                    bitmapData = Compress(toByte(bitmapScalled));
-                        //using (var stream = new MemoryStream())
-                        //{
+                    using (var stream = new MemoryStream())
+                    {
 
-                    //    bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
-                    //    bitmapData = stream.ToArray();
+                        if (imgFile.Path.ToLower().EndsWith("png"))
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Png, 100, stream);
+                        else
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 95, stream);
 
 
-                    //}
+                       // bitmapScalled.Compress(Bitmap.CompressFormat.Png, 100, ms);
+                       
+
+                        bitmapData = stream.ToArray();
+
+
+                    }
 
 
                     if (instance.Count > 0 && instance[0].Image[0] != 0)
