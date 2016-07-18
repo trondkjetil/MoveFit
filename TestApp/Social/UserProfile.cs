@@ -127,8 +127,6 @@ namespace TestApp
                 else
                     aboutMeEdit.Focusable = true;
 
-
-               
                 if(instance.Count > 0 && instance[0].Image[0] != 0)
                 {
 

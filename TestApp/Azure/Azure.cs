@@ -232,10 +232,10 @@ namespace TestApp
         public static async Task<List<UserImage>> setProfileImage(string userId, byte[] profileImage)
         {
             
-            List<UserImage> userList = await imageTable.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
+             List<UserImage> userList = await imageTable.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
             
-             userList.Find(UserImage => UserImage.Id == userId).Image = profileImage;
-            UserImage user = userList.Find(User => User.Id == userId);
+             userList.Find(UserImage => UserImage.Userid == userId).Image = profileImage;
+             UserImage user = userList.Find(UserImage => UserImage.Userid == userId);
 
             await imageTable.UpdateAsync(user);
          
