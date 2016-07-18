@@ -65,14 +65,55 @@ namespace TestApp
 
 
             LocMgr = (LocationManager)GetSystemService(LocationService);
-            Criteria criteriaForLocationService = new Criteria
+
+
+          
+
+            IList<string> acceptableLocationProviders = null;
+
+            try
             {
-                Accuracy = Accuracy.Medium,
-                PowerRequirement = Power.Medium
+
+                Criteria criteriaForLocationService = new Criteria
+                {
+                    Accuracy = Accuracy.Fine
+                    //PowerRequirement = Power.High
 
 
-            };
-            IList<string> acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
+                };
+
+                Criteria low = new Criteria
+                {
+                    Accuracy = Accuracy.Medium,
+                    PowerRequirement = Power.Medium
+
+
+                };
+
+                var list = LocMgr.GetProviders(criteriaForLocationService, true);
+
+                if (list.Count > 0)
+                {
+                    acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
+
+                }
+                else
+                {
+                    
+                    acceptableLocationProviders = LocMgr.GetProviders(low, true);
+
+
+                }
+
+
+
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
 
             if (acceptableLocationProviders.Any())
             {
@@ -85,7 +126,7 @@ namespace TestApp
 
             try
             {
-                LocMgr.RequestLocationUpdates(locationProvider, 8000, 0, this);
+                LocMgr.RequestLocationUpdates(locationProvider, 15000, 0, this);
             }
             catch (Exception)
             {

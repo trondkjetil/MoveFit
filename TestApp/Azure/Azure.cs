@@ -244,11 +244,10 @@ namespace TestApp
         }
 
 
-        public static async Task<List<UserImage>> getUserProfileImage(string userId)
+        public static async Task<List<UserImage>> getUserProfileImage(string userIdGiven)
         {
-            List<UserImage> userImages = await imageTable.Where(UserImage => UserImage.Id == userId || UserImage.Id != null).ToListAsync();
-                                                                                                                                                     //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync()
-            return userImages;
+            List<UserImage> listOfImages = await imageTable.Where(UserImage => UserImage.Userid == userIdGiven).ToListAsync();
+            return listOfImages;
         }
 
 
@@ -370,11 +369,11 @@ namespace TestApp
             return userList;
         }
 
-        public static async Task<List<User>> SetUserOnline(string userName, bool onlineStatus)
+        public static async Task<List<User>> SetUserOnline(string userID, bool onlineStatus)
         {
-            List<User> userList = await table.Where(User => User.UserName == userName).ToListAsync();
-            userList.Find(User => User.UserName == userName).Online = onlineStatus;
-            User user = userList.Find(User => User.UserName == userName);
+            List<User> userList = await table.Where(User => User.Id == userID).ToListAsync();
+            userList.Find(User => User.Id == userID).Online = onlineStatus;
+            User user = userList.Find(User => User.Id == userID);
 
             await table.UpdateAsync(user);
             return userList;

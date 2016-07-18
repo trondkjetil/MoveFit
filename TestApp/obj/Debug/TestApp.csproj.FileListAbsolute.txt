@@ -31,9 +31,11 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobil
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\TestApp.TestApp.apk
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatroom.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
@@ -59,7 +61,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refre
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\activity_main.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\activity_to_do.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\cardviewmain.xml
@@ -173,6 +174,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Servic
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

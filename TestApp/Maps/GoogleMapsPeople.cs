@@ -127,7 +127,7 @@ namespace TestApp
 			locationManager = (LocationManager) GetSystemService(LocationService);
 			Criteria criteriaForLocationService = new Criteria
 			{
-				Accuracy = Accuracy.Fine
+				Accuracy = Accuracy.High
 			};
 			IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
 
@@ -139,7 +139,7 @@ namespace TestApp
 			{
 				locationProvider = string.Empty;
 			}
-			Log.Debug("MapsPeople", "Using " + locationProvider + ".");
+	
 		}
 			
 

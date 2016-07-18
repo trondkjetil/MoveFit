@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Android.Provider;
 using Android.Database;
+using System.IO.Compression;
 
 namespace TestApp
 {
@@ -45,14 +46,15 @@ namespace TestApp
             SetContentView(Resource.Layout.userProfile);
             array = Intent.GetStringArrayExtra("MyData");
 
-               instance = await Azure.getUserProfileImage(array[6]);
+           
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbarNew);
             SetSupportActionBar(toolbar);
 
-            // ImageView profilePic1 = FindViewById<ImageView>(Resource.Id.profilePic1);
+     
             profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
             profilePic2.SetImageResource(Resource.Drawable.tt);
+
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
             TextView points = FindViewById<TextView>(Resource.Id.points);
             TextView aboutMe = FindViewById<TextView>(Resource.Id.aboutMe);
@@ -63,23 +65,18 @@ namespace TestApp
 
 
 
-
-
-
-
-
             try
             {
 
+                instance = await Azure.getUserProfileImage(array[6]);
 
-               
                 if (array[6] != MainStart.userId)
                 {
 
                     editImage.Visibility = ViewStates.Invisible;
                 }
-     
-                 
+
+
 
 
                 editImage.Click += (object sender, EventArgs eventArgs) =>
@@ -112,7 +109,16 @@ namespace TestApp
                 userName.Text = array[0];
 
                 points.Text = "Points: " + array[4];
-                aboutMeEdit.Text = array[5];
+
+                if(array[5] != "")
+                {
+                    aboutMeEdit.Text = array[5];
+                }
+                else
+                {
+                    aboutMeEdit.Text = "Write something about you self..";
+                }
+               
 
                 if (MainStart.userId != array[6])
                 {
@@ -120,11 +126,16 @@ namespace TestApp
                 }
                 else
                     aboutMeEdit.Focusable = true;
-                var t = instance[0];
-                
-                if(instance[0].Image != null)
+
+
+               
+                if(instance.Count > 0 && instance[0].Image[0] != 0)
                 {
-                    profilePic2.SetImageBitmap(toBitmap(instance[0].Image));
+
+                   var deCompressed = Decompress(instance[0].Image);
+
+                   var imageBitmap = BitmapFactory.DecodeByteArray(deCompressed, 0, deCompressed.Length);
+                    profilePic2.SetImageBitmap(imageBitmap);
                 }
 
             
@@ -135,7 +146,7 @@ namespace TestApp
             catch (Exception e)
             {
 
-                Toast.MakeText(this,  e.Message , ToastLength.Long).Show();
+                Toast.MakeText(this, e.Message , ToastLength.Long).Show();
 
             }
 
@@ -164,10 +175,10 @@ namespace TestApp
                     Java.IO.File imgFile = new Java.IO.File(GetPathToImage(uri));
 
 
-                    if (imgFile.Length() < 15000000)
-                    {
-                    Toast.MakeText(this, "FILE IS MORE THAN 15MB!" + imgFile.Name, ToastLength.Short).Show();
-                    }
+                    //if (imgFile.Length() < 15000000)
+                    //{
+                    //Toast.MakeText(this, "FILE IS MORE THAN 15MB!" + imgFile.Name, ToastLength.Short).Show();
+                    //}
 
                    
 
@@ -177,7 +188,7 @@ namespace TestApp
                  
            
                    
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 280, 280, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 300, 250, true);
                     bmap.Recycle();
                     profilePic2.SetImageBitmap(bitmapScalled);
                     profilePic2.RefreshDrawableState();
@@ -186,35 +197,55 @@ namespace TestApp
 
                     ///byte[] tested = System.IO.File.ReadAllBytes(imgFile.Path);
 
-                    using (var streamReader = new StreamReader(imgFile.Path))
-                    {
-                        var bytes = default(byte[]);
-                        using (var memstream = new MemoryStream())
-                        {
-                            streamReader.BaseStream.CopyTo(memstream);
-                            bytes = memstream.ToArray();
+                    //using (var streamReader = new StreamReader(imgFile.Path))
+                    //{
+                    //    var bytes = default(byte[]);
+                    //    using (var memstream = new MemoryStream())
+                    //    {
+                    //        streamReader.BaseStream.CopyTo(memstream);
+                    //        bytes = memstream.ToArray();
 
 
-                        }
+                    //    }
+
+                    //}
 
 
 
                         byte[] bitmapData;
-                        using (var stream = new MemoryStream())
-                        {
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
-                            bitmapData = stream.ToArray();
-                        }
 
-                       
 
-                        if (instance[0].Id == null)
-                        {
-                            var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
+                    bitmapData = Compress(toByte(bitmapScalled));
+                        //using (var stream = new MemoryStream())
+                        //{
 
-                        }
-                        else
-                            await Azure.setProfileImage(MainStart.userId, bitmapData);
+                    //    bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
+                    //    bitmapData = stream.ToArray();
+
+
+                    //}
+
+
+                    if (instance.Count > 0 && instance[0].Image[0] != 0)
+                    {
+                        await Azure.setProfileImage(MainStart.userId, bitmapData);
+                    }else
+                    {
+                        var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
+                    }
+                  
+                
+
+                    //if (instance[0].Id == null || instance[0].Id == "")
+                    //    {
+                    //        var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
+
+                    //    }
+                    //    else
+                    //        await Azure.setProfileImage(MainStart.userId, bitmapData);
+
+
+
 
                         //       profilePic2.SetImageBitmap(toBitmap(bitmapData));
 
@@ -223,7 +254,7 @@ namespace TestApp
 
 
                     // var test =  Azure.setProfileImage(MainStart.userId, toByte(bitmapScalled));
-                }
+                
 
                 else if (data.Data == null)
                 {
@@ -235,10 +266,32 @@ namespace TestApp
             catch (Exception a)
             {
 
-                Toast.MakeText(this,  a.Message, ToastLength.Long).Show();
+                Toast.MakeText(this, "Problem occured :( " +  a.Message, ToastLength.Long).Show();
 
             }
 
+        }
+
+        static byte[] Decompress(byte[] data)
+        {
+            using (var compressedStream = new MemoryStream(data))
+            using (var zipStream = new GZipStream(compressedStream, CompressionMode.Decompress))
+            using (var resultStream = new MemoryStream())
+            {
+                zipStream.CopyTo(resultStream);
+                return resultStream.ToArray();
+            }
+        }
+
+        static byte[] Compress(byte[] data)
+        {
+            using (var compressedStream = new MemoryStream())
+            using (var zipStream = new GZipStream(compressedStream, CompressionMode.Compress))
+            {
+                zipStream.Write(data, 0, data.Length);
+                zipStream.Close();
+                return compressedStream.ToArray();
+            }
         }
 
 
@@ -261,18 +314,20 @@ namespace TestApp
 
 
 
-        public Bitmap toBitmap(byte[] avatarBytes)
-        {
-            Bitmap imageBitmap = null;
-            var avatarImageView = profilePic2;
-            if (avatarImageView != null)
-            {
-                imageBitmap = BitmapFactory.DecodeByteArray(avatarBytes, 0, avatarBytes.Length);
-                avatarImageView.SetImageBitmap(imageBitmap);
-            }
+        //public Bitmap toBitmap(byte[] avatarBytes)
+        //{
+        //    Bitmap imageBitmap = null;
+        //    //var avatarImageView = profilePic2;
+        //    if (profilePic2 != null)
+        //    {
+        //        imageBitmap = BitmapFactory.DecodeByteArray(avatarBytes, 0, avatarBytes.Length);
+        //     //  avatarImageView.SetImageBitmap(imageBitmap);
+        //    }
 
-            return imageBitmap;
-        }
+        //    return imageBitmap;
+        //}
+
+
         public static byte[] toByte(Bitmap bitmap)
         {
             ByteBuffer byteBuffer = ByteBuffer.Allocate(bitmap.ByteCount);
@@ -283,7 +338,7 @@ namespace TestApp
 
         }
 
-    
+
 
         public override bool OnCreateOptionsMenu(IMenu menu)
 

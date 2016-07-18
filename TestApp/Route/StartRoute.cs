@@ -452,8 +452,13 @@ namespace TestApp
                     Locations lastItem = locationPointsForRoute.LastOrDefault();
                     Locations firstElement = locationPointsForRoute.First();
 
+                    Locations middlePoint = locationPointsForRoute[locationPointsForRoute.Count / 2];
+
                     string[] LatLngLast = lastItem.Location.Split(',');
                     string[] LatLngFirst = firstElement.Location.Split(',');
+
+                    string[] LatMid= middlePoint.Location.Split(',');
+                    
 
 
                     markerOpt1 = new MarkerOptions();
@@ -473,7 +478,7 @@ namespace TestApp
                     mMap.AddMarker(markerOpt2);
 
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])), 14));
+                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Convert.ToDouble(LatMid[0]), Convert.ToDouble(LatMid[1])), 14));
 
                     PolylineOptions opt = new PolylineOptions();
 
@@ -489,10 +494,10 @@ namespace TestApp
 
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
-                    throw e;
+                   
                 }
 
 

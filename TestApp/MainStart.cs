@@ -238,7 +238,7 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(FriendsOverview));
+                    myIntent = new Intent(this, typeof(Chat));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -268,6 +268,7 @@ namespace TestApp
 
                             Bundle b = new Bundle();
                             b.PutStringArray("MyData", new String[] {
+
                         instance.UserName,
                         instance.Sex,
                         instance.Age.ToString(),
@@ -356,43 +357,8 @@ namespace TestApp
 
                 //    });
 
-                //        Intent myIntent = new Intent(this, typeof(UserProfile));
-                //        myIntent.PutExtras(b);
-                //        StartActivity(myIntent);
-
-                //    }
-
-                //  }
-                //if (e.Position == 5)
-                //{
-                //    myIntent = new Intent(this, typeof(ScoreBoardActivity));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 6)
-                //{
-                //    myIntent = new Intent(this, typeof(Calculator));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 7)
-                //{
-                //    myIntent = new Intent(this, typeof(Chat));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 8)
-                //{
-                //    myIntent = new Intent(this, typeof(RouteOverview));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 9)
-                //{
-                //    myIntent = new Intent(this, typeof(FriendsOverview));
-                //    StartActivity(myIntent);
-                //}
-
-
-
-
-
+              
+        
 
             };
 
@@ -471,9 +437,10 @@ namespace TestApp
                 }
                 else
                 {
-
-                    waitingUpload = user.FirstOrDefault();
-                    var setOnline = await Azure.SetUserOnline(userName, true);
+                   
+                   waitingUpload = user.FirstOrDefault();
+                   userId = user.FirstOrDefault().Id;
+                   var setOnline = await Azure.SetUserOnline(userId, true);
                     setPoints();
                     isOnline = true;
 
@@ -539,6 +506,95 @@ namespace TestApp
 
          
         }
+
+
+
+
+
+        protected async override void OnStop()
+        {
+            base.OnStop();
+            // Clean up: shut down the service when the Activity is no longer visible.
+
+            try
+            {
+                var wait = await logOff();
+            }
+            catch (Exception)
+            {
+
+              
+            }
+           
+            //adde
+            InvalidateOptionsMenu();
+
+            //Added!
+            //  StopService(new Intent(this, typeof(SimpleService)));
+            //   StopService(new Intent(this, typeof(LocationService)));
+        }
+        protected override void OnPause()
+        {
+           
+            base.OnPause();
+
+            //adde
+            InvalidateOptionsMenu();
+        }
+
+        protected override void OnResume()
+        {
+         
+            base.OnPause();
+        }
+
+
+        protected async override void OnStart()
+        {
+            base.OnStart();
+
+
+            try
+            {
+                var user = await Azure.SetUserOnline(userId, true);
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+        }
+      
+
+
+
+
+
+        protected async override void OnDestroy()
+        {
+
+            //var a = await Azure.SetUserOnline(userName, false);
+          
+            base.OnDestroy();
+
+            // var b = await Azure.SetUserOnline(userName, false);
+            var wait = await logOff();
+
+
+
+        }
+
+        public async Task<List<User>> logOff()
+        {
+            var user = await Azure.SetUserOnline(userId, false);
+            StopService(new Intent(this, typeof(LocationService)));
+            return user;
+        }
+
+
+
+
 
         public async void messagePushNotification()
         {
@@ -851,57 +907,10 @@ namespace TestApp
         }
 
 
-        protected override void OnStop()
-        {
-            base.OnStop();
-            // Clean up: shut down the service when the Activity is no longer visible.
+       
 
 
-            //adde
-            InvalidateOptionsMenu();
-
-            //Added!
-            //  StopService(new Intent(this, typeof(SimpleService)));
-            //   StopService(new Intent(this, typeof(LocationService)));
-        }
-        protected override void OnPause()
-        {
-            Log.Debug(logTag, "Location app is moving to background");
-            base.OnPause();
-
-            //adde
-            InvalidateOptionsMenu();
-        }
-
-        protected override void OnResume()
-        {
-            Log.Debug(logTag, "Location app is moving into foreground");
-            base.OnPause();
-        }
-
-
-
-        protected async override void OnDestroy()
-        {
-
-            //var a = await Azure.SetUserOnline(userName, false);
-            Log.Debug(logTag, "Location app is becoming inactive");
-            base.OnDestroy();
-
-            // var b = await Azure.SetUserOnline(userName, false);
-            await logOff();
-
-           
-
-        }
-
-        public async Task<List<User>> logOff()
-        {
-            var user = await Azure.SetUserOnline(userName, false);
-            StopService(new Intent(this, typeof(LocationService)));
-            return user;
-        }
-
+      
         /// Updates UI with location data
         public void HandleLocationChanged(object sender, LocationChangedEventArgs e)
         {
@@ -1144,24 +1153,16 @@ namespace TestApp
                 }
 
                 mMap.SetOnMapClickListener(this);
-
                 mMap.UiSettings.ZoomControlsEnabled = true;
                 mMap.UiSettings.RotateGesturesEnabled = false;
                 mMap.UiSettings.ScrollGesturesEnabled = false;
 
                 contactName.Text = "";
 
-                //TextView altText;
-                //TextView speedText;
+               
                 TextView bearText;
-                // TextView accText;
-
-
-
-                //altText = view.FindViewById<TextView>(Resource.Id.alt);
-                //speedText = view.FindViewById<TextView>(Resource.Id.speed);
+              
                 bearText = view.FindViewById<TextView>(Resource.Id.bear);
-                //accText = view.FindViewById<TextView>(Resource.Id.acc);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
 
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
@@ -1172,14 +1173,11 @@ namespace TestApp
 
                         _activity.StartService(new Intent(_activity, typeof(LocationService)));
 
-                        var a = Azure.SetUserOnline(userName, true);
+                        var a = Azure.SetUserOnline(userId, true);
                         isOnline = true;
 
                         menItem.SetIcon(Resource.Drawable.greenonline);
-                        //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
-                        //alertMessage.SetTitle("User location tracking");
-                        //alertMessage.SetMessage("Your location tracking has been turned on");
-                        //alertMessage.Show();
+                        
 
                     }
                     else
@@ -1187,7 +1185,7 @@ namespace TestApp
                         Toast.MakeText(_activity, "Tracking stopped!", ToastLength.Long).Show();
                         _activity.StopService(new Intent(_activity, typeof(LocationService)));
 
-                        var b = Azure.SetUserOnline(userName, false);
+                        var b = Azure.SetUserOnline(userId, false);
                         isOnline = false;
                         menItem.SetIcon(Resource.Drawable.redoffline);
                         //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
@@ -1263,20 +1261,17 @@ namespace TestApp
             }
         }
 
-        public override void OnBackPressed()
+        public  override void OnBackPressed()
         {
 
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
             alert.SetTitle("Exit app");
             alert.SetMessage("Do you want to exit the application?");
-            alert.SetPositiveButton("Yes", (senderAlert, args) => {
-                //change value write your own set of instructions
-                //you can also create an event for the same in xamarin
-                //instead of writing things here
-
+            alert.SetPositiveButton("Yes", async (senderAlert, args) => {
+              
                 base.OnBackPressed();
-                var b = Azure.SetUserOnline(userName, false);
 
+                var wait = await logOff();
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {

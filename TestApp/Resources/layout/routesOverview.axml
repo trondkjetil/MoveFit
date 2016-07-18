@@ -9,19 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:id="@+id/imageView1" />
-    <Button
-        android:text="My Routes"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/myRoutes" />
-    <Button
-        android:text="Create Route"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/createRoutes" />
-    <Button
-        android:text="Find routes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/findRoutes" />
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <Button
+            android:text="My Routes"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/myRoutes" />
+        <Button
+            android:text="Create Route"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myRoutes"
+            android:id="@+id/createRoutes" />
+        <Button
+            android:text="Find routes"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createRoutes"
+            android:id="@+id/findRoutes" />
+    </RelativeLayout>
 </LinearLayout>

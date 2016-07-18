@@ -105,7 +105,12 @@ namespace TestApp
 
 
         //}
-        protected async override void OnCreate(Bundle savedInstanceState)
+
+       
+
+
+
+    protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
@@ -198,6 +203,8 @@ namespace TestApp
                 if (isPaused)
                 {
 
+
+               
 
                     isPaused = false;
 
@@ -481,8 +488,8 @@ namespace TestApp
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-          
 
+           
             if (e.Position == 0)
             {
                 Toast.MakeText(this, "Walking", ToastLength.Short).Show();

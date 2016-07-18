@@ -17,7 +17,7 @@
         app:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white">
     <!--<ImageView
@@ -27,8 +27,8 @@
             android:id="@+id/profilePic1" />-->
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/profilePic2" />
     <!--<Button
             android:text="Edit image"

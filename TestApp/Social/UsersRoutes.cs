@@ -51,8 +51,8 @@ namespace TestApp
             {
                 Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
-                Intent myInt = new Intent(this, typeof(RouteOverview));
-                StartActivity(myInt);
+                //Intent myInt = new Intent(this, typeof(RouteOverview));
+                //StartActivity(myInt);
                 Finish();
             }
           

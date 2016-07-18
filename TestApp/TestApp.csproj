@@ -167,6 +167,8 @@
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
     <Compile Include="SignalR\Chat.cs" />
+    <Compile Include="SignalR\PrivateChat.cs" />
+    <Compile Include="SignalR\ChatRoom.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserProfile.cs" />
     <Compile Include="UI\ScoreBoardRouteActivity.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="MainStart.cs" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <AndroidResource Include="Resources\layout\chatRoom.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -223,7 +226,6 @@
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
     <AndroidResource Include="Resources\menu\activity_main.xml" />
     <AndroidResource Include="Resources\layout\accelerometer.axml" />
-    <AndroidResource Include="Resources\layout\Activity_To_Do.axml" />
     <AndroidResource Include="Resources\layout\auth.axml" />
     <AndroidResource Include="Resources\layout\calculator.axml" />
     <AndroidResource Include="Resources\layout\cardViewMain.axml" />
