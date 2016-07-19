@@ -206,11 +206,11 @@ namespace TestApp
             myHolder.mSendMessage.Click += (sender, args) =>
             {
 
-              
-                    Intent myInt = new Intent(mContext, typeof(Chat));
-                    mContext.StartActivity(myInt);
-               
-                
+
+                Intent myInt = new Intent(mContext, typeof(Chat));
+                mContext.StartActivity(myInt);
+
+
 
             };
                 myHolder.mDeleteFriend.Click += (sender, args) =>

@@ -211,7 +211,7 @@ namespace TestApp
 
                     StartService(new Intent(this, typeof(CreateRouteService)));
                     routeStatus.Text = "Resuming creation";
-                    start.Text = "Create Route";
+                    start.Text = "Pause Route";
                     start.SetBackgroundColor(Color.Green);
                 }
 

@@ -179,8 +179,9 @@
             android:choiceMode="singleChoice"
             android:divider="#818181"
             android:dividerHeight="1dp"
-            android:background="#FFFFFF" />
+            android:background="#D9FFFFFF" />
     <!--<ListView
+    android:background="#FFFFFF"
             android:id="@+id/right_drawer"
             android:layout_width="240dp"
             android:layout_height="match_parent"

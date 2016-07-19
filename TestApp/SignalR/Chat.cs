@@ -13,7 +13,7 @@ namespace TestApp
     {
         public string UserName;
         public int BackgroundColor;
-      //  Button send;
+        //  Button send;
 
         ImageButton send;
         EditText writeMessage;
@@ -32,14 +32,14 @@ namespace TestApp
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
             send.SetBackgroundColor(Color.Green);
 
-             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
+            writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
 
-             UserName = MainStart.userName;
-             BackgroundColor = 0;
+            UserName = MainStart.userName;
+            BackgroundColor = 0;
 
-                 //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
-                 var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-                 var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
+            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
             chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
@@ -61,7 +61,7 @@ namespace TestApp
                     else
                         txt.SetTextColor(Color.Red);
 
-                    
+
 
                     var grav = GravityFlags.Right;
 
@@ -73,15 +73,15 @@ namespace TestApp
                         grav = GravityFlags.Left;
 
 
-                txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-                {
-                    TopMargin = 10,
-                    BottomMargin = 10,
-                    LeftMargin = 10,
-                    RightMargin = 10,
-                    Gravity = grav
+                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+                    {
+                        TopMargin = 10,
+                        BottomMargin = 10,
+                        LeftMargin = 10,
+                        RightMargin = 10,
+                        Gravity = grav
 
-                };
+                    };
 
 
                     FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);

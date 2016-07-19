@@ -40,7 +40,7 @@ namespace TestApp
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
 
             userId = MainStart.userId;
-           
+
 
             //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
@@ -52,7 +52,7 @@ namespace TestApp
                 //UpdateChatMessage has been called from server
 
 
-                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+                //await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
 
 
 

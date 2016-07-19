@@ -141,8 +141,8 @@ namespace TestApp
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
-            totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            totalDistance.TextSize = 15;
+            messages.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            messages.TextSize = 15;
 
 
             steps.Text = "Steps: 0";
@@ -164,11 +164,8 @@ namespace TestApp
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             profilePicture.SetImageBitmap(profilePic);
 
-
-        //    loadingImage = FindViewById<ProgressBar>(Resource.Id.progressBar);
-            // loadingImage.Visibility = ViewStates.Invisible;
             facebookUserId = array[2];
-            //Removes the whole progress bar view, showing only the profile picture
+          
 
             //Fix to remove space from profile pic and loadingbar
             //  ((ViewGroup)loadingImage.Parent).RemoveView(loadingImage);
@@ -190,10 +187,10 @@ namespace TestApp
             //mLeftDataSet.Add("bump");
             //mLeftDataSet.Add("bump");
 
-            if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
-            {
-                // mLeftDataSet.Add("STEP COUNTER 2");
-            }
+            //if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
+            //{
+            //    // mLeftDataSet.Add("STEP COUNTER 2");
+            //}
 
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
@@ -252,7 +249,7 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(PrivateChat));
+                    myIntent = new Intent(this, typeof(StepCounter));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -409,6 +406,8 @@ namespace TestApp
             }
 
             messagePushNotification();
+
+
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
 
