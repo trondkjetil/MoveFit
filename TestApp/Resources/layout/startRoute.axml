@@ -74,29 +74,29 @@
     </RelativeLayout>
     <Button
         android:text="Start Route"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:id="@+id/startRoute"
         android:textColor="#ffffffff"
         android:background="@android:color/holo_green_light"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:layout_weight="25" />
     <Button
         android:text="End route"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:id="@+id/endRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_red_dark"
-        android:layout_gravity="bottom"
+        android:background="@android:color/holo_orange_light"
+        android:layout_gravity="center"
         android:layout_weight="25" />
     <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
+        android:text="Exit"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:id="@+id/cancelRoute"
         android:textColor="#ffffffff"
-        android:background="@android:color/holo_orange_light"
-        android:layout_gravity="bottom"
+        android:background="@android:color/holo_red_dark"
+        android:layout_gravity="center"
         android:layout_weight="25" />
 </LinearLayout>

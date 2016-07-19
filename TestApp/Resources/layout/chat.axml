@@ -7,7 +7,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E2E2E2"
+        android:background="#FFFFFF"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/llContainer">
         <LinearLayout
@@ -22,11 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
-    <!--<Button
-            android:id="@+id/btnSend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Send" />-->
+   
         <ImageButton
             android:id="@+id/btnSend"
             android:layout_width="match_parent"

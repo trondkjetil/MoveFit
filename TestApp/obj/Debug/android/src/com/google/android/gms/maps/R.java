@@ -2098,7 +2098,7 @@ containing a value of this type.
     public static final class id {
         public static int ContactImage=0x7f0b00de;
         public static int ContactName=0x7f0b0087;
-        public static int ContactsListView=0x7f0b0091;
+        public static int ContactsListView=0x7f0b0090;
         public static int aboutMe=0x7f0b0116;
         public static int aboutMeEdit=0x7f0b0117;
         public static int acc=0x7f0b0083;
@@ -2131,14 +2131,14 @@ containing a value of this type.
         public static int alt=0x7f0b0081;
         public static int always=0x7f0b0027;
         public static int auto=0x7f0b0014;
-        public static int avgSpeed=0x7f0b0093;
+        public static int avgSpeed=0x7f0b0092;
         public static int bear=0x7f0b0084;
         public static int beginning=0x7f0b0024;
-        public static int btnDialogEmail=0x7f0b009a;
+        public static int btnDialogEmail=0x7f0b0099;
         public static int btnOkay=0x7f0b00c2;
         public static int btnSend=0x7f0b0079;
         public static int buttonPanel=0x7f0b0037;
-        public static int cancelRoute=0x7f0b0090;
+        public static int cancelRoute=0x7f0b008f;
         public static int cancel_action=0x7f0b00c9;
         public static int card_view=0x7f0b00d7;
         public static int cbxStart=0x7f0b00e6;
@@ -2164,7 +2164,7 @@ containing a value of this type.
         public static int editText3=0x7f0b006d;
         public static int edit_query=0x7f0b004f;
         public static int end=0x7f0b0025;
-        public static int endRoute=0x7f0b008f;
+        public static int endRoute=0x7f0b008e;
         public static int end_padder=0x7f0b00d4;
         public static int etSearch=0x7f0b00fa;
         public static int exit=0x7f0b0125;
@@ -2172,7 +2172,7 @@ containing a value of this type.
         public static int expanded_menu=0x7f0b0044;
         public static int findFriends=0x7f0b00bd;
         public static int findRoutes=0x7f0b00e1;
-        public static int finish=0x7f0b0092;
+        public static int finish=0x7f0b0091;
         public static int friendRequests=0x7f0b00bc;
         public static int gender=0x7f0b00a2;
         public static int get_address_button=0x7f0b00c4;
@@ -2221,7 +2221,7 @@ containing a value of this type.
         public static int mapForStartingRoute=0x7f0b00ff;
         public static int media_actions=0x7f0b00cb;
         public static int menu_refresh=0x7f0b0128;
-        public static int message=0x7f0b0099;
+        public static int message=0x7f0b0098;
         public static int messageInfo=0x7f0b00b1;
         public static int messages=0x7f0b00ae;
         public static int middle=0x7f0b0026;
@@ -2239,7 +2239,6 @@ containing a value of this type.
         public static int numberPicker=0x7f0b00a4;
         public static int onlineStatus=0x7f0b010d;
         public static int parentPanel=0x7f0b0039;
-        public static int pauseRoute=0x7f0b008e;
         public static int pers1=0x7f0b00b3;
         public static int pers11=0x7f0b00af;
         public static int pers2=0x7f0b00b5;
@@ -2262,9 +2261,9 @@ containing a value of this type.
         public static int radioGroup=0x7f0b00be;
         public static int radioGroup1=0x7f0b006e;
         public static int radioRed=0x7f0b00bf;
-        public static int ratingPropt=0x7f0b0094;
+        public static int ratingPropt=0x7f0b0093;
         public static int ratingbar=0x7f0b0108;
-        public static int ratingbarEndRoute=0x7f0b0095;
+        public static int ratingbarEndRoute=0x7f0b0094;
         public static int recycleUserFriendRequest=0x7f0b011b;
         public static int recycleUserFriends=0x7f0b011c;
         public static int recycleUserMyRoutes=0x7f0b011e;
@@ -2316,8 +2315,8 @@ containing a value of this type.
         public static int src_in=0x7f0b0022;
         public static int src_over=0x7f0b0023;
         public static int standard=0x7f0b0012;
-        public static int startRoute=0x7f0b008d;
-        public static int startRoute1=0x7f0b0096;
+        public static int startRoute=0x7f0b009a;
+        public static int startRoute1=0x7f0b0095;
         public static int startRouteDesc=0x7f0b0101;
         public static int startRouteDiff=0x7f0b0103;
         public static int startRouteLength=0x7f0b0102;
@@ -2337,7 +2336,7 @@ containing a value of this type.
         public static int stepsText=0x7f0b010a;
         public static int stop=0x7f0b005d;
         public static int stopService=0x7f0b00fe;
-        public static int subject=0x7f0b0097;
+        public static int subject=0x7f0b0096;
         public static int submit_area=0x7f0b0058;
         public static int swap=0x7f0b011a;
         public static int swipeLayout=0x7f0b0075;
@@ -2346,7 +2345,7 @@ containing a value of this type.
         public static int switchRoutes=0x7f0b0126;
         public static int swp=0x7f0b011f;
         public static int tabMode=0x7f0b0018;
-        public static int targetsEmail=0x7f0b0098;
+        public static int targetsEmail=0x7f0b0097;
         public static int terrain=0x7f0b000e;
         public static int test=0x7f0b007d;
         public static int testïng=0x7f0b00a9;
@@ -2362,6 +2361,7 @@ containing a value of this type.
         public static int time=0x7f0b00ce;
         public static int title=0x7f0b0036;
         public static int title_template=0x7f0b003b;
+        public static int toggleStart=0x7f0b008d;
         public static int toolbar=0x7f0b00a7;
         public static int toolbarNew=0x7f0b0113;
         public static int topPanel=0x7f0b003a;
@@ -2501,7 +2501,7 @@ containing a value of this type.
         public static int moveit=0x7f050000;
     }
     public static final class string {
-        public static int ApplicationName=0x7f06003c;
+        public static int ApplicationName=0x7f06003d;
         public static int abc_action_bar_home_description=0x7f060025;
         public static int abc_action_bar_home_description_format=0x7f060026;
         public static int abc_action_bar_home_subtitle_description_format=0x7f060027;
@@ -2523,17 +2523,18 @@ containing a value of this type.
         public static int abc_toolbar_collapse_description=0x7f060037;
         public static int accept=0x7f060021;
         public static int activity_prompt=0x7f06003a;
-        public static int add_button_text=0x7f060044;
-        public static int add_textbox_hint=0x7f060043;
-        public static int app_name=0x7f060040;
+        public static int activity_route=0x7f06003c;
+        public static int add_button_text=0x7f060045;
+        public static int add_textbox_hint=0x7f060044;
+        public static int app_name=0x7f060041;
         /**  Brand name for Facebook [DO NOT TRANSLATE] 
          */
         public static int auth_google_play_services_client_facebook_display_name=0x7f060001;
         /**  Brand name for Google [DO NOT TRANSLATE] 
          */
         public static int auth_google_play_services_client_google_display_name=0x7f060000;
-        public static int checkbox_text=0x7f060047;
-        public static int closeDrawer=0x7f060042;
+        public static int checkbox_text=0x7f060048;
+        public static int closeDrawer=0x7f060043;
         /**  Message in confirmation dialog informing the user that one of the APIs they attepmt to access is not available. [CHAR LIMIT=NONE] 
          */
         public static int common_google_play_services_api_unavailable_text=0x7f060018;
@@ -2639,14 +2640,14 @@ containing a value of this type.
         public static int decline=0x7f060022;
         /** <string name="facebook_app_id">434629220047124</string> 
          */
-        public static int facebook_app_id=0x7f06003d;
+        public static int facebook_app_id=0x7f06003e;
         public static int library_name=0x7f060039;
-        public static int menu_refresh=0x7f060046;
-        public static int mobile_services=0x7f060045;
-        public static int openDrawer=0x7f060041;
+        public static int menu_refresh=0x7f060047;
+        public static int mobile_services=0x7f060046;
+        public static int openDrawer=0x7f060042;
         public static int planet_prompt=0x7f06003b;
-        public static int sample_hide_log=0x7f06003f;
-        public static int sample_show_log=0x7f06003e;
+        public static int sample_hide_log=0x7f060040;
+        public static int sample_show_log=0x7f06003f;
         public static int status_bar_notification_info_overflow=0x7f060038;
         public static int store_picture_message=0x7f060020;
         public static int store_picture_title=0x7f06001f;

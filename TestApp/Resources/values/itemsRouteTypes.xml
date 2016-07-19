@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_prompt">Please enter type of route</string>
+    <string name="activity_route">Select type of route</string>
     <string-array name="activity_routeTypes">
         <item>Walking</item>
         <item>Running</item>

@@ -117,6 +117,19 @@ namespace TestApp
             TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
             TextView steps = FindViewById<TextView>(Resource.Id.steps);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
+            points = FindViewById<TextView>(Resource.Id.points);
+
+            greetings.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
+            greetings.TextSize = 18;
+
+            steps.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            steps.TextSize = 12;
+
+            totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            totalDistance.TextSize = 12;
+
+            points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            points.TextSize = 12;
 
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
@@ -128,6 +141,9 @@ namespace TestApp
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
+            totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            totalDistance.TextSize = 15;
+
 
             steps.Text = "Steps: 0";
 
@@ -138,9 +154,7 @@ namespace TestApp
             else
             totalDistance.Text = "Total Distance: 0";
 
-            points = FindViewById<TextView>(Resource.Id.points);
-
-        
+           
 
             array = Intent.GetStringArrayExtra("MyData");
             greetings.Text = "Greetings " + array[0] + "!";
@@ -206,7 +220,7 @@ namespace TestApp
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             mLeftDrawer.Adapter = mLeftAdapter;
 
-            mLeftDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+            mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) => {
                 var item = mLeftAdapter.GetItem(e.Position);
                 if (e.Position == 0)
                 {
@@ -238,7 +252,7 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(Chat));
+                    myIntent = new Intent(this, typeof(PrivateChat));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -261,6 +275,8 @@ namespace TestApp
 
                         }
 
+                        var list = await Azure.getUserId(userName);
+                        instance = list.FirstOrDefault();
 
 
                         if (instance != null)
@@ -296,69 +312,6 @@ namespace TestApp
                 }
 
 
-                //if (e.Position == 7)
-                //{
-                //    myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
-                //    StartActivity(myIntent);
-                //}
-                //if (e.Position == 8)
-                //{
-                //    myIntent = new Intent(this, typeof(RouteOverview));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 9)
-                //{
-                //    myIntent = new Intent(this, typeof(FriendsOverview));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 10)
-                //{
-                //    myIntent = new Intent(this, typeof(Chat));
-                //    StartActivity(myIntent);
-                //}
-
-
-                //else if (e.Position == 11)
-                //{
-                //    myIntent = new Intent(this, typeof(StepCounter));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 12)
-                //{
-
-                //    myIntent = new Intent(this, typeof(Calculator));
-                //    StartActivity(myIntent);
-                //}
-                //else if (e.Position == 13)
-                //{
-
-
-                //    User instance = null;
-
-                //    if (user.Count != 0)
-                //    {
-                //        instance = user.FirstOrDefault();
-                //    }
-
-
-                //    if (instance != null)
-                //    {
-
-                //        Bundle b = new Bundle();
-                //        b.PutStringArray("MyData", new String[] {
-                //        instance.UserName,
-                //        instance.Sex,
-                //        instance.Age.ToString(),
-                //        instance.ProfilePicture,
-                //        instance.Points.ToString(),
-                //        instance.AboutMe,
-                //        instance.Id
-
-
-                //    });
-
-              
-        
 
             };
 

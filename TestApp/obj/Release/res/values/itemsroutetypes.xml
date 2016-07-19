@@ -1,1 +1,1 @@
-<resources><string name="activity_prompt">Please enter type of route</string><string-array name="activity_routeTypes"><item>Walking</item><item>Running</item><item>Hiking </item><item>Bicycling</item><item>Skiing</item></string-array></resources>
+<resources><string name="activity_route">Select type of route</string><string-array name="activity_routeTypes"><item>Walking</item><item>Running</item><item>Hiking </item><item>Bicycling</item><item>Skiing</item></string-array></resources>

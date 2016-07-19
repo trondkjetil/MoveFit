@@ -16,6 +16,7 @@ using System.Diagnostics;
 using Android.Content.PM;
 using System.Threading;
 using TestApp.Points;
+using Android.Graphics;
 
 namespace TestApp
 {
@@ -56,8 +57,8 @@ namespace TestApp
         public Stopwatch stopWatch;
         public string elapsedTime;
         public static Activity activity;
-
-
+        public Spinner spinner;
+        public ToggleButton start;
         public static bool isPaused;
         public bool Ischecked
         {
@@ -137,9 +138,9 @@ namespace TestApp
             mMap.UiSettings.CompassEnabled = true;
             //mMap.SetOnMyLocationChangeListener;
 
-            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerRouteTypes);
+             spinner = FindViewById<Spinner>(Resource.Id.spinnerRouteTypes);
 
-            spinner.SetSelection(0);
+             spinner.SetSelection(0);
 
             spinner.ItemSelected += spinner_ItemSelected;
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleSpinnerItem);
@@ -150,8 +151,13 @@ namespace TestApp
             TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
             routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
             routeStatus.Text = "Stauts: Idle";
-            Button start = FindViewById<Button>(Resource.Id.startRoute);
-            Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
+
+
+            //Button start = FindViewById<Button>(Resource.Id.startRoute);
+            //Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
+
+             start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
+            start.SetBackgroundColor(Color.Green);
             Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
@@ -162,27 +168,32 @@ namespace TestApp
             //locationManager.RemoveProximityAlert();
 
 
-            pause.Click += (sender, e) =>
+           
+
+            start.Click += (sender, e) =>
             {
+
+
+
+
+                //IF the route is already started!
                 if (CreateRouteService.serviceIsRunning == true)
                 {
                     isPaused = true;
                     StopService(new Intent(this, typeof(CreateRouteService)));
                     routeStatus.Text = "Route creation paused";
-                    start.Text = "Resume";
+                    start.SetBackgroundColor(Color.Blue);
+
+
+                    //bool val = routeIsRunning();
+                    //if (val)
+                    //    return;
+
+
                 }
-                else
-                {
 
-                    Toast.MakeText(this, "No routes to pause!", ToastLength.Long).Show();
 
-                }
-
-            };
-
-                start.Click += (sender, e) =>
-            {
-
+                //Cannot create and do a route at the same time!
                 if (StartRouteService.serviceIsRunning == true)
                 {
                     Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
@@ -190,74 +201,74 @@ namespace TestApp
                     return;
                 }
 
-                if (CreateRouteService.serviceIsRunning == true)
-                {
-                    Toast.MakeText(this, "Already creating one!", ToastLength.Long).Show();
-
-                    bool val = routeIsRunning();
-                    if (val)
-                        return;
-                }
 
 
+                //Resuming a route creation
                 if (isPaused)
                 {
-
-
-               
 
                     isPaused = false;
 
                     StartService(new Intent(this, typeof(CreateRouteService)));
                     routeStatus.Text = "Resuming creation";
                     start.Text = "Create Route";
-
+                    start.SetBackgroundColor(Color.Green);
                 }
+
+                //Starting route creation for first time
                 else
                 {
-                    if (points.Count > 0)
-                    {
 
-                        points.Clear();
+
+                    startRouteCreation();
+
                 }
 
-                routeStatus.Text = "Aquiring your position...";
+                //    if (points.Count > 0)
+                //    {
 
-                var loc =  App.Current.LocationService.getLastKnownLocation();
+                //        points.Clear();
+                //}
 
-                if(loc != null)
-                {
-                        mMap.Clear();
-                        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
+
+
+                //routeStatus.Text = "Aquiring your position...";
+
+                //var loc =  App.Current.LocationService.getLastKnownLocation();
+
+                //if(loc != null)
+                //{
+                //        mMap.Clear();
+                //        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                //        mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
             
-                        MarkerOptions markerMe = new MarkerOptions();
-                        markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
-                        markerMe.SetTitle("My position");
-                        markerMe.Draggable(false);
-                        markerMe.SetSnippet("My Location");
-                        BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); 
+                //        MarkerOptions markerMe = new MarkerOptions();
+                //        markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
+                //        markerMe.SetTitle("My position");
+                //        markerMe.Draggable(false);
+                //        markerMe.SetSnippet("My Location");
+                //        BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); 
 
-                        markerMe.SetIcon(image);
-                        mMap.AddMarker(markerMe);
-                    }
+                //        markerMe.SetIcon(image);
+                //        mMap.AddMarker(markerMe);
+                //    }
 
 
 
-                StartService(new Intent(this, typeof(CreateRouteService)));
+                //StartService(new Intent(this, typeof(CreateRouteService)));
 
-                //mMap.Clear();
-                isReady = false;
-                Ischecked = false;
-                alreadyDone = false;
+                ////mMap.Clear();
+                //isReady = false;
+                //Ischecked = false;
+                //alreadyDone = false;
 
                    
-                stopWatch = new Stopwatch();
-                stopWatch.Start();
+                //stopWatch = new Stopwatch();
+                //stopWatch.Start();
 
-                spinner.Visibility = ViewStates.Invisible;
+                //spinner.Visibility = ViewStates.Invisible;
 
-                } // en Pause
+                //} // en Pause
 
 
             };
@@ -376,7 +387,56 @@ namespace TestApp
 
 
         }
+        public void startRouteCreation()
+        {
 
+            if (points.Count > 0)
+            {
+
+                points.Clear();
+            }
+
+
+
+            routeStatus.Text = "Aquiring your position...";
+
+            var loc = App.Current.LocationService.getLastKnownLocation();
+
+            if (loc != null)
+            {
+                mMap.Clear();
+                mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
+
+                MarkerOptions markerMe = new MarkerOptions();
+                markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
+                markerMe.SetTitle("My position");
+                markerMe.Draggable(false);
+                markerMe.SetSnippet("My Location");
+                BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
+
+                markerMe.SetIcon(image);
+                mMap.AddMarker(markerMe);
+            }
+
+
+
+            StartService(new Intent(this, typeof(CreateRouteService)));
+
+            //mMap.Clear();
+            isReady = false;
+            Ischecked = false;
+            alreadyDone = false;
+
+
+            stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            spinner.Visibility = ViewStates.Invisible;
+
+        } // en Pause
+
+    
         //public void startRouteSettings()
         //{
 

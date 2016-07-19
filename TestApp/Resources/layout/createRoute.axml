@@ -41,30 +41,60 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#ccccff">
+        android:background="@android:color/white">
         <TextView
-            android:text="Route type"
-            android:layout_width="wrap_content"
+            android:text="@string/activity_route"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:background="#ccccff"
+            android:gravity="center"
             android:id="@+id/textView1"
             android:textColor="@android:color/background_dark" />
         <Spinner
             android:id="@+id/spinnerRouteTypes"
             android:layout_width="247.0dp"
             android:layout_height="match_parent"
-            android:prompt="@string/planet_prompt"
-            android:textColor="@android:color/background_dark"
+            android:prompt="@string/activity_route"
+            android:textColor="@android:color/black"
             android:layout_y="20dp"
             android:layout_toRightOf="@+id/textView1"
             android:layout_below="@+id/map"
-            android:background="#ccccff" />
+            android:background="@android:color/darker_gray" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ccccff">
+        android:background="@android:color/white"
+        android:gravity="center">
+        <ToggleButton
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/toggleStart"
+            android:background="@android:color/holo_green_light"
+            android:textOff="Start"
+            android:textOn="Pause" />
         <Button
+            android:text="Finish route"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/endRoute"
+            android:layout_below="@+id/toggleStart"
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:background="@android:color/holo_orange_light" />
+        <Button
+            android:text="Exit"
+            android:gravity="center"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancelRoute"
+            android:layout_below="@+id/endRoute"
+            android:textColor="#ffffffff"
+            android:background="@android:color/holo_red_dark" />
+    <!--<Button
+
+    
+    
             android:text="Create route"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -74,8 +104,8 @@
             android:layout_weight="33"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
-        <Button
+            android:layout_marginRight="20dp" />-->
+    <!--<Button
             android:text="Pause"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -86,20 +116,6 @@
             android:layout_weight="33"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp" />-->
     </RelativeLayout>
-    <Button
-        android:text="Finish route"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/endRoute"
-        android:textColor="#ffffffff"
-        android:background="@android:color/holo_red_dark" />
-    <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelRoute"
-        android:textColor="#ffffffff"
-        android:background="@android:color/holo_orange_light" />
 </LinearLayout>
