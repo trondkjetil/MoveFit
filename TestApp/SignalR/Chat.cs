@@ -35,14 +35,13 @@ namespace TestApp
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
 
             UserName = MainStart.userName;
-            BackgroundColor = 0;
+           
 
-            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
-            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+               var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
-            chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
+            chatHubProxy.On<string, string>("messageReceived", (message, user) =>
             {
                 //UpdateChatMessage has been called from server
 
@@ -60,7 +59,6 @@ namespace TestApp
                     }
                     else
                         txt.SetTextColor(Color.Red);
-
 
 
                     var grav = GravityFlags.Right;
@@ -92,6 +90,7 @@ namespace TestApp
 
             await hubConnection.Start();
 
+          
             send.Click += async (o, e2) =>
             {
 
@@ -99,7 +98,7 @@ namespace TestApp
                 {
                     var message = writeMessage.Text;
 
-                    await chatHubProxy.Invoke("SendMessageToAll", new object[] { message, BackgroundColor, UserName });
+                    await chatHubProxy.Invoke("SendMessageToAll", new object[] { message, UserName });
 
                     writeMessage.Text = "";
                 }

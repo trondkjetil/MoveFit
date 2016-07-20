@@ -44,22 +44,29 @@ namespace TestApp
             toUserId = array[0];
 
 
-            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
-         
-
-            chatHubProxy.On<string, string>("UpdateChatMessage",  (userId, message) =>
+     
+            chatHubProxy.On<string, string>("onNewUserConnected", (userId, message) =>
             {
-                //UpdateChatMessage has been called from server
+                RunOnUiThread(() =>
+                {
+                    Toast.MakeText(this, userId + " has connected!", ToastLength.Short).Show();
+
+                });
+
+            });
 
 
+
+            chatHubProxy.On<string, string>("sendPrivateMessage",  (userId, message) =>
+            {
                
 
-
-
+               
+           
                 RunOnUiThread(() =>
                 {
                     TextView txt = new TextView(this);
@@ -107,6 +114,7 @@ namespace TestApp
             await hubConnection.Start();
 
             await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+
 
             send.Click += async (o, e2) =>
             {

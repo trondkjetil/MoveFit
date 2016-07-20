@@ -41,6 +41,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:background="@android:color/white">
         <TextView
             android:text="@string/activity_route"
@@ -48,16 +49,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/textView1"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@android:color/black"
             android:layout_marginRight="0.0dp"
-            android:layout_marginBottom="0.0dp" />
+            android:layout_marginBottom="8.0dp" />
         <Spinner
             android:id="@+id/spinnerRouteTypes"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="65dp"
             android:layout_below="@+id/textView1"
             android:prompt="@string/activity_route"
-            android:background="@android:color/white" />
+            android:background="@android:color/background_light" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

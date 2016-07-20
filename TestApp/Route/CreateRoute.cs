@@ -61,6 +61,8 @@ namespace TestApp
         public Spinner spinner;
         public ToggleButton start;
         public static bool isPaused;
+
+        static bool firstRun;
         public bool Ischecked
         {
 
@@ -120,6 +122,7 @@ namespace TestApp
 
             activity = this;
             isPaused = false;
+            firstRun = true;
 
             points = new List<Location>();
             me = await Azure.getUserId(MainStart.userName);
@@ -141,12 +144,14 @@ namespace TestApp
 
              spinner = FindViewById<Spinner>(Resource.Id.spinnerRouteTypes);
 
-             spinner.SetSelection(0);
-
             spinner.ItemSelected += spinner_ItemSelected;
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
+          //  spinner.SetSelection(0);
+            spinner.Visibility = ViewStates.Visible;
+            
 
             statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
             TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
@@ -158,7 +163,7 @@ namespace TestApp
             //Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
 
              start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
-            start.SetBackgroundColor(Color.Green);
+           
             Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
@@ -174,30 +179,6 @@ namespace TestApp
             start.Click += (sender, e) =>
             {
 
-                //Paused
-                if (start.Checked)
-                {
-
-
-                }
-
-                //IF the route is already started!
-                if (CreateRouteService.serviceIsRunning == true)
-                {
-                    isPaused = true;
-                    StopService(new Intent(this, typeof(CreateRouteService)));
-                    routeStatus.Text = "Route creation paused";
-                    start.SetBackgroundColor(Color.Blue);
-
-
-                    //bool val = routeIsRunning();
-                    //if (val)
-                    //    return;
-
-
-                }
-
-
                 //Cannot create and do a route at the same time!
                 if (StartRouteService.serviceIsRunning == true)
                 {
@@ -206,28 +187,74 @@ namespace TestApp
                     return;
                 }
 
+                //Paused
+                if (start.Checked)
+                {
+
+
+
+
+
+                    if (firstRun)
+                    {
+                        firstRun = false;
+                        startRouteCreation();
+
+                    }
+                    else
+                    {
+                        isPaused = false;
+
+                        StartService(new Intent(this, typeof(CreateRouteService)));
+                        routeStatus.Text = "Resuming creation";
+                        start.Text = "Pause Route";
+                        start.SetBackgroundColor(Color.Green);
+                    }
+
+
+
+                }
+
+                //IF the route is already started!
+              
+
+
 
 
                 //Resuming a route creation
-                if (isPaused)
+                if (!start.Checked)
                 {
 
-                    isPaused = false;
+                    if (CreateRouteService.serviceIsRunning == true)
+                    {
+                        isPaused = true;
+                        StopService(new Intent(this, typeof(CreateRouteService)));
+                        routeStatus.Text = "Route creation paused";
+                        start.SetBackgroundColor(Color.Blue);
 
-                    StartService(new Intent(this, typeof(CreateRouteService)));
-                    routeStatus.Text = "Resuming creation";
-                    start.Text = "Pause Route";
-                    start.SetBackgroundColor(Color.Green);
+
+                        //bool val = routeIsRunning();
+                        //if (val)
+                        //    return;
+
+
+                    }
+
+
+
+
+
+
+
                 }
+
 
                 //Starting route creation for first time
-                else
-                {
 
 
-                    startRouteCreation();
 
-                }
+
+
 
                 //    if (points.Count > 0)
                 //    {
@@ -246,7 +273,7 @@ namespace TestApp
                 //        mMap.Clear();
                 //        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                 //        mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
-            
+
                 //        MarkerOptions markerMe = new MarkerOptions();
                 //        markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
                 //        markerMe.SetTitle("My position");
@@ -267,7 +294,7 @@ namespace TestApp
                 //Ischecked = false;
                 //alreadyDone = false;
 
-                   
+
                 //stopWatch = new Stopwatch();
                 //stopWatch.Start();
 
@@ -292,7 +319,7 @@ namespace TestApp
 
                 StopService(new Intent(this, typeof(CreateRouteService)));
 
-                spinner.Visibility = ViewStates.Visible;
+                
                 routeStatus.Text = "Stauts: Stopped";
                 dist = 0;
                 Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
@@ -310,7 +337,7 @@ namespace TestApp
                 ts.Milliseconds / 10);
 
 
-
+                firstRun = true;
             };
             cancel.Click += (sender, e) =>
             {
@@ -394,7 +421,7 @@ namespace TestApp
         }
         public void startRouteCreation()
         {
-
+            start.SetBackgroundColor(Color.Blue);
             if (points.Count > 0)
             {
 
@@ -437,7 +464,7 @@ namespace TestApp
             stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            spinner.Visibility = ViewStates.Invisible;
+          //  spinner.Visibility = ViewStates.Invisible;
 
         } // en Pause
 

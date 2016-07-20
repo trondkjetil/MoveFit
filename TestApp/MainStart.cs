@@ -555,7 +555,7 @@ namespace TestApp
             messages.Text = "No new messages";
             //  int  messageCount = 0;
 
-            chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
+            chatHubProxy.On<string, string>("messageReceived", (message, user) =>
             {
                 //UpdateChatMessage has been called from server
 
