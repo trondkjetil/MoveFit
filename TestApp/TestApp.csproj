@@ -198,6 +198,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\chatRoom.axml" />
+    <AndroidResource Include="Resources\layout\chatPrivate.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

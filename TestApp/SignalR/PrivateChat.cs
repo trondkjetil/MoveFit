@@ -17,7 +17,7 @@ namespace TestApp
     [Activity(Label = "PrivateChat")]
     public class PrivateChat : Activity
     {
-        public string toUserId;
+        public string toUserName;
       
         //  Button send;
 
@@ -32,28 +32,39 @@ namespace TestApp
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.chat);
+            SetContentView(Resource.Layout.chatPrivate);
 
 
             //    send = FindViewById<Button>(Resource.Id.btnSend);
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
-            send.SetBackgroundColor(Color.Green);
+            send.SetBackgroundColor(Color.Blue);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
             array = Intent.GetStringArrayExtra("MyData");
-            toUserId = array[0];
+            toUserName = array[0];
 
-
+            var myUserName = MainStart.userName;
+            
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
-     
-            chatHubProxy.On<string, string>("onNewUserConnected", (userId, message) =>
+         
+            //chatHubProxy.On<string, string>("onNewUserConnected", (userId, message) =>
+            //{
+            //    RunOnUiThread(() =>
+            //    {
+            //        Toast.MakeText(this, userId + " has connected!", ToastLength.Long).Show();
+
+            //    });
+
+            //});
+
+            chatHubProxy.On<string, string>("onConnected", (userId, message) =>
             {
                 RunOnUiThread(() =>
                 {
-                    Toast.MakeText(this, userId + " has connected!", ToastLength.Short).Show();
+                    Toast.MakeText(this, userId + "Is Online", ToastLength.Long).Show();
 
                 });
 
@@ -61,7 +72,7 @@ namespace TestApp
 
 
 
-            chatHubProxy.On<string, string>("sendPrivateMessage",  (userId, message) =>
+            chatHubProxy.On<string,string, string>("sendPrivateMessage",  (userId, userName, message) =>
             {
                
 
@@ -113,7 +124,8 @@ namespace TestApp
 
             await hubConnection.Start();
 
-            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+
+            //************************ MISTAKE CANT SEND
 
 
             send.Click += async (o, e2) =>
@@ -123,7 +135,7 @@ namespace TestApp
                 {
                     var message = writeMessage.Text;
 
-                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { toUserId, message });
+                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { toUserName, message });
 
                     writeMessage.Text = "";
                 }
@@ -134,6 +146,30 @@ namespace TestApp
                 }
 
             };
+
+
+
+
+
+            try
+            {
+                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+
+
+
+
+
+
+
+
+
 
 
         }
