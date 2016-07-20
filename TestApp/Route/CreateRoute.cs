@@ -18,6 +18,7 @@ using System.Threading;
 using TestApp.Points;
 using Android.Graphics;
 
+
 namespace TestApp
 {
     [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait)]
@@ -173,8 +174,12 @@ namespace TestApp
             start.Click += (sender, e) =>
             {
 
+                //Paused
+                if (start.Checked)
+                {
 
 
+                }
 
                 //IF the route is already started!
                 if (CreateRouteService.serviceIsRunning == true)

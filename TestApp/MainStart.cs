@@ -123,13 +123,13 @@ namespace TestApp
             greetings.TextSize = 18;
 
             steps.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            steps.TextSize = 12;
+            steps.TextSize = 14;
 
             totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            totalDistance.TextSize = 12;
+            totalDistance.TextSize = 14;
 
             points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            points.TextSize = 12;
+            points.TextSize = 14;
 
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
@@ -249,7 +249,7 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(StepCounter));
+                    myIntent = new Intent(this, typeof(Chat));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -424,22 +424,22 @@ namespace TestApp
 
                 List<User> topUsers = await Azure.getTop3People();
 
-                if (topUsers[0] != null)
+                if (topUsers[0].UserName != "")
                 {
-                    pers1.Text = topUsers[0].UserName; ;
+                    pers1.Text = topUsers[0].UserName; 
                     pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
                 }
-                else
+                
 
 
-                if (topUsers[1] != null)
+                if (topUsers[1].UserName != "")
                 {
                     pers2.Text = topUsers[1].UserName; 
                     pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
                 }
 
 
-                if (topUsers[2] != null)
+                if (topUsers[2].UserName != "")
                 {
                     pers3.Text = topUsers[2].UserName;  //"Test friend3 Score: 0";
                     pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
@@ -570,13 +570,14 @@ namespace TestApp
 
                     if (user != MainStart.userName)
                     {
-                        //messages.Text = "New message from:"+ System.Environment.NewLine +
-                        //user.ToString();
+                     messages.Text = "New message from:" + System.Environment.NewLine +
+                     user.ToString();
+
+                        messageNotification(message, user);
 
                     }
-                    messages.Text = "New message from:" + System.Environment.NewLine +
-                    user.ToString();
-                    messageNotification(message);
+                   
+                  
                 });
             });
 
@@ -585,19 +586,39 @@ namespace TestApp
         }
 
 
-        public void messageNotification(string message)
+        public void messageNotification(string message,string user)
         {
 
             Notification.Builder builder;
             Notification notification;
             NotificationManager notificationManager;
 
+            Intent newIntent = new Intent(this, typeof(Chat));
+            // Pass some information to SecondActivity:
+            newIntent.PutExtra(message, user);
+
+            // Create a task stack builder to manage the back stack:
+            TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+
+            // Add all parents of SecondActivity to the stack: 
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainStart   )));
+
+            // Push the intent that starts SecondActivity onto the stack:
+            stackBuilder.AddNextIntent(newIntent);
+
+            const int pendingIntentId = 0;
+
+            PendingIntent pendingIntent =
+            PendingIntent.GetActivity(this, pendingIntentId, newIntent, PendingIntentFlags.OneShot);
+
 
             builder = new Notification.Builder(this)
            //   .SetContentIntent(pendingIntent)
               .SetContentTitle("MoveFit")
-              .SetContentText("You have a new message!"+System.Environment.NewLine+ message)
+              .SetContentText(user + ": " +message)
               .SetDefaults(NotificationDefaults.Sound)
+              .SetContentIntent(pendingIntent)
+              .SetAutoCancel(true)
               // .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
               .SetSmallIcon(Resource.Drawable.tt);
 

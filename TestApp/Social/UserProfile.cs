@@ -208,7 +208,7 @@ namespace TestApp
 
 
                         byte[] bitmapData;
-                    // bitmapData = Compress(toByte(bitmapScalled));
+                  
 
 
                     using (var stream = new MemoryStream())
@@ -239,18 +239,6 @@ namespace TestApp
                   
                 
 
-                    //if (instance[0].Id == null || instance[0].Id == "")
-                    //    {
-                    //        var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
-
-                    //    }
-                    //    else
-                    //        await Azure.setProfileImage(MainStart.userId, bitmapData);
-
-
-
-
-                        //       profilePic2.SetImageBitmap(toBitmap(bitmapData));
 
 
                     }
@@ -303,11 +291,13 @@ namespace TestApp
             string path = null;
             // The projection contains the columns we want to return in our query.
             string[] projection = new[] { MediaStore.Audio.Media.InterfaceConsts.Data };
-            using (ICursor cursor =  ManagedQuery(uri, projection, null, null,null))
+            using (ICursor cursor = ContentResolver.Query(uri, projection, null, null, null))
+
+               // ManagedQuery(
             {
                 if (cursor != null)
                 {
-                    int columnIndex = cursor.GetColumnIndexOrThrow(Android.Provider.MediaStore.Audio.Media.InterfaceConsts.Data);
+                    int columnIndex = cursor.GetColumnIndexOrThrow(MediaStore.Audio.Media.InterfaceConsts.Data);
                     cursor.MoveToFirst();
                     path = cursor.GetString(columnIndex);
                 }

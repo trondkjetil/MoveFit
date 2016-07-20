@@ -168,8 +168,8 @@ namespace TestApp
 
         public static Bitmap getRoundedShape(Bitmap scaleBitmapImage)
         {
-            const int targetWidth = 110;
-            const int targetHeight = 110;
+            const int targetWidth = 115;
+            const int targetHeight = 115;
             Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth,
                 targetHeight, Bitmap.Config.Argb8888);
 

@@ -263,7 +263,7 @@ namespace TestApp
         public static async Task<List<User>> getTop3People()
         {
 
-            List<User> userList = await table.Where(user =>user.Deleted == false && MainStart.userId != user.Id).OrderBy(User => User.Points).Take(3).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).OrderBy(User => User.UserName).Take(3).ToListAsync();
             return userList;
 
         }

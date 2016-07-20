@@ -205,9 +205,17 @@ namespace TestApp
 
             myHolder.mSendMessage.Click += (sender, args) =>
             {
+                Bundle b = new Bundle();
+                b.PutStringArray("MyData", new String[] {
+
+                       mUsers[position].UserName.ToString()
 
 
-                Intent myInt = new Intent(mContext, typeof(Chat));
+
+                    });
+
+                Intent myInt = new Intent(mContext, typeof(PrivateChat));
+                myInt.PutExtras(b);
                 mContext.StartActivity(myInt);
 
 

@@ -17,12 +17,14 @@ namespace TestApp
     [Activity(Label = "PrivateChat")]
     public class PrivateChat : Activity
     {
-        public string userId;
-        public int BackgroundColor;
+        public string toUserId;
+      
         //  Button send;
 
         ImageButton send;
         EditText writeMessage;
+
+        string[] array;
         protected override async void OnCreate(Bundle bundle)
         {
 
@@ -38,8 +40,8 @@ namespace TestApp
             send.SetBackgroundColor(Color.Green);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
-
-            userId = MainStart.userId;
+            array = Intent.GetStringArrayExtra("MyData");
+            toUserId = array[0];
 
 
             //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
@@ -47,12 +49,14 @@ namespace TestApp
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
-            chatHubProxy.On<string, string>("UpdateChatMessage", async (userId, message) =>
+         
+
+            chatHubProxy.On<string, string>("UpdateChatMessage",  (userId, message) =>
             {
                 //UpdateChatMessage has been called from server
 
 
-                //await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+               
 
 
 
@@ -102,6 +106,8 @@ namespace TestApp
 
             await hubConnection.Start();
 
+            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+
             send.Click += async (o, e2) =>
             {
 
@@ -109,7 +115,7 @@ namespace TestApp
                 {
                     var message = writeMessage.Text;
 
-                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { userId, message });
+                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { toUserId, message });
 
                     writeMessage.Text = "";
                 }

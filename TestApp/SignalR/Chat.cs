@@ -99,7 +99,7 @@ namespace TestApp
                 {
                     var message = writeMessage.Text;
 
-                    await chatHubProxy.Invoke("SendMessage", new object[] { message, BackgroundColor, UserName });
+                    await chatHubProxy.Invoke("SendMessageToAll", new object[] { message, BackgroundColor, UserName });
 
                     writeMessage.Text = "";
                 }
