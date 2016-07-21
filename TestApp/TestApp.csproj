@@ -143,10 +143,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Azure\Locations.cs" />
+    <Compile Include="Azure\Messages.cs" />
     <Compile Include="Azure\Review.cs" />
     <Compile Include="Azure\Route.cs" />
+    <Compile Include="Azure\MessageConnections.cs" />
     <Compile Include="Azure\UserImage.cs" />
     <Compile Include="Azure\UserFriends.cs" />
+    <Compile Include="Common\MessageDetail.cs" />
+    <Compile Include="Common\UserDetail.cs" />
     <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Health\StepCounter.cs" />
@@ -199,6 +203,7 @@
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\chatRoom.axml" />
     <AndroidResource Include="Resources\layout\chatPrivate.axml" />
+    <AndroidResource Include="Resources\layout\chatGroup.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -402,6 +407,7 @@
     <AndroidResource Include="Resources\drawable\ic_menu_forward.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\my_rectangle.xml" />
     <Content Include="test.txt" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

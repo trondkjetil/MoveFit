@@ -1,126 +1,78 @@
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
 
-//using Android.App;
-//using Android.Content;
-//using Android.OS;
-//using Android.Runtime;
-//using Android.Views;
-//using Android.Widget;
-//using Android.Graphics;
-//using Microsoft.AspNet.SignalR.Client;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
 
-//namespace TestApp
-//{
-//    [Activity(Label = "ChatRoom")]
-//    public class ChatRoom : Activity
-//    {
-//        public string UserName;
+using Android.Webkit;
+
+
+namespace TestApp
+{
+    [Activity(Label = "ChatRoom")]
+    public class ChatRoom : Activity
+    {
+
+        public static WebView web_view;
+        public string UserName;
+
+        //  Button send;
+
+        ImageButton send;
+        EditText writeMessage;
+        protected override async void OnCreate(Bundle bundle)
+        {
+
+            RequestWindowFeature(WindowFeatures.NoTitle);
+            base.OnCreate(bundle);
+
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.chatRoom);
+            web_view = FindViewById<WebView>(Resource.Id.webview);
+            web_view.Settings.JavaScriptEnabled = true;
+            web_view.LoadUrl("http://chatservices.azurewebsites.net");
+            web_view.SetWebViewClient(new HelloWebViewClient());
+
+
+            web_view.Settings.LoadWithOverviewMode = true;
+            web_view.Settings.UseWideViewPort = true;
+
+        }
+
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            if (keyCode == Keycode.Back && ChatRoom.web_view.CanGoBack())
+            {
+                ChatRoom.web_view.GoBack();
+                return true;
+            }
+
+            return base.OnKeyDown(keyCode, e);
+        }
+     
+
+
+
+
+    }
+
+    public class HelloWebViewClient : WebViewClient
+    {
+        public override bool ShouldOverrideUrlLoading(WebView view, string url)
+        {
+            view.LoadUrl(url);
+            return true;
+        }
+
        
-//        //  Button send;
-
-//        ImageButton send;
-//        EditText writeMessage;
-//        protected override async void OnCreate(Bundle bundle)
-//        {
-
-//            RequestWindowFeature(WindowFeatures.NoTitle);
-//            base.OnCreate(bundle);
-
-//            // Set our view from the "main" layout resource
-//            SetContentView(Resource.Layout.chatRoom);
-
-
-//            //REMEMBER TO USE CONNECT METHOD!
-
-
-//            //    send = FindViewById<Button>(Resource.Id.btnSend);
-//            send = FindViewById<ImageButton>(Resource.Id.btnSend);
-//            send.SetBackgroundColor(Color.Green);
-
-//            writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
-
-//            UserName = MainStart.userName;
-           
-
-//            //var hubConnection = new HubConnection("http://movefitt.azurewebsites.net/");
-//            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-//            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-
-               
-//            chatHubProxy.On<string, int, string>("UpdateChatMessage", (message, color, user) =>
-//            {
-//                //UpdateChatMessage has been called from server
-
-//                RunOnUiThread(() =>
-//                {
-//                    TextView txt = new TextView(this);
-//                    txt.Text = user + ": " + message;
-//                    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-//                    txt.SetPadding(10, 10, 10, 10);
-
-//                    if (user == MainStart.userName)
-//                    {
-//                        txt.SetTextColor(Color.Blue);
-
-//                    }
-//                    else
-//                        txt.SetTextColor(Color.Red);
 
 
 
-//                    var grav = GravityFlags.Right;
-
-//                    if (MainStart.userName == user)
-//                    {
-//                        grav = GravityFlags.Right;
-//                    }
-//                    else
-//                        grav = GravityFlags.Left;
+       
 
 
-//                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-//                    {
-//                        TopMargin = 10,
-//                        BottomMargin = 10,
-//                        LeftMargin = 10,
-//                        RightMargin = 10,
-//                        Gravity = grav
+    }
 
-//                    };
-
-
-//                    FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
-
-//                });
-//            });
-
-
-//            await hubConnection.Start();
-
-//            send.Click += async (o, e2) =>
-//            {
-
-//                try
-//                {
-//                    var message = writeMessage.Text;
-
-//                    await chatHubProxy.Invoke("SendMessageToAll", new object[] { message, UserName });
-
-//                    writeMessage.Text = "";
-//                }
-//                catch (Exception)
-//                {
-
-
-//                }
-
-//            };
-
-
-//        }
-//    }
-
-//}
+}

@@ -88,6 +88,14 @@ namespace TestApp
 
         TextView messages;
 
+
+
+                public static string myUserId;
+                  public static string myUserName;
+                   public static string userList;
+        public static List<MessageDetail> currentMessagesWritten;
+        public static  List<UserDetail> listOfConnectedUsers;
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -249,7 +257,7 @@ namespace TestApp
                 else if (e.Position == 5)
                 {
 
-                    myIntent = new Intent(this, typeof(Chat));
+                    myIntent = new Intent(this, typeof(ChatRoom));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 6)
@@ -406,7 +414,7 @@ namespace TestApp
             }
 
             messagePushNotification();
-
+            connectToChat();
 
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
@@ -459,9 +467,47 @@ namespace TestApp
          
         }
 
+        public async void connectToChat()
+        {
+            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+
+         // currentMessagesWritten;
+         //listOfconnectedUser;
 
 
+            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
+            {
+                RunOnUiThread(() =>
+                {
 
+                    myUserId = id;
+                    myUserName = userName;
+                    listOfConnectedUsers = ConnectedUsers;
+                    // currentMessagesWritten = CurrentMessage;
+
+
+                
+                });
+
+            });
+
+
+            await hubConnection.Start();
+            try
+            {
+                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+                Toast.MakeText(this, "You are now online!", ToastLength.Short).Show();
+
+            }
+            catch (Exception a)
+            {
+                throw a;
+
+            }
+
+
+        }
 
         protected async override void OnStop()
         {
@@ -555,11 +601,12 @@ namespace TestApp
             messages.Text = "No new messages";
             //  int  messageCount = 0;
 
-            chatHubProxy.On<string, string>("messageReceived", (message, user) =>
+            chatHubProxy.On<string, string, string>("sendPrivateMessage", (userId, userName, message) =>
             {
+
                 //UpdateChatMessage has been called from server
 
-                
+
                 RunOnUiThread(() =>
                 {
                    
@@ -568,12 +615,12 @@ namespace TestApp
                     //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
                     //txt.SetPadding(10, 10, 10, 10);
 
-                    if (user != MainStart.userName)
+                    if (userName != MainStart.userName)
                     {
                      messages.Text = "New message from:" + System.Environment.NewLine +
                      user.ToString();
 
-                        messageNotification(message, user);
+                        messageNotification(message, userName);
 
                     }
                    

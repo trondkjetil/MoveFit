@@ -95,7 +95,10 @@ namespace TestApp
             //Will run on separate thread
             Thread.Sleep(2000);
         }
-
+        public override void OnBackPressed()
+        {
+            Finish();
+        }
 
     }
 

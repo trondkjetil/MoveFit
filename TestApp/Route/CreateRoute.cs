@@ -142,10 +142,10 @@ namespace TestApp
             mMap.UiSettings.CompassEnabled = true;
             //mMap.SetOnMyLocationChangeListener;
 
-             spinner = FindViewById<Spinner>(Resource.Id.spinnerRouteTypes);
+             spinner = FindViewById<Spinner>(Resource.Id.createRoute);
 
             spinner.ItemSelected += spinner_ItemSelected;
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleSpinnerItem);
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleListItem1);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
 
@@ -580,8 +580,8 @@ namespace TestApp
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-
            
+
             if (e.Position == 0)
             {
                 Toast.MakeText(this, "Walking", ToastLength.Short).Show();

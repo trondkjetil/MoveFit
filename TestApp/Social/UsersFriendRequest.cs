@@ -95,7 +95,10 @@ namespace TestApp
 			Thread.Sleep(3000);
 		}
 
-
+        public override void OnBackPressed()
+        {
+            Finish();
+        }
 
     }
 

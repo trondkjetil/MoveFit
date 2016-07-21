@@ -21,14 +21,14 @@ namespace TestApp
         private RecyclerView.LayoutManager mLayoutManager;
         public RecyclerView.Adapter mAdapter;
         public Activity act;
-       
-		SwipeRefreshLayout mSwipeRefreshLayout;
+
+        SwipeRefreshLayout mSwipeRefreshLayout;
 
 
         protected override void OnStop()
         {
             base.OnStop();
-           // Recreate();
+            // Recreate();
         }
 
 
@@ -36,20 +36,20 @@ namespace TestApp
         {
             base.OnDestroy();
 
-           // Recreate();
+            // Recreate();
         }
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             RequestWindowFeature(WindowFeatures.NoTitle);
             // Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.UsersFriends);
+            SetContentView(Resource.Layout.UsersFriends);
 
             act = this;
 
             mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
-			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
-			mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
+            mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
+            mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
 
 
@@ -64,7 +64,7 @@ namespace TestApp
 
             //List<User> userList = await Azure.getPeople();
             List<User> userList = await Azure.getUsersFriends(MainStart.userId);
-            
+
 
             if (userList.Count == 0)
             {
@@ -80,33 +80,34 @@ namespace TestApp
             mRecyclerView.SetAdapter(mAdapter);
 
 
-         
+
         }
 
 
-		void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
-		{
-			BackgroundWorker worker = new BackgroundWorker();
-			worker.DoWork += worker_DoWork;
-			worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-			worker.RunWorkerAsync();
-		}
+        void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
 
-		void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
-		}
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
+        }
 
-		void worker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//Will run on separate thread
-			Thread.Sleep(3000);
-		}
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Will run on separate thread
+            Thread.Sleep(3000);
+        }
 
-       
-
+        public override void OnBackPressed()
+        {
+            Finish();
+        }
     }
-
     public class UsersFriendsAdapter : RecyclerView.Adapter
     {
         private List<User> mUsers;

@@ -36,6 +36,8 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\TestApp.TestApp.apk
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatroom.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatgroup.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
@@ -174,6 +176,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Servic
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\my_rectangle.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

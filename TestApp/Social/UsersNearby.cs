@@ -79,7 +79,10 @@ namespace TestApp
 			Thread.Sleep(3000);
 		}
 
-
+        public override void OnBackPressed()
+        {
+            Finish();
+        }
     }
 
     public class UsersAdapter : RecyclerView.Adapter

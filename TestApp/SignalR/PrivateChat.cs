@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Microsoft.AspNet.SignalR.Client;
+using System.Text.RegularExpressions;
 
 namespace TestApp
 {
@@ -25,6 +26,13 @@ namespace TestApp
         EditText writeMessage;
 
         string[] array;
+
+
+        static string sendTouserId;
+        static string myUserId;
+        static string myUserName;
+        List<MessageDetail> currentMessagesWritten;
+        List<UserDetail> userList;
         protected override async void OnCreate(Bundle bundle)
         {
 
@@ -34,22 +42,18 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.chatPrivate);
 
-
-            //    send = FindViewById<Button>(Resource.Id.btnSend);
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
             send.SetBackgroundColor(Color.Blue);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
             array = Intent.GetStringArrayExtra("MyData");
             toUserName = array[0];
-
-            var myUserName = MainStart.userName;
-            
+   
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
 
-         
+
             //chatHubProxy.On<string, string>("onNewUserConnected", (userId, message) =>
             //{
             //    RunOnUiThread(() =>
@@ -60,32 +64,64 @@ namespace TestApp
 
             //});
 
-            chatHubProxy.On<string, string>("onConnected", (userId, message) =>
+            //chatHubProxy.On<string, string,List<UserDetail>,List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
+            //{
+            //    RunOnUiThread(() =>
+            //    { 
+
+            //        myUserId = id;
+            //        myUserName = userName;
+            //        userList = ConnectedUsers;
+            //        // currentMessagesWritten = CurrentMessage;
+
+
+            //        var usersConnected = "";
+            //        foreach (var item in userList)
+            //        {
+            //            usersConnected += "-" + item.UserName;
+            //            if (item.UserName == toUserName)
+            //            {
+            //                sendTouserId = item.ConnectionId;
+            //            }
+            //        }
+
+
+            //        Toast.MakeText(this,"SendTo: " + sendTouserId + " ConnectedUsers: " + usersConnected, ToastLength.Long).Show();
+
+            //    });
+
+            //});
+
+             string usersConnected ="";
+            foreach (var item in MainStart.listOfConnectedUsers)
             {
-                RunOnUiThread(() =>
+                usersConnected += "-" + item.UserName;
+                if (item.UserName == toUserName)
                 {
-                    Toast.MakeText(this, userId + "Is Online", ToastLength.Long).Show();
+                    Toast.MakeText(this, toUserName+ " is found in the list!", ToastLength.Long).Show();
 
-                });
+                }
+            }
 
-            });
-
+          
 
 
             chatHubProxy.On<string,string, string>("sendPrivateMessage",  (userId, userName, message) =>
             {
-               
+                var firstName = userName.Substring(0, userName.IndexOf(" "));
 
-               
-           
                 RunOnUiThread(() =>
                 {
+
+              
                     TextView txt = new TextView(this);
-                    txt.Text = userId + ": " + message;
+                    txt.Text = firstName + ": " + message;
                     txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
                     txt.SetPadding(10, 10, 10, 10);
 
-                    if (userId == MainStart.userId)
+                    
+
+                    if (userName == MainStart.userName)
                     {
                         txt.SetTextColor(Color.Blue);
 
@@ -97,7 +133,7 @@ namespace TestApp
 
                     var grav = GravityFlags.Right;
 
-                    if (MainStart.userId == userId)
+                    if (MainStart.userName == userName)
                     {
                         grav = GravityFlags.Right;
                     }
@@ -115,7 +151,6 @@ namespace TestApp
 
                     };
 
-
                     FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
 
                 });
@@ -124,25 +159,21 @@ namespace TestApp
 
             await hubConnection.Start();
 
-
-            //************************ MISTAKE CANT SEND
-
-
             send.Click += async (o, e2) =>
             {
 
                 try
                 {
+                    var name = toUserName;
                     var message = writeMessage.Text;
-
-                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { toUserName, message });
-
+                    
+                    await chatHubProxy.Invoke("SendPrivateMessage", new object[] { name, message });
                     writeMessage.Text = "";
                 }
-                catch (Exception)
+                catch (Exception a)
                 {
 
-
+                    throw a;
                 }
 
             };
@@ -151,15 +182,15 @@ namespace TestApp
 
 
 
-            try
-            {
-                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+            //}
+            //catch (Exception)
+            //{
 
 
-            }
+            //}
 
 
 

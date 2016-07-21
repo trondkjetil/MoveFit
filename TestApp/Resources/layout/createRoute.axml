@@ -50,16 +50,16 @@
             android:gravity="center"
             android:id="@+id/textView1"
             android:textColor="@android:color/black"
-            android:layout_marginRight="0.0dp"
             android:layout_marginBottom="8.0dp" />
         <Spinner
-            android:id="@+id/spinnerRouteTypes"
-            android:layout_width="match_parent"
+            android:id="@+id/createRoute"
+            android:layout_width="280dp"
             android:gravity="center"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             android:layout_below="@+id/textView1"
             android:prompt="@string/activity_route"
-            android:background="@android:color/background_light" />
+            android:background="@android:color/background_light"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

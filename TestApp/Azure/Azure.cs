@@ -36,6 +36,8 @@ namespace TestApp
         public static IMobileServiceSyncTable<Review> tableReview { get; set; }
         public static IMobileServiceSyncTable<UserFriends> tableUserFriends { get; set; }
         public static IMobileServiceSyncTable<UserImage> tableImage { get; set; }
+        public static IMobileServiceSyncTable<MessageConnections> tableMessageConnection { get; set; }
+        public static IMobileServiceSyncTable<Messages> tableUserMessages { get; set; }
 
         //Online storage
         public static IMobileServiceTable<UserImage> imageTable { get; set; }
@@ -44,6 +46,10 @@ namespace TestApp
         public static IMobileServiceTable<User> table { get; set; }
         public static IMobileServiceTable<Review> reviewTable { get; set; }
         public static IMobileServiceTable<UserFriends> userFriendsTable { get; set; }
+
+
+        public static IMobileServiceTable<MessageConnections> messageConnection { get; set; }
+        public static IMobileServiceTable<Messages> userMessages { get; set; }
 
         public List<User> userList;
         public List<Route> routeList;
@@ -63,10 +69,11 @@ namespace TestApp
             tableReview = client.GetSyncTable<Review>();
             tableUserFriends = client.GetSyncTable<UserFriends>();
             tableImage = client.GetSyncTable<UserImage>();
+            tableMessageConnection = client.GetSyncTable<MessageConnections>();
+            tableUserMessages = client.GetSyncTable<Messages>();
 
+         //Cloud 
 
-            //Cloud 
-           
 
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
@@ -74,6 +81,8 @@ namespace TestApp
             reviewTable = client.GetTable<Review>();
             userFriendsTable = client.GetTable<UserFriends>();
             imageTable = client.GetTable<UserImage>();
+            messageConnection = client.GetTable<MessageConnections>();
+            userMessages = client.GetTable<Messages>();
 
             //Deletes all items in current table
             //await userTable.PurgeAsync();
@@ -720,8 +729,69 @@ namespace TestApp
 
         }
 
+        [Java.Interop.Export()]
+        public static async Task<MessageConnections> AddMessageConnection(string userId1, string userId2)
+        {
+            // Create a new item
+            var messageConnection = new MessageConnections
+            {
+               UserLink1 = userId1,
+               UserLink2 = userId2
+             
+
+            };
+
+            try
+            {
 
 
+                // await client.GetTable<User>().InsertAsync(user);
+                await tableMessageConnection.InsertAsync(messageConnection); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return messageConnection;
+
+        }
+
+        [Java.Interop.Export()]
+        public static async Task<Messages> AddMessage(string userId, string msg, string conversatioonId)
+        {
+            // Create a new item
+            var message = new Messages
+            {
+                Sender = userId,
+                Message = msg,
+                Conversation = conversatioonId
+
+
+
+            };
+
+            try
+            {
+
+
+                // await client.GetTable<User>().InsertAsync(user);
+                await tableUserMessages.InsertAsync(message); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return message;
+
+        }
         public static async Task SyncAsync()
         {
             try
@@ -734,6 +804,10 @@ namespace TestApp
                 await tableReview.PullAsync("allReviews", tableReview.CreateQuery());
                 await tableUserFriends.PullAsync("allUserFriends", tableUserFriends.CreateQuery());
                 await tableImage.PullAsync("allUserImages", tableImage.CreateQuery());
+
+                await tableMessageConnection.PullAsync("allMessageConnections", tableMessageConnection.CreateQuery());
+                await tableUserMessages.PullAsync("allUserMessages", tableUserMessages.CreateQuery());
+
             }
 
 
@@ -766,6 +840,8 @@ namespace TestApp
             store.DefineTable<Review>();
             store.DefineTable<UserFriends>();
             store.DefineTable<UserImage>();
+            store.DefineTable<MessageConnections>();
+            store.DefineTable<Messages>();
             // Uses the default conflict handler, which fails on conflict
             // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
             await client.SyncContext.InitializeAsync(store);
