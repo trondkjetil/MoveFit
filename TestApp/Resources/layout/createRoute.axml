@@ -31,12 +31,16 @@
             android:layout_below="@+id/routeTitle"
             android:layout_marginLeft="18dp" />
     </RelativeLayout>
+ 
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_weight="60" />
+
+
+  
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -56,6 +60,7 @@
             android:layout_width="280dp"
             android:gravity="center"
             android:layout_height="55dp"
+            android:popupBackground="@android:color/holo_green_dark"
             android:layout_below="@+id/textView1"
             android:prompt="@string/activity_route"
             android:background="@android:color/background_light"

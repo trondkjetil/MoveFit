@@ -51,7 +51,7 @@ namespace TestApp
              mMap = mapFrag.Map;
 
 
-            InitializeLocationManager();
+         //   InitializeLocationManager();
 
 			mMap.SetOnMarkerClickListener (this);
 			mMap.SetOnInfoWindowClickListener (this);
@@ -171,12 +171,14 @@ namespace TestApp
     
 
             //gps
-            locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+           // locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
 		}
 
 		protected override void OnPause()
 		{
 			base.OnPause();
+
+            if(locationManager != null)
 			locationManager.RemoveUpdates(this);
 		}
 			

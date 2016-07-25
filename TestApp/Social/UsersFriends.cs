@@ -188,7 +188,7 @@ namespace TestApp
   
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override  void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
                 Bitmap userImage;
                 //First view
@@ -204,16 +204,25 @@ namespace TestApp
                 myHolder.mOnlineStatus.SetImageResource(Resource.Drawable.redoffline);
 
 
-            myHolder.mSendMessage.Click += (sender, args) =>
+          
+
+            myHolder.mSendMessage.Click +=  (sender, args) =>
             {
+
+              
+
                 Bundle b = new Bundle();
                 b.PutStringArray("MyData", new String[] {
 
-                       mUsers[position].UserName.ToString()
-
+                       mUsers[position].UserName.ToString(),
+                       mUsers[position].Id.ToString()
+                      // createNewConversation.Id.ToString()
 
 
                     });
+
+
+               
 
                 Intent myInt = new Intent(mContext, typeof(PrivateChat));
                 myInt.PutExtras(b);

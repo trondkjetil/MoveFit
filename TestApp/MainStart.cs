@@ -472,37 +472,43 @@ namespace TestApp
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
-         // currentMessagesWritten;
-         //listOfconnectedUser;
+            // currentMessagesWritten;
+            //listOfconnectedUser;
 
-
-            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
+            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
             {
+
+                //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
+                //{
                 RunOnUiThread(() =>
                 {
 
-                    myUserId = id;
+                    myUserId = currentUserId;
                     myUserName = userName;
-                    listOfConnectedUsers = ConnectedUsers;
-                    // currentMessagesWritten = CurrentMessage;
+                    listOfConnectedUsers = connectedUsers;
+                    
 
-
-                
                 });
 
             });
 
+          
+
 
             await hubConnection.Start();
+
+
             try
             {
-                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+             
+               
+                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName});
                 Toast.MakeText(this, "You are now online!", ToastLength.Short).Show();
 
             }
             catch (Exception a)
             {
-                throw a;
+                throw a; 
 
             }
 
@@ -596,43 +602,76 @@ namespace TestApp
 
         public async void messagePushNotification()
         {
+
             var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-            messages.Text = "No new messages";
-            //  int  messageCount = 0;
 
-            chatHubProxy.On<string, string, string>("sendPrivateMessage", (userId, userName, message) =>
+            chatHubProxy.On<string, string, string, string>("sendPrivateMessage", (userId, userName, title, message) =>
+            {
+            // var firstName = userName.Substring(0, userName.IndexOf(" "));
+
+            RunOnUiThread(() =>
             {
 
-                //UpdateChatMessage has been called from server
+                TextView txt = new TextView(this);
+                txt.Text = userName + ": " + message;
+                txt.SetTextSize(ComplexUnitType.Sp, 20);
+                txt.SetPadding(10, 10, 10, 10);
 
 
-                RunOnUiThread(() =>
-                {
-                   
-                    //TextView txt = new TextView(this);
-                    //txt.Text = user + ": " + message;
-                    //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-                    //txt.SetPadding(10, 10, 10, 10);
+                messages.Text = "New message from:" + System.Environment.NewLine +
+                userName;
 
-                    if (userName != MainStart.userName)
-                    {
-                     messages.Text = "New message from:" + System.Environment.NewLine +
-                     user.ToString();
+                messageNotification(message, userName);
 
-                        messageNotification(message, userName);
 
-                    }
-                   
-                  
-                });
+            });
             });
 
-            await hubConnection.Start();
-          
+
+
+
+            //   **********************************************************
+
+
+
+            //var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            //var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            //messages.Text = "No new messages";
+            ////  int  messageCount = 0;
+
+            //chatHubProxy.On<string, string, string>("sendPrivateMessage2", (userId, userName, message) =>
+            //{
+
+            //    //UpdateChatMessage has been called from server
+
+
+            //    RunOnUiThread(() =>
+            //    {
+
+            //        //TextView txt = new TextView(this);
+            //        //txt.Text = user + ": " + message;
+            //        //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+            //        //txt.SetPadding(10, 10, 10, 10);
+
+            //        if (userName != MainStart.userName)
+            //        {
+            //         messages.Text = "New message from:" + System.Environment.NewLine +
+            //         user.ToString();
+
+            //            messageNotification(message, userName);
+
+            //        }
+
+
+            //    });
+            //});
+
+            //await hubConnection.Start();
+
         }
 
-
+        
         public void messageNotification(string message,string user)
         {
 
@@ -648,7 +687,7 @@ namespace TestApp
             TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
 
             // Add all parents of SecondActivity to the stack: 
-            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainStart   )));
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainStart)));
 
             // Push the intent that starts SecondActivity onto the stack:
             stackBuilder.AddNextIntent(newIntent);
@@ -813,6 +852,16 @@ namespace TestApp
 
 
                 case Resource.Id.action_help:
+
+                    Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
+                    alertMessage.SetTitle("Info");
+                    alertMessage.SetMessage("User: " + facebookUserId + System.Environment.NewLine + System.Environment.NewLine + "About: This is a prototype app in a masters project. Developed...." + System.Environment.NewLine +
+                    System.Environment.NewLine +
+                    "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    );
+                    alertMessage.Show();
+
+
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
                     {
                         //Right Drawer is already open, close it
@@ -831,34 +880,26 @@ namespace TestApp
                         InvalidateOptionsMenu();
                     }
 
-                    Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
-                    alertMessage.SetTitle("Info");
-                    alertMessage.SetMessage("User: " + facebookUserId + System.Environment.NewLine + System.Environment.NewLine + "About: This is a prototype app in a masters project. Developed...." + System.Environment.NewLine +
-                    System.Environment.NewLine +
-                    "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
-                    );
-                    alertMessage.Show();
+                   
                     return true;
 
 
                 // Starts movement tracker (indoor)
                 case Resource.Id.action_alarm:
 
-                    var waiting = Azure.findNearBy(userName);
+           
 
-                    if (SimpleService.status == false || SimpleService.Status == false)
+                    if (SimpleService.isRunning == false)
                     {
                         StartService(new Intent(this, typeof(SimpleService)));
                         Toast.MakeText(this, "Activity alarm activated", ToastLength.Short).Show();
-                        SimpleService.status = true;
-                        SimpleService.Status = true;
+                       
                     }
-                    else if (SimpleService.status == true || SimpleService.Status == false)
+                    else if (SimpleService.isRunning == true)
                     {
                         StopService(new Intent(this, typeof(SimpleService)));
                         Toast.MakeText(this, "Activity alarm off", ToastLength.Short).Show();
-                        SimpleService.status = false;
-                        SimpleService.Status = false;
+                       
                     }
 
                     //adde
@@ -1208,11 +1249,7 @@ namespace TestApp
                         var b = Azure.SetUserOnline(userId, false);
                         isOnline = false;
                         menItem.SetIcon(Resource.Drawable.redoffline);
-                        //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(_activity).Create();
-                        //alertMessage.SetTitle("User location tracking");
-                        //alertMessage.SetMessage("Your location tracking has been turned off");
-                        //alertMessage.Show();
-
+                      
 
 
                     }
@@ -1272,10 +1309,10 @@ namespace TestApp
                     Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
                     _activity.StartActivity(myIntent);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
-
+                    throw e;
                 }
 
             }

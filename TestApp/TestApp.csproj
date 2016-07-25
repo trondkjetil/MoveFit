@@ -154,6 +154,7 @@
     <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Health\StepCounter.cs" />
+    <Compile Include="Health\StepCounter2.cs" />
     <Compile Include="Points\MyPoints.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +205,9 @@
     <AndroidResource Include="Resources\layout\chatRoom.axml" />
     <AndroidResource Include="Resources\layout\chatPrivate.axml" />
     <AndroidResource Include="Resources\layout\chatGroup.axml" />
+    <AndroidResource Include="Resources\layout\spinnerItemRouteTypes.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -237,7 +241,9 @@
     <AndroidResource Include="Resources\layout\cardViewMain.axml" />
     <AndroidResource Include="Resources\layout\chatMessageDialog.axml" />
     <AndroidResource Include="Resources\layout\ContactListItem.axml" />
-    <AndroidResource Include="Resources\layout\createRoute.axml" />
+    <AndroidResource Include="Resources\layout\createRoute.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\customListView.axml" />
     <AndroidResource Include="Resources\layout\dialogEndRouteRating.axml" />
     <AndroidResource Include="Resources\layout\dialogPopup.axml" />
@@ -408,6 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\my_rectangle.xml" />
+    <AndroidResource Include="Resources\drawable\spinner.xml" />
     <Content Include="test.txt" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

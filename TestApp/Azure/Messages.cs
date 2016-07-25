@@ -20,7 +20,12 @@ namespace TestApp
         public string Conversation { get; set; }
 
         [JsonProperty(PropertyName = "count")]
-        public string Count { get; set; }
+        public int Count { get; set; }
+
+
+        //added last
+        [JsonProperty(PropertyName = "createdat")]
+        public string CreatedAt { get; set; }
 
 
 

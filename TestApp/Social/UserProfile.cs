@@ -257,7 +257,7 @@ namespace TestApp
             catch (Exception a)
             {
 
-                Toast.MakeText(this, a.Message, ToastLength.Long).Show();
+            //    Toast.MakeText(this, a.Message, ToastLength.Long).Show();
 
             }
 

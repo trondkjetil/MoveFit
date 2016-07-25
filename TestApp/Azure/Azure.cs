@@ -259,7 +259,23 @@ namespace TestApp
             return listOfImages;
         }
 
+        public static async Task<MessageConnections> getMessageConnectionId(string userOne, string userTwo)
+        {
+            //
+            List<MessageConnections> messageCon = await messageConnection.Where(MessageConnections => MessageConnections.UserLink1 == userOne || MessageConnections.UserLink1 == userTwo && MessageConnections.UserLink2 == userOne || MessageConnections.UserLink2 == userTwo).ToListAsync();  //
+            MessageConnections instance = messageCon.FirstOrDefault();                                                                                                                                //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
+            return instance;
 
+        }
+
+        public static async Task<List<Messages>> getMessages(string conversationId)
+        {
+            //
+            List<Messages> messages = await userMessages.Where(Messages => Messages.Conversation == conversationId ).OrderBy(Messages => Messages.CreatedAt).Take(50).ToListAsync();  //
+                                                                                                                              //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
+            return messages;
+
+        }
         public static async Task<List<User>> getPeople()
         {
             //
@@ -768,11 +784,11 @@ namespace TestApp
             {
                 Sender = userId,
                 Message = msg,
-                Conversation = conversatioonId
+                Conversation = conversatioonId,
+                Count = 0,
 
 
-
-            };
+    };
 
             try
             {

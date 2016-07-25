@@ -35,6 +35,7 @@
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
     <activity android:label="StepCounter" android:name="md5cf27010e14af20e69784a5a54418b85f.StepCounter" />
+    <activity android:label="StepCounter2" android:name="md5cf27010e14af20e69784a5a54418b85f.StepCounter2" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
     <activity android:label="RouteOverview" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />

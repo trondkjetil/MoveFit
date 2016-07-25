@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,27 +33,26 @@ namespace TestApp
 
 
              resultView = FindViewById<TextView>(Resource.Id.stepCounter);
-             RegisterListeners(SensorType.StepCounter);
+            // RegisterListeners(SensorType.StepCounter);
+            RegisterListeners(SensorType.StepDetector);
+            RegisterListeners(SensorType.StepDetector);
+            //if (!IOUtilz.IsKitKatWithStepCounter(PackageManager))
+            //{
+            //    Toast.MakeText(this, "Device not compatible", ToastLength.Short).Show();
+            //    resultView.Text = "Sorry! Your device is not compatible with this step counter";
+            //    resultView.SetBackgroundColor(Color.Red);
 
-          if (!IOUtilz.IsKitKatWithStepCounter(PackageManager))
-            {
-                Toast.MakeText(this, "Device not compatible", ToastLength.Short).Show();
-                resultView.Text = "Sorry! Your device is not compatible with this step counter";
-                resultView.SetBackgroundColor(Color.Red);
+            //}
 
-            }
-            
-                //RunOnUiThread(() =>
-                //{
-                //    resultView.Text = stepCounter.ToString();
+            //RunOnUiThread(() =>
+            //{
+            //    resultView.Text = stepCounter.ToString();
 
-                //});
-            
-
-
-            }
+            //});
 
 
+
+        }
 
 
         protected override void OnStart()
@@ -63,7 +62,9 @@ namespace TestApp
             //if (isRunning || !IOUtilz.IsKitKatWithStepCounter(PackageManager))
             //    return;
 
-            RegisterListeners(SensorType.StepCounter);
+            //   RegisterListeners(SensorType.StepCounter);
+            RegisterListeners(SensorType.StepDetector);
+
         }
 
 
@@ -115,6 +116,7 @@ namespace TestApp
 
 
             Toast.MakeText(this, "Step taken!", ToastLength.Short).Show();
+            resultView.Text = e.Values.ToString();
 
             switch (e.Sensor.Type)
             {

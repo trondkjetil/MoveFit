@@ -144,12 +144,52 @@ namespace TestApp
 
              spinner = FindViewById<Spinner>(Resource.Id.createRoute);
 
-            spinner.ItemSelected += spinner_ItemSelected;
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleListItem1);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinner.Adapter = adapter;
 
-          //  spinner.SetSelection(0);
+
+            //List<ListItem> list = new List<ListItem>();
+
+
+            //     var instance = new ListItem();
+            //     instance.setData("Walking");
+            //     list.Add(instance);
+
+            // var instance1 = new ListItem();
+            // instance.setData("Running");
+            // list.Add(instance1);
+            // var instance2 = new ListItem();
+            // instance.setData("Hiking");
+            // list.Add(instance2);
+            // var instance3 = new ListItem();
+            // instance.setData("Bicycling");
+            // list.Add(instance3);
+            // var instance4 = new ListItem();
+            // instance.setData("Skiing");
+            // list.Add(instance4);
+
+
+
+
+
+            //   MyListAdapter routeTypeadapter = new MyListAdapter(this,list);
+
+
+            //spinner.ItemSelected += spinner_ItemSelected;
+            //var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleListItem1);
+            //adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            //spinner.Adapter = adapter;
+            //spinner.SetSelection(0);
+
+            spinner.ItemSelected += spinner_ItemSelected;
+            String[] array = { "Walking", "Running", "Hiking", "Bicycling","Skiing" };
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , Android.Resource.Layout.SimpleListItemChecked, array);
+            spinner.Adapter = adapter;
+            spinner.SetSelection(0);
+
+            //spinner.ItemSelected += spinner_ItemSelected;
+            //var adapter = routeTypeadapter;
+            //spinner.Adapter = adapter;
+
+
             spinner.Visibility = ViewStates.Visible;
             
 
@@ -731,10 +771,24 @@ namespace TestApp
 
             mMap.AddPolyline(opt);
 
+
         }
 
 
-    }
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+    
 }
 
 
