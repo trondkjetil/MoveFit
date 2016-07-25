@@ -174,6 +174,7 @@
     <Compile Include="SignalR\Chat.cs" />
     <Compile Include="SignalR\PrivateChat.cs" />
     <Compile Include="SignalR\ChatRoom.cs" />
+    <Compile Include="SignalR\SetUp.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserProfile.cs" />
     <Compile Include="UI\ScoreBoardRouteActivity.cs" />

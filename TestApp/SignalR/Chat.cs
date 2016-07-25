@@ -81,7 +81,6 @@ namespace TestApp
 
                     };
 
-
                     FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
 
                 });

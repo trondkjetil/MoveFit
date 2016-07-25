@@ -97,20 +97,70 @@ namespace TestApp
             chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
             {
 
-                userList = connectedUsers;
-                userList = userList;
-                //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
-                //{
                 RunOnUiThread(() =>
                 {
                     userList = connectedUsers;
                     var test = userName;
-                    test = test;
+                   
 
 
                 });
 
             });
+
+
+
+
+
+            chatHubProxy.On<string, string>("messageReceived", (user, message) =>
+            {
+
+                var firstName = user.Substring(0, user.IndexOf(" "));
+
+                RunOnUiThread(() =>
+                {
+                    TextView txt = new TextView(this);
+                    txt.Text = firstName + ": " + message;
+                    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+                    txt.SetPadding(10, 10, 10, 10);
+
+                    if (user == MainStart.userName)
+                    {
+                        txt.SetTextColor(Color.Blue);
+
+                    }
+                    else
+                        txt.SetTextColor(Color.Red);
+
+
+                    var grav = GravityFlags.Right;
+
+                    if (MainStart.userName == user)
+                    {
+                        grav = GravityFlags.Right;
+                    }
+                    else
+                        grav = GravityFlags.Left;
+
+
+                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+                    {
+                        TopMargin = 10,
+                        BottomMargin = 10,
+                        LeftMargin = 10,
+                        RightMargin = 10,
+                        Gravity = grav
+
+                    };
+
+                    FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+
+
+                    Toast.MakeText(this, firstName.ToString() + ": " + message.ToString(), ToastLength.Long).Show();
+
+                });
+            });
+
 
 
             chatHubProxy.On<string,string, string>("SendPrivateMessage", (userId, userName, message) =>
@@ -125,16 +175,22 @@ namespace TestApp
                     txt.Text = firstName.ToString() + ": " + message.ToString();
                     txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
                     txt.SetPadding(10, 10, 10, 10);
+                 
 
-
+                 
 
                     if (userName == MainStart.userName)
                     {
                         txt.SetTextColor(Color.Blue);
+                        txt.SetBackgroundColor(Color.AliceBlue);
 
                     }
                     else
+                    {
                         txt.SetTextColor(Color.Red);
+                        txt.SetBackgroundColor(Color.PaleVioletRed);
+                    }
+                       
 
 
 
@@ -163,18 +219,16 @@ namespace TestApp
                 });
             });
 
-
-
-
-
            
             await hubConnection.Start();
 
 
-            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
-            Toast.MakeText(this, "You are now online!", ToastLength.Short).Show();
 
+            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName});
+          
+            Toast.MakeText(this, "You are online!", ToastLength.Short).Show();
 
+      
 
             send.Click += async (o, e2) =>
             {
@@ -184,42 +238,28 @@ namespace TestApp
 
                     
                     var message = writeMessage.Text;
-                    sendTouserId = userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
-                  
+                    sendTouserId =  userList.Find(UserDetail => UserDetail.UserName == toUserName).ConnectionId;
+                    if (sendTouserId == "")
+                        sendTouserId = "";
 
+                      //userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
+                      // userList.Find(UserDetail => UserDetail.UserName == MainStart.userName).ConnectionId; 
 
-                      //   var cloudMessage = await Azure.AddMessage(MainStart.userId,message, converSationId);
+                      //  Azure.AddMessage(MainStart.userId,message, converSationId);
 
                       await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
-                    writeMessage.Text = "";
+                      writeMessage.Text = "";
                 }
                 catch (Exception a)
                 {
-
+                    throw a;
                    
                 }
 
             };
 
 
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
 
         public void messageLayout(string message, string senderID)
 
@@ -264,60 +304,7 @@ namespace TestApp
         }
 
 
-
-
-            // currentMessagesWritten;
-            //listOfconnectedUser;
-
-          
-
-
-          
-
-
-
-
-            //try
-            //{
-
-
-
-            //    string usersConnected = "";
-            //    toUserName = MainStart.userName;
-            //    foreach (var item in userList)
-            //    {
-
-            //        usersConnected += "-" + item.UserName;
-            //        if (item.UserName == toUserName)
-            //        {
-            //            sendTouserId = item.ConnectionId;
-
-            //            Toast.MakeText(this, item.UserName + " is available! " + "(" + sendTouserId + ")", ToastLength.Long).Show();
-
-            //        }
-            //    }
-
-
-            //    Toast.MakeText(this, "connected users:" + usersConnected, ToastLength.Long).Show();
-
-
-
-
-            //}
-            //catch (Exception e)
-            //{
-
-            //    throw e;
-            //}
-
-
-
-
-
-
-
-
-        
+      
 
     }
 

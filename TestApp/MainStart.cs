@@ -381,7 +381,7 @@ namespace TestApp
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
-
+                
                 if (user.Count == 0)
                 {
 
@@ -1366,8 +1366,14 @@ namespace TestApp
             {
 
                 waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
-
                 userInstanceOne = waitingUpload;
+
+
+                var newwaitingDownload = await Azure.getUserId(userName);
+                if(newwaitingDownload.Count != 0)
+                userInstanceOne = newwaitingDownload.FirstOrDefault();
+
+                userId = userInstanceOne.Id;
                 Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";
