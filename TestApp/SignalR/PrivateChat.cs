@@ -27,15 +27,16 @@ namespace TestApp
 
         string[] array;
 
+        HubConnection hubConnection;
+        IHubProxy chatHubProxy;
 
-        static string sendTouserId;
 
         List<MessageDetail> currentMessagesWritten;
         List<UserDetail> userList;
         string converSationId;
 
         string targetId;
-
+        static string sendTouserId;
         protected override async void OnCreate(Bundle bundle)
         {
 
@@ -51,18 +52,19 @@ namespace TestApp
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
             array = Intent.GetStringArrayExtra("MyData");
             toUserName = array[0];
-
-
-
-            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-
-
             targetId = array[1];
+
+
+            hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+
+            MessageConnections createNewConversation = null;
+
+
             try
             {
 
-                MessageConnections createNewConversation = null;
+               
                 createNewConversation = await Azure.getMessageConnectionId(MainStart.userId, targetId.ToString());
                 if (createNewConversation == null)
                 {
@@ -74,111 +76,53 @@ namespace TestApp
 
                 var messages = await Azure.getMessages(converSationId);
 
-
-
                 foreach (var item in messages)
                 {
-                    messageLayout(item.Message,item.Sender);
+                    messageLayout(item.Message, item.Sender);
 
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                throw e;
 
             }
-            //chatHubProxy.On<string, string>("onNewUserConnected", (userId, message) =>
-            //{
-            //    RunOnUiThread(() =>
-            //    {
-            //        Toast.MakeText(this, userId + " has connected!", ToastLength.Long).Show();
-
-            //    });
-
-            //});
-
-            //chatHubProxy.On<string, string,List<UserDetail>,List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
-            //{
-            //    RunOnUiThread(() =>
-            //    { 
-
-            //        myUserId = id;
-            //        myUserName = userName;
-            //        userList = ConnectedUsers;
-            //        // currentMessagesWritten = CurrentMessage;
 
 
-            //        var usersConnected = "";
-            //        foreach (var item in userList)
-            //        {
-            //            usersConnected += "-" + item.UserName;
-            //            if (item.UserName == toUserName)
-            //            {
-            //                sendTouserId = item.ConnectionId;
-            //            }
-            //        }
 
 
-            //        Toast.MakeText(this,"SendTo: " + sendTouserId + " ConnectedUsers: " + usersConnected, ToastLength.Long).Show();
 
-            //    });
 
-            //});
-
-            try
+            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
             {
 
-          
-        
-
-                string usersConnected = "";
-
-                foreach (var item in MainStart.listOfConnectedUsers)
+                userList = connectedUsers;
+                userList = userList;
+                //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
+                //{
+                RunOnUiThread(() =>
                 {
-
-                    usersConnected += "-" + item.UserName;
-                    if (item.UserName == toUserName)
-                    {
-                        sendTouserId = item.ConnectionId;
-                        Toast.MakeText(this, item.UserName + " is available! " + "(" + sendTouserId + ")", ToastLength.Long).Show();
-
-                    }
-                }
+                    userList = connectedUsers;
+                    var test = userName;
+                    test = test;
 
 
-                Toast.MakeText(this, "connected users:" + usersConnected, ToastLength.Long).Show();
+                });
+
+            });
 
 
-
-
-            }
-            catch (Exception)
+            chatHubProxy.On<string,string, string>("SendPrivateMessage", (userId, userName, message) =>
             {
-
-              
-            }
-
-
-
-
-
-
-
-
-
-
-
-            chatHubProxy.On<string,string, string>("SendPrivateMessage2", (userId, userName, message) =>
-            {
-               // var firstName = userName.Substring(0, userName.IndexOf(" "));
+               var firstName = userName.Substring(0, userName.IndexOf(" "));
 
                 RunOnUiThread(() =>
                 {
 
               
                     TextView txt = new TextView(this);
-                    txt.Text = userName.ToString() + ": " + message.ToString();
+                    txt.Text = firstName.ToString() + ": " + message.ToString();
                     txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
                     txt.SetPadding(10, 10, 10, 10);
 
@@ -220,7 +164,17 @@ namespace TestApp
             });
 
 
+
+
+
+           
             await hubConnection.Start();
+
+
+            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+            Toast.MakeText(this, "You are now online!", ToastLength.Short).Show();
+
+
 
             send.Click += async (o, e2) =>
             {
@@ -228,21 +182,21 @@ namespace TestApp
                 try
                 {
 
-                    string user = sendTouserId;
-
+                    
                     var message = writeMessage.Text;
-                    if (user == "")
-                        user = MainStart.userId;
+                    sendTouserId = userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
+                  
 
-                     var cloudMessage = await Azure.AddMessage(MainStart.userId,message, converSationId);
 
-                    await chatHubProxy.Invoke("SendPrivateMessage2", new object[] { user, message });
+                      //   var cloudMessage = await Azure.AddMessage(MainStart.userId,message, converSationId);
+
+                      await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
                     writeMessage.Text = "";
                 }
                 catch (Exception a)
                 {
 
-                    throw a;
+                   
                 }
 
             };
@@ -250,16 +204,6 @@ namespace TestApp
 
 
      
-
-        //try
-        //{
-        //    await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
-        //}
-        //catch (Exception)
-        //{
-
-
-        //}
 
 
 
@@ -318,6 +262,62 @@ namespace TestApp
             FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
 
         }
+
+
+
+
+            // currentMessagesWritten;
+            //listOfconnectedUser;
+
+          
+
+
+          
+
+
+
+
+            //try
+            //{
+
+
+
+            //    string usersConnected = "";
+            //    toUserName = MainStart.userName;
+            //    foreach (var item in userList)
+            //    {
+
+            //        usersConnected += "-" + item.UserName;
+            //        if (item.UserName == toUserName)
+            //        {
+            //            sendTouserId = item.ConnectionId;
+
+            //            Toast.MakeText(this, item.UserName + " is available! " + "(" + sendTouserId + ")", ToastLength.Long).Show();
+
+            //        }
+            //    }
+
+
+            //    Toast.MakeText(this, "connected users:" + usersConnected, ToastLength.Long).Show();
+
+
+
+
+            //}
+            //catch (Exception e)
+            //{
+
+            //    throw e;
+            //}
+
+
+
+
+
+
+
+
+        
 
     }
 

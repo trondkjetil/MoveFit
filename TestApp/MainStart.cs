@@ -413,8 +413,14 @@ namespace TestApp
 
             }
 
-            messagePushNotification();
-            connectToChat();
+
+
+
+            //messagePushNotification();
+            //connectToChat();
+
+
+
 
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
