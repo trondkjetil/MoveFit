@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using static Android.Widget.NumberPicker;
+using Android.Graphics;
 
 namespace TestApp
 {
@@ -44,17 +45,19 @@ namespace TestApp
           //  TextView age = view.FindViewById<TextView>(Resource.Id.age);
             TextView activityLevel = view.FindViewById<TextView>(Resource.Id.actlevel);
 
+            introText.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
+            introText.TextSize = 18;
+
+            activityLevel.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
+            activityLevel.TextSize = 15;
 
 
             gender = "Male";
 
             NumberPicker np = (NumberPicker)view.FindViewById(Resource.Id.numberPicker);
             np.MaxValue = 5; // restricted number to minimum value i.e 1
-            np.MaxValue = 90;// restricked number to maximum value i.e. 31
+            np.MaxValue = 99;// restricked number to maximum value i.e. 31
             np.WrapSelectorWheel = true;  /*setWrapSelectorWheel(true);*/
-
-
-         
            
 
             np.SetOnValueChangedListener(this);

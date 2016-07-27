@@ -28,7 +28,8 @@ namespace TestApp
 		string locationProvider;
 		string locationText;
 		MarkerOptions markerOpt1;
-		LatLng currentPos;
+        MarkerOptions markerOpt2;
+        LatLng currentPos;
         MapFragment mapFrag;
 
         //Azure azure;
@@ -36,63 +37,130 @@ namespace TestApp
         //public IMobileServiceSyncTable<User> userTable;
 
         public List<User> users;
-
+        public List<Route> routes;
+        public List<Marker> userMarkers;
+        public List<Marker> routeMarkers;
 
         protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
 			RequestWindowFeature(WindowFeatures.NoTitle);
-			SetContentView (Resource.Layout.mapPeople);
+			SetContentView (Resource.Layout.mapPeople);	
 
-            //	SetUpMapIfNeeded ();	
-
-
+            CheckBox peopleCheck = FindViewById<CheckBox>(Resource.Id.checkbox1);
+            CheckBox routeCheck = FindViewById<CheckBox>(Resource.Id.checkbox2);
+            ProgressBar bar = FindViewById<ProgressBar>(Resource.Id.progressBar);
 
             mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
-             mMap = mapFrag.Map;
-
-
-         //   InitializeLocationManager();
+            mMap = mapFrag.Map;
 
 			mMap.SetOnMarkerClickListener (this);
 			mMap.SetOnInfoWindowClickListener (this);
 			mMap.SetOnMarkerDragListener (this);
-            //mMap.SetInfoWindowAdapter (new CustomInfoWindowAdapter (this));
+ 
+
+            peopleCheck.Click += async(o, e) => {
+
+                if (!peopleCheck.Checked && userMarkers.Count != 0)
+                {
+       
+                        foreach (var item in userMarkers)
+                        {
+                            item.Remove();
+                        }
+                }
 
 
-      
-         
-                RunOnUiThread(async() =>
+                    if (peopleCheck.Checked)
                 {
 
+                    if (userMarkers.Count != 0)
+                        userMarkers.Clear();
+
+                     bar.BringToFront();
+                     bar.Visibility = ViewStates.Visible;
+
                     try
-                    {
+                        {
+                            // routes = await Azure.getRoutes();
+                           // users = await Azure.getImagesOnMap();
+                            users = await Azure.getPeople();
+                            foreach (User user in users)
+                            {
+                                
+                                setMarker2(user);
 
-                  
-                    Toast.MakeText(this, "Showing friends on the map", ToastLength.Short).Show();
+                            }
+                        bar.Visibility = ViewStates.Invisible;
+                        Toast.MakeText(this, "Showing Friends", ToastLength.Short).Show();
 
-                    users = await Azure.getImagesOnMap();
-
-                    foreach (User user in users)
-                    {
-                        Log.Debug("PeopleMap", user.UserName);
-                        setMarker(new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon)), IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture));
 
                     }
+                    catch (Exception ae)
+                        {
+                        throw ae;
+
+                        }
+
+                }
+
+            };
+
+            routeCheck.Click += async (o, e) => {
+
+                if (!routeCheck.Checked && userMarkers.Count != 0)
+                {
+                
+                        foreach (var item in userMarkers)
+                        {
+                            item.Remove();
+                        }
+
+                    }
+           
+
+                    if (routeCheck.Checked)
+                {
+
+
+                    if (routeMarkers.Count != 0)
+                        routeMarkers.Clear();
+
+                    bar.BringToFront();
+                    bar.Visibility = ViewStates.Visible;
+
+
+                    try
+                        {
+
+                            // routes = await Azure.getRoutes();
+                            users = await Azure.getPeople();
+                            foreach (User user in users)
+                            {
+                               
+                                setMarker(user);
+
+                            }
+                        bar.Visibility = ViewStates.Invisible;
+                        Toast.MakeText(this, "Showing Nearby Routes", ToastLength.Short).Show();
 
 
                     }
-                    catch (Exception)
-                    {
+                    catch (Exception aa)
+                        {
+                        throw aa;
 
-                       
-                    }
+                        }
 
-                });
+                   
+
+
+                }
+
+            };
+
 
 
 		}
-
-
 
         protected override void OnDestroy()
         {
@@ -107,22 +175,46 @@ namespace TestApp
         }
 
 
-        public void setMarker(LatLng myPosition, Bitmap pic){
-			if (markerOpt1 != null)
-				markerOpt1.Dispose ();
-			
-			markerOpt1 = new MarkerOptions();
+        public void setMarker(User user){
+			//if (markerOpt1 != null)
+			//	markerOpt1.Dispose ();
+
+
+            var myPosition =  new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
+
+            Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
+        
+           
+            markerOpt1 = new MarkerOptions();
 			markerOpt1.SetPosition(myPosition);
-			markerOpt1.SetTitle("My Position");
-			markerOpt1.SetSnippet (addressText + System.Environment.NewLine + locationText);
+			markerOpt1.SetTitle(user.UserName + " Position");
+			markerOpt1.SetSnippet ("Points: " +user.Points);
 			BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap (pic); //(Resource.Drawable.test);
 			markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
-			mMap.AddMarker (markerOpt1);
-			//mMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom (myPosition, 14));
-		}
+		    var marker = mMap.AddMarker (markerOpt1);
+            userMarkers.Add(marker);
+               }
+
+        public void setMarker2(User user)
+        {
+            //if (markerOpt1 != null)
+            //    markerOpt1.Dispose();
 
 
-		void InitializeLocationManager()
+            var myPosition = new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
+            markerOpt2 = new MarkerOptions();
+           
+            markerOpt2.SetPosition(myPosition);
+            markerOpt2.SetTitle("Route name");
+            markerOpt2.SetSnippet("test" + System.Environment.NewLine + "test");
+            markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+            var marker = mMap.AddMarker(markerOpt2);
+            routeMarkers.Add(marker);
+            //mMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom (myPosition, 14));
+
+           
+        }
+        void InitializeLocationManager()
 		{
 			locationManager = (LocationManager) GetSystemService(LocationService);
 			Criteria criteriaForLocationService = new Criteria

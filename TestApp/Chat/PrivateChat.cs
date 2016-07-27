@@ -177,8 +177,6 @@ namespace TestApp
                     txt.SetPadding(10, 10, 10, 10);
                  
 
-                 
-
                     if (userName == MainStart.userName)
                     {
                         txt.SetTextColor(Color.Blue);
@@ -222,8 +220,6 @@ namespace TestApp
            
             await hubConnection.Start();
 
-
-
             await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName});
           
             Toast.MakeText(this, "You are online!", ToastLength.Short).Show();
@@ -245,6 +241,9 @@ namespace TestApp
                       //userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
                       // userList.Find(UserDetail => UserDetail.UserName == MainStart.userName).ConnectionId; 
 
+
+
+                    //await causes delay, drop? Still 
                       //  Azure.AddMessage(MainStart.userId,message, converSationId);
 
                       await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
@@ -274,11 +273,23 @@ namespace TestApp
 
             var firstName = userName.Substring(0, userName.IndexOf(" "));
             userName = firstName;
+
             TextView txt = new TextView(this);
             txt.Text = userName.ToString() + ": " + message.ToString();
             txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
             txt.SetPadding(10, 10, 10, 10);
+            txt.SetBackgroundColor(Color.AliceBlue);
 
+            if (userName == MainStart.userName)
+            {
+                txt.SetTextColor(Color.Blue);
+              
+            }
+            else
+            {
+                txt.SetTextColor(Color.Red);
+              
+            }
 
             var grav = GravityFlags.Right;
 
@@ -303,8 +314,6 @@ namespace TestApp
 
         }
 
-
-      
 
     }
 

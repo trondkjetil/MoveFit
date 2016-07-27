@@ -3,7 +3,7 @@
     android:background="@android:color/holo_blue_light"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:minWidth="340dp"
+    android:minWidth="450dp"
     android:minHeight="350dp">
 <!--@android:color=""/background_light"-->
 <!--<Button
@@ -78,7 +78,8 @@
         android:focusable="true"
         android:hint="Route Info"
         android:text=""
-        android:layout_marginTop="170dp" />
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="0.0dp" />
     <TextView
         android:text="Please set the difficulty"
         android:layout_width="match_parent"

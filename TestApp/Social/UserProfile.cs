@@ -180,10 +180,18 @@ namespace TestApp
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.InPreferredConfig = Bitmap.Config.Argb8888;
                         Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
-                 
-           
-                   
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
+
+
+                    ExifInterface exif = new ExifInterface(imgFile.Name);
+                    var  orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+                    Matrix matrix = new Matrix();
+                    matrix.PostRotate(90);
+                    var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
+
+                    //var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, 400, 350, true);
+
                     bmap.Recycle();
                     profilePic2.SetImageBitmap(bitmapScalled);
                     profilePic2.RefreshDrawableState();
@@ -217,11 +225,7 @@ namespace TestApp
                         if (imgFile.Path.ToLower().EndsWith("png"))
                             bitmapScalled.Compress(Bitmap.CompressFormat.Png, 100, stream);
                         else
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 95, stream);
-
-
-                       // bitmapScalled.Compress(Bitmap.CompressFormat.Png, 100, ms);
-                       
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 95, stream);  
 
                         bitmapData = stream.ToArray();
 
@@ -257,7 +261,7 @@ namespace TestApp
             catch (Exception a)
             {
 
-            //    Toast.MakeText(this, a.Message, ToastLength.Long).Show();
+               Toast.MakeText(this, a.Message, ToastLength.Long).Show();
 
             }
 

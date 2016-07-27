@@ -68,17 +68,17 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/points"
                     android:textColor="#ff000000" />
-                <TextView
+                <!--<TextView
                     android:text=""
                     android:layout_below="@+id/points"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/steps"
-                    android:textColor="#ff000000" />
-                <TextView
+                    android:textColor="#ff000000" />-->
+            <TextView
                     android:text=""
-                    android:layout_below="@+id/steps"
+                    android:layout_below="@+id/points"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

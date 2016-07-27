@@ -123,15 +123,15 @@ namespace TestApp
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
             TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
-            TextView steps = FindViewById<TextView>(Resource.Id.steps);
+           // TextView steps = FindViewById<TextView>(Resource.Id.steps);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
             points = FindViewById<TextView>(Resource.Id.points);
 
             greetings.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
             greetings.TextSize = 18;
 
-            steps.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            steps.TextSize = 14;
+            //steps.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //steps.TextSize = 14;
 
             totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             totalDistance.TextSize = 14;
@@ -153,11 +153,13 @@ namespace TestApp
             messages.TextSize = 15;
 
 
-            steps.Text = "Steps: 0";
+           // steps.Text = "Steps: 0";
 
             if(userInstanceOne != null)
             {
-                totalDistance.Text = "Total Distance: ";
+                totalDistance.Text = "Total Distance Moved: ";
+
+               // totalDistance.Text = userInstanceOne.DistanceMoved.ToString() + " km";
             }
             else
             totalDistance.Text = "Total Distance: 0";
@@ -251,7 +253,7 @@ namespace TestApp
 
                 else if (e.Position == 4)
                 {
-                    myIntent = new Intent(this, typeof(StepCounter));
+                    myIntent = new Intent(this, typeof(StepCounter2));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 5)
@@ -1365,7 +1367,7 @@ namespace TestApp
             try
             {
 
-                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel);
+                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel,0);
                 userInstanceOne = waitingUpload;
 
 

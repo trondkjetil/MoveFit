@@ -46,7 +46,9 @@ namespace TestApp
         [JsonProperty(PropertyName = "deleted")]
         public bool Deleted { get; set; }
 
-      
+        [JsonProperty(PropertyName = "distancemoved")]
+        public double DistanceMoved { get; set; }
+
 
 
     }

@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ff080303">
-    <fragment
-        android:id="@+id/map"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment"
-        android:layout_weight="100"
-        android:layout_gravity="bottom"
-        android:layout_y="210dp" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textInfo"
+            android:text="Choose what to see on the map:"
+            android:textColor="@android:color/background_dark"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="22dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textInfo"
+            android:layout_centerHorizontal="true">
+            <CheckBox
+                android:id="@+id/checkbox1"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textInfo"
+                android:visibility="visible"
+                android:text="Friends"
+                android:textColor="@android:color/background_dark"
+                android:background="@android:color/background_light"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true" />
+            <CheckBox
+                android:id="@+id/checkbox2"
+                android:visibility="visible"
+                android:layout_toRightOf="@+id/checkbox1"
+                android:layout_below="@+id/textInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textColor="@android:color/background_dark"
+                android:text="Routes"
+                android:background="@android:color/background_light" />
+        </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="60"
+            android:progress="0"
+            android:progressDrawable="@drawable/customloadbar"
+            android:layout_centerInParent="true" />
+        <fragment
+            class="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="460dp"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</LinearLayout>

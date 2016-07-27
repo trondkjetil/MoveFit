@@ -40,6 +40,19 @@ namespace TestApp
      private List<StepListener> mStepListeners = new List<StepListener>();
 
 
+
+
+        bool RegisterListeners(SensorType sensorType)
+        {
+
+
+            var sensorManager = (SensorManager)GetSystemService(Context.SensorService);
+            var sensor = sensorManager.GetDefaultSensor(sensorType);
+
+         bool val =   sensorManager.RegisterListener(this, sensor, SensorDelay.Normal);
+            return val;
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -49,6 +62,10 @@ namespace TestApp
             resultView = FindViewById<TextView>(Resource.Id.stepCounter);
             resultView.Text = "0";
             counter = 0;
+
+
+          bool test =  RegisterListeners(SensorType.StepCounter);
+          
 
             int h = 480; // TODO: remove this constant
             mYOffset = h * 0.5f;

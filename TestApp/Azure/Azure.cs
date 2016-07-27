@@ -335,6 +335,15 @@ namespace TestApp
 
         }
 
+        public static async Task<List<Route>> nearbyRoutes()
+        {
+            
+
+            List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
+            return routeList;
+
+        }
+
 
         public static async Task<List<Route>> getLatestRouteId(string userId)
         {
@@ -410,6 +419,18 @@ namespace TestApp
             List<User> userlist = await table.Where(User => User.Id == userId).ToListAsync();
 
             userlist.Find(User => User.Id == userId).Points = points;
+            User user = userlist.Find(User => User.Id == userId);
+
+            await table.UpdateAsync(user);
+            return user;
+
+        }
+
+        public static async Task<User> addToMyDistance(string userId, double  distance)
+        {
+            List<User> userlist = await table.Where(User => User.Id == userId).ToListAsync();
+
+            userlist.Find(User => User.Id == userId).DistanceMoved = distance;
             User user = userlist.Find(User => User.Id == userId);
 
             await table.UpdateAsync(user);
@@ -678,7 +699,7 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel)
+        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel,double distanceMoved)
         {
             // Create a new item
             var user = new User
@@ -692,7 +713,8 @@ namespace TestApp
                 Lat = "0",//MainStart.currentLocation.Latitude.ToString(),
                 Lon = "0", //MainStart.currentLocation.Longitude.ToString()
                 Online = online,
-                ActivityLevel = activityLevel
+                ActivityLevel = activityLevel,
+                DistanceMoved = distanceMoved
             };
 
             try

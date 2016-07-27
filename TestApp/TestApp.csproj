@@ -171,10 +171,10 @@
     <Compile Include="Services\LocationServiceConnection.cs" />
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
-    <Compile Include="SignalR\Chat.cs" />
-    <Compile Include="SignalR\PrivateChat.cs" />
-    <Compile Include="SignalR\ChatRoom.cs" />
-    <Compile Include="SignalR\SetUp.cs" />
+    <Compile Include="Chat\Chat.cs" />
+    <Compile Include="Chat\PrivateChat.cs" />
+    <Compile Include="Chat\ChatRoom.cs" />
+    <Compile Include="Chat\SetUp.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserProfile.cs" />
     <Compile Include="UI\ScoreBoardRouteActivity.cs" />
@@ -416,7 +416,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\my_rectangle.xml" />
     <AndroidResource Include="Resources\drawable\spinner.xml" />
-    <Content Include="test.txt" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

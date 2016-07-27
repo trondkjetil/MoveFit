@@ -39,7 +39,7 @@ namespace TestApp
 
             TextView routeInfo = view.FindViewById<TextView>(Resource.Id.infoPropt);
             routeInfoData = view.FindViewById<EditText>(Resource.Id.routeInfo);
-
+            routeInfoData.SetSelection(0);
 
             TextView routeDifficulty = view.FindViewById<TextView>(Resource.Id.difficultyPrompt);
 
@@ -120,6 +120,7 @@ namespace TestApp
 
 		}
 
+   
 
 
         public class DialogEventArgs
