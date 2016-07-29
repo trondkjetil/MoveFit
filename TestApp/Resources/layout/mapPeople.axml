@@ -56,7 +56,7 @@
             class="com.google.android.gms.maps.MapFragment"
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="460dp"
+            android:layout_height="480dp"
             android:layout_alignParentBottom="true" />
     </RelativeLayout>
 </LinearLayout>

@@ -182,15 +182,15 @@ namespace TestApp
                         Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
 
 
-                    ExifInterface exif = new ExifInterface(imgFile.Name);
-                    var  orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+                    //ExifInterface exif = new ExifInterface(imgFile.Name);
+                    //var  orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
 
-                    Matrix matrix = new Matrix();
-                    matrix.PostRotate(90);
-                    var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
+                    //Matrix matrix = new Matrix();
+                    //matrix.PostRotate(90);
+                    //var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
 
                     //var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, 400, 350, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
 
                     bmap.Recycle();
                     profilePic2.SetImageBitmap(bitmapScalled);
@@ -215,7 +215,7 @@ namespace TestApp
 
 
 
-                        byte[] bitmapData;
+                       byte[] bitmapData = null;
                   
 
 
@@ -223,29 +223,37 @@ namespace TestApp
                     {
 
                         if (imgFile.Path.ToLower().EndsWith("png"))
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Png, 100, stream);
+                        {
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Png, 90, stream);
+                            bitmapData = stream.ToArray();
+
+                        }
+
                         else
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 95, stream);  
+                        {
+                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 75, stream);
+                            bitmapData = stream.ToArray();
 
-                        bitmapData = stream.ToArray();
+                        }
+
 
 
                     }
 
-
-                    if (instance.Count > 0 && instance[0].Image[0] != 0)
+                    if (instance.Count > 0 )
                     {
-                        await Azure.setProfileImage(MainStart.userId, bitmapData);
-                    }else
+                        // await Azure.setProfileImage(MainStart.userId, bitmapData);
+
+                        var remove = await Azure.removeProfileImage();
+                        var insert = await Azure.AddUserImage(bitmapData);
+
+                    }
+                    else
                     {
-                        var insertBasicImage = await Azure.AddUserImage(MainStart.userId, bitmapData);
+                        var insertBasicImage = await Azure.AddUserImage(bitmapData);
                     }
-                  
-                
 
-
-
-                    }
+                }
 
 
                     // var test =  Azure.setProfileImage(MainStart.userId, toByte(bitmapScalled));

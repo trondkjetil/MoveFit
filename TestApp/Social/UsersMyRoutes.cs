@@ -21,12 +21,11 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private string UserID;
-        List<Route> routeList;
+      
 
         SwipeRefreshLayout mSwipeRefreshLayout;
 
-        public static ConnectivityManager connectivityManager;
+    
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,30 +33,33 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.UsersMyRoutes);
 
-            mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swp);
+            mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userRoutes);
             mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
             mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
-            connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserMyRoutes);
-            //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
-            UserID = "";
 
-            try
-            {
-                List<User> user = await Azure.getUserId(MainStart.userName);
-                UserID = user[0].Id;
 
-                routeList = await Azure.getMyRoutes(UserID);
+
+
+         
+
+
+            //connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+
+            //List<User> user = await Azure.getUserId(MainStart.userName);
+            //UserID = user[0].Id;
+
+            var  routeList = await Azure.getMyRoutes(MainStart.userId);
                 if (routeList.Count != 0)
                 {
                     mAdapter = new MyRoutesAdapter(routeList, mRecyclerView, this);
                     mRecyclerView.SetAdapter(mAdapter);
                 }
-                else
+                else 
                 {
                     Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
@@ -66,12 +68,9 @@ namespace TestApp
                     Finish();
                 }
 
-            }
-            catch (Exception)
-            {
-
-               
-            }
+            
+         
+          
          
 
         }
@@ -165,7 +164,6 @@ namespace TestApp
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-
 
             routeName = "";
             routeInfo = "";

@@ -63,7 +63,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refre
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\activity_main.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\cardviewmain.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatmessagedialog.xml
@@ -144,11 +143,14 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\my_rectangle.xm
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\spinner.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.Export.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\mscorlib.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.ComponentModel.Composition.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Core.dll.mdb

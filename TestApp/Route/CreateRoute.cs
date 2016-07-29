@@ -421,7 +421,7 @@ namespace TestApp
                 dist = calculateDistance();
                 
                 List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime);
-
+                Azure.addToMyDistance(MainStart.userId, dist);
                 string routeID = "";
 
                 List<Route> te = await Azure.getLatestRouteId(routeUserId);

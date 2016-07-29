@@ -244,13 +244,24 @@ namespace TestApp
              List<UserImage> userList = await imageTable.Where(UserImage => UserImage.Id == MainStart.userId ).ToListAsync();
             
              userList.Find(UserImage => UserImage.Userid == userId).Image = profileImage;
-             UserImage user = userList.Find(UserImage => UserImage.Userid == userId);
+             UserImage userImg = userList.Find(UserImage => UserImage.Userid == userId);
 
-            await imageTable.UpdateAsync(user);
+            await imageTable.UpdateAsync(userImg);
          
             return userList;
 
         }
+        public static async Task<List<UserImage>> removeProfileImage()
+        {
+            List<UserImage> userList = await imageTable.Where(UserImage => UserImage.Userid == MainStart.userId).ToListAsync();
+
+           // userList.Find(UserImage => UserImage.Userid == userId).Image = profileImage;
+            UserImage userImg = userList.Find(UserImage => UserImage.Userid == MainStart.userId);
+            await imageTable.DeleteAsync(userImg);
+           
+            return userList;
+        }
+
 
 
         public static async Task<List<UserImage>> getUserProfileImage(string userIdGiven)
@@ -358,7 +369,7 @@ namespace TestApp
         public static async Task<List<Route>> getMyRoutes(string userId)
         {
 
-            List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).ToListAsync();
+            List<Route> routeList = await routeTable.Where(Route => Route.User_id == MainStart.userId).ToListAsync();
             return routeList;
 
         }
@@ -738,12 +749,12 @@ namespace TestApp
 
 
         [Java.Interop.Export()]
-        public static async Task<UserImage> AddUserImage(string userId, byte[] img)
+        public static async Task<UserImage> AddUserImage(byte[] img)
         {
             // Create a new item
             var imageToInsert = new UserImage
             {
-                Userid = userId,
+                Userid = MainStart.userId,
                 Image = img
 
             };

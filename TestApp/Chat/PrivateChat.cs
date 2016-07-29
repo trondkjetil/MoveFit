@@ -29,7 +29,7 @@ namespace TestApp
 
         HubConnection hubConnection;
         IHubProxy chatHubProxy;
-
+        ScrollView scroll;
 
         List<MessageDetail> currentMessagesWritten;
         List<UserDetail> userList;
@@ -48,6 +48,8 @@ namespace TestApp
 
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
             send.SetBackgroundColor(Color.Blue);
+
+             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
             array = Intent.GetStringArrayExtra("MyData");
@@ -78,6 +80,7 @@ namespace TestApp
 
                 foreach (var item in messages)
                 {
+                  
                     messageLayout(item.Message, item.Sender);
 
                 }
@@ -163,59 +166,59 @@ namespace TestApp
 
 
 
-            chatHubProxy.On<string,string, string>("SendPrivateMessage", (userId, userName, message) =>
-            {
-               var firstName = userName.Substring(0, userName.IndexOf(" "));
+            //chatHubProxy.On<string,string, string>("SendPrivateMessage", (userId, userName, message) =>
+            //{
+            //   var firstName = userName.Substring(0, userName.IndexOf(" "));
 
-                RunOnUiThread(() =>
-                {
+            //    RunOnUiThread(() =>
+            //    {
 
               
-                    TextView txt = new TextView(this);
-                    txt.Text = firstName.ToString() + ": " + message.ToString();
-                    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-                    txt.SetPadding(10, 10, 10, 10);
+            //        TextView txt = new TextView(this);
+            //        txt.Text = firstName.ToString() + ": " + message.ToString();
+            //        txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+            //        txt.SetPadding(10, 10, 10, 10);
                  
 
-                    if (userName == MainStart.userName)
-                    {
-                        txt.SetTextColor(Color.Blue);
-                        txt.SetBackgroundColor(Color.AliceBlue);
+            //        if (userName == MainStart.userName)
+            //        {
+            //            txt.SetTextColor(Color.Blue);
+            //            txt.SetBackgroundColor(Color.AliceBlue);
 
-                    }
-                    else
-                    {
-                        txt.SetTextColor(Color.Red);
-                        txt.SetBackgroundColor(Color.PaleVioletRed);
-                    }
+            //        }
+            //        else
+            //        {
+            //            txt.SetTextColor(Color.Red);
+            //            txt.SetBackgroundColor(Color.PaleVioletRed);
+            //        }
                        
 
 
 
-                    var grav = GravityFlags.Right;
+            //        var grav = GravityFlags.Right;
 
-                    if (MainStart.userName == userName)
-                    {
-                        grav = GravityFlags.Right;
-                    }
-                    else
-                        grav = GravityFlags.Left;
+            //        if (MainStart.userName == userName)
+            //        {
+            //            grav = GravityFlags.Right;
+            //        }
+            //        else
+            //            grav = GravityFlags.Left;
 
 
-                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-                    {
-                        TopMargin = 10,
-                        BottomMargin = 10,
-                        LeftMargin = 10,
-                        RightMargin = 10,
-                        Gravity = grav
+            //        txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+            //        {
+            //            TopMargin = 10,
+            //            BottomMargin = 10,
+            //            LeftMargin = 10,
+            //            RightMargin = 10,
+            //            Gravity = grav
 
-                    };
+            //        };
 
-                    FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+            //        FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
 
-                });
-            });
+            //    });
+            //});
 
            
             await hubConnection.Start();
@@ -228,30 +231,38 @@ namespace TestApp
 
             send.Click += async (o, e2) =>
             {
-
+                string tmpMessage = "";
                 try
                 {
 
                     
                     var message = writeMessage.Text;
-                    sendTouserId =  userList.Find(UserDetail => UserDetail.UserName == toUserName).ConnectionId;
-                    if (sendTouserId == "")
-                        sendTouserId = "";
-
-                      //userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
-                      // userList.Find(UserDetail => UserDetail.UserName == MainStart.userName).ConnectionId; 
 
 
+                    //sendTouserId =  userList.Find(UserDetail => UserDetail.UserName == toUserName).ConnectionId;
+                    //if (sendTouserId == "")
+                    //    sendTouserId = "";
 
+                    //userList.Find(UserDetail => UserDetail.UserName == "jens").ConnectionId;
+                    // userList.Find(UserDetail => UserDetail.UserName == MainStart.userName).ConnectionId; 
+
+
+
+                   
+                   messageLayout(message,MainStart.userId);
                     //await causes delay, drop? Still 
-                      //  Azure.AddMessage(MainStart.userId,message, converSationId);
+                    tmpMessage = message;
+                    writeMessage.Text = "";
 
-                      await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
-                      writeMessage.Text = "";
+  //[self.scrollView setContentOffset: bottomOffset animated: YES];
+            var send = await Azure.AddMessage(MainStart.userId, tmpMessage, converSationId);
+                   
+                    //  await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
+                    
                 }
                 catch (Exception a)
                 {
-                    throw a;
+                   
                    
                 }
 
@@ -269,7 +280,7 @@ namespace TestApp
                 userName = MainStart.userName;
             }
             else
-                userName = toUserName;
+                userName = toUserName + " 101";
 
             var firstName = userName.Substring(0, userName.IndexOf(" "));
             userName = firstName;
@@ -279,8 +290,10 @@ namespace TestApp
             txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
             txt.SetPadding(10, 10, 10, 10);
             txt.SetBackgroundColor(Color.AliceBlue);
+            txt.SetTextColor(Color.Black);
+           
 
-            if (userName == MainStart.userName)
+            if (senderID == MainStart.userId)
             {
                 txt.SetTextColor(Color.Blue);
               
@@ -293,7 +306,7 @@ namespace TestApp
 
             var grav = GravityFlags.Right;
 
-            if (MainStart.userName == userName)
+            if (senderID == MainStart.userId)
             {
                 grav = GravityFlags.Right;
             }
@@ -306,12 +319,13 @@ namespace TestApp
                 BottomMargin = 10,
                 LeftMargin = 10,
                 RightMargin = 10,
-                Gravity = grav
+                Gravity = grav,
+                
 
             };
 
             FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
-
+            scroll.FullScroll(FocusSearchDirection.Down);
         }
 
 

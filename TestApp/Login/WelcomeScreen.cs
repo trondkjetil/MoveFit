@@ -16,6 +16,7 @@ using System.Threading;
 using Android.Content.PM;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TestApp
 {
@@ -30,6 +31,7 @@ namespace TestApp
             "TdalffyKrRuyjwWtd3GJp9VcIHnq5fig");
         ProgressDialog progressDialog;
         public string accessToken;
+        Stopwatch wt;
 
         string[] table = new string[10];
 
@@ -50,6 +52,7 @@ namespace TestApp
             //  CurrentPlatform.Init ();
             Azure.initAzure();
 
+            wt = new Stopwatch();
 
 
             try
@@ -82,31 +85,56 @@ namespace TestApp
                 userID = user.Profile["user_id"].ToString();
                 //	email = user.Profile["email"].ToString();
                 accessToken = user.Auth0AccessToken;
+               
 
 
             }
             catch (AggregateException e)
             {
-                FindViewById<TextView>(Resource.Id.txtResult).Text = e.Flatten().Message;
+                // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Flatten().Message;
+                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
             }
             catch (Exception e)
             {
-                FindViewById<TextView>(Resource.Id.txtResult).Text = e.Message;
+                // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Message;
+                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+
             }
             finally
             {
 
                 //	startMain (); 
-                await startMain();
+               // await startMain();
+
+
+
+               wt.Start();
+               while(wt.Elapsed.Seconds < 1)
+                {
+                }
+                wt.Stop();
+                startUp();
             }
         }
 
+        private void startUp()
+        {
+            Bundle b = new Bundle();
+            b.PutStringArray("MyData", new[] {
+                name,
+                profilePic,
+                userID
+            });
 
+            Intent myIntent = new Intent(this, typeof(MainStart));
+            myIntent.PutExtras(b);
+            StartActivity(myIntent);
+            Finish();
+
+        }
         async Task startMain()
         {
-            //Intent myIntent = new Intent (this, typeof(FaceBookFriendsActivity));
-            //	myIntent.PutExtra ("greeting", "Hello from the Second Activity!");
-            //SetResult (Result.Ok, myIntent);
+
 
             await Task.Delay(50);//3000);
             Bundle b = new Bundle();

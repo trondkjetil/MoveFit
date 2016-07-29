@@ -171,27 +171,28 @@ namespace TestApp
 
                     }
 
+                    double distance = getDistanceFromStart();
+
+                    if (distance <= 100)
+                    {
+                        Toast.MakeText(this, "Starting route...", ToastLength.Long).Show();
+                        StartService(new Intent(this, typeof(StartRouteService)));
+
+                        stopWatch = new Stopwatch();
+                        stopWatch.Start();
+                    }
+                    else
+                        Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
 
 
-                    StartService(new Intent(this, typeof(StartRouteService)));
-
-                    stopWatch = new Stopwatch();
-                    stopWatch.Start();
+                  
 
 
                     //InitializeLocationManager();
                     //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
 
 
-                    double distance = getDistanceFromStart();
-
-                    if (distance <= 100)
-                    {
-                        Toast.MakeText(this, "Starting route...", ToastLength.Short).Show();
-                    }
-                    else
-                        Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
-
+                    
                 };
 
                 end.Click += (sender, e) =>
@@ -230,7 +231,7 @@ namespace TestApp
                     double distance = getDistanceFromStart();
 
 
-                    if (distance <= 60)
+                    if (distance <= 70)
                     {
                         Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
                         startDialogNameRoute();
@@ -242,6 +243,8 @@ namespace TestApp
                         int mypoints = MyPoints.calculatePoints(routeType, (int)Math.Round(distance));
                         var done = Azure.addToMyPoints(routeId, mypoints);
                         var complete = Azure.increaseTripCount(routeId);
+                        Azure.addToMyDistance(MainStart.userId, distance);
+
                         Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
 
 
