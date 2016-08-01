@@ -89,21 +89,41 @@ namespace TestApp
         }
         public void setMarker(User user)
         {
+            //if (user.Lat == 0 && user.Lon == 0)
+            //    return;
 
-            var myPosition = new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
-
-          //  Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-
-
-            markerOpt1 = new MarkerOptions();
-            markerOpt1.SetPosition(myPosition);
-            markerOpt1.SetTitle(user.UserName + " Position");
-            markerOpt1.SetSnippet("Points: " + user.Points);
-        //  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
-            markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
-            mMap.AddMarker(markerOpt1);
           
+         LatLng myPosition = new LatLng(user.Lat, user.Lon);
+
+            Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
+            BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+
+
+            var onlineStatus = "offline";
+
+            if (user.Online)
+                onlineStatus = "online";
+
+            mMap.AddMarker(new MarkerOptions()
+           .SetPosition(myPosition)
+           .SetTitle(user.UserName)
+           .SetSnippet("Online status: "+ onlineStatus)
+           .SetIcon(image));//BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)));
             
+            
+      
+
+
+
+            //    markerOpt1 = new MarkerOptions();
+            //    markerOpt1.SetPosition(myPosition);
+            //    markerOpt1.SetTitle(user.UserName + " Position");
+            //    markerOpt1.SetSnippet("Points: " + user.Points);
+            ////  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+            //    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
+            //    mMap.AddMarker(markerOpt1);
+
+
 
 
         }

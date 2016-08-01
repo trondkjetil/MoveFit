@@ -396,8 +396,8 @@ namespace TestApp
             //jo.Add("Text", "Hello World");
             //jo.Add("Lon", "5000");
 
-            userList.Find(User => User.UserName == userName).Lat = MainStart.currentLocation.Latitude.ToString();
-            userList.Find(User => User.UserName == userName).Lon = MainStart.currentLocation.Longitude.ToString();
+            userList.Find(User => User.UserName == userName).Lat = MainStart.currentLocation.Latitude;
+            userList.Find(User => User.UserName == userName).Lon = MainStart.currentLocation.Longitude;
             User user = userList.Find(User => User.UserName == userName);
             //  var inserted 
             await table.UpdateAsync(user);
@@ -721,8 +721,8 @@ namespace TestApp
                 Age = age,
                 Points = points,
                 ProfilePicture =  profileimage, //MainStart.array[1],
-                Lat = "0",//MainStart.currentLocation.Latitude.ToString(),
-                Lon = "0", //MainStart.currentLocation.Longitude.ToString()
+                Lat = 0,//MainStart.currentLocation.Latitude.ToString(),
+                Lon = 0, //MainStart.currentLocation.Longitude.ToString()
                 Online = online,
                 ActivityLevel = activityLevel,
                 DistanceMoved = distanceMoved

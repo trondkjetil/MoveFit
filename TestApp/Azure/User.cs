@@ -31,10 +31,10 @@ namespace TestApp
         public string ProfilePicture { get; set; }
 
         [JsonProperty(PropertyName = "lat")]
-        public string Lat { get; set; }
+        public double Lat { get; set; }
 
         [JsonProperty(PropertyName = "long")]
-        public string Lon { get; set; }
+        public double Lon { get; set; }
 
         [JsonProperty(PropertyName = "online")]
         public bool Online { get; set; }

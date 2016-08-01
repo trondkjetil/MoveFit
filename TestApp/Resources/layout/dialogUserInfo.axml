@@ -23,7 +23,7 @@
     <TextView
         android:text=""
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:id="@+id/intro"
         android:gravity="center"
         android:textColor="@android:color/background_dark"

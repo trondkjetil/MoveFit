@@ -145,7 +145,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\spinner.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Microsoft.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Mono.Android.dll.mdb
