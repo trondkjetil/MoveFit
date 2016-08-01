@@ -201,7 +201,6 @@ namespace TestApp
 
 
 
-
         public Location getLastKnownLocation()
         {
          

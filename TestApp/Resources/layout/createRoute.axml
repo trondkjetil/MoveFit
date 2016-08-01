@@ -31,16 +31,12 @@
             android:layout_below="@+id/routeTitle"
             android:layout_marginLeft="18dp" />
     </RelativeLayout>
- 
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_weight="60" />
-
-
-  
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -78,8 +74,8 @@
             android:id="@+id/toggleStart"
             android:background="@android:color/holo_green_light"
             android:textOff="Start"
-            android:textOn="Pause" />
-        <Button
+            android:textOn="Finish" />
+    <!--<Button
             android:text="Finish route"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
@@ -88,19 +84,17 @@
             android:textColor="#ffffffff"
             android:gravity="center"
             android:background="@android:color/holo_orange_light" />
+        -->
         <Button
             android:text="Exit"
             android:gravity="center"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:id="@+id/cancelRoute"
-            android:layout_below="@+id/endRoute"
+            android:layout_below="@+id/toggleStart"
             android:textColor="#ffffffff"
             android:background="@android:color/holo_red_dark" />
     <!--<Button
-
-    
-    
             android:text="Create route"
             android:layout_width="150dp"
             android:layout_height="wrap_content"

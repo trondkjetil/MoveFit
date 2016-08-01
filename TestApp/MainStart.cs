@@ -113,7 +113,8 @@ namespace TestApp
 
             isOnline = false;
 
-            connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+            StartService(new Intent(this, typeof(SimpleService)));
+            // connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -157,9 +158,13 @@ namespace TestApp
 
             if(userInstanceOne != null)
             {
-                totalDistance.Text = "Total Distance Moved: ";
+             
+                if(userInstanceOne.DistanceMoved.ToString() != null || userInstanceOne.DistanceMoved.ToString() == "")
+                totalDistance.Text = userInstanceOne.DistanceMoved.ToString() + " km";
 
-               // totalDistance.Text = userInstanceOne.DistanceMoved.ToString() + " km";
+                else
+                 totalDistance.Text = "Total Distance: 0";
+
             }
             else
             totalDistance.Text = "Total Distance: 0";
@@ -206,7 +211,6 @@ namespace TestApp
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("Calculator");
-            mLeftDataSet.Add("Step counter");
             mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("My profile");
 
@@ -253,16 +257,12 @@ namespace TestApp
 
                 else if (e.Position == 4)
                 {
-                    myIntent = new Intent(this, typeof(StepCounter2));
-                    StartActivity(myIntent);
-                }
-                else if (e.Position == 5)
-                {
 
                     myIntent = new Intent(this, typeof(ChatRoom));
                     StartActivity(myIntent);
                 }
-                else if (e.Position == 6)
+            
+                else if (e.Position == 5)
                 {
                     
 

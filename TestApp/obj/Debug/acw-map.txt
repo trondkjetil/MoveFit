@@ -34,14 +34,6 @@ TestApp.Calculator, TestApp;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
 testapp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
-TestApp.StepCounter, TestApp;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-TestApp.StepCounter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-TestApp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-testapp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-TestApp.StepCounter2, TestApp;md5cf27010e14af20e69784a5a54418b85f.StepCounter2
-TestApp.StepCounter2, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StepCounter2
-TestApp.StepCounter2;md5cf27010e14af20e69784a5a54418b85f.StepCounter2
-testapp.StepCounter2;md5cf27010e14af20e69784a5a54418b85f.StepCounter2
 TestApp.ActivityLevelTracker, TestApp;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker

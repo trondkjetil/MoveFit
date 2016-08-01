@@ -2,6 +2,10 @@ TestApp.LocationsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.LocationsW
 TestApp.LocationsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.LocationsWrapper
 TestApp.LocationsWrapper;md5cf27010e14af20e69784a5a54418b85f.LocationsWrapper
 testapp.LocationsWrapper;md5cf27010e14af20e69784a5a54418b85f.LocationsWrapper
+TestApp.MessagesWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.MessagesWrapper
+TestApp.MessagesWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MessagesWrapper
+TestApp.MessagesWrapper;md5cf27010e14af20e69784a5a54418b85f.MessagesWrapper
+testapp.MessagesWrapper;md5cf27010e14af20e69784a5a54418b85f.MessagesWrapper
 TestApp.ReviewWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
 TestApp.ReviewWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
 TestApp.ReviewWrapper;md5cf27010e14af20e69784a5a54418b85f.ReviewWrapper
@@ -10,6 +14,14 @@ TestApp.RoutesWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
 TestApp.RoutesWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
 TestApp.RoutesWrapper;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
 testapp.RoutesWrapper;md5cf27010e14af20e69784a5a54418b85f.RoutesWrapper
+TestApp.MessageConnectionsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.MessageConnectionsWrapper
+TestApp.MessageConnectionsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MessageConnectionsWrapper
+TestApp.MessageConnectionsWrapper;md5cf27010e14af20e69784a5a54418b85f.MessageConnectionsWrapper
+testapp.MessageConnectionsWrapper;md5cf27010e14af20e69784a5a54418b85f.MessageConnectionsWrapper
+TestApp.UserImageWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserImageWrapper
+TestApp.UserImageWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserImageWrapper
+TestApp.UserImageWrapper;md5cf27010e14af20e69784a5a54418b85f.UserImageWrapper
+testapp.UserImageWrapper;md5cf27010e14af20e69784a5a54418b85f.UserImageWrapper
 TestApp.UserFriendsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 TestApp.UserFriendsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 TestApp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
@@ -22,10 +34,6 @@ TestApp.Calculator, TestApp;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Calculator
 TestApp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
 testapp.Calculator;md5cf27010e14af20e69784a5a54418b85f.Calculator
-TestApp.StepCounter, TestApp;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-TestApp.StepCounter, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-TestApp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
-testapp.StepCounter;md5cf27010e14af20e69784a5a54418b85f.StepCounter
 TestApp.ActivityLevelTracker, TestApp;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
 TestApp.ActivityLevelTracker;md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker
@@ -74,6 +82,18 @@ TestApp.Chat, TestApp;md5cf27010e14af20e69784a5a54418b85f.Chat
 TestApp.Chat, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Chat
 TestApp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
 testapp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
+TestApp.PrivateChat, TestApp;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
+TestApp.PrivateChat, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
+TestApp.PrivateChat;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
+testapp.PrivateChat;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
+TestApp.ChatRoom, TestApp;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
+TestApp.ChatRoom, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
+TestApp.ChatRoom;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
+testapp.ChatRoom;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
+TestApp.HelloWebViewClient, TestApp;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
+TestApp.HelloWebViewClient, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
+TestApp.HelloWebViewClient;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
+testapp.HelloWebViewClient;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
 TestApp.FriendsOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview

@@ -2,7 +2,7 @@ package md5cf27010e14af20e69784a5a54418b85f;
 
 
 public class GoogleMapsPeople
-	extends android.support.v4.app.FragmentActivity
+	extends android.app.Activity
 	implements
 		mono.android.IGCUserPeer,
 		com.google.android.gms.maps.OnMapReadyCallback,

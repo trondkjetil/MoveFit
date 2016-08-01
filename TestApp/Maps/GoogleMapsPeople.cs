@@ -17,10 +17,10 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 namespace TestApp
 {
     [Activity (Label = "Maps",Theme = "@android:style/Theme.NoTitleBar")]
-	public class GoogleMapsPeople : Android.Support.V4.App.FragmentActivity,IOnMapReadyCallback, GoogleMap.IInfoWindowAdapter, GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener,ILocationListener 
+	public class GoogleMapsPeople : Activity,IOnMapReadyCallback, GoogleMap.IInfoWindowAdapter, GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener,ILocationListener 
 	{
-		
-		GoogleMap mMap;
+        //Android.Support.V4.App.FragmentActivity,
+        GoogleMap mMap;
 		string addressText;
 		Location currentLocation;
 		LocationManager locationManager;
@@ -57,13 +57,12 @@ namespace TestApp
 
             userMarkers = new List<Marker>();
             routeMarkers = new List<Marker>();
-      
-        peopleCheck.Click += async(o, e) => {
 
-                try
-                {
+
+            peopleCheck.Click += async(o, e) => {
 
               
+  
                
                 if (!peopleCheck.Checked && userMarkers.Count > 0)
                 {
@@ -83,27 +82,32 @@ namespace TestApp
 
                     if (userMarkers.Count > 0)
                         {
-                            userMarkers.Clear();
-                        }
+                        userMarkers.Clear();
+                    }
                      
 
                      bar.BringToFront();
                      bar.Visibility = ViewStates.Visible;
 
-                   
-                            // routes = await Azure.getRoutes();
-                           // users = await Azure.getImagesOnMap();
-                            users = await Azure.getPeople();
-                    if(users.Count > 0)
-                    {
-                        foreach (User user in users)
+
+                        // routes = await Azure.getRoutes();
+                        // users = await Azure.getImagesOnMap();
+                        users = await Azure.getPeople();
+                        RunOnUiThread(  () =>
                         {
-
-                            setMarker2(user);
-
-                        }
-                    }
                            
+                            if (users.Count != 0)
+                            {
+                                foreach (User user in users)
+                                {
+
+                                    setMarker2(user);
+
+                                }
+                            }
+                        });
+
+
                         bar.Visibility = ViewStates.Invisible;
                         Toast.MakeText(this, "Showing Friends", ToastLength.Short).Show();
 
@@ -112,12 +116,7 @@ namespace TestApp
 
                 }
 
-                }
-                catch (Exception)
-                {
-
-                  
-                }
+              
 
             };
 
@@ -128,8 +127,8 @@ namespace TestApp
                 
                         foreach (var item in routeMarkers)
                         {
-                            item.Remove();
-                        }
+                        item.Remove();
+                    }
 
                     }
            
@@ -148,8 +147,7 @@ namespace TestApp
                     bar.Visibility = ViewStates.Visible;
 
 
-                    try
-                        {
+                
 
                             // routes = await Azure.getRoutes();
                             users = await Azure.getPeople();
@@ -170,12 +168,8 @@ namespace TestApp
                         Toast.MakeText(this, "Showing Nearby Routes", ToastLength.Short).Show();
 
 
-                    }
-                    catch (Exception aa)
-                        {
-                     
-
-                        }
+                    
+                   
 
                    
                 }
@@ -213,7 +207,10 @@ namespace TestApp
 			BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap (pic); //(Resource.Drawable.test);
 			markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
 		    var marker = mMap.AddMarker (markerOpt1);
+            marker.Visible = true;
             userMarkers.Add(marker);
+
+           
                }
 
         public void setMarker2(User user)
@@ -231,6 +228,7 @@ namespace TestApp
             markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
             var marker = mMap.AddMarker(markerOpt2);
             routeMarkers.Add(marker);
+
             //mMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom (myPosition, 14));
 
            
@@ -433,8 +431,7 @@ namespace TestApp
             mMap = googleMap;
         }
 
-
-
+     
     }
 
 

@@ -12,6 +12,8 @@ using Android.Widget;
 using Android.Graphics;
 using Microsoft.AspNet.SignalR.Client;
 using System.Text.RegularExpressions;
+using Java.Util;
+using System.Timers;
 
 namespace TestApp
 {
@@ -19,7 +21,7 @@ namespace TestApp
     public class PrivateChat : Activity
     {
         public string toUserName;
-      
+
         //  Button send;
 
         ImageButton send;
@@ -37,6 +39,126 @@ namespace TestApp
 
         string targetId;
         static string sendTouserId;
+
+
+        List<Messages> messages;
+        List<Messages> PreviousMessages;
+
+        LinearLayout layout;
+
+
+        static System.Timers.Timer _timer; // From System.Timers
+        static List<DateTime> _l; // Stores timer results
+        public  List<DateTime> DateList // Gets the results
+        {
+            get
+            {
+                if (_l == null) // Lazily initialize the timer
+                {
+                    Start(); // Start the timer
+                }
+                return _l; // Return the list of dates
+            }
+        }
+         void Start()
+        {
+            _l = new List<DateTime>(); // Allocate the list
+            _timer = new System.Timers.Timer(5000); // Set up the timer for 3 seconds                                                  //
+                                                    // Type "_timer.Elapsed += " and press tab twice.                                                 //
+            _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
+            _timer.Enabled = true; // Enable it
+        }
+
+
+        async void  _timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+
+            _timer.Enabled = false;
+
+
+
+            try
+            {
+
+           
+            var NewMessages = await Azure.getMessages(converSationId);
+           // List<Messages> newMessagesToWrite = new List<Messages>();
+            //foreach (var newMsg in NewMessages)
+            //{
+
+            //    foreach (var prevMsg in PreviousMessages)
+            //    {
+
+            //        if (newMsg.Id != prevMsg.Id)
+            //        {
+
+            //                     newMessagesToWrite.Add(newMsg);
+            //        }
+                       
+            //    }
+
+            //}  
+        
+            RunOnUiThread( () =>
+            {
+                //    Toast.MakeText(this, "Updating chat list..", ToastLength.Long).Show();
+                if (NewMessages.Count != 0)
+                {
+
+                    layout.RemoveAllViews();
+                    foreach (var oldMessage in NewMessages)
+                    {
+
+
+                        messageLayout(oldMessage.Message, oldMessage.Sender);
+
+                        //if (item.Id != oldMessage.Id)
+                        //{
+                        //    messageLayout(item.Message, item.Sender);
+                        //}
+
+                    }
+                }
+
+         //       PreviousMessages = newMessagesToWrite;
+               
+             
+
+            });
+            _l.Add(DateTime.Now); // Add date on each timer event
+
+                _timer.Enabled = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+          
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if (_timer != null)
+                _timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
+
+        }
+        protected override void OnStop()
+        {
+            base.OnStop();
+            if (_timer != null)
+                _timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (_timer != null)
+            _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
+        }
+
         protected override async void OnCreate(Bundle bundle)
         {
 
@@ -46,27 +168,32 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.chatPrivate);
 
+            layout = FindViewById<LinearLayout>(Resource.Id.llChatMessages);
+
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
             send.SetBackgroundColor(Color.Blue);
 
-             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
+            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
             array = Intent.GetStringArrayExtra("MyData");
             toUserName = array[0];
             targetId = array[1];
 
+            PreviousMessages = new List<Messages>();
 
-            hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+
+              hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
             chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
             MessageConnections createNewConversation = null;
 
 
+
             try
             {
 
-               
+
                 createNewConversation = await Azure.getMessageConnectionId(MainStart.userId, targetId.ToString());
                 if (createNewConversation == null)
                 {
@@ -75,15 +202,22 @@ namespace TestApp
                 }
 
                 converSationId = createNewConversation.Id;
-
-                var messages = await Azure.getMessages(converSationId);
+                messages = await Azure.getMessages(converSationId);
 
                 foreach (var item in messages)
                 {
-                  
+
                     messageLayout(item.Message, item.Sender);
 
                 }
+
+                PreviousMessages = messages;
+
+
+                var list = DateList;
+           
+
+
 
             }
             catch (Exception e)
@@ -92,7 +226,7 @@ namespace TestApp
 
             }
 
-
+            //Init timer for updating message array
 
 
 
@@ -104,7 +238,7 @@ namespace TestApp
                 {
                     userList = connectedUsers;
                     var test = userName;
-                   
+
 
 
                 });
@@ -156,7 +290,8 @@ namespace TestApp
 
                     };
 
-                    FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+                    //  FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+                    layout.AddView(txt);
 
 
                     Toast.MakeText(this, firstName.ToString() + ": " + message.ToString(), ToastLength.Long).Show();
@@ -173,12 +308,12 @@ namespace TestApp
             //    RunOnUiThread(() =>
             //    {
 
-              
+
             //        TextView txt = new TextView(this);
             //        txt.Text = firstName.ToString() + ": " + message.ToString();
             //        txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
             //        txt.SetPadding(10, 10, 10, 10);
-                 
+
 
             //        if (userName == MainStart.userName)
             //        {
@@ -191,7 +326,7 @@ namespace TestApp
             //            txt.SetTextColor(Color.Red);
             //            txt.SetBackgroundColor(Color.PaleVioletRed);
             //        }
-                       
+
 
 
 
@@ -220,14 +355,14 @@ namespace TestApp
             //    });
             //});
 
-           
+
             await hubConnection.Start();
 
-            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName});
-          
+            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+
             Toast.MakeText(this, "You are online!", ToastLength.Short).Show();
 
-      
+
 
             send.Click += async (o, e2) =>
             {
@@ -235,7 +370,7 @@ namespace TestApp
                 try
                 {
 
-                    
+
                     var message = writeMessage.Text;
 
 
@@ -248,28 +383,28 @@ namespace TestApp
 
 
 
-                   
-                   messageLayout(message,MainStart.userId);
+
+                    messageLayout(message, MainStart.userId);
                     //await causes delay, drop? Still 
                     tmpMessage = message;
                     writeMessage.Text = "";
 
-  //[self.scrollView setContentOffset: bottomOffset animated: YES];
-            var send = await Azure.AddMessage(MainStart.userId, tmpMessage, converSationId);
-                   
+                    //[self.scrollView setContentOffset: bottomOffset animated: YES];
+                    var send = await Azure.AddMessage(MainStart.userId, tmpMessage, converSationId);
+
                     //  await chatHubProxy.Invoke("SendPrivateMessage", new object[] { sendTouserId, message });
-                    
+
                 }
                 catch (Exception a)
                 {
-                   
-                   
+
+
                 }
 
             };
 
 
-    }
+        }
 
         public void messageLayout(string message, string senderID)
 
@@ -291,17 +426,17 @@ namespace TestApp
             txt.SetPadding(10, 10, 10, 10);
             txt.SetBackgroundColor(Color.AliceBlue);
             txt.SetTextColor(Color.Black);
-           
+
 
             if (senderID == MainStart.userId)
             {
                 txt.SetTextColor(Color.Blue);
-              
+
             }
             else
             {
                 txt.SetTextColor(Color.Red);
-              
+
             }
 
             var grav = GravityFlags.Right;
@@ -320,15 +455,86 @@ namespace TestApp
                 LeftMargin = 10,
                 RightMargin = 10,
                 Gravity = grav,
-                
+
 
             };
 
-            FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+            //   FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+
+            layout.AddView(txt);
             scroll.FullScroll(FocusSearchDirection.Down);
         }
 
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            Finish();
+        }
+        public async void testMethod()
+        {
+
+            try
+            {
+
+
+                var NewMessages = await Azure.getMessages(converSationId);
+                List<Messages> newMessagesToWrite = new List<Messages>();
+                foreach (var newMsg in NewMessages)
+                {
+
+                    foreach (var prevMsg in PreviousMessages)
+                    {
+
+                        if (newMsg.Id != prevMsg.Id)
+                        {
+                            newMessagesToWrite.Add(newMsg);
+                        }
+
+                    }
+
+                }
+
+                RunOnUiThread(() =>
+                {
+                    //    Toast.MakeText(this, "Updating chat list..", ToastLength.Long).Show();
+                    if (newMessagesToWrite.Count != 0)
+                    {
+
+
+                        foreach (var oldMessage in newMessagesToWrite)
+                        {
+
+
+                            messageLayout(oldMessage.Message, oldMessage.Sender);
+
+                            //if (item.Id != oldMessage.Id)
+                            //{
+                            //    messageLayout(item.Message, item.Sender);
+                            //}
+
+                        }
+                    }
+
+                    PreviousMessages = newMessagesToWrite;
+                
+
+
+
+                });
+             
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
     }
 
 }
+
+
+

@@ -8,21 +8,46 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using Android.Graphics;
 
 namespace TestApp
 {
     [Activity(Label = "FriendsOverview")]
-    public class FriendsOverview : Activity
+    public class FriendsOverview : Activity, IOnMapReadyCallback
     {
 
 
         Intent myIntent;
-        protected override void OnCreate(Bundle savedInstanceState)
+        GoogleMap mMap;
+        MarkerOptions markerOpt1;
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.friendsOverview);
 
+
+            MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+            mMap = mapFrag.Map;
+
+            if (mMap != null)
+            {
+                mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
+            }
+
+        
+            mMap.UiSettings.ZoomControlsEnabled = true;
+            mMap.UiSettings.RotateGesturesEnabled = true;
+            mMap.UiSettings.ScrollGesturesEnabled = true;
+
+            List<User> people = await Azure.getPeople();
+
+            foreach (var item in people)
+            {
+                setMarker(item);
+            }
 
             Button myFriends = (Button)FindViewById(Resource.Id.myFriends);
             Button friendRequests = (Button)FindViewById(Resource.Id.friendRequests);
@@ -62,11 +87,30 @@ namespace TestApp
                 base.OnBackPressed();
             Finish();
         }
+        public void setMarker(User user)
+        {
+
+            var myPosition = new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
+
+          //  Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
 
 
+            markerOpt1 = new MarkerOptions();
+            markerOpt1.SetPosition(myPosition);
+            markerOpt1.SetTitle(user.UserName + " Position");
+            markerOpt1.SetSnippet("Points: " + user.Points);
+        //  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+            markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
+            mMap.AddMarker(markerOpt1);
+          
+            
 
 
-
+        }
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            mMap = googleMap;
+        }
 
     }
 }
