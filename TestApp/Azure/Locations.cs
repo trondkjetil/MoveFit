@@ -8,8 +8,14 @@ namespace TestApp
 
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "location")]
-        public string Location { get; set; }
+        //[JsonProperty(PropertyName = "location")]
+        //public string Location { get; set; }
+
+        [JsonProperty(PropertyName = "lat")]
+        public double Lat { get; set; }
+
+        [JsonProperty(PropertyName = "long")]
+        public double Lon { get; set; }
 
         [JsonProperty(PropertyName = "route_id")]
         public string Route_id { get; set; }

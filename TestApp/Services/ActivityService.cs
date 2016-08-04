@@ -26,20 +26,32 @@ namespace TestApp
 		private float mAccelCurrent;
 		private float mAccelLast;
         public static Stopwatch timer;
-       
-      
+       public TimeSpan start;
+        public TimeSpan end;
 
 
-     
+        public override void OnCreate()
+        {
+            base.OnCreate();
+
+            //start = TimeSpan.Parse("21:00"); // 10 PM
+            //end = TimeSpan.Parse("09:00");
+
+            start = new TimeSpan(09, 0, 0);
+            end = new TimeSpan(21, 0, 0);
+        }
 
 
-			public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
+
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 			{
-
-			new Task (() => {
+          
+            new Task (() => {
 
                 isChecked = true;
                 isRunning = true;
+
+               
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 				
@@ -114,33 +126,30 @@ namespace TestApp
 			mAccel = mAccel * 0.9f + delta;
 
 
-
-
             if (mAccel >= 7)
             {
                 timer.Restart();
             }
 
-            if (mAccel < 5 && timer.Elapsed.Minutes == 10) { //TIME_FOR_ALARM > 10 ){  //1800
+            if (mAccel < 5 && timer.Elapsed.Seconds == 20) { //TIME_FOR_ALARM > 10 ){  //1800
                 mAccel = 0.00f;
 
-                if(timer.Elapsed.Seconds == 10 && isChecked == true)
-                {
+
+                bool test = DateTime.Now.TimeOfDay <= end && DateTime.Now.TimeOfDay >= start;
+                test = test;
+
+                if (isChecked == true && DateTime.Now.TimeOfDay <= end   && DateTime.Now.TimeOfDay >= start)
+              {
+                    
                     var inte = new Intent(this, typeof(ActivityLevelTracker));
                     inte.AddFlags(ActivityFlags.NewTask);
                     StartActivity(inte);
                     isChecked = false;
 
                 }
-
-                
+               
                 timer.Stop();
                 timer.Reset();
-
-              
-               
-
-
             }
 		
 		}

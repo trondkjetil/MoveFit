@@ -11,6 +11,7 @@ public class SimpleService
 	public static final String __md_methods;
 	static {
 		__md_methods = 
+			"n_onCreate:()V:GetOnCreateHandler\n" +
 			"n_onStartCommand:(Landroid/content/Intent;II)I:GetOnStartCommand_Landroid_content_Intent_IIHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
 			"n_onBind:(Landroid/content/Intent;)Landroid/os/IBinder;:GetOnBind_Landroid_content_Intent_Handler\n" +
@@ -27,6 +28,14 @@ public class SimpleService
 		if (getClass () == SimpleService.class)
 			mono.android.TypeManager.Activate ("TestApp.SimpleService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
+
+
+	public void onCreate ()
+	{
+		n_onCreate ();
+	}
+
+	private native void n_onCreate ();
 
 
 	public int onStartCommand (android.content.Intent p0, int p1, int p2)

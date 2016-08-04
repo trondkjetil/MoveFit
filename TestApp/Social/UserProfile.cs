@@ -93,8 +93,6 @@ namespace TestApp
 
               
 
-
-
                 if (array.Length == 0)
                     Finish();
 
@@ -254,11 +252,8 @@ namespace TestApp
                     }
 
                 }
-
-
                     // var test =  Azure.setProfileImage(MainStart.userId, toByte(bitmapScalled));
                 
-
                 else if (data.Data == null)
                 {
                    
@@ -386,7 +381,9 @@ namespace TestApp
 
             switch (item.ItemId)
             {
-
+                case Resource.Id.home:
+                    Finish();
+                    return true;
 
                 case Resource.Id.exit:
                     Finish();

@@ -143,9 +143,10 @@ namespace TestApp
             {
                 var uploadPoints = await Azure.addToMyPoints(MainStart.userId, 5);
                 Toast.MakeText(this, "You just earned 5 points!", ToastLength.Long).Show();
+                Azure.AddActivityAlert(true);
 
-
-            }
+            }else
+                Azure.AddActivityAlert(false);
 
             player.Stop();
          

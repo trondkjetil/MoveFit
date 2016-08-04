@@ -462,8 +462,10 @@ namespace TestApp
 
                 routeStatus.Text = "Waiting to upload the route...";
                 dist = calculateDistance();
-                
-                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime);
+                var first = points[0];
+               
+
+                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime,first.Latitude,first.Longitude);
                 Azure.addToMyDistance(MainStart.userId, dist);
                 string routeID = "";
 
@@ -473,11 +475,11 @@ namespace TestApp
                     routeID = item.Id;
                 }
 
-
+                
                 foreach (var item in points)
                 {
 
-                    Azure.AddLocation(item.Latitude + "," + item.Longitude, routeID);
+                    Azure.AddLocation(item.Latitude,item.Longitude, routeID);
 
                 }
                 if (dist == 0)

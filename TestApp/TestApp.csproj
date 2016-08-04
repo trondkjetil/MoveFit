@@ -147,6 +147,7 @@
     <Compile Include="Azure\Review.cs" />
     <Compile Include="Azure\Route.cs" />
     <Compile Include="Azure\MessageConnections.cs" />
+    <Compile Include="Azure\UserActivity.cs" />
     <Compile Include="Azure\UserImage.cs" />
     <Compile Include="Azure\UserFriends.cs" />
     <Compile Include="Common\MessageDetail.cs" />
@@ -331,10 +332,10 @@
     <AndroidResource Include="Resources\drawable\acceptfriend.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\addfriend.png" />
+    <AndroidResource Include="Resources\drawable\addfriends.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\deletefriend.png" />
+    <AndroidResource Include="Resources\drawable\deletefriends.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\female.png" />
@@ -385,10 +386,7 @@
     <AndroidResource Include="Resources\drawable\redoffline.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\newAlarm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\social.png" />
+    <AndroidResource Include="Resources\drawable\nAlarm.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\actionbarRouteScoreBoard.xml" />
@@ -406,7 +404,7 @@
     <AndroidResource Include="Resources\Raw\moveIt.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu_invite.png" />
+    <AndroidResource Include="Resources\drawable\addfriend.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_menu_forward.png" />
@@ -414,6 +412,21 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\my_rectangle.xml" />
     <AndroidResource Include="Resources\drawable\spinner.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\action_menu_nav.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\newAlarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\deletefriend.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

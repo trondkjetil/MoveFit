@@ -10,14 +10,19 @@ using Android.Gms.Maps;
 using Android.Graphics;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
-
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 namespace TestApp
 {
-    [Activity(Label = "RouteOverview")]
-    public class RouteOverview : Activity, IOnMapReadyCallback
+    [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
+    public class RouteOverview : AppCompatActivity, IOnMapReadyCallback
     {
         Intent myIntent;
         GoogleMap mMap;
+        SupportToolbar toolbar;
+
+        public static IMenuItem goBack;
+        public static IMenuItem goHome;
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
@@ -25,10 +30,16 @@ namespace TestApp
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
-            RequestWindowFeature(WindowFeatures.NoTitle);
+           // RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.routesOverview);
 
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+          //  SupportActionBar.SetIcon(icon);
 
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
@@ -43,10 +54,10 @@ namespace TestApp
             mMap.UiSettings.RotateGesturesEnabled = true;
             mMap.UiSettings.ScrollGesturesEnabled = true;
 
+            List<Route> routes = await Azure.getRoutes();
 
-            List<User> people = await Azure.getPeople();
 
-            foreach (var item in people)
+            foreach (var item in routes)
             {
                 setMarker(item);
             }
@@ -73,17 +84,19 @@ namespace TestApp
 
             };
 
-
         }
 
-        public void setMarker(User user)
+        public void setMarker(Route route)
         {
             //if (user.Lat == 0 && user.Lon == 0)
             //    return;
-              LatLng myPosition = new LatLng(user.Lat, user.Lon);
 
-            Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-            BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+            //string[] location = loc.Location.Split(',');
+
+
+           // LatLng myPosition = new LatLng(Convert.ToInt32(location[0]), Convert.ToInt32(location[1]));
+            LatLng myPosition = new LatLng(route.Lat, route.Lon);
+
 
             //   mMap.AddMarker(new MarkerOptions()
             //  .SetPosition(new LatLng(10,10))
@@ -91,16 +104,12 @@ namespace TestApp
             //  .SetTitle("title")).SetIcon(image);//.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan));
 
 
-            var onlineStatus = "offline";
 
-            if (user.Online)
-                onlineStatus = "online";
 
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(user.UserName)
-           .SetSnippet("Online status: " + onlineStatus)
-           .SetIcon(image));
+           .SetTitle("Route " + route.Difficulty)
+           .SetSnippet(route.Name));
 
 
 
@@ -111,10 +120,65 @@ namespace TestApp
             ////  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
             //    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
             //    mMap.AddMarker(markerOpt1);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
+
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
+            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+            //itemExit = menu.FindItem(Resource.Id.exit);
 
 
+            //goHome.SetIcon(Resource.Drawable.eexit);
+            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
+
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override void OnBackPressed()
+        {
+
+                base.OnBackPressed();
+            Finish();
+
+            }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.exit:
+                    Finish();
+                    return true;
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                case Resource.Id.home:
+
+                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
+                    //StartActivity(myIntent);
+
+                    OnBackPressed();
+                    Finish();
+
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
 
 
         }
+
     }
 }

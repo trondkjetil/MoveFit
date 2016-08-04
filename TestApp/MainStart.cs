@@ -10,6 +10,7 @@ using Android.Net;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -189,10 +190,7 @@ namespace TestApp
             mLeftDrawer.Tag = 0;
             //mRightDrawer.Tag = 1;
             mRightDrawer.Tag = 1;
-
-          
-
-
+         
             SetSupportActionBar(mToolbar);
 
             mLeftDataSet = new List<string>();
@@ -861,11 +859,18 @@ namespace TestApp
 
                 case Resource.Id.action_help:
 
+               //     SpannableString s =
+               //new SpannableString(context.getText(R.string.dialog_message));
+               //     Linkify.addLinks(s, Linkify.WEB_URLS);
+               //     message.setText(s);
+               //     message.setMovementMethod(LinkMovementMethod.getInstance());
+
                     Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
                     alertMessage.SetTitle("Info");
-                    alertMessage.SetMessage("User: " + facebookUserId + System.Environment.NewLine + System.Environment.NewLine + "About: This is a prototype app in a masters project. Developed...." + System.Environment.NewLine +
-                    System.Environment.NewLine +
-                    "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    alertMessage.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
+                    "As this is a part of my thesis, I kindly ask if you could be so kind a help me by answering the following survey: "+ System.Environment.NewLine
+                    +"https://www.surveymonkey.com/r/WT798BM" +
+                    System.Environment.NewLine+  "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
                     );
                     alertMessage.Show();
 

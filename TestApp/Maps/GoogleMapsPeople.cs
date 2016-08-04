@@ -64,7 +64,7 @@ namespace TestApp
               
   
                
-                if (!peopleCheck.Checked && userMarkers.Count > 0)
+                if (!peopleCheck.Checked && userMarkers.Count != 0)
                 {
        
                         foreach (var item in userMarkers)
@@ -146,12 +146,9 @@ namespace TestApp
                     bar.BringToFront();
                     bar.Visibility = ViewStates.Visible;
 
-
-                
-
                             // routes = await Azure.getRoutes();
                             users = await Azure.getPeople();
-                        if(users.Count > 0)
+                        if(users.Count != 0)
                         {
 
                        
@@ -166,10 +163,6 @@ namespace TestApp
 
                         bar.Visibility = ViewStates.Invisible;
                         Toast.MakeText(this, "Showing Nearby Routes", ToastLength.Short).Show();
-
-
-                    
-                   
 
                    
                 }
@@ -195,11 +188,10 @@ namespace TestApp
 
         public void setMarker(User user){
 			
-            var myPosition =  new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
+            var myPosition =  new LatLng(user.Lat, user.Lon);
 
             Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-        
-           
+                
             markerOpt1 = new MarkerOptions();
 			markerOpt1.SetPosition(myPosition);
 			markerOpt1.SetTitle(user.UserName + " Position");
@@ -207,7 +199,6 @@ namespace TestApp
 			BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap (pic); //(Resource.Drawable.test);
 			markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
 		    var marker = mMap.AddMarker (markerOpt1);
-            marker.Visible = true;
             userMarkers.Add(marker);
 
            
@@ -219,7 +210,7 @@ namespace TestApp
             //    markerOpt1.Dispose();
 
 
-            var myPosition = new LatLng(Convert.ToDouble(user.Lat), Convert.ToDouble(user.Lon));
+            var myPosition = new LatLng(user.Lat, user.Lon);
             markerOpt2 = new MarkerOptions();
            
             markerOpt2.SetPosition(myPosition);

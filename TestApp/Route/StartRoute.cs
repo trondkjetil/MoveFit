@@ -275,8 +275,11 @@ namespace TestApp
             Locations firstElement = locationPointsForRoute.First();
 
             float[] results = new float[1];
-            string[] LatLngFirst = firstElement.Location.Split(',');
-            Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
+           // double[] LatLngFirst = firstElement.Location.Split(',');
+            Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, firstElement.Lat, firstElement.Lon, results);
+            //Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
+
+
             distance = (int)results[0];
 
             return distance;
@@ -457,23 +460,29 @@ namespace TestApp
 
                     Locations middlePoint = locationPointsForRoute[locationPointsForRoute.Count / 2];
 
-                    string[] LatLngLast = lastItem.Location.Split(',');
-                    string[] LatLngFirst = firstElement.Location.Split(',');
-
-                    string[] LatMid= middlePoint.Location.Split(',');
+                   // string[] LatLngLast = lastItem.Location.Split(',');
+                  //  string[] LatLngFirst = firstElement.Location.Split(',');
+                  //  string[] LatMid= middlePoint.Location.Split(',');
                     
 
 
                     markerOpt1 = new MarkerOptions();
-                    markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
+                    markerOpt1.SetPosition(new LatLng(firstElement.Lat, firstElement.Lon));
+                     // markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
+                   
+
                     markerOpt1.SetTitle("Starting Point");
                     markerOpt1.Draggable(false);
                     markerOpt1.SetSnippet("Starting point of route");
                     markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
                     mMap.AddMarker(markerOpt1);
 
+                    
+
                     markerOpt2 = new MarkerOptions();
-                    markerOpt2.SetPosition(new LatLng(Convert.ToDouble(LatLngLast[0]), Convert.ToDouble(LatLngLast[1])));
+                    markerOpt2.SetPosition(new LatLng(lastItem.Lat, lastItem.Lon));
+
+                  //  markerOpt2.SetPosition(new LatLng(Convert.ToDouble(LatLngLast[0]), Convert.ToDouble(LatLngLast[1])));
                     markerOpt2.SetTitle("Ending Point");
                     markerOpt2.Draggable(false);
                     markerOpt2.SetSnippet("End point of route");
@@ -481,16 +490,21 @@ namespace TestApp
                     mMap.AddMarker(markerOpt2);
 
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Convert.ToDouble(LatMid[0]), Convert.ToDouble(LatMid[1])), 14));
+                    // mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Convert.ToDouble(LatMid[0]), Convert.ToDouble(LatMid[1])), 14));
+                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(middlePoint.Lat, middlePoint.Lon), 14));
 
                     PolylineOptions opt = new PolylineOptions();
 
-                    string[] loc;
+                   // string[] loc;
                     foreach (var item in locationPointsForRoute)
                     {
-                        loc = null;
-                        loc = item.Location.Split(',');
-                        opt.Add(new LatLng(Convert.ToDouble(loc[0]), Convert.ToDouble(loc[1])));
+                       // loc = null;
+                        // loc = item.Location.Split(',');
+                      //  loc = item.lo
+                        opt.Add(new LatLng(item.Lat, item.Lon));
+                        //opt.Add(new LatLng(Convert.ToDouble(loc[0]), Convert.ToDouble(loc[1])));
+                        
+
                     }
 
                     mMap.AddPolyline(opt);

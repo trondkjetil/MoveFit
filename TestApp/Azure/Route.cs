@@ -42,6 +42,12 @@ namespace TestApp
         [JsonProperty(PropertyName = "time")]
         public string Time { get; set; }
 
+        [JsonProperty(PropertyName = "lat")]
+        public double Lat { get; set; }
+
+        [JsonProperty(PropertyName = "long")]
+        public double Lon { get; set; }
+
 
     }
 

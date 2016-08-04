@@ -38,14 +38,19 @@ namespace TestApp
         public static IMobileServiceSyncTable<UserImage> tableImage { get; set; }
         public static IMobileServiceSyncTable<MessageConnections> tableMessageConnection { get; set; }
         public static IMobileServiceSyncTable<Messages> tableUserMessages { get; set; }
+        public static IMobileServiceSyncTable<UserActivity> tableUserActivity { get; set; }
+
+
 
         //Online storage
+        public static IMobileServiceTable<UserActivity> userActivityTable { get; set; }
         public static IMobileServiceTable<UserImage> imageTable { get; set; }
         public static IMobileServiceTable<Route> routeTable { get; set; }
         public static IMobileServiceTable<Locations> locationsTable { get; set; }
         public static IMobileServiceTable<User> table { get; set; }
         public static IMobileServiceTable<Review> reviewTable { get; set; }
         public static IMobileServiceTable<UserFriends> userFriendsTable { get; set; }
+
 
 
         public static IMobileServiceTable<MessageConnections> messageConnection { get; set; }
@@ -71,8 +76,9 @@ namespace TestApp
             tableImage = client.GetSyncTable<UserImage>();
             tableMessageConnection = client.GetSyncTable<MessageConnections>();
             tableUserMessages = client.GetSyncTable<Messages>();
+            tableUserActivity = client.GetSyncTable<UserActivity>();
 
-         //Cloud 
+            //Cloud 
 
 
             table = client.GetTable<User>();
@@ -83,6 +89,7 @@ namespace TestApp
             imageTable = client.GetTable<UserImage>();
             messageConnection = client.GetTable<MessageConnections>();
             userMessages = client.GetTable<Messages>();
+            userActivityTable = client.GetTable<UserActivity>();
 
             //Deletes all items in current table
             //await userTable.PurgeAsync();
@@ -290,7 +297,7 @@ namespace TestApp
         public static async Task<List<User>> getPeople()
         {
             //
-            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).ToListAsync();  //
+            List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false ).ToListAsync();  //
                                                                                                                        //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return userList;
 
@@ -346,13 +353,20 @@ namespace TestApp
 
         }
 
-        public static async Task<List<Route>> nearbyRoutes()
+        public static async Task<List<Route>> nearbyRoutes(Route route, User user)
         {
-            
 
-            List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
+            float[] res = new float[1];
+            Location.DistanceBetween(user.Lat, user.Lon, route.Lat, route.Lon, res);
+
+            var dist = res[0];
+
+            // List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
+
+            List <Route> routeList = await routeTable.Where(p =>p.Lat <= 35).ToListAsync();
+
             return routeList;
-
+            
         }
 
 
@@ -360,7 +374,7 @@ namespace TestApp
         {
 
             List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).OrderByDescending(Route => Route.User_id).ToListAsync();
-
+          
             return routeList;
 
         }
@@ -379,6 +393,14 @@ namespace TestApp
         {
 
             List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id == providedRouteID).ToListAsync();
+
+            return locationsList;
+
+        }
+        public static async Task<List<Locations>> getLocations()
+        {
+
+            List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id != null).ToListAsync();
 
             return locationsList;
 
@@ -634,20 +656,20 @@ namespace TestApp
                 throw e;
             }
 
-
-
         }
 
 
         [Java.Interop.Export()]
-        public static async void AddLocation(string location, string routeId)
+        public static async void AddLocation(double lat,double lon, string routeId)
 
         {
             var loc = new Locations
             {
 
-                Location = location,
-                Route_id = routeId
+              //  Location = location,
+              Lat = lat,
+              Lon =lon,
+              Route_id = routeId
 
             };
 
@@ -666,11 +688,10 @@ namespace TestApp
             {
                 throw e;
             }
-
         }
 
         [Java.Interop.Export()]
-        public static async Task<List<Route>> AddRoute(string routeName, string routeInfo, string routeDistance, string routeReview, int routeTrips, string routeDifficulty, string routeType, string routeUserId, string time)
+        public static async Task<List<Route>> AddRoute(string routeName, string routeInfo, string routeDistance, string routeReview, int routeTrips, string routeDifficulty, string routeType, string routeUserId, string time, double lat,double lon)
 
         {
             var route = new Route
@@ -684,7 +705,9 @@ namespace TestApp
                 Difficulty = routeDifficulty,
                 RouteType = routeType,
                 User_id = routeUserId,
-                Time = time
+                Time = time,
+                Lat = lat,
+                Lon = lon
 
             };
 
@@ -708,6 +731,41 @@ namespace TestApp
 
         }
 
+
+        [Java.Interop.Export()]
+        public static async Task<List<UserActivity>> AddActivityAlert(bool res)
+
+        {
+            var activity = new UserActivity
+            {
+
+                Respons = res,
+                UserId = MainStart.userId,
+                Count = 0
+              
+              
+
+            };
+
+
+            List<UserActivity> rList = new List<UserActivity>();
+            rList.Add(activity);
+            try
+            {
+
+                await tableUserActivity.InsertAsync(activity); // insert the new item into the local database
+                await SyncAsync(); // send changes to the mobile service
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return rList;
+
+        }
 
         [Java.Interop.Export()]
         public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel,double distanceMoved)
@@ -856,6 +914,7 @@ namespace TestApp
 
                 await tableMessageConnection.PullAsync("allMessageConnections", tableMessageConnection.CreateQuery());
                 await tableUserMessages.PullAsync("allUserMessages", tableUserMessages.CreateQuery());
+                await tableUserMessages.PullAsync("allUserActivities", tableUserActivity.CreateQuery());
 
             }
 
@@ -891,6 +950,7 @@ namespace TestApp
             store.DefineTable<UserImage>();
             store.DefineTable<MessageConnections>();
             store.DefineTable<Messages>();
+            store.DefineTable<UserActivity>();
             // Uses the default conflict handler, which fails on conflict
             // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
             await client.SyncContext.InitializeAsync(store);

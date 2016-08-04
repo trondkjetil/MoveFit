@@ -11,23 +11,30 @@ using Android.Widget;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
-
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 namespace TestApp
 {
-    [Activity(Label = "FriendsOverview")]
-    public class FriendsOverview : Activity, IOnMapReadyCallback
+    [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
+    public class FriendsOverview : AppCompatActivity, IOnMapReadyCallback
     {
 
 
         Intent myIntent;
         GoogleMap mMap;
         MarkerOptions markerOpt1;
+        SupportToolbar toolbar;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.friendsOverview);
 
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+          
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
@@ -85,7 +92,7 @@ namespace TestApp
 
 
                 base.OnBackPressed();
-            Finish();
+                 Finish();
         }
         public void setMarker(User user)
         {
@@ -130,6 +137,57 @@ namespace TestApp
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
+
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
+            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+            //itemExit = menu.FindItem(Resource.Id.exit);
+
+
+            //goHome.SetIcon(Resource.Drawable.eexit);
+            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
+
+
+
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+      
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.exit:
+                    Finish();
+                    return true;
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                case Resource.Id.home:
+
+                    //Intent myIntent = new Intent(this, typeof(MainStart));
+
+                    //StartActivity(myIntent);
+                    OnBackPressed();
+                    Finish();
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
         }
 
     }
