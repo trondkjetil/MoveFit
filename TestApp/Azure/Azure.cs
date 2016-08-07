@@ -362,10 +362,17 @@ namespace TestApp
             var dist = res[0];
 
             // List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
+            var items = await routeTable.Where(item =>
+           ((Math.Abs(item.Lat - user.Lat) < 0.001) &&
+            (Math.Abs(item.Lon - user.Lon) < 0.001))
+              ).ToListAsync();
 
-            List <Route> routeList = await routeTable.Where(p =>p.Lat <= 35).ToListAsync();
 
-            return routeList;
+           // List<Route> routeList = await routeTable.Where(p =>p.Lat <= 35).ToListAsync();
+
+
+
+            return items;
             
         }
 

@@ -11,6 +11,7 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Text;
+using Android.Text.Util;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -209,7 +210,7 @@ namespace TestApp
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("Calculator");
-            mLeftDataSet.Add("Messages");
+           // mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("My profile");
 
 
@@ -256,12 +257,9 @@ namespace TestApp
                 else if (e.Position == 4)
                 {
 
-                    myIntent = new Intent(this, typeof(ChatRoom));
-                    StartActivity(myIntent);
-                }
-            
-                else if (e.Position == 5)
-                {
+                    //myIntent = new Intent(this, typeof(ChatRoom));
+                    //StartActivity(myIntent);
+               
                     
 
                     try
@@ -858,21 +856,80 @@ namespace TestApp
 
 
                 case Resource.Id.action_help:
-
-               //     SpannableString s =
-               //new SpannableString(context.getText(R.string.dialog_message));
-               //     Linkify.addLinks(s, Linkify.WEB_URLS);
-               //     message.setText(s);
-               //     message.setMovementMethod(LinkMovementMethod.getInstance());
-
-                    Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
-                    alertMessage.SetTitle("Info");
-                    alertMessage.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
-                    "As this is a part of my thesis, I kindly ask if you could be so kind a help me by answering the following survey: "+ System.Environment.NewLine
-                    +"https://www.surveymonkey.com/r/WT798BM" +
-                    System.Environment.NewLine+  "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                    alert.SetTitle("About MoveFit");
+                    alert.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
+                     "As this is a part of my thesis, I kindly ask if you could be so kind and help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine
+                     +
+                     System.Environment.NewLine + "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
                     );
-                    alertMessage.Show();
+                    alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
+
+                        var uri = Android.Net.Uri.Parse("https://www.surveymonkey.com/r/WT798BM");
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+
+                    });
+
+                    alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                        //perform your own task for this conditional button click
+                       
+                    });
+
+                    RunOnUiThread(() => {
+                        alert.Show();
+                    });
+
+                    //     SpannableString s =
+                    //new SpannableString(context.getText(R.string.dialog_message));
+                    //     Linkify.addLinks(s, Linkify.WEB_URLS);
+                    //     message.setText(s);
+                    //     message.setMovementMethod(LinkMovementMethod.getInstance());
+
+                    //var builder = new AlertDialog.Builder(this);
+                    //TextView tv = new TextView(this);
+                    //tv.TextFormatted = Android.Text.Html.FromHtml(responseText); //your html goes in responseText
+                    //tv.SetTextSize(Android.Util.ComplexUnitType.Dip, 18);
+                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+                    //builder.SetView(tv);
+                    //builder.SetPositiveButton("OK", delegate { });
+                    //builder.Show();
+
+
+                    //TextView tv = new TextView(this);
+                    //tv.TextFormatted = Html.FromHtml("https://www.surveymonkey.com/r/WT798BM"); //your html goes in responseText
+                    //tv.SetTextSize(Android.Util.ComplexUnitType.Dip, 18);
+                    //tv.SetTextColor(Color.Blue);
+                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+
+                    //String link1 = "<a href=\"http://www.google.com\">http://www.google.com</a>";
+                    //String message = "Some links: " + link1 + "link1, link2, link3";
+                    //ISpanned myMessage = Html.FromHtml(message);
+
+                    //Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                    //builder.SetTitle("This is a title");
+                    //builder.SetMessage(myMessage);
+                    //builder.SetCancelable(true);
+                    //Android.Support.V7.App.AlertDialog alertDialog = builder.Create();
+                    //alertDialog.Show();
+                    //TextView tv = new TextView(this);
+                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+
+
+
+                    //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
+                    //alertMessage.SetTitle("Info");
+                    //alertMessage.SetCancelable(true);
+                    //alertMessage.SetView(tv);
+
+                    // alertMessage.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
+                    // "As this is a part of my thesis, I kindly ask if you could be so kind a help me by answering the following survey: "+ System.Environment.NewLine
+                    // +
+                    // System.Environment.NewLine+  "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    // );
+                    //// +"https://www.surveymonkey.com/r/WT798BM"
+
+                    // alertMessage.Show();
 
 
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
@@ -1226,6 +1283,11 @@ namespace TestApp
                     mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
                 }
 
+                try
+                {
+
+               
+
                 mMap.SetOnMapClickListener(this);
                 mMap.UiSettings.ZoomControlsEnabled = true;
                 mMap.UiSettings.RotateGesturesEnabled = false;
@@ -1268,26 +1330,31 @@ namespace TestApp
                     }
                 };
 
-                //  findMoreFriends = view.FindViewById<ImageButton>(Resource.Drawable.lupe);
+                    //  findMoreFriends = view.FindViewById<ImageButton>(Resource.Drawable.lupe);
 
-                //_activity.RunOnUiThread(() =>
-                //{
-                //    try
-                //    {
+                    //_activity.RunOnUiThread(() =>
+                    //{
+                    //    try
+                    //    {
 
-                //        // markOnMap(nearbyUsers, mMap);
-                //        // findMoreFriends.Click += startFriendMap_Click;
-                //        //    await AddressInitiate();
-                //    }
-                //    catch (Exception e)
-                //    {
+                    //        // markOnMap(nearbyUsers, mMap);
+                    //        // findMoreFriends.Click += startFriendMap_Click;
+                    //        //    await AddressInitiate();
+                    //    }
+                    //    catch (Exception e)
+                    //    {
 
-                //    }
-
-
-                //});
+                    //    }
 
 
+                    //});
+
+                }
+                catch (Exception)
+                {
+
+                   
+                }
 
                 return view;
             }

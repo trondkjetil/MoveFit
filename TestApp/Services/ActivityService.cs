@@ -131,12 +131,10 @@ namespace TestApp
                 timer.Restart();
             }
 
-            if (mAccel < 5 && timer.Elapsed.Seconds == 20) { //TIME_FOR_ALARM > 10 ){  //1800
+            if (mAccel < 5 && timer.Elapsed.Seconds == 6500) { //TIME_FOR_ALARM > 10 ){  //1800
                 mAccel = 0.00f;
 
 
-                bool test = DateTime.Now.TimeOfDay <= end && DateTime.Now.TimeOfDay >= start;
-                test = test;
 
                 if (isChecked == true && DateTime.Now.TimeOfDay <= end   && DateTime.Now.TimeOfDay >= start)
               {

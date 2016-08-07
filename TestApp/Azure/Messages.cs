@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
+
 namespace TestApp
 {
     public class Messages
@@ -28,7 +29,26 @@ namespace TestApp
         public string CreatedAt { get; set; }
 
 
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
 
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            var inst = (Messages)obj;
+          
+            return base.Equals(obj) && inst.Id == this.Id && inst.Message == this.Message;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            
+            return base.GetHashCode();
+        }
     }
 
     public class MessagesWrapper : Java.Lang.Object

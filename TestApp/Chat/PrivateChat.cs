@@ -101,10 +101,14 @@ namespace TestApp
         
             RunOnUiThread( () =>
             {
-                //    Toast.MakeText(this, "Updating chat list..", ToastLength.Long).Show();
-                if (NewMessages.Count != 0)
-                {
 
+            bool notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id);
+             
+                
+                //    Toast.MakeText(this, "Updating chat list..", ToastLength.Long).Show();
+                if (NewMessages.Count != 0 && !notAnyNewMessages)
+                {
+                
                     layout.RemoveAllViews();
                     foreach (var oldMessage in NewMessages)
                     {
@@ -120,7 +124,7 @@ namespace TestApp
                     }
                 }
 
-         //       PreviousMessages = newMessagesToWrite;
+                PreviousMessages = NewMessages;
                
              
 
