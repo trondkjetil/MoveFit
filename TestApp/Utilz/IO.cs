@@ -23,14 +23,20 @@ namespace TestApp
 
             return isOnline;
         }
+        //Simple read and write
+//        string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+//        string filename = Path.Combine(path, "myfile.txt");
 
-        /*
-		 * 
-		 * 
-		 * This code enumerates the subdirectories in the current directory (specified by the "./" parameter), which is the location of your application executable. 
+//            using (var streamWriter = new StreamWriter(filename, true))
+//            {
+//                streamWriter.WriteLine(DateTime.UtcNow);
+//            }
 
-		*/
-
+//            using (var streamReader = new StreamReader(filename))
+//            {
+//                string content = streamReader.ReadToEnd();
+//System.Diagnostics.Debug.WriteLine(content);
+//            }
 
         //public static Bitmap deCodeByte(byte[] image)
         //{

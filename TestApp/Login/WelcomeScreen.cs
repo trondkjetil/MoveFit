@@ -2,7 +2,6 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Felipecsl.GifImageViewLibrary;
 using System.IO;
 using Android.Graphics;
 using Android.Webkit;
@@ -17,6 +16,7 @@ using Android.Content.PM;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Android.Net;
 
 namespace TestApp
 {
@@ -40,9 +40,17 @@ namespace TestApp
         string userID;
 
 
+        public bool isOnline()
+        {
+            ConnectivityManager cm =
+                (ConnectivityManager)GetSystemService(Context.ConnectivityService);
+            NetworkInfo netInfo = cm.ActiveNetworkInfo;
+
+            return netInfo != null && netInfo.IsConnectedOrConnecting;
+        }
 
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -58,16 +66,29 @@ namespace TestApp
             try
             {
 
-       
+                if (isOnline())
+                {
+                    loginWithWidget();
+                }
+                else
+                {
+                    Toast.MakeText(this,"No internet connection!", ToastLength.Long).Show();
+                  //  User login =  await Azure.getOfflineUser();
+                       
+                    //name = login.UserName;
+                    //profilePic = login.ProfilePicture;
+                    //userID = login.Id;
 
-            loginWithWidget();
+                  //  startUp();
+                }
 
 
             }
-            catch (Exception)
+            catch (Exception a)
             {
 
-               
+                Toast.MakeText(this, a.Message, ToastLength.Long).Show();
+
             }
         }
 
@@ -150,8 +171,7 @@ namespace TestApp
             Finish();
         }
 
-
-
+      
 
     }
 

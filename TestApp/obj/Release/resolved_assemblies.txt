@@ -7,7 +7,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Microsoft.W
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Microsoft.WindowsAzure.Mobile.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Newtonsoft.Json.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\Refractored.GifImageView.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\SQLitePCL.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\SQLitePCL.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Net.Http.Extensions.dll

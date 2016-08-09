@@ -55,7 +55,7 @@ namespace TestApp
             mMap.UiSettings.ScrollGesturesEnabled = true;
 
             List<Route> routes = await Azure.getRoutes();
-
+            var test = await Azure.nearbyRoutes();
 
             foreach (var item in routes)
             {

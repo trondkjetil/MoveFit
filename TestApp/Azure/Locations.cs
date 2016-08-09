@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-
 namespace TestApp
 {
     public class Locations
@@ -10,6 +9,10 @@ namespace TestApp
 
         //[JsonProperty(PropertyName = "location")]
         //public string Location { get; set; }
+
+
+      
+     //   public  Geography Coordinates { get; set; }
 
         [JsonProperty(PropertyName = "lat")]
         public double Lat { get; set; }

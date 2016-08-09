@@ -37,7 +37,7 @@ namespace TestApp
         Bitmap bmp;
         List<UserImage> instance;
 
-
+        public static readonly int PickImageId = 1000;
         protected override async void OnCreate(Bundle savedInstanceState)
         {
 
@@ -156,9 +156,13 @@ namespace TestApp
             {
 
 
-                if ((resultCode == Result.Ok) && (data != null))
+                //if ((resultCode == Result.Ok) && (data != null))
+                //{
+                if ((requestCode == PickImageId) && (resultCode == Result.Ok) && (data != null))
                 {
-                    Android.Net.Uri uri = data.Data;
+                    //var imgURI = Android.Net.Uri.Parse(UserProfile.BackgroundImageURI);
+                    //var input = this.ContentResolver.OpenInputStream(imgURI);
+                    //Android.Net.Uri uri = data.Data;
                     //profilePic2.SetImageURI(uri);
                     //profilePic2.RefreshDrawableState();
                     //profilePic2.BuildDrawingCache();

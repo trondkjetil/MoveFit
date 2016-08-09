@@ -7,7 +7,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.Win
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Mobile.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Newtonsoft.Json.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Refractored.GifImageView.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\SQLitePCL.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\SQLitePCL.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Net.Http.Extensions.dll
@@ -25,7 +24,9 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Java.Interop.
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.Export.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\mscorlib.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.DataAnnotations.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Core.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Data.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Net.Http.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll
@@ -63,3 +64,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.d
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Runtime.InteropServices.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Json.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Collections.Concurrent.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Numerics.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Data.Tds.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transactions.dll

@@ -96,11 +96,11 @@ namespace TestApp
         }
         public void setMarker(User user)
         {
-            //if (user.Lat == 0 && user.Lon == 0)
-            //    return;
+            if (user.Lat == 0 && user.Lon == 0)
+                return;
 
           
-         LatLng myPosition = new LatLng(user.Lat, user.Lon);
+            LatLng myPosition = new LatLng(user.Lat, user.Lon);
 
             Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
             BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);

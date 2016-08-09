@@ -231,6 +231,11 @@ namespace TestApp
                 //if (start.Checked)
                 //{
 
+
+                try
+                {
+
+               
                 if (start.Checked)
                 {
                     startRouteCreation();
@@ -238,8 +243,11 @@ namespace TestApp
                 else
                     finishRoute();
 
-              
+                }
+                catch (Exception)
+                {
 
+                }
                 //if (firstRun)
                 //{
                 //    firstRun = false;
@@ -406,7 +414,7 @@ namespace TestApp
                 return;
 
             }
-
+            
             start.Enabled = false;
             points = CreateRouteService.getPoints();
 
@@ -508,6 +516,7 @@ namespace TestApp
         }
         public void startRouteCreation()
         {
+            start.Enabled = false;
             start.SetBackgroundColor(Color.Blue);
             if (points.Count > 0)
             {
@@ -515,7 +524,7 @@ namespace TestApp
                 points.Clear();
             }
 
-            start.Enabled = false;
+           
 
             routeStatus.Text = "Aquiring your position...";
 

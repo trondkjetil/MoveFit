@@ -69,23 +69,17 @@ namespace TestApp
         public List<User> user;
         public static bool chk;
         public ProgressBar loadingImage;
-
-
         public static TextView _address;
         public Address oldAddress;
         public static GoogleMap mMap;
-
         TextView points;
         public static Activity mainActivity;
-
-        User waitingUpload;
-        User userInstanceOne;
+           public static User waitingUpload;
+           public static User userInstanceOne;
 
 
         public static bool isOnline;
-
         public static ConnectivityManager connectivityManager;
-
         public static IMenuItem menItem;
 
         TextView messages;
@@ -873,7 +867,8 @@ namespace TestApp
 
                     alert.SetNegativeButton("Cancel", (senderAlert, args) => {
                         //perform your own task for this conditional button click
-                       
+                        
+
                     });
 
                     RunOnUiThread(() => {
@@ -1407,8 +1402,9 @@ namespace TestApp
             alert.SetPositiveButton("Yes", async (senderAlert, args) => {
               
                 base.OnBackPressed();
-
+               
                 var wait = await logOff();
+                System.Environment.Exit(0);
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -1452,8 +1448,8 @@ namespace TestApp
 
                 points.Text = "Score: 0";
 
+                var setOnline = await Azure.SetUserOnline(userId, true);
 
-                
             }
             catch (Exception)
             {

@@ -14,17 +14,21 @@ using Newtonsoft.Json.Linq;
 using TestApp;
 using Android.Locations;
 using Android.OS;
+using Android.Gms.Maps.Model;
 
 namespace TestApp
 {
+    public enum DistanceUnit { Miles, Kilometers };
     public class Azure //, IMobileServiceLocalStore
     {
 
       //  const string applicationURL = @"https://movefitt.azurewebsites.net";
 
-        const string applicationURL = @"https://moveit.azurewebsites.net";
-        const string localDbFilename = "localstore1.db";
+      //  const string applicationURL = @"https://moveit.azurewebsites.net";
 
+        const string applicationURL = @"http://movefit.azurewebsites.net";
+        const string localDbFilename = "localstore1.db";
+     
 
         //Mobile Service Client reference
         public static MobileServiceClient client { get; set; }
@@ -105,8 +109,91 @@ namespace TestApp
             //    userTable.DeleteAsync(u);
             //}
         }
+     
+        public static async Task<User> getOfflineUser()
+        {
 
-           public static async Task<List<User>> findNearBy(string userName)
+            User me = null;
+            try
+            {
+
+              
+                List<User> pointlist = null;
+                userTable =  client.GetSyncTable<User>();
+            
+                await userTable.ReadAsync(userTable.Where(item => item.Id != null));
+                List<User> tablee = await userTable.Where(user => user.UserName != null).ToListAsync();
+               
+         
+
+                if (tablee.Count == 0)
+                {
+                   pointlist = await client.GetTable<User>().Where(user => user.UserName != null).ToListAsync();
+
+                }
+
+                //  List<User> pointlist = await userTable.Where(user => user.UserName == userName).ToListAsync();
+
+
+
+                if (pointlist.Count != 0)
+            {
+                me = pointlist.FirstOrDefault();
+            }
+            else
+                me = tablee.FirstOrDefault();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+            return me;
+        }
+
+
+
+
+
+        public static double ToRadians(double val)
+        {
+            return (Math.PI / 180) * val;
+        }
+        public static double getDis(double a, double b, double c, double d)
+        {
+
+            float[] result = new float[1];
+            Location.DistanceBetween(123211, 21312, 3213, 32131, result);
+
+            return result[0];
+        }
+
+     //   List<Route> newList = await routeTable.Where(p =>  < 100).ToListAsync();
+
+        public static double HaversineDistance(LatLng pos1, LatLng pos2, DistanceUnit unit)
+        {
+
+           
+            double R = (unit == DistanceUnit.Miles) ? 3960 : 6371;
+            var lat = ToRadians((pos2.Latitude - pos1.Latitude));
+            var lng = ToRadians((pos2.Longitude - pos1.Longitude));
+            var h1 = Math.Sin(lat / 2) * Math.Sin(lat / 2) +
+                          Math.Cos(ToRadians(pos1.Latitude)) * Math.Cos(ToRadians(pos2.Latitude)) *
+                          Math.Sin(lng / 2) * Math.Sin(lng / 2);
+            var h2 = 2 * Math.Asin(Math.Min(1, Math.Sqrt(h1)));
+            return R * h2;
+        }
+
+    
+
+
+
+
+
+
+
+        public static async Task<List<User>> findNearBy(string userName)
         {
 
             var list = await getUserId(userName);
@@ -196,18 +283,7 @@ namespace TestApp
 
         }
 
-        public static double toRadian(double val)
-        {
-            return (Math.PI / 180) * val;
-        }
-        public static  double getDis(double a, double b, double c, double d)
-        {
-
-            float[] result = new float[1];
-            Location.DistanceBetween(123211, 21312, 3213, 32131, result);
-
-            return result[0];
-        }
+      
 
 
         public static async Task<List<Route>> giveRouteRating(string routeId, string rating)
@@ -353,26 +429,79 @@ namespace TestApp
 
         }
 
-        public static async Task<List<Route>> nearbyRoutes(Route route, User user)
+
+        //public class GeoPoint 
+        //{
+        //    public double Latitude { get; set; }
+        //    public double Longitude { get; set; }
+        //}
+
+        //public class TodoItem 
+        //{
+        //    public string Text { get; set; }
+
+        //    public bool Complete { get; set; }
+
+            
+        //    public virtual GeoPoint Location { get; set; }
+        //}
+
+        public static async Task<List<Route>> nearbyRoutes()
         {
 
-            float[] res = new float[1];
-            Location.DistanceBetween(user.Lat, user.Lon, route.Lat, route.Lon, res);
+            //float[] res = new float[1];
+            //Location.DistanceBetween(user.Lat, user.Lon, route.Lat, route.Lon, res);
 
-            var dist = res[0];
+            //  var dist = res[0];
+            User user = null;
+            try
+            {
+                 user = MainStart.userInstanceOne;
 
-            // List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
-            var items = await routeTable.Where(item =>
-           ((Math.Abs(item.Lat - user.Lat) < 0.001) &&
-            (Math.Abs(item.Lon - user.Lon) < 0.001))
-              ).ToListAsync();
+                if(user == null || user.Id == "")
+                {
+                    user = MainStart.waitingUpload;
+                }
 
 
-           // List<Route> routeList = await routeTable.Where(p =>p.Lat <= 35).ToListAsync();
+                //Works!
+                //List <Route> tee =  await routeTable.Where(p => p.Lon - user.Lon < .1 && (p.Lon - user.Lon ) > -.1 && (p.Lat - user.Lat) < .1  && (p.Lat -  user.Lat) > -.1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                //tee = tee;
+
+                //Works!
+                List<Route> a3 = await routeTable.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                a3 = a3;
+
+                List<Route> a33 = await routeTable.Where(p => p.Lon - user.Lon < 30 && (p.Lon - user.Lon) > -50 && (p.Lat - user.Lat) < 50 && (p.Lat - user.Lat) > -50).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                a33= a33;
+                //Works!
+                //  List<Route> abba = await routeTable.Where(p => p.Lon - user.Lon < 100000000000 && (p.Lon - user.Lon) > -100000000000 && (p.Lat - user.Lat) < 100000000000 && (p.Lat - user.Lat) > -100000000000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
 
 
+                //var tab = from r in routeTable
+                //             select new
+                //             {
+                //                 lat = r.Lat,
+                //                 lng = r.Lon,
+                //                 name = r.Name,
+                //                 id = r.Id
+                //                    };
 
-            return items;
+                //var ab = await tab.Where(p => p.id != null).ToListAsync();
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+            List<Route> routeList = await routeTable.Where(p => p.Lat != 0).ToListAsync();
+
+
+           
+
+            return routeList;
             
         }
 
@@ -795,7 +924,7 @@ namespace TestApp
 
             try
             {
-
+              
                 
                // await client.GetTable<User>().InsertAsync(user);
                 await userTable.InsertAsync(user); // insert the new item into the local database
@@ -910,6 +1039,8 @@ namespace TestApp
         {
             try
             {
+           
+
                 await client.SyncContext.PushAsync();
 
                 await userTable.PullAsync("allUsers", userTable.CreateQuery()); // query ID is used for incremental sync
@@ -932,9 +1063,14 @@ namespace TestApp
             {
                 throw a;
             }
-            catch (Exception e)
+         catch (MobileServicePushFailedException)
+                {
+
+                
+                       }
+            catch (Exception )
             {
-                throw e;
+              
             }
         }
 
@@ -947,6 +1083,8 @@ namespace TestApp
             {
                 File.Create(path).Dispose();
             }
+
+
 
             var store = new MobileServiceSQLiteStore(path);
             store.DefineTable<User>();
