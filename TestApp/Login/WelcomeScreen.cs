@@ -72,14 +72,25 @@ namespace TestApp
                 }
                 else
                 {
+                   var layout = FindViewById<RelativeLayout>(Resource.Id.rel);
+
+
                     Toast.MakeText(this,"No internet connection!", ToastLength.Long).Show();
-                  //  User login =  await Azure.getOfflineUser();
-                       
+                    //  User login =  await Azure.getOfflineUser();
+                    TextView txt = new TextView(this);
+                    txt.Text = "No internet Connection!";
+                    txt.SetTextSize(ComplexUnitType.Sp, 20);
+                    //txt.SetPadding(10, 10, 10, 10);
+                    txt.Gravity = GravityFlags.CenterHorizontal;
+                    
+                    txt.SetBackgroundColor(Color.White);
+                    txt.SetTextColor(Color.Blue);
+                    layout.AddView(txt);
                     //name = login.UserName;
                     //profilePic = login.ProfilePicture;
                     //userID = login.Id;
 
-                  //  startUp();
+                    //  startUp();
                 }
 
 

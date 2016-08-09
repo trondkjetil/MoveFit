@@ -215,7 +215,8 @@ namespace TestApp
                 b.PutStringArray("MyData", new String[] {
 
                        mUsers[position].UserName.ToString(),
-                       mUsers[position].Id.ToString()
+                       mUsers[position].Id.ToString(),
+                        mUsers[position].ProfilePicture.ToString()
                       // createNewConversation.Id.ToString()
 
 

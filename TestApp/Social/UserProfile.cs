@@ -26,8 +26,9 @@ namespace TestApp
 
         public static String[] array;
         public static IMenuItem itemProfilePic;
-        public static IMenuItem itemGender;
-        public static IMenuItem itemAge;
+        //public static IMenuItem itemGender;
+        //public static IMenuItem itemAge;
+        public static IMenuItem itemHome;
         public static IMenuItem itemExit;
         public EditText aboutMeEdit;
 
@@ -58,6 +59,10 @@ namespace TestApp
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
             TextView points = FindViewById<TextView>(Resource.Id.points);
             TextView aboutMe = FindViewById<TextView>(Resource.Id.aboutMe);
+            TextView age = FindViewById<TextView>(Resource.Id.age);
+
+            ImageView gender = FindViewById<ImageView>(Resource.Id.gender);
+
 
             aboutMeEdit = FindViewById<EditText>(Resource.Id.aboutMeEdit);
 
@@ -86,7 +91,7 @@ namespace TestApp
                     imageIntent.SetType("image/*");
                     imageIntent.SetAction(Intent.ActionGetContent);
                     StartActivityForResult(
-                    Intent.CreateChooser(imageIntent, "Select photo"), 0);
+                    Intent.CreateChooser(imageIntent, "Select photo"), PickImageId);
 
 
                 };
@@ -105,6 +110,18 @@ namespace TestApp
 
 
                 userName.Text = array[0];
+               
+
+
+                if (array[1] == "Male")
+                {
+                    gender.SetImageResource(Resource.Drawable.male);
+                }
+                else
+                    gender.SetImageResource(Resource.Drawable.female);
+
+
+                age.Text = array[2];
 
                 points.Text = "Points: " + array[4];
 
@@ -160,16 +177,20 @@ namespace TestApp
                 //{
                 if ((requestCode == PickImageId) && (resultCode == Result.Ok) && (data != null))
                 {
-                    //var imgURI = Android.Net.Uri.Parse(UserProfile.BackgroundImageURI);
-                    //var input = this.ContentResolver.OpenInputStream(imgURI);
-                    //Android.Net.Uri uri = data.Data;
+
+
+               
+                    Android.Net.Uri uri = data.Data;
+                    string uri1 = data.Data.Path;
+
                     //profilePic2.SetImageURI(uri);
                     //profilePic2.RefreshDrawableState();
                     //profilePic2.BuildDrawingCache();
                     //Bitmap bmap = profilePic2.GetDrawingCache(true);
                     //
 
-                    Java.IO.File imgFile = new Java.IO.File(GetPathToImage(uri));
+                    Java.IO.File imgFile = new Java.IO.File(GetFilePath(uri)); //GetPathToImage(uri));
+
 
 
                     //if (imgFile.Length() < 15000000)
@@ -177,25 +198,29 @@ namespace TestApp
                     //Toast.MakeText(this, "FILE IS MORE THAN 15MB!" + imgFile.Name, ToastLength.Short).Show();
                     //}
 
-                   
 
-                        BitmapFactory.Options options = new BitmapFactory.Options();
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
                         options.InPreferredConfig = Bitmap.Config.Argb8888;
                         Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
 
 
-                    //ExifInterface exif = new ExifInterface(imgFile.Name);
-                    //var  orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+                    ExifInterface exif = new ExifInterface(imgFile.Name);
+                    var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+                    Matrix matrix = new Matrix();
+                    matrix.PostRotate(90);
+                    var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
 
-                    //Matrix matrix = new Matrix();
-                    //matrix.PostRotate(90);
-                    //var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
+                    // var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
 
-                    //var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, 400, 350, true);
+
 
                     bmap.Recycle();
+                   
+
                     profilePic2.SetImageBitmap(bitmapScalled);
+
                     profilePic2.RefreshDrawableState();
 
 
@@ -296,6 +321,27 @@ namespace TestApp
             }
         }
 
+        //public string GetRealPathFromURI(Android.Net.Uri contentUri)
+        //{
+        //    var mediaStoreImagesMediaData = "_data";
+        //    string[] projection = { mediaStoreImagesMediaData };
+        //    Android.Database.ICursor cursor = ManagedQuery(contentUri, projection,
+        //                                                        null, null, null);
+        //    int columnIndex = cursor.GetColumnIndexOrThrow(mediaStoreImagesMediaData);
+        //    cursor.MoveToFirst();
+        //    return cursor.GetString(columnIndex);
+        //}
+
+        private string GetFilePath(Android.Net.Uri uri)
+        {
+            string[] proj = { MediaStore.Images.ImageColumns.Data };
+            //Deprecated
+            //var cursor = ManagedQuery(uri, proj, null, null, null);
+            var cursor = ContentResolver.Query(uri, proj, null, null, null);
+            var colIndex = cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
+            cursor.MoveToFirst();
+            return cursor.GetString(colIndex);
+        }
 
         private string GetPathToImage(Android.Net.Uri uri)
         {
@@ -349,31 +395,13 @@ namespace TestApp
         {
             MenuInflater.Inflate(Resource.Menu.action_menu_profile, menu);
 
-            itemGender = menu.FindItem(Resource.Id.gender);
-            itemAge = menu.FindItem(Resource.Id.age);
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
             itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
             itemExit = menu.FindItem(Resource.Id.exit);
+            itemHome = menu.FindItem(Resource.Id.home);
 
-            try
-            {
-
-
-
-                itemAge.SetTitle("Age " + array[2]);
-
-                if (array[1] == "Male")
-                {
-                    itemGender.SetIcon(Resource.Drawable.male);
-                }
-                else
-                    itemGender.SetIcon(Resource.Drawable.female);
-
-            }
-            catch (Exception)
-            {
-
-
-            }
+        
 
             return base.OnCreateOptionsMenu(menu);
         }

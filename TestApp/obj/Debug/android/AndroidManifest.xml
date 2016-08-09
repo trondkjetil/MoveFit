@@ -43,7 +43,7 @@
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.StartRouteService" />
     <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
-    <activity android:label="PrivateChat" android:name="md5cf27010e14af20e69784a5a54418b85f.PrivateChat" />
+    <activity android:label="PrivateChat" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.PrivateChat" />
     <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
     <activity android:label="FriendsOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />

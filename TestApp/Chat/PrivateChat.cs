@@ -14,11 +14,14 @@ using Microsoft.AspNet.SignalR.Client;
 using System.Text.RegularExpressions;
 using Java.Util;
 using System.Timers;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
+using Android.Graphics.Drawables;
 
 namespace TestApp
 {
-    [Activity(Label = "PrivateChat")]
-    public class PrivateChat : Activity
+    [Activity(Label = "PrivateChat", Theme = "@style/Theme2")]
+    public class PrivateChat : AppCompatActivity
     {
         public string toUserName;
 
@@ -45,7 +48,13 @@ namespace TestApp
         List<Messages> PreviousMessages;
 
         LinearLayout layout;
+        SupportToolbar toolbar;
 
+
+        public static IMenuItem itemProfilePic;
+        public static IMenuItem itemHome;
+        public static IMenuItem itemExit;
+        BitmapDrawable icon;
 
         static System.Timers.Timer _timer; // From System.Timers
         static List<DateTime> _l; // Stores timer results
@@ -101,7 +110,10 @@ namespace TestApp
         
             RunOnUiThread( () =>
             {
+                try
+                {
 
+              
             bool notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id);
              
                 
@@ -125,8 +137,13 @@ namespace TestApp
                 }
 
                 PreviousMessages = NewMessages;
-               
-             
+
+                }
+                catch (Exception)
+                {
+
+                   
+                }
 
             });
             _l.Add(DateTime.Now); // Add date on each timer event
@@ -136,7 +153,7 @@ namespace TestApp
             catch (Exception)
             {
 
-                throw;
+               
             }
 
           
@@ -166,11 +183,19 @@ namespace TestApp
         protected override async void OnCreate(Bundle bundle)
         {
 
-            RequestWindowFeature(WindowFeatures.NoTitle);
+          //  RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.chatPrivate);
+            array = Intent.GetStringArrayExtra("MyData");
+
+          
+
+
+
+            
+            
 
             layout = FindViewById<LinearLayout>(Resource.Id.llChatMessages);
 
@@ -180,15 +205,27 @@ namespace TestApp
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
             writeMessage = FindViewById<EditText>(Resource.Id.txtChat);
-            array = Intent.GetStringArrayExtra("MyData");
+
+
+
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            var bmp = IOUtilz.GetImageBitmapFromUrl(array[2]);
+            icon = new BitmapDrawable(bmp);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetIcon(icon);
+
             toUserName = array[0];
             targetId = array[1];
+
+
+           
 
             PreviousMessages = new List<Messages>();
 
 
-              hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-            chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            //hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
+            //chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
 
             MessageConnections createNewConversation = null;
 
@@ -230,80 +267,82 @@ namespace TestApp
 
             }
 
-            //Init timer for updating message array
+            
 
 
 
 
-            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
-            {
+            //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
+            //{
 
-                RunOnUiThread(() =>
-                {
-                    userList = connectedUsers;
-                    var test = userName;
-
-
-
-                });
-
-            });
+            //    RunOnUiThread(() =>
+            //    {
+            //        userList = connectedUsers;
+            //        var test = userName;
 
 
 
+            //    });
+
+            //});
 
 
-            chatHubProxy.On<string, string>("messageReceived", (user, message) =>
-            {
-
-                var firstName = user.Substring(0, user.IndexOf(" "));
-
-                RunOnUiThread(() =>
-                {
-                    TextView txt = new TextView(this);
-                    txt.Text = firstName + ": " + message;
-                    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-                    txt.SetPadding(10, 10, 10, 10);
-
-                    if (user == MainStart.userName)
-                    {
-                        txt.SetTextColor(Color.Blue);
-
-                    }
-                    else
-                        txt.SetTextColor(Color.Red);
 
 
-                    var grav = GravityFlags.Right;
 
-                    if (MainStart.userName == user)
-                    {
-                        grav = GravityFlags.Right;
-                    }
-                    else
-                        grav = GravityFlags.Left;
+            //chatHubProxy.On<string, string>("messageReceived", (user, message) =>
+            //{
 
+            //    var firstName = user.Substring(0, user.IndexOf(" "));
 
-                    txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
-                    {
-                        TopMargin = 10,
-                        BottomMargin = 10,
-                        LeftMargin = 10,
-                        RightMargin = 10,
-                        Gravity = grav
+            //    RunOnUiThread(() =>
+            //    {
+            //        TextView txt = new TextView(this);
+            //        txt.Text = firstName + ": " + message;
+            //        txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+            //        txt.SetPadding(10, 10, 10, 10);
 
-                    };
+            //        if (user == MainStart.userName)
+            //        {
+            //            txt.SetTextColor(Color.Blue);
 
-                    //  FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
-                    layout.AddView(txt);
+            //        }
+            //        else
+            //            txt.SetTextColor(Color.Red);
 
 
-                    Toast.MakeText(this, firstName.ToString() + ": " + message.ToString(), ToastLength.Long).Show();
+            //        var grav = GravityFlags.Right;
 
-                });
-            });
+            //        if (MainStart.userName == user)
+            //        {
+            //            grav = GravityFlags.Right;
+            //        }
+            //        else
+            //            grav = GravityFlags.Left;
 
 
+            //        txt.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent)
+            //        {
+            //            TopMargin = 10,
+            //            BottomMargin = 10,
+            //            LeftMargin = 10,
+            //            RightMargin = 10,
+            //            Gravity = grav
+
+            //        };
+
+            //        //  FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
+            //        layout.AddView(txt);
+
+
+            //        Toast.MakeText(this, firstName.ToString() + ": " + message.ToString(), ToastLength.Long).Show();
+
+            //    });
+            //});
+
+
+
+       //     ******************************* Not used lately
 
             //chatHubProxy.On<string,string, string>("SendPrivateMessage", (userId, userName, message) =>
             //{
@@ -360,11 +399,11 @@ namespace TestApp
             //});
 
 
-            await hubConnection.Start();
+            //await hubConnection.Start();
 
-            await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
+            //await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName });
 
-            Toast.MakeText(this, "You are online!", ToastLength.Short).Show();
+            //Toast.MakeText(this, "You are online!", ToastLength.Short).Show();
 
 
 
@@ -535,6 +574,57 @@ namespace TestApp
                 throw;
             }
         }
+
+
+
+
+
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_profile, menu);
+
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
+            itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+            itemExit = menu.FindItem(Resource.Id.exit);
+            itemHome = menu.FindItem(Resource.Id.home);
+
+
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.home:
+                    Finish();
+                    return true;
+
+                case Resource.Id.exit:
+                    Finish();
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+        }
+
+
+
+
+
+
+
 
     }
 

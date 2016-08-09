@@ -54,6 +54,18 @@
         android:id="@+id/points"
         android:textColor="@android:color/black" />
     <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/age"
+        android:textColor="@android:color/black" />
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gender" />
+    <TextView
         android:text="About me: "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
