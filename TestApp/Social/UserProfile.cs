@@ -167,7 +167,7 @@ namespace TestApp
                     //profilePic2.RefreshDrawableState();
                     //profilePic2.BuildDrawingCache();
                     //Bitmap bmap = profilePic2.GetDrawingCache(true);
-
+                    //
 
                     Java.IO.File imgFile = new Java.IO.File(GetPathToImage(uri));
 
