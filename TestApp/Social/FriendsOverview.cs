@@ -13,6 +13,8 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
+using Android.Locations;
+
 namespace TestApp
 {
     [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
@@ -24,7 +26,7 @@ namespace TestApp
         GoogleMap mMap;
         MarkerOptions markerOpt1;
         SupportToolbar toolbar;
-
+        public List<User> me;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -34,7 +36,8 @@ namespace TestApp
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
-          
+
+            me = await Azure.getUserInstanceByName(MainStart.userName);
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
@@ -111,10 +114,14 @@ namespace TestApp
             if (user.Online)
                 onlineStatus = "online";
 
+            float[] result = new float[1];
+            Location.DistanceBetween(me[0].Lat, me[0].Lon, user.Lat, user.Lon, result);
+            int dist = Convert.ToInt32(result[0]);
+
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(user.UserName)
-           .SetSnippet("Online status: "+ onlineStatus)
+           .SetTitle(user.UserName + " "+ onlineStatus)
+           .SetSnippet("Distance from me: "+ dist + " meters")
            .SetIcon(image));//BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)));
             
             

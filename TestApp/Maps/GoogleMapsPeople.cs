@@ -100,7 +100,7 @@ namespace TestApp
                                 foreach (User user in users)
                                 {
 
-                                    setMarker2(user);
+                                    setMarker(user);
 
                                 }
                             }
@@ -149,16 +149,15 @@ namespace TestApp
                         bar.Visibility = ViewStates.Visible;
 
                         // routes = await Azure.getRoutes();
-                        users = await Azure.getPeople();
-                        if (users.Count != 0)
+                        routes = await Azure.getRoutes();
+                        if (routes.Count != 0)
                         {
 
 
-                            foreach (User user in users)
+                            foreach (Route route in routes)
                             {
 
-                                setMarker(user);
-
+                                setMarker2(route);
                             }
 
                         }
@@ -202,25 +201,28 @@ namespace TestApp
 			markerOpt1.SetSnippet ("Points: " +user.Points);
 			BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap (pic); //(Resource.Drawable.test);
 			markerOpt1.SetIcon (image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
-		    var marker = mMap.AddMarker (markerOpt1);
+           
+            Marker marker = mMap.AddMarker(markerOpt1);
             userMarkers.Add(marker);
 
            
                }
 
-        public void setMarker2(User user)
+        public void setMarker2(Route route)
         {
             //if (markerOpt1 != null)
             //    markerOpt1.Dispose();
 
 
-            var myPosition = new LatLng(user.Lat, user.Lon);
+            var myPosition = new LatLng(route.Lat, route.Lon);
             markerOpt2 = new MarkerOptions();
            
             markerOpt2.SetPosition(myPosition);
-            markerOpt2.SetTitle("Route name");
-            markerOpt2.SetSnippet("test" + System.Environment.NewLine + "test");
+            markerOpt2.SetTitle(route.Name);
+            markerOpt2.SetSnippet(route.Difficulty);
             markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+
+
             var marker = mMap.AddMarker(markerOpt2);
             routeMarkers.Add(marker);
 

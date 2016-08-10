@@ -112,7 +112,7 @@ namespace TestApp
 
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(route.Name + " "+ route.Difficulty )
+           .SetTitle(route.Name + " Diff:"+ route.Difficulty )
            .SetSnippet("Distance from me: " +dist.ToString() + " meters"));
 
             //    markerOpt1 = new MarkerOptions();
