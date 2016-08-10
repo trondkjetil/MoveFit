@@ -20,10 +20,11 @@ using System.IO.Compression;
 
 namespace TestApp
 {
+    
     [Activity(Label = "UserProfile", Theme = "@style/Theme2")]
     public class UserProfile : AppCompatActivity
     {
-
+        Java.IO.File imgFile;
         public static String[] array;
         public static IMenuItem itemProfilePic;
         //public static IMenuItem itemGender;
@@ -39,6 +40,18 @@ namespace TestApp
         List<UserImage> instance;
 
         public static readonly int PickImageId = 1000;
+
+
+
+
+
+
+
+
+     
+
+
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
 
@@ -121,7 +134,7 @@ namespace TestApp
                     gender.SetImageResource(Resource.Drawable.female);
 
 
-                age.Text = array[2];
+                age.Text =  "Age: " +array[2];
 
                 points.Text = "Points: " + array[4];
 
@@ -178,87 +191,107 @@ namespace TestApp
                 if ((requestCode == PickImageId) && (resultCode == Result.Ok) && (data != null))
                 {
 
+                   // Android.Net.Uri uri = data.Data;
+             string path = GetPathToImage(data.Data);
 
-               
-                    Android.Net.Uri uri = data.Data;
-                    string uri1 = data.Data.Path;
-
-                    //profilePic2.SetImageURI(uri);
-                    //profilePic2.RefreshDrawableState();
-                    //profilePic2.BuildDrawingCache();
-                    //Bitmap bmap = profilePic2.GetDrawingCache(true);
-                    //
-
-                    Java.IO.File imgFile = new Java.IO.File(GetFilePath(uri)); //GetPathToImage(uri));
+                    // Uri ju = new Uri(uri.ToString());
+                    //var test =   getRotation(ju);
 
 
 
-                    //if (imgFile.Length() < 15000000)
+
+                    //switch (test)
                     //{
-                    //Toast.MakeText(this, "FILE IS MORE THAN 15MB!" + imgFile.Name, ToastLength.Short).Show();
+
+                    //    case (int)Android.Media.Orientation.Rotate90:
+                    //        test = test;
+                    //        break;
+                    //    case (int)Android.Media.Orientation.Rotate180:
+                    //        test = test;
+                    //        break;
+                    //    case (int)Android.Media.Orientation.Rotate270:
+                    //        test = test;
+                    //        break;
+
+                    //    default:
+                    //        break;
                     //}
 
 
+                
 
+                    imgFile = null;
+                   // imgFile = new Java.IO.File(GetFilePath(uri)); //GetPathToImage(uri));
+                    imgFile = new Java.IO.File(path); 
+
+                    
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.InPreferredConfig = Bitmap.Config.Argb8888;
-                        Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
+                    options.InPreferredConfig = Bitmap.Config.Argb8888;
+                    Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
+
+
+
+
 
 
                     ExifInterface exif = new ExifInterface(imgFile.Name);
-                    var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+                   // ExifInterface exif = new ExifInterface(imgFile.Path);
+
+                    var orienta = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+                    var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, (int)Android.Media.Orientation.Normal);
+
                     Matrix matrix = new Matrix();
-                    matrix.PostRotate(90);
-                    var rotatedBitmap = Bitmap.CreateBitmap(bmap, 0, 0, bmap.Width, bmap.Height, matrix, true);
+                    //matrix.PostRotate(90);
+                    orienta = orienta;
+                    switch (orientation)
+                    {
 
-                    // var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 400, 350, true);
+                        case (int)Android.Media.Orientation.Rotate90:
+                            matrix.PostRotate(90);
+                            break;
+                        case (int)Android.Media.Orientation.Rotate180:
+                            matrix.PostRotate(180);
+                            break;
+                        case (int)Android.Media.Orientation.Rotate270:
+                            matrix.PostRotate(270);
+                            break;
+                        
+                        default:
+                            break;
+                    }
 
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(rotatedBitmap, 400, 350, true);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 550, 350, true);
+                    var rotatedBitmap = Bitmap.CreateBitmap(bitmapScalled, 0, 0, bmap.Width, bmap.Height, matrix, true);
 
+                  
+
+                  
 
                     bmap.Recycle();
-                   
 
-                    profilePic2.SetImageBitmap(bitmapScalled);
 
+                    profilePic2.SetImageBitmap(rotatedBitmap);
+                   // profilePic2.SetImageBitmap(getImageProper(imgFile.Path,550,350));
                     profilePic2.RefreshDrawableState();
 
 
-
-                    ///byte[] tested = System.IO.File.ReadAllBytes(imgFile.Path);
-
-                    //using (var streamReader = new StreamReader(imgFile.Path))
-                    //{
-                    //    var bytes = default(byte[]);
-                    //    using (var memstream = new MemoryStream())
-                    //    {
-                    //        streamReader.BaseStream.CopyTo(memstream);
-                    //        bytes = memstream.ToArray();
-
-
-                    //    }
-
-                    //}
-
-
-
-                       byte[] bitmapData = null;
-                  
-
+                    byte[] bitmapData = null;
 
                     using (var stream = new MemoryStream())
                     {
 
                         if (imgFile.Path.ToLower().EndsWith("png"))
                         {
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Png, 90, stream);
+                            rotatedBitmap.Compress(Bitmap.CompressFormat.Png, 50, stream);
                             bitmapData = stream.ToArray();
 
                         }
 
                         else
                         {
-                            bitmapScalled.Compress(Bitmap.CompressFormat.Jpeg, 75, stream);
+                            rotatedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 50, stream);
                             bitmapData = stream.ToArray();
 
                         }
@@ -269,7 +302,7 @@ namespace TestApp
 
                     if (instance.Count > 0 )
                     {
-                        // await Azure.setProfileImage(MainStart.userId, bitmapData);
+                       
 
                         var remove = await Azure.removeProfileImage();
                         var insert = await Azure.AddUserImage(bitmapData);
@@ -281,8 +314,7 @@ namespace TestApp
                     }
 
                 }
-                    // var test =  Azure.setProfileImage(MainStart.userId, toByte(bitmapScalled));
-                
+                   
                 else if (data.Data == null)
                 {
                    
@@ -293,11 +325,106 @@ namespace TestApp
             catch (Exception a)
             {
 
-               Toast.MakeText(this, a.Message, ToastLength.Long).Show();
+                profilePic2.SetImageBitmap(getImageProper(imgFile.Path, 550, 350));
+                //  Toast.MakeText(this, "Please choose an image from the image Gallery!", ToastLength.Long).Show();
 
             }
 
         }
+
+
+        public static Bitmap getImageProper(string fileName, int width, int height)
+        {
+
+            BitmapFactory.Options options = new BitmapFactory.Options { InJustDecodeBounds = true };
+            BitmapFactory.DecodeFile(fileName, options);
+            Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);
+            int outHeight = options.OutHeight;
+            int outWidth = options.OutWidth;
+            int inSampleSize = 1;
+
+            try
+            {
+
+          
+            // First we get the the dimensions of the file on disk
+          
+                // Next we calculate the ratio that we need to resize the image by
+                // in order to fit the requested dimensions.
+
+
+                if (outHeight > height || outWidth > width)
+            {
+                inSampleSize = outWidth > outHeight
+                    ? outHeight / height
+                        : outWidth / width;
+            }
+
+            // Now we will load the image and have BitmapFactory resize it for us.
+            options.InSampleSize = inSampleSize;
+            options.InJustDecodeBounds = false;
+        
+
+            // Images are being saved in landscape, so rotate them back to portrait if they were taken in portrait
+            Matrix mtx = new Matrix();
+            ExifInterface exif = new ExifInterface(fileName);
+            string orientation = exif.GetAttribute(ExifInterface.TagOrientation);
+
+            switch (orientation)
+            {
+                case "6": // portrait
+                    mtx.PreRotate(90);
+                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                    mtx.Dispose();
+                    mtx = null;
+                    break;
+                case "1": // landscape
+                    break;
+                default:
+                    mtx.PreRotate(90);
+                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                    mtx.Dispose();
+                    mtx = null;
+                    break;
+            }
+
+            }
+            catch (Exception)
+            {
+
+             
+            }
+
+            return resizedBitmap;
+        }
+
+
+        private static int getRotation(Uri jj)
+        {
+
+            
+            int rotation = 0;
+            ContentResolver content = Application.Context.ContentResolver; // ContentResolver; //context.ContentResolver;
+
+
+            var mediaCursor = content.Query(MediaStore.Images.Media.ExternalContentUri,
+                    new String[] { "orientation", "date_added" }, null, null, "date_added desc");
+
+            if (mediaCursor != null && mediaCursor.Count != 0)
+            {
+                while (mediaCursor.MoveToNext())
+                {
+                    rotation = mediaCursor.GetInt(0);
+                    break;
+                }
+            }
+            mediaCursor.Close();
+            rotation = rotation;
+            return rotation;
+        }
+
+
+     
 
         static byte[] Decompress(byte[] data)
         {
@@ -346,6 +473,11 @@ namespace TestApp
         private string GetPathToImage(Android.Net.Uri uri)
         {
             string path = null;
+
+            try
+            {
+
+           
             // The projection contains the columns we want to return in our query.
             string[] projection = new[] { MediaStore.Audio.Media.InterfaceConsts.Data };
             using (ICursor cursor = ContentResolver.Query(uri, projection, null, null, null))
@@ -359,6 +491,15 @@ namespace TestApp
                     path = cursor.GetString(columnIndex);
                 }
             }
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+
             return path;
         }
 

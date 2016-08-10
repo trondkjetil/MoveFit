@@ -301,7 +301,7 @@ namespace TestApp
             routeRating = e.ReturnValue.ToString();
             //  await Azure.giveRouteRating(routeId, "TestUserID", routeRating);
 
-            var user = await Azure.getUserId(MainStart.userName);
+            var user = await Azure.getUserInstanceByName(MainStart.userName);
             var userName = user.First().UserName;
 
             Azure.AddReview(routeId, Convert.ToInt32(routeRating), userName);

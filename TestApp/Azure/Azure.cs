@@ -196,7 +196,7 @@ namespace TestApp
         public static async Task<List<User>> findNearBy(string userName)
         {
 
-            var list = await getUserId(userName);
+            var list = await getUserInstanceByName(userName);
             User me = list.FirstOrDefault();
 
            
@@ -394,7 +394,7 @@ namespace TestApp
 
         }
 
-        public static async Task<List<User>> getUserId(String providedUserName)
+        public static async Task<List<User>> getUserInstanceByName(String providedUserName)
         {
 
             List<User> userList = await table.Where(user => user.UserName == providedUserName).ToListAsync();

@@ -272,7 +272,7 @@ namespace TestApp
 
                         }
 
-                        var list = await Azure.getUserId(userName);
+                        var list = await Azure.getUserInstanceByName(userName);
                         instance = list.FirstOrDefault();
 
 
@@ -726,7 +726,7 @@ namespace TestApp
 
         public async void setPoints()
         {
-            List<User> userInstance = await Azure.getUserId(userName);
+            List<User> userInstance = await Azure.getUserInstanceByName(userName);
             if (userInstance.Count != 0)
             {
                 userId = userInstance.First().Id;
@@ -1439,7 +1439,7 @@ namespace TestApp
                 userInstanceOne = waitingUpload;
 
 
-                var newwaitingDownload = await Azure.getUserId(userName);
+                var newwaitingDownload = await Azure.getUserInstanceByName(userName);
                 if(newwaitingDownload.Count != 0)
                 userInstanceOne = newwaitingDownload.FirstOrDefault();
 

@@ -11,6 +11,7 @@ using Android.Graphics;
 using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
+using Android.Locations;
 
 namespace TestApp
 {
@@ -21,7 +22,7 @@ namespace TestApp
         private RecyclerView.LayoutManager mLayoutManager;
         public RecyclerView.Adapter mAdapter;
         public Activity act;
-
+        public List<User> me;
         SwipeRefreshLayout mSwipeRefreshLayout;
 
 
@@ -64,8 +65,8 @@ namespace TestApp
 
             //List<User> userList = await Azure.getPeople();
             List<User> userList = await Azure.getUsersFriends(MainStart.userId);
-
-
+            me = await Azure.getUserInstanceByName(MainStart.userName);
+           
             if (userList.Count == 0)
             {
                 Toast.MakeText(this, "Your friendlist is empty!", ToastLength.Short).Show();
@@ -76,7 +77,7 @@ namespace TestApp
             }
 
 
-            mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this, act, mAdapter);
+            mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this, act, mAdapter,me);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -127,15 +128,15 @@ namespace TestApp
         public string userID;
         private RecyclerView.Adapter mAdapter;
         private Activity mActivity;
-
-        public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
+        List<User> mMyInstance;
+        public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
         {
             mUsers = users;
             mRecyclerView = recyclerView;
             mContext = context;
             mActivity = act;
             mAdapter = adapter;
-
+            mMyInstance = me;
 
         }
 
@@ -145,6 +146,7 @@ namespace TestApp
             public TextView mUserName { get; set; }
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
+            public TextView mDist { get; set; }
             public ImageView mProfilePicture { get; set; }
 
             public ImageButton mDeleteFriend { get; set; }
@@ -168,8 +170,10 @@ namespace TestApp
                 TextView name = userFriendsContent.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = userFriendsContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userFriendsContent.FindViewById<TextView>(Resource.Id.textId);
+                TextView distanceFromMe = userFriendsContent.FindViewById<TextView>(Resource.Id.distAway);
 
-                ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
+
+            ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
                 ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
                 deleteFriend.Focusable = false;
                 deleteFriend.FocusableInTouchMode = false;
@@ -183,7 +187,7 @@ namespace TestApp
 
 
 
-            MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile,mDeleteFriend = deleteFriend , mSendMessage = sendMessage, mOnlineStatus = online};
+            MyView view = new MyView(userFriendsContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile,mDeleteFriend = deleteFriend , mSendMessage = sendMessage, mOnlineStatus = online,mDist = distanceFromMe };
                 return view;
   
         }
@@ -195,7 +199,14 @@ namespace TestApp
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
-                
+                float[] result = null;
+
+            // Calculate distance to User
+            result = new float[1];
+            Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
+
+            var res = Convert.ToInt32(result[0]);
+            myHolder.mDist.Text = res.ToString()+ " meters away;
 
             if (mUsers[position].Online)
             {
@@ -250,7 +261,7 @@ namespace TestApp
                 var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
 
                 mUsers.RemoveAt((int) pos);
-                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 

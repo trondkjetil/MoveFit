@@ -125,7 +125,7 @@ namespace TestApp
             firstRun = true;
 
             points = new List<Location>();
-            me = await Azure.getUserId(MainStart.userName);
+            me = await Azure.getUserInstanceByName(MainStart.userName);
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;

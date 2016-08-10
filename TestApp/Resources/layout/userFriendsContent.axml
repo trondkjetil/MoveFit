@@ -75,14 +75,16 @@
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:paddingRight="5dp">
-            <!--<TextView
-                    android:text="15m"
+                <TextView
+                    android:text="Dist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtTime"
+                    android:id="@+id/distAway"
+                    android:textSize="9dp"
+                    android:textColor="#000000"
                     android:gravity="center_horizontal"
                     android:paddingTop="5dp" />
-                <CheckBox
+            <!--   <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart"
