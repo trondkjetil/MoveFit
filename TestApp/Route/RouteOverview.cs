@@ -23,6 +23,8 @@ namespace TestApp
 
         public static IMenuItem goBack;
         public static IMenuItem goHome;
+        public List<User> me;
+
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
@@ -37,6 +39,7 @@ namespace TestApp
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
+            me = await Azure.getUserInstanceByName(MainStart.userName);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
           //  SupportActionBar.SetIcon(icon);
@@ -103,15 +106,14 @@ namespace TestApp
             ////  .SetSnippet("Points: " + user.Points)
             //  .SetTitle("title")).SetIcon(image);//.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan));
 
-
-
+            float[] result = new float[1];
+            Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
+            int dist = Convert.ToInt32(result[0]);
 
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle("Route " + route.Difficulty)
-           .SetSnippet(route.Name));
-
-
+           .SetTitle(route.Name + " "+ route.Difficulty )
+           .SetSnippet("Distance from me: " +dist.ToString() + " meters"));
 
             //    markerOpt1 = new MarkerOptions();
             //    markerOpt1.SetPosition(myPosition);

@@ -59,8 +59,13 @@ namespace TestApp
             routeMarkers = new List<Marker>();
 
 
-            peopleCheck.Click += async(o, e) => {
+            peopleCheck.Click += (o, e) => {
 
+                RunOnUiThread( async() =>
+                {
+
+
+             
                             
                 if (!peopleCheck.Checked && userMarkers.Count != 0)
                 {
@@ -78,7 +83,7 @@ namespace TestApp
                     if (peopleCheck.Checked)
                 {
 
-                    if (userMarkers.Count > 0)
+                    if (userMarkers.Count != 0)
                         {
                         userMarkers.Clear();
                     }
@@ -86,14 +91,10 @@ namespace TestApp
 
                      bar.BringToFront();
                      bar.Visibility = ViewStates.Visible;
-
-
                         // routes = await Azure.getRoutes();
                         // users = await Azure.getImagesOnMap();
                         users = await Azure.getPeople();
-                        RunOnUiThread(  () =>
-                        {
-                           
+                       
                             if (users.Count != 0)
                             {
                                 foreach (User user in users)
@@ -103,7 +104,7 @@ namespace TestApp
 
                                 }
                             }
-                        });
+                     
 
 
                         bar.Visibility = ViewStates.Invisible;
@@ -114,45 +115,48 @@ namespace TestApp
 
                 }
 
-              
+                });
 
             };
 
-            routeCheck.Click += async (o, e) => {
+            routeCheck.Click +=  (o, e) => {
 
-                if (!routeCheck.Checked && routeMarkers.Count != 0)
+                RunOnUiThread(async () =>
                 {
-                
+
+                    if (!routeCheck.Checked && routeMarkers.Count != 0)
+                    {
+
                         foreach (var item in routeMarkers)
                         {
-                        item.Remove();
-                    }
+                            item.Remove();
+                        }
 
                     }
-           
+
 
                     if (routeCheck.Checked)
-                {
-
-
-                    if (routeMarkers.Count > 0)
                     {
-                        routeMarkers.Clear();
-                    }
-                      
 
-                    bar.BringToFront();
-                    bar.Visibility = ViewStates.Visible;
 
-                            // routes = await Azure.getRoutes();
-                            users = await Azure.getPeople();
-                        if(users.Count != 0)
+                        if (routeMarkers.Count != 0)
+                        {
+                            routeMarkers.Clear();
+                        }
+
+
+                        bar.BringToFront();
+                        bar.Visibility = ViewStates.Visible;
+
+                        // routes = await Azure.getRoutes();
+                        users = await Azure.getPeople();
+                        if (users.Count != 0)
                         {
 
-                       
+
                             foreach (User user in users)
                             {
-                               
+
                                 setMarker(user);
 
                             }
@@ -162,8 +166,10 @@ namespace TestApp
                         bar.Visibility = ViewStates.Invisible;
                         Toast.MakeText(this, "Showing Nearby Routes", ToastLength.Short).Show();
 
-                   
-                }
+
+                    }
+
+                });
 
             };
 
