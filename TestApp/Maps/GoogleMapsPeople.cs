@@ -61,9 +61,7 @@ namespace TestApp
 
             peopleCheck.Click += async(o, e) => {
 
-              
-  
-               
+                            
                 if (!peopleCheck.Checked && userMarkers.Count != 0)
                 {
        

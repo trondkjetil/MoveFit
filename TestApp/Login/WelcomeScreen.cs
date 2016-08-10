@@ -76,7 +76,7 @@ namespace TestApp
 
 
                     Toast.MakeText(this,"No internet connection!", ToastLength.Long).Show();
-                    //  User login =  await Azure.getOfflineUser();
+                   
                     TextView txt = new TextView(this);
                     txt.Text = "No internet Connection!";
                     txt.SetTextSize(ComplexUnitType.Sp, 20);
@@ -86,11 +86,14 @@ namespace TestApp
                     txt.SetBackgroundColor(Color.White);
                     txt.SetTextColor(Color.Blue);
                     layout.AddView(txt);
-                    //name = login.UserName;
-                    //profilePic = login.ProfilePicture;
-                    //userID = login.Id;
 
-                    //  startUp();
+
+                    User login =  await Azure.getOfflineUser();
+                    name = login.UserName;
+                    profilePic = login.ProfilePicture;
+                    userID = login.Id;
+
+                    startUp();
                 }
 
 

@@ -117,36 +117,55 @@ namespace TestApp
             try
             {
 
-              
-                List<User> pointlist = null;
-                userTable =  client.GetSyncTable<User>();
-            
-                await userTable.ReadAsync(userTable.Where(item => item.Id != null));
-                List<User> tablee = await userTable.Where(user => user.UserName != null).ToListAsync();
-               
+
+                await SyncAsync();
+
+                var insert = await AddMessage("102", "WOOOHOOOOOO", "123");
          
+    
+                List<Messages> tablee = await tableUserMessages.Where(msg => msg.Conversation == "123").ToListAsync();
+                tablee = tablee;
 
-                if (tablee.Count == 0)
-                {
-                   pointlist = await client.GetTable<User>().Where(user => user.UserName != null).ToListAsync();
-
-                }
-
-                //  List<User> pointlist = await userTable.Where(user => user.UserName == userName).ToListAsync();
+                List<User> ta = await userTable.Where(user => user.Id != null).ToListAsync();
+                ta = ta;
 
 
+              
+           
 
-                if (pointlist.Count != 0)
-            {
-                me = pointlist.FirstOrDefault();
-            }
-            else
-                me = tablee.FirstOrDefault();
+                //    List<User> pointlist = null;
+                //    userTable =  client.GetSyncTable<User>();
+
+                //    await userTable.ReadAsync(userTable.Where(item => item.Id != null));
+                //    List<User> tablee = await userTable.Where(user => user.UserName != null).ToListAsync();
+
+
+
+
+                //    if (tablee.Count == 0)
+                //    {
+                //       pointlist = await client.GetTable<User>().Where(user => user.UserName != null).ToListAsync();
+
+                //    }
+
+                //    //  List<User> pointlist = await userTable.Where(user => user.UserName == userName).ToListAsync();
+
+
+
+                //    if (pointlist.Count != 0)
+                //{
+                //    me = pointlist.FirstOrDefault();
+                //}
+                //else
+                //    me = tablee.FirstOrDefault();
+                //}
+
+
             }
             catch (Exception)
             {
 
-               
+
             }
 
             return me;
@@ -852,7 +871,7 @@ namespace TestApp
             rList.Add(route);
             try
             {
-
+              
                 await tableRoute.InsertAsync(route); // insert the new item into the local database
                 await SyncAsync(); // send changes to the mobile service
 

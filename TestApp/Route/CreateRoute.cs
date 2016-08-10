@@ -73,7 +73,7 @@ namespace TestApp
 
                 if (!alreadyDone && isChecked && isReady)
                 {
-                  //  startRouteSettings();
+                    //  startRouteSettings();
                     alreadyDone = true;
                 }
             }
@@ -110,11 +110,11 @@ namespace TestApp
 
         //}
 
-       
 
 
 
-    protected async override void OnCreate(Bundle savedInstanceState)
+
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
@@ -142,7 +142,7 @@ namespace TestApp
             mMap.UiSettings.CompassEnabled = true;
             //mMap.SetOnMyLocationChangeListener;
 
-             spinner = FindViewById<Spinner>(Resource.Id.createRoute);
+            spinner = FindViewById<Spinner>(Resource.Id.createRoute);
 
 
 
@@ -180,8 +180,8 @@ namespace TestApp
             //spinner.SetSelection(0);
 
             spinner.ItemSelected += spinner_ItemSelected;
-            String[] array = { "Walking", "Running", "Hiking", "Bicycling","Skiing" };
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , Android.Resource.Layout.SimpleListItemChecked, array);
+            String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing" };
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, array);
             spinner.Adapter = adapter;
             spinner.SetSelection(0);
 
@@ -191,7 +191,7 @@ namespace TestApp
 
 
             spinner.Visibility = ViewStates.Visible;
-            
+
 
             statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
             TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
@@ -199,22 +199,22 @@ namespace TestApp
             routeStatus.Text = "Stauts: Idle";
 
 
-          // Button start = FindViewById<Button>(Resource.Id.startRoute);
+            // Button start = FindViewById<Button>(Resource.Id.startRoute);
             //Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
 
-          start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
-           
-         //   Button end = FindViewById<Button>(Resource.Id.endRoute);
+            start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
+
+            //   Button end = FindViewById<Button>(Resource.Id.endRoute);
             Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
-          
+
             routeId = "";
 
             // fire an application-specified Intent when the device enters the proximity of a given geographical location.
             //locationManager.RemoveProximityAlert();
 
 
-           
+
 
             start.Click += (sender, e) =>
             {
@@ -231,11 +231,6 @@ namespace TestApp
                 //if (start.Checked)
                 //{
 
-
-                try
-                {
-
-               
                 if (start.Checked)
                 {
                     startRouteCreation();
@@ -243,11 +238,8 @@ namespace TestApp
                 else
                     finishRoute();
 
-                }
-                catch (Exception)
-                {
 
-                }
+
                 //if (firstRun)
                 //{
                 //    firstRun = false;
@@ -365,14 +357,14 @@ namespace TestApp
             //        return;
 
             //    }
-                 
+
 
             //    points = CreateRouteService.getPoints();
 
 
             //    StopService(new Intent(this, typeof(CreateRouteService)));
 
-                
+
             //    routeStatus.Text = "Stauts: Stopped";
             //    dist = 0;
             //    Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
@@ -398,7 +390,7 @@ namespace TestApp
             cancel.Click += (sender, e) =>
             {
                 StopService(new Intent(this, typeof(CreateRouteService)));
-              //  locationManager.RemoveUpdates(this);
+                //  locationManager.RemoveUpdates(this);
                 Finish();
             };
 
@@ -414,7 +406,7 @@ namespace TestApp
                 return;
 
             }
-            
+
             start.Enabled = false;
             points = CreateRouteService.getPoints();
 
@@ -449,7 +441,7 @@ namespace TestApp
             newDialog.DialogClosed += OnDialogClosed;
             newDialog.Show(transaction, "Start Route");
         }
-        async void  OnDialogClosed(object sender, DialogStartRoute.DialogEventArgs e)
+        async void OnDialogClosed(object sender, DialogStartRoute.DialogEventArgs e)
         {
             String[] returnData;
             returnData = e.ReturnValue.Split(',');
@@ -457,7 +449,7 @@ namespace TestApp
             routeInfo = returnData[1];
             routeDifficulty = returnData[2];
 
-       
+
 
             foreach (var item in me)
             {
@@ -471,9 +463,9 @@ namespace TestApp
                 routeStatus.Text = "Waiting to upload the route...";
                 dist = calculateDistance();
                 var first = points[0];
-               
 
-                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime,first.Latitude,first.Longitude);
+
+                List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime, first.Latitude, first.Longitude);
                 Azure.addToMyDistance(MainStart.userId, dist);
                 string routeID = "";
 
@@ -483,11 +475,11 @@ namespace TestApp
                     routeID = item.Id;
                 }
 
-                
+
                 foreach (var item in points)
                 {
 
-                    Azure.AddLocation(item.Latitude,item.Longitude, routeID);
+                    Azure.AddLocation(item.Latitude, item.Longitude, routeID);
 
                 }
                 if (dist == 0)
@@ -516,7 +508,6 @@ namespace TestApp
         }
         public void startRouteCreation()
         {
-            start.Enabled = false;
             start.SetBackgroundColor(Color.Blue);
             if (points.Count > 0)
             {
@@ -524,7 +515,7 @@ namespace TestApp
                 points.Clear();
             }
 
-           
+            start.Enabled = false;
 
             routeStatus.Text = "Aquiring your position...";
 
@@ -567,7 +558,7 @@ namespace TestApp
 
         } // en Pause
 
-    
+
         //public void startRouteSettings()
         //{
 
@@ -597,7 +588,7 @@ namespace TestApp
             {
                 Accuracy = Accuracy.Medium,
                 PowerRequirement = Power.Medium
-               
+
 
             };
             IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
@@ -618,9 +609,9 @@ namespace TestApp
         protected override void OnResume()
         {
             base.OnResume();
-          
-              //  locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
-           
+
+            //  locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+
 
         }
 
@@ -657,7 +648,7 @@ namespace TestApp
         //    Ischecked = true;
         //    try
         //    {
-               
+
         //        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
         //        mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
@@ -669,7 +660,7 @@ namespace TestApp
         //    }
         //    catch (Exception e)
         //    {
-               
+
         //    }
 
 
@@ -679,7 +670,7 @@ namespace TestApp
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-           
+
 
             if (e.Position == 0)
             {
@@ -754,7 +745,7 @@ namespace TestApp
             {
                 Location.DistanceBetween(fromLatitude, fromLongitude, toLatitude, toLongitude, results);
             }
-            catch (Exception )
+            catch (Exception)
             {
 
             }
@@ -781,13 +772,13 @@ namespace TestApp
             alert.SetTitle("Route is already being created!");
             alert.SetMessage("Route is already being created! Start a new Route?");
             alert.SetPositiveButton("Yes", (senderAlert, args) => {
-              
+
                 StopService(new Intent(this, typeof(CreateRouteService)));
                 val = true;
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-               
+
                 val = false;
             });
             //run the alert in UI thread to display in the screen
@@ -838,7 +829,7 @@ namespace TestApp
 
 
 
-        }
+    }
 
 
 
@@ -846,8 +837,6 @@ namespace TestApp
 
 
 
-
-    
 }
 
 

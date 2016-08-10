@@ -45,10 +45,72 @@ namespace TestApp
 
 
 
+        public static Bitmap getImageProper(string fileName, int width, int height)
+        {
+
+            BitmapFactory.Options options = new BitmapFactory.Options { InJustDecodeBounds = true };
+
+            // First we get the the dimensions of the file on disk
+            // in order to fit the requested dimensions.
+            int outHeight = options.OutHeight;
+            int outWidth = options.OutWidth;
+            int inSampleSize = 1;
+
+            // Next we calculate the ratio that we need to resize the image by
+
+
+            if (outHeight > height || outWidth > width)
+                {
+                    inSampleSize = outWidth > outHeight
+                        ? outHeight / height
+                            : outWidth / width;
+                }
+
+
+            options.InSampleSize = inSampleSize;
+            options.InJustDecodeBounds = false;
 
 
 
-     
+            // Now we will load the image and have BitmapFactory resize it for us.
+            BitmapFactory.DecodeFile(fileName, options);
+            Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);
+
+              
+           
+
+            // Images are being saved in landscape, so rotate them back to portrait if they were taken in portrait
+                Matrix mtx = new Matrix();
+                ExifInterface exif = new ExifInterface(fileName);
+                string orientation = exif.GetAttribute(ExifInterface.TagOrientation);
+
+                switch (orientation)
+                {
+                    case "6": // portrait
+                        mtx.PreRotate(90);
+                        resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                        mtx.Dispose();
+                        mtx = null;
+                        break;
+                    case "1": // landscape
+                        break;
+                    default:
+                        mtx.PreRotate(90);
+                        resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                        mtx.Dispose();
+                        mtx = null;
+                        break;
+                }
+
+            
+           
+           
+            return resizedBitmap;
+        }
+
+
+
+
 
 
 
@@ -222,58 +284,54 @@ namespace TestApp
 
                     imgFile = null;
                    // imgFile = new Java.IO.File(GetFilePath(uri)); //GetPathToImage(uri));
-                    imgFile = new Java.IO.File(path); 
-
-                    
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.InPreferredConfig = Bitmap.Config.Argb8888;
-                    Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
+                    imgFile = new Java.IO.File(path);
 
 
+                    // BitmapFactory.Options options = new BitmapFactory.Options();
+                    // options.InPreferredConfig = Bitmap.Config.Argb8888;
+                    // Bitmap bmap = BitmapFactory.DecodeFile(imgFile.Path, options);
 
 
+                    // ExifInterface exif = new ExifInterface(imgFile.Name);
+
+                    //// ExifInterface exif = new ExifInterface(imgFile.Path);
+
+                    // var orienta = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+                    // var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, (int)Android.Media.Orientation.Normal);
+
+                    // Matrix matrix = new Matrix();
+                    // //matrix.PostRotate(90);
+                    // orienta = orienta;
+                    // switch (orientation)
+                    // {
+
+                    //     case (int)Android.Media.Orientation.Rotate90:
+                    //         matrix.PostRotate(90);
+                    //         break;
+                    //     case (int)Android.Media.Orientation.Rotate180:
+                    //         matrix.PostRotate(180);
+                    //         break;
+                    //     case (int)Android.Media.Orientation.Rotate270:
+                    //         matrix.PostRotate(270);
+                    //         break;
+
+                    //     default:
+                    //         break;
+                    // }
+
+                    // var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 550, 350, true);
+                    // //  var rotatedBitmap = Bitmap.CreateBitmap(bitmapScalled, 0, 0, bmap.Width, bmap.Height, matrix, true);
+                    // var rotatedBitmap = Bitmap.CreateBitmap(bitmapScalled, 0, 0, bitmapScalled.Width, bitmapScalled.Height, matrix, true);
+
+                    // // bitmapScalled.Recycle();
+                    // bmap.Recycle();
 
 
-                    ExifInterface exif = new ExifInterface(imgFile.Name);
+                    // profilePic2.SetImageBitmap(rotatedBitmap);
 
-                   // ExifInterface exif = new ExifInterface(imgFile.Path);
-
-                    var orienta = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
-
-                    var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, (int)Android.Media.Orientation.Normal);
-
-                    Matrix matrix = new Matrix();
-                    //matrix.PostRotate(90);
-                    orienta = orienta;
-                    switch (orientation)
-                    {
-
-                        case (int)Android.Media.Orientation.Rotate90:
-                            matrix.PostRotate(90);
-                            break;
-                        case (int)Android.Media.Orientation.Rotate180:
-                            matrix.PostRotate(180);
-                            break;
-                        case (int)Android.Media.Orientation.Rotate270:
-                            matrix.PostRotate(270);
-                            break;
-                        
-                        default:
-                            break;
-                    }
-
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bmap, 550, 350, true);
-                    var rotatedBitmap = Bitmap.CreateBitmap(bitmapScalled, 0, 0, bmap.Width, bmap.Height, matrix, true);
-
-                  
-
-                  
-
-                    bmap.Recycle();
-
-
-                    profilePic2.SetImageBitmap(rotatedBitmap);
-                   // profilePic2.SetImageBitmap(getImageProper(imgFile.Path,550,350));
+                    Bitmap scaledBitmap = remade(imgFile.Path, 550, 350);
+                    profilePic2.SetImageBitmap(scaledBitmap);
                     profilePic2.RefreshDrawableState();
 
 
@@ -284,14 +342,17 @@ namespace TestApp
 
                         if (imgFile.Path.ToLower().EndsWith("png"))
                         {
-                            rotatedBitmap.Compress(Bitmap.CompressFormat.Png, 50, stream);
+                            //rotatedBitmap.Compress(Bitmap.CompressFormat.Png, 50, stream);
+                            scaledBitmap.Compress(Bitmap.CompressFormat.Png, 50, stream);
                             bitmapData = stream.ToArray();
 
                         }
 
                         else
                         {
-                            rotatedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 50, stream);
+                            // rotatedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 50, stream);
+                            scaledBitmap.Compress(Bitmap.CompressFormat.Jpeg, 50, stream);
+
                             bitmapData = stream.ToArray();
 
                         }
@@ -325,7 +386,7 @@ namespace TestApp
             catch (Exception a)
             {
 
-                profilePic2.SetImageBitmap(getImageProper(imgFile.Path, 550, 350));
+                profilePic2.SetImageBitmap(remade(imgFile.Path, 550, 350));
                 //  Toast.MakeText(this, "Please choose an image from the image Gallery!", ToastLength.Long).Show();
 
             }
@@ -333,71 +394,7 @@ namespace TestApp
         }
 
 
-        public static Bitmap getImageProper(string fileName, int width, int height)
-        {
-
-            BitmapFactory.Options options = new BitmapFactory.Options { InJustDecodeBounds = true };
-            BitmapFactory.DecodeFile(fileName, options);
-            Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);
-            int outHeight = options.OutHeight;
-            int outWidth = options.OutWidth;
-            int inSampleSize = 1;
-
-            try
-            {
-
-          
-            // First we get the the dimensions of the file on disk
-          
-                // Next we calculate the ratio that we need to resize the image by
-                // in order to fit the requested dimensions.
-
-
-                if (outHeight > height || outWidth > width)
-            {
-                inSampleSize = outWidth > outHeight
-                    ? outHeight / height
-                        : outWidth / width;
-            }
-
-            // Now we will load the image and have BitmapFactory resize it for us.
-            options.InSampleSize = inSampleSize;
-            options.InJustDecodeBounds = false;
-        
-
-            // Images are being saved in landscape, so rotate them back to portrait if they were taken in portrait
-            Matrix mtx = new Matrix();
-            ExifInterface exif = new ExifInterface(fileName);
-            string orientation = exif.GetAttribute(ExifInterface.TagOrientation);
-
-            switch (orientation)
-            {
-                case "6": // portrait
-                    mtx.PreRotate(90);
-                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
-                    mtx.Dispose();
-                    mtx = null;
-                    break;
-                case "1": // landscape
-                    break;
-                default:
-                    mtx.PreRotate(90);
-                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
-                    mtx.Dispose();
-                    mtx = null;
-                    break;
-            }
-
-            }
-            catch (Exception)
-            {
-
-             
-            }
-
-            return resizedBitmap;
-        }
-
+     
 
         private static int getRotation(Uri jj)
         {
@@ -436,7 +433,57 @@ namespace TestApp
                 return resultStream.ToArray();
             }
         }
+        public static Bitmap remade( string fileName, int width, int height)
+        {
+            // First we get the the dimensions of the file on disk
+            BitmapFactory.Options options = new BitmapFactory.Options { InJustDecodeBounds = true };
+            BitmapFactory.DecodeFile(fileName, options);
 
+            // Next we calculate the ratio that we need to resize the image by
+            // in order to fit the requested dimensions.
+            int outHeight = options.OutHeight;
+            int outWidth = options.OutWidth;
+            int inSampleSize = 1;
+
+            if (outHeight > height || outWidth > width)
+            {
+                inSampleSize = outWidth > outHeight
+                    ? outHeight / height
+                        : outWidth / width;
+            }
+
+            // Now we will load the image and have BitmapFactory resize it for us.
+            options.InSampleSize = inSampleSize;
+            options.InJustDecodeBounds = false;
+            Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);
+
+            // Images are being saved in landscape, so rotate them back to portrait if they were taken in portrait
+            Matrix mtx = new Matrix();
+            ExifInterface exif = new ExifInterface(fileName);
+            string orientation = exif.GetAttribute(ExifInterface.TagOrientation);
+
+            switch (orientation)
+            {
+                case "6": // portrait
+                    mtx.PreRotate(90);
+                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                    mtx.Dispose();
+                    mtx = null;
+                    break;
+                case "1": // landscape
+                    break;
+                default:
+                    mtx.PreRotate(90);
+                    resizedBitmap = Bitmap.CreateBitmap(resizedBitmap, 0, 0, resizedBitmap.Width, resizedBitmap.Height, mtx, false);
+                    mtx.Dispose();
+                    mtx = null;
+                    break;
+            }
+
+
+
+            return resizedBitmap;
+        }
         static byte[] Compress(byte[] data)
         {
             using (var compressedStream = new MemoryStream())

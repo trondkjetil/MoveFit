@@ -98,7 +98,12 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
-            mainActivity = this;
+             mainActivity = this;
+
+
+
+
+
 
             changed = false;
             user = null;
@@ -462,7 +467,12 @@ namespace TestApp
 
 
 
-         
+
+            //Test sync all
+
+           // await Azure.SyncAsync();
+
+
         }
 
         public async void connectToChat()

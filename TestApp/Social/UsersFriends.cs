@@ -206,7 +206,7 @@ namespace TestApp
             Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
 
             var res = Convert.ToInt32(result[0]);
-            myHolder.mDist.Text = res.ToString()+ " meters away;
+            myHolder.mDist.Text = res.ToString()+ " meters away";
 
             if (mUsers[position].Online)
             {
