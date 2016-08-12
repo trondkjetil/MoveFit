@@ -386,8 +386,8 @@ namespace TestApp
             catch (Exception a)
             {
 
-                profilePic2.SetImageBitmap(remade(imgFile.Path, 550, 350));
-                //  Toast.MakeText(this, "Please choose an image from the image Gallery!", ToastLength.Long).Show();
+            //    profilePic2.SetImageBitmap(remade(imgFile.Path, 550, 350));
+               Toast.MakeText(this, "Please choose an image from the image Gallery!", ToastLength.Long).Show();
 
             }
 

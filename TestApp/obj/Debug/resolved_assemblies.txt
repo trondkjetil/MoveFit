@@ -2,7 +2,9 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Auth0Client.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Bolts.AppLinks.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Bolts.Tasks.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\GCM.Client.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.AspNet.SignalR.Client.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Messaging.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Mobile.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Mobile.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll

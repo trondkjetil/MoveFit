@@ -103,11 +103,7 @@ namespace TestApp
             //await tableUserFriends.PurgeAsync();
 
 
-            //List<User> l = userTable.ToListAsync().Result;
-            //foreach (User u in l)
-            //{
-            //    userTable.DeleteAsync(u);
-            //}
+           
         }
      
         public static async Task<User> getOfflineUser()
@@ -119,19 +115,23 @@ namespace TestApp
 
 
                 await SyncAsync();
+               
 
-                var insert = await AddMessage("102", "WOOOHOOOOOO", "123");
-         
-    
-                List<Messages> tablee = await tableUserMessages.Where(msg => msg.Conversation == "123").ToListAsync();
-                tablee = tablee;
+
 
                 List<User> ta = await userTable.Where(user => user.Id != null).ToListAsync();
                 ta = ta;
 
 
-              
-           
+                List<User> taa = await table.Where(user => user.Id != null).ToListAsync();
+                taa = taa;
+
+
+                List<Route> route = await routeTable.Where(user => user.Id != null).ToListAsync();
+                taa = taa;
+
+
+
 
                 //    List<User> pointlist = null;
                 //    userTable =  client.GetSyncTable<User>();

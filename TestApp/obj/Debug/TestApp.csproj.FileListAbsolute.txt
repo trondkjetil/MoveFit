@@ -6,7 +6,9 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.TestApp-Signed.apk
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Auth0Client.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.AppLinks.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.Tasks.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\GCM.Client.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Messaging.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll

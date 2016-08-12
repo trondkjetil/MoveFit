@@ -17,16 +17,19 @@ using Android.Content.PM;
 using System.Threading;
 using TestApp.Points;
 using Android.Graphics;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 
 
 namespace TestApp
 {
-    [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class CreateRoute : Activity, IOnMapReadyCallback //, ILocationListener
+    [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+    public class CreateRoute : AppCompatActivity, IOnMapReadyCallback //, ILocationListener
     {
         const long MIN_TIME = 5 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
         const long MIN_DISTANCE = 0;
 
+        SupportToolbar toolbar;
         public LocationManager locationManager;
         public string locationProvider;
         public MarkerOptions markerOpt1;
@@ -131,6 +134,13 @@ namespace TestApp
             mMap = mapFrag.Map;
 
 
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+           
+
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
             markerOpt1 = new MarkerOptions();
             markerOpt2 = new MarkerOptions();
 
@@ -205,7 +215,7 @@ namespace TestApp
             start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
 
             //   Button end = FindViewById<Button>(Resource.Id.endRoute);
-            Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
+           // Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
 
 
             routeId = "";
@@ -387,12 +397,12 @@ namespace TestApp
 
 
 
-            cancel.Click += (sender, e) =>
-            {
-                StopService(new Intent(this, typeof(CreateRouteService)));
-                //  locationManager.RemoveUpdates(this);
-                Finish();
-            };
+            //cancel.Click += (sender, e) =>
+            //{
+            //    StopService(new Intent(this, typeof(CreateRouteService)));
+            //    //  locationManager.RemoveUpdates(this);
+            //    Finish();
+            //};
 
         }
 
@@ -763,11 +773,61 @@ namespace TestApp
         }
 
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
+
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
+            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+            //itemExit = menu.FindItem(Resource.Id.exit);
+
+
+            //goHome.SetIcon(Resource.Drawable.eexit);
+            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
+
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.exit:
+                    Finish();
+                    return true;
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                case Resource.Id.home:
+
+                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
+                    //StartActivity(myIntent);
+
+                    OnBackPressed();
+                    Finish();
+
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+        }
+
         bool routeIsRunning()
         {
 
             bool val = false;
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 
             alert.SetTitle("Route is already being created!");
             alert.SetMessage("Route is already being created! Start a new Route?");

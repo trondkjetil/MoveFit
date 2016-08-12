@@ -17,17 +17,19 @@ using Android.Content.PM;
 using TestApp.Points;
 using Android.Graphics.Drawables;
 using Android.Graphics;
-
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 namespace TestApp
 {
-    [Activity(Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class StartRoute : Activity, ILocationListener
+    [Activity(Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+    public class StartRoute : AppCompatActivity, ILocationListener
     {
 
 
         const long MIN_TIME = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
         const long MIN_DISTANCE = 5;
 
+        SupportToolbar toolbar;
         LocationManager locationManager;
         string locationProvider;
         MarkerOptions markerOpt1;
@@ -52,7 +54,7 @@ namespace TestApp
         public string elapsedTime;
 
         public static float avgSpeed;
-
+        public ToggleButton start;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -77,7 +79,9 @@ namespace TestApp
 
                 locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
 
-                
+                toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(toolbar);
+                SupportActionBar.SetDisplayShowTitleEnabled(false);
 
                 TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
                 TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
@@ -88,10 +92,9 @@ namespace TestApp
                 TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
                 TextView time = FindViewById<TextView>(Resource.Id.startRouteTime);
 
+                start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
 
-                Button start = FindViewById<Button>(Resource.Id.startRoute);
-                Button end = FindViewById<Button>(Resource.Id.endRoute);
-                Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
+
                 RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
                 LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
@@ -100,6 +103,8 @@ namespace TestApp
                 stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
                 ratingbar.Clickable = false;
                 ratingbar.Visibility = ViewStates.Visible;
+                ratingbar.Rating = 0;
+
 
                 routeName = array[0];
                 routeInfo = array[1];
@@ -148,123 +153,150 @@ namespace TestApp
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                   
                 }
+
+
 
 
                 start.Click += (sender, e) =>
                 {
-                    if (CreateRouteService.serviceIsRunning == true)
+
+                    if (start.Checked)
                     {
-                        Toast.MakeText(this, "Cannot start a route while creating one!", ToastLength.Long).Show();
-
-                        return;
-                    }
-
-
-                    if (StartRouteService.serviceIsRunning == true)
-                    {
-                        var val = routeIsRunning();
-
-                        if (val == true)
-                            return;
-
-                    }
-
-                    double distance = getDistanceFromStart();
-
-                    if (distance <= 100)
-                    {
-                        Toast.MakeText(this, "Starting route...", ToastLength.Long).Show();
-                        StartService(new Intent(this, typeof(StartRouteService)));
-
-                        stopWatch = new Stopwatch();
-                        stopWatch.Start();
+                        startRoute();
                     }
                     else
-                        Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
+                        endRoute();
+
+                };
 
 
+
+
+
+
+                //    start.Click += (sender, e) =>
+                //{
+                    
+                //};
+
+                //end.Click += (sender, e) =>
+                //{
                   
 
+                //};
 
-                    //InitializeLocationManager();
-                    //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
-
-
-                    
-                };
-
-                end.Click += (sender, e) =>
-                {
-                    if (StartRouteService.serviceIsRunning == false)
-                    {
-                        Toast.MakeText(this, "Nothing to stop!", ToastLength.Short).Show();
-                        return;
-
-                    }
-
-
-                    List<float> speedList = StartRouteService.points;
-
-                    float sum = 0;
-                    avgSpeed = 0;
-
-                    foreach (var item in speedList)
-                    {
-
-                        sum += item;
-
-                    }
-
-                    avgSpeed = sum / speedList.Count();
-
-                    StopService(new Intent(this, typeof(StartRouteService)));
-
-                    stopWatch.Stop();
-                    TimeSpan ts = stopWatch.Elapsed;
-                    elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                    ts.Hours, ts.Minutes, ts.Seconds,
-                    ts.Milliseconds / 10);
-
-
-                    double distance = getDistanceFromStart();
-
-
-                    if (distance <= 70)
-                    {
-                        Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
-                        startDialogNameRoute();
-                        if (locationManager != null)
-                            locationManager.RemoveUpdates(this);
-
-
-
-                        int mypoints = MyPoints.calculatePoints(routeType, (int)Math.Round(distance));
-                        var done = Azure.addToMyPoints(routeId, mypoints);
-                        var complete = Azure.increaseTripCount(routeId);
-                        Azure.addToMyDistance(MainStart.userId, distance);
-
-                        Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
-
-
-                    }
-                    else
-                        Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finish - point is: " + distance, ToastLength.Long).Show();
-
-                    
-
-                };
-
-                cancel.Click += (sender, e) =>
-                {
-                    Toast.MakeText(this, "Route canceled!", ToastLength.Long).Show();
-
-                    Finish();
-                };
+            
 
 
             }
+
+        }
+        private void startRoute()
+        {
+            if (CreateRouteService.serviceIsRunning == true)
+            {
+                Toast.MakeText(this, "Cannot start a route while creating one!", ToastLength.Long).Show();
+
+                return;
+            }
+
+            start.Enabled = false;
+
+            if (StartRouteService.serviceIsRunning == true)
+            {
+                var val = routeIsRunning();
+
+                if (val == true)
+                    return;
+
+            }
+
+            double distance = getDistanceFromStart();
+
+            if (distance <= 100)
+            {
+                Toast.MakeText(this, "Starting route...", ToastLength.Long).Show();
+                StartService(new Intent(this, typeof(StartRouteService)));
+
+                stopWatch = new Stopwatch();
+                stopWatch.Start();
+            }
+            else
+                Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
+
+
+
+            start.Enabled = true;
+
+            //InitializeLocationManager();
+            //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
+
+
+
+        }
+        private void endRoute()
+        {
+            if (StartRouteService.serviceIsRunning == false)
+            {
+                Toast.MakeText(this, "Nothing to stop!", ToastLength.Short).Show();
+                return;
+
+            }
+
+            start.Enabled = false;
+            List<float> speedList = StartRouteService.points;
+
+            float sum = 0;
+            avgSpeed = 0;
+
+            foreach (var item in speedList)
+            {
+
+                sum += item;
+
+            }
+
+            avgSpeed = sum / speedList.Count();
+
+            StopService(new Intent(this, typeof(StartRouteService)));
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+
+
+            double distance = getDistanceFromStart();
+
+
+            if (distance <= 70)
+            {
+                Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
+                startDialogNameRoute();
+                if (locationManager != null)
+                    locationManager.RemoveUpdates(this);
+
+
+
+                int mypoints = MyPoints.calculatePoints(routeType, (int)Math.Round(distance));
+                var done = Azure.addToMyPoints(routeId, mypoints);
+                var complete = Azure.increaseTripCount(routeId);
+                Azure.addToMyDistance(MainStart.userId, distance);
+
+                Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
+
+
+            }
+            else
+                Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finish - point is: " + distance, ToastLength.Long).Show();
+
+
+
+
+            start.Enabled = true;
 
         }
 
@@ -525,7 +557,7 @@ namespace TestApp
         bool routeIsRunning()
         {
             bool val = false;
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 
             alert.SetTitle("Route is already active!");
             alert.SetMessage("Route is already active! Start a new Route?");
@@ -548,7 +580,55 @@ namespace TestApp
             return val;
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
 
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
+
+            //itemGender = menu.FindItem(Resource.Id.gender);
+            //itemAge = menu.FindItem(Resource.Id.age);
+            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+            //itemExit = menu.FindItem(Resource.Id.exit);
+
+
+            //goHome.SetIcon(Resource.Drawable.eexit);
+            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
+
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.exit:
+                    Finish();
+                    return true;
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                case Resource.Id.home:
+
+                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
+                    //StartActivity(myIntent);
+
+                    OnBackPressed();
+                    Finish();
+
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+        }
 
 
     }

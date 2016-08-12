@@ -26,6 +26,11 @@ using System.Threading.Tasks;
 using static Android.Gms.Maps.GoogleMap;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 
+
+
+
+using Gcm.Client;
+
 namespace TestApp
 {
 
@@ -33,6 +38,8 @@ namespace TestApp
     [Activity(Label = "MainMenu", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainStart : AppCompatActivity, ILocationListener
     {
+        public static MainStart instance;
+
         public readonly string logTag = "MainActivity";
         SupportToolbar mToolbar;
         ActionBarDrawerToggle mDrawerToggle;
@@ -74,8 +81,8 @@ namespace TestApp
         public static GoogleMap mMap;
         TextView points;
         public static Activity mainActivity;
-           public static User waitingUpload;
-           public static User userInstanceOne;
+        public static User waitingUpload;
+        public static User userInstanceOne;
 
 
         public static bool isOnline;
@@ -84,13 +91,31 @@ namespace TestApp
 
         TextView messages;
 
-
-
-                public static string myUserId;
-                  public static string myUserName;
-                   public static string userList;
+        public static string myUserId;
+        public static string myUserName;
+        public static string userList;
         public static List<MessageDetail> currentMessagesWritten;
-        public static  List<UserDetail> listOfConnectedUsers;
+        public static List<UserDetail> listOfConnectedUsers;
+
+
+
+
+
+
+
+
+
+        private void RegisterWithGCM()
+        {
+            // Check to ensure everything's set up right
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
+
+            // Register for push notifications
+            Log.Info("MainActivity", "Registering...");
+            GcmClient.Register(this, Constants.SenderID);
+        }
+
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -102,7 +127,8 @@ namespace TestApp
 
 
 
-
+            instance = this;
+            RegisterWithGCM();
 
 
             changed = false;
@@ -885,57 +911,7 @@ namespace TestApp
                         alert.Show();
                     });
 
-                    //     SpannableString s =
-                    //new SpannableString(context.getText(R.string.dialog_message));
-                    //     Linkify.addLinks(s, Linkify.WEB_URLS);
-                    //     message.setText(s);
-                    //     message.setMovementMethod(LinkMovementMethod.getInstance());
-
-                    //var builder = new AlertDialog.Builder(this);
-                    //TextView tv = new TextView(this);
-                    //tv.TextFormatted = Android.Text.Html.FromHtml(responseText); //your html goes in responseText
-                    //tv.SetTextSize(Android.Util.ComplexUnitType.Dip, 18);
-                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-                    //builder.SetView(tv);
-                    //builder.SetPositiveButton("OK", delegate { });
-                    //builder.Show();
-
-
-                    //TextView tv = new TextView(this);
-                    //tv.TextFormatted = Html.FromHtml("https://www.surveymonkey.com/r/WT798BM"); //your html goes in responseText
-                    //tv.SetTextSize(Android.Util.ComplexUnitType.Dip, 18);
-                    //tv.SetTextColor(Color.Blue);
-                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-
-                    //String link1 = "<a href=\"http://www.google.com\">http://www.google.com</a>";
-                    //String message = "Some links: " + link1 + "link1, link2, link3";
-                    //ISpanned myMessage = Html.FromHtml(message);
-
-                    //Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
-                    //builder.SetTitle("This is a title");
-                    //builder.SetMessage(myMessage);
-                    //builder.SetCancelable(true);
-                    //Android.Support.V7.App.AlertDialog alertDialog = builder.Create();
-                    //alertDialog.Show();
-                    //TextView tv = new TextView(this);
-                    //tv.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-
-
-
-                    //Android.App.AlertDialog alertMessage = new Android.App.AlertDialog.Builder(this).Create();
-                    //alertMessage.SetTitle("Info");
-                    //alertMessage.SetCancelable(true);
-                    //alertMessage.SetView(tv);
-
-                    // alertMessage.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
-                    // "As this is a part of my thesis, I kindly ask if you could be so kind a help me by answering the following survey: "+ System.Environment.NewLine
-                    // +
-                    // System.Environment.NewLine+  "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
-                    // );
-                    //// +"https://www.surveymonkey.com/r/WT798BM"
-
-                    // alertMessage.Show();
-
+                 
 
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
                     {
