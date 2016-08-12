@@ -80,8 +80,6 @@ namespace TestApp
             mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this, act, mAdapter,me);
             mRecyclerView.SetAdapter(mAdapter);
 
-
-
         }
 
 

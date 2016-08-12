@@ -1026,12 +1026,12 @@ namespace TestApp
         /// Updates UI with location data
         public void HandleLocationChanged(object sender, LocationChangedEventArgs e)
         {
-            Location location = e.Location;
-            currentLocation = location;
+           
+            currentLocation = e.Location;  
 
 
 
-            OnLocationChanged(location);
+            OnLocationChanged(e.Location);
 
             Changed = true;
             changed = true;
@@ -1041,19 +1041,20 @@ namespace TestApp
             }
         }
 
+
         public void HandleProviderDisabled(object sender, ProviderDisabledEventArgs e)
         {
-            Log.Debug(logTag, "Location provider disabled event raised");
+
         }
 
         public void HandleProviderEnabled(object sender, ProviderEnabledEventArgs e)
         {
-            Log.Debug(logTag, "Location provider enabled event raised");
+
         }
 
         public void HandleStatusChanged(object sender, StatusChangedEventArgs e)
         {
-            Log.Debug(logTag, "Location status changed, event raised");
+
         }
 
 
@@ -1063,7 +1064,7 @@ namespace TestApp
         {
             Geocoder geocoder = new Geocoder(this);
             IList<Address> addressList =
-                await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
+            await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
 
             Address address = addressList.FirstOrDefault();
             return address;
@@ -1110,8 +1111,7 @@ namespace TestApp
                 markerOpt1.SetTitle("My Position");
                 markerOpt1.SetSnippet("My Position");
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); //(Resource.Drawable.test);
-                markerOpt1.SetIcon(image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
-                mMap.AddMarker(markerOpt1);
+                markerOpt1.SetIcon(image);  mMap.AddMarker(markerOpt1);
                 //  mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPosition, 15));
             }
             catch (Exception es)
@@ -1137,9 +1137,7 @@ namespace TestApp
                 try
                 {
 
-                    if (IOUtilz.isOnline(connectivityManager))
-                    {
-
+                  
                         //Toast.MakeText(this, "User is online", ToastLength.Long).Show();
 
                         Address address = await ReverseGeocodeCurrentLocation();
@@ -1151,7 +1149,7 @@ namespace TestApp
                         }
 
 
-                    }
+                    
 
 
                     var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
@@ -1161,21 +1159,12 @@ namespace TestApp
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                     mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
-
-
-
-
                 }
-                catch (Exception)
+                catch (Exception a)
                 {
 
-
+                    throw a;
                 }
-
-
-
-
-
 
 
             }
@@ -1199,9 +1188,6 @@ namespace TestApp
         {
             List<Contact> _contactList;
             public Activity _activity;
-
-
-            //public static GoogleMap mMap;
             public static List<User> nearbyUsers;
             public static ImageButton findMoreFriends;
 
@@ -1261,7 +1247,7 @@ namespace TestApp
 
                 if (mMap != null)
                 {
-                    mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
+                    mMap.MapType = GoogleMap.MapTypeTerrain;  
                 }
 
                 try
@@ -1275,15 +1261,11 @@ namespace TestApp
                 mMap.UiSettings.ScrollGesturesEnabled = false;
 
                 contactName.Text = "";
-
-               
-                TextView bearText;
-              
-                bearText = view.FindViewById<TextView>(Resource.Id.bear);
+                TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
-
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
-                location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
+
+                    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
                     if (e.IsChecked == true)
                     {
                         Toast.MakeText(_activity, "Your location tracking has been turned on", ToastLength.Long).Show();
@@ -1311,25 +1293,7 @@ namespace TestApp
                     }
                 };
 
-                    //  findMoreFriends = view.FindViewById<ImageButton>(Resource.Drawable.lupe);
-
-                    //_activity.RunOnUiThread(() =>
-                    //{
-                    //    try
-                    //    {
-
-                    //        // markOnMap(nearbyUsers, mMap);
-                    //        // findMoreFriends.Click += startFriendMap_Click;
-                    //        //    await AddressInitiate();
-                    //    }
-                    //    catch (Exception e)
-                    //    {
-
-                    //    }
-
-
-                    //});
-
+                   
                 }
                 catch (Exception)
                 {
@@ -1341,28 +1305,7 @@ namespace TestApp
             }
 
 
-            //public async static void markOnMap(List<User> users, GoogleMap mMap)
-            //{
-
-            //    try
-            //    {
-
-            //        nearbyUsers = await Azure.getImagesOnMap();
-            //        foreach (User x in nearbyUsers)
-            //        {
-            //           // setMarker(new LatLng(Convert.ToDouble(x.Lat), Convert.ToDouble(x.Lon)), IOUtilz.GetImageBitmapFromUrl(x.ProfilePicture), mMap);
-
-            //        }
-
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-
-            //    }
-
-            //}
-
+         
             public void OnMapClick(LatLng point)
             {
                 try
@@ -1387,10 +1330,20 @@ namespace TestApp
             alert.SetMessage("Do you want to exit the application?");
             alert.SetPositiveButton("Yes", async (senderAlert, args) => {
               
-                base.OnBackPressed();
+            base.OnBackPressed();
                
                 var wait = await logOff();
-                System.Environment.Exit(0);
+                try
+                {
+                    System.Environment.Exit(0);
+                    WelcomeScreen.instance.Finish();
+                }
+                catch (Exception)
+                {
+
+                 
+                }
+               
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -1414,9 +1367,6 @@ namespace TestApp
             string activityLevel = returnData[1];
             string ageString = returnData[2];
             int age = Convert.ToInt32(ageString);
-
-
-          
 
             try
             {

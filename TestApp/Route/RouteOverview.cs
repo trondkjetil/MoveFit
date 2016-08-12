@@ -42,7 +42,18 @@ namespace TestApp
             me = await Azure.getUserInstanceByName(MainStart.userName);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
-          //  SupportActionBar.SetIcon(icon);
+
+
+            Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
+            Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
+            Button createRoute = (Button)FindViewById(Resource.Id.createRoutes);
+
+            Typeface tf = Typeface.CreateFromAsset(Assets,
+               "english111.ttf");
+            TextView tv = (TextView)FindViewById(Resource.Id.textRoute);
+            tv.Text = "Create your own route, and earn points!";
+            tv.TextSize = 28;
+            tv.Typeface = tf;
 
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
@@ -65,10 +76,9 @@ namespace TestApp
                 setMarker(item);
             }
 
-            Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
-            Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
-            Button createRoute = (Button)FindViewById(Resource.Id.createRoutes);
+          
 
+            
 
 
             myRoutes.Click += (sender, e) => {

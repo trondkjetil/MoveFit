@@ -13,6 +13,7 @@ using Android.Graphics;
 using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
+using Android.Locations;
 
 namespace TestApp
 {
@@ -22,9 +23,9 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-		
 
-		SwipeRefreshLayout mSwipeRefreshLayout;
+        public List<User> me;
+        SwipeRefreshLayout mSwipeRefreshLayout;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,8 +47,9 @@ namespace TestApp
 
 
             List<Route> routeList = await Azure.getRoutes();
+            me = await Azure.getUserInstanceByName(MainStart.userName);
 
-            if(routeList.Count == 0)
+            if (routeList.Count == 0)
             {
                 Toast.MakeText(this, "Could not find any routes!", ToastLength.Long).Show();
 
@@ -56,7 +58,7 @@ namespace TestApp
                 Finish();
             }
           
-            mAdapter = new UsersRoutesAdapter(routeList, mRecyclerView, this);
+            mAdapter = new UsersRoutesAdapter(routeList, mRecyclerView, this,me);
             mRecyclerView.SetAdapter(mAdapter);
 
 
@@ -93,7 +95,7 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
-
+        private List<User> mMyInstance;
         public string routeName;
         public string routeInfo;
         public string routeRating;
@@ -106,12 +108,12 @@ namespace TestApp
 
 
 
-        public UsersRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
+        public UsersRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context, List<User> myInstance )
         {
             mRoutes = routes;
             mRecyclerView = recyclerView;
             mContext = context;
-
+            mMyInstance = myInstance;
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -120,6 +122,7 @@ namespace TestApp
             public TextView mRouteName { get; set; }
             public TextView mStatus { get; set; }
             public TextView mRouteInfo { get; set; }
+            public TextView mDistanceAway { get; set; }
             public ImageView mIconForRoute { get; set; }
             public ImageButton mStartRouteFlag { get; set; }
             public ImageButton mRouteDifficulty { get; set; }
@@ -142,11 +145,13 @@ namespace TestApp
                 TextView name = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = userRoutes.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
-                ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
+                TextView distanceFromMe = userRoutes.FindViewById<TextView>(Resource.Id.distAway);
+
+            ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
                 ImageButton routeDifficultyImage = userRoutes.FindViewById<ImageButton>(Resource.Id.imageButton3);
               
 
-            MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage};
+            MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage,mDistanceAway = distanceFromMe};
 
             return view;
   
@@ -170,8 +175,17 @@ namespace TestApp
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mRouteName.Text = mRoutes[position].Name;
               //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
-                myHolder.mRouteInfo.Text = "Distance " + mRoutes[position].Distance + " meters";
+                myHolder.mRouteInfo.Text = "Length " + mRoutes[position].Distance + " meters";
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
+
+
+            // Calculate distance to User
+            float[] result = null;
+            result = new float[1];
+            Location.DistanceBetween(mRoutes[position].Lat, mRoutes[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
+
+            var res = Convert.ToInt32(result[0]);
+            myHolder.mDistanceAway.Text = res.ToString() + " meters away";
 
 
             if (mRoutes[position].Difficulty == "Easy")

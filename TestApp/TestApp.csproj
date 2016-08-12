@@ -227,6 +227,7 @@
     <AndroidResource Include="Resources\layout\auth.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
+    <AndroidAsset Include="Assets\english111.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

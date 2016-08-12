@@ -24,7 +24,7 @@ namespace TestApp
     [Activity(Label = "MoveFit", Icon = "@drawable/tt", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class WelcomeScreen : Activity
     {
-
+        public static Activity instance;
         public WebView webLoadingIcon;
         Auth0Client client = new Auth0Client(
             "none.au.auth0.com",
@@ -55,7 +55,7 @@ namespace TestApp
             base.OnCreate(savedInstanceState);
             RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.welcome);
-
+            instance = this;
             //New database in Azure requires initialisation with ToDoItem setup in order to work
             //  CurrentPlatform.Init ();
             Azure.initAzure();

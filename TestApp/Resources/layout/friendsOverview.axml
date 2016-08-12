@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-               xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    android:background="#FFFFFF">
 <!--<ImageView
         android:src="@drawable/social"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/imageView1" />-->
-   <android.support.v7.widget.Toolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,12 +29,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
+      <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+        <TextView
+            android:text=""
+            android:layout_below="@+id/map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textFriends"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true" />
+      </RelativeLayout>
         <Button
             android:text="My friends"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textFriends"
             android:id="@+id/myFriends"
             android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="0.0dp" />
         <Button
             android:text="Friend Requests"
@@ -42,6 +57,8 @@
             android:gravity="center"
             android:layout_below="@+id/myFriends"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:id="@+id/friendRequests" />
         <Button
             android:text="Find a partner"
@@ -49,6 +66,8 @@
             android:gravity="center"
             android:layout_below="@+id/friendRequests"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:id="@+id/findFriends" />
     </RelativeLayout>
 </LinearLayout>

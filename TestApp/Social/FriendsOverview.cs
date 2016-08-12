@@ -59,6 +59,13 @@ namespace TestApp
                 setMarker(item);
             }
 
+
+            Typeface tf = Typeface.CreateFromAsset(Assets,
+                 "english111.ttf");
+            TextView tv = (TextView)FindViewById(Resource.Id.textFriends);
+            tv.Text = "Find a friend in your area, and go do some activities together!";
+            tv.TextSize = 28;
+            tv.Typeface = tf;
             Button myFriends = (Button)FindViewById(Resource.Id.myFriends);
             Button friendRequests = (Button)FindViewById(Resource.Id.friendRequests);
             Button findFriends = (Button)FindViewById(Resource.Id.findFriends);
