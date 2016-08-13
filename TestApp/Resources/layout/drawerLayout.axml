@@ -32,10 +32,33 @@
                 android:background="#ff00bfa5">
                 <ImageView
                     android:src="@android:drawable/ic_menu_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profilePicture"
+                    android:background="#ff00bfa5"
+                    android:layout_alignParentLeft="true" />
+                <TextView
+                    android:text="MoveFit"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/titleApp"
+                    android:textColor="#ffffff"
+                    android:layout_centerInParent="true" />
+            <!--<ImageView
+                    android:src="@android:drawable/ic_menu_gallery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/profilePicture"
                     android:background="#ff00bfa5" />
+                <TextView
+                    android:text="MoveFit"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:textColor="#ffffff"
+                    android:background="#ff84ffff" />-->
             <!--<ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyle"
@@ -68,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/points"
                     android:textColor="#ff000000" />
-            <TextView
+                <TextView
                     android:text=""
                     android:layout_below="@+id/points"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -84,8 +107,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/distance"
                     android:textColor="#ff000000" />
-            
-            <TextView
+                <TextView
                     android:text=""
                     android:layout_below="@+id/distance"
                     android:textAppearance="?android:attr/textAppearanceLarge"

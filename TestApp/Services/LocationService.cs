@@ -12,7 +12,12 @@ namespace TestApp
 	[Service]
 	public class LocationService : Service, ILocationListener
 	{
-		public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
+
+        private static readonly int UPDATE_INTERVAL = 1000 * 10 * 1;
+        private static readonly int MIN_DISTANCE = 2;
+
+
+        public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
 		public event EventHandler<ProviderDisabledEventArgs> ProviderDisabled = delegate { };
 		public event EventHandler<ProviderEnabledEventArgs> ProviderEnabled = delegate { };
 		public event EventHandler<StatusChangedEventArgs> StatusChanged = delegate { };
@@ -20,7 +25,7 @@ namespace TestApp
         public string locationProvider;
 
         Location currentLocation;
-
+        Location currentBestLocation;
         public LocationService() 
 		{
 		}
@@ -56,9 +61,9 @@ namespace TestApp
 			return binder;
 		}
 
-		// Handle location updates from the location manager
-		public void StartLocationUpdates () 
-		{
+        // Handle location updates from the location manager
+        public void StartLocationUpdates()
+        {
             //we can set different location criteria based on requirements for our app -
             //for example, we might want to preserve power, or get extreme accuracy
 
@@ -67,7 +72,7 @@ namespace TestApp
             LocMgr = (LocationManager)GetSystemService(LocationService);
 
 
-          
+
 
             IList<string> acceptableLocationProviders = null;
 
@@ -82,37 +87,32 @@ namespace TestApp
 
                 };
 
-                Criteria low = new Criteria
+                Criteria medium = new Criteria
                 {
                     Accuracy = Accuracy.Medium,
                     PowerRequirement = Power.Medium
 
-
                 };
 
-                var list = LocMgr.GetProviders(criteriaForLocationService, true);
+                acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
 
-                if (list.Count > 0)
+                if (acceptableLocationProviders.Count == 0)
                 {
-                    acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
+                    acceptableLocationProviders = LocMgr.GetProviders(medium, true);
 
                 }
                 else
                 {
-                    
-                    acceptableLocationProviders = LocMgr.GetProviders(low, true);
 
+                    acceptableLocationProviders = LocMgr.GetProviders(medium, false);
 
                 }
 
-
-
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                throw e;
 
-               
             }
 
             if (acceptableLocationProviders.Any())
@@ -126,17 +126,12 @@ namespace TestApp
 
             try
             {
-                LocMgr.RequestLocationUpdates(locationProvider, 15000, 0, this);
+                LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, 0, this);
             }
-            catch (Exception)
+            catch (Exception a)
             {
-
-               
+                throw a;
             }
-           
-
-
-
 
             //         var locationCriteria = new Criteria();
 
@@ -151,12 +146,12 @@ namespace TestApp
             //// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
             //LocMgr.RequestLocationUpdates(locationProvider, 10000, 0, this);
 
-            Log.Debug (logTag, "Now sending location updates");
-		}
+            Log.Debug(logTag, "Now sending location updates");
+        }
 
 
 
-		public override void OnDestroy ()
+        public override void OnDestroy ()
 		{
 			base.OnDestroy ();
 			Log.Debug (logTag, "Service has been terminated");
@@ -168,21 +163,24 @@ namespace TestApp
 
 		public void OnLocationChanged (Location location)
 		{
+            if(currentBestLocation == null)
+            {
+                currentBestLocation = location;
+            }
+
+
             currentLocation = location;
+            if(isBetterLocation(currentLocation, currentBestLocation))
+            {
+                currentBestLocation = currentLocation;
+                this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
+            }
 
-            this.LocationChanged (this, new LocationChangedEventArgs (location));
+            this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
 
-			// This should be updating every time we request new location updates
-			// both when teh app is in the background, and in the foreground
-			Log.Debug (logTag, String.Format ("Latitude is {0}", location.Latitude));
-			Log.Debug (logTag, String.Format ("Longitude is {0}", location.Longitude));
-			Log.Debug (logTag, String.Format ("Altitude is {0}", location.Altitude));
-			Log.Debug (logTag, String.Format ("Speed is {0}", location.Speed));
-			Log.Debug (logTag, String.Format ("Accuracy is {0}", location.Accuracy));
-			Log.Debug (logTag, String.Format ("Bearing is {0}", location.Bearing));
-		}
-      
-		public void OnProviderDisabled (string provider)
+        }
+
+        public void OnProviderDisabled (string provider)
 		{
 			ProviderDisabled (this, new ProviderDisabledEventArgs (provider));
 		}
@@ -194,10 +192,25 @@ namespace TestApp
 
 		public void OnStatusChanged (string provider, Availability status, Bundle extras)
 		{
-			StatusChanged (this, new StatusChangedEventArgs (provider, status, extras));
-		} 
+            
 
-		#endregion
+            if (!isSameProvider(provider, locationProvider))
+            {
+                LocMgr.RequestLocationUpdates(provider, UPDATE_INTERVAL, MIN_DISTANCE, this);
+                LocMgr.RemoveUpdates(this);
+                StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
+
+            }
+
+            StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
+
+
+
+
+
+        }
+
+        #endregion
 
 
 
@@ -207,6 +220,76 @@ namespace TestApp
             return LocMgr.GetLastKnownLocation(locationProvider);
         }
 
-	}
+
+
+
+
+
+        protected bool isBetterLocation(Location location, Location currentBestLocation)
+        {
+            if (currentBestLocation == null)
+            {
+                // A new location is always better than no location
+                return true;
+            }
+
+            // Check whether the new location fix is newer or older
+            long timeDelta = location.Time - currentBestLocation.Time;
+            bool isSignificantlyNewer = timeDelta > UPDATE_INTERVAL;
+            bool isSignificantlyOlder = timeDelta < -UPDATE_INTERVAL;
+            bool isNewer = timeDelta > 0;
+
+            // If it's been more than two minutes since the current location, use the new location
+            // because the user has likely moved
+            if (isSignificantlyNewer)
+            {
+                return true;
+                // If the new location is more than two minutes older, it must be worse
+            }
+            else if (isSignificantlyOlder)
+            {
+                return false;
+            }
+
+            // Check whether the new location fix is more or less accurate
+            int accuracyDelta = (int)(location.Accuracy - currentBestLocation.Accuracy);
+            bool isLessAccurate = accuracyDelta > 0;
+            bool isMoreAccurate = accuracyDelta < 0;
+            bool isSignificantlyLessAccurate = accuracyDelta > 200;
+
+            // Check if the old and new location are from the same provider
+            bool isFromSameProvider = isSameProvider(location.Provider,
+                    currentBestLocation.Provider);
+
+            // Determine location quality using a combination of timeliness and accuracy
+            if (isMoreAccurate)
+            {
+                return true;
+            }
+            else if (isNewer && !isLessAccurate)
+            {
+                return true;
+            }
+            else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /** Checks whether two providers are the same */
+        private bool isSameProvider(String provider1, String provider2)
+        {
+            if (provider1 == null)
+            {
+                return provider2 == null;
+            }
+            return provider1.Equals(provider2);
+        }
+
+
+
+
+    }
 }
 

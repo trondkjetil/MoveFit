@@ -146,6 +146,16 @@ namespace TestApp
             TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
             TextView friends = FindViewById<TextView>(Resource.Id.friends);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
+
+            TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
+            Typeface tf = Typeface.CreateFromAsset(Assets,
+              "english111.ttf");
+
+            appTitle.TextSize = 32;
+            appTitle.Typeface = tf;
+
+
+
             points = FindViewById<TextView>(Resource.Id.points);
 
             greetings.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
@@ -358,7 +368,7 @@ namespace TestApp
             
 
             SupportActionBar.SetHomeButtonEnabled(true);
-            SupportActionBar.SetDisplayShowTitleEnabled(true);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
             mDrawerToggle.SyncState();
 
 
@@ -366,7 +376,7 @@ namespace TestApp
 
             if (mToolbar != null)
             {
-                SupportActionBar.SetTitle(Resource.String.openDrawer);
+              //  SupportActionBar.SetTitle(Resource.String.openDrawer);
                 SetSupportActionBar(mToolbar);
             }
 
@@ -465,7 +475,9 @@ namespace TestApp
             //connectToChat();
 
      
-            profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
+            //profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
+
+           
             initPersonTracker();
             
             try
@@ -1284,14 +1296,14 @@ namespace TestApp
                 try
                 {
 
-               
-
+              
                 mMap.SetOnMapClickListener(this);
                 mMap.UiSettings.ZoomControlsEnabled = true;
                 mMap.UiSettings.RotateGesturesEnabled = false;
                 mMap.UiSettings.ScrollGesturesEnabled = false;
 
-                contactName.Text = "";
+                contactName.Text = "You are displayed as Online";
+                contactName.TextSize = 17;
                 TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
@@ -1307,9 +1319,9 @@ namespace TestApp
                         isOnline = true;
 
                         menItem.SetIcon(Resource.Drawable.greenonline);
-                        
 
-                    }
+                            contactName.Text = "You are displayed as Online";
+                        }
                     else
                     {
                         Toast.MakeText(_activity, "Tracking stopped!", ToastLength.Long).Show();
@@ -1318,10 +1330,10 @@ namespace TestApp
                         var b = Azure.SetUserOnline(userId, false);
                         isOnline = false;
                         menItem.SetIcon(Resource.Drawable.redoffline);
-                      
 
+                            contactName.Text = "You are displayed as Offline";
 
-                    }
+                        }
                 };
 
                    

@@ -1,8 +1,8 @@
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.config
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.pdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.TestApp.apk
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.TestApp-Signed.apk
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\testApp.TestApp.apk
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\testApp.TestApp-Signed.apk
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Auth0Client.Android.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.AppLinks.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.Tasks.dll
@@ -32,10 +32,9 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobil
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\TestApp.TestApp.apk
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatroom.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatgroup.xml
@@ -53,7 +52,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\actionbar.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsdropdownlist.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\test.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_forward.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\messages.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_save.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_left_to_right.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\cardview_up.xml
@@ -149,6 +148,9 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_home.pn
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\deletefriend.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_btn_add.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\acceptfriend.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\msg.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
@@ -195,8 +197,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transa
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\messages.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\msg.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

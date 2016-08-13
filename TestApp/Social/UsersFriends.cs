@@ -241,26 +241,16 @@ namespace TestApp
 
 
             };
+
+
+
                 myHolder.mDeleteFriend.Click += (sender, args) =>
             {
 
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-                alert.SetTitle("Delete friend");
-                alert.SetMessage("You want to delete " + mUsers[position].UserName + " ?");
-                alert.SetPositiveButton("Yes", (senderAlert, ar) =>
-                {
-                    var pos = ((View)sender).Tag;
+                var pos = ((View)sender).Tag;
 
                     Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
-
-
-
-                    // Deletes the user from the whole app....
-                    //    var wait = Azure.removeUser(mUsers[(int)pos].UserName);
-
-                    //deleteIndex(position);
-                    //NotifyDataSetChanged();
 
                     var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
 
@@ -275,13 +265,7 @@ namespace TestApp
                         Intent myInt = new Intent(mContext, typeof(RouteOverview));
                         mContext.StartActivity(myInt);
                     }
-                });
-
-                alert.SetNegativeButton("Cancel", (senderAlert, arg) =>
-                {
-                     
-
-                   });
+              
 
             };
 
@@ -394,8 +378,8 @@ namespace TestApp
 
         }
 
-        void MDeleteFriend_Click(object sender, EventArgs e)
-        {
+        //void MDeleteFriend_Click(object sender, EventArgs e)
+        //{
             //int position = mRecyclerView.GetChildPosition((View)sender);
           //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
@@ -417,7 +401,7 @@ namespace TestApp
             //});
             //Azure.removeUser(mUsers[position].UserName);
             // Console.WriteLine(mUsers[position].UserName);
-        }
+     //   }
 
         public override int ItemCount
         {

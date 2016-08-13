@@ -206,7 +206,7 @@ namespace TestApp
                 }
                 else
                 {
-                    aboutMeEdit.Text = "Write something about you self..";
+                    aboutMeEdit.Text = "Write something about your self here..";
                 }
                
 
