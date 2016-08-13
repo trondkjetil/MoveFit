@@ -98,13 +98,6 @@ namespace TestApp
         public static List<UserDetail> listOfConnectedUsers;
 
 
-
-
-
-
-
-
-
         private void RegisterWithGCM()
         {
             // Check to ensure everything's set up right
@@ -149,24 +142,32 @@ namespace TestApp
             // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
 
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
-
+            TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
             TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
-           // TextView steps = FindViewById<TextView>(Resource.Id.steps);
+            TextView friends = FindViewById<TextView>(Resource.Id.friends);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
             points = FindViewById<TextView>(Resource.Id.points);
 
             greetings.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
             greetings.TextSize = 18;
 
-            //steps.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //steps.TextSize = 14;
+            friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            friends.TextSize = 15;
 
             totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            totalDistance.TextSize = 14;
+            totalDistance.TextSize = 15;
 
             points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            points.TextSize = 14;
+            points.TextSize = 15;
 
+            routesNearby.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            routesNearby.TextSize = 15;
+            
+
+            totalDistance.Text = "Total Distance Moved: ";
+            points.Text = "Score: ";
+            friends.Text = "Friends Online: ";
+            routesNearby.Text = "Routes nearby: ";
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
@@ -176,27 +177,17 @@ namespace TestApp
             TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
+
+
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
             messages.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             messages.TextSize = 15;
 
+            var layout = FindViewById<RelativeLayout>(Resource.Id.messages);
+            layout.Visibility = ViewStates.Invisible;
 
-           // steps.Text = "Steps: 0";
 
-            if(userInstanceOne != null)
-            {
-             
-                if(userInstanceOne.DistanceMoved.ToString() != null || userInstanceOne.DistanceMoved.ToString() == "")
-                totalDistance.Text = userInstanceOne.DistanceMoved.ToString() + " km";
 
-                else
-                 totalDistance.Text = "Total Distance: 0";
-
-            }
-            else
-            totalDistance.Text = "Total Distance: 0";
-
-           
 
             array = Intent.GetStringArrayExtra("MyData");
             greetings.Text = "Greetings " + array[0] + "!";
@@ -234,7 +225,7 @@ namespace TestApp
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
-            mLeftDataSet.Add("Calculator");
+            mLeftDataSet.Add("BMI Calculator");
            // mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("My profile");
 
@@ -415,17 +406,39 @@ namespace TestApp
                     //waitingUpload = await Azure.AddUser();
                     //Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
+
+                    friends.Text = "Friends Online: 0";
+                    routesNearby.Text = "Routes Nearby: 0";
                 }
                 else
                 {
                    
                    waitingUpload = user.FirstOrDefault();
                    userId = user.FirstOrDefault().Id;
-                   var setOnline = await Azure.SetUserOnline(userId, true);
-                    setPoints();
+                   setPoints();
+                   
+                    userInstanceOne = waitingUpload;
+                    var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
                     isOnline = true;
 
-                    userInstanceOne = waitingUpload;
+                    List<User> userList = await Azure.getUsersFriends(MainStart.userId);
+
+                    var friendCountOnline = 0;
+                    foreach (var item in userList)
+                    {
+                        if (item.Online == true)
+                        {
+                            friendCountOnline++;
+                        }
+                    }
+                    friends.Text = "Friends Online: " + friendCountOnline + "/" + userList.Count;
+
+                    List<Route> routes = await Azure.nearbyRoutes();
+
+                    routesNearby.Text = "Routes Nearby: " + routes.Count;
+
+
+
                 }
 
 
@@ -438,32 +451,33 @@ namespace TestApp
 
 
 
+            // steps.Text = "Steps: 0";
+
+            if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
+            {
+
+                totalDistance.Text = "Total Distance Moved: "+ userInstanceOne.DistanceMoved.ToString() + " km";
+            }
+            else
+                totalDistance.Text = "Total Distance Moved: 0";
 
             //messagePushNotification();
             //connectToChat();
 
-
-
-
+     
             profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
             initPersonTracker();
-
-
-            if(userInstanceOne != null)
-            {
-                points.Text = userInstanceOne.Points.ToString();
-            }else
-             points.Text = "Score: 0";
-            
             
             try
             {
 
-                List<User> topUsers = await Azure.getTop3People();
+                //  List<User> topUsers = await Azure.getTop3People();
+                List<User> top = await Azure.getUsersFriends(MainStart.userId);
+                List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).ToList<User>();
 
                 if (topUsers[0].UserName != "")
                 {
-                    pers1.Text = topUsers[0].UserName; 
+                    pers1.Text = "#1 "+topUsers[0].UserName; 
                     pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
                 }
                 
@@ -471,14 +485,14 @@ namespace TestApp
 
                 if (topUsers[1].UserName != "")
                 {
-                    pers2.Text = topUsers[1].UserName; 
+                    pers2.Text = "#2 " +topUsers[1].UserName; 
                     pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
                 }
 
 
                 if (topUsers[2].UserName != "")
                 {
-                    pers3.Text = topUsers[2].UserName;  //"Test friend3 Score: 0";
+                    pers3.Text = "#3 "+topUsers[2].UserName;  //"Test friend3 Score: 0";
                     pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
                 }
 
@@ -494,9 +508,7 @@ namespace TestApp
 
 
 
-            //Test sync all
-
-           // await Azure.SyncAsync();
+      
 
 
         }
@@ -590,17 +602,16 @@ namespace TestApp
         protected async override void OnStart()
         {
             base.OnStart();
-
-
-            try
-            {
-                var user = await Azure.SetUserOnline(userId, true);
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+                
+            //    var user = await Azure.SetUserOnline(userId, true);
+            //}
+            //catch (Exception)
+            //{
 
                
-            }
+            //}
 
         }
       
@@ -770,6 +781,8 @@ namespace TestApp
                 points.Text = "Score: " + userPoints.Points.ToString();
             }
         }
+
+        //This is only being executed once
         public bool Changed
         {
             get { return changed; }
@@ -782,7 +795,7 @@ namespace TestApp
 
                     updateLocationTimer();
                 }
-
+                
             }
         }
 
@@ -793,11 +806,11 @@ namespace TestApp
             //Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
 
 
-            var timer = new System.Threading.Timer((e) =>
+            var timer = new Timer((e) =>
             {
                 var timerTest = Azure.updateUserLocation(userName);
 
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(4).TotalMilliseconds));
 
         }
 
@@ -866,23 +879,13 @@ namespace TestApp
                     InvalidateOptionsMenu();
                     return true;
 
-                //case Resource.Id.statusOnline:
+                case Resource.Id.messages:
+                    var inten = new Intent(this, typeof(UsersFriends));             
+                    StartActivity(inten);
+                    //InvalidateOptionsMenu();
+                   return true;
 
-                //    if (isOnline)
-                //    {
-                //        item.SetIcon(Resource.Drawable.greenonline);
-                //        isOnline = true;
-                //        Toast.MakeText(this, "Showing as Online", ToastLength.Short).Show();
-                //    }
-                //    else
-                //    {
-                //        item.SetIcon(Resource.Drawable.redoffline);
-                //        isOnline = false;
-                //        Toast.MakeText(this, "Showing as Offline", ToastLength.Short).Show();
-                //    }
-
-
-                //    return true;
+              
 
 
                 case Resource.Id.action_help:
@@ -1018,19 +1021,51 @@ namespace TestApp
 
         }
 
+        async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
+        {
 
-       
+            String[] returnData;
+            returnData = e.ReturnValue.Split(',');
+            string gender = returnData[0];
+            string activityLevel = returnData[1];
+            string ageString = returnData[2];
+            int age = Convert.ToInt32(ageString);
+
+            try
+            {
+
+                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
+                userInstanceOne = waitingUpload;
 
 
-      
+                var newwaitingDownload = await Azure.getUserInstanceByName(userName);
+                if (newwaitingDownload.Count != 0)
+                    userInstanceOne = newwaitingDownload.FirstOrDefault();
+
+                userId = userInstanceOne.Id;
+                Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
+
+                points.Text = "Score: 0";
+
+                var setOnline = await Azure.SetUserOnline(userId, true);
+                isOnline = true;
+
+            }
+            catch (Exception)
+            {
+
+
+
+            }
+
+
+        }
+
         /// Updates UI with location data
         public void HandleLocationChanged(object sender, LocationChangedEventArgs e)
         {
            
             currentLocation = e.Location;  
-
-
-
             OnLocationChanged(e.Location);
 
             Changed = true;
@@ -1111,8 +1146,9 @@ namespace TestApp
                 markerOpt1.SetTitle("My Position");
                 markerOpt1.SetSnippet("My Position");
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic); //(Resource.Drawable.test);
-                markerOpt1.SetIcon(image);  mMap.AddMarker(markerOpt1);
-                //  mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPosition, 15));
+                markerOpt1.SetIcon(image);
+                mMap.AddMarker(markerOpt1);
+                
             }
             catch (Exception es)
             {
@@ -1138,8 +1174,6 @@ namespace TestApp
                 {
 
                   
-                        //Toast.MakeText(this, "User is online", ToastLength.Long).Show();
-
                         Address address = await ReverseGeocodeCurrentLocation();
                         if (oldAddress != address)
                         {
@@ -1149,21 +1183,18 @@ namespace TestApp
                         }
 
 
-                    
-
-
+                  
                     var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 
                     setMarker(currentPos, mMap);
-
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
                     mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
 
                 }
-                catch (Exception a)
+                catch (Exception )
                 {
 
-                    throw a;
+                  
                 }
 
 
@@ -1189,7 +1220,7 @@ namespace TestApp
             List<Contact> _contactList;
             public Activity _activity;
             public static List<User> nearbyUsers;
-            public static ImageButton findMoreFriends;
+          
 
             public ContactsAdapter(Activity activity)
             {
@@ -1313,10 +1344,10 @@ namespace TestApp
                     Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
                     _activity.StartActivity(myIntent);
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
 
-                    throw e;
+                  
                 }
 
             }
@@ -1327,7 +1358,7 @@ namespace TestApp
 
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
             alert.SetTitle("Exit app");
-            alert.SetMessage("Do you want to exit the application?");
+            alert.SetMessage("Do you want to logout of the application?");
             alert.SetPositiveButton("Yes", async (senderAlert, args) => {
               
             base.OnBackPressed();
@@ -1335,15 +1366,19 @@ namespace TestApp
                 var wait = await logOff();
                 try
                 {
+                    WelcomeScreen.instance.FinishAffinity();
                     System.Environment.Exit(0);
                     WelcomeScreen.instance.Finish();
+                    
+
+
                 }
-                catch (Exception)
+                catch (Exception a)
                 {
 
-                 
+                    throw a;
                 }
-               
+               // base.OnBackPressed();
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) => {
@@ -1358,44 +1393,7 @@ namespace TestApp
 
         }
 
-        async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
-        {
-
-            String[] returnData;
-            returnData = e.ReturnValue.Split(',');
-            string gender = returnData[0];
-            string activityLevel = returnData[1];
-            string ageString = returnData[2];
-            int age = Convert.ToInt32(ageString);
-
-            try
-            {
-
-                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel,0);
-                userInstanceOne = waitingUpload;
-
-
-                var newwaitingDownload = await Azure.getUserInstanceByName(userName);
-                if(newwaitingDownload.Count != 0)
-                userInstanceOne = newwaitingDownload.FirstOrDefault();
-
-                userId = userInstanceOne.Id;
-                Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
-
-                points.Text = "Score: 0";
-
-                var setOnline = await Azure.SetUserOnline(userId, true);
-
-            }
-            catch (Exception)
-            {
-
-
-
-            }
-
-
-        }
+    
 
 
     }

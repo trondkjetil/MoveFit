@@ -68,21 +68,30 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/points"
                     android:textColor="#ff000000" />
-                <!--<TextView
-                    android:text=""
-                    android:layout_below="@+id/points"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/steps"
-                    android:textColor="#ff000000" />-->
             <TextView
                     android:text=""
                     android:layout_below="@+id/points"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/friends"
+                    android:textColor="#ff000000" />
+                <TextView
+                    android:text=""
+                    android:layout_below="@+id/friends"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/distance"
+                    android:textColor="#ff000000" />
+            
+            <TextView
+                    android:text=""
+                    android:layout_below="@+id/distance"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/routesNearby"
                     android:textColor="#ff000000" />
             </RelativeLayout>
             <RelativeLayout
@@ -93,7 +102,7 @@
                 android:layout_toRightOf="@+id/pic1"
                 android:background="#1aff66">
                 <TextView
-                    android:text="Messages:"
+                    android:text="Messages"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -109,7 +118,7 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/white">
                 <TextView
-                    android:text="Top friends:"
+                    android:text="Top active friends:"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

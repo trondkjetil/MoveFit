@@ -2105,7 +2105,7 @@ containing a value of this type.
     public static final class id {
         public static final int ContactImage=0x7f0b00dd;
         public static final int ContactName=0x7f0b0088;
-        public static final int ContactsListView=0x7f0b0090;
+        public static final int ContactsListView=0x7f0b008f;
         public static final int aboutMe=0x7f0b0118;
         public static final int aboutMeEdit=0x7f0b0119;
         public static final int acc=0x7f0b0084;
@@ -2129,68 +2129,66 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f0b0049;
         public static final int action_mode_close_button=0x7f0b002f;
         public static final int activity_chooser_view_content=0x7f0b0030;
-        public static final int actlevel=0x7f0b00a5;
+        public static final int actlevel=0x7f0b00a4;
         public static final int address_text=0x7f0b00c4;
         public static final int adjust_height=0x7f0b000f;
         public static final int adjust_width=0x7f0b0010;
-        public static final int age=0x7f0b00a3;
+        public static final int age=0x7f0b00a2;
         public static final int alertTitle=0x7f0b003c;
         public static final int alt=0x7f0b0082;
         public static final int always=0x7f0b0027;
         public static final int auto=0x7f0b0014;
-        public static final int avgSpeed=0x7f0b0092;
+        public static final int avgSpeed=0x7f0b0091;
         public static final int back=0x7f0b0129;
         public static final int bear=0x7f0b0085;
         public static final int beginning=0x7f0b0024;
-        public static final int btnDialogEmail=0x7f0b0099;
+        public static final int btnDialogEmail=0x7f0b0098;
         public static final int btnOkay=0x7f0b00bf;
         public static final int btnSend=0x7f0b007a;
         public static final int buttonPanel=0x7f0b0037;
-        public static final int cancelRoute=0x7f0b008f;
         public static final int cancel_action=0x7f0b00ca;
         public static final int card_view=0x7f0b00d7;
-        public static final int cbxStart=0x7f0b00e5;
-        public static final int checkToDoItem=0x7f0b00ef;
+        public static final int cbxStart=0x7f0b00e6;
+        public static final int checkToDoItem=0x7f0b00f0;
         public static final int checkbox=0x7f0b0045;
         public static final int checkbox1=0x7f0b00c6;
         public static final int checkbox2=0x7f0b00c7;
         public static final int chronometer=0x7f0b00d0;
         public static final int collapseActionView=0x7f0b0028;
-        public static final int container=0x7f0b00fa;
+        public static final int container=0x7f0b00fb;
         public static final int contentPanel=0x7f0b003d;
         public static final int createRoute=0x7f0b008d;
-        public static final int createRoutes=0x7f0b00df;
+        public static final int createRoutes=0x7f0b00e0;
         public static final int custom=0x7f0b0043;
         public static final int customPanel=0x7f0b0042;
         public static final int dark=0x7f0b0015;
         public static final int decor_content_parent=0x7f0b004b;
         public static final int default_activity_button=0x7f0b0033;
-        public static final int difficultyPrompt=0x7f0b009f;
+        public static final int difficultyPrompt=0x7f0b009e;
         public static final int disableHome=0x7f0b0019;
         public static final int distAway=0x7f0b010e;
-        public static final int distance=0x7f0b00ab;
-        public static final int drawer_layout=0x7f0b00a7;
+        public static final int distance=0x7f0b00aa;
+        public static final int drawer_layout=0x7f0b00a6;
         public static final int editImage=0x7f0b011a;
         public static final int editText1=0x7f0b006a;
         public static final int editText2=0x7f0b006c;
         public static final int editText3=0x7f0b006e;
         public static final int edit_query=0x7f0b004f;
         public static final int end=0x7f0b0025;
-        public static final int endRoute=0x7f0b0109;
         public static final int end_padder=0x7f0b00d4;
-        public static final int etSearch=0x7f0b00f9;
+        public static final int etSearch=0x7f0b00fa;
         public static final int exit=0x7f0b012a;
         public static final int expand_activities_button=0x7f0b0031;
         public static final int expanded_menu=0x7f0b0044;
         public static final int facts=0x7f0b005d;
         public static final int findFriends=0x7f0b00ba;
-        public static final int findRoutes=0x7f0b00e0;
-        public static final int finish=0x7f0b0091;
+        public static final int findRoutes=0x7f0b00e1;
+        public static final int finish=0x7f0b0090;
         public static final int friendRequests=0x7f0b00b9;
-        public static final int gender=0x7f0b00a2;
+        public static final int gender=0x7f0b00a1;
         public static final int get_address_button=0x7f0b00c1;
         public static final int gpsReadings=0x7f0b007f;
-        public static final int graphs=0x7f0b00b0;
+        public static final int graphs=0x7f0b00af;
         public static final int home=0x7f0b0005;
         public static final int homeAsUp=0x7f0b001a;
         public static final int hybrid=0x7f0b000a;
@@ -2198,27 +2196,27 @@ containing a value of this type.
         public static final int icon_only=0x7f0b0011;
         public static final int ifRoom=0x7f0b0029;
         public static final int image=0x7f0b0032;
-        public static final int imageButton1=0x7f0b00e6;
-        public static final int imageButton2=0x7f0b00e7;
-        public static final int imageButton3=0x7f0b00e8;
+        public static final int imageButton1=0x7f0b00e7;
+        public static final int imageButton2=0x7f0b00e8;
+        public static final int imageButton3=0x7f0b00e9;
         public static final int imageStatus=0x7f0b008a;
         public static final int imageView1=0x7f0b0125;
-        public static final int imgView=0x7f0b00e9;
+        public static final int imgView=0x7f0b00ea;
         public static final int info=0x7f0b005e;
-        public static final int infoPropt=0x7f0b009d;
-        public static final int intro=0x7f0b00a1;
+        public static final int infoPropt=0x7f0b009c;
+        public static final int intro=0x7f0b00a0;
         public static final int item_subtitle=0x7f0b00d5;
         public static final int item_title=0x7f0b00d6;
         public static final int item_touch_helper_previous_elevation=0x7f0b0000;
         public static final int lat=0x7f0b0080;
-        public static final int left_drawer=0x7f0b00b6;
+        public static final int left_drawer=0x7f0b00b5;
         public static final int levelActivity=0x7f0b0072;
         public static final int light=0x7f0b0016;
         public static final int lin2=0x7f0b0086;
         public static final int line1=0x7f0b00ce;
         public static final int line3=0x7f0b00d2;
         public static final int listMode=0x7f0b0017;
-        public static final int listView=0x7f0b00f8;
+        public static final int listView=0x7f0b00f9;
         public static final int list_item=0x7f0b0034;
         public static final int llChatMessages=0x7f0b0079;
         public static final int llContainer=0x7f0b0078;
@@ -2229,38 +2227,38 @@ containing a value of this type.
         public static final int loginWithWidgetAndRefreshToken=0x7f0b0061;
         public static final int longx=0x7f0b0081;
         public static final int map=0x7f0b0089;
-        public static final int mapForStartingRoute=0x7f0b00ff;
+        public static final int mapForStartingRoute=0x7f0b0100;
         public static final int media_actions=0x7f0b00cc;
         public static final int menu_refresh=0x7f0b012d;
-        public static final int message=0x7f0b0098;
-        public static final int messageInfo=0x7f0b00af;
-        public static final int messages=0x7f0b00ac;
+        public static final int message=0x7f0b0097;
+        public static final int messageInfo=0x7f0b00ae;
+        public static final int messages=0x7f0b00ab;
         public static final int middle=0x7f0b0026;
         public static final int multiply=0x7f0b001f;
         public static final int myFriends=0x7f0b00b8;
-        public static final int myRoutes=0x7f0b00de;
+        public static final int myRoutes=0x7f0b00df;
         public static final int myRoutesId=0x7f0b0114;
         public static final int mypos=0x7f0b00c2;
         public static final int nameId=0x7f0b00d8;
-        public static final int nameOfroute=0x7f0b009c;
-        public static final int namePropt=0x7f0b009b;
+        public static final int nameOfroute=0x7f0b009b;
+        public static final int namePropt=0x7f0b009a;
         public static final int never=0x7f0b002a;
         public static final int none=0x7f0b000b;
         public static final int normal=0x7f0b000c;
-        public static final int numberPicker=0x7f0b00a4;
+        public static final int numberPicker=0x7f0b00a3;
         public static final int onlineStatus=0x7f0b010f;
         public static final int parentPanel=0x7f0b0039;
-        public static final int pers1=0x7f0b00b1;
-        public static final int pers11=0x7f0b00ad;
-        public static final int pers2=0x7f0b00b3;
-        public static final int pers3=0x7f0b00b5;
-        public static final int pic1=0x7f0b00ae;
-        public static final int pic2=0x7f0b00b2;
-        public static final int pic3=0x7f0b00b4;
-        public static final int points=0x7f0b00aa;
-        public static final int profileImage_score=0x7f0b00ea;
+        public static final int pers1=0x7f0b00b0;
+        public static final int pers11=0x7f0b00ac;
+        public static final int pers2=0x7f0b00b2;
+        public static final int pers3=0x7f0b00b4;
+        public static final int pic1=0x7f0b00ad;
+        public static final int pic2=0x7f0b00b1;
+        public static final int pic3=0x7f0b00b3;
+        public static final int points=0x7f0b00a9;
+        public static final int profileImage_score=0x7f0b00eb;
         public static final int profilePic2=0x7f0b0116;
-        public static final int profilePicture=0x7f0b00a9;
+        public static final int profilePicture=0x7f0b00a8;
         public static final int progressBar=0x7f0b00c8;
         public static final int progress_circular=0x7f0b0006;
         public static final int progress_horizontal=0x7f0b0007;
@@ -2272,9 +2270,9 @@ containing a value of this type.
         public static final int radioGroup=0x7f0b00bb;
         public static final int radioGroup1=0x7f0b006f;
         public static final int radioRed=0x7f0b00bc;
-        public static final int ratingPropt=0x7f0b0093;
-        public static final int ratingbar=0x7f0b0108;
-        public static final int ratingbarEndRoute=0x7f0b0094;
+        public static final int ratingPropt=0x7f0b0092;
+        public static final int ratingbar=0x7f0b0109;
+        public static final int ratingbarEndRoute=0x7f0b0093;
         public static final int recycleUserFriendRequest=0x7f0b011d;
         public static final int recycleUserFriends=0x7f0b011e;
         public static final int recycleUserMyRoutes=0x7f0b0120;
@@ -2286,17 +2284,17 @@ containing a value of this type.
         public static final int rejectFriend=0x7f0b0113;
         public static final int rel=0x7f0b0124;
         public static final int results=0x7f0b0074;
-        public static final int review=0x7f0b00f1;
-        public static final int routeInfo=0x7f0b009e;
-        public static final int routeName=0x7f0b00f0;
+        public static final int review=0x7f0b00f2;
+        public static final int routeInfo=0x7f0b009d;
+        public static final int routeName=0x7f0b00f1;
         public static final int routeTitle=0x7f0b008b;
-        public static final int routeType=0x7f0b00f2;
+        public static final int routeType=0x7f0b00f3;
         public static final int satellite=0x7f0b000d;
         public static final int screen=0x7f0b0020;
         public static final int scrollIndicatorDown=0x7f0b0041;
         public static final int scrollIndicatorUp=0x7f0b003e;
         public static final int scrollView=0x7f0b003f;
-        public static final int search=0x7f0b00fb;
+        public static final int search=0x7f0b00fc;
         public static final int search_badge=0x7f0b0051;
         public static final int search_bar=0x7f0b0050;
         public static final int search_button=0x7f0b0052;
@@ -2317,26 +2315,26 @@ containing a value of this type.
         public static final int showTitle=0x7f0b001d;
         public static final int spacer=0x7f0b0038;
         public static final int speed=0x7f0b0083;
-        public static final int spinner=0x7f0b00b7;
-        public static final int spinnerRouteDifficulty=0x7f0b00a0;
-        public static final int spinnerUserInfo=0x7f0b00a6;
+        public static final int spinner=0x7f0b00b6;
+        public static final int spinnerRouteDifficulty=0x7f0b009f;
+        public static final int spinnerUserInfo=0x7f0b00a5;
         public static final int spinneren=0x7f0b0073;
         public static final int split_action_bar=0x7f0b0008;
         public static final int src_atop=0x7f0b0021;
         public static final int src_in=0x7f0b0022;
         public static final int src_over=0x7f0b0023;
         public static final int standard=0x7f0b0012;
-        public static final int startRoute=0x7f0b009a;
-        public static final int startRoute1=0x7f0b0095;
-        public static final int startRouteDesc=0x7f0b0101;
-        public static final int startRouteDiff=0x7f0b0103;
-        public static final int startRouteLength=0x7f0b0102;
-        public static final int startRouteName=0x7f0b0100;
-        public static final int startRouteRating=0x7f0b0104;
-        public static final int startRouteTime=0x7f0b0107;
-        public static final int startRouteTrips=0x7f0b0106;
-        public static final int startRouteType=0x7f0b0105;
-        public static final int startService=0x7f0b00fc;
+        public static final int startRoute=0x7f0b0099;
+        public static final int startRoute1=0x7f0b0094;
+        public static final int startRouteDesc=0x7f0b0102;
+        public static final int startRouteDiff=0x7f0b0104;
+        public static final int startRouteLength=0x7f0b0103;
+        public static final int startRouteName=0x7f0b0101;
+        public static final int startRouteRating=0x7f0b0105;
+        public static final int startRouteTime=0x7f0b0108;
+        public static final int startRouteTrips=0x7f0b0107;
+        public static final int startRouteType=0x7f0b0106;
+        public static final int startService=0x7f0b00fd;
         public static final int statusId=0x7f0b00d9;
         public static final int statusOnline=0x7f0b0126;
         public static final int statusRoute=0x7f0b008c;
@@ -2345,8 +2343,8 @@ containing a value of this type.
         public static final int stepIntro=0x7f0b010a;
         public static final int stepsText=0x7f0b010b;
         public static final int stop=0x7f0b005f;
-        public static final int stopService=0x7f0b00fd;
-        public static final int subject=0x7f0b0096;
+        public static final int stopService=0x7f0b00fe;
+        public static final int subject=0x7f0b0095;
         public static final int submit_area=0x7f0b0058;
         public static final int swap=0x7f0b011c;
         public static final int swipeLayout=0x7f0b0076;
@@ -2355,14 +2353,16 @@ containing a value of this type.
         public static final int switchRoutes=0x7f0b012b;
         public static final int swp=0x7f0b0121;
         public static final int tabMode=0x7f0b0018;
-        public static final int targetsEmail=0x7f0b0097;
+        public static final int targetsEmail=0x7f0b0096;
         public static final int terrain=0x7f0b000e;
         public static final int test=0x7f0b007e;
-        public static final int testïng=0x7f0b00a8;
+        public static final int testïng=0x7f0b00a7;
         public static final int text=0x7f0b00d3;
         public static final int text2=0x7f0b00d1;
+        public static final int textFriends=0x7f0b00b7;
         public static final int textId=0x7f0b00da;
         public static final int textInfo=0x7f0b00c5;
+        public static final int textRoute=0x7f0b00de;
         public static final int textSpacerNoButtons=0x7f0b0040;
         public static final int textView1=0x7f0b0069;
         public static final int textView2=0x7f0b006b;
@@ -2376,22 +2376,22 @@ containing a value of this type.
         public static final int toolbar=0x7f0b007c;
         public static final int toolbarNew=0x7f0b0115;
         public static final int topPanel=0x7f0b003a;
-        public static final int tv_promo_txt=0x7f0b00fe;
-        public static final int txtAge=0x7f0b00ec;
+        public static final int tv_promo_txt=0x7f0b00ff;
+        public static final int txtAge=0x7f0b00ed;
         public static final int txtChat=0x7f0b007b;
-        public static final int txtGender=0x7f0b00ed;
-        public static final int txtHeaderAge=0x7f0b00f5;
-        public static final int txtHeaderFirstName=0x7f0b00f3;
-        public static final int txtHeaderGender=0x7f0b00f6;
-        public static final int txtHeaderLastName=0x7f0b00f4;
-        public static final int txtHeaderScore=0x7f0b00f7;
-        public static final int txtLastName=0x7f0b00eb;
-        public static final int txtMessage=0x7f0b00e3;
-        public static final int txtName=0x7f0b00e1;
+        public static final int txtGender=0x7f0b00ee;
+        public static final int txtHeaderAge=0x7f0b00f6;
+        public static final int txtHeaderFirstName=0x7f0b00f4;
+        public static final int txtHeaderGender=0x7f0b00f7;
+        public static final int txtHeaderLastName=0x7f0b00f5;
+        public static final int txtHeaderScore=0x7f0b00f8;
+        public static final int txtLastName=0x7f0b00ec;
+        public static final int txtMessage=0x7f0b00e4;
+        public static final int txtName=0x7f0b00e2;
         public static final int txtResult=0x7f0b0068;
-        public static final int txtScore=0x7f0b00ee;
-        public static final int txtSubject=0x7f0b00e2;
-        public static final int txtTime=0x7f0b00e4;
+        public static final int txtScore=0x7f0b00ef;
+        public static final int txtSubject=0x7f0b00e3;
+        public static final int txtTime=0x7f0b00e5;
         public static final int txtUserName=0x7f0b0063;
         public static final int txtUserPassword=0x7f0b0064;
         public static final int up=0x7f0b0009;
@@ -3018,33 +3018,33 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBar_background TestApp.TestApp:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundSplit TestApp.TestApp:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundStacked TestApp.TestApp:backgroundStacked}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEnd TestApp.TestApp:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetLeft TestApp.TestApp:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetRight TestApp.TestApp:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStart TestApp.TestApp:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_customNavigationLayout TestApp.TestApp:customNavigationLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_displayOptions TestApp.TestApp:displayOptions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_divider TestApp.TestApp:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_elevation TestApp.TestApp:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_height TestApp.TestApp:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_hideOnContentScroll TestApp.TestApp:hideOnContentScroll}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeAsUpIndicator TestApp.TestApp:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeLayout TestApp.TestApp:homeLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_icon TestApp.TestApp:icon}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle TestApp.TestApp:indeterminateProgressStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_itemPadding TestApp.TestApp:itemPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_logo TestApp.TestApp:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_navigationMode TestApp.TestApp:navigationMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_popupTheme TestApp.TestApp:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarPadding TestApp.TestApp:progressBarPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarStyle TestApp.TestApp:progressBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitle TestApp.TestApp:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitleTextStyle TestApp.TestApp:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_title TestApp.TestApp:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_titleTextStyle TestApp.TestApp:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_background testApp.TestApp:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundSplit testApp.TestApp:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundStacked testApp.TestApp:backgroundStacked}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEnd testApp.TestApp:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetLeft testApp.TestApp:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetRight testApp.TestApp:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStart testApp.TestApp:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_customNavigationLayout testApp.TestApp:customNavigationLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_displayOptions testApp.TestApp:displayOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_divider testApp.TestApp:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_elevation testApp.TestApp:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_height testApp.TestApp:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_hideOnContentScroll testApp.TestApp:hideOnContentScroll}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeAsUpIndicator testApp.TestApp:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeLayout testApp.TestApp:homeLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_icon testApp.TestApp:icon}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle testApp.TestApp:indeterminateProgressStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_itemPadding testApp.TestApp:itemPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_logo testApp.TestApp:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_navigationMode testApp.TestApp:navigationMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_popupTheme testApp.TestApp:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarPadding testApp.TestApp:progressBarPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarStyle testApp.TestApp:progressBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitle testApp.TestApp:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitleTextStyle testApp.TestApp:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_title testApp.TestApp:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_titleTextStyle testApp.TestApp:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionBar_background
            @see #ActionBar_backgroundSplit
@@ -3084,17 +3084,17 @@ containing a value of this type.
             0x7f010043, 0x7f010044, 0x7f0100a5
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#background}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#background}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:background
+          @attr name testApp.TestApp:background
         */
         public static final int ActionBar_background = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3102,11 +3102,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:backgroundSplit
+          @attr name testApp.TestApp:backgroundSplit
         */
         public static final int ActionBar_backgroundSplit = 12;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#backgroundStacked}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#backgroundStacked}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3114,11 +3114,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:backgroundStacked
+          @attr name testApp.TestApp:backgroundStacked
         */
         public static final int ActionBar_backgroundStacked = 11;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3130,11 +3130,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetEnd
+          @attr name testApp.TestApp:contentInsetEnd
         */
         public static final int ActionBar_contentInsetEnd = 21;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3146,11 +3146,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetLeft
+          @attr name testApp.TestApp:contentInsetLeft
         */
         public static final int ActionBar_contentInsetLeft = 22;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3162,11 +3162,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetRight
+          @attr name testApp.TestApp:contentInsetRight
         */
         public static final int ActionBar_contentInsetRight = 23;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3178,21 +3178,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetStart
+          @attr name testApp.TestApp:contentInsetStart
         */
         public static final int ActionBar_contentInsetStart = 20;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#customNavigationLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#customNavigationLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:customNavigationLayout
+          @attr name testApp.TestApp:customNavigationLayout
         */
         public static final int ActionBar_customNavigationLayout = 13;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#displayOptions}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#displayOptions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3210,21 +3210,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:displayOptions
+          @attr name testApp.TestApp:displayOptions
         */
         public static final int ActionBar_displayOptions = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#divider}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#divider}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:divider
+          @attr name testApp.TestApp:divider
         */
         public static final int ActionBar_divider = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#elevation}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#elevation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3236,11 +3236,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:elevation
+          @attr name testApp.TestApp:elevation
         */
         public static final int ActionBar_elevation = 24;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#height}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#height}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3252,11 +3252,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:height
+          @attr name testApp.TestApp:height
         */
         public static final int ActionBar_height = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#hideOnContentScroll}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#hideOnContentScroll}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3266,51 +3266,51 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:hideOnContentScroll
+          @attr name testApp.TestApp:hideOnContentScroll
         */
         public static final int ActionBar_hideOnContentScroll = 19;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:homeAsUpIndicator
+          @attr name testApp.TestApp:homeAsUpIndicator
         */
         public static final int ActionBar_homeAsUpIndicator = 26;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#homeLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#homeLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:homeLayout
+          @attr name testApp.TestApp:homeLayout
         */
         public static final int ActionBar_homeLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#icon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#icon}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:icon
+          @attr name testApp.TestApp:icon
         */
         public static final int ActionBar_icon = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#indeterminateProgressStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#indeterminateProgressStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:indeterminateProgressStyle
+          @attr name testApp.TestApp:indeterminateProgressStyle
         */
         public static final int ActionBar_indeterminateProgressStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#itemPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#itemPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3322,21 +3322,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:itemPadding
+          @attr name testApp.TestApp:itemPadding
         */
         public static final int ActionBar_itemPadding = 18;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#logo}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#logo}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:logo
+          @attr name testApp.TestApp:logo
         */
         public static final int ActionBar_logo = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#navigationMode}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#navigationMode}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3350,21 +3350,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>listMode</code></td><td>1</td><td></td></tr>
 <tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:navigationMode
+          @attr name testApp.TestApp:navigationMode
         */
         public static final int ActionBar_navigationMode = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#popupTheme}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:popupTheme
+          @attr name testApp.TestApp:popupTheme
         */
         public static final int ActionBar_popupTheme = 25;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#progressBarPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#progressBarPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3376,21 +3376,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:progressBarPadding
+          @attr name testApp.TestApp:progressBarPadding
         */
         public static final int ActionBar_progressBarPadding = 17;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#progressBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#progressBarStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:progressBarStyle
+          @attr name testApp.TestApp:progressBarStyle
         */
         public static final int ActionBar_progressBarStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3400,21 +3400,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:subtitle
+          @attr name testApp.TestApp:subtitle
         */
         public static final int ActionBar_subtitle = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:subtitleTextStyle
+          @attr name testApp.TestApp:subtitleTextStyle
         */
         public static final int ActionBar_subtitleTextStyle = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#title}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#title}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3424,17 +3424,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:title
+          @attr name testApp.TestApp:title
         */
         public static final int ActionBar_title = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:titleTextStyle
+          @attr name testApp.TestApp:titleTextStyle
         */
         public static final int ActionBar_titleTextStyle = 5;
         /** Attributes that can be used with a ActionBarLayout.
@@ -3486,12 +3486,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionMode_background TestApp.TestApp:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_backgroundSplit TestApp.TestApp:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_closeItemLayout TestApp.TestApp:closeItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_height TestApp.TestApp:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_subtitleTextStyle TestApp.TestApp:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_titleTextStyle TestApp.TestApp:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_background testApp.TestApp:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_backgroundSplit testApp.TestApp:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_closeItemLayout testApp.TestApp:closeItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_height testApp.TestApp:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_subtitleTextStyle testApp.TestApp:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_titleTextStyle testApp.TestApp:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionMode_background
            @see #ActionMode_backgroundSplit
@@ -3505,17 +3505,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010037, 0x7f010045
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#background}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#background}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:background
+          @attr name testApp.TestApp:background
         */
         public static final int ActionMode_background = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -3523,21 +3523,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:backgroundSplit
+          @attr name testApp.TestApp:backgroundSplit
         */
         public static final int ActionMode_backgroundSplit = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#closeItemLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#closeItemLayout}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:closeItemLayout
+          @attr name testApp.TestApp:closeItemLayout
         */
         public static final int ActionMode_closeItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#height}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#height}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -3549,27 +3549,27 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:height
+          @attr name testApp.TestApp:height
         */
         public static final int ActionMode_height = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:subtitleTextStyle
+          @attr name testApp.TestApp:subtitleTextStyle
         */
         public static final int ActionMode_subtitleTextStyle = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:titleTextStyle
+          @attr name testApp.TestApp:titleTextStyle
         */
         public static final int ActionMode_titleTextStyle = 1;
         /** Attributes that can be used with a ActivityChooserView.
@@ -3578,8 +3578,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable TestApp.TestApp:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActivityChooserView_initialActivityCount TestApp.TestApp:initialActivityCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable testApp.TestApp:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_initialActivityCount testApp.TestApp:initialActivityCount}</code></td><td></td></tr>
            </table>
            @see #ActivityChooserView_expandActivityOverflowButtonDrawable
            @see #ActivityChooserView_initialActivityCount
@@ -3588,17 +3588,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010046, 0x7f010047
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#expandActivityOverflowButtonDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#expandActivityOverflowButtonDrawable}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:expandActivityOverflowButtonDrawable
+          @attr name testApp.TestApp:expandActivityOverflowButtonDrawable
         */
         public static final int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#initialActivityCount}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#initialActivityCount}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -3608,7 +3608,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:initialActivityCount
+          @attr name testApp.TestApp:initialActivityCount
         */
         public static final int ActivityChooserView_initialActivityCount = 0;
         /** Attributes that can be used with a AdsAttrs.
@@ -3617,11 +3617,11 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AdsAttrs_adSize TestApp.TestApp:adSize}</code></td><td>
+           <tr><td><code>{@link #AdsAttrs_adSize testApp.TestApp:adSize}</code></td><td>
     The size of the ad.</td></tr>
-           <tr><td><code>{@link #AdsAttrs_adSizes TestApp.TestApp:adSizes}</code></td><td>
+           <tr><td><code>{@link #AdsAttrs_adSizes testApp.TestApp:adSizes}</code></td><td>
     A comma-separated list of the supported ad sizes.</td></tr>
-           <tr><td><code>{@link #AdsAttrs_adUnitId TestApp.TestApp:adUnitId}</code></td><td> The ad unit ID.</td></tr>
+           <tr><td><code>{@link #AdsAttrs_adUnitId testApp.TestApp:adUnitId}</code></td><td> The ad unit ID.</td></tr>
            </table>
            @see #AdsAttrs_adSize
            @see #AdsAttrs_adSizes
@@ -3647,7 +3647,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:adSize
+          @attr name testApp.TestApp:adSize
         */
         public static final int AdsAttrs_adSize = 0;
         /**
@@ -3667,7 +3667,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:adSizes
+          @attr name testApp.TestApp:adSizes
         */
         public static final int AdsAttrs_adSizes = 1;
         /**
@@ -3683,7 +3683,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:adUnitId
+          @attr name testApp.TestApp:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
         /** Attributes that can be used with a AlertDialog.
@@ -3693,11 +3693,11 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AlertDialog_android_layout android:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout TestApp.TestApp:buttonPanelSideLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listItemLayout TestApp.TestApp:listItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listLayout TestApp.TestApp:listLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout TestApp.TestApp:multiChoiceItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout TestApp.TestApp:singleChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout testApp.TestApp:buttonPanelSideLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listItemLayout testApp.TestApp:listItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listLayout testApp.TestApp:listLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout testApp.TestApp:multiChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout testApp.TestApp:singleChoiceItemLayout}</code></td><td></td></tr>
            </table>
            @see #AlertDialog_android_layout
            @see #AlertDialog_buttonPanelSideLayout
@@ -3717,53 +3717,53 @@ containing a value of this type.
         */
         public static final int AlertDialog_android_layout = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonPanelSideLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonPanelSideLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonPanelSideLayout
+          @attr name testApp.TestApp:buttonPanelSideLayout
         */
         public static final int AlertDialog_buttonPanelSideLayout = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listItemLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:listItemLayout
+          @attr name testApp.TestApp:listItemLayout
         */
         public static final int AlertDialog_listItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:listLayout
+          @attr name testApp.TestApp:listLayout
         */
         public static final int AlertDialog_listLayout = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#multiChoiceItemLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#multiChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:multiChoiceItemLayout
+          @attr name testApp.TestApp:multiChoiceItemLayout
         */
         public static final int AlertDialog_multiChoiceItemLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#singleChoiceItemLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#singleChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:singleChoiceItemLayout
+          @attr name testApp.TestApp:singleChoiceItemLayout
         */
         public static final int AlertDialog_singleChoiceItemLayout = 4;
         /** Attributes that can be used with a AppCompatTextView.
@@ -3773,7 +3773,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatTextView_android_textAppearance android:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_textAllCaps TestApp.TestApp:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_textAllCaps testApp.TestApp:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #AppCompatTextView_android_textAppearance
            @see #AppCompatTextView_textAllCaps
@@ -3788,14 +3788,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int AppCompatTextView_android_textAppearance = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAllCaps}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name TestApp.TestApp:textAllCaps
+          @attr name testApp.TestApp:textAllCaps
         */
         public static final int AppCompatTextView_textAllCaps = 1;
         /** Attributes that can be used with a ButtonBarLayout.
@@ -3804,7 +3804,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ButtonBarLayout_allowStacking TestApp.TestApp:allowStacking}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarLayout_allowStacking testApp.TestApp:allowStacking}</code></td><td></td></tr>
            </table>
            @see #ButtonBarLayout_allowStacking
          */
@@ -3812,7 +3812,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01004e
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#allowStacking}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#allowStacking}
           attribute's value can be found in the {@link #ButtonBarLayout} array.
 
 
@@ -3822,7 +3822,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:allowStacking
+          @attr name testApp.TestApp:allowStacking
         */
         public static final int ButtonBarLayout_allowStacking = 0;
         /** Attributes that can be used with a CardView.
@@ -3831,17 +3831,17 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CardView_cardBackgroundColor TestApp.TestApp:cardBackgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardCornerRadius TestApp.TestApp:cardCornerRadius}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardElevation TestApp.TestApp:cardElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardMaxElevation TestApp.TestApp:cardMaxElevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardPreventCornerOverlap TestApp.TestApp:cardPreventCornerOverlap}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_cardUseCompatPadding TestApp.TestApp:cardUseCompatPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPadding TestApp.TestApp:contentPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingBottom TestApp.TestApp:contentPaddingBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingLeft TestApp.TestApp:contentPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingRight TestApp.TestApp:contentPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #CardView_contentPaddingTop TestApp.TestApp:contentPaddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardBackgroundColor testApp.TestApp:cardBackgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardCornerRadius testApp.TestApp:cardCornerRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardElevation testApp.TestApp:cardElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardMaxElevation testApp.TestApp:cardMaxElevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardPreventCornerOverlap testApp.TestApp:cardPreventCornerOverlap}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_cardUseCompatPadding testApp.TestApp:cardUseCompatPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPadding testApp.TestApp:contentPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingBottom testApp.TestApp:contentPaddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingLeft testApp.TestApp:contentPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingRight testApp.TestApp:contentPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #CardView_contentPaddingTop testApp.TestApp:contentPaddingTop}</code></td><td></td></tr>
            </table>
            @see #CardView_cardBackgroundColor
            @see #CardView_cardCornerRadius
@@ -3861,7 +3861,7 @@ containing a value of this type.
             0x7f010026, 0x7f010027, 0x7f010028
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardBackgroundColor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardBackgroundColor}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3872,11 +3872,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardBackgroundColor
+          @attr name testApp.TestApp:cardBackgroundColor
         */
         public static final int CardView_cardBackgroundColor = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardCornerRadius}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardCornerRadius}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3888,11 +3888,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardCornerRadius
+          @attr name testApp.TestApp:cardCornerRadius
         */
         public static final int CardView_cardCornerRadius = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardElevation}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3904,11 +3904,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardElevation
+          @attr name testApp.TestApp:cardElevation
         */
         public static final int CardView_cardElevation = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardMaxElevation}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardMaxElevation}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3920,11 +3920,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardMaxElevation
+          @attr name testApp.TestApp:cardMaxElevation
         */
         public static final int CardView_cardMaxElevation = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardPreventCornerOverlap}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardPreventCornerOverlap}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3934,11 +3934,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardPreventCornerOverlap
+          @attr name testApp.TestApp:cardPreventCornerOverlap
         */
         public static final int CardView_cardPreventCornerOverlap = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cardUseCompatPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cardUseCompatPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3948,11 +3948,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cardUseCompatPadding
+          @attr name testApp.TestApp:cardUseCompatPadding
         */
         public static final int CardView_cardUseCompatPadding = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentPadding}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3964,11 +3964,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentPadding
+          @attr name testApp.TestApp:contentPadding
         */
         public static final int CardView_contentPadding = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentPaddingBottom}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentPaddingBottom}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3980,11 +3980,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentPaddingBottom
+          @attr name testApp.TestApp:contentPaddingBottom
         */
         public static final int CardView_contentPaddingBottom = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentPaddingLeft}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentPaddingLeft}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -3996,11 +3996,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentPaddingLeft
+          @attr name testApp.TestApp:contentPaddingLeft
         */
         public static final int CardView_contentPaddingLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentPaddingRight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentPaddingRight}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -4012,11 +4012,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentPaddingRight
+          @attr name testApp.TestApp:contentPaddingRight
         */
         public static final int CardView_contentPaddingRight = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentPaddingTop}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentPaddingTop}
           attribute's value can be found in the {@link #CardView} array.
 
 
@@ -4028,7 +4028,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentPaddingTop
+          @attr name testApp.TestApp:contentPaddingTop
         */
         public static final int CardView_contentPaddingTop = 9;
         /** Attributes that can be used with a CompoundButton.
@@ -4038,8 +4038,8 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CompoundButton_android_button android:button}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTint TestApp.TestApp:buttonTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTintMode TestApp.TestApp:buttonTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTint testApp.TestApp:buttonTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTintMode testApp.TestApp:buttonTintMode}</code></td><td></td></tr>
            </table>
            @see #CompoundButton_android_button
            @see #CompoundButton_buttonTint
@@ -4055,7 +4055,7 @@ containing a value of this type.
         */
         public static final int CompoundButton_android_button = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonTint}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonTint}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -4066,11 +4066,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:buttonTint
+          @attr name testApp.TestApp:buttonTint
         */
         public static final int CompoundButton_buttonTint = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonTintMode}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonTintMode}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -4086,7 +4086,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:buttonTintMode
+          @attr name testApp.TestApp:buttonTintMode
         */
         public static final int CompoundButton_buttonTintMode = 2;
         /** Attributes that can be used with a DrawerArrowToggle.
@@ -4095,14 +4095,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength TestApp.TestApp:arrowHeadLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength TestApp.TestApp:arrowShaftLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_barLength TestApp.TestApp:barLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_color TestApp.TestApp:color}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_drawableSize TestApp.TestApp:drawableSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars TestApp.TestApp:gapBetweenBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_spinBars TestApp.TestApp:spinBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_thickness TestApp.TestApp:thickness}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength testApp.TestApp:arrowHeadLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength testApp.TestApp:arrowShaftLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_barLength testApp.TestApp:barLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_color testApp.TestApp:color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_drawableSize testApp.TestApp:drawableSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars testApp.TestApp:gapBetweenBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_spinBars testApp.TestApp:spinBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_thickness testApp.TestApp:thickness}</code></td><td></td></tr>
            </table>
            @see #DrawerArrowToggle_arrowHeadLength
            @see #DrawerArrowToggle_arrowShaftLength
@@ -4118,7 +4118,7 @@ containing a value of this type.
             0x7f010055, 0x7f010056, 0x7f010057, 0x7f010058
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#arrowHeadLength}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#arrowHeadLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4130,11 +4130,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:arrowHeadLength
+          @attr name testApp.TestApp:arrowHeadLength
         */
         public static final int DrawerArrowToggle_arrowHeadLength = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#arrowShaftLength}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#arrowShaftLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4146,11 +4146,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:arrowShaftLength
+          @attr name testApp.TestApp:arrowShaftLength
         */
         public static final int DrawerArrowToggle_arrowShaftLength = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#barLength}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#barLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4162,11 +4162,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:barLength
+          @attr name testApp.TestApp:barLength
         */
         public static final int DrawerArrowToggle_barLength = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#color}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#color}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4177,11 +4177,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:color
+          @attr name testApp.TestApp:color
         */
         public static final int DrawerArrowToggle_color = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#drawableSize}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#drawableSize}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4193,11 +4193,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:drawableSize
+          @attr name testApp.TestApp:drawableSize
         */
         public static final int DrawerArrowToggle_drawableSize = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#gapBetweenBars}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#gapBetweenBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4209,11 +4209,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:gapBetweenBars
+          @attr name testApp.TestApp:gapBetweenBars
         */
         public static final int DrawerArrowToggle_gapBetweenBars = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#spinBars}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#spinBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4223,11 +4223,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:spinBars
+          @attr name testApp.TestApp:spinBars
         */
         public static final int DrawerArrowToggle_spinBars = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#thickness}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#thickness}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -4239,7 +4239,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:thickness
+          @attr name testApp.TestApp:thickness
         */
         public static final int DrawerArrowToggle_thickness = 7;
         /** Attributes that can be used with a LinearLayoutCompat.
@@ -4253,10 +4253,10 @@ containing a value of this type.
            <tr><td><code>{@link #LinearLayoutCompat_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_orientation android:orientation}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_weightSum android:weightSum}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_divider TestApp.TestApp:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding TestApp.TestApp:dividerPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild TestApp.TestApp:measureWithLargestChild}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_showDividers TestApp.TestApp:showDividers}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_divider testApp.TestApp:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding testApp.TestApp:dividerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild testApp.TestApp:measureWithLargestChild}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_showDividers testApp.TestApp:showDividers}</code></td><td></td></tr>
            </table>
            @see #LinearLayoutCompat_android_baselineAligned
            @see #LinearLayoutCompat_android_baselineAlignedChildIndex
@@ -4304,17 +4304,17 @@ containing a value of this type.
         */
         public static final int LinearLayoutCompat_android_weightSum = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#divider}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#divider}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:divider
+          @attr name testApp.TestApp:divider
         */
         public static final int LinearLayoutCompat_divider = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dividerPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dividerPadding}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -4326,11 +4326,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:dividerPadding
+          @attr name testApp.TestApp:dividerPadding
         */
         public static final int LinearLayoutCompat_dividerPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#measureWithLargestChild}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#measureWithLargestChild}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -4340,11 +4340,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:measureWithLargestChild
+          @attr name testApp.TestApp:measureWithLargestChild
         */
         public static final int LinearLayoutCompat_measureWithLargestChild = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#showDividers}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#showDividers}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -4359,7 +4359,7 @@ containing a value of this type.
 <tr><td><code>middle</code></td><td>2</td><td></td></tr>
 <tr><td><code>end</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:showDividers
+          @attr name testApp.TestApp:showDividers
         */
         public static final int LinearLayoutCompat_showDividers = 7;
         /** Attributes that can be used with a LinearLayoutCompat_Layout.
@@ -4438,12 +4438,12 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #LoadingImageView_circleCrop TestApp.TestApp:circleCrop}</code></td><td>
+           <tr><td><code>{@link #LoadingImageView_circleCrop testApp.TestApp:circleCrop}</code></td><td>
         Whether or not this view should have a circular clip applied
         </td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatio TestApp.TestApp:imageAspectRatio}</code></td><td>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatio testApp.TestApp:imageAspectRatio}</code></td><td>
         The fixed aspect ratio to use in aspect ratio adjustments.</td></tr>
-           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust TestApp.TestApp:imageAspectRatioAdjust}</code></td><td>
+           <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust testApp.TestApp:imageAspectRatioAdjust}</code></td><td>
         What kind of aspect ratio adjustment to do.</td></tr>
            </table>
            @see #LoadingImageView_circleCrop
@@ -4468,7 +4468,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:circleCrop
+          @attr name testApp.TestApp:circleCrop
         */
         public static final int LoadingImageView_circleCrop = 2;
         /**
@@ -4486,7 +4486,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:imageAspectRatio
+          @attr name testApp.TestApp:imageAspectRatio
         */
         public static final int LoadingImageView_imageAspectRatio = 1;
         /**
@@ -4509,7 +4509,7 @@ containing a value of this type.
 <tr><td><code>adjust_height</code></td><td>2</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name TestApp.TestApp:imageAspectRatioAdjust
+          @attr name testApp.TestApp:imageAspectRatioAdjust
         */
         public static final int LoadingImageView_imageAspectRatioAdjust = 0;
         /** Attributes that can be used with a MapAttrs.
@@ -4518,23 +4518,23 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MapAttrs_ambientEnabled TestApp.TestApp:ambientEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraBearing TestApp.TestApp:cameraBearing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLat TestApp.TestApp:cameraTargetLat}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLng TestApp.TestApp:cameraTargetLng}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTilt TestApp.TestApp:cameraTilt}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraZoom TestApp.TestApp:cameraZoom}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_liteMode TestApp.TestApp:liteMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_mapType TestApp.TestApp:mapType}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiCompass TestApp.TestApp:uiCompass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiMapToolbar TestApp.TestApp:uiMapToolbar}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiRotateGestures TestApp.TestApp:uiRotateGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiScrollGestures TestApp.TestApp:uiScrollGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiTiltGestures TestApp.TestApp:uiTiltGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomControls TestApp.TestApp:uiZoomControls}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomGestures TestApp.TestApp:uiZoomGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_useViewLifecycle TestApp.TestApp:useViewLifecycle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_zOrderOnTop TestApp.TestApp:zOrderOnTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_ambientEnabled testApp.TestApp:ambientEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing testApp.TestApp:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat testApp.TestApp:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng testApp.TestApp:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt testApp.TestApp:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom testApp.TestApp:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_liteMode testApp.TestApp:liteMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType testApp.TestApp:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass testApp.TestApp:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiMapToolbar testApp.TestApp:uiMapToolbar}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures testApp.TestApp:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures testApp.TestApp:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures testApp.TestApp:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls testApp.TestApp:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures testApp.TestApp:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle testApp.TestApp:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop testApp.TestApp:zOrderOnTop}</code></td><td></td></tr>
            </table>
            @see #MapAttrs_ambientEnabled
            @see #MapAttrs_cameraBearing
@@ -4562,7 +4562,7 @@ containing a value of this type.
             0x7f010010
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#ambientEnabled}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#ambientEnabled}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4572,11 +4572,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:ambientEnabled
+          @attr name testApp.TestApp:ambientEnabled
         */
         public static final int MapAttrs_ambientEnabled = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cameraBearing}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cameraBearing}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4586,11 +4586,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cameraBearing
+          @attr name testApp.TestApp:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cameraTargetLat}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cameraTargetLat}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4600,11 +4600,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cameraTargetLat
+          @attr name testApp.TestApp:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cameraTargetLng}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cameraTargetLng}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4614,11 +4614,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cameraTargetLng
+          @attr name testApp.TestApp:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cameraTilt}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cameraTilt}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4628,11 +4628,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cameraTilt
+          @attr name testApp.TestApp:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#cameraZoom}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#cameraZoom}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4642,11 +4642,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:cameraZoom
+          @attr name testApp.TestApp:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#liteMode}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#liteMode}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4656,11 +4656,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:liteMode
+          @attr name testApp.TestApp:liteMode
         */
         public static final int MapAttrs_liteMode = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#mapType}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#mapType}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4676,11 +4676,11 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:mapType
+          @attr name testApp.TestApp:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiCompass}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiCompass}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4690,11 +4690,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiCompass
+          @attr name testApp.TestApp:uiCompass
         */
         public static final int MapAttrs_uiCompass = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiMapToolbar}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiMapToolbar}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4704,11 +4704,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiMapToolbar
+          @attr name testApp.TestApp:uiMapToolbar
         */
         public static final int MapAttrs_uiMapToolbar = 15;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiRotateGestures}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiRotateGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4718,11 +4718,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiRotateGestures
+          @attr name testApp.TestApp:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiScrollGestures}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiScrollGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4732,11 +4732,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiScrollGestures
+          @attr name testApp.TestApp:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiTiltGestures}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiTiltGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4746,11 +4746,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiTiltGestures
+          @attr name testApp.TestApp:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiZoomControls}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiZoomControls}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4760,11 +4760,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiZoomControls
+          @attr name testApp.TestApp:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 11;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#uiZoomGestures}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#uiZoomGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4774,11 +4774,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:uiZoomGestures
+          @attr name testApp.TestApp:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 12;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#useViewLifecycle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#useViewLifecycle}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4788,11 +4788,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:useViewLifecycle
+          @attr name testApp.TestApp:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 13;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#zOrderOnTop}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#zOrderOnTop}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -4802,7 +4802,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:zOrderOnTop
+          @attr name testApp.TestApp:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 14;
         /** Attributes that can be used with a MenuGroup.
@@ -4871,9 +4871,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuItem_actionLayout TestApp.TestApp:actionLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionProviderClass TestApp.TestApp:actionProviderClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionViewClass TestApp.TestApp:actionViewClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionLayout testApp.TestApp:actionLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionProviderClass testApp.TestApp:actionProviderClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionViewClass testApp.TestApp:actionViewClass}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checkable android:checkable}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checked android:checked}</code></td><td></td></tr>
@@ -4887,7 +4887,7 @@ containing a value of this type.
            <tr><td><code>{@link #MenuItem_android_title android:title}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_titleCondensed android:titleCondensed}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_visible android:visible}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_showAsAction TestApp.TestApp:showAsAction}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_showAsAction testApp.TestApp:showAsAction}</code></td><td></td></tr>
            </table>
            @see #MenuItem_actionLayout
            @see #MenuItem_actionProviderClass
@@ -4915,17 +4915,17 @@ containing a value of this type.
             0x7f01005f
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionLayout}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionLayout
+          @attr name testApp.TestApp:actionLayout
         */
         public static final int MenuItem_actionLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionProviderClass}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionProviderClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -4935,11 +4935,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:actionProviderClass
+          @attr name testApp.TestApp:actionProviderClass
         */
         public static final int MenuItem_actionProviderClass = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionViewClass}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionViewClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -4949,7 +4949,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:actionViewClass
+          @attr name testApp.TestApp:actionViewClass
         */
         public static final int MenuItem_actionViewClass = 15;
         /**
@@ -5031,7 +5031,7 @@ containing a value of this type.
         */
         public static final int MenuItem_android_visible = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#showAsAction}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#showAsAction}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -5047,7 +5047,7 @@ containing a value of this type.
 <tr><td><code>withText</code></td><td>4</td><td></td></tr>
 <tr><td><code>collapseActionView</code></td><td>8</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:showAsAction
+          @attr name testApp.TestApp:showAsAction
         */
         public static final int MenuItem_showAsAction = 13;
         /** Attributes that can be used with a MenuView.
@@ -5063,7 +5063,7 @@ containing a value of this type.
            <tr><td><code>{@link #MenuView_android_itemTextAppearance android:itemTextAppearance}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_verticalDivider android:verticalDivider}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_preserveIconSpacing TestApp.TestApp:preserveIconSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_preserveIconSpacing testApp.TestApp:preserveIconSpacing}</code></td><td></td></tr>
            </table>
            @see #MenuView_android_headerBackground
            @see #MenuView_android_horizontalDivider
@@ -5121,7 +5121,7 @@ containing a value of this type.
         */
         public static final int MenuView_android_windowAnimationStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#preserveIconSpacing}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#preserveIconSpacing}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -5131,7 +5131,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:preserveIconSpacing
+          @attr name testApp.TestApp:preserveIconSpacing
         */
         public static final int MenuView_preserveIconSpacing = 7;
         /** Attributes that can be used with a PopupWindow.
@@ -5141,7 +5141,7 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #PopupWindow_android_popupBackground android:popupBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PopupWindow_overlapAnchor TestApp.TestApp:overlapAnchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindow_overlapAnchor testApp.TestApp:overlapAnchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindow_android_popupBackground
            @see #PopupWindow_overlapAnchor
@@ -5156,7 +5156,7 @@ containing a value of this type.
         */
         public static final int PopupWindow_android_popupBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#overlapAnchor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#overlapAnchor}
           attribute's value can be found in the {@link #PopupWindow} array.
 
 
@@ -5166,7 +5166,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:overlapAnchor
+          @attr name testApp.TestApp:overlapAnchor
         */
         public static final int PopupWindow_overlapAnchor = 1;
         /** Attributes that can be used with a PopupWindowBackgroundState.
@@ -5175,7 +5175,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor TestApp.TestApp:state_above_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor testApp.TestApp:state_above_anchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindowBackgroundState_state_above_anchor
          */
@@ -5183,7 +5183,7 @@ containing a value of this type.
             0x7f010062
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#state_above_anchor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#state_above_anchor}
           attribute's value can be found in the {@link #PopupWindowBackgroundState} array.
 
 
@@ -5193,7 +5193,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:state_above_anchor
+          @attr name testApp.TestApp:state_above_anchor
         */
         public static final int PopupWindowBackgroundState_state_above_anchor = 0;
         /** Attributes that can be used with a RecyclerView.
@@ -5203,10 +5203,10 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #RecyclerView_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_layoutManager TestApp.TestApp:layoutManager}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_reverseLayout TestApp.TestApp:reverseLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_spanCount TestApp.TestApp:spanCount}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_stackFromEnd TestApp.TestApp:stackFromEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_layoutManager testApp.TestApp:layoutManager}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_reverseLayout testApp.TestApp:reverseLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_spanCount testApp.TestApp:spanCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecyclerView_stackFromEnd testApp.TestApp:stackFromEnd}</code></td><td></td></tr>
            </table>
            @see #RecyclerView_android_orientation
            @see #RecyclerView_layoutManager
@@ -5225,7 +5225,7 @@ containing a value of this type.
         */
         public static final int RecyclerView_android_orientation = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#layoutManager}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#layoutManager}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -5235,11 +5235,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:layoutManager
+          @attr name testApp.TestApp:layoutManager
         */
         public static final int RecyclerView_layoutManager = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#reverseLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#reverseLayout}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -5249,11 +5249,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:reverseLayout
+          @attr name testApp.TestApp:reverseLayout
         */
         public static final int RecyclerView_reverseLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#spanCount}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#spanCount}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -5263,11 +5263,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:spanCount
+          @attr name testApp.TestApp:spanCount
         */
         public static final int RecyclerView_spanCount = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#stackFromEnd}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#stackFromEnd}
           attribute's value can be found in the {@link #RecyclerView} array.
 
 
@@ -5277,7 +5277,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:stackFromEnd
+          @attr name testApp.TestApp:stackFromEnd
         */
         public static final int RecyclerView_stackFromEnd = 4;
         /** Attributes that can be used with a SearchView.
@@ -5290,19 +5290,19 @@ containing a value of this type.
            <tr><td><code>{@link #SearchView_android_imeOptions android:imeOptions}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_inputType android:inputType}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_closeIcon TestApp.TestApp:closeIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_commitIcon TestApp.TestApp:commitIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_defaultQueryHint TestApp.TestApp:defaultQueryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_goIcon TestApp.TestApp:goIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_iconifiedByDefault TestApp.TestApp:iconifiedByDefault}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_layout TestApp.TestApp:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryBackground TestApp.TestApp:queryBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryHint TestApp.TestApp:queryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchHintIcon TestApp.TestApp:searchHintIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchIcon TestApp.TestApp:searchIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_submitBackground TestApp.TestApp:submitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_suggestionRowLayout TestApp.TestApp:suggestionRowLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_voiceIcon TestApp.TestApp:voiceIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_closeIcon testApp.TestApp:closeIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_commitIcon testApp.TestApp:commitIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_defaultQueryHint testApp.TestApp:defaultQueryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_goIcon testApp.TestApp:goIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_iconifiedByDefault testApp.TestApp:iconifiedByDefault}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_layout testApp.TestApp:layout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryBackground testApp.TestApp:queryBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryHint testApp.TestApp:queryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchHintIcon testApp.TestApp:searchHintIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchIcon testApp.TestApp:searchIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_submitBackground testApp.TestApp:submitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_suggestionRowLayout testApp.TestApp:suggestionRowLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_voiceIcon testApp.TestApp:voiceIcon}</code></td><td></td></tr>
            </table>
            @see #SearchView_android_focusable
            @see #SearchView_android_imeOptions
@@ -5354,27 +5354,27 @@ containing a value of this type.
         */
         public static final int SearchView_android_maxWidth = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#closeIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#closeIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:closeIcon
+          @attr name testApp.TestApp:closeIcon
         */
         public static final int SearchView_closeIcon = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#commitIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#commitIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:commitIcon
+          @attr name testApp.TestApp:commitIcon
         */
         public static final int SearchView_commitIcon = 13;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#defaultQueryHint}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#defaultQueryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -5384,21 +5384,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:defaultQueryHint
+          @attr name testApp.TestApp:defaultQueryHint
         */
         public static final int SearchView_defaultQueryHint = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#goIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#goIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:goIcon
+          @attr name testApp.TestApp:goIcon
         */
         public static final int SearchView_goIcon = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#iconifiedByDefault}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#iconifiedByDefault}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -5408,31 +5408,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:iconifiedByDefault
+          @attr name testApp.TestApp:iconifiedByDefault
         */
         public static final int SearchView_iconifiedByDefault = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#layout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#layout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:layout
+          @attr name testApp.TestApp:layout
         */
         public static final int SearchView_layout = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#queryBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#queryBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:queryBackground
+          @attr name testApp.TestApp:queryBackground
         */
         public static final int SearchView_queryBackground = 15;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#queryHint}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#queryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -5442,57 +5442,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:queryHint
+          @attr name testApp.TestApp:queryHint
         */
         public static final int SearchView_queryHint = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#searchHintIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#searchHintIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:searchHintIcon
+          @attr name testApp.TestApp:searchHintIcon
         */
         public static final int SearchView_searchHintIcon = 11;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#searchIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#searchIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:searchIcon
+          @attr name testApp.TestApp:searchIcon
         */
         public static final int SearchView_searchIcon = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#submitBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#submitBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:submitBackground
+          @attr name testApp.TestApp:submitBackground
         */
         public static final int SearchView_submitBackground = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#suggestionRowLayout}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#suggestionRowLayout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:suggestionRowLayout
+          @attr name testApp.TestApp:suggestionRowLayout
         */
         public static final int SearchView_suggestionRowLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#voiceIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#voiceIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:voiceIcon
+          @attr name testApp.TestApp:voiceIcon
         */
         public static final int SearchView_voiceIcon = 12;
         /**  Attributes for SignInButton
@@ -5505,9 +5505,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SignInButton_buttonSize TestApp.TestApp:buttonSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_colorScheme TestApp.TestApp:colorScheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #SignInButton_scopeUris TestApp.TestApp:scopeUris}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_buttonSize testApp.TestApp:buttonSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_colorScheme testApp.TestApp:colorScheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #SignInButton_scopeUris testApp.TestApp:scopeUris}</code></td><td></td></tr>
            </table>
            @see #SignInButton_buttonSize
            @see #SignInButton_colorScheme
@@ -5517,7 +5517,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010014, 0x7f010015, 0x7f010016
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonSize}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonSize}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -5533,11 +5533,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>wide</code></td><td>1</td><td></td></tr>
 <tr><td><code>icon_only</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:buttonSize
+          @attr name testApp.TestApp:buttonSize
         */
         public static final int SignInButton_buttonSize = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorScheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorScheme}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
@@ -5553,18 +5553,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>light</code></td><td>1</td><td></td></tr>
 <tr><td><code>auto</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:colorScheme
+          @attr name testApp.TestApp:colorScheme
         */
         public static final int SignInButton_colorScheme = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#scopeUris}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#scopeUris}
           attribute's value can be found in the {@link #SignInButton} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name TestApp.TestApp:scopeUris
+          @attr name testApp.TestApp:scopeUris
         */
         public static final int SignInButton_scopeUris = 2;
         /** Attributes that can be used with a Spinner.
@@ -5576,7 +5576,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #Spinner_android_dropDownWidth android:dropDownWidth}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_popupBackground android:popupBackground}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_prompt android:prompt}</code></td><td></td></tr>
-           <tr><td><code>{@link #Spinner_popupTheme TestApp.TestApp:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Spinner_popupTheme testApp.TestApp:popupTheme}</code></td><td></td></tr>
            </table>
            @see #Spinner_android_dropDownWidth
            @see #Spinner_android_popupBackground
@@ -5605,13 +5605,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int Spinner_android_prompt = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#popupTheme}
           attribute's value can be found in the {@link #Spinner} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:popupTheme
+          @attr name testApp.TestApp:popupTheme
         */
         public static final int Spinner_popupTheme = 3;
         /** Attributes that can be used with a SwitchCompat.
@@ -5623,13 +5623,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #SwitchCompat_android_textOff android:textOff}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_textOn android:textOn}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_showText TestApp.TestApp:showText}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_splitTrack TestApp.TestApp:splitTrack}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchMinWidth TestApp.TestApp:switchMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchPadding TestApp.TestApp:switchPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchTextAppearance TestApp.TestApp:switchTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTextPadding TestApp.TestApp:thumbTextPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_track TestApp.TestApp:track}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_showText testApp.TestApp:showText}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_splitTrack testApp.TestApp:splitTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchMinWidth testApp.TestApp:switchMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchPadding testApp.TestApp:switchPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchTextAppearance testApp.TestApp:switchTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTextPadding testApp.TestApp:thumbTextPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_track testApp.TestApp:track}</code></td><td></td></tr>
            </table>
            @see #SwitchCompat_android_textOff
            @see #SwitchCompat_android_textOn
@@ -5666,7 +5666,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int SwitchCompat_android_thumb = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#showText}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#showText}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -5676,11 +5676,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:showText
+          @attr name testApp.TestApp:showText
         */
         public static final int SwitchCompat_showText = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#splitTrack}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#splitTrack}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -5690,11 +5690,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:splitTrack
+          @attr name testApp.TestApp:splitTrack
         */
         public static final int SwitchCompat_splitTrack = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#switchMinWidth}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#switchMinWidth}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -5706,11 +5706,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:switchMinWidth
+          @attr name testApp.TestApp:switchMinWidth
         */
         public static final int SwitchCompat_switchMinWidth = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#switchPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#switchPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -5722,21 +5722,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:switchPadding
+          @attr name testApp.TestApp:switchPadding
         */
         public static final int SwitchCompat_switchPadding = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#switchTextAppearance}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#switchTextAppearance}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:switchTextAppearance
+          @attr name testApp.TestApp:switchTextAppearance
         */
         public static final int SwitchCompat_switchTextAppearance = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#thumbTextPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#thumbTextPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -5748,17 +5748,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:thumbTextPadding
+          @attr name testApp.TestApp:thumbTextPadding
         */
         public static final int SwitchCompat_thumbTextPadding = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#track}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#track}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:track
+          @attr name testApp.TestApp:track
         */
         public static final int SwitchCompat_track = 3;
         /** Attributes that can be used with a TextAppearance.
@@ -5775,7 +5775,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #TextAppearance_android_textSize android:textSize}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_textStyle android:textStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_typeface android:typeface}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextAppearance_textAllCaps TestApp.TestApp:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextAppearance_textAllCaps testApp.TestApp:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #TextAppearance_android_shadowColor
            @see #TextAppearance_android_shadowDx
@@ -5841,14 +5841,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int TextAppearance_android_typeface = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name TestApp.TestApp:textAllCaps
+          @attr name testApp.TestApp:textAllCaps
         */
         public static final int TextAppearance_textAllCaps = 8;
         /** Attributes that can be used with a Theme.
@@ -5857,116 +5857,116 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #Theme_actionBarDivider TestApp.TestApp:actionBarDivider}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarItemBackground TestApp.TestApp:actionBarItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarPopupTheme TestApp.TestApp:actionBarPopupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarSize TestApp.TestApp:actionBarSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarSplitStyle TestApp.TestApp:actionBarSplitStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarStyle TestApp.TestApp:actionBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarTabBarStyle TestApp.TestApp:actionBarTabBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarTabStyle TestApp.TestApp:actionBarTabStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarTabTextStyle TestApp.TestApp:actionBarTabTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarTheme TestApp.TestApp:actionBarTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionBarWidgetTheme TestApp.TestApp:actionBarWidgetTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionButtonStyle TestApp.TestApp:actionButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionDropDownStyle TestApp.TestApp:actionDropDownStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionMenuTextAppearance TestApp.TestApp:actionMenuTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionMenuTextColor TestApp.TestApp:actionMenuTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeBackground TestApp.TestApp:actionModeBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeCloseButtonStyle TestApp.TestApp:actionModeCloseButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeCloseDrawable TestApp.TestApp:actionModeCloseDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeCopyDrawable TestApp.TestApp:actionModeCopyDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeCutDrawable TestApp.TestApp:actionModeCutDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeFindDrawable TestApp.TestApp:actionModeFindDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModePasteDrawable TestApp.TestApp:actionModePasteDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModePopupWindowStyle TestApp.TestApp:actionModePopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeSelectAllDrawable TestApp.TestApp:actionModeSelectAllDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeShareDrawable TestApp.TestApp:actionModeShareDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeSplitBackground TestApp.TestApp:actionModeSplitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeStyle TestApp.TestApp:actionModeStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionModeWebSearchDrawable TestApp.TestApp:actionModeWebSearchDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionOverflowButtonStyle TestApp.TestApp:actionOverflowButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_actionOverflowMenuStyle TestApp.TestApp:actionOverflowMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_activityChooserViewStyle TestApp.TestApp:activityChooserViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_alertDialogButtonGroupStyle TestApp.TestApp:alertDialogButtonGroupStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_alertDialogCenterButtons TestApp.TestApp:alertDialogCenterButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_alertDialogStyle TestApp.TestApp:alertDialogStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_alertDialogTheme TestApp.TestApp:alertDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarDivider testApp.TestApp:actionBarDivider}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarItemBackground testApp.TestApp:actionBarItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarPopupTheme testApp.TestApp:actionBarPopupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarSize testApp.TestApp:actionBarSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarSplitStyle testApp.TestApp:actionBarSplitStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarStyle testApp.TestApp:actionBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarTabBarStyle testApp.TestApp:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarTabStyle testApp.TestApp:actionBarTabStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarTabTextStyle testApp.TestApp:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarTheme testApp.TestApp:actionBarTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionBarWidgetTheme testApp.TestApp:actionBarWidgetTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionButtonStyle testApp.TestApp:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionDropDownStyle testApp.TestApp:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionMenuTextAppearance testApp.TestApp:actionMenuTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionMenuTextColor testApp.TestApp:actionMenuTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeBackground testApp.TestApp:actionModeBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeCloseButtonStyle testApp.TestApp:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeCloseDrawable testApp.TestApp:actionModeCloseDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeCopyDrawable testApp.TestApp:actionModeCopyDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeCutDrawable testApp.TestApp:actionModeCutDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeFindDrawable testApp.TestApp:actionModeFindDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModePasteDrawable testApp.TestApp:actionModePasteDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModePopupWindowStyle testApp.TestApp:actionModePopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeSelectAllDrawable testApp.TestApp:actionModeSelectAllDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeShareDrawable testApp.TestApp:actionModeShareDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeSplitBackground testApp.TestApp:actionModeSplitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeStyle testApp.TestApp:actionModeStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionModeWebSearchDrawable testApp.TestApp:actionModeWebSearchDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionOverflowButtonStyle testApp.TestApp:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_actionOverflowMenuStyle testApp.TestApp:actionOverflowMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_activityChooserViewStyle testApp.TestApp:activityChooserViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_alertDialogButtonGroupStyle testApp.TestApp:alertDialogButtonGroupStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_alertDialogCenterButtons testApp.TestApp:alertDialogCenterButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_alertDialogStyle testApp.TestApp:alertDialogStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_alertDialogTheme testApp.TestApp:alertDialogTheme}</code></td><td></td></tr>
            <tr><td><code>{@link #Theme_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #Theme_android_windowIsFloating android:windowIsFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_autoCompleteTextViewStyle TestApp.TestApp:autoCompleteTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_borderlessButtonStyle TestApp.TestApp:borderlessButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonBarButtonStyle TestApp.TestApp:buttonBarButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonBarNegativeButtonStyle TestApp.TestApp:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonBarNeutralButtonStyle TestApp.TestApp:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonBarPositiveButtonStyle TestApp.TestApp:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonBarStyle TestApp.TestApp:buttonBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonStyle TestApp.TestApp:buttonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_buttonStyleSmall TestApp.TestApp:buttonStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_checkboxStyle TestApp.TestApp:checkboxStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_checkedTextViewStyle TestApp.TestApp:checkedTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorAccent TestApp.TestApp:colorAccent}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorButtonNormal TestApp.TestApp:colorButtonNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorControlActivated TestApp.TestApp:colorControlActivated}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorControlHighlight TestApp.TestApp:colorControlHighlight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorControlNormal TestApp.TestApp:colorControlNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorPrimary TestApp.TestApp:colorPrimary}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorPrimaryDark TestApp.TestApp:colorPrimaryDark}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_colorSwitchThumbNormal TestApp.TestApp:colorSwitchThumbNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_controlBackground TestApp.TestApp:controlBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dialogPreferredPadding TestApp.TestApp:dialogPreferredPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dialogTheme TestApp.TestApp:dialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dividerHorizontal TestApp.TestApp:dividerHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dividerVertical TestApp.TestApp:dividerVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dropDownListViewStyle TestApp.TestApp:dropDownListViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_dropdownListPreferredItemHeight TestApp.TestApp:dropdownListPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_editTextBackground TestApp.TestApp:editTextBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_editTextColor TestApp.TestApp:editTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_editTextStyle TestApp.TestApp:editTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_homeAsUpIndicator TestApp.TestApp:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_imageButtonStyle TestApp.TestApp:imageButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listChoiceBackgroundIndicator TestApp.TestApp:listChoiceBackgroundIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listDividerAlertDialog TestApp.TestApp:listDividerAlertDialog}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPopupWindowStyle TestApp.TestApp:listPopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPreferredItemHeight TestApp.TestApp:listPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPreferredItemHeightLarge TestApp.TestApp:listPreferredItemHeightLarge}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPreferredItemHeightSmall TestApp.TestApp:listPreferredItemHeightSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPreferredItemPaddingLeft TestApp.TestApp:listPreferredItemPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_listPreferredItemPaddingRight TestApp.TestApp:listPreferredItemPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_panelBackground TestApp.TestApp:panelBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_panelMenuListTheme TestApp.TestApp:panelMenuListTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_panelMenuListWidth TestApp.TestApp:panelMenuListWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_popupMenuStyle TestApp.TestApp:popupMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_popupWindowStyle TestApp.TestApp:popupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_radioButtonStyle TestApp.TestApp:radioButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_ratingBarStyle TestApp.TestApp:ratingBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_searchViewStyle TestApp.TestApp:searchViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_seekBarStyle TestApp.TestApp:seekBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_selectableItemBackground TestApp.TestApp:selectableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_selectableItemBackgroundBorderless TestApp.TestApp:selectableItemBackgroundBorderless}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_spinnerDropDownItemStyle TestApp.TestApp:spinnerDropDownItemStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_spinnerStyle TestApp.TestApp:spinnerStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_switchStyle TestApp.TestApp:switchStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceLargePopupMenu TestApp.TestApp:textAppearanceLargePopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceListItem TestApp.TestApp:textAppearanceListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceListItemSmall TestApp.TestApp:textAppearanceListItemSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceSearchResultSubtitle TestApp.TestApp:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceSearchResultTitle TestApp.TestApp:textAppearanceSearchResultTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textAppearanceSmallPopupMenu TestApp.TestApp:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textColorAlertDialogListItem TestApp.TestApp:textColorAlertDialogListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_textColorSearchUrl TestApp.TestApp:textColorSearchUrl}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_toolbarNavigationButtonStyle TestApp.TestApp:toolbarNavigationButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_toolbarStyle TestApp.TestApp:toolbarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowActionBar TestApp.TestApp:windowActionBar}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowActionBarOverlay TestApp.TestApp:windowActionBarOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowActionModeOverlay TestApp.TestApp:windowActionModeOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowFixedHeightMajor TestApp.TestApp:windowFixedHeightMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowFixedHeightMinor TestApp.TestApp:windowFixedHeightMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowFixedWidthMajor TestApp.TestApp:windowFixedWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowFixedWidthMinor TestApp.TestApp:windowFixedWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowMinWidthMajor TestApp.TestApp:windowMinWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowMinWidthMinor TestApp.TestApp:windowMinWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Theme_windowNoTitle TestApp.TestApp:windowNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_autoCompleteTextViewStyle testApp.TestApp:autoCompleteTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_borderlessButtonStyle testApp.TestApp:borderlessButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonBarButtonStyle testApp.TestApp:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonBarNegativeButtonStyle testApp.TestApp:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonBarNeutralButtonStyle testApp.TestApp:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonBarPositiveButtonStyle testApp.TestApp:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonBarStyle testApp.TestApp:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonStyle testApp.TestApp:buttonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_buttonStyleSmall testApp.TestApp:buttonStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_checkboxStyle testApp.TestApp:checkboxStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_checkedTextViewStyle testApp.TestApp:checkedTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorAccent testApp.TestApp:colorAccent}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorButtonNormal testApp.TestApp:colorButtonNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorControlActivated testApp.TestApp:colorControlActivated}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorControlHighlight testApp.TestApp:colorControlHighlight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorControlNormal testApp.TestApp:colorControlNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorPrimary testApp.TestApp:colorPrimary}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorPrimaryDark testApp.TestApp:colorPrimaryDark}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_colorSwitchThumbNormal testApp.TestApp:colorSwitchThumbNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_controlBackground testApp.TestApp:controlBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dialogPreferredPadding testApp.TestApp:dialogPreferredPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dialogTheme testApp.TestApp:dialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dividerHorizontal testApp.TestApp:dividerHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dividerVertical testApp.TestApp:dividerVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dropDownListViewStyle testApp.TestApp:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_dropdownListPreferredItemHeight testApp.TestApp:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_editTextBackground testApp.TestApp:editTextBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_editTextColor testApp.TestApp:editTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_editTextStyle testApp.TestApp:editTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_homeAsUpIndicator testApp.TestApp:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_imageButtonStyle testApp.TestApp:imageButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listChoiceBackgroundIndicator testApp.TestApp:listChoiceBackgroundIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listDividerAlertDialog testApp.TestApp:listDividerAlertDialog}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPopupWindowStyle testApp.TestApp:listPopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPreferredItemHeight testApp.TestApp:listPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPreferredItemHeightLarge testApp.TestApp:listPreferredItemHeightLarge}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPreferredItemHeightSmall testApp.TestApp:listPreferredItemHeightSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPreferredItemPaddingLeft testApp.TestApp:listPreferredItemPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_listPreferredItemPaddingRight testApp.TestApp:listPreferredItemPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_panelBackground testApp.TestApp:panelBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_panelMenuListTheme testApp.TestApp:panelMenuListTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_panelMenuListWidth testApp.TestApp:panelMenuListWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_popupMenuStyle testApp.TestApp:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_popupWindowStyle testApp.TestApp:popupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_radioButtonStyle testApp.TestApp:radioButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_ratingBarStyle testApp.TestApp:ratingBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_searchViewStyle testApp.TestApp:searchViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_seekBarStyle testApp.TestApp:seekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_selectableItemBackground testApp.TestApp:selectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_selectableItemBackgroundBorderless testApp.TestApp:selectableItemBackgroundBorderless}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_spinnerDropDownItemStyle testApp.TestApp:spinnerDropDownItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_spinnerStyle testApp.TestApp:spinnerStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_switchStyle testApp.TestApp:switchStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceLargePopupMenu testApp.TestApp:textAppearanceLargePopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceListItem testApp.TestApp:textAppearanceListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceListItemSmall testApp.TestApp:textAppearanceListItemSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceSearchResultSubtitle testApp.TestApp:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceSearchResultTitle testApp.TestApp:textAppearanceSearchResultTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textAppearanceSmallPopupMenu testApp.TestApp:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textColorAlertDialogListItem testApp.TestApp:textColorAlertDialogListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_textColorSearchUrl testApp.TestApp:textColorSearchUrl}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_toolbarNavigationButtonStyle testApp.TestApp:toolbarNavigationButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_toolbarStyle testApp.TestApp:toolbarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowActionBar testApp.TestApp:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowActionBarOverlay testApp.TestApp:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowActionModeOverlay testApp.TestApp:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowFixedHeightMajor testApp.TestApp:windowFixedHeightMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowFixedHeightMinor testApp.TestApp:windowFixedHeightMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowFixedWidthMajor testApp.TestApp:windowFixedWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowFixedWidthMinor testApp.TestApp:windowFixedWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowMinWidthMajor testApp.TestApp:windowMinWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowMinWidthMinor testApp.TestApp:windowMinWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Theme_windowNoTitle testApp.TestApp:windowNoTitle}</code></td><td></td></tr>
            </table>
            @see #Theme_actionBarDivider
            @see #Theme_actionBarItemBackground
@@ -6110,37 +6110,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100e1, 0x7f0100e2
         };
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarDivider}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarDivider}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarDivider
+          @attr name testApp.TestApp:actionBarDivider
         */
         public static final int Theme_actionBarDivider = 23;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarItemBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarItemBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarItemBackground
+          @attr name testApp.TestApp:actionBarItemBackground
         */
         public static final int Theme_actionBarItemBackground = 24;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarPopupTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarPopupTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarPopupTheme
+          @attr name testApp.TestApp:actionBarPopupTheme
         */
         public static final int Theme_actionBarPopupTheme = 17;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarSize}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarSize}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6160,111 +6160,111 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:actionBarSize
+          @attr name testApp.TestApp:actionBarSize
         */
         public static final int Theme_actionBarSize = 22;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarSplitStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarSplitStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarSplitStyle
+          @attr name testApp.TestApp:actionBarSplitStyle
         */
         public static final int Theme_actionBarSplitStyle = 19;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarStyle
+          @attr name testApp.TestApp:actionBarStyle
         */
         public static final int Theme_actionBarStyle = 18;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarTabBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarTabBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarTabBarStyle
+          @attr name testApp.TestApp:actionBarTabBarStyle
         */
         public static final int Theme_actionBarTabBarStyle = 13;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarTabStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarTabStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarTabStyle
+          @attr name testApp.TestApp:actionBarTabStyle
         */
         public static final int Theme_actionBarTabStyle = 12;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarTabTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarTabTextStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarTabTextStyle
+          @attr name testApp.TestApp:actionBarTabTextStyle
         */
         public static final int Theme_actionBarTabTextStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarTheme
+          @attr name testApp.TestApp:actionBarTheme
         */
         public static final int Theme_actionBarTheme = 20;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionBarWidgetTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionBarWidgetTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionBarWidgetTheme
+          @attr name testApp.TestApp:actionBarWidgetTheme
         */
         public static final int Theme_actionBarWidgetTheme = 21;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionButtonStyle
+          @attr name testApp.TestApp:actionButtonStyle
         */
         public static final int Theme_actionButtonStyle = 49;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionDropDownStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionDropDownStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionDropDownStyle
+          @attr name testApp.TestApp:actionDropDownStyle
         */
         public static final int Theme_actionDropDownStyle = 45;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionMenuTextAppearance}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionMenuTextAppearance}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionMenuTextAppearance
+          @attr name testApp.TestApp:actionMenuTextAppearance
         */
         public static final int Theme_actionMenuTextAppearance = 25;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionMenuTextColor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionMenuTextColor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6272,181 +6272,181 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:actionMenuTextColor
+          @attr name testApp.TestApp:actionMenuTextColor
         */
         public static final int Theme_actionMenuTextColor = 26;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeBackground
+          @attr name testApp.TestApp:actionModeBackground
         */
         public static final int Theme_actionModeBackground = 29;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeCloseButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeCloseButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeCloseButtonStyle
+          @attr name testApp.TestApp:actionModeCloseButtonStyle
         */
         public static final int Theme_actionModeCloseButtonStyle = 28;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeCloseDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeCloseDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeCloseDrawable
+          @attr name testApp.TestApp:actionModeCloseDrawable
         */
         public static final int Theme_actionModeCloseDrawable = 31;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeCopyDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeCopyDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeCopyDrawable
+          @attr name testApp.TestApp:actionModeCopyDrawable
         */
         public static final int Theme_actionModeCopyDrawable = 33;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeCutDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeCutDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeCutDrawable
+          @attr name testApp.TestApp:actionModeCutDrawable
         */
         public static final int Theme_actionModeCutDrawable = 32;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeFindDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeFindDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeFindDrawable
+          @attr name testApp.TestApp:actionModeFindDrawable
         */
         public static final int Theme_actionModeFindDrawable = 37;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModePasteDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModePasteDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModePasteDrawable
+          @attr name testApp.TestApp:actionModePasteDrawable
         */
         public static final int Theme_actionModePasteDrawable = 34;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModePopupWindowStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModePopupWindowStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModePopupWindowStyle
+          @attr name testApp.TestApp:actionModePopupWindowStyle
         */
         public static final int Theme_actionModePopupWindowStyle = 39;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeSelectAllDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeSelectAllDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeSelectAllDrawable
+          @attr name testApp.TestApp:actionModeSelectAllDrawable
         */
         public static final int Theme_actionModeSelectAllDrawable = 35;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeShareDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeShareDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeShareDrawable
+          @attr name testApp.TestApp:actionModeShareDrawable
         */
         public static final int Theme_actionModeShareDrawable = 36;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeSplitBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeSplitBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeSplitBackground
+          @attr name testApp.TestApp:actionModeSplitBackground
         */
         public static final int Theme_actionModeSplitBackground = 30;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeStyle
+          @attr name testApp.TestApp:actionModeStyle
         */
         public static final int Theme_actionModeStyle = 27;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionModeWebSearchDrawable}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionModeWebSearchDrawable}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionModeWebSearchDrawable
+          @attr name testApp.TestApp:actionModeWebSearchDrawable
         */
         public static final int Theme_actionModeWebSearchDrawable = 38;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionOverflowButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionOverflowButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionOverflowButtonStyle
+          @attr name testApp.TestApp:actionOverflowButtonStyle
         */
         public static final int Theme_actionOverflowButtonStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#actionOverflowMenuStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#actionOverflowMenuStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:actionOverflowMenuStyle
+          @attr name testApp.TestApp:actionOverflowMenuStyle
         */
         public static final int Theme_actionOverflowMenuStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#activityChooserViewStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#activityChooserViewStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:activityChooserViewStyle
+          @attr name testApp.TestApp:activityChooserViewStyle
         */
         public static final int Theme_activityChooserViewStyle = 57;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#alertDialogButtonGroupStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#alertDialogButtonGroupStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:alertDialogButtonGroupStyle
+          @attr name testApp.TestApp:alertDialogButtonGroupStyle
         */
         public static final int Theme_alertDialogButtonGroupStyle = 92;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#alertDialogCenterButtons}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#alertDialogCenterButtons}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6456,27 +6456,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:alertDialogCenterButtons
+          @attr name testApp.TestApp:alertDialogCenterButtons
         */
         public static final int Theme_alertDialogCenterButtons = 93;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#alertDialogStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#alertDialogStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:alertDialogStyle
+          @attr name testApp.TestApp:alertDialogStyle
         */
         public static final int Theme_alertDialogStyle = 91;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#alertDialogTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#alertDialogTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:alertDialogTheme
+          @attr name testApp.TestApp:alertDialogTheme
         */
         public static final int Theme_alertDialogTheme = 94;
         /**
@@ -6492,117 +6492,117 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int Theme_android_windowIsFloating = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#autoCompleteTextViewStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#autoCompleteTextViewStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:autoCompleteTextViewStyle
+          @attr name testApp.TestApp:autoCompleteTextViewStyle
         */
         public static final int Theme_autoCompleteTextViewStyle = 99;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#borderlessButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#borderlessButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:borderlessButtonStyle
+          @attr name testApp.TestApp:borderlessButtonStyle
         */
         public static final int Theme_borderlessButtonStyle = 54;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonBarButtonStyle
+          @attr name testApp.TestApp:buttonBarButtonStyle
         */
         public static final int Theme_buttonBarButtonStyle = 51;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonBarNegativeButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonBarNegativeButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonBarNegativeButtonStyle
+          @attr name testApp.TestApp:buttonBarNegativeButtonStyle
         */
         public static final int Theme_buttonBarNegativeButtonStyle = 97;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonBarNeutralButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonBarNeutralButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonBarNeutralButtonStyle
+          @attr name testApp.TestApp:buttonBarNeutralButtonStyle
         */
         public static final int Theme_buttonBarNeutralButtonStyle = 98;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonBarPositiveButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonBarPositiveButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonBarPositiveButtonStyle
+          @attr name testApp.TestApp:buttonBarPositiveButtonStyle
         */
         public static final int Theme_buttonBarPositiveButtonStyle = 96;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonBarStyle
+          @attr name testApp.TestApp:buttonBarStyle
         */
         public static final int Theme_buttonBarStyle = 50;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonStyle
+          @attr name testApp.TestApp:buttonStyle
         */
         public static final int Theme_buttonStyle = 100;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#buttonStyleSmall}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#buttonStyleSmall}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:buttonStyleSmall
+          @attr name testApp.TestApp:buttonStyleSmall
         */
         public static final int Theme_buttonStyleSmall = 101;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#checkboxStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#checkboxStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:checkboxStyle
+          @attr name testApp.TestApp:checkboxStyle
         */
         public static final int Theme_checkboxStyle = 102;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#checkedTextViewStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#checkedTextViewStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:checkedTextViewStyle
+          @attr name testApp.TestApp:checkedTextViewStyle
         */
         public static final int Theme_checkedTextViewStyle = 103;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorAccent}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorAccent}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6613,11 +6613,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorAccent
+          @attr name testApp.TestApp:colorAccent
         */
         public static final int Theme_colorAccent = 84;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorButtonNormal}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorButtonNormal}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6628,11 +6628,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorButtonNormal
+          @attr name testApp.TestApp:colorButtonNormal
         */
         public static final int Theme_colorButtonNormal = 88;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorControlActivated}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorControlActivated}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6643,11 +6643,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorControlActivated
+          @attr name testApp.TestApp:colorControlActivated
         */
         public static final int Theme_colorControlActivated = 86;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorControlHighlight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorControlHighlight}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6658,11 +6658,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorControlHighlight
+          @attr name testApp.TestApp:colorControlHighlight
         */
         public static final int Theme_colorControlHighlight = 87;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorControlNormal}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorControlNormal}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6673,11 +6673,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorControlNormal
+          @attr name testApp.TestApp:colorControlNormal
         */
         public static final int Theme_colorControlNormal = 85;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorPrimary}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorPrimary}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6688,11 +6688,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorPrimary
+          @attr name testApp.TestApp:colorPrimary
         */
         public static final int Theme_colorPrimary = 82;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorPrimaryDark}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorPrimaryDark}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6703,11 +6703,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorPrimaryDark
+          @attr name testApp.TestApp:colorPrimaryDark
         */
         public static final int Theme_colorPrimaryDark = 83;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#colorSwitchThumbNormal}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#colorSwitchThumbNormal}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6718,21 +6718,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:colorSwitchThumbNormal
+          @attr name testApp.TestApp:colorSwitchThumbNormal
         */
         public static final int Theme_colorSwitchThumbNormal = 89;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#controlBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#controlBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:controlBackground
+          @attr name testApp.TestApp:controlBackground
         */
         public static final int Theme_controlBackground = 90;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dialogPreferredPadding}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dialogPreferredPadding}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6744,51 +6744,51 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:dialogPreferredPadding
+          @attr name testApp.TestApp:dialogPreferredPadding
         */
         public static final int Theme_dialogPreferredPadding = 43;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dialogTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dialogTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:dialogTheme
+          @attr name testApp.TestApp:dialogTheme
         */
         public static final int Theme_dialogTheme = 42;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dividerHorizontal}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dividerHorizontal}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:dividerHorizontal
+          @attr name testApp.TestApp:dividerHorizontal
         */
         public static final int Theme_dividerHorizontal = 56;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dividerVertical}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dividerVertical}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:dividerVertical
+          @attr name testApp.TestApp:dividerVertical
         */
         public static final int Theme_dividerVertical = 55;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dropDownListViewStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dropDownListViewStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:dropDownListViewStyle
+          @attr name testApp.TestApp:dropDownListViewStyle
         */
         public static final int Theme_dropDownListViewStyle = 74;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#dropdownListPreferredItemHeight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#dropdownListPreferredItemHeight}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6800,21 +6800,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:dropdownListPreferredItemHeight
+          @attr name testApp.TestApp:dropdownListPreferredItemHeight
         */
         public static final int Theme_dropdownListPreferredItemHeight = 46;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#editTextBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#editTextBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:editTextBackground
+          @attr name testApp.TestApp:editTextBackground
         */
         public static final int Theme_editTextBackground = 63;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#editTextColor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#editTextColor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6822,71 +6822,71 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:editTextColor
+          @attr name testApp.TestApp:editTextColor
         */
         public static final int Theme_editTextColor = 62;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#editTextStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#editTextStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:editTextStyle
+          @attr name testApp.TestApp:editTextStyle
         */
         public static final int Theme_editTextStyle = 104;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:homeAsUpIndicator
+          @attr name testApp.TestApp:homeAsUpIndicator
         */
         public static final int Theme_homeAsUpIndicator = 48;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#imageButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#imageButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:imageButtonStyle
+          @attr name testApp.TestApp:imageButtonStyle
         */
         public static final int Theme_imageButtonStyle = 64;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listChoiceBackgroundIndicator}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listChoiceBackgroundIndicator}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:listChoiceBackgroundIndicator
+          @attr name testApp.TestApp:listChoiceBackgroundIndicator
         */
         public static final int Theme_listChoiceBackgroundIndicator = 81;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listDividerAlertDialog}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listDividerAlertDialog}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:listDividerAlertDialog
+          @attr name testApp.TestApp:listDividerAlertDialog
         */
         public static final int Theme_listDividerAlertDialog = 44;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPopupWindowStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPopupWindowStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:listPopupWindowStyle
+          @attr name testApp.TestApp:listPopupWindowStyle
         */
         public static final int Theme_listPopupWindowStyle = 75;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPreferredItemHeight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPreferredItemHeight}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6898,11 +6898,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:listPreferredItemHeight
+          @attr name testApp.TestApp:listPreferredItemHeight
         */
         public static final int Theme_listPreferredItemHeight = 69;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPreferredItemHeightLarge}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPreferredItemHeightLarge}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6914,11 +6914,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:listPreferredItemHeightLarge
+          @attr name testApp.TestApp:listPreferredItemHeightLarge
         */
         public static final int Theme_listPreferredItemHeightLarge = 71;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPreferredItemHeightSmall}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPreferredItemHeightSmall}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6930,11 +6930,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:listPreferredItemHeightSmall
+          @attr name testApp.TestApp:listPreferredItemHeightSmall
         */
         public static final int Theme_listPreferredItemHeightSmall = 70;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPreferredItemPaddingLeft}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPreferredItemPaddingLeft}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6946,11 +6946,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:listPreferredItemPaddingLeft
+          @attr name testApp.TestApp:listPreferredItemPaddingLeft
         */
         public static final int Theme_listPreferredItemPaddingLeft = 72;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#listPreferredItemPaddingRight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#listPreferredItemPaddingRight}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6962,31 +6962,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:listPreferredItemPaddingRight
+          @attr name testApp.TestApp:listPreferredItemPaddingRight
         */
         public static final int Theme_listPreferredItemPaddingRight = 73;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#panelBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#panelBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:panelBackground
+          @attr name testApp.TestApp:panelBackground
         */
         public static final int Theme_panelBackground = 78;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#panelMenuListTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#panelMenuListTheme}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:panelMenuListTheme
+          @attr name testApp.TestApp:panelMenuListTheme
         */
         public static final int Theme_panelMenuListTheme = 80;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#panelMenuListWidth}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#panelMenuListWidth}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -6998,181 +6998,181 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:panelMenuListWidth
+          @attr name testApp.TestApp:panelMenuListWidth
         */
         public static final int Theme_panelMenuListWidth = 79;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#popupMenuStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#popupMenuStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:popupMenuStyle
+          @attr name testApp.TestApp:popupMenuStyle
         */
         public static final int Theme_popupMenuStyle = 60;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#popupWindowStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#popupWindowStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:popupWindowStyle
+          @attr name testApp.TestApp:popupWindowStyle
         */
         public static final int Theme_popupWindowStyle = 61;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#radioButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#radioButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:radioButtonStyle
+          @attr name testApp.TestApp:radioButtonStyle
         */
         public static final int Theme_radioButtonStyle = 105;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#ratingBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#ratingBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:ratingBarStyle
+          @attr name testApp.TestApp:ratingBarStyle
         */
         public static final int Theme_ratingBarStyle = 106;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#searchViewStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#searchViewStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:searchViewStyle
+          @attr name testApp.TestApp:searchViewStyle
         */
         public static final int Theme_searchViewStyle = 68;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#seekBarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#seekBarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:seekBarStyle
+          @attr name testApp.TestApp:seekBarStyle
         */
         public static final int Theme_seekBarStyle = 107;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#selectableItemBackground}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#selectableItemBackground}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:selectableItemBackground
+          @attr name testApp.TestApp:selectableItemBackground
         */
         public static final int Theme_selectableItemBackground = 52;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#selectableItemBackgroundBorderless}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#selectableItemBackgroundBorderless}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:selectableItemBackgroundBorderless
+          @attr name testApp.TestApp:selectableItemBackgroundBorderless
         */
         public static final int Theme_selectableItemBackgroundBorderless = 53;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#spinnerDropDownItemStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#spinnerDropDownItemStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:spinnerDropDownItemStyle
+          @attr name testApp.TestApp:spinnerDropDownItemStyle
         */
         public static final int Theme_spinnerDropDownItemStyle = 47;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#spinnerStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#spinnerStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:spinnerStyle
+          @attr name testApp.TestApp:spinnerStyle
         */
         public static final int Theme_spinnerStyle = 108;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#switchStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#switchStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:switchStyle
+          @attr name testApp.TestApp:switchStyle
         */
         public static final int Theme_switchStyle = 109;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceLargePopupMenu}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceLargePopupMenu}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceLargePopupMenu
+          @attr name testApp.TestApp:textAppearanceLargePopupMenu
         */
         public static final int Theme_textAppearanceLargePopupMenu = 40;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceListItem}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceListItem}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceListItem
+          @attr name testApp.TestApp:textAppearanceListItem
         */
         public static final int Theme_textAppearanceListItem = 76;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceListItemSmall}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceListItemSmall}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceListItemSmall
+          @attr name testApp.TestApp:textAppearanceListItemSmall
         */
         public static final int Theme_textAppearanceListItemSmall = 77;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceSearchResultSubtitle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceSearchResultSubtitle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceSearchResultSubtitle
+          @attr name testApp.TestApp:textAppearanceSearchResultSubtitle
         */
         public static final int Theme_textAppearanceSearchResultSubtitle = 66;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceSearchResultTitle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceSearchResultTitle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceSearchResultTitle
+          @attr name testApp.TestApp:textAppearanceSearchResultTitle
         */
         public static final int Theme_textAppearanceSearchResultTitle = 65;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textAppearanceSmallPopupMenu}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textAppearanceSmallPopupMenu}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:textAppearanceSmallPopupMenu
+          @attr name testApp.TestApp:textAppearanceSmallPopupMenu
         */
         public static final int Theme_textAppearanceSmallPopupMenu = 41;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textColorAlertDialogListItem}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textColorAlertDialogListItem}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7180,11 +7180,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:textColorAlertDialogListItem
+          @attr name testApp.TestApp:textColorAlertDialogListItem
         */
         public static final int Theme_textColorAlertDialogListItem = 95;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#textColorSearchUrl}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#textColorSearchUrl}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7192,31 +7192,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name TestApp.TestApp:textColorSearchUrl
+          @attr name testApp.TestApp:textColorSearchUrl
         */
         public static final int Theme_textColorSearchUrl = 67;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#toolbarNavigationButtonStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#toolbarNavigationButtonStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:toolbarNavigationButtonStyle
+          @attr name testApp.TestApp:toolbarNavigationButtonStyle
         */
         public static final int Theme_toolbarNavigationButtonStyle = 59;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#toolbarStyle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#toolbarStyle}
           attribute's value can be found in the {@link #Theme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:toolbarStyle
+          @attr name testApp.TestApp:toolbarStyle
         */
         public static final int Theme_toolbarStyle = 58;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowActionBar}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7226,11 +7226,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowActionBar
+          @attr name testApp.TestApp:windowActionBar
         */
         public static final int Theme_windowActionBar = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7240,11 +7240,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowActionBarOverlay
+          @attr name testApp.TestApp:windowActionBarOverlay
         */
         public static final int Theme_windowActionBarOverlay = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowActionModeOverlay}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowActionModeOverlay}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7254,11 +7254,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowActionModeOverlay
+          @attr name testApp.TestApp:windowActionModeOverlay
         */
         public static final int Theme_windowActionModeOverlay = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowFixedHeightMajor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowFixedHeightMajor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7273,11 +7273,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowFixedHeightMajor
+          @attr name testApp.TestApp:windowFixedHeightMajor
         */
         public static final int Theme_windowFixedHeightMajor = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowFixedHeightMinor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowFixedHeightMinor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7292,11 +7292,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowFixedHeightMinor
+          @attr name testApp.TestApp:windowFixedHeightMinor
         */
         public static final int Theme_windowFixedHeightMinor = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowFixedWidthMajor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowFixedWidthMajor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7311,11 +7311,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowFixedWidthMajor
+          @attr name testApp.TestApp:windowFixedWidthMajor
         */
         public static final int Theme_windowFixedWidthMajor = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowFixedWidthMinor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowFixedWidthMinor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7330,11 +7330,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowFixedWidthMinor
+          @attr name testApp.TestApp:windowFixedWidthMinor
         */
         public static final int Theme_windowFixedWidthMinor = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowMinWidthMajor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowMinWidthMajor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7349,11 +7349,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowMinWidthMajor
+          @attr name testApp.TestApp:windowMinWidthMajor
         */
         public static final int Theme_windowMinWidthMajor = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowMinWidthMinor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowMinWidthMinor}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7368,11 +7368,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowMinWidthMinor
+          @attr name testApp.TestApp:windowMinWidthMinor
         */
         public static final int Theme_windowMinWidthMinor = 11;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#windowNoTitle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#windowNoTitle}
           attribute's value can be found in the {@link #Theme} array.
 
 
@@ -7382,7 +7382,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:windowNoTitle
+          @attr name testApp.TestApp:windowNoTitle
         */
         public static final int Theme_windowNoTitle = 3;
         /** Attributes that can be used with a Toolbar.
@@ -7393,29 +7393,29 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #Toolbar_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #Toolbar_android_minHeight android:minHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseContentDescription TestApp.TestApp:collapseContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseIcon TestApp.TestApp:collapseIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEnd TestApp.TestApp:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetLeft TestApp.TestApp:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetRight TestApp.TestApp:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStart TestApp.TestApp:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logo TestApp.TestApp:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logoDescription TestApp.TestApp:logoDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_maxButtonHeight TestApp.TestApp:maxButtonHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationContentDescription TestApp.TestApp:navigationContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationIcon TestApp.TestApp:navigationIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_popupTheme TestApp.TestApp:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitle TestApp.TestApp:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextAppearance TestApp.TestApp:subtitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextColor TestApp.TestApp:subtitleTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_title TestApp.TestApp:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginBottom TestApp.TestApp:titleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginEnd TestApp.TestApp:titleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginStart TestApp.TestApp:titleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginTop TestApp.TestApp:titleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargins TestApp.TestApp:titleMargins}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextAppearance TestApp.TestApp:titleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextColor TestApp.TestApp:titleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseContentDescription testApp.TestApp:collapseContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseIcon testApp.TestApp:collapseIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEnd testApp.TestApp:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetLeft testApp.TestApp:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetRight testApp.TestApp:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStart testApp.TestApp:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logo testApp.TestApp:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logoDescription testApp.TestApp:logoDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_maxButtonHeight testApp.TestApp:maxButtonHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationContentDescription testApp.TestApp:navigationContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationIcon testApp.TestApp:navigationIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_popupTheme testApp.TestApp:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitle testApp.TestApp:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextAppearance testApp.TestApp:subtitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextColor testApp.TestApp:subtitleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_title testApp.TestApp:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginBottom testApp.TestApp:titleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginEnd testApp.TestApp:titleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginStart testApp.TestApp:titleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginTop testApp.TestApp:titleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargins testApp.TestApp:titleMargins}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextAppearance testApp.TestApp:titleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextColor testApp.TestApp:titleTextColor}</code></td><td></td></tr>
            </table>
            @see #Toolbar_android_gravity
            @see #Toolbar_android_minHeight
@@ -7465,7 +7465,7 @@ containing a value of this type.
         */
         public static final int Toolbar_android_minHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#collapseContentDescription}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#collapseContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7475,21 +7475,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:collapseContentDescription
+          @attr name testApp.TestApp:collapseContentDescription
         */
         public static final int Toolbar_collapseContentDescription = 19;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#collapseIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#collapseIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:collapseIcon
+          @attr name testApp.TestApp:collapseIcon
         */
         public static final int Toolbar_collapseIcon = 18;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7501,11 +7501,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetEnd
+          @attr name testApp.TestApp:contentInsetEnd
         */
         public static final int Toolbar_contentInsetEnd = 6;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7517,11 +7517,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetLeft
+          @attr name testApp.TestApp:contentInsetLeft
         */
         public static final int Toolbar_contentInsetLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7533,11 +7533,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetRight
+          @attr name testApp.TestApp:contentInsetRight
         */
         public static final int Toolbar_contentInsetRight = 8;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7549,21 +7549,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:contentInsetStart
+          @attr name testApp.TestApp:contentInsetStart
         */
         public static final int Toolbar_contentInsetStart = 5;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#logo}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#logo}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:logo
+          @attr name testApp.TestApp:logo
         */
         public static final int Toolbar_logo = 4;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#logoDescription}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#logoDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7573,11 +7573,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:logoDescription
+          @attr name testApp.TestApp:logoDescription
         */
         public static final int Toolbar_logoDescription = 22;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#maxButtonHeight}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#maxButtonHeight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7589,11 +7589,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:maxButtonHeight
+          @attr name testApp.TestApp:maxButtonHeight
         */
         public static final int Toolbar_maxButtonHeight = 17;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#navigationContentDescription}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#navigationContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7603,31 +7603,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:navigationContentDescription
+          @attr name testApp.TestApp:navigationContentDescription
         */
         public static final int Toolbar_navigationContentDescription = 21;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#navigationIcon}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#navigationIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:navigationIcon
+          @attr name testApp.TestApp:navigationIcon
         */
         public static final int Toolbar_navigationIcon = 20;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#popupTheme}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:popupTheme
+          @attr name testApp.TestApp:popupTheme
         */
         public static final int Toolbar_popupTheme = 9;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitle}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7637,21 +7637,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:subtitle
+          @attr name testApp.TestApp:subtitle
         */
         public static final int Toolbar_subtitle = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitleTextAppearance}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:subtitleTextAppearance
+          @attr name testApp.TestApp:subtitleTextAppearance
         */
         public static final int Toolbar_subtitleTextAppearance = 11;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#subtitleTextColor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#subtitleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7662,11 +7662,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:subtitleTextColor
+          @attr name testApp.TestApp:subtitleTextColor
         */
         public static final int Toolbar_subtitleTextColor = 24;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#title}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#title}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7676,11 +7676,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:title
+          @attr name testApp.TestApp:title
         */
         public static final int Toolbar_title = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleMarginBottom}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleMarginBottom}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7692,11 +7692,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleMarginBottom
+          @attr name testApp.TestApp:titleMarginBottom
         */
         public static final int Toolbar_titleMarginBottom = 16;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleMarginEnd}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleMarginEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7708,11 +7708,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleMarginEnd
+          @attr name testApp.TestApp:titleMarginEnd
         */
         public static final int Toolbar_titleMarginEnd = 14;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleMarginStart}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleMarginStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7724,11 +7724,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleMarginStart
+          @attr name testApp.TestApp:titleMarginStart
         */
         public static final int Toolbar_titleMarginStart = 13;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleMarginTop}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleMarginTop}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7740,11 +7740,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleMarginTop
+          @attr name testApp.TestApp:titleMarginTop
         */
         public static final int Toolbar_titleMarginTop = 15;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleMargins}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleMargins}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7756,21 +7756,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleMargins
+          @attr name testApp.TestApp:titleMargins
         */
         public static final int Toolbar_titleMargins = 12;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleTextAppearance}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:titleTextAppearance
+          @attr name testApp.TestApp:titleTextAppearance
         */
         public static final int Toolbar_titleTextAppearance = 10;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#titleTextColor}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#titleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7781,7 +7781,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:titleTextColor
+          @attr name testApp.TestApp:titleTextColor
         */
         public static final int Toolbar_titleTextColor = 23;
         /** Attributes that can be used with a View.
@@ -7792,9 +7792,9 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td></td></tr>
            <tr><td><code>{@link #View_android_theme android:theme}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingEnd TestApp.TestApp:paddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingStart TestApp.TestApp:paddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_theme TestApp.TestApp:theme}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingEnd testApp.TestApp:paddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingStart testApp.TestApp:paddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_theme testApp.TestApp:theme}</code></td><td></td></tr>
            </table>
            @see #View_android_focusable
            @see #View_android_theme
@@ -7819,7 +7819,7 @@ containing a value of this type.
         */
         public static final int View_android_theme = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#paddingEnd}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#paddingEnd}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -7831,11 +7831,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:paddingEnd
+          @attr name testApp.TestApp:paddingEnd
         */
         public static final int View_paddingEnd = 3;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#paddingStart}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#paddingStart}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -7847,17 +7847,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:paddingStart
+          @attr name testApp.TestApp:paddingStart
         */
         public static final int View_paddingStart = 2;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#theme}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#theme}
           attribute's value can be found in the {@link #View} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name TestApp.TestApp:theme
+          @attr name testApp.TestApp:theme
         */
         public static final int View_theme = 4;
         /** Attributes that can be used with a ViewBackgroundHelper.
@@ -7867,8 +7867,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ViewBackgroundHelper_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint TestApp.TestApp:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode TestApp.TestApp:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint testApp.TestApp:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode testApp.TestApp:backgroundTintMode}</code></td><td></td></tr>
            </table>
            @see #ViewBackgroundHelper_android_background
            @see #ViewBackgroundHelper_backgroundTint
@@ -7884,7 +7884,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int ViewBackgroundHelper_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#backgroundTint}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -7895,11 +7895,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name TestApp.TestApp:backgroundTint
+          @attr name testApp.TestApp:backgroundTint
         */
         public static final int ViewBackgroundHelper_backgroundTint = 1;
         /**
-          <p>This symbol is the offset where the {@link TestApp.TestApp.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link testApp.TestApp.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -7915,7 +7915,7 @@ containing a value of this type.
 <tr><td><code>multiply</code></td><td>14</td><td></td></tr>
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
-          @attr name TestApp.TestApp:backgroundTintMode
+          @attr name testApp.TestApp:backgroundTintMode
         */
         public static final int ViewBackgroundHelper_backgroundTintMode = 2;
         /** Attributes that can be used with a ViewStubCompat.

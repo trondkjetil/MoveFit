@@ -83,11 +83,10 @@ namespace TestApp
         {
 
 
-            Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
-            RegistrationID = registrationId;
+              RegistrationID = registrationId;
 
-            createNotification("PushHandlerService-GCM Registered...",
-                                "The device has been Registered!");
+          //  createNotification("PushHandlerService-GCM Registered...", "The device has been Registered!");
+
 
             Hub = new NotificationHub(Constants.NotificationHubName, Constants.ListenConnectionString,
                                         context);

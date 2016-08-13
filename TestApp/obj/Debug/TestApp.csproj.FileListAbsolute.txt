@@ -64,7 +64,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_help.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refresh.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\activity_main.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\cardviewmain.xml
@@ -196,5 +195,8 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transa
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\messages.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\msg.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

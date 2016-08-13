@@ -3,10 +3,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:myapp="http://schemas.android.com/apk/res-auto">
 
-	<item android:id="@+id/statusOnline"
-		android:icon="@drawable/greenonline"
-		android:title="Status"
-		myapp:showAsAction="always" />
+
+
+  <item android:id="@+id/statusOnline"
+   android:icon="@drawable/greenonline"
+   android:title="Status"
+   myapp:showAsAction="always" />
+  
+  
+  <item android:id="@+id/messages"
+      android:icon="@drawable/sym_action_email"
+      android:title="Msg"
+      myapp:showAsAction="always" />
+
+ 
 
 	<item android:id="@+id/action_help"
 		android:icon="@drawable/ic_action_help"

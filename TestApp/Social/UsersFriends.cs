@@ -243,33 +243,45 @@ namespace TestApp
             };
                 myHolder.mDeleteFriend.Click += (sender, args) =>
             {
-                
-                var pos = ((View)sender).Tag;
-
-                Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
 
-
-                // Deletes the user from the whole app....
-                //    var wait = Azure.removeUser(mUsers[(int)pos].UserName);
-
-                //deleteIndex(position);
-                //NotifyDataSetChanged();
-
-                var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
-
-                mUsers.RemoveAt((int) pos);
-                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
-
-                if (mUsers.Count == 0)
+                AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+                alert.SetTitle("Delete friend");
+                alert.SetMessage("You want to delete " + mUsers[position].UserName + " ?");
+                alert.SetPositiveButton("Yes", (senderAlert, ar) =>
                 {
+                    var pos = ((View)sender).Tag;
 
-                    Intent myInt = new Intent(mContext, typeof(RouteOverview));
-                    mContext.StartActivity(myInt);
-                }
+                    Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
+
+
+                    // Deletes the user from the whole app....
+                    //    var wait = Azure.removeUser(mUsers[(int)pos].UserName);
+
+                    //deleteIndex(position);
+                    //NotifyDataSetChanged();
+
+                    var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
+
+                    mUsers.RemoveAt((int)pos);
+                    mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+
+                    if (mUsers.Count == 0)
+                    {
+
+                        Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                        mContext.StartActivity(myInt);
+                    }
+                });
+
+                alert.SetNegativeButton("Cancel", (senderAlert, arg) =>
+                {
+                     
+
+                   });
 
             };
 

@@ -154,41 +154,6 @@ namespace TestApp
 
             spinner = FindViewById<Spinner>(Resource.Id.createRoute);
 
-
-
-            //List<ListItem> list = new List<ListItem>();
-
-
-            //     var instance = new ListItem();
-            //     instance.setData("Walking");
-            //     list.Add(instance);
-
-            // var instance1 = new ListItem();
-            // instance.setData("Running");
-            // list.Add(instance1);
-            // var instance2 = new ListItem();
-            // instance.setData("Hiking");
-            // list.Add(instance2);
-            // var instance3 = new ListItem();
-            // instance.setData("Bicycling");
-            // list.Add(instance3);
-            // var instance4 = new ListItem();
-            // instance.setData("Skiing");
-            // list.Add(instance4);
-
-
-
-
-
-            //   MyListAdapter routeTypeadapter = new MyListAdapter(this,list);
-
-
-            //spinner.ItemSelected += spinner_ItemSelected;
-            //var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.activity_routeTypes, Android.Resource.Layout.SimpleListItem1);
-            //adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            //spinner.Adapter = adapter;
-            //spinner.SetSelection(0);
-
             spinner.ItemSelected += spinner_ItemSelected;
             String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing" };
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, array);
@@ -230,16 +195,14 @@ namespace TestApp
             {
 
                 ////Cannot create and do a route at the same time!
-                //if (StartRouteService.serviceIsRunning == true)
-                //{
-                //    Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
+                if (StartRouteService.serviceIsRunning == true)
+                {
+                    Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
 
-                //    return;
-                //}
+                    return;
+                }
 
-                ////Paused
-                //if (start.Checked)
-                //{
+              
 
                 if (start.Checked)
                 {
@@ -270,8 +233,7 @@ namespace TestApp
 
                 //         }
 
-                //IF the route is already started!
-
+             
 
 
 
@@ -421,7 +383,7 @@ namespace TestApp
             points = CreateRouteService.getPoints();
 
 
-            StopService(new Intent(this, typeof(CreateRouteService)));
+           StopService(new Intent(this, typeof(CreateRouteService)));
 
 
             routeStatus.Text = "Stauts: Stopped";
@@ -616,23 +578,17 @@ namespace TestApp
         }
 
 
+
         protected override void OnResume()
         {
-            base.OnResume();
-
-            //  locationManager.RequestLocationUpdates(locationProvider, 0, 0, this);
+              base.OnResume();
 
 
         }
-
         protected override void OnPause()
         {
-            base.OnPause();
-            //if (locationManager != null)
-            //{
-            //    locationManager.RemoveUpdates(this);
-            //}
-
+          base.OnPause();
+           
         }
 
 
@@ -651,30 +607,7 @@ namespace TestApp
 
         }
 
-        //public void OnLocationChanged(Location location)
-        //{
-
-        //    currentLocation = location;
-        //    Ischecked = true;
-        //    try
-        //    {
-
-        //        mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-        //        mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
-
-        //        Toast.MakeText(this, "Location point taken", ToastLength.Short).Show();
-        //       // Azure.AddLocation(location.Latitude.ToString() + "," + location.Longitude.ToString()
-        //       //, routeUserId);
-        //        points.Add(location);
-
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //    }
-
-
-        //}
+      
 
 
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

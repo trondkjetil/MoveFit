@@ -243,7 +243,7 @@
     <AndroidResource Include="Resources\values\itemsDropDownList.xml" />
     <AndroidResource Include="Resources\drawable\test.png" />
     <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_read.png" />
+    <AndroidResource Include="Resources\drawable\messages.png" />
     <AndroidResource Include="Resources\drawable\ic_action_save.png" />
     <AndroidResource Include="Resources\anim\slide_left_to_right.xml" />
     <AndroidResource Include="Resources\anim\cardView_up.xml" />
@@ -254,7 +254,6 @@
     <AndroidResource Include="Resources\drawable\ic_action_help.png" />
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
-    <AndroidResource Include="Resources\menu\activity_main.xml" />
     <AndroidResource Include="Resources\layout\accelerometer.axml" />
     <AndroidResource Include="Resources\layout\calculator.axml" />
     <AndroidResource Include="Resources\layout\cardViewMain.axml" />
@@ -461,7 +460,15 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\acceptfriend.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\msg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_action_read.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\sym_action_email.png" />
+  </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

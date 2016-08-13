@@ -204,13 +204,13 @@ namespace TestApp
             return R * h2;
         }
 
-    
 
 
 
 
 
 
+      
 
         public static async Task<List<User>> findNearBy(string userName)
         {
@@ -381,6 +381,9 @@ namespace TestApp
 
         }
 
+
+       
+
         public static async Task<List<Messages>> getMessages(string conversationId)
         {
             //
@@ -389,6 +392,8 @@ namespace TestApp
             return messages;
 
         }
+
+
         public static async Task<List<User>> getPeople()
         {
             //
@@ -403,7 +408,7 @@ namespace TestApp
 
             List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false && user.Id != MainStart.userId).OrderBy(User => User.UserName).Take(3).ToListAsync();
             return userList;
-
+           
         }
         public static async Task<List<Route>> getTop3Routes()
         {
@@ -991,7 +996,8 @@ namespace TestApp
 
         }
 
-        [Java.Interop.Export()]
+
+
         public static async Task<MessageConnections> AddMessageConnection(string userId1, string userId2)
         {
             // Create a new item
