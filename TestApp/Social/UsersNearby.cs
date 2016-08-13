@@ -46,7 +46,7 @@ namespace TestApp
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-            List<User> userList = await Azure.getPeople();
+            List<User> userList = await Azure.nearbyPeople(); // getPeople();
             if (userList.Count == 0)
             {
                 Toast.MakeText(this, "Could not find anyone nearby!", ToastLength.Long).Show();

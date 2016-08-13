@@ -220,8 +220,10 @@ namespace TestApp
             markerOpt2.SetPosition(myPosition);
             markerOpt2.SetTitle(route.Name);
             markerOpt2.SetSnippet(route.Difficulty);
-            markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
-
+            //  markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+            //BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
+            //markerOpt1.SetIcon(image); //BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
+            markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker (BitmapDescriptorFactory.HueCyan));
 
             var marker = mMap.AddMarker(markerOpt2);
             routeMarkers.Add(marker);

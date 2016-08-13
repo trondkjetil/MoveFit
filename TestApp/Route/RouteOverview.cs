@@ -120,11 +120,13 @@ namespace TestApp
             Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
             int dist = Convert.ToInt32(result[0]);
 
+            BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
+
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(route.Name + " Diff:"+ route.Difficulty )
-           .SetSnippet("Distance from me: " +dist.ToString() + " meters"));
-
+           .SetTitle(route.Name + " Difficulty:" + route.Difficulty )
+           .SetSnippet("Distance from me: " +dist.ToString() + " meters").SetIcon(image));
+            
             //    markerOpt1 = new MarkerOptions();
             //    markerOpt1.SetPosition(myPosition);
             //    markerOpt1.SetTitle(user.UserName + " Position");

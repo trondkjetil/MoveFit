@@ -172,10 +172,10 @@ namespace TestApp
 
 
             ImageButton online = userFriendsContent.FindViewById<ImageButton>(Resource.Id.onlineStatus);
-                ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
-                deleteFriend.Focusable = false;
-                deleteFriend.FocusableInTouchMode = false;
-                deleteFriend.Clickable = true;
+            ImageButton deleteFriend = userFriendsContent.FindViewById<ImageButton>(Resource.Id.imageButton3);
+            deleteFriend.Focusable = false;
+            deleteFriend.FocusableInTouchMode = false;
+            deleteFriend.Clickable = true;
 
             ImageButton sendMessage = userFriendsContent.FindViewById<ImageButton>(Resource.Id.sendMsg);
             deleteFriend.Focusable = false;
@@ -197,7 +197,10 @@ namespace TestApp
                 MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mUserName.Text = mUsers[position].UserName;
-                float[] result = null;
+                myHolder.mDeleteFriend.SetTag(Resource.Id.imageButton3, position);
+
+
+            float[] result = null;
 
             // Calculate distance to User
             result = new float[1];
@@ -247,8 +250,10 @@ namespace TestApp
                 myHolder.mDeleteFriend.Click += (sender, args) =>
             {
 
+                  int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
 
-                var pos = ((View)sender).Tag;
+           //     var pos = ((View)sender).Tag;
+
 
                     Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
@@ -269,6 +274,7 @@ namespace TestApp
 
             };
 
+            mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
 
             // myHolder.mDeleteFriend.Click += MDeleteFriend_Click;  //+= (e, a) => //{
             // //  Azure.removeUser(mUsers[position].UserName);
@@ -378,8 +384,8 @@ namespace TestApp
 
         }
 
-        //void MDeleteFriend_Click(object sender, EventArgs e)
-        //{
+        void MDeleteFriend_Click(object sender, EventArgs e)
+       {
             //int position = mRecyclerView.GetChildPosition((View)sender);
           //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
@@ -401,7 +407,7 @@ namespace TestApp
             //});
             //Azure.removeUser(mUsers[position].UserName);
             // Console.WriteLine(mUsers[position].UserName);
-     //   }
+        }
 
         public override int ItemCount
         {

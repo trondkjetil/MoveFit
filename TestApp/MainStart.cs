@@ -143,7 +143,7 @@ namespace TestApp
 
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
             TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
-            TextView greetings = FindViewById<TextView>(Resource.Id.textView1);
+            TextView routesCreated = FindViewById<TextView>(Resource.Id.textView1);
             TextView friends = FindViewById<TextView>(Resource.Id.friends);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
 
@@ -158,8 +158,8 @@ namespace TestApp
 
             points = FindViewById<TextView>(Resource.Id.points);
 
-            greetings.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
-            greetings.TextSize = 18;
+            routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
+            routesCreated.TextSize = 18;
 
             friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             friends.TextSize = 15;
@@ -200,7 +200,7 @@ namespace TestApp
 
 
             array = Intent.GetStringArrayExtra("MyData");
-            greetings.Text = "Greetings " + array[0] + "!";
+            routesCreated.Text = "Routes Created: ";// "Greetings " + array[0] + "!";
             userName = array[0];
             profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
@@ -372,8 +372,6 @@ namespace TestApp
             mDrawerToggle.SyncState();
 
 
-
-
             if (mToolbar != null)
             {
               //  SupportActionBar.SetTitle(Resource.String.openDrawer);
@@ -402,6 +400,8 @@ namespace TestApp
 
             }
 
+            Toast.MakeText(this, "Welcome "+ array[0]+"!", ToastLength.Long).Show();
+
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
@@ -419,6 +419,7 @@ namespace TestApp
 
                     friends.Text = "Friends Online: 0";
                     routesNearby.Text = "Routes Nearby: 0";
+                    routesCreated.Text = "Routes Created 0";
                 }
                 else
                 {
@@ -447,6 +448,9 @@ namespace TestApp
 
                     routesNearby.Text = "Routes Nearby: " + routes.Count;
 
+                    var routeList = await Azure.getMyRoutes(MainStart.userId);
+
+                    routesCreated.Text = "Routes Created: " + routeList.Count;
 
 
                 }

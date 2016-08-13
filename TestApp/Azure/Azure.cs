@@ -466,10 +466,35 @@ namespace TestApp
 
         //    public bool Complete { get; set; }
 
-            
+
         //    public virtual GeoPoint Location { get; set; }
         //}
 
+        public static async Task<List<User>> nearbyPeople()
+        {
+
+          
+            User user = null;
+           
+                user = MainStart.userInstanceOne;
+
+                if (user == null || user.Id == "")
+                {
+                    user = MainStart.waitingUpload;
+                }
+
+                List<User> a3 = await table.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                a3 = a3;
+
+                List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < 1000 && (p.Lon - user.Lon) > -1000 && (p.Lat - user.Lat) < 1000 && (p.Lat - user.Lat) > -1000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                List<User> show = await getUsersFriends(MainStart.userId);
+
+                List<User> nearbyUsers = nearByPeople.Except(show).ToList();
+
+
+            return nearbyUsers;
+
+        }
         public static async Task<List<Route>> nearbyRoutes()
         {
 
