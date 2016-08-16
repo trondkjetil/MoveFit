@@ -222,17 +222,6 @@ namespace TestApp
          
          
 
-            // HttpPost request = new HttpPost(uri);
-            //  request.addHeader("Authorization", "Basic " + getAuthorizationHeader());
-            //   request.setEntity(new StringEntity(message));
-            //    request.addHeader("Content-Type", "application/json");
-
-            //  HttpResponse response = new DefaultHttpClient().execute(request);
-
-
-
-
-
             changed = false;
             user = null;
             chk = false;
@@ -357,11 +346,11 @@ namespace TestApp
             //mLeftDataSet.Add("My profile");
             data = new List<NavDrawerItem>();
 
-             data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
+            data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
             data.Add(new NavDrawerItem(Resource.Drawable.startFlag, "Scoreboard"));
             data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
-            data.Add(new NavDrawerItem(Resource.Drawable.isfriend, "Social"));
-            data.Add(new NavDrawerItem(Resource.Drawable.eexit, "BMI Calculator"));
+            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_social_info, "Social"));
+            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "Settings"));
 
             //mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             //mLeftDrawer.Adapter = mLeftAdapter;

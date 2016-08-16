@@ -62,7 +62,7 @@ namespace TestApp
 
             try
             {
-                mUsers = new List<User>();
+             //   mUsers = new List<User>();
                 mUsers = await Azure.getPeople();
 
                 if (mUsers.Count > 0)

@@ -14,17 +14,20 @@ using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
-
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
+using System.Linq;
 namespace TestApp
 {
-    [Activity(Label = "People Nearby")]
-    public class UsersNearby : Activity
+   [Activity(Label = "People Nearby", Theme = "@style/Theme2")]
+     public class UsersNearby : AppCompatActivity
     {
+        public SupportToolbar toolbar;
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         public RecyclerView.Adapter mAdapter;
         public static Activity act;
-       
+        List<User> userList;
 
         SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -41,12 +44,17 @@ namespace TestApp
             act = this;
 
 
+
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.tbarr);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
+
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserNearby);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-            List<User> userList = await Azure.nearbyPeople(); // getPeople();
+           userList = await Azure.nearbyPeople(); // getPeople();
             if (userList.Count == 0)
             {
                 Toast.MakeText(this, "Could not find anyone nearby!", ToastLength.Long).Show();
@@ -83,6 +91,131 @@ namespace TestApp
         {
             Finish();
         }
+
+
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+
+                case Resource.Id.online:
+                    showOnline();
+                    return true;
+
+                case Resource.Id.male:
+                    showMale();
+                    return true;
+
+                case Resource.Id.female:
+                    showFemale();
+                    return true;
+
+                case Resource.Id.all:
+                    showAll();
+                    return true;
+
+
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                //case Resource.Id.home:
+
+                //    OnBackPressed();
+
+
+                //    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+
+        }
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+
+        void showAll()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in userList
+                             orderby user.Points
+                             select user).ToList<User>();
+            mAdapter = new UsersAdapter(orderedRoutes, mRecyclerView, this, act, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+        void showOnline()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in userList
+                             where user.Online == true
+                             select user).ToList<User>();
+
+            mAdapter = new UsersAdapter(orderedRoutes, mRecyclerView, this, act, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
+
+
+        void showMale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in userList
+                             where user.Sex != "Female"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersAdapter(orderedRoutes, mRecyclerView, this, act, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+           
+
+
+        }
+        void showFemale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in userList
+                             where user.Sex != "Male"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersAdapter(orderedRoutes, mRecyclerView, this, act, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public class UsersAdapter : RecyclerView.Adapter
@@ -126,11 +259,13 @@ namespace TestApp
                 //card view
                 View peopleNearbyContent = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.peopleNearByContent, parent, false);
 
-                ImageView profile = peopleNearbyContent.FindViewById<ImageView>(Resource.Id.profilePicture);
-                TextView name = peopleNearbyContent.FindViewById<TextView>(Resource.Id.nameId);
+               TextView name = peopleNearbyContent.FindViewById<TextView>(Resource.Id.nameId);
                 TextView status = peopleNearbyContent.FindViewById<TextView>(Resource.Id.statusId);
                 TextView text = peopleNearbyContent.FindViewById<TextView>(Resource.Id.textId);
-                ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
+
+            ImageView profile = peopleNearbyContent.FindViewById<ImageView>(Resource.Id.ppt);
+
+            ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
                 addToFriends.Focusable = false;
                 addToFriends.FocusableInTouchMode = false;
                 addToFriends.Clickable = true;
@@ -157,7 +292,7 @@ namespace TestApp
             myHolder.mSendFriendRequest.SetTag(Resource.Id.sendFriendRequest, position);
 
             myHolder.mSendFriendRequest.Click += MSendFriendRequest_Click;
-
+           
 
             if (mUsers[position].Sex == "Male")
             {

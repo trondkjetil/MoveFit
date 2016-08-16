@@ -14,19 +14,23 @@ using Android.Support.V4.Widget;
 using System.ComponentModel;
 using System.Threading;
 using Android.Locations;
-
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
+using System.Linq;
 namespace TestApp
 {
-    [Activity(Label = "Routes nearby")]
-    public class UsersRoutes : Activity
+    [Activity(Label = "Routes Nearby", Theme = "@style/Theme2")]
+    public class UsersRoutes : AppCompatActivity
     {
+
+        public SupportToolbar toolbar;
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
 
         public List<User> me;
         SwipeRefreshLayout mSwipeRefreshLayout;
-
+        public List<Route> routeList;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,19 +38,23 @@ namespace TestApp
             // Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.UsersRoutes);
 
-			mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userRoutes);
-			mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
-			mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
+			//mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userRoutes);
+			//mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise,Color.Turquoise);
+			//mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
-
+          
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
+        
 
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
 
-            List<Route> routeList = await Azure.getRoutes();
+            routeList = await Azure.getRoutes();
             me = await Azure.getUserInstanceByName(MainStart.userName);
 
             if (routeList.Count == 0)
@@ -66,24 +74,150 @@ namespace TestApp
         }
 
 
-		void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
-		{
-			BackgroundWorker worker = new BackgroundWorker();
-			worker.DoWork += worker_DoWork;
-			worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-			worker.RunWorkerAsync();
-		}
+        //void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
+        //{
+        //	BackgroundWorker worker = new BackgroundWorker();
+        //	worker.DoWork += worker_DoWork;
+        //	worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+        //	worker.RunWorkerAsync();
+        //}
 
-		void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
-		}
+        //void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //	RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
+        //}
 
-		void worker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//Will run on separate thread
-			Thread.Sleep(3000);
-		}
+        //void worker_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //	//Will run on separate thread
+        //	Thread.Sleep(3000);
+        //}
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+
+                case Resource.Id.type:
+                    sortType();
+                    return true;
+
+                case Resource.Id.rating:
+                    sortRating();
+                    return true;
+
+                case Resource.Id.nearbyRoutes:
+                    sortDistance();
+                    return true;
+                    
+                case Resource.Id.difficulty:
+                    sortDifficulty();
+                    return true;
+
+
+                case Resource.Id.back:
+                    OnBackPressed();
+                    return true;
+
+                case Resource.Id.home:
+
+                    OnBackPressed();
+
+
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+
+        }
+        public override bool OnCreateOptionsMenu(IMenu menu)
+
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            //MoveTaskToBack(true);
+
+        }
+
+        void sortRating()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routeList
+                             orderby route.Review
+                             select route).ToList<Route>();
+
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+        void sortDistance()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routeList
+                             orderby route.Distance
+                               select route).ToList<Route>();
+
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+        void sortDifficulty()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routeList
+                             orderby route.Difficulty
+                             select route).ToList<Route>();
+
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+        void sortType()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routeList
+                             orderby route.RouteType
+                             select route).ToList<Route>();
+
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
 
 
 
@@ -284,11 +418,17 @@ namespace TestApp
         {
             get { return mRoutes.Count; }
         }
+
+
+
+
+
+
+        }
+
+
+
+
+
     }
-
-
-
-
-
-}
 

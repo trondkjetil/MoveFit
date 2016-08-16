@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ff00bfa5">
-                <!--<ImageView
+            <!--<ImageView
                     android:src="@android:drawable/ic_menu_gallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

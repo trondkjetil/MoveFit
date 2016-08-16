@@ -23,7 +23,11 @@ using Android.Support.V7.App;
 
 namespace TestApp
 {
-    [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+  //  [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+
+    [Activity(AlwaysRetainTaskState = true, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route", Theme = "@style/Theme2")]
+  //  [IntentFilter(new[] { Intent.ActionAssist }, Categories = new[] { Intent.CategoryDefault })]
+
     public class CreateRoute : AppCompatActivity, IOnMapReadyCallback //, ILocationListener
     {
         const long MIN_TIME = 5 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
@@ -87,10 +91,11 @@ namespace TestApp
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
+            //base.OnBackPressed();
+            MoveTaskToBack(true);
 
             //AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
+            
             //alert.SetTitle("Exit route creation");
             //alert.SetMessage("Do you want to abort the current route creation?");
             //alert.SetPositiveButton("Yes", (senderAlert, args) =>
@@ -123,7 +128,7 @@ namespace TestApp
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
-            RequestWindowFeature(WindowFeatures.NoTitle);
+           // RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.createRoute);
 
@@ -586,7 +591,7 @@ namespace TestApp
         protected override void OnResume()
         {
               base.OnResume();
-
+          
 
         }
         protected override void OnPause()

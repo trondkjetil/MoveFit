@@ -15,9 +15,10 @@ using Android.Locations;
 
 namespace TestApp
 {
-    [Activity(Label = "Friends")]
+    [Activity(Label = "Friends", Theme = "@style/Theme2")]
     public class UsersFriends : Activity
     {
+       
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         public RecyclerView.Adapter mAdapter;
@@ -53,6 +54,7 @@ namespace TestApp
             mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
 
+           
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserFriends);
             //Create our layout manager
