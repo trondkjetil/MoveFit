@@ -85,33 +85,37 @@ namespace TestApp
         }
 
 
-        //public override void OnBackPressed()
-        //{
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
 
-        //    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            //AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-        //    alert.SetTitle("Exit route creation");
-        //    alert.SetMessage("Do you want to abort the current route creation?");
-        //    alert.SetPositiveButton("Yes", (senderAlert, args) => {
-        //        //change value write your own set of instructions
-        //        //you can also create an event for the same in xamarin
-        //        //instead of writing things here
-        //        StopService(new Intent(this, typeof(CreateRouteService)));
-        //        base.OnBackPressed();
-        //        StopService(new Intent(this, typeof(CreateRouteService)));
-        //    });
+            //alert.SetTitle("Exit route creation");
+            //alert.SetMessage("Do you want to abort the current route creation?");
+            //alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            //{
+            //    //change value write your own set of instructions
+            //    //you can also create an event for the same in xamarin
+            //    //instead of writing things here
+            //    StopService(new Intent(this, typeof(CreateRouteService)));
+            //   
+            //    StopService(new Intent(this, typeof(CreateRouteService)));
+            //});
 
-        //    alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-        //        //perform your own task for this conditional button click
+            //alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            //{
+            //    //perform your own task for this conditional button click
 
-        //    });
-        //    //run the alert in UI thread to display in the screen
-        //    RunOnUiThread(() => {
-        //        alert.Show();
-        //    });
+            //});
+            ////run the alert in UI thread to display in the screen
+            //RunOnUiThread(() =>
+            //{
+            //    alert.Show();
+            //});
 
 
-        //}
+        }
 
 
 
@@ -731,7 +735,7 @@ namespace TestApp
             {
 
                 case Resource.Id.exit:
-                    Finish();
+                    OnBackPressed();
                     return true;
 
                 case Resource.Id.back:
@@ -744,7 +748,7 @@ namespace TestApp
                     //StartActivity(myIntent);
 
                     OnBackPressed();
-                    Finish();
+                   
 
                     return true;
 

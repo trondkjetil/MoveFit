@@ -13,6 +13,9 @@ using Gcm.Client;
 using WindowsAzure.Messaging;
 using Android.Util;
 
+
+
+
 [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
 [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
 [assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
@@ -43,6 +46,7 @@ namespace TestApp
     [Service] // Must use the service tag
     public class PushHandlerService : GcmServiceBase
     {
+       
         public static string RegistrationID { get; private set; }
         private NotificationHub Hub { get; set; }
 
@@ -51,8 +55,13 @@ namespace TestApp
             Log.Info(MyBroadcastReceiver.TAG, "PushHandlerService() constructor");
         }
 
+
+     
         protected override void OnMessage(Context context, Intent intent)
         {
+
+
+
             Log.Info(MyBroadcastReceiver.TAG, "GCM Message Received!");
 
             var msg = new StringBuilder();
@@ -74,10 +83,7 @@ namespace TestApp
             }
         }
 
-        protected override void OnError(Context context, string errorId)
-        {
-            Log.Error(MyBroadcastReceiver.TAG, "GCM Error: " + errorId);
-        }
+     
 
         protected override void OnRegistered(Context context, string registrationId)
         {
@@ -113,19 +119,7 @@ namespace TestApp
         }
 
 
-        protected override bool OnRecoverableError(Context context, string errorId)
-        {
-            Log.Warn(MyBroadcastReceiver.TAG, "Recoverable Error: " + errorId);
-           
-            return base.OnRecoverableError(context, errorId);
-        }
-        protected override void OnUnRegistered(Context context, string registrationId)
-        {
-            Log.Verbose(MyBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
-
-            createNotification("GCM Unregistered...", "The device has been unregistered!");
-        }
-
+     
 
         protected void dialogNotify(String title, String message)
         {
@@ -169,7 +163,22 @@ namespace TestApp
 
 
 
+        protected override bool OnRecoverableError(Context context, string errorId)
+        {
+            Log.Warn(MyBroadcastReceiver.TAG, "Recoverable Error: " + errorId);
 
+            return base.OnRecoverableError(context, errorId);
+        }
+        protected override void OnUnRegistered(Context context, string registrationId)
+        {
+            Log.Verbose(MyBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
+
+            createNotification("GCM Unregistered...", "The device has been unregistered!");
+        }
+        protected override void OnError(Context context, string errorId)
+        {
+            Log.Error(MyBroadcastReceiver.TAG, "GCM Error: " + errorId);
+        }
 
 
     }

@@ -30,6 +30,10 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 
 
 using Gcm.Client;
+using TestApp.Push;
+using System.Net;
+using System.Text;
+using System.IO;
 
 namespace TestApp
 {
@@ -97,6 +101,11 @@ namespace TestApp
         public static List<MessageDetail> currentMessagesWritten;
         public static List<UserDetail> listOfConnectedUsers;
 
+        public List<NavDrawerItem> data;
+       
+
+        private RegisterClient registerClient;
+        private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
 
         private void RegisterWithGCM()
         {
@@ -106,10 +115,96 @@ namespace TestApp
 
             // Register for push notifications
             Log.Info("MainActivity", "Registering...");
-            GcmClient.Register(this, Constants.SenderID);
+             GcmClient.Register(this, Constants.SenderID);
         }
 
 
+      
+        public class NavDrawerAdapter :  BaseAdapter //ArrayAdapter<NavDrawerItem>
+{
+        
+            private readonly Context context;
+            private readonly int layoutResourceId;
+            private List<NavDrawerItem> data;
+            public NavDrawerAdapter(Context context, int layoutResourceId, List<NavDrawerItem> data) { 
+               
+                    this.context = context;
+                    this.layoutResourceId = layoutResourceId;
+                    this.data = data;
+                   // fillAdapter();
+            }
+            //public void fillAdapter()
+            //{
+               
+            //    data = new List<NavDrawerItem>();
+            //    data.Add(new NavDrawerItem(Resource.Drawable.offline, "My Profile"));
+            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Scoreboard"));
+            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Routes"));
+            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Social"));
+            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Calculator"));
+            //}
+            public override int Count
+            {
+                get { return data.Count; }//_contactList.Count; }
+            }
+
+            public override Java.Lang.Object GetItem(int position)
+            {
+                // could wrap a Contact in a Java.Lang.Object
+                // to return it here if needed
+                return data[position].name;
+            }
+
+            public override long GetItemId(int position)
+            {
+                return position;
+            }
+
+            public override View GetView(int position, View convertView, ViewGroup parent)
+        {
+                //LayoutInflater inflater = ((Activity)context).LayoutInflater;
+
+                //View v = inflater.Inflate(layoutResourceId, parent, false);
+                var v = convertView ?? MainStart.mainActivity.LayoutInflater.Inflate(Resource.Layout.leftDrawerAdapter, parent, false);
+
+
+            ImageView imageView = v.FindViewById<ImageView>(Resource.Id.img);
+            TextView textView =v.FindViewById<TextView>(Resource.Id.titleMen);
+
+            NavDrawerItem choice = data[position];
+
+                if(position == 0)
+                {
+                    imageView.SetImageBitmap(profilePic);
+                    textView.Text = choice.name;
+                }else
+                {
+                    imageView.SetImageResource(choice.icon);
+                    textView.Text = choice.name;
+                }
+         
+
+            return v;
+        }
+
+
+
+
+        }
+
+
+
+        public class NavDrawerItem
+        {
+            public int icon;
+            public string name;
+            public NavDrawerItem() { }
+            public NavDrawerItem(int icon, string name)
+            {
+                this.icon = icon;
+                this.name = name;
+            }
+        }
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -118,10 +213,24 @@ namespace TestApp
             TestIfGooglePlayServicesIsInstalled();
              mainActivity = this;
 
-
-
             instance = this;
-            RegisterWithGCM();
+
+
+
+             RegisterWithGCM();
+
+         
+         
+
+            // HttpPost request = new HttpPost(uri);
+            //  request.addHeader("Authorization", "Basic " + getAuthorizationHeader());
+            //   request.setEntity(new StringEntity(message));
+            //    request.addHeader("Content-Type", "application/json");
+
+            //  HttpResponse response = new DefaultHttpClient().execute(request);
+
+
+
 
 
             changed = false;
@@ -132,14 +241,15 @@ namespace TestApp
             userInstanceOne = null;
 
             isOnline = false;
-
+           
             StartService(new Intent(this, typeof(SimpleService)));
             // connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
-            // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
+         // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
 
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
             TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
@@ -197,15 +307,14 @@ namespace TestApp
             layout.Visibility = ViewStates.Invisible;
 
 
-
-
             array = Intent.GetStringArrayExtra("MyData");
             routesCreated.Text = "Routes Created: ";// "Greetings " + array[0] + "!";
             userName = array[0];
             profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
-            profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
-            profilePicture.SetImageBitmap(profilePic);
+
+            //profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
+            //profilePicture.SetImageBitmap(profilePic);
 
             facebookUserId = array[2];
           
@@ -237,9 +346,7 @@ namespace TestApp
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("BMI Calculator");
            // mLeftDataSet.Add("Messages");
-            mLeftDataSet.Add("My profile");
-
-
+            mLeftDataSet.Add("My Profile");
 
             //mLeftDataSet.Add("Scoreboard");
             //mLeftDataSet.Add("Routes");
@@ -248,45 +355,56 @@ namespace TestApp
             //mLeftDataSet.Add("Step counter");
             //mLeftDataSet.Add("Calculator");
             //mLeftDataSet.Add("My profile");
+            data = new List<NavDrawerItem>();
 
+             data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
+            data.Add(new NavDrawerItem(Resource.Drawable.startFlag, "Scoreboard"));
+            data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
+            data.Add(new NavDrawerItem(Resource.Drawable.isfriend, "Social"));
+            data.Add(new NavDrawerItem(Resource.Drawable.eexit, "BMI Calculator"));
 
+            //mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
+            //mLeftDrawer.Adapter = mLeftAdapter;
 
+            NavDrawerAdapter customAdapter = new NavDrawerAdapter(this, Resource.Layout.leftDrawerAdapter, data );
+            mLeftDrawer.Adapter = customAdapter;
 
+         
 
-            mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
-            mLeftDrawer.Adapter = mLeftAdapter;
-
-            mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) => {
-                var item = mLeftAdapter.GetItem(e.Position);
-                if (e.Position == 0)
-                {
-                    myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
-                    StartActivity(myIntent);
-                }
+            mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) =>
+            {
+                var item = customAdapter.GetItem(e.Position);
+             
+               
                 if (e.Position == 1)
                 {
-                    myIntent = new Intent(this, typeof(RouteOverview));
+                    myIntent = new Intent(this, typeof( ScoreBoardPersonActivity));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 2)
                 {
-                    myIntent = new Intent(this, typeof(FriendsOverview));
+                    myIntent = new Intent(this, typeof( RouteOverview));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 3)
+                {
+                    myIntent = new Intent(this, typeof(FriendsOverview));
+                    StartActivity(myIntent);
+                }
+                else if (e.Position == 4)
                 {
                     myIntent = new Intent(this, typeof(Calculator));
                     StartActivity(myIntent);
                 }
 
 
-                else if (e.Position == 4)
+                else if (e.Position == 0)
                 {
 
                     //myIntent = new Intent(this, typeof(ChatRoom));
                     //StartActivity(myIntent);
-               
-                    
+
+
 
                     try
                     {
@@ -340,11 +458,100 @@ namespace TestApp
 
                 }
 
-
-
             };
 
-            var RightAdapter = new ContactsAdapter(this);
+
+
+
+                //mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) => {
+                //    var item = mLeftAdapter.GetItem(e.Position);
+                //    if (e.Position == 0)
+                //    {
+                //        myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
+                //        StartActivity(myIntent);
+                //    }
+                //    if (e.Position == 1)
+                //    {
+                //        myIntent = new Intent(this, typeof(RouteOverview));
+                //        StartActivity(myIntent);
+                //    }
+                //    else if (e.Position == 2)
+                //    {
+                //        myIntent = new Intent(this, typeof(FriendsOverview));
+                //        StartActivity(myIntent);
+                //    }
+                //    else if (e.Position == 3)
+                //    {
+                //        myIntent = new Intent(this, typeof(Calculator));
+                //        StartActivity(myIntent);
+                //    }
+
+
+                //    else if (e.Position == 4)
+                //    {
+
+                //        //myIntent = new Intent(this, typeof(ChatRoom));
+                //        //StartActivity(myIntent);
+
+
+
+                //        try
+                //        {
+
+
+
+                //            User instance = null;
+
+                //            if (user.Count != 0 || userInstanceOne != null)
+                //            {
+                //                instance = user.FirstOrDefault();
+
+                //                if (instance == null)
+                //                    instance = userInstanceOne;
+
+                //            }
+
+                //            var list = await Azure.getUserInstanceByName(userName);
+                //            instance = list.FirstOrDefault();
+
+
+                //            if (instance != null)
+                //            {
+
+                //                Bundle b = new Bundle();
+                //                b.PutStringArray("MyData", new String[] {
+
+                //            instance.UserName,
+                //            instance.Sex,
+                //            instance.Age.ToString(),
+                //            instance.ProfilePicture,
+                //            instance.Points.ToString(),
+                //            instance.AboutMe,
+                //            instance.Id
+
+
+                //        });
+
+                //                Intent myIntent = new Intent(this, typeof(UserProfile));
+                //                myIntent.PutExtras(b);
+                //                StartActivity(myIntent);
+
+                //            }
+
+                //        }
+                //        catch (Exception)
+                //        {
+
+
+                //        }
+
+                //    }
+
+
+
+                //    };
+
+                var RightAdapter = new ContactsAdapter(this);
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
             mRightDrawer.Adapter = RightAdapter;
 
@@ -454,6 +661,13 @@ namespace TestApp
 
 
                 }
+
+
+
+
+
+
+
 
 
 
