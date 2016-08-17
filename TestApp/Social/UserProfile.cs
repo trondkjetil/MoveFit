@@ -586,7 +586,7 @@ namespace TestApp
             //itemGender = menu.FindItem(Resource.Id.gender);
             //itemAge = menu.FindItem(Resource.Id.age);
             itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
-            itemExit = menu.FindItem(Resource.Id.exit);
+          //  itemExit = menu.FindItem(Resource.Id.exit);
             itemHome = menu.FindItem(Resource.Id.home);
 
         
@@ -605,8 +605,14 @@ namespace TestApp
                     Finish();
                     return true;
 
-                case Resource.Id.exit:
+                case Resource.Id.back:
                     Finish();
+                    return true;
+
+                case Resource.Id.bmi:
+                   Intent myIntent = new Intent(this, typeof(Calculator));
+                    StartActivity(myIntent);
+
                     return true;
 
                 default:

@@ -720,15 +720,7 @@ namespace TestApp
         {
             MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
 
-            //itemGender = menu.FindItem(Resource.Id.gender);
-            //itemAge = menu.FindItem(Resource.Id.age);
-            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
-            //itemExit = menu.FindItem(Resource.Id.exit);
-
-
-            //goHome.SetIcon(Resource.Drawable.eexit);
-            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
-
+          
 
             return base.OnCreateOptionsMenu(menu);
         }
@@ -739,9 +731,9 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                case Resource.Id.exit:
-                    OnBackPressed();
-                    return true;
+                //case Resource.Id.exit:
+                //    OnBackPressed();
+                //    return true;
 
                 case Resource.Id.back:
                     OnBackPressed();

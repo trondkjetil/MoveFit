@@ -4,6 +4,8 @@ using System.Net;
 using Android.Net;
 using Android.Content.PM;
 using Android.OS;
+using Android.Content;
+using Android.App;
 
 namespace TestApp
 {
@@ -24,19 +26,19 @@ namespace TestApp
             return isOnline;
         }
         //Simple read and write
-//        string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-//        string filename = Path.Combine(path, "myfile.txt");
+        //        string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        //        string filename = Path.Combine(path, "myfile.txt");
 
-//            using (var streamWriter = new StreamWriter(filename, true))
-//            {
-//                streamWriter.WriteLine(DateTime.UtcNow);
-//            }
+        //            using (var streamWriter = new StreamWriter(filename, true))
+        //            {
+        //                streamWriter.WriteLine(DateTime.UtcNow);
+        //            }
 
-//            using (var streamReader = new StreamReader(filename))
-//            {
-//                string content = streamReader.ReadToEnd();
-//System.Diagnostics.Debug.WriteLine(content);
-//            }
+        //            using (var streamReader = new StreamReader(filename))
+        //            {
+        //                string content = streamReader.ReadToEnd();
+        //System.Diagnostics.Debug.WriteLine(content);
+        //            }
 
         //public static Bitmap deCodeByte(byte[] image)
         //{
@@ -119,6 +121,64 @@ namespace TestApp
         //	}
         //}
 
+        public static double ConvertMilesToKilometers(double miles)
+        {
+            //
+            // Multiply by this constant and return the result.
+            //
+            return miles * 1.609344;
+        }
+
+        public static double ConvertKilometersToMiles(double kilometers)
+        {
+            //
+            // Multiply by this constant.
+            //
+            return kilometers * 0.621371192;
+        }
+
+
+
+        public static int[] LoadPreferences()
+        {
+            int value1 = 0;
+            int value2 = 0;
+            int value3 = 0;
+            var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
+
+            //if (prefs.Contains("distance"))
+            //{
+            //    value = prefs.GetInt("distance", 0);
+            //}else if (prefs.Contains("unit"))
+            //{
+            //    value = prefs.GetInt("unit", 0);
+            //}else if (prefs.Contains("interval"))
+            //{
+            //    value = prefs.GetInt("interval", 0);
+            //}
+
+            value1 = prefs.GetInt("distance", 0);
+            value2 = prefs.GetInt("unit", 0);
+            value3 = prefs.GetInt("interval", 0);
+
+
+            int[] result = new int[3];
+            result[0] = value1;
+            result[1] = value2;
+            result[2] = value3;
+
+            return result;
+        }
+
+        public static void SavePreferences(int unit, int distance, int interval)
+        {
+            var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
+            var editor = prefs.Edit();
+            editor.PutInt("unit",unit );
+            editor.PutInt("distance", distance);
+            editor.PutInt("interval", interval);
+            editor.Commit();
+        }
 
         public static bool IsKitKatWithStepCounter(PackageManager pm)
         {

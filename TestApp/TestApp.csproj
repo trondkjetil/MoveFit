@@ -210,6 +210,7 @@
     <Compile Include="Dialogs\DialogStartRoute.cs" />
     <Compile Include="Login\AuthActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
+    <Compile Include="Utilz\Settings.cs" />
     <Compile Include="Utilz\IO.cs" />
     <Compile Include="UI\MyActionBarDrawerToggle.cs" />
     <Compile Include="Azure\User.cs" />
@@ -227,6 +228,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\auth.axml" />
     <AndroidResource Include="Resources\layout\leftDrawerAdapter.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\settings.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <ProguardConfiguration Include="proguard.cfg" />
@@ -487,6 +491,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\perm_group_social_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\oldSetting.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\perm_group_system_tools.png" />

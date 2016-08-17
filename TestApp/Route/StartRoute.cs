@@ -606,9 +606,9 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                case Resource.Id.exit:
-                    Finish();
-                    return true;
+                //case Resource.Id.exit:
+                //    Finish();
+                //    return true;
 
                 case Resource.Id.back:
                     OnBackPressed();

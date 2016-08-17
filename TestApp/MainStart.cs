@@ -91,7 +91,8 @@ namespace TestApp
 
         public static bool isOnline;
         public static ConnectivityManager connectivityManager;
-        public static IMenuItem menItem;
+        public static IMenuItem menItemOnlineIcion;
+        public static IMenuItem menItemOnlineText;
 
         TextView messages;
 
@@ -102,7 +103,7 @@ namespace TestApp
         public static List<UserDetail> listOfConnectedUsers;
 
         public List<NavDrawerItem> data;
-       
+        public Android.Views.ViewGroup.LayoutParams param;
 
         private RegisterClient registerClient;
         private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
@@ -205,6 +206,7 @@ namespace TestApp
                 this.name = name;
             }
         }
+      
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -219,8 +221,14 @@ namespace TestApp
 
              RegisterWithGCM();
 
-         
-         
+            //ISharedPreferences preferences = Prefer.getDefaultSharedPreferences(getApplicationContext());
+            //SharedPreferences.Editor editor = preferences.edit();
+            //editor.putstring("PreferenceName", "YOUR PREFERENCE VALUE");
+            //editor.commit;
+
+          
+
+        
 
             changed = false;
             user = null;
@@ -257,8 +265,8 @@ namespace TestApp
 
             points = FindViewById<TextView>(Resource.Id.points);
 
-            routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);
-            routesCreated.TextSize = 18;
+            routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            routesCreated.TextSize = 15;
 
             friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             friends.TextSize = 15;
@@ -333,7 +341,7 @@ namespace TestApp
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
-            mLeftDataSet.Add("BMI Calculator");
+            mLeftDataSet.Add("Settings");
            // mLeftDataSet.Add("Messages");
             mLeftDataSet.Add("My Profile");
 
@@ -382,7 +390,7 @@ namespace TestApp
                 }
                 else if (e.Position == 4)
                 {
-                    myIntent = new Intent(this, typeof(Calculator));
+                    myIntent = new Intent(this, typeof(Settings));
                     StartActivity(myIntent);
                 }
 
@@ -558,7 +566,13 @@ namespace TestApp
 
 
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
-           
+
+
+            //param = mDrawerLayout.LayoutParameters;
+            //mDrawerLayout.DrawerSlide += MDrawerLayout_DrawerSlide;
+            
+
+
             //addedds
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             
@@ -593,6 +607,14 @@ namespace TestApp
                 //This is the first the time the activity is ran
 
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
+
+                //int width = Resources.DisplayMetrics.WidthPixels / 10;
+                //var paramters = mRightDrawer.LayoutParameters;
+
+                //paramters.Width = width;
+                //mRightDrawer.LayoutParameters = paramters;
+
+                //mDrawerLayout.OpenDrawer(mRightDrawer);
 
             }
 
@@ -673,7 +695,11 @@ namespace TestApp
             if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
             {
 
-                totalDistance.Text = "Total Distance Moved: "+ userInstanceOne.DistanceMoved.ToString() + " km";
+                //    totalDistance.Text = "Total Distance Moved: "+ userInstanceOne.DistanceMoved.ToString() + " km";
+
+
+             
+
             }
             else
                 totalDistance.Text = "Total Distance Moved: 0";
@@ -724,13 +750,35 @@ namespace TestApp
 
             }
 
+            var lis = IOUtilz.LoadPreferences();
+            try
+            {
+              
+                totalDistance.Text = lis[0].ToString() + " Dist";
+                points.Text = lis[1].ToString() + " Unit";
+                friends.Text = lis[2].ToString() + " Interval";
+            }
+            catch (Exception)
+            {
 
-
-
-      
+              
+            }
+                    
+          
 
 
         }
+
+        //private void MDrawerLayout_DrawerSlide(object sender, DrawerLayout.DrawerSlideEventArgs e)
+        //{
+
+          
+        //      //  mRightDrawer.LayoutParameters = param;
+        //      //mLeftDrawer.LayoutParameters = param;
+
+
+           
+        //}
 
         public async void connectToChat()
         {
@@ -1191,7 +1239,8 @@ namespace TestApp
 
 
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
-            menItem = menu.FindItem(Resource.Id.statusOnline);
+            menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline);
+            menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Online");
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -1525,8 +1574,8 @@ namespace TestApp
                         var a = Azure.SetUserOnline(userId, true);
                         isOnline = true;
 
-                        menItem.SetIcon(Resource.Drawable.greenonline);
-
+                        menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+                            menItemOnlineText.SetTitle("Online");
                             contactName.Text = "You are displayed as Online";
                         }
                     else
@@ -1536,8 +1585,8 @@ namespace TestApp
 
                         var b = Azure.SetUserOnline(userId, false);
                         isOnline = false;
-                        menItem.SetIcon(Resource.Drawable.redoffline);
-
+                        menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+                            menItemOnlineText.SetTitle("Offline");
                             contactName.Text = "You are displayed as Offline";
 
                         }

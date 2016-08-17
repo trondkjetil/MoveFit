@@ -70,23 +70,32 @@
                     android:background="#ff00bfa5"
                     android:progressDrawable="@drawable/customloadbar" />-->
             </RelativeLayout>
-            <TextView
-                android:text="Greetings "
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView1"
-                android:textColor="#ff000000"
-                android:background="#ff84ffff" />
+           
             <RelativeLayout
-                android:id="@+id/gpsReadings"
+                android:id="@+id/overView"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light">
+                android:background="#ff84ffff">
+              <TextView
+               android:text="Stats:"
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/textView2"
+               android:textColor="#ff000000"
+             />
+              <TextView
+               android:text=""
+               android:layout_below="@+id/textView2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/textView1"
+               android:textColor="#ff000000"
+             />
                 <TextView
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                     android:layout_below="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/points"
@@ -94,7 +103,7 @@
                 <TextView
                     android:text=""
                     android:layout_below="@+id/points"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                   
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/friends"
@@ -102,7 +111,7 @@
                 <TextView
                     android:text=""
                     android:layout_below="@+id/friends"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                   
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/distance"
@@ -110,7 +119,7 @@
                 <TextView
                     android:text=""
                     android:layout_below="@+id/distance"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                  
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/routesNearby"
