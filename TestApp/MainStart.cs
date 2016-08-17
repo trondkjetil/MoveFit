@@ -627,14 +627,22 @@ namespace TestApp
                 if (user.Count == 0)
                 {
 
-                    FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                    DialogUserInfo newDialog = new DialogUserInfo();
-                    newDialog.DialogClosed += OnDialogClosed;
-                    newDialog.Show(transaction, "User Info");
+                    FragmentTransaction firstWelcome = FragmentManager.BeginTransaction();
+                    DialogWelcome welcome= new DialogWelcome();
+                    welcome.DialogClosed += OnDialogClosedWelcome;
+                    welcome.Show(firstWelcome, "Welcome");
+
+
+
+
+                    //FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                    //DialogUserInfo newDialog = new DialogUserInfo();
+                    //newDialog.DialogClosed += OnDialogClosed;
+                    //newDialog.Show(transaction, "User Info");
                     //waitingUpload = await Azure.AddUser();
                     //Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
-
+                    points.Text = "Score: 0";
                     friends.Text = "Friends Online: 0";
                     routesNearby.Text = "Routes Nearby: 0";
                     routesCreated.Text = "Routes Created 0";
@@ -1301,7 +1309,19 @@ namespace TestApp
 
         }
 
-        async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
+         void OnDialogClosedWelcome(object sender, DialogWelcome.DialogEventArgs e)
+        {
+
+            var list = e.ReturnValue;
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            DialogUserInfo newDialog = new DialogUserInfo();
+            newDialog.DialogClosed += OnDialogClosed;
+            newDialog.Show(transaction, "User Info");
+
+
+        }
+
+            async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
         {
 
             String[] returnData;

@@ -30,6 +30,10 @@ TestApp.UserFriendsWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserFrie
 TestApp.UserFriendsWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 TestApp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
 testapp.UserFriendsWrapper;md5cf27010e14af20e69784a5a54418b85f.UserFriendsWrapper
+TestApp.DialogWelcome, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogWelcome
+TestApp.DialogWelcome, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogWelcome
+TestApp.DialogWelcome;md5cf27010e14af20e69784a5a54418b85f.DialogWelcome
+testapp.DialogWelcome;md5cf27010e14af20e69784a5a54418b85f.DialogWelcome
 TestApp.DialogUserInfo, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
 TestApp.DialogUserInfo, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo
 TestApp.DialogUserInfo;md5cf27010e14af20e69784a5a54418b85f.DialogUserInfo

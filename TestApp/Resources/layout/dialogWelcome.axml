@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/holo_blue_light"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="450dp"
+    android:minHeight="350dp">
+    <Button
+        android:text="Done"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_weight="25"
+        android:id="@+id/startRoute"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:height="70dp"
+        android:background="@drawable/dialogstartbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_x="260dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="480dp" />
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/intro"
+        android:gravity="center"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="20dp" />
+    
+</RelativeLayout>

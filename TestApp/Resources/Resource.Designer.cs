@@ -3097,154 +3097,157 @@ namespace TestApp
 			public const int dialogUserInfo = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int drawerLayout = 2130903081;
+			public const int dialogWelcome = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int dropDownList = 2130903082;
+			public const int drawerLayout = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int friendsOverview = 2130903083;
+			public const int dropDownList = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int getinfo = 2130903084;
+			public const int friendsOverview = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int leftDrawerAdapter = 2130903085;
+			public const int getinfo = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int map = 2130903086;
+			public const int leftDrawerAdapter = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int mapPeople = 2130903087;
+			public const int map = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_media_action = 2130903088;
+			public const int mapPeople = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_media_cancel_action = 2130903089;
+			public const int notification_media_action = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_big_media = 2130903090;
+			public const int notification_media_cancel_action = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_big_media_narrow = 2130903091;
+			public const int notification_template_big_media = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_lines = 2130903092;
+			public const int notification_template_big_media_narrow = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_media = 2130903093;
+			public const int notification_template_lines = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_part_chronometer = 2130903094;
+			public const int notification_template_media = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_part_time = 2130903095;
+			public const int notification_template_part_chronometer = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int pager_item = 2130903096;
+			public const int notification_template_part_time = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int peopleNearByContent = 2130903097;
+			public const int pager_item = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int profile = 2130903098;
+			public const int peopleNearByContent = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int progressBar = 2130903099;
+			public const int profile = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int resultList = 2130903100;
+			public const int progressBar = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int rightDrawerMenu = 2130903101;
+			public const int resultList = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int routesOverview = 2130903102;
+			public const int rightDrawerMenu = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int row = 2130903103;
+			public const int routesOverview = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int row2 = 2130903104;
+			public const int row = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int row_friend = 2130903105;
+			public const int row2 = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int Row_List_To_Do = 2130903106;
+			public const int row_friend = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int row_route = 2130903107;
+			public const int Row_List_To_Do = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int scoreBoardMain = 2130903108;
+			public const int row_route = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int scoreBoardRoutes = 2130903109;
+			public const int scoreBoardMain = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int select_dialog_item_material = 2130903110;
+			public const int scoreBoardRoutes = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int select_dialog_multichoice_material = 2130903111;
+			public const int select_dialog_item_material = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int select_dialog_singlechoice_material = 2130903112;
+			public const int select_dialog_multichoice_material = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int settings = 2130903113;
+			public const int select_dialog_singlechoice_material = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int simpleServiceLayout = 2130903114;
+			public const int settings = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int spinnerItemRouteTypes = 2130903115;
+			public const int simpleServiceLayout = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int startRoute = 2130903116;
+			public const int spinnerItemRouteTypes = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int stepCounter = 2130903117;
+			public const int startRoute = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int support_simple_spinner_dropdown_item = 2130903118;
+			public const int stepCounter = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int test_Cardview = 2130903119;
+			public const int support_simple_spinner_dropdown_item = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int userFriendsContent = 2130903120;
+			public const int test_Cardview = 2130903120;
 			
 			// aapt resource value: 0x7f030051
-			public const int userFriendsRequestContent = 2130903121;
+			public const int userFriendsContent = 2130903121;
 			
 			// aapt resource value: 0x7f030052
-			public const int userMyRoutesContent = 2130903122;
+			public const int userFriendsRequestContent = 2130903122;
 			
 			// aapt resource value: 0x7f030053
-			public const int userProfile = 2130903123;
+			public const int userMyRoutesContent = 2130903123;
 			
 			// aapt resource value: 0x7f030054
-			public const int userRouteContent = 2130903124;
+			public const int userProfile = 2130903124;
 			
 			// aapt resource value: 0x7f030055
-			public const int UsersFriendRequest = 2130903125;
+			public const int userRouteContent = 2130903125;
 			
 			// aapt resource value: 0x7f030056
-			public const int UsersFriends = 2130903126;
+			public const int UsersFriendRequest = 2130903126;
 			
 			// aapt resource value: 0x7f030057
-			public const int UsersMyRoutes = 2130903127;
+			public const int UsersFriends = 2130903127;
 			
 			// aapt resource value: 0x7f030058
-			public const int UsersNearby = 2130903128;
+			public const int UsersMyRoutes = 2130903128;
 			
 			// aapt resource value: 0x7f030059
-			public const int UsersRoutes = 2130903129;
+			public const int UsersNearby = 2130903129;
 			
 			// aapt resource value: 0x7f03005a
-			public const int welcome = 2130903130;
+			public const int UsersRoutes = 2130903130;
+			
+			// aapt resource value: 0x7f03005b
+			public const int welcome = 2130903131;
 			
 			static Layout()
 			{

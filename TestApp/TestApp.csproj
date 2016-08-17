@@ -234,6 +234,7 @@
     <AndroidResource Include="Resources\layout\settings.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialogWelcome.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />

@@ -207,5 +207,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dl
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
