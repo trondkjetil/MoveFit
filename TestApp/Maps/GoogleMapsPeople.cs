@@ -58,12 +58,16 @@ namespace TestApp
             userMarkers = new List<Marker>();
             routeMarkers = new List<Marker>();
 
+            try
+            {
 
+          
             peopleCheck.Click += (o, e) => {
 
                 RunOnUiThread( async() =>
                 {
-
+                    
+                 
 
              
                             
@@ -109,15 +113,31 @@ namespace TestApp
 
                         bar.Visibility = ViewStates.Invisible;
                         Toast.MakeText(this, "Showing Friends", ToastLength.Short).Show();
-
-
                   
+
 
                 }
 
                 });
 
-            };
+
+         
+
+        };
+
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
+
+
+            try
+            {
+
+          
 
             routeCheck.Click +=  (o, e) => {
 
@@ -172,9 +192,14 @@ namespace TestApp
 
             };
 
+            }
+            catch (Exception)
+            {
 
+               
+            }
 
-		}
+        }
 
         protected override void OnDestroy()
         {

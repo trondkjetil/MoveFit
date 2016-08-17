@@ -33,51 +33,37 @@ namespace TestApp
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 
-
-           
-           
-            RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
-            RadioButton radioButton = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
-            RadioButton radioButton2 = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
             Button save = FindViewById<Button>(Resource.Id.save);
 
+
+            //RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
+            //RadioButton radioButton = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
+            //RadioButton radioButton2 = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
+
+
+            //RadioGroup timeInterValGroup = FindViewById<RadioGroup>(Resource.Id.rad1);
+            //RadioButton min45 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
+            //RadioButton min60 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
+            //RadioButton min120 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
+
+
+            RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
+            RadioButton radioButton = FindViewById<RadioButton>(Resource.Id.radioButton1);
+            RadioButton radioButton2 = FindViewById<RadioButton>(Resource.Id.radioButton2);
+
+
             RadioGroup timeInterValGroup = FindViewById<RadioGroup>(Resource.Id.rad1);
-            RadioButton min45 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
-            RadioButton min60 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
-            RadioButton min120 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
+            RadioButton min45 = FindViewById<RadioButton>(Resource.Id.b1);
+            RadioButton min60 = FindViewById<RadioButton>(Resource.Id.b2);
+            RadioButton min120 = FindViewById<RadioButton>(Resource.Id.b3);
+
             SeekBar _seekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
             _seekBar.Max = 80;
-            _seekBar.Progress = 20;
-
-
-            var list = IOUtilz.LoadPreferences();
-            if(list[2] != 0)
-            {
-                if (list[2] == 45)
-                {
-                    min45.Checked = true;
-                }
-                else if (list[2] == 60)
-                {
-                    min60.Checked = true;
-                }
-
-                else
-                    min120.Checked = true;
+            _seekBar.Progress = 0;
 
 
 
-
-                if (list[1] == 0)
-                {
-                    radioButton.Checked = true;
-                }
-                else
-                    radioButton2.Checked = true;
-
-                _seekBar.Progress = list[0];
-            }
-           
+        
 
             save.Click += (e, a) =>
              {
@@ -88,7 +74,7 @@ namespace TestApp
 
             timeInterValGroup.CheckedChange += (s, e) =>
             {
-
+                
                 if (min45.Checked)
                 {
                     interval = 45;
@@ -97,8 +83,11 @@ namespace TestApp
                 {
 
                     interval = 60;
-                }else
+                }else if (min120.Checked)
+                {
                     interval = 120;
+                }
+                   
 
             };
 
@@ -108,7 +97,7 @@ namespace TestApp
                 if (radioButton.Checked)
                 {
                     unitType = 0;
-
+                   
                 }
                 else
                     unitType = 1;
@@ -123,11 +112,63 @@ namespace TestApp
                 {
                   
                     distance = e.Progress;
-                    Toast.MakeText(this, e.Progress, ToastLength.Short).Show();
+                    
+
                 }
             };
 
 
+
+            var list = IOUtilz.LoadPreferences();
+            list = list;
+            if (list[2] != 0)
+            {
+                if (list[2] == 45)
+                {
+
+                    //((RadioButton)timeInterValGroup.GetChildAt(0)).Checked = true;
+                    min45.Checked = true;
+                    //min45.Enabled = true;
+                    
+
+
+
+                }
+                else if (list[2] == 60)
+                {
+                  //  ((RadioButton)timeInterValGroup.GetChildAt(1)).Checked = true;
+                   min60.Checked = true;
+                    //min60.Enabled = true;
+                    //min60.Selected = true;
+                }
+
+                else if (list[2] == 120)
+                {
+                   // ((RadioButton)timeInterValGroup.GetChildAt(2)).Checked = true;
+                    min120.Checked = true;
+                    //min120.Enabled = true;
+                }
+               
+
+
+
+                if (list[1] == 0)
+                {
+                    radioButton.Checked = true;
+                 //   radioButton.Enabled = true;
+                }
+                else if (list[1] == 1)
+                {
+                        radioButton2.Checked = true;
+                //    radioButton2.Enabled = true;
+                }
+                    
+
+                _seekBar.Progress = list[0];
+            }
+
+
+           
 
         }
 

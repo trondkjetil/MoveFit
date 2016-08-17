@@ -483,10 +483,13 @@ namespace TestApp
                     user = MainStart.waitingUpload;
                 }
 
+                var pref = IOUtilz.LoadPreferences();
+                 double distance = pref[0];
+
                 List<User> a3 = await table.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
                 a3 = a3;
 
-                List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < 1000 && (p.Lon - user.Lon) > -1000 && (p.Lat - user.Lat) < 1000 && (p.Lat - user.Lat) > -1000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < distance && (p.Lon - user.Lon) > -distance && (p.Lat - user.Lat) < distance && (p.Lat - user.Lat) > -distance).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
                 List<User> show = await getUsersFriends(MainStart.userId);
 
                 List<User> nearbyUsers = nearByPeople.Except(show).ToList();
@@ -511,17 +514,18 @@ namespace TestApp
                 {
                     user = MainStart.waitingUpload;
                 }
-
+                var pref = IOUtilz.LoadPreferences();
+                double distance = pref[0];
 
                 //Works!
                 //List <Route> tee =  await routeTable.Where(p => p.Lon - user.Lon < .1 && (p.Lon - user.Lon ) > -.1 && (p.Lat - user.Lat) < .1  && (p.Lat -  user.Lat) > -.1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
                 //tee = tee;
 
                 //Works!
-                List<Route> a3 = await routeTable.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                List<Route> a3 = await routeTable.Where(p => p.Lon - user.Lon < distance && (p.Lon - user.Lon) > -distance && (p.Lat - user.Lat) < distance && (p.Lat - user.Lat) > -distance).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
                 a3 = a3;
 
-                List<Route> a33 = await routeTable.Where(p => p.Lon - user.Lon < 30 && (p.Lon - user.Lon) > -50 && (p.Lat - user.Lat) < 50 && (p.Lat - user.Lat) > -50).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+                List<Route> a33 = await routeTable.Where(p => p.Lon - user.Lon < 30 && (p.Lon - user.Lon) > -30 && (p.Lat - user.Lat) < 30 && (p.Lat - user.Lat) > -30).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
                 a33= a33;
                 //Works!
                 //  List<Route> abba = await routeTable.Where(p => p.Lon - user.Lon < 100000000000 && (p.Lon - user.Lon) > -100000000000 && (p.Lat - user.Lat) < 100000000000 && (p.Lat - user.Lat) > -100000000000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5

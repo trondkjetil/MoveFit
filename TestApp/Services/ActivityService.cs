@@ -30,6 +30,9 @@ namespace TestApp
         public TimeSpan end;
 
 
+        public double timeInterval;
+
+
         public override void OnCreate()
         {
             base.OnCreate();
@@ -51,7 +54,8 @@ namespace TestApp
                 isChecked = true;
                 isRunning = true;
 
-               
+                var pref = IOUtilz.LoadPreferences();
+                timeInterval = pref[2];
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 				
@@ -130,8 +134,9 @@ namespace TestApp
             {
                 timer.Restart();
             }
-
-            if (mAccel < 5 && timer.Elapsed.Seconds == 6500) { //TIME_FOR_ALARM > 10 ){  //1800
+            if (timeInterval == 0)
+                timeInterval = 60;
+            if (mAccel < 5 && timer.Elapsed.Seconds == timeInterval * 60) { //TIME_FOR_ALARM > 10 ){  //1800
                 mAccel = 0.00f;
 
 

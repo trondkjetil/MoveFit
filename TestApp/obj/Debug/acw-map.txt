@@ -206,6 +206,10 @@ TestApp.WelcomeScreen, TestApp;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
 TestApp.WelcomeScreen, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
 TestApp.WelcomeScreen;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
 testapp.WelcomeScreen;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
+TestApp.Settings, TestApp;md5cf27010e14af20e69784a5a54418b85f.Settings
+TestApp.Settings, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Settings
+TestApp.Settings;md5cf27010e14af20e69784a5a54418b85f.Settings
+testapp.Settings;md5cf27010e14af20e69784a5a54418b85f.Settings
 TestApp.MyActionBarDrawerToggle, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyActionBarDrawerToggle
 TestApp.MyActionBarDrawerToggle, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyActionBarDrawerToggle
 TestApp.MyActionBarDrawerToggle;md5cf27010e14af20e69784a5a54418b85f.MyActionBarDrawerToggle

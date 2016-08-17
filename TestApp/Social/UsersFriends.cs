@@ -209,7 +209,27 @@ namespace TestApp
             Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
 
             var res = Convert.ToInt32(result[0]);
-            myHolder.mDist.Text = res.ToString()+ " meters away";
+          //  myHolder.mDist.Text = res.ToString()+ " meters away";
+
+
+            string unit = " km";
+            double dist = 0;
+            var test = IOUtilz.LoadPreferences();
+            if (test[1] == 1)
+            {
+                unit = " miles";
+                dist =(int) IOUtilz.ConvertKilometersToMiles(res / 1000);
+            }
+            else
+            {
+                dist = res / 1000;
+            }
+
+      
+            myHolder.mDist.Text = dist.ToString() + unit + " away";
+
+
+
 
             if (mUsers[position].Online)
             {

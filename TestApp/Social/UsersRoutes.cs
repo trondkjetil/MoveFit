@@ -319,7 +319,26 @@ namespace TestApp
             Location.DistanceBetween(mRoutes[position].Lat, mRoutes[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
 
             var res = Convert.ToInt32(result[0]);
-            myHolder.mDistanceAway.Text = res.ToString() + " meters away";
+
+
+            string unit = " km";
+            double dist = 0;
+            var test = IOUtilz.LoadPreferences();
+            if (test[1] == 1)
+            {
+                unit = " miles";
+                dist =(int) IOUtilz.ConvertKilometersToMiles(res / 1000);
+            }
+            else
+            {
+                dist = res/ 1000;
+            }
+
+
+            myHolder.mDistanceAway.Text = dist.ToString() + unit + " away";
+
+
+            //    myHolder.mDistanceAway.Text = res.ToString() + " meters away";
 
 
             if (mRoutes[position].Difficulty == "Easy")

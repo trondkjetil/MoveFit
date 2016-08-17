@@ -694,8 +694,20 @@ namespace TestApp
 
             if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
             {
+                string unit = " km";
+                double dist = 0;
+                var test = IOUtilz.LoadPreferences();
+                if (test[1] == 1)
+                {
+                    unit = " miles";
+                    dist = (int)IOUtilz.ConvertKilometersToMiles(userInstanceOne.DistanceMoved / 1000);
+                }
+                else
+                {
+                    dist = userInstanceOne.DistanceMoved / 1000;
+                }
 
-                //    totalDistance.Text = "Total Distance Moved: "+ userInstanceOne.DistanceMoved.ToString() + " km";
+               totalDistance.Text = "Total Distance Moved: "+ dist.ToString() + unit;
 
 
              
@@ -750,19 +762,19 @@ namespace TestApp
 
             }
 
-            var lis = IOUtilz.LoadPreferences();
-            try
-            {
+            //var lis = IOUtilz.LoadPreferences();
+            //try
+            //{
               
-                totalDistance.Text = lis[0].ToString() + " Dist";
-                points.Text = lis[1].ToString() + " Unit";
-                friends.Text = lis[2].ToString() + " Interval";
-            }
-            catch (Exception)
-            {
+            //    totalDistance.Text = lis[0].ToString() + " Dist";
+            //    points.Text = lis[1].ToString() + " Unit";
+            //    friends.Text = lis[2].ToString() + " Interval";
+            //}
+            //catch (Exception)
+            //{
 
               
-            }
+            //}
                     
           
 

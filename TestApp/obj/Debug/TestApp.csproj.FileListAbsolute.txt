@@ -41,6 +41,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatgroup.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\spinneritemroutetypes.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\settings.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
@@ -154,6 +155,11 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\compass_base.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_routes.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_people.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_allfriends.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_social_info.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\oldsetting.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
@@ -201,9 +207,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dl
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_people.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_allfriends.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_social_info.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

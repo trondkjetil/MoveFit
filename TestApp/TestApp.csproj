@@ -169,6 +169,7 @@
     <Compile Include="Azure\UserFriends.cs" />
     <Compile Include="Common\MessageDetail.cs" />
     <Compile Include="Common\UserDetail.cs" />
+    <Compile Include="Dialogs\DialogWelcome.cs" />
     <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
     <Compile Include="Points\MyPoints.cs" />
