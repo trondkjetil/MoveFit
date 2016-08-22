@@ -13,8 +13,8 @@ namespace TestApp
 	public class LocationService : Service, ILocationListener
 	{
 
-        private static readonly int UPDATE_INTERVAL = 1000 * 10 * 1;
-        private static readonly int MIN_DISTANCE = 2;
+        private static readonly int UPDATE_INTERVAL = 1000 * 35 * 1;
+        private static readonly int MIN_DISTANCE = 20;
 
 
         public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };

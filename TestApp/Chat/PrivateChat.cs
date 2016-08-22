@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -42,11 +41,8 @@ namespace TestApp
 
         string targetId;
         static string sendTouserId;
-
-
         List<Messages> messages;
         List<Messages> PreviousMessages;
-
         LinearLayout layout;
         SupportToolbar toolbar;
 
@@ -72,8 +68,7 @@ namespace TestApp
          void Start()
         {
             _l = new List<DateTime>(); // Allocate the list
-            _timer = new System.Timers.Timer(5000); // Set up the timer for 3 seconds                                                  //
-                                                    // Type "_timer.Elapsed += " and press tab twice.                                                 //
+            _timer = new System.Timers.Timer(2000); // Set up the timer for 3 seconds        
             _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
             _timer.Enabled = true; // Enable it
         }
@@ -83,13 +78,9 @@ namespace TestApp
         {
 
             _timer.Enabled = false;
-
-
-
             try
             {
 
-           
             var NewMessages = await Azure.getMessages(converSationId);
            // List<Messages> newMessagesToWrite = new List<Messages>();
             //foreach (var newMsg in NewMessages)
@@ -113,30 +104,33 @@ namespace TestApp
                 try
                 {
 
-              
-            bool notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id);
-             
-                
-                //    Toast.MakeText(this, "Updating chat list..", ToastLength.Long).Show();
-                if (NewMessages.Count != 0 && !notAnyNewMessages)
+
+                    bool notAnyNewMessages = false;
+
+                    if(PreviousMessages.Count == 0)
+                    {
+                        notAnyNewMessages = false;
+                    }else
+                        notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
+
+
+                    if (NewMessages.Count != 0 && !notAnyNewMessages)
                 {
                 
                     layout.RemoveAllViews();
-                    foreach (var oldMessage in NewMessages)
+                    foreach (var message in NewMessages)
                     {
-
-
-                        messageLayout(oldMessage.Message, oldMessage.Sender);
-
-                        //if (item.Id != oldMessage.Id)
-                        //{
-                        //    messageLayout(item.Message, item.Sender);
-                        //}
+                        messageLayout(message.Message, message.Sender);
 
                     }
+
                 }
 
-                PreviousMessages = NewMessages;
+
+                    if(PreviousMessages.Count != 0)
+                    PreviousMessages.Clear();
+
+                    PreviousMessages = NewMessages;
 
                 }
                 catch (Exception)
@@ -163,7 +157,11 @@ namespace TestApp
         {
             base.OnDestroy();
             if (_timer != null)
+            {
+
                 _timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
+                _timer.Enabled = false;
+            }
 
         }
         protected override void OnStop()
@@ -182,25 +180,17 @@ namespace TestApp
 
         protected override async void OnCreate(Bundle bundle)
         {
-
-          //  RequestWindowFeature(WindowFeatures.NoTitle);
+        
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
+       
             SetContentView(Resource.Layout.chatPrivate);
             array = Intent.GetStringArrayExtra("MyData");
-
-          
-
-
-
-            
-            
-
             layout = FindViewById<LinearLayout>(Resource.Id.llChatMessages);
-
             send = FindViewById<ImageButton>(Resource.Id.btnSend);
-            send.SetBackgroundColor(Color.Blue);
+           // send.SetBackgroundColor(Color.Blue);
+            send.SetBackgroundColor(Color.White);
+            send.Enabled = false;
 
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
@@ -214,13 +204,10 @@ namespace TestApp
             icon = new BitmapDrawable(bmp);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             SupportActionBar.SetIcon(icon);
-
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            
             toUserName = array[0];
             targetId = array[1];
-
-
-           
-
             PreviousMessages = new List<Messages>();
 
 
@@ -256,9 +243,10 @@ namespace TestApp
 
 
                 var list = DateList;
-           
 
-
+              
+                send.Enabled = true;
+                send.SetBackgroundColor(Color.Blue);
 
             }
             catch (Exception e)
@@ -409,6 +397,8 @@ namespace TestApp
 
             send.Click += async (o, e2) =>
             {
+
+               
                 string tmpMessage = "";
                 try
                 {
@@ -458,7 +448,7 @@ namespace TestApp
                 userName = MainStart.userName;
             }
             else
-                userName = toUserName + " 101";
+                userName = toUserName;
 
             var firstName = userName.Substring(0, userName.IndexOf(" "));
             userName = firstName;
@@ -502,8 +492,7 @@ namespace TestApp
 
             };
 
-            //   FindViewById<LinearLayout>(Resource.Id.llChatMessages).AddView(txt);
-
+        
             layout.AddView(txt);
             scroll.FullScroll(FocusSearchDirection.Down);
         }
@@ -583,7 +572,7 @@ namespace TestApp
         public override bool OnCreateOptionsMenu(IMenu menu)
 
         {
-            MenuInflater.Inflate(Resource.Menu.action_menu_profile, menu);
+            MenuInflater.Inflate(Resource.Menu.action_menu_profile_chat, menu);
 
             //itemGender = menu.FindItem(Resource.Id.gender);
             //itemAge = menu.FindItem(Resource.Id.age);
@@ -607,8 +596,11 @@ namespace TestApp
                     Finish();
                     return true;
 
-                case Resource.Id.back:
-                    Finish();
+                //case Resource.Id.back:
+                //    Finish();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
+                    OnBackPressed();
                     return true;
 
                 default:

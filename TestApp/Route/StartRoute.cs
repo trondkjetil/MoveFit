@@ -82,7 +82,7 @@ namespace TestApp
                 toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
-
+                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
                 TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
                 TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
                 TextView length = FindViewById<TextView>(Resource.Id.startRouteLength);
@@ -610,7 +610,10 @@ namespace TestApp
                 //    Finish();
                 //    return true;
 
-                case Resource.Id.back:
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 

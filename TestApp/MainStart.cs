@@ -668,7 +668,7 @@ namespace TestApp
                             friendCountOnline++;
                         }
                     }
-                    friends.Text = "Friends Online: " + friendCountOnline + "/" + userList.Count;
+                    friends.Text = "Friends Online: " + friendCountOnline;
 
                     List<Route> routes = await Azure.nearbyRoutes();
 
@@ -853,15 +853,15 @@ namespace TestApp
             base.OnStop();
             // Clean up: shut down the service when the Activity is no longer visible.
 
-            try
-            {
-                var wait = await logOff();
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    var wait = await logOff();
+            //}
+            //catch (Exception)
+            //{
 
               
-            }
+            //}
            
             //adde
             InvalidateOptionsMenu();
@@ -886,19 +886,10 @@ namespace TestApp
         }
 
 
-        protected async override void OnStart()
+        protected  override void OnStart()
         {
             base.OnStart();
-            //try
-            //{
-                
-            //    var user = await Azure.SetUserOnline(userId, true);
-            //}
-            //catch (Exception)
-            //{
-
-               
-            //}
+         
 
         }
       
@@ -923,7 +914,12 @@ namespace TestApp
 
         public async Task<List<User>> logOff()
         {
-            var user = await Azure.SetUserOnline(userId, false);
+            if (isOnline)
+            {
+                var user = await Azure.SetUserOnline(userId, false);
+                isOnline = false;
+            }
+           
             StopService(new Intent(this, typeof(LocationService)));
             return user;
         }
@@ -1343,7 +1339,7 @@ namespace TestApp
                     userInstanceOne = newwaitingDownload.FirstOrDefault();
 
                 userId = userInstanceOne.Id;
-                Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
+             //   Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
 
                 points.Text = "Score: 0";
 

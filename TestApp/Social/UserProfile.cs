@@ -126,8 +126,8 @@ namespace TestApp
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbarNew);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-     
             profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
             profilePic2.SetImageResource(Resource.Drawable.tt);
 
@@ -182,7 +182,7 @@ namespace TestApp
 
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
                 SupportActionBar.SetIcon(icon);
-
+               
 
                 userName.Text = array[0];
                
@@ -206,7 +206,7 @@ namespace TestApp
                 }
                 else
                 {
-                    aboutMeEdit.Text = "Write something about your self here..";
+                    aboutMeEdit.Hint = "Write something about your self here..";
                 }
                
 
@@ -416,7 +416,7 @@ namespace TestApp
                 }
             }
             mediaCursor.Close();
-            rotation = rotation;
+         
             return rotation;
         }
 
@@ -495,16 +495,7 @@ namespace TestApp
             }
         }
 
-        //public string GetRealPathFromURI(Android.Net.Uri contentUri)
-        //{
-        //    var mediaStoreImagesMediaData = "_data";
-        //    string[] projection = { mediaStoreImagesMediaData };
-        //    Android.Database.ICursor cursor = ManagedQuery(contentUri, projection,
-        //                                                        null, null, null);
-        //    int columnIndex = cursor.GetColumnIndexOrThrow(mediaStoreImagesMediaData);
-        //    cursor.MoveToFirst();
-        //    return cursor.GetString(columnIndex);
-        //}
+  
 
         private string GetFilePath(Android.Net.Uri uri)
         {
@@ -551,21 +542,6 @@ namespace TestApp
         }
 
 
-
-        //public Bitmap toBitmap(byte[] avatarBytes)
-        //{
-        //    Bitmap imageBitmap = null;
-        //    //var avatarImageView = profilePic2;
-        //    if (profilePic2 != null)
-        //    {
-        //        imageBitmap = BitmapFactory.DecodeByteArray(avatarBytes, 0, avatarBytes.Length);
-        //     //  avatarImageView.SetImageBitmap(imageBitmap);
-        //    }
-
-        //    return imageBitmap;
-        //}
-
-
         public static byte[] toByte(Bitmap bitmap)
         {
             ByteBuffer byteBuffer = ByteBuffer.Allocate(bitmap.ByteCount);
@@ -605,8 +581,11 @@ namespace TestApp
                     Finish();
                     return true;
 
-                case Resource.Id.back:
-                    Finish();
+                //case Resource.Id.back:
+                //    Finish();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
+                    OnBackPressed();
                     return true;
 
                 case Resource.Id.bmi:

@@ -89,6 +89,7 @@
             android:textColor="@android:color/black" />
         <EditText
             android:text=""
+            android:hint="Write something about your self here.."
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

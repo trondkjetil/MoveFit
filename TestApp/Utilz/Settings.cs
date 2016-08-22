@@ -31,8 +31,8 @@ namespace TestApp
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbars);
             SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             Button save = FindViewById<Button>(Resource.Id.save);
 
 
@@ -46,7 +46,7 @@ namespace TestApp
             //RadioButton min60 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
             //RadioButton min120 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
 
-
+            TextView dist = FindViewById<TextView>(Resource.Id.textView4);
             RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
             RadioButton radioButton = FindViewById<RadioButton>(Resource.Id.radioButton1);
             RadioButton radioButton2 = FindViewById<RadioButton>(Resource.Id.radioButton2);
@@ -58,12 +58,14 @@ namespace TestApp
             RadioButton min120 = FindViewById<RadioButton>(Resource.Id.b3);
 
             SeekBar _seekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
-            _seekBar.Max = 80;
+            _seekBar.Max = 100;
             _seekBar.Progress = 0;
 
 
+            unitType = 0;
+            distance = 0;
+            interval = 45;
 
-        
 
             save.Click += (e, a) =>
              {
@@ -90,17 +92,21 @@ namespace TestApp
                    
 
             };
-
+           
             radioGroup.CheckedChange += (s, e) =>
             {
 
                 if (radioButton.Checked)
                 {
                     unitType = 0;
-                   
+                    _seekBar.Max = 100;
                 }
                 else
-                    unitType = 1;
+                {
+                unitType = 1;
+                _seekBar.Max = 62;
+                }
+                  
 
 
             };
@@ -112,7 +118,13 @@ namespace TestApp
                 {
                   
                     distance = e.Progress;
-                    
+
+                    if (unitType == 1)
+                    {
+                        dist.Text = distance + " miles";
+                    }
+                    else
+                        dist.Text = distance + " km";
 
                 }
             };
@@ -155,14 +167,24 @@ namespace TestApp
                 if (list[1] == 0)
                 {
                     radioButton.Checked = true;
-                 //   radioButton.Enabled = true;
+                    _seekBar.Max = 100;
                 }
                 else if (list[1] == 1)
                 {
                         radioButton2.Checked = true;
-                //    radioButton2.Enabled = true;
+                    _seekBar.Max = 62;
+                   
                 }
-                    
+
+
+
+                if (unitType == 1)
+                {
+                    dist.Text = list[0] + " miles";
+                }
+                else
+                    dist.Text = list[0] + " km";
+
 
                 _seekBar.Progress = list[0];
             }
@@ -200,7 +222,7 @@ namespace TestApp
                 //    OnBackPressed();
                 //    return true;
 
-                case Resource.Id.back:
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 

@@ -359,19 +359,7 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\acceptfriends.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\addfriends.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\deletefriends.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\female.png" />
@@ -499,6 +487,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\perm_group_system_tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\action_menu_profile_chat.xml" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

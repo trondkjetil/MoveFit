@@ -25,7 +25,7 @@ namespace TestApp
 {
   //  [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
 
-    [Activity(AlwaysRetainTaskState = true, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route", Theme = "@style/Theme2")]
+    [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route", Theme = "@style/Theme2")]
   //  [IntentFilter(new[] { Intent.ActionAssist }, Categories = new[] { Intent.CategoryDefault })]
 
     public class CreateRoute : AppCompatActivity, IOnMapReadyCallback //, ILocationListener
@@ -145,8 +145,8 @@ namespace TestApp
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-           
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 
@@ -391,8 +391,19 @@ namespace TestApp
             start.Enabled = false;
             points = CreateRouteService.getPoints();
 
+            try
+            {
 
-           StopService(new Intent(this, typeof(CreateRouteService)));
+            points = filterLocationPoints(points);
+
+            }
+            catch (Exception)
+            {
+
+             
+            }
+
+            StopService(new Intent(this, typeof(CreateRouteService)));
 
 
             routeStatus.Text = "Stauts: Stopped";
@@ -556,6 +567,41 @@ namespace TestApp
         //        throw e;
         //    }
         //}
+
+
+            public List<Location> filterLocationPoints(List<Location> points)
+        {
+            List<Location> sortedLocation = new List<Location>();
+            double dist = 0;
+
+                for (int i = 0; i < points.Count; i++)
+            {
+                if(points[i + 1] != null)
+                {
+
+                    var firstPoint = points[i];
+                    var secondPoint = points[i + 1];
+
+                    dist = getDistanceForRoute(firstPoint, secondPoint);
+                    if(dist >= 10)
+                    {
+                        sortedLocation.Add(points[i]);
+
+                    }
+
+                }
+          
+
+            }
+
+
+
+
+
+            return sortedLocation;
+        }
+
+
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
@@ -735,7 +781,10 @@ namespace TestApp
                 //    OnBackPressed();
                 //    return true;
 
-                case Resource.Id.back:
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 

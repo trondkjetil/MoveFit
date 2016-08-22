@@ -58,7 +58,7 @@
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
     <activity android:label="RouteOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
-    <activity android:alwaysRetainTaskState="true" android:label="Route" android:launchMode="singleInstance" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
+    <activity android:alwaysRetainTaskState="true" android:label="Route" android:launchMode="singleInstance" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRouteService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />

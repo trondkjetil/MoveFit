@@ -289,6 +289,9 @@ namespace TestApp
                     Finish();
                     return true;
 
+                case Android.Resource.Id.Home:// Resource.Id.back:
+                    OnBackPressed();
+                    return true;
 
                 case Resource.Id.search:
 				//Search icon has been clicked

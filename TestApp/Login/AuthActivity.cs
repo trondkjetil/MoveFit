@@ -233,8 +233,7 @@ namespace TestApp
             Thread.Sleep(2000);
 
             var myEmail = user.Profile["name"].ToString() + "  " + user.Profile["gender"].ToString();
-            Log.Debug("AuthActivity: ", "Name *******************************: {0}", myEmail);
-
+           
         }
 
 

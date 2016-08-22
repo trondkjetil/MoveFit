@@ -1,0 +1,17 @@
+<menu xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><item android:id="@+id/profilePicture" myapp:showAsAction="always" /><!--<item android:id="@+id/gender"
+		android:icon="@drawable/male"
+		android:title="Gender"
+		myapp:showAsAction="always"/>
+
+  <item android:id="@+id/age"
+		android:title=""
+		myapp:showAsAction="always"/>--><!--<item android:id="@+id/bmi"
+android:text="Check BMI"
+android:title="BMI"
+myapp:showAsAction="always" />--><!--<item android:id="@+id/back"
+		myapp:showAsAction="always"
+    android:icon="@drawable/ic_menu_back"
+        />--><item android:id="@+id/home" myapp:showAsAction="always" android:icon="@drawable/ic_menu_home" /><!--<item android:id="@+id/exit"
+   android:icon="@drawable/eexit"
+   android:title="Exit"
+   myapp:showAsAction="always"/>--></menu>

@@ -14,7 +14,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-    <TextView
+    <!--<TextView
         android:text="Settings"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:id="@+id/textView1"
         android:textColor="@android:color/black"
         android:textSize="32dp"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal" />-->
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:id="@+id/textView2"
-            android:paddingTop="80dp" />
+            android:paddingTop="40dp" />
         <RadioGroup
             android:minWidth="25px"
             android:minHeight="25px"
@@ -97,17 +97,24 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/textView3"
         android:textColor="@android:color/black" />
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView4"
+        android:textColor="@android:color/black" />
     <SeekBar
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar1"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal" />
     <Button
         android:text="Save Settings"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:id="@+id/save"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

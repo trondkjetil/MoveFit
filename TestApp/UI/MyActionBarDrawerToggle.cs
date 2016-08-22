@@ -26,7 +26,8 @@ namespace TestApp
 			{
 				base.OnDrawerOpened (drawerView);
 				mHostActivity.SupportActionBar.SetTitle(mOpenedResource);
-			}
+                mHostActivity. SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            }
 		}
 
 		public override void OnDrawerClosed (Android.Views.View drawerView)

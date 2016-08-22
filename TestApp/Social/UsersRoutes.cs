@@ -53,7 +53,7 @@ namespace TestApp
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
-
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             routeList = await Azure.getRoutes();
             me = await Azure.getUserInstanceByName(MainStart.userName);
 
@@ -117,7 +117,10 @@ namespace TestApp
                     return true;
 
 
-                case Resource.Id.back:
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 

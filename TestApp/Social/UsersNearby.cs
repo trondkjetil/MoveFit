@@ -48,7 +48,7 @@ namespace TestApp
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tbarr);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
-
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserNearby);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
@@ -118,10 +118,12 @@ namespace TestApp
                     return true;
 
 
-
-                case Resource.Id.back:
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
 
                 //case Resource.Id.home:
 

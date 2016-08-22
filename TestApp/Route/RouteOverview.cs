@@ -14,7 +14,7 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 namespace TestApp
 {
-    [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
+    [Activity(Label = "RouteOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
     public class RouteOverview : AppCompatActivity, IOnMapReadyCallback
     {
         Intent myIntent;
@@ -24,7 +24,8 @@ namespace TestApp
         public static IMenuItem goBack;
         public static IMenuItem goHome;
         public List<User> me;
-
+        string distanceUnit;
+        int[] unit;
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
@@ -42,7 +43,7 @@ namespace TestApp
             me = await Azure.getUserInstanceByName(MainStart.userName);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
-
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
             Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
@@ -55,6 +56,13 @@ namespace TestApp
             tv.TextSize = 28;
             tv.Typeface = tf;
 
+             unit = IOUtilz.LoadPreferences();
+            if (unit[1] == 0)
+            {
+                distanceUnit = " km away";
+            }
+            else
+                distanceUnit = " miles away";
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
@@ -120,13 +128,21 @@ namespace TestApp
             Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
             int dist = Convert.ToInt32(result[0]);
 
+            if (unit[1] == 0)
+            {
+                dist = dist / 1000;
+            }
+            else
+                dist = (int) IOUtilz.ConvertKilometersToMiles(dist / 1000);
+                
+
             BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
 
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(route.Name + " Difficulty:" + route.Difficulty )
-           .SetSnippet("Distance from me: " +dist.ToString() + " meters").SetIcon(image));
-            
+           .SetTitle(route.Name + "("+ route.Difficulty +")" )
+           .SetSnippet(dist.ToString() + distanceUnit).SetIcon(image));
+
             //    markerOpt1 = new MarkerOptions();
             //    markerOpt1.SetPosition(myPosition);
             //    markerOpt1.SetTitle(user.UserName + " Position");
@@ -172,7 +188,10 @@ namespace TestApp
                 //    Finish();
                 //    return true;
 
-                case Resource.Id.back:
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 

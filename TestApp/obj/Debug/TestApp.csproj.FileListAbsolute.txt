@@ -42,6 +42,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\spinneritemroutet
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\settings.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
@@ -113,10 +114,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\scoreboardroutes.
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row_route.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userprofile.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\strings.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_launcher.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\acceptfriends.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\addfriends.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\deletefriends.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\female.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\isfriend.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\male.png
@@ -160,6 +157,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_allfrie
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_social_info.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\oldsetting.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile_chat.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
@@ -206,7 +204,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transa
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

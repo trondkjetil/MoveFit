@@ -17,7 +17,7 @@ using Android.Locations;
 
 namespace TestApp
 {
-    [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
+    [Activity(Label = "FriendsOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
     public class FriendsOverview : AppCompatActivity, IOnMapReadyCallback
     {
 
@@ -27,6 +27,8 @@ namespace TestApp
         MarkerOptions markerOpt1;
         SupportToolbar toolbar;
         public List<User> me;
+        string distanceUnit;
+        int[] unit;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -35,9 +37,12 @@ namespace TestApp
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            
 
             me = await Azure.getUserInstanceByName(MainStart.userName);
+
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
@@ -52,24 +57,49 @@ namespace TestApp
             mMap.UiSettings.RotateGesturesEnabled = true;
             mMap.UiSettings.ScrollGesturesEnabled = true;
 
-            List<User> people = await Azure.getPeople();
+            List<User> people = null;
 
-            foreach (var item in people)
+
+            unit = IOUtilz.LoadPreferences();
+            if (unit[1] == 0)
             {
-                setMarker(item);
+                distanceUnit = " km away";
+            }
+            else
+                distanceUnit = " miles away";
+
+            try
+            {
+
+                people = await Azure.getPeople();
+
+                foreach (var item in people)
+                {
+                    setMarker(item);
+                }
+
+
+
+                Typeface tf = Typeface.CreateFromAsset(Assets,
+                 "english111.ttf");
+            TextView tv = (TextView)FindViewById(Resource.Id.textFriends);
+            tv.Text = "Meet people in your area, and go do some activities together!";
+            tv.TextSize = 28;
+            tv.Typeface = tf;
+
+            }
+            catch (Exception)
+            {
+
+              
             }
 
 
-            Typeface tf = Typeface.CreateFromAsset(Assets,
-                 "english111.ttf");
-            TextView tv = (TextView)FindViewById(Resource.Id.textFriends);
-            tv.Text = "Find a friend in your area, and go do some activities together!";
-            tv.TextSize = 28;
-            tv.Typeface = tf;
             Button myFriends = (Button)FindViewById(Resource.Id.myFriends);
             Button friendRequests = (Button)FindViewById(Resource.Id.friendRequests);
             Button findFriends = (Button)FindViewById(Resource.Id.findFriends);
 
+         
 
             myFriends.Click += (sender, e) => {
                 myIntent = new Intent(this, typeof(UsersFriends));
@@ -86,6 +116,10 @@ namespace TestApp
                 StartActivity(myIntent);
 
             };
+
+
+
+
 
 
         }
@@ -116,19 +150,33 @@ namespace TestApp
             BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
 
 
-            var onlineStatus = "offline";
+            var onlineStatus = " [Offline]";
 
             if (user.Online)
-                onlineStatus = "online";
+                onlineStatus = " [Online]";
 
             float[] result = new float[1];
             Location.DistanceBetween(me[0].Lat, me[0].Lon, user.Lat, user.Lon, result);
             int dist = Convert.ToInt32(result[0]);
 
+            if (unit[1] == 0)
+            {
+                dist = dist / 1000;
+            }
+            else
+            {
+
+                int conv = dist / 1000;
+
+
+                dist = (int) IOUtilz.ConvertKilometersToMiles(conv);
+            }
+             
+
             mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
-           .SetTitle(user.UserName + " "+ onlineStatus)
-           .SetSnippet("Distance from me: "+ dist + " meters")
+           .SetTitle(user.UserName + onlineStatus)
+           .SetSnippet(dist + distanceUnit)
            .SetIcon(image));//BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)));
             
             
@@ -183,7 +231,10 @@ namespace TestApp
                 //    Finish();
                 //    return true;
 
-                case Resource.Id.back:
+                //case Resource.Id.back:
+                //    OnBackPressed();
+                //    return true;
+                case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 
