@@ -369,7 +369,7 @@ namespace TestApp
         public static async Task<MessageConnections> getMessageConnectionId(string userOne, string userTwo)
         {
             //
-            List<MessageConnections> messageCon = await messageConnection.Where(MessageConnections => MessageConnections.UserLink1 == userOne && MessageConnections.UserLink2 == userTwo || MessageConnections.UserLink2 == userOne && MessageConnections.UserLink1 == userTwo).ToListAsync();  //
+            List<MessageConnections> messageCon = await messageConnection.Where(MessageConnections => (MessageConnections.UserLink1 == userOne && MessageConnections.UserLink2 == userTwo ) || MessageConnections.UserLink2 == userOne && MessageConnections.UserLink1 == userTwo).ToListAsync();  //
             MessageConnections instance = messageCon.FirstOrDefault();                                                                                                                                //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return instance;
 
@@ -380,9 +380,8 @@ namespace TestApp
 
         public static async Task<List<Messages>> getMessages(string conversationId)
         {
-            //
-            List<Messages> messages = await userMessages.Where(Messages => Messages.Conversation == conversationId ).OrderBy(Messages => Messages.CreatedAt).Take(50).ToListAsync();  //
-                                                                                                                              //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
+           
+            List<Messages> messages = await userMessages.Where(Messages => Messages.Conversation == conversationId ).OrderBy(Messages => Messages.CreatedAt).ToListAsync();  //                                                                                                                        //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return messages;
 
         }

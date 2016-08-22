@@ -14,6 +14,7 @@ using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Locations;
+using Android.Content.PM;
 
 namespace TestApp
 {

@@ -19,8 +19,7 @@ namespace TestApp
 		private LinearLayout mContainer;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
-		private UserAdapterScoreboard mAdapter;
-
+        private UserAdapterScoreboard mAdapter;
 		
 		private TextView mTxtHeaderLastName;
 		private TextView mTxtHeaderAge;
@@ -59,6 +58,7 @@ namespace TestApp
 			mContainer.BringToFront();
 			mSearch.TextChanged += mSearch_TextChanged;
 
+        
 
             try
             {
@@ -84,9 +84,6 @@ namespace TestApp
 
                
             }
-		
-
-           
         }
 
 		void mTxtHeaderScore_Click (object sender, EventArgs e)

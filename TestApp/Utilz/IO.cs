@@ -121,6 +121,24 @@ namespace TestApp
         //	}
         //}
 
+
+
+        public string distanceMoved(int distanceMoved)
+        {
+            string unit = " km";
+            double dist = 0;
+            var pref = LoadPreferences();
+            if (pref[1] == 1)
+            {
+                unit = " miles";
+                dist = (int)ConvertKilometersToMiles(distanceMoved / 1000);
+            }
+            else
+            {
+                dist = distanceMoved / 1000;
+            }
+            return dist.ToString();
+        }
         public static double ConvertMilesToKilometers(double miles)
         {
             //

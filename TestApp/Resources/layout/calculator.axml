@@ -14,22 +14,26 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="e.g 30"
         android:id="@+id/editText1"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray" />
     <TextView
-        android:text="Type in Height in cm (e.g 178)"
+        android:text="Type in Height in cm"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:id="@+id/textView2" />
     <EditText
+        android:hint="e.g 178"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/editText2" />
+        android:id="@+id/editText2"
+        android:textColorHint="@android:color/darker_gray" />
     <TextView
-        android:text="Type in Weight in kg (e.g 70)"
+        android:text="Type in Weight in kg"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,8 +42,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="e.g 70"
         android:textColor="@android:color/black"
-        android:id="@+id/editText3" />
+        android:id="@+id/editText3"
+        android:textColorHint="@android:color/darker_gray" />
     <RadioGroup
         android:minWidth="25px"
         android:minHeight="25px"
@@ -72,7 +78,6 @@
         android:layout_height="35dp"
         android:layout_width="match_parent"
         android:prompt="@string/activity_prompt"
-        android:textColor="@android:color/background_dark"
         android:popupBackground="@android:color/holo_orange_light"
         android:layout_y="20dp"
         android:background="@android:color/holo_green_light" />

@@ -156,50 +156,51 @@ namespace TestApp
                 BindService(serviceIntent, con, Bind.AutoCreate);
                 binder = OnBind(serviceIntent);
 
-               
-             
 
-                Intent newIntent = new Intent(this, typeof(CreateRoute));
-                // Pass some information to SecondActivity:
-                newIntent.PutExtra("message", "Greetings from main!");
-
-                // Create a task stack builder to manage the back stack:
-                TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
-
-                // Add all parents of SecondActivity to the stack: 
-                stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(CreateRoute)));
-
-                // Push the intent that starts SecondActivity onto the stack:
-                stackBuilder.AddNextIntent(newIntent);
-
-                const int pendingIntentId = 0;
-
-                PendingIntent pendingIntent =
-                PendingIntent.GetActivity(this, pendingIntentId, intent, PendingIntentFlags.OneShot);
+                messageNotification();
 
 
+               // Intent newIntent = new Intent(this, typeof(CreateRoute));
+               // // Pass some information to SecondActivity:
+               // newIntent.PutExtra("message", "Greetings from main!");
 
-                builder = new Notification.Builder(this)
-                .SetContentIntent(pendingIntent)
-                .SetContentTitle("MoveFit")
-                .SetContentText("Route is being created...")
-                .SetDefaults(NotificationDefaults.Sound)
-               // .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                .SetSmallIcon(Resource.Drawable.tt);
+                // // Create a task stack builder to manage the back stack:
+                // TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
 
-                // Build the notification:
-                 notification = builder.Build();
-                
+                // // Add all parents of SecondActivity to the stack: 
+                // stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(CreateRoute)));
 
-                // Get the notification manager:
-                     notificationManager =
-                    GetSystemService(Context.NotificationService) as NotificationManager;
+                // // Push the intent that starts SecondActivity onto the stack:
+                // stackBuilder.AddNextIntent(newIntent);
+
+                // const int pendingIntentId = 0;
+
+                // PendingIntent pendingIntent =
+                // PendingIntent.GetActivity(this, pendingIntentId, intent, PendingIntentFlags.OneShot);
 
 
-               
-                // Publish the notification:
-                const int notificationId = 0;
-                notificationManager.Notify(notificationId, notification);
+
+                // builder = new Notification.Builder(this)
+                // .SetContentIntent(pendingIntent)
+                // .SetContentTitle("MoveFit")
+                // .SetContentText("Route is being created...")
+                // .SetDefaults(NotificationDefaults.Sound)
+                //// .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
+                // .SetSmallIcon(Resource.Drawable.tt);
+
+                // // Build the notification:
+                //  notification = builder.Build();
+
+
+                // // Get the notification manager:
+                //      notificationManager =
+                //     GetSystemService(Context.NotificationService) as NotificationManager;
+
+
+
+                // // Publish the notification:
+                // const int notificationId = 0;
+                // notificationManager.Notify(notificationId, notification);
 
 
             }).Start();
@@ -209,8 +210,60 @@ namespace TestApp
 
 
 
-    
 
+        public void messageNotification()
+        {
+
+            Notification.Builder builder;
+            Notification notification;
+            NotificationManager notificationManager;
+
+            Intent newIntent = new Intent(this, typeof(CreateRoute));
+            // Pass some information to SecondActivity:
+             newIntent.PutExtra("Route Creating", "Route creating");
+
+            // Create a task stack builder to manage the back stack:
+            TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+
+            // Add all parents of SecondActivity to the stack: 
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(RouteOverview)));
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainStart)));
+
+            // Push the intent that starts SecondActivity onto the stack:
+            stackBuilder.AddNextIntent(newIntent);
+
+            const int pendingIntentId = 0;
+
+            PendingIntent pendingIntent =
+            PendingIntent.GetActivity(this, pendingIntentId, newIntent, PendingIntentFlags.OneShot);
+
+
+            builder = new Notification.Builder(this)
+              //   .SetContentIntent(pendingIntent)
+              .SetContentTitle("MoveFit")
+              .SetContentText("Creating route....")
+              .SetDefaults(NotificationDefaults.Sound)
+              .SetContentIntent(pendingIntent)
+              .SetAutoCancel(true)
+              // .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
+              .SetSmallIcon(Resource.Drawable.tt);
+
+            // Build the notification:
+            notification = builder.Build();
+
+
+            // Get the notification manager:
+            notificationManager =
+           GetSystemService(Context.NotificationService) as NotificationManager;
+
+
+
+            // Publish the notification:
+            const int notificationId = 0;
+            notificationManager.Notify(notificationId, notification);
+
+
+        }
         public override void OnDestroy()
 		{
             StopService(new Intent(this, typeof(CreateRouteService)));

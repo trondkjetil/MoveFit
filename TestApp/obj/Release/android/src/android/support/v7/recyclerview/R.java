@@ -2139,7 +2139,7 @@ containing a value of this type.
         public static int adjust_width=0x7f0b0010;
         public static int age=0x7f0b00a2;
         public static int alertTitle=0x7f0b003c;
-        public static int all=0x7f0b013e;
+        public static int all=0x7f0b013d;
         public static int alt=0x7f0b0082;
         public static int always=0x7f0b0027;
         public static int auto=0x7f0b0014;
@@ -2147,10 +2147,9 @@ containing a value of this type.
         public static int b1=0x7f0b0106;
         public static int b2=0x7f0b0107;
         public static int b3=0x7f0b0108;
-        public static int back=0x7f0b013a;
         public static int bear=0x7f0b0085;
         public static int beginning=0x7f0b0024;
-        public static int bmi=0x7f0b0143;
+        public static int bmi=0x7f0b0142;
         public static int btnDialogEmail=0x7f0b0098;
         public static int btnOkay=0x7f0b00c2;
         public static int btnSend=0x7f0b007a;
@@ -2173,7 +2172,7 @@ containing a value of this type.
         public static int dark=0x7f0b0015;
         public static int decor_content_parent=0x7f0b004b;
         public static int default_activity_button=0x7f0b0033;
-        public static int difficulty=0x7f0b0140;
+        public static int difficulty=0x7f0b013f;
         public static int difficultyPrompt=0x7f0b009e;
         public static int disableHome=0x7f0b0019;
         public static int distAway=0x7f0b011c;
@@ -2190,7 +2189,7 @@ containing a value of this type.
         public static int expand_activities_button=0x7f0b0031;
         public static int expanded_menu=0x7f0b0044;
         public static int facts=0x7f0b005d;
-        public static int female=0x7f0b013d;
+        public static int female=0x7f0b013c;
         public static int findFriends=0x7f0b00bd;
         public static int findRoutes=0x7f0b00e8;
         public static int finish=0x7f0b0090;
@@ -2238,7 +2237,7 @@ containing a value of this type.
         public static int loginWithWidget=0x7f0b0060;
         public static int loginWithWidgetAndRefreshToken=0x7f0b0061;
         public static int longx=0x7f0b0081;
-        public static int male=0x7f0b013c;
+        public static int male=0x7f0b013b;
         public static int map=0x7f0b0089;
         public static int mapForStartingRoute=0x7f0b010e;
         public static int media_actions=0x7f0b00d1;
@@ -2254,12 +2253,12 @@ containing a value of this type.
         public static int nameId=0x7f0b00de;
         public static int nameOfroute=0x7f0b009b;
         public static int namePropt=0x7f0b009a;
-        public static int nearbyRoutes=0x7f0b013f;
+        public static int nearbyRoutes=0x7f0b013e;
         public static int never=0x7f0b002a;
         public static int none=0x7f0b000b;
         public static int normal=0x7f0b000c;
         public static int numberPicker=0x7f0b00a3;
-        public static int online=0x7f0b013b;
+        public static int online=0x7f0b013a;
         public static int onlineStatus=0x7f0b011d;
         public static int overView=0x7f0b00a9;
         public static int parentPanel=0x7f0b0039;
@@ -2287,7 +2286,7 @@ containing a value of this type.
         public static int radioGroup=0x7f0b00be;
         public static int radioGroup1=0x7f0b006f;
         public static int radioRed=0x7f0b00bf;
-        public static int rating=0x7f0b0141;
+        public static int rating=0x7f0b0140;
         public static int ratingPropt=0x7f0b0092;
         public static int ratingbar=0x7f0b0117;
         public static int ratingbarEndRoute=0x7f0b0093;
@@ -2371,8 +2370,8 @@ containing a value of this type.
         public static int swap=0x7f0b012a;
         public static int swipeLayout=0x7f0b0076;
         public static int switch1=0x7f0b0087;
-        public static int switchFriends=0x7f0b0145;
-        public static int switchRoutes=0x7f0b0144;
+        public static int switchFriends=0x7f0b0144;
+        public static int switchRoutes=0x7f0b0143;
         public static int swp=0x7f0b0130;
         public static int tabMode=0x7f0b0018;
         public static int targetsEmail=0x7f0b0096;
@@ -2421,7 +2420,7 @@ containing a value of this type.
         public static int txtTime=0x7f0b00ec;
         public static int txtUserName=0x7f0b0063;
         public static int txtUserPassword=0x7f0b0064;
-        public static int type=0x7f0b0142;
+        public static int type=0x7f0b0141;
         public static int up=0x7f0b0009;
         public static int useLogo=0x7f0b001e;
         public static int userFriendRequest=0x7f0b011f;

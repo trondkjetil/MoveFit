@@ -3184,55 +3184,58 @@ namespace TestApp
 			public const int settings = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int simpleServiceLayout = 2130903115;
+			public const int simple_list_item_checked = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int spinnerItemRouteTypes = 2130903116;
+			public const int simpleServiceLayout = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int startRoute = 2130903117;
+			public const int spinnerItemRouteTypes = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int stepCounter = 2130903118;
+			public const int startRoute = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int support_simple_spinner_dropdown_item = 2130903119;
+			public const int stepCounter = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int test_Cardview = 2130903120;
+			public const int support_simple_spinner_dropdown_item = 2130903120;
 			
 			// aapt resource value: 0x7f030051
-			public const int userFriendsContent = 2130903121;
+			public const int test_Cardview = 2130903121;
 			
 			// aapt resource value: 0x7f030052
-			public const int userFriendsRequestContent = 2130903122;
+			public const int userFriendsContent = 2130903122;
 			
 			// aapt resource value: 0x7f030053
-			public const int userMyRoutesContent = 2130903123;
+			public const int userFriendsRequestContent = 2130903123;
 			
 			// aapt resource value: 0x7f030054
-			public const int userProfile = 2130903124;
+			public const int userMyRoutesContent = 2130903124;
 			
 			// aapt resource value: 0x7f030055
-			public const int userRouteContent = 2130903125;
+			public const int userProfile = 2130903125;
 			
 			// aapt resource value: 0x7f030056
-			public const int UsersFriendRequest = 2130903126;
+			public const int userRouteContent = 2130903126;
 			
 			// aapt resource value: 0x7f030057
-			public const int UsersFriends = 2130903127;
+			public const int UsersFriendRequest = 2130903127;
 			
 			// aapt resource value: 0x7f030058
-			public const int UsersMyRoutes = 2130903128;
+			public const int UsersFriends = 2130903128;
 			
 			// aapt resource value: 0x7f030059
-			public const int UsersNearby = 2130903129;
+			public const int UsersMyRoutes = 2130903129;
 			
 			// aapt resource value: 0x7f03005a
-			public const int UsersRoutes = 2130903130;
+			public const int UsersNearby = 2130903130;
 			
 			// aapt resource value: 0x7f03005b
-			public const int welcome = 2130903131;
+			public const int UsersRoutes = 2130903131;
+			
+			// aapt resource value: 0x7f03005c
+			public const int welcome = 2130903132;
 			
 			static Layout()
 			{

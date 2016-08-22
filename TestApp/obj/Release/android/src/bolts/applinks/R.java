@@ -2139,7 +2139,7 @@ containing a value of this type.
         public static final int adjust_width=0x7f0b0010;
         public static final int age=0x7f0b00a2;
         public static final int alertTitle=0x7f0b003c;
-        public static final int all=0x7f0b013e;
+        public static final int all=0x7f0b013d;
         public static final int alt=0x7f0b0082;
         public static final int always=0x7f0b0027;
         public static final int auto=0x7f0b0014;
@@ -2147,10 +2147,9 @@ containing a value of this type.
         public static final int b1=0x7f0b0106;
         public static final int b2=0x7f0b0107;
         public static final int b3=0x7f0b0108;
-        public static final int back=0x7f0b013a;
         public static final int bear=0x7f0b0085;
         public static final int beginning=0x7f0b0024;
-        public static final int bmi=0x7f0b0143;
+        public static final int bmi=0x7f0b0142;
         public static final int btnDialogEmail=0x7f0b0098;
         public static final int btnOkay=0x7f0b00c2;
         public static final int btnSend=0x7f0b007a;
@@ -2173,7 +2172,7 @@ containing a value of this type.
         public static final int dark=0x7f0b0015;
         public static final int decor_content_parent=0x7f0b004b;
         public static final int default_activity_button=0x7f0b0033;
-        public static final int difficulty=0x7f0b0140;
+        public static final int difficulty=0x7f0b013f;
         public static final int difficultyPrompt=0x7f0b009e;
         public static final int disableHome=0x7f0b0019;
         public static final int distAway=0x7f0b011c;
@@ -2190,7 +2189,7 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f0b0031;
         public static final int expanded_menu=0x7f0b0044;
         public static final int facts=0x7f0b005d;
-        public static final int female=0x7f0b013d;
+        public static final int female=0x7f0b013c;
         public static final int findFriends=0x7f0b00bd;
         public static final int findRoutes=0x7f0b00e8;
         public static final int finish=0x7f0b0090;
@@ -2238,7 +2237,7 @@ containing a value of this type.
         public static final int loginWithWidget=0x7f0b0060;
         public static final int loginWithWidgetAndRefreshToken=0x7f0b0061;
         public static final int longx=0x7f0b0081;
-        public static final int male=0x7f0b013c;
+        public static final int male=0x7f0b013b;
         public static final int map=0x7f0b0089;
         public static final int mapForStartingRoute=0x7f0b010e;
         public static final int media_actions=0x7f0b00d1;
@@ -2254,12 +2253,12 @@ containing a value of this type.
         public static final int nameId=0x7f0b00de;
         public static final int nameOfroute=0x7f0b009b;
         public static final int namePropt=0x7f0b009a;
-        public static final int nearbyRoutes=0x7f0b013f;
+        public static final int nearbyRoutes=0x7f0b013e;
         public static final int never=0x7f0b002a;
         public static final int none=0x7f0b000b;
         public static final int normal=0x7f0b000c;
         public static final int numberPicker=0x7f0b00a3;
-        public static final int online=0x7f0b013b;
+        public static final int online=0x7f0b013a;
         public static final int onlineStatus=0x7f0b011d;
         public static final int overView=0x7f0b00a9;
         public static final int parentPanel=0x7f0b0039;
@@ -2287,7 +2286,7 @@ containing a value of this type.
         public static final int radioGroup=0x7f0b00be;
         public static final int radioGroup1=0x7f0b006f;
         public static final int radioRed=0x7f0b00bf;
-        public static final int rating=0x7f0b0141;
+        public static final int rating=0x7f0b0140;
         public static final int ratingPropt=0x7f0b0092;
         public static final int ratingbar=0x7f0b0117;
         public static final int ratingbarEndRoute=0x7f0b0093;
@@ -2371,8 +2370,8 @@ containing a value of this type.
         public static final int swap=0x7f0b012a;
         public static final int swipeLayout=0x7f0b0076;
         public static final int switch1=0x7f0b0087;
-        public static final int switchFriends=0x7f0b0145;
-        public static final int switchRoutes=0x7f0b0144;
+        public static final int switchFriends=0x7f0b0144;
+        public static final int switchRoutes=0x7f0b0143;
         public static final int swp=0x7f0b0130;
         public static final int tabMode=0x7f0b0018;
         public static final int targetsEmail=0x7f0b0096;
@@ -2421,7 +2420,7 @@ containing a value of this type.
         public static final int txtTime=0x7f0b00ec;
         public static final int txtUserName=0x7f0b0063;
         public static final int txtUserPassword=0x7f0b0064;
-        public static final int type=0x7f0b0142;
+        public static final int type=0x7f0b0141;
         public static final int up=0x7f0b0009;
         public static final int useLogo=0x7f0b001e;
         public static final int userFriendRequest=0x7f0b011f;

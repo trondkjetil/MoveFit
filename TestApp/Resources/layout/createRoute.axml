@@ -60,14 +60,24 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/textView1"
+            android:prompt="@string/activity_route"
             android:textColor="@android:color/black"
             android:layout_marginBottom="8.0dp" />
-        <Spinner
+    <!--<Spinner
             android:id="@+id/createRoute"
             android:layout_width="280dp"
             android:gravity="center"
             android:layout_height="55dp"
             android:popupBackground="@android:color/holo_green_dark"
+            android:layout_below="@+id/textView1"
+            android:prompt="@string/activity_route"
+            android:background="@android:color/background_light"
+            android:layout_centerInParent="true" />-->
+        <ListView
+            android:id="@+id/createRoute"
+            android:layout_width="280dp"
+            android:gravity="center"
+            android:layout_height="110dp"
             android:layout_below="@+id/textView1"
             android:prompt="@string/activity_route"
             android:background="@android:color/background_light"

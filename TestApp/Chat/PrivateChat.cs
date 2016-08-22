@@ -52,7 +52,7 @@ namespace TestApp
         public static IMenuItem itemExit;
         BitmapDrawable icon;
 
-        static System.Timers.Timer _timer; // From System.Timers
+        static System.Timers.Timer timer; // From System.Timers
         static List<DateTime> _l; // Stores timer results
         public  List<DateTime> DateList // Gets the results
         {
@@ -68,36 +68,21 @@ namespace TestApp
          void Start()
         {
             _l = new List<DateTime>(); // Allocate the list
-            _timer = new System.Timers.Timer(2000); // Set up the timer for 3 seconds        
-            _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
-            _timer.Enabled = true; // Enable it
+            timer = new System.Timers.Timer(2000); // Set up the timer for 3 seconds        
+            timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
+            timer.Enabled = true; // Enable it
         }
 
 
         async void  _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
 
-            _timer.Enabled = false;
+            timer.Enabled = false;
             try
             {
 
             var NewMessages = await Azure.getMessages(converSationId);
-           // List<Messages> newMessagesToWrite = new List<Messages>();
-            //foreach (var newMsg in NewMessages)
-            //{
-
-            //    foreach (var prevMsg in PreviousMessages)
-            //    {
-
-            //        if (newMsg.Id != prevMsg.Id)
-            //        {
-
-            //                     newMessagesToWrite.Add(newMsg);
-            //        }
-                       
-            //    }
-
-            //}  
+         
         
             RunOnUiThread( () =>
             {
@@ -111,7 +96,8 @@ namespace TestApp
                     {
                         notAnyNewMessages = false;
                     }else
-                        notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
+
+                    notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
 
 
                     if (NewMessages.Count != 0 && !notAnyNewMessages)
@@ -132,22 +118,24 @@ namespace TestApp
 
                     PreviousMessages = NewMessages;
 
-                }
-                catch (Exception)
-                {
 
+                    timer.Enabled = true;
+                }
+                catch (Exception a)
+                {
+                    throw a;
                    
                 }
 
             });
             _l.Add(DateTime.Now); // Add date on each timer event
 
-                _timer.Enabled = true;
+               
             }
-            catch (Exception)
+            catch (Exception ea)
             {
 
-               
+                throw ea;
             }
 
           
@@ -156,26 +144,26 @@ namespace TestApp
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            if (_timer != null)
+            if (timer != null)
             {
 
-                _timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
-                _timer.Enabled = false;
+                timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
+                timer.Enabled = false;
             }
 
         }
         protected override void OnStop()
         {
             base.OnStop();
-            if (_timer != null)
-                _timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
+            if (timer != null)
+                timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            if (_timer != null)
-            _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
+            if (timer != null)
+            timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
         }
 
         protected override async void OnCreate(Bundle bundle)
@@ -220,8 +208,6 @@ namespace TestApp
 
             try
             {
-
-
                 createNewConversation = await Azure.getMessageConnectionId(MainStart.userId, targetId.ToString());
                 if (createNewConversation == null)
                 {
@@ -255,11 +241,7 @@ namespace TestApp
 
             }
 
-            
-
-
-
-
+           
             //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
             //{
 
@@ -492,9 +474,10 @@ namespace TestApp
 
             };
 
-        
+            scroll.FullScroll(FocusSearchDirection.Down);
             layout.AddView(txt);
             scroll.FullScroll(FocusSearchDirection.Down);
+           
         }
 
         public override void OnBackPressed()

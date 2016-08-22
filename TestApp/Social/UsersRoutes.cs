@@ -312,8 +312,9 @@ namespace TestApp
                 myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mRouteName.Text = mRoutes[position].Name;
               //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
-                myHolder.mRouteInfo.Text = "Length " + mRoutes[position].Distance + " meters";
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
+
+          
 
 
             // Calculate distance to User
@@ -323,17 +324,22 @@ namespace TestApp
 
             var res = Convert.ToInt32(result[0]);
 
-
+            int routeDistanceMeters = Convert.ToInt32(mRoutes[position].Distance);
             string unit = " km";
             double dist = 0;
             var test = IOUtilz.LoadPreferences();
+
             if (test[1] == 1)
             {
                 unit = " miles";
                 dist =(int) IOUtilz.ConvertKilometersToMiles(res / 1000);
+                myHolder.mRouteInfo.Text = "Length " + IOUtilz.ConvertKilometersToMiles(routeDistanceMeters / 1000) + " miles";
+
             }
             else
             {
+                myHolder.mRouteInfo.Text = "Length " + routeDistanceMeters / 1000 + " km";
+
                 dist = res/ 1000;
             }
 

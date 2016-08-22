@@ -70,6 +70,8 @@ namespace TestApp
         public static bool isPaused;
 
         static bool firstRun;
+        ListView list;
+        public int typeToDraw;
         public bool Ischecked
         {
 
@@ -136,6 +138,8 @@ namespace TestApp
             isPaused = false;
             firstRun = true;
 
+            typeToDraw = 0;
+
             points = new List<Location>();
             me = await Azure.getUserInstanceByName(MainStart.userName);
 
@@ -161,20 +165,77 @@ namespace TestApp
             mMap.UiSettings.CompassEnabled = true;
             //mMap.SetOnMyLocationChangeListener;
 
-            spinner = FindViewById<Spinner>(Resource.Id.createRoute);
+            //spinner = FindViewById<Spinner>(Resource.Id.createRoute);
 
-            spinner.ItemSelected += spinner_ItemSelected;
-            String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing" };
+            //spinner.ItemSelected += spinner_ItemSelected;
+
+            list = FindViewById<ListView>(Resource.Id.createRoute);
+            //  spinner_ItemSelected; 
+          //  list.ItemSelected += List_ItemSelected;
+           
+
+          String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing" };
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, array);
-            spinner.Adapter = adapter;
-            spinner.SetSelection(0);
+            //spinner.Adapter = adapter;
+            //spinner.SetSelection(0);
+           // list.SetSelection(0);
+            list.Adapter = adapter;
+            list.ChoiceMode = Android.Widget.ChoiceMode.Single;
+            list.SetItemChecked(0, true);
+
+
+            list.ItemClick += (a, e) =>
+            {
+                var item = this.list.GetItemAtPosition(e.Position);
+
+                //Make a toast with the item name just to show it was clicked
+              //  Toast.MakeText(this, item.ToString() + " Clicked!", ToastLength.Short).Show();
+
+                if (e.Position == 0)
+                {
+                    Toast.MakeText(this, "Walking", ToastLength.Short).Show();
+                    routeType = "Walking";
+                    typeToDraw = 1;
+                }
+                else if (e.Position == 1)
+                {
+                    Toast.MakeText(this, "Running", ToastLength.Short).Show();
+                    routeType = "Running";
+                    typeToDraw = 2;
+                }
+                else if (e.Position == 2)
+                {
+                    Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
+                    routeType = "Hiking";
+                     typeToDraw = 3;
+                }
+                else if (e.Position == 3)
+                {
+                    Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
+                    routeType = "Bicycling";
+                    typeToDraw = 4;
+                }
+                else if (e.Position == 4)
+                {
+                    Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
+                    routeType = "Skiing";
+                    typeToDraw = 5;
+                }
+            };
+
+
+            //android: checkMark = "@drawable/acceptfriend"
+
+            //  android: checkMark = "?android:attr/listChoiceIndicatorSingle"
+
+
 
             //spinner.ItemSelected += spinner_ItemSelected;
             //var adapter = routeTypeadapter;
             //spinner.Adapter = adapter;
 
 
-            spinner.Visibility = ViewStates.Visible;
+            //    spinner.Visibility = ViewStates.Visible;
 
 
             statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
@@ -377,6 +438,40 @@ namespace TestApp
 
         }
 
+        //private void List_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        //{
+        //    // var t = list.GetItemAtPosition(e.Position);
+           
+        //  //  list.SetItemChecked(e.Position, true);
+
+        //    if (e.Position == 0)
+        //    {
+        //        Toast.MakeText(this, "Walking", ToastLength.Short).Show();
+        //        routeType = "Walking";
+        //    }
+        //    else if (e.Position == 1)
+        //    {
+        //        Toast.MakeText(this, "Running", ToastLength.Short).Show();
+        //        routeType = "Running";
+        //    }
+        //    else if (e.Position == 2)
+        //    {
+        //        Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
+        //        routeType = "Hiking";
+        //    }
+        //    else if (e.Position == 3)
+        //    {
+        //        Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
+        //        routeType = "Bicycling";
+        //    }
+        //    else if (e.Position == 4)
+        //    {
+        //        Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
+        //        routeType = "Skiing";
+        //    }
+            
+          
+        //}
 
         public void finishRoute()
         {
@@ -411,7 +506,7 @@ namespace TestApp
             Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
             statusImage.SetImageResource(Resource.Drawable.red);
 
-            drawRoute();
+            drawRoute(typeToDraw );
 
             startDialogNameRoute();
 
@@ -424,6 +519,8 @@ namespace TestApp
 
 
             firstRun = true;
+
+          
         }
         public void startDialogNameRoute()
         {
@@ -472,22 +569,21 @@ namespace TestApp
                 {
 
                     Azure.AddLocation(item.Latitude, item.Longitude, routeID);
-
                 }
+
                 if (dist == 0)
                     dist = getDistanceForRoute(startLocation, endLocation);
 
                 int mypoints = MyPoints.calculatePoints(routeType, (int)dist);
                 var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
 
-
                 statusImage.SetImageResource(Resource.Drawable.orange);
                 Toast.MakeText(this, "Uploading successful", ToastLength.Long).Show();
                 routeStatus.Text = "Status: Idle";
                 Toast.MakeText(this, "You have earned " + mypoints + " points on on a " + routeType + " route", ToastLength.Long).Show();
 
-
                 start.Enabled = true;
+                list.Visibility = ViewStates.Visible;
 
             }
             catch (Exception eg)
@@ -501,6 +597,8 @@ namespace TestApp
         public void startRouteCreation()
         {
             start.SetBackgroundColor(Color.Blue);
+            list.Visibility = ViewStates.Invisible;
+
             if (points.Count > 0)
             {
 
@@ -665,40 +763,40 @@ namespace TestApp
       
 
 
-        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            Spinner spinner = (Spinner)sender;
+        //private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        //{
+        //   // Spinner spinner = (Spinner)sender;
+
+          
+        //    if (e.Position == 0)
+        //    {
+        //        Toast.MakeText(this, "Walking", ToastLength.Short).Show();
+        //        routeType = "Walking";
+        //    }
+        //    else if (e.Position == 1)
+        //    {
+        //        Toast.MakeText(this, "Running", ToastLength.Short).Show();
+        //        routeType = "Running";
+        //    }
+        //    else if (e.Position == 2)
+        //    {
+        //        Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
+        //        routeType = "Hiking";
+        //    }
+        //    else if (e.Position == 3)
+        //    {
+        //        Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
+        //        routeType = "Bicycling";
+        //    }
+        //    else if (e.Position == 4)
+        //    {
+        //        Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
+        //        routeType = "Skiing";
+        //    }
 
 
-            if (e.Position == 0)
-            {
-                Toast.MakeText(this, "Walking", ToastLength.Short).Show();
-                routeType = "Walking";
-            }
-            else if (e.Position == 1)
-            {
-                Toast.MakeText(this, "Running", ToastLength.Short).Show();
-                routeType = "Running";
-            }
-            else if (e.Position == 2)
-            {
-                Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
-                routeType = "Hiking";
-            }
-            else if (e.Position == 3)
-            {
-                Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
-                routeType = "Bicycling";
-            }
-            else if (e.Position == 4)
-            {
-                Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
-                routeType = "Skiing";
-            }
 
-
-
-        }
+        //}
 
         public double getDistanceForRoute(Location start, Location end)
         {
@@ -830,7 +928,7 @@ namespace TestApp
             });
             return val;
         }
-        public void drawRoute()
+        public void drawRoute(int type)
         {
             Location lastItem = points.LastOrDefault();
             Location firstElement = points.First();
@@ -856,6 +954,27 @@ namespace TestApp
             mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(firstElement.Latitude, firstElement.Longitude), 14));
 
             PolylineOptions opt = new PolylineOptions();
+
+           
+            if(type == 1)
+            {
+                opt.InvokeColor(Color.Black);
+
+            }else if( type == 2)
+            {
+                opt.InvokeColor(Color.IndianRed);
+            }else if(type == 3)
+            {
+                opt.InvokeColor(Color.BlueViolet);
+
+            }
+            else if (type == 4)
+            {
+                opt.InvokeColor(Color.DarkOrchid);
+            }else
+                opt.InvokeColor(Color.DarkOliveGreen);
+
+
 
             foreach (var item in points)
             {

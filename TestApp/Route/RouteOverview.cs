@@ -12,6 +12,7 @@ using Android.Gms.Maps.Model;
 using System.Collections.Generic;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
+using Android.Content.PM;
 namespace TestApp
 {
     [Activity(Label = "RouteOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
