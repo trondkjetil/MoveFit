@@ -40,7 +40,7 @@ namespace TestApp
             SetSupportActionBar(toolbar);
             
 
-            me = await Azure.getUserInstanceByName(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userName);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

@@ -16,9 +16,9 @@ namespace TestApp
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.dialogEndRouteRating, container,false);
 
-       
-          //  Button dismiss = (Button) view.FindViewById(Resource.Id.cancel1);
-			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute1);
+            this.Cancelable = false;
+            //  Button dismiss = (Button) view.FindViewById(Resource.Id.cancel1);
+            Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute1);
             TextView rating = view.FindViewById<TextView>(Resource.Id.ratingPropt);
            
             TextView finish = view.FindViewById<TextView>(Resource.Id.finish);

@@ -169,6 +169,7 @@
     <Compile Include="Azure\UserFriends.cs" />
     <Compile Include="Common\MessageDetail.cs" />
     <Compile Include="Common\UserDetail.cs" />
+    <Compile Include="Dialogs\DialogEndRouteCreationStats.cs" />
     <Compile Include="Dialogs\DialogWelcome.cs" />
     <Compile Include="Dialogs\DialogUserInfo.cs" />
     <Compile Include="Health\Calculator.cs" />
@@ -235,6 +236,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialogWelcome.axml" />
+    <AndroidResource Include="Resources\layout\dialogEndRouteCreationStats.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />

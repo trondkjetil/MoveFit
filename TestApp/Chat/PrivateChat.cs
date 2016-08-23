@@ -53,22 +53,22 @@ namespace TestApp
         BitmapDrawable icon;
 
         static System.Timers.Timer timer; // From System.Timers
-        static List<DateTime> _l; // Stores timer results
+        static List<DateTime> dateTime; // Stores timer results
         public  List<DateTime> DateList // Gets the results
         {
             get
             {
-                if (_l == null) // Lazily initialize the timer
+                if (dateTime == null) // Lazily initialize the timer
                 {
                     Start(); // Start the timer
                 }
-                return _l; // Return the list of dates
+                return dateTime; // Return the list of dates
             }
         }
          void Start()
         {
-            _l = new List<DateTime>(); // Allocate the list
-            timer = new System.Timers.Timer(2000); // Set up the timer for 3 seconds        
+            dateTime = new List<DateTime>(); // Allocate the list
+            timer = new System.Timers.Timer(3000); // Set up the timer for 3 seconds        
             timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
             timer.Enabled = true; // Enable it
         }
@@ -78,29 +78,31 @@ namespace TestApp
         {
 
             timer.Enabled = false;
+           
             try
             {
 
             var NewMessages = await Azure.getMessages(converSationId);
-         
-        
-            RunOnUiThread( () =>
+
+                bool recentMessages = false;
+
+                RunOnUiThread( () =>
             {
                 try
                 {
 
 
-                    bool notAnyNewMessages = false;
+                   
 
-                    if(PreviousMessages.Count == 0)
-                    {
-                        notAnyNewMessages = false;
-                    }else
+                    //if(PreviousMessages.Count == 0)
+                    //{
+                    //    notAnyNewMessages = false;
+                    //}else
 
-                    notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
+                    recentMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
 
 
-                    if (NewMessages.Count != 0 && !notAnyNewMessages)
+                    if (NewMessages.Count != 0 && !recentMessages)
                 {
                 
                     layout.RemoveAllViews();
@@ -128,7 +130,7 @@ namespace TestApp
                 }
 
             });
-            _l.Add(DateTime.Now); // Add date on each timer event
+            //_l.Add(DateTime.Now); // Add date on each timer event
 
                
             }
@@ -148,7 +150,7 @@ namespace TestApp
             {
 
                 timer.Elapsed -= new ElapsedEventHandler(_timer_Elapsed);
-                timer.Enabled = false;
+          
             }
 
         }
@@ -209,7 +211,7 @@ namespace TestApp
             try
             {
                 createNewConversation = await Azure.getMessageConnectionId(MainStart.userId, targetId.ToString());
-                if (createNewConversation == null)
+                if (createNewConversation == null || createNewConversation.Id == "")
                 {
                     createNewConversation = await Azure.AddMessageConnection(MainStart.userId, targetId.ToString());
 

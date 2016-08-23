@@ -229,6 +229,15 @@ namespace TestApp
         private Activity mActivity;
         private RecyclerView.Adapter mAdapter;
 
+
+        public string userName;
+        public string userGender;
+        public int userAge;
+        public string userProfileImage;
+        public int userPoints;
+        public string userAboutMe;
+        public string userID;
+
         public UsersAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
             mUsers = users;
@@ -433,9 +442,45 @@ namespace TestApp
         void mMainView_Click(object sender, EventArgs e)
         {
             //   int position = mRecyclerView.GetChildPosition((View)sender);
-            int position = mRecyclerView.GetChildAdapterPosition((View)sender);
-            Toast.MakeText(mContext, "Position " + position.ToString(), ToastLength.Long).Show();
+            // int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
+            try
+            {
+
+                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+                userName = mUsers[position].UserName;
+                userGender = mUsers[position].Sex;
+                userAge = mUsers[position].Age;
+                userProfileImage = mUsers[position].ProfilePicture;
+                userPoints = mUsers[position].Points;
+                userAboutMe = mUsers[position].AboutMe;
+                userID = mUsers[position].Id;
+
+                Bundle b = new Bundle();
+                b.PutStringArray("MyData", new String[] {
+
+                userName,
+                userGender,
+                userAge.ToString(),
+                userProfileImage,
+                userPoints.ToString(),
+                userAboutMe,
+                userID
+
+            });
+
+                Intent myIntent = new Intent(mContext, typeof(UserProfile));
+                myIntent.PutExtras(b);
+                mContext.StartActivity(myIntent);
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
 
 
         }

@@ -32,7 +32,8 @@
         android:id="@+id/finish"
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:gravity="center_horizontal" />
     <TextView
         android:text=""
         android:layout_width="match_parent"
@@ -41,7 +42,8 @@
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="25dp"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal" />
     <TextView
         android:text="Please rate the route: "
         android:layout_width="match_parent"
@@ -50,14 +52,17 @@
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="28dp"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
     <RatingBar
         android:id="@+id/ratingbarEndRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="1.0"
-        android:layout_marginTop="160dp" />
+        android:layout_marginTop="160dp"
+        android:layout_centerHorizontal="true" />
     <Button
         android:text="Done"
         android:layout_width="110dp"

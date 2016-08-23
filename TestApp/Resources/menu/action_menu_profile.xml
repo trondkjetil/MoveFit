@@ -15,8 +15,8 @@
 		myapp:showAsAction="always"/>-->
 
   <item android:id="@+id/bmi"
-android:text="Check BMI"
-android:title="BMI"
+android:text="Calculate BMI"
+android:title="BMI Calculator"
 myapp:showAsAction="always" />
 
   <!--<item android:id="@+id/back"

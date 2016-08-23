@@ -19,7 +19,7 @@ namespace TestApp
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.dialogWelcome, container,false);
 
-          
+            this.Cancelable = false;
 
 
 			Button okButton = (Button) view.FindViewById(Resource.Id.startRoute);

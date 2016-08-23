@@ -35,7 +35,7 @@
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp">
                 <TextView
-                    android:text="Name"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                     android:padding="2dp"
                     android:textSize="18sp" />
                 <TextView
-                    android:text="Subject"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:padding="2dp"
                     android:textSize="16sp" />
                 <TextView
-                    android:text="Message"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                     android:id="@+id/cbxStart"
                     android:button="@android:drawable/btn_star" />-->
                 <ImageButton
-                    android:src="@drawable/offline"
+                    android:src="@drawable/redoffline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart"

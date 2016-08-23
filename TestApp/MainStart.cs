@@ -56,7 +56,7 @@ namespace TestApp
         List<string> mRightDataSet;
         public string[] table;
         public string text;
-        public static string facebookUserId;
+        public static string auth0UserId;
         public static string userId;
         public ImageView profilePicture;
         public static Bitmap profilePic;
@@ -108,14 +108,13 @@ namespace TestApp
         private RegisterClient registerClient;
         private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
 
+
+        public bool dialogOpen;
         private void RegisterWithGCM()
         {
             // Check to ensure everything's set up right
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
-
-            // Register for push notifications
-            Log.Info("MainActivity", "Registering...");
              GcmClient.Register(this, Constants.SenderID);
         }
 
@@ -134,16 +133,7 @@ namespace TestApp
                     this.data = data;
                    // fillAdapter();
             }
-            //public void fillAdapter()
-            //{
-               
-            //    data = new List<NavDrawerItem>();
-            //    data.Add(new NavDrawerItem(Resource.Drawable.offline, "My Profile"));
-            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Scoreboard"));
-            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Routes"));
-            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Social"));
-            //    data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "Calculator"));
-            //}
+          
             public override int Count
             {
                 get { return data.Count; }//_contactList.Count; }
@@ -217,19 +207,11 @@ namespace TestApp
 
             instance = this;
 
-
+            dialogOpen = false;
 
              RegisterWithGCM();
 
-            //ISharedPreferences preferences = Prefer.getDefaultSharedPreferences(getApplicationContext());
-            //SharedPreferences.Editor editor = preferences.edit();
-            //editor.putstring("PreferenceName", "YOUR PREFERENCE VALUE");
-            //editor.commit;
-
-          
-
-        
-
+  
             changed = false;
             user = null;
             chk = false;
@@ -254,6 +236,7 @@ namespace TestApp
             TextView friends = FindViewById<TextView>(Resource.Id.friends);
             TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
 
+            points = FindViewById<TextView>(Resource.Id.points);
             TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
             Typeface tf = Typeface.CreateFromAsset(Assets,
               "english111.ttf");
@@ -263,7 +246,6 @@ namespace TestApp
 
 
 
-            points = FindViewById<TextView>(Resource.Id.points);
 
             routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             routesCreated.TextSize = 15;
@@ -285,6 +267,7 @@ namespace TestApp
             points.Text = "Score: ";
             friends.Text = "Friends Online: ";
             routesNearby.Text = "Routes nearby: ";
+            routesCreated.Text = "Routes Created: ";
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
@@ -305,33 +288,18 @@ namespace TestApp
 
 
             array = Intent.GetStringArrayExtra("MyData");
-            routesCreated.Text = "Routes Created: ";// "Greetings " + array[0] + "!";
+       
             userName = array[0];
             profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
-
-            //profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
-            //profilePicture.SetImageBitmap(profilePic);
-
-            facebookUserId = array[2];
-          
-
-            //Fix to remove space from profile pic and loadingbar
-            //  ((ViewGroup)loadingImage.Parent).RemoveView(loadingImage);
-
-
+            auth0UserId = array[3] +"-"+ array[2];
             mLeftDrawer.Tag = 0;
             //mRightDrawer.Tag = 1;
             mRightDrawer.Tag = 1;
          
             SetSupportActionBar(mToolbar);
-
             mLeftDataSet = new List<string>();
-            //mLeftDataSet.Add("bump");
-            //mLeftDataSet.Add("bump");
-            //mLeftDataSet.Add("bump");
-            //mLeftDataSet.Add("bump");
-            //mLeftDataSet.Add("bump");
+
 
             //if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
             //{
@@ -419,7 +387,7 @@ namespace TestApp
 
                         }
 
-                        var list = await Azure.getUserInstanceByName(userName);
+                        var list = await Azure.getUserByAuthId(userName);
                         instance = list.FirstOrDefault();
 
 
@@ -460,94 +428,6 @@ namespace TestApp
 
 
 
-                //mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) => {
-                //    var item = mLeftAdapter.GetItem(e.Position);
-                //    if (e.Position == 0)
-                //    {
-                //        myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
-                //        StartActivity(myIntent);
-                //    }
-                //    if (e.Position == 1)
-                //    {
-                //        myIntent = new Intent(this, typeof(RouteOverview));
-                //        StartActivity(myIntent);
-                //    }
-                //    else if (e.Position == 2)
-                //    {
-                //        myIntent = new Intent(this, typeof(FriendsOverview));
-                //        StartActivity(myIntent);
-                //    }
-                //    else if (e.Position == 3)
-                //    {
-                //        myIntent = new Intent(this, typeof(Calculator));
-                //        StartActivity(myIntent);
-                //    }
-
-
-                //    else if (e.Position == 4)
-                //    {
-
-                //        //myIntent = new Intent(this, typeof(ChatRoom));
-                //        //StartActivity(myIntent);
-
-
-
-                //        try
-                //        {
-
-
-
-                //            User instance = null;
-
-                //            if (user.Count != 0 || userInstanceOne != null)
-                //            {
-                //                instance = user.FirstOrDefault();
-
-                //                if (instance == null)
-                //                    instance = userInstanceOne;
-
-                //            }
-
-                //            var list = await Azure.getUserInstanceByName(userName);
-                //            instance = list.FirstOrDefault();
-
-
-                //            if (instance != null)
-                //            {
-
-                //                Bundle b = new Bundle();
-                //                b.PutStringArray("MyData", new String[] {
-
-                //            instance.UserName,
-                //            instance.Sex,
-                //            instance.Age.ToString(),
-                //            instance.ProfilePicture,
-                //            instance.Points.ToString(),
-                //            instance.AboutMe,
-                //            instance.Id
-
-
-                //        });
-
-                //                Intent myIntent = new Intent(this, typeof(UserProfile));
-                //                myIntent.PutExtras(b);
-                //                StartActivity(myIntent);
-
-                //            }
-
-                //        }
-                //        catch (Exception)
-                //        {
-
-
-                //        }
-
-                //    }
-
-
-
-                //    };
-
                 var RightAdapter = new ContactsAdapter(this);
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
             mRightDrawer.Adapter = RightAdapter;
@@ -563,20 +443,10 @@ namespace TestApp
 
             //added
             mDrawerToggle.DrawerIndicatorEnabled = true;
-
-
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
-
-
-            //param = mDrawerLayout.LayoutParameters;
-            //mDrawerLayout.DrawerSlide += MDrawerLayout_DrawerSlide;
-            
-
-
             //addedds
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            
-
+           
             SupportActionBar.SetHomeButtonEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             mDrawerToggle.SyncState();
@@ -623,9 +493,18 @@ namespace TestApp
             try
             {
                 user = await Azure.userRegisteredOnline(userName);
-                
+                List<Route> routes = await Azure.nearbyRoutes();
+                routesNearby.Text = "Routes Nearby: " + routes.Count;
+
                 if (user.Count == 0)
                 {
+
+
+                    points.Text = "Score: 0";
+                    friends.Text = "Friends Online: 0";
+                    routesNearby.Text = "Routes Nearby: 0";
+                    routesCreated.Text = "Routes Created 0";
+
 
                     FragmentTransaction firstWelcome = FragmentManager.BeginTransaction();
                     DialogWelcome welcome= new DialogWelcome();
@@ -642,17 +521,14 @@ namespace TestApp
                     //waitingUpload = await Azure.AddUser();
                     //Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
-                    points.Text = "Score: 0";
-                    friends.Text = "Friends Online: 0";
-                    routesNearby.Text = "Routes Nearby: 0";
-                    routesCreated.Text = "Routes Created 0";
+                  
                 }
                 else
                 {
                    
                    waitingUpload = user.FirstOrDefault();
                    userId = user.FirstOrDefault().Id;
-                   setPoints();
+                   ///setPoints();
                    
                     userInstanceOne = waitingUpload;
                     var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
@@ -669,24 +545,11 @@ namespace TestApp
                         }
                     }
                     friends.Text = "Friends Online: " + friendCountOnline;
-
-                    List<Route> routes = await Azure.nearbyRoutes();
-
-                    routesNearby.Text = "Routes Nearby: " + routes.Count;
-
                     var routeList = await Azure.getMyRoutes(MainStart.userId);
-
                     routesCreated.Text = "Routes Created: " + routeList.Count;
-
+                    points.Text = "Score: " + userInstanceOne.Points;
 
                 }
-
-
-
-
-
-
-
 
 
 
@@ -696,9 +559,6 @@ namespace TestApp
 
             }
 
-
-
-            // steps.Text = "Steps: 0";
 
             if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
             {
@@ -716,27 +576,17 @@ namespace TestApp
                 }
 
                totalDistance.Text = "Total Distance Moved: "+ dist.ToString() + unit;
-
-
-             
-
             }
             else
                 totalDistance.Text = "Total Distance Moved: 0";
 
-            //messagePushNotification();
-            //connectToChat();
 
-     
-            //profilePicture = FindViewById<ImageView>(Resource.Id.profilePicture);
-
-           
-            initPersonTracker();
+                    initPersonTracker();
             
             try
             {
 
-                //  List<User> topUsers = await Azure.getTop3People();
+                
                 List<User> top = await Azure.getUsersFriends(MainStart.userId);
                 List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).ToList<User>();
 
@@ -770,35 +620,10 @@ namespace TestApp
 
             }
 
-            //var lis = IOUtilz.LoadPreferences();
-            //try
-            //{
-              
-            //    totalDistance.Text = lis[0].ToString() + " Dist";
-            //    points.Text = lis[1].ToString() + " Unit";
-            //    friends.Text = lis[2].ToString() + " Interval";
-            //}
-            //catch (Exception)
-            //{
-
-              
-            //}
-                    
           
-
 
         }
 
-        //private void MDrawerLayout_DrawerSlide(object sender, DrawerLayout.DrawerSlideEventArgs e)
-        //{
-
-          
-        //      //  mRightDrawer.LayoutParameters = param;
-        //      //mLeftDrawer.LayoutParameters = param;
-
-
-           
-        //}
 
         public async void connectToChat()
         {
@@ -874,8 +699,6 @@ namespace TestApp
         {
            
             base.OnPause();
-
-            //adde
             InvalidateOptionsMenu();
         }
 
@@ -1054,16 +877,7 @@ namespace TestApp
         }
 
 
-        public async void setPoints()
-        {
-            List<User> userInstance = await Azure.getUserInstanceByName(userName);
-            if (userInstance.Count != 0)
-            {
-                userId = userInstance.First().Id;
-                User userPoints = await Azure.getMyPoints(userId);
-                points.Text = "Score: " + userPoints.Points.ToString();
-            }
-        }
+     
 
         //This is only being executed once
         public bool Changed
@@ -1084,16 +898,11 @@ namespace TestApp
 
         public void updateLocationTimer()
         {
-
-
-            //Toast.MakeText(this, "Your location has been updated!", ToastLength.Short).Show();
-
-
             var timer = new Timer((e) =>
             {
                 var timerTest = Azure.updateUserLocation(userName);
 
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(4).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(3).TotalMilliseconds));
 
         }
 
@@ -1307,14 +1116,12 @@ namespace TestApp
 
          void OnDialogClosedWelcome(object sender, DialogWelcome.DialogEventArgs e)
         {
-
+            dialogOpen = true;
             var list = e.ReturnValue;
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
             DialogUserInfo newDialog = new DialogUserInfo();
             newDialog.DialogClosed += OnDialogClosed;
             newDialog.Show(transaction, "User Info");
-
-
         }
 
             async void OnDialogClosed(object sender, DialogUserInfo.DialogEventArgs e)
@@ -1329,23 +1136,16 @@ namespace TestApp
 
             try
             {
-
-                waitingUpload = await Azure.AddUser("", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
+                waitingUpload = await Azure.AddUser(auth0UserId,"", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
                 userInstanceOne = waitingUpload;
 
-
-                var newwaitingDownload = await Azure.getUserInstanceByName(userName);
+                var newwaitingDownload = await Azure.getUserByAuthId(userName);
                 if (newwaitingDownload.Count != 0)
                     userInstanceOne = newwaitingDownload.FirstOrDefault();
 
-                userId = userInstanceOne.Id;
-             //   Toast.MakeText(this, "Welcome! :)", ToastLength.Short).Show();
-
-                points.Text = "Score: 0";
-
+                userId = userInstanceOne.Id;    
                 var setOnline = await Azure.SetUserOnline(userId, true);
                 isOnline = true;
-
             }
             catch (Exception)
             {
@@ -1354,6 +1154,8 @@ namespace TestApp
 
             }
 
+
+            dialogOpen = false;
 
         }
 
@@ -1651,7 +1453,10 @@ namespace TestApp
 
         public  override void OnBackPressed()
         {
-
+            if (dialogOpen){
+                return;
+            }
+            else { 
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
             alert.SetTitle("Exit app");
             alert.SetMessage("Do you want to logout of the application?");
@@ -1674,6 +1479,9 @@ namespace TestApp
 
                     throw a;
                 }
+
+
+           
                // base.OnBackPressed();
             });
 
@@ -1686,6 +1494,8 @@ namespace TestApp
                 alert.Show();
             });
 
+
+            }
 
         }
 

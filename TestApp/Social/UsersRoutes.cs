@@ -55,7 +55,7 @@ namespace TestApp
             SupportActionBar.SetDisplayShowTitleEnabled(true);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             routeList = await Azure.getRoutes();
-            me = await Azure.getUserInstanceByName(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userName);
 
             if (routeList.Count == 0)
             {

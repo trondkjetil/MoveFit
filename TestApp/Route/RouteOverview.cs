@@ -41,7 +41,7 @@ namespace TestApp
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            me = await Azure.getUserInstanceByName(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userName);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

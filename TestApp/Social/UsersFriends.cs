@@ -67,7 +67,7 @@ namespace TestApp
 
             //List<User> userList = await Azure.getPeople();
             List<User> userList = await Azure.getUsersFriends(MainStart.userId);
-            me = await Azure.getUserInstanceByName(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userName);
            
             if (userList.Count == 0)
             {

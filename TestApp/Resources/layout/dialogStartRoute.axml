@@ -5,24 +5,6 @@
     android:layout_height="fill_parent"
     android:minWidth="450dp"
     android:minHeight="350dp">
-<!--@android:color=""/background_light"-->
-<!--<Button
-        android:text="Cancel"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_weight="25"
-        android:id="@+id/cancel"
-        android:textSize="20dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:height="70dp"
-        android:background="@drawable/ButtonSignUpStyle"
-        android:layout_centerHorizontal="true"
-        android:layout_y="100dp"
-        android:layout_gravity="bottom"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="480dp" />-->
     <Button
         android:text="Done"
         android:layout_width="110dp"
@@ -39,34 +21,37 @@
         android:layout_gravity="bottom"
         android:layout_marginTop="480dp" />
     <TextView
-        android:text="Please name the route: "
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:text="Name the route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/namePropt"
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true" />
     <EditText
         android:id="@+id/nameOfroute"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/edit_text_style"
-        android:height="50dp"
         android:textColor="@android:color/background_dark"
         android:editable="true"
         android:focusable="true"
-        android:hint="Route Name"
+        android:hint="e.g Top of Mount Everest"
         android:text=""
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:textColorHint="@android:color/darker_gray" />
     <TextView
-        android:text="And some route info: "
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:text="Route info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/infoPropt"
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true" />
     <EditText
         android:id="@+id/routeInfo"
         android:layout_width="match_parent"
@@ -75,25 +60,27 @@
         android:textColor="@android:color/background_dark"
         android:editable="true"
         android:focusable="true"
-        android:hint="Route Info"
+        android:hint="e.g Bring loads of water, and good shoes"
         android:text=""
         android:inputType="textCapSentences|textMultiLine"
         android:maxLength="200"
         android:maxLines="4"
         android:layout_marginTop="170dp"
-        android:layout_marginBottom="0.0dp" />
+        android:layout_marginBottom="0.0dp"
+        android:textColorHint="@android:color/darker_gray" />
     <TextView
-        android:text="Please set the difficulty"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:text="Set the difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/difficultyPrompt"
         android:textColor="@android:color/background_dark"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="290dp" />
+        android:layout_marginTop="290dp"
+        android:layout_centerHorizontal="true" />
     <Spinner
         android:id="@+id/spinnerRouteDifficulty"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:prompt="@string/planet_prompt"
         android:textColor="#000000"

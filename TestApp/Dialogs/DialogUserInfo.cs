@@ -30,8 +30,8 @@ namespace TestApp
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
 
-
-			Button okButton = (Button) view.FindViewById(Resource.Id.startRoute);
+            this.Cancelable = false;
+            Button okButton = (Button) view.FindViewById(Resource.Id.startRoute);
 
             RadioButton radio_red = view.FindViewById<RadioButton>(Resource.Id.radioButton1);
             RadioButton radio_blue = view.FindViewById<RadioButton>(Resource.Id.radioButton2);

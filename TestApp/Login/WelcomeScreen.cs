@@ -38,7 +38,7 @@ namespace TestApp
         string name;
         string profilePic;
         string userID;
-
+        string idProvider;
 
         public bool isOnline()
         {
@@ -118,21 +118,21 @@ namespace TestApp
                 name = user.Profile["name"].ToString();
                 profilePic = user.Profile["picture"].ToString();
                 userID = user.Profile["user_id"].ToString();
-                //	email = user.Profile["email"].ToString();
+              	//email = user.Profile["email"].ToString();
                 accessToken = user.Auth0AccessToken;
-               
+                idProvider = user.Profile["provider"].ToString();
 
 
             }
-            catch (AggregateException e)
+            catch (AggregateException )
             {
                 // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Flatten().Message;
-                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+              //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Message;
-                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+              //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
 
             }
             finally
@@ -140,8 +140,6 @@ namespace TestApp
 
                 //	startMain (); 
                // await startMain();
-
-
 
                wt.Start();
                while(wt.Elapsed.Seconds < 1)
@@ -158,7 +156,8 @@ namespace TestApp
             b.PutStringArray("MyData", new[] {
                 name,
                 profilePic,
-                userID
+                userID,
+                idProvider
             });
 
             Intent myIntent = new Intent(this, typeof(MainStart));

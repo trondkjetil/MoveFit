@@ -209,7 +209,7 @@ namespace TestApp
             (string userName)
         {
 
-            var list = await getUserInstanceByName(userName);
+            var list = await getUserByAuthId(userName);
             User me = list.FirstOrDefault();
 
            
@@ -368,7 +368,7 @@ namespace TestApp
 
         public static async Task<MessageConnections> getMessageConnectionId(string userOne, string userTwo)
         {
-            //
+            
             List<MessageConnections> messageCon = await messageConnection.Where(MessageConnections => (MessageConnections.UserLink1 == userOne && MessageConnections.UserLink2 == userTwo ) || MessageConnections.UserLink2 == userOne && MessageConnections.UserLink1 == userTwo).ToListAsync();  //
             MessageConnections instance = messageCon.FirstOrDefault();                                                                                                                                //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return instance;
@@ -411,10 +411,10 @@ namespace TestApp
 
         }
 
-        public static async Task<List<User>> getUserInstanceByName(String providedUserName)
+        public static async Task<List<User>> getUserByAuthId(String authId)
         {
 
-            List<User> userList = await table.Where(user => user.UserName == providedUserName).ToListAsync();
+            List<User> userList = await table.Where(user => user.UserName == authId).ToListAsync();
             return userList;
 
         }
@@ -1030,11 +1030,12 @@ namespace TestApp
         }
 
         [Java.Interop.Export()]
-        public static async Task<User> AddUser(string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel,double distanceMoved)
+        public static async Task<User> AddUser(string userId,string aboutme,string userName, string gender,int age,int points,string profileimage,string lat, string lon, bool online, string activityLevel,double distanceMoved)
         {
             // Create a new item
             var user = new User
             {
+                Id = userId,
                 AboutMe = aboutme,
                 UserName = userName ,//MainStart.userName,
                 Sex = gender,
@@ -1138,8 +1139,8 @@ namespace TestApp
             {
                 Sender = userId,
                 Message = msg,
-                Conversation = conversatioonId,
-                Count = 0,
+                Conversation = conversatioonId
+                
 
 
     };

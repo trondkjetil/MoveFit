@@ -19,7 +19,8 @@ using TestApp.Points;
 using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
-
+using System.IO;
+using static Android.Gms.Maps.GoogleMap;
 
 namespace TestApp
 {
@@ -28,7 +29,7 @@ namespace TestApp
     [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route", Theme = "@style/Theme2")]
   //  [IntentFilter(new[] { Intent.ActionAssist }, Categories = new[] { Intent.CategoryDefault })]
 
-    public class CreateRoute : AppCompatActivity, IOnMapReadyCallback //, ILocationListener
+    public class CreateRoute : AppCompatActivity, IOnMapReadyCallback, ISnapshotReadyCallback //, ILocationListener
     {
         const long MIN_TIME = 5 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
         const long MIN_DISTANCE = 0;
@@ -60,10 +61,10 @@ namespace TestApp
         public static ImageView statusImage;
         public static string routeId;
 
-        double dist;
+        public static double dist;
 
         public Stopwatch stopWatch;
-        public string elapsedTime;
+        public static string elapsedTime;
         public static Activity activity;
         public Spinner spinner;
         public ToggleButton start;
@@ -72,6 +73,8 @@ namespace TestApp
         static bool firstRun;
         ListView list;
         public int typeToDraw;
+        public static Bitmap snapShot;
+     public static int score;
         public bool Ischecked
         {
 
@@ -89,7 +92,6 @@ namespace TestApp
 
             get { return isChecked; }
         }
-
 
         public override void OnBackPressed()
         {
@@ -124,9 +126,32 @@ namespace TestApp
 
         }
 
+        public void Share(string title, string content)
+        {
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(content))
+                return;
 
+            Bitmap b = BitmapFactory.DecodeResource(Resources, Resource.Drawable.test);
+          
+            var tempFilename = "test.png";
+            var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            var filePath = System.IO.Path.Combine(sdCardPath, tempFilename);
+            using (var os = new FileStream(filePath, FileMode.Create))
+            {
+                b.Compress(Bitmap.CompressFormat.Png, 100, os);
+            }
+            b.Dispose();
 
-
+            var imageUri = Android.Net.Uri.Parse($"file://{sdCardPath}/{tempFilename}");
+            var sharingIntent = new Intent();
+            sharingIntent.SetAction(Intent.ActionSend);
+            sharingIntent.SetType("image/*");
+            sharingIntent.PutExtra(Intent.ExtraText, content);
+            sharingIntent.PutExtra(Intent.ExtraStream, imageUri);
+            sharingIntent.AddFlags(ActivityFlags.GrantReadUriPermission);
+            StartActivity(Intent.CreateChooser(sharingIntent, title));
+        }
+      
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -141,11 +166,12 @@ namespace TestApp
             typeToDraw = 0;
 
             points = new List<Location>();
-            me = await Azure.getUserInstanceByName(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userName);
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
 
+          
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -182,7 +208,7 @@ namespace TestApp
             list.Adapter = adapter;
             list.ChoiceMode = Android.Widget.ChoiceMode.Single;
             list.SetItemChecked(0, true);
-
+            routeType = "Walking";
 
             list.ItemClick += (a, e) =>
             {
@@ -486,16 +512,22 @@ namespace TestApp
             start.Enabled = false;
             points = CreateRouteService.getPoints();
 
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+
             try
             {
 
-            points = filterLocationPoints(points);
+                points = filterLocationPoints(points);
 
             }
             catch (Exception)
             {
 
-             
+
             }
 
             StopService(new Intent(this, typeof(CreateRouteService)));
@@ -511,25 +543,39 @@ namespace TestApp
             startDialogNameRoute();
 
 
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
+        
 
 
             firstRun = true;
 
           
         }
+
+        //public void startDialogRouteStats()
+        //{
+
+        //}
         public void startDialogNameRoute()
         {
 
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            DialogEndRouteCreationStats dialog = new DialogEndRouteCreationStats();
+            dialog.DialogClosed += OnDialogClosedOne;
+            dialog.Show(transaction, "Route Stats");
+
+
+           
+        }
+
+         void OnDialogClosedOne(object sender, DialogEndRouteCreationStats.DialogEventArgs e)
+        {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
             DialogStartRoute newDialog = new DialogStartRoute();
             newDialog.DialogClosed += OnDialogClosed;
             newDialog.Show(transaction, "Start Route");
+
         }
+
         async void OnDialogClosed(object sender, DialogStartRoute.DialogEventArgs e)
         {
             String[] returnData;
@@ -548,8 +594,7 @@ namespace TestApp
             try
             {
 
-
-                routeStatus.Text = "Waiting to upload the route...";
+                routeStatus.Text = "Please wait for route to upload...";
                 dist = calculateDistance();
                 var first = points[0];
 
@@ -576,7 +621,7 @@ namespace TestApp
 
                 int mypoints = MyPoints.calculatePoints(routeType, (int)dist);
                 var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
-
+                score = mypoints;
                 statusImage.SetImageResource(Resource.Drawable.orange);
                 Toast.MakeText(this, "Uploading successful", ToastLength.Long).Show();
                 routeStatus.Text = "Status: Idle";
@@ -596,6 +641,7 @@ namespace TestApp
         }
         public void startRouteCreation()
         {
+            start.Enabled = false;
             start.SetBackgroundColor(Color.Blue);
             list.Visibility = ViewStates.Invisible;
 
@@ -605,7 +651,7 @@ namespace TestApp
                 points.Clear();
             }
 
-            start.Enabled = false;
+         
 
             routeStatus.Text = "Aquiring your position...";
 
@@ -623,9 +669,12 @@ namespace TestApp
                 markerMe.Draggable(false);
                 markerMe.SetSnippet("My Location");
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
-
                 markerMe.SetIcon(image);
                 mMap.AddMarker(markerMe);
+
+             
+              
+
             }
 
 
@@ -983,14 +1032,14 @@ namespace TestApp
 
             mMap.AddPolyline(opt);
 
+            mMap.Snapshot(this);
 
         }
 
-
-
-
-
-
+        void ISnapshotReadyCallback.OnSnapshotReady(Bitmap snapshot)
+        {
+            snapShot = snapshot;
+        }
     }
 
 

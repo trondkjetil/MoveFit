@@ -6,6 +6,7 @@ using Android.Widget;
 
 namespace TestApp
 {
+   
 	 class DialogStartRoute : DialogFragment
 	{
         public event EventHandler<DialogEventArgs> DialogClosed;
@@ -32,7 +33,7 @@ namespace TestApp
 
             //Button dismiss = (Button) view.FindViewById(Resource.Id.cancel);
 			Button startRoute = (Button) view.FindViewById(Resource.Id.startRoute);
-
+            this.Cancelable = false;
 
             TextView route = view.FindViewById<TextView>(Resource.Id.namePropt);
             routeName  = view.FindViewById<EditText>(Resource.Id.nameOfroute);
@@ -83,7 +84,7 @@ namespace TestApp
 			return view;
 		}
 
-
+    
         public override void OnDismiss(Android.Content.IDialogInterface dialog)
         {
             valueReturned = ""; 
