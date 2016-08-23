@@ -242,6 +242,8 @@ namespace TestApp
         public int routeTrips;
         public string routeId;
         public string routeTime;
+        public string routeUserId;
+
 
 
 
@@ -307,6 +309,7 @@ namespace TestApp
             routeTrips = 1;
             routeId = "";
             routeTime = "";
+            routeUserId = "";
 
             MyView myHolder = holder as MyView;
                 myHolder.mMainView.Click += mMainView_Click;
@@ -409,11 +412,11 @@ namespace TestApp
             routeTrips = mRoutes[position].Trips;
             routeId = mRoutes[position].Id;
             routeTime = mRoutes[position].Time;
-          
+            routeUserId = mRoutes[position].User_id;
 
 
 
-            Bundle b = new Bundle();
+                Bundle b = new Bundle();
             b.PutStringArray("MyData", new String[] {
 
             routeName,
@@ -424,7 +427,8 @@ namespace TestApp
             routeRating,
             routeTrips.ToString(),
             routeId,
-            routeTime
+            routeTime,
+            routeUserId
 
         });
 

@@ -107,6 +107,7 @@ namespace TestApp
         public int routeTrips;
         string routeTime;
         public string routeId;
+        public string routeUserId;
 
         public MyRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
         {
@@ -165,6 +166,9 @@ namespace TestApp
             routeType = "";
             routeTrips = 1;
             routeId = "";
+            routeTime = "";
+            routeUserId = "";
+
             MyView myHolder = holder as MyView;
             myHolder.mMainView.Click += mMainView_Click;
             myHolder.mRouteName.Text = mMyRoutes[position].Name;
@@ -228,6 +232,7 @@ namespace TestApp
                 routeTrips = mMyRoutes[position].Trips;
                 routeId = mMyRoutes[position].Id;
                 routeTime = mMyRoutes[position].Time;
+                routeUserId = mMyRoutes[position].User_id;
 
                 Bundle b = new Bundle();
                 b.PutStringArray("MyData", new String[] {
@@ -240,6 +245,8 @@ namespace TestApp
             routeRating,
             routeTrips.ToString(),
             routeId,
+            routeTime,
+            routeUserId
 
 
         });

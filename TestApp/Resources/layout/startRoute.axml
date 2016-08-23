@@ -7,7 +7,7 @@
     android:background="@android:color/white">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-          android:keepScreenOn="true"
+        android:keepScreenOn="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
@@ -27,37 +27,43 @@
         android:id="@+id/startRouteName"
         android:textColor="#000000" />
     <TextView
-        android:text="Route Description:"
+        android:text="Created by:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/createdby"
+        android:textColor="#000000" />
+    <TextView
+        android:text="Description:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteDesc"
         android:textColor="#000000" />
     <TextView
-        android:text="Route length:"
+        android:text="Length:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteLength"
         android:textColor="#000000" />
     <TextView
-        android:text="Route difficulty:"
+        android:text="Difficulty:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteDiff"
         android:textColor="#000000" />
     <TextView
-        android:text="Route rating:"
+        android:text="Rating:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteRating"
         android:textColor="#000000" />
     <TextView
-        android:text="Route type:"
+        android:text="Type:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteType"
         android:textColor="#000000" />
     <TextView
-        android:text="Route trips:"
+        android:text="Trips:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/startRouteTrips"

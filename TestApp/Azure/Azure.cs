@@ -296,8 +296,18 @@ namespace TestApp
 
         }
 
-      
 
+        public static async Task<List<Route>> updateRouteBestTimeUser(string routeId, string time, string user)
+        {
+
+            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeId).ToListAsync();
+            routeList.Find(Route => Route.Id == routeId).Time = time + " by " + user;
+            Route newRouteInstanceUpdated = routeList.FirstOrDefault();
+            await routeTable.UpdateAsync(newRouteInstanceUpdated);
+
+            return routeList;
+
+        }
 
         public static async Task<List<Route>> giveRouteRating(string routeId, string rating)
         {
@@ -319,21 +329,8 @@ namespace TestApp
 
 
         }
-        public static async Task<User> getMyPoints(string userId)
-        {
 
-            List<User> pointlist = await table.Where(user => user.Id == userId).ToListAsync();
-            return pointlist.First();
 
-        }
-
-        public static async Task<List<User>> getImagesOnMap()
-        {
-            // Get the items that weren't marked as completed and add them in the adapter
-            List<User> userList = await table.Where(user => user.Online == true).ToListAsync();
-            return userList;
-
-        }
         public static async Task<List<UserImage>> setProfileImage(string userId, byte[] profileImage)
         {
             
@@ -411,6 +408,15 @@ namespace TestApp
 
         }
 
+
+
+        public static async Task<User> getUser(String id)
+        {
+
+            List<User> userList = await table.Where(user => user.Id == id).ToListAsync();
+            return userList.FirstOrDefault();
+
+        }
         public static async Task<List<User>> getUserByAuthId(String authId)
         {
 

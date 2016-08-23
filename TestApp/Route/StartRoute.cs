@@ -55,6 +55,11 @@ namespace TestApp
 
         public static float avgSpeed;
         public ToggleButton start;
+        public static bool record;
+        public static string newRecordTime;
+       public static string oldRecordTime;
+        string userId;
+        User instance;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -92,6 +97,8 @@ namespace TestApp
                 TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
                 TextView time = FindViewById<TextView>(Resource.Id.startRouteTime);
 
+                TextView createdBy = FindViewById<TextView>(Resource.Id.createdby);
+
                 start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
 
 
@@ -113,8 +120,8 @@ namespace TestApp
                 routeType = array[4];
                 routeRating = array[5];
                 routeTrips = array[6];
-
                 routeTime = array[8];
+                userId = array[9];
 
 
                 name.Text = "Name:" + routeName;
@@ -125,9 +132,13 @@ namespace TestApp
                 trips.Text = "Trips: " + routeTrips;
                 time.Text = "Best time: " + routeTime;
 
+                 instance = await Azure.getUser(userId);
+                record = false;
+
                 try
                 {
 
+                    createdBy.Text = instance.UserName;
                     List<Review> rate = await Azure.getRouteReview(routeId);
 
                     if (rate.Count != 0)
@@ -228,7 +239,7 @@ namespace TestApp
 
 
 
-            start.Enabled = true;
+                start.Enabled = true;
 
             //InitializeLocationManager();
             //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
@@ -236,7 +247,7 @@ namespace TestApp
 
 
         }
-        private void endRoute()
+        private async void endRoute()
         {
             if (StartRouteService.serviceIsRunning == false)
             {
@@ -274,8 +285,28 @@ namespace TestApp
 
             if (distance <= 70)
             {
-                Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
+                DateTime newTime = Convert.ToDateTime(elapsedTime);
+                DateTime oldTime = Convert.ToDateTime(routeTime);
+                int result = DateTime.Compare(newTime, oldTime);
+
+                if (result <= 0 )
+                {
+                    Toast.MakeText(this, "Congratulations! You have made a new Record!", ToastLength.Short).Show();
+                    record = true;
+                    newRecordTime = newTime.ToString();
+                    oldRecordTime = oldRecordTime.ToString();
+
+                    var setRecord = await Azure.updateRouteBestTimeUser(routeId,newRecordTime,instance.UserName);
+
+                }
+                else
+                {
+                    Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
+
+                }
+
                 startDialogNameRoute();
+
                 if (locationManager != null)
                     locationManager.RemoveUpdates(this);
 

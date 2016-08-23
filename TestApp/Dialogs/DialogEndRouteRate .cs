@@ -22,6 +22,14 @@ namespace TestApp
             TextView rating = view.FindViewById<TextView>(Resource.Id.ratingPropt);
            
             TextView finish = view.FindViewById<TextView>(Resource.Id.finish);
+
+            if (StartRoute.record)
+            {
+                finish.Text = "Congratulations!" + System.Environment.NewLine + "You have made a new RECORD on this route!"
+                    + System.Environment.NewLine + "Your time: " + StartRoute.newRecordTime + " vs " + StartRoute.oldRecordTime;
+
+            }
+            else
             finish.Text = "Congratulations!" + System.Environment.NewLine + "You have finished the route!";
 
             TextView speed = view.FindViewById<TextView>(Resource.Id.avgSpeed);
