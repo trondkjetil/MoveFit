@@ -131,7 +131,7 @@ namespace TestApp
                     List<Review> rate = await Azure.getRouteReview(routeId);
 
                     if (rate.Count != 0)
-                    routeRating = rate.First().Rating.ToString();
+                     routeRating = rate.First().Rating.ToString();
 
                     if (Convert.ToInt32(routeRating) == 0)
                     {
@@ -303,6 +303,10 @@ namespace TestApp
         private double getDistanceFromStart()
         {
             double distance = 0;
+            try
+            {
+
+          
             Location myLocation = App.Current.LocationService.getLastKnownLocation();// locationManager.GetLastKnownLocation(locationProvider);
             Locations firstElement = locationPointsForRoute.First();
 
@@ -313,6 +317,13 @@ namespace TestApp
 
 
             distance = (int)results[0];
+
+            }
+            catch (Exception)
+            {
+
+              
+            }
 
             return distance;
         }
@@ -333,7 +344,7 @@ namespace TestApp
             routeRating = e.ReturnValue.ToString();
             //  await Azure.giveRouteRating(routeId, "TestUserID", routeRating);
 
-            var user = await Azure.getUserByAuthId(MainStart.userName);
+            var user = await Azure.getUserByAuthId(MainStart.userId);
             var userName = user.First().UserName;
 
             Azure.AddReview(routeId, Convert.ToInt32(routeRating), userName);
@@ -446,12 +457,13 @@ namespace TestApp
 
             Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 
-            alert.SetTitle("Exit route creation");
-            alert.SetMessage("Do you want to abort the current route creation?");
+            alert.SetTitle("Exit route");
+            alert.SetMessage("Do you want to abort the current route?");
             alert.SetPositiveButton("Yes", (senderAlert, args) =>
             {
 
                 base.OnBackPressed();
+                Finish();
             });
 
             alert.SetNegativeButton("Cancel", (senderAlert, args) =>
@@ -474,7 +486,7 @@ namespace TestApp
 
 
             if (locationPointsForRoute.Count == 0)
-                Toast.MakeText(this, "No routes found for: " + routeId, ToastLength.Long).Show();
+                Toast.MakeText(this, "No routes found for: " + routeName, ToastLength.Long).Show();
             else
             {
 

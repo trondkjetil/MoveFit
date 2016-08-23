@@ -414,7 +414,7 @@ namespace TestApp
         public static async Task<List<User>> getUserByAuthId(String authId)
         {
 
-            List<User> userList = await table.Where(user => user.UserName == authId).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id == MainStart.auth0UserId).ToListAsync();
             return userList;
 
         }
@@ -515,24 +515,9 @@ namespace TestApp
             }
 
 
-
-
-
-
-
-
             List<User> show = await getUsersFriends(MainStart.userId);
 
             List<User> nearbyUsers = nearByPeople.Except(show).ToList();
-
-
-
-
-
-
-
-
-
 
 
             return nearbyUsers;
@@ -635,7 +620,7 @@ namespace TestApp
         public static async Task<List<Route>> getLatestRouteId(string userId)
         {
 
-            List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).OrderByDescending(Route => Route.User_id).ToListAsync();
+            List<Route> routeList = await routeTable.Where(Route => Route.User_id == userId).OrderByDescending(Route => Route.CreatedAt).Take(1).ToListAsync();
           
             return routeList;
 

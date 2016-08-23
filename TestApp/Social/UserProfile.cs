@@ -27,8 +27,6 @@ namespace TestApp
         Java.IO.File imgFile;
         public static String[] array;
         public static IMenuItem itemProfilePic;
-        //public static IMenuItem itemGender;
-        //public static IMenuItem itemAge;
         public static IMenuItem itemHome;
         public static IMenuItem itemExit;
         public EditText aboutMeEdit;

@@ -21,8 +21,6 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-      
-
         SwipeRefreshLayout mSwipeRefreshLayout;
 
     
@@ -42,16 +40,11 @@ namespace TestApp
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-
-
-
-         
-
-
             //connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
 
             //List<User> user = await Azure.getUserId(MainStart.userName);
-            //UserID = user[0].Id;
+
+           // UserID = MainStart.userId;
 
             var  routeList = await Azure.getMyRoutes(MainStart.userId);
                 if (routeList.Count != 0)
@@ -69,9 +62,7 @@ namespace TestApp
                 }
 
             
-         
-          
-         
+  
 
         }
 
@@ -114,6 +105,7 @@ namespace TestApp
         public string routeLength;
         public string routeType;
         public int routeTrips;
+        string routeTime;
         public string routeId;
 
         public MyRoutesAdapter(List<Route> routes, RecyclerView recyclerView, Context context)
@@ -180,9 +172,6 @@ namespace TestApp
             myHolder.mRouteInfo.Text = "Distance " + mMyRoutes[position].Distance + " meters";
             myHolder.mStatus.Text = mMyRoutes[position].RouteType;
 
-
-
-
             if (mMyRoutes[position].Difficulty == "Easy")
             {
                 myHolder.mRouteDifficulty.SetImageResource(Resource.Drawable.green);
@@ -211,29 +200,7 @@ namespace TestApp
 
         }
 
-        private void StartRouteFlag_Click(object sender, EventArgs e)
-        {
-
-            //    Bundle b = new Bundle();
-            //    b.PutStringArray("MyData", new String[] {
-
-            //    routeName,
-            //    routeInfo,
-            //    routeDifficulty,
-            //    routeLength,
-            //    routeType,
-            //    routeRating,
-            //    routeTrips.ToString(),
-            //    routeId
-
-            //});
-
-            //Intent myIntent = new Intent(mContext, typeof(StartRoute));
-            //myIntent.PutExtras(b);
-            //mContext.StartActivity(myIntent);
-
-        }
-
+    
         private void SetAnimation(View view, int currentAnim)
         {
             Animator animator = AnimatorInflater.LoadAnimator(mContext, Resource.Animation.flip);
@@ -260,6 +227,7 @@ namespace TestApp
                 routeRating = mMyRoutes[position].Review;
                 routeTrips = mMyRoutes[position].Trips;
                 routeId = mMyRoutes[position].Id;
+                routeTime = mMyRoutes[position].Time;
 
                 Bundle b = new Bundle();
                 b.PutStringArray("MyData", new String[] {
@@ -271,7 +239,8 @@ namespace TestApp
             routeType,
             routeRating,
             routeTrips.ToString(),
-            routeId
+            routeId,
+
 
         });
 

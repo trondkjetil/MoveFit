@@ -96,7 +96,7 @@ namespace TestApp
 
         TextView messages;
 
-        public static string myUserId;
+        public static string pushNotifUserId;
         public static string myUserName;
         public static string userList;
         public static List<MessageDetail> currentMessagesWritten;
@@ -105,8 +105,8 @@ namespace TestApp
         public List<NavDrawerItem> data;
         public Android.Views.ViewGroup.LayoutParams param;
 
-        private RegisterClient registerClient;
-        private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
+        //private RegisterClient registerClient;
+        //private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
 
 
         public bool dialogOpen;
@@ -378,18 +378,17 @@ namespace TestApp
 
                         User instance = null;
 
-                        if (user.Count != 0 || userInstanceOne != null)
-                        {
-                            instance = user.FirstOrDefault();
+                        //if (user.Count != 0 || userInstanceOne != null)
+                        //{
+                        //    instance = user.FirstOrDefault();
 
-                            if (instance == null)
-                                instance = userInstanceOne;
+                        //    if (instance == null)
+                        //        instance = userInstanceOne;
 
-                        }
+                        //}
 
-                        var list = await Azure.getUserByAuthId(userName);
+                        var list = await Azure.getUserByAuthId(auth0UserId);
                         instance = list.FirstOrDefault();
-
 
                         if (instance != null)
                         {
@@ -415,9 +414,9 @@ namespace TestApp
                         }
 
                     }
-                    catch (Exception)
+                    catch (Exception a)
                     {
-
+                        throw a;
 
                     }
 
@@ -641,7 +640,7 @@ namespace TestApp
                 RunOnUiThread(() =>
                 {
 
-                    myUserId = currentUserId;
+                    pushNotifUserId = currentUserId;
                     myUserName = userName;
                     listOfConnectedUsers = connectedUsers;
                     
@@ -1139,11 +1138,11 @@ namespace TestApp
                 waitingUpload = await Azure.AddUser(auth0UserId,"", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
                 userInstanceOne = waitingUpload;
 
-                var newwaitingDownload = await Azure.getUserByAuthId(userName);
-                if (newwaitingDownload.Count != 0)
-                    userInstanceOne = newwaitingDownload.FirstOrDefault();
+                //var newwaitingDownload = await Azure.getUserByAuthId(auth0UserId);
+                //if (newwaitingDownload.Count != 0)
+                //    userInstanceOne = newwaitingDownload.FirstOrDefault();
 
-                userId = userInstanceOne.Id;    
+                userId = auth0UserId;
                 var setOnline = await Azure.SetUserOnline(userId, true);
                 isOnline = true;
             }

@@ -41,7 +41,7 @@ namespace TestApp
         public MarkerOptions markerOpt2;
         public GoogleMap mMap;
 
-        public List<User> me;
+       // public List<User> myInstance;
         public static string givenRouteName;
         static string routeInfo;
         static string routeDifficulty;
@@ -166,7 +166,7 @@ namespace TestApp
             typeToDraw = 0;
 
             points = new List<Location>();
-            me = await Azure.getUserByAuthId(MainStart.userName);
+          //  myInstance = await Azure.getUserByAuthId(MainStart.auth0UserId);
 
             MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mMap = mapFrag.Map;
@@ -583,13 +583,8 @@ namespace TestApp
             givenRouteName = returnData[0];
             routeInfo = returnData[1];
             routeDifficulty = returnData[2];
+            routeUserId = MainStart.userId; /// myInstance.FirstOrDefault().Id;
 
-
-
-            foreach (var item in me)
-            {
-                routeUserId = item.Id;
-            }
 
             try
             {
@@ -598,26 +593,43 @@ namespace TestApp
                 dist = calculateDistance();
                 var first = points[0];
 
+                //Dont upload unless route is more than 500 meters 
+                //
+                //
+                //
 
                 List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime, first.Latitude, first.Longitude);
-                Azure.addToMyDistance(MainStart.userId, dist);
+                var addedDistance = Azure.addToMyDistance(MainStart.userId, dist);
+
                 string routeID = "";
-
+                routeUserId = routeUserId;
                 List<Route> te = await Azure.getLatestRouteId(routeUserId);
-                foreach (var item in te)
+                routeID = te.FirstOrDefault().Id;
+
+
+                if (points.Count != 0 && routeID != "")
                 {
-                    routeID = item.Id;
+                    foreach (var item in points)
+                    {
+
+                        Azure.AddLocation(item.Latitude, item.Longitude, routeID);
+                    }
+
                 }
-
-
-                foreach (var item in points)
+                else
                 {
 
-                    Azure.AddLocation(item.Latitude, item.Longitude, routeID);
-                }
+                    Toast.MakeText(this, "Cannot upload this route!", ToastLength.Long).Show();
 
+                    return;
+                }
+                   
+                
+                
+                
                 if (dist == 0)
                     dist = getDistanceForRoute(startLocation, endLocation);
+
 
                 int mypoints = MyPoints.calculatePoints(routeType, (int)dist);
                 var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
@@ -625,7 +637,7 @@ namespace TestApp
                 statusImage.SetImageResource(Resource.Drawable.orange);
                 Toast.MakeText(this, "Uploading successful", ToastLength.Long).Show();
                 routeStatus.Text = "Status: Idle";
-                Toast.MakeText(this, "You have earned " + mypoints + " points on on a " + routeType + " route", ToastLength.Long).Show();
+                //Toast.MakeText(this, "You have earned " + mypoints + " points on on a " + routeType + " route", ToastLength.Long).Show();
 
                 start.Enabled = true;
                 list.Visibility = ViewStates.Visible;

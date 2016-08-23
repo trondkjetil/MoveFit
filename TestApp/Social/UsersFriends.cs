@@ -61,13 +61,9 @@ namespace TestApp
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-
-
-
-
             //List<User> userList = await Azure.getPeople();
             List<User> userList = await Azure.getUsersFriends(MainStart.userId);
-            me = await Azure.getUserByAuthId(MainStart.userName);
+            me = await Azure.getUserByAuthId(MainStart.userId);
            
             if (userList.Count == 0)
             {
@@ -228,9 +224,6 @@ namespace TestApp
       
             myHolder.mDist.Text = dist.ToString() + unit + " away";
 
-
-
-
             if (mUsers[position].Online)
             {
                 myHolder.mOnlineStatus.SetImageResource(Resource.Drawable.greenonline);
@@ -238,8 +231,7 @@ namespace TestApp
                 myHolder.mOnlineStatus.SetImageResource(Resource.Drawable.redoffline);
 
 
-          
-
+        
             myHolder.mSendMessage.Click +=  (sender, args) =>
             {
 
