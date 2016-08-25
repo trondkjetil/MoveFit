@@ -26,7 +26,7 @@ namespace TestApp
 {
   //  [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
 
-    [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route", Theme = "@style/Theme2")]
+    [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route Creator", Theme = "@style/Theme2")]
   //  [IntentFilter(new[] { Intent.ActionAssist }, Categories = new[] { Intent.CategoryDefault })]
 
     public class CreateRoute : AppCompatActivity, IOnMapReadyCallback, ISnapshotReadyCallback //, ILocationListener
@@ -74,7 +74,11 @@ namespace TestApp
         ListView list;
         public int typeToDraw;
         public static Bitmap snapShot;
+        TextView selectRouteType;
      public static int score;
+
+        ImageButton startCreate;
+                ImageButton stopCreate;
         public bool Ischecked
         {
 
@@ -177,8 +181,7 @@ namespace TestApp
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
 
             markerOpt1 = new MarkerOptions();
             markerOpt2 = new MarkerOptions();
@@ -250,254 +253,100 @@ namespace TestApp
             };
 
 
-            //android: checkMark = "@drawable/acceptfriend"
-
-            //  android: checkMark = "?android:attr/listChoiceIndicatorSingle"
-
-
-
-            //spinner.ItemSelected += spinner_ItemSelected;
-            //var adapter = routeTypeadapter;
-            //spinner.Adapter = adapter;
-
-
-            //    spinner.Visibility = ViewStates.Visible;
+        
 
 
             statusImage = FindViewById<ImageView>(Resource.Id.imageStatus);
             TextView routeTitle = FindViewById<TextView>(Resource.Id.routeTitle);
+             selectRouteType = FindViewById<TextView>(Resource.Id.textView1);
             routeStatus = FindViewById<TextView>(Resource.Id.statusRoute);
             routeStatus.Text = "Stauts: Idle";
 
+          
+             startCreate = FindViewById<ImageButton>(Resource.Id.startRunning);
+             stopCreate = FindViewById<ImageButton>(Resource.Id.stopRunning);
+            stopCreate.Visibility = ViewStates.Invisible;
 
-            // Button start = FindViewById<Button>(Resource.Id.startRoute);
-            //Button pause = FindViewById<Button>(Resource.Id.pauseRoute);
-
-            start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
-
-            //   Button end = FindViewById<Button>(Resource.Id.endRoute);
-           // Button cancel = FindViewById<Button>(Resource.Id.cancelRoute);
-
+            //start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
+          
+            //start.SetBackgroundResource(Resource.Drawable.rsz_running);
+            //start.Text = "";
+            
+        
 
             routeId = "";
 
-            // fire an application-specified Intent when the device enters the proximity of a given geographical location.
-            //locationManager.RemoveProximityAlert();
+            startCreate.Click += (sender, e) =>
+          {
+              if (StartRouteService.serviceIsRunning == true)
+              {
+                  Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
 
+                  return;
+              }
+              selectRouteType.Visibility = ViewStates.Invisible;
+              startRouteCreation();
+              
+          };
 
-
-
-            start.Click += (sender, e) =>
+            stopCreate.Click += (sender, e) =>
             {
 
-                ////Cannot create and do a route at the same time!
-                if (StartRouteService.serviceIsRunning == true)
+                Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+
+                alert.SetTitle("Finish route");
+                alert.SetMessage("Do you want to finish current route?");
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
                 {
-                    Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
-
-                    return;
-                }
-
-              
-
-                if (start.Checked)
-                {
-                    startRouteCreation();
-                }
-                else
                     finishRoute();
+                });
 
+                alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+                {
+                 
 
-
-                //if (firstRun)
-                //{
-                //    firstRun = false;
-                //    startRouteCreation();
-
-                //}
-                //else
-                //{
-                //    isPaused = false;
-
-                //    StartService(new Intent(this, typeof(CreateRouteService)));
-                //    routeStatus.Text = "Resuming creation";
-                //    start.Text = "Pause Route";
-                //    start.SetBackgroundColor(Color.Green);
-                //}
-
-
-
-                //         }
-
+                });
+               
+               
+                    alert.Show();
+               
              
 
-
-
-
-                //Resuming a route creation
-                //if (!start.Checked)
-                //{
-
-                //if (CreateRouteService.serviceIsRunning == true)
-                //{
-                //    isPaused = true;
-                //    StopService(new Intent(this, typeof(CreateRouteService)));
-                //    routeStatus.Text = "Route creation paused";
-                //    start.SetBackgroundColor(Color.Blue);
-
-
-                //    //bool val = routeIsRunning();
-                //    //if (val)
-                //    //    return;
-
-
-                //}
-
-
-
-
-
-
-
-                //   }
-
-
-                //Starting route creation for first time
-
-
-
-
-
-
-                //    if (points.Count > 0)
-                //    {
-
-                //        points.Clear();
-                //}
-
-
-
-                //routeStatus.Text = "Aquiring your position...";
-
-                //var loc = App.Current.LocationService.getLastKnownLocation();
-
-                //if (loc != null)
-                //{
-                //    mMap.Clear();
-                //    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
-
-                //    MarkerOptions markerMe = new MarkerOptions();
-                //    markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
-                //    markerMe.SetTitle("My position");
-                //    markerMe.Draggable(false);
-                //    markerMe.SetSnippet("My Location");
-                //    BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
-
-                //    markerMe.SetIcon(image);
-                //    mMap.AddMarker(markerMe);
-                //}
-
-
-
-                //StartService(new Intent(this, typeof(CreateRouteService)));
-
-                ////mMap.Clear();
-                //isReady = false;
-                //Ischecked = false;
-                //alreadyDone = false;
-
-
-                //stopWatch = new Stopwatch();
-                //stopWatch.Start();
-
-                //spinner.Visibility = ViewStates.Invisible;
-
-                //} // en Pause
-
-
             };
-            //end.Click +=  (sender, e) =>
-            //{
-            //    if (CreateRouteService.serviceIsRunning == false)
+
+            //    start.Click += (sender, e) =>
             //    {
-            //        Toast.MakeText(this, "Nothing to stop!", ToastLength.Short).Show();
-            //        return;
 
-            //    }
+            //        ////Cannot create and do a route at the same time!
+            //        if (StartRouteService.serviceIsRunning == true)
+            //        {
+            //            Toast.MakeText(this, "Cannot create a route while doing one!", ToastLength.Long).Show();
 
-
-            //    points = CreateRouteService.getPoints();
-
-
-            //    StopService(new Intent(this, typeof(CreateRouteService)));
-
-
-            //    routeStatus.Text = "Stauts: Stopped";
-            //    dist = 0;
-            //    Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
-            //    statusImage.SetImageResource(Resource.Drawable.red);
-
-            //    drawRoute();
-
-            //    startDialogNameRoute();
-
-
-            //    stopWatch.Stop();
-            //    TimeSpan ts = stopWatch.Elapsed;
-            //    elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            //    ts.Hours, ts.Minutes, ts.Seconds,
-            //    ts.Milliseconds / 10);
-
-
-            //    firstRun = true;
-            //};
+            //            return;
+            //        }
 
 
 
-            //cancel.Click += (sender, e) =>
-            //{
-            //    StopService(new Intent(this, typeof(CreateRouteService)));
-            //    //  locationManager.RemoveUpdates(this);
-            //    Finish();
-            //};
+            //        if (start.Checked)
+            //        {
+            //            startRouteCreation();
+            //        }
+            //        else
+            //        {
+
+
+            //            finishRoute();
+            //        }
+
+
+
+
+
+            //    };
 
         }
 
-        //private void List_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        //{
-        //    // var t = list.GetItemAtPosition(e.Position);
-           
-        //  //  list.SetItemChecked(e.Position, true);
 
-        //    if (e.Position == 0)
-        //    {
-        //        Toast.MakeText(this, "Walking", ToastLength.Short).Show();
-        //        routeType = "Walking";
-        //    }
-        //    else if (e.Position == 1)
-        //    {
-        //        Toast.MakeText(this, "Running", ToastLength.Short).Show();
-        //        routeType = "Running";
-        //    }
-        //    else if (e.Position == 2)
-        //    {
-        //        Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
-        //        routeType = "Hiking";
-        //    }
-        //    else if (e.Position == 3)
-        //    {
-        //        Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
-        //        routeType = "Bicycling";
-        //    }
-        //    else if (e.Position == 4)
-        //    {
-        //        Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
-        //        routeType = "Skiing";
-        //    }
-            
-          
-        //}
 
         public void finishRoute()
         {
@@ -509,7 +358,7 @@ namespace TestApp
 
             }
 
-            start.Enabled = false;
+            //start.Enabled = false;
             points = CreateRouteService.getPoints();
 
             stopWatch.Stop();
@@ -539,7 +388,7 @@ namespace TestApp
             statusImage.SetImageResource(Resource.Drawable.red);
 
             drawRoute(typeToDraw );
-
+            dist = calculateDistance();
             startDialogNameRoute();
 
 
@@ -590,7 +439,7 @@ namespace TestApp
             {
 
                 routeStatus.Text = "Please wait for route to upload...";
-                dist = calculateDistance();
+            //    dist = calculateDistance();
                 var first = points[0];
 
                 //Dont upload unless route is more than 500 meters 
@@ -602,7 +451,7 @@ namespace TestApp
                 var addedDistance = Azure.addToMyDistance(MainStart.userId, dist);
 
                 string routeID = "";
-                routeUserId = routeUserId;
+             
                 List<Route> te = await Azure.getLatestRouteId(routeUserId);
                 routeID = te.FirstOrDefault().Id;
 
@@ -639,7 +488,9 @@ namespace TestApp
                 routeStatus.Text = "Status: Idle";
                 //Toast.MakeText(this, "You have earned " + mypoints + " points on on a " + routeType + " route", ToastLength.Long).Show();
 
-                start.Enabled = true;
+                //start.Enabled = true;
+
+                selectRouteType.Visibility = ViewStates.Visible;
                 list.Visibility = ViewStates.Visible;
 
             }
@@ -648,13 +499,19 @@ namespace TestApp
 
                 throw eg;
             }
-
+            startCreate.Visibility = ViewStates.Visible;
+            stopCreate.Visibility = ViewStates.Invisible;
 
         }
         public void startRouteCreation()
         {
-            start.Enabled = false;
-            start.SetBackgroundColor(Color.Blue);
+            //start.Enabled = false;
+            //start.SetBackgroundColor(Color.Blue);
+            startCreate.Visibility = ViewStates.Invisible;
+
+            stopCreate.Visibility = ViewStates.Visible;
+            stopCreate.Enabled = false;
+
             list.Visibility = ViewStates.Invisible;
 
             if (points.Count > 0)
@@ -703,30 +560,14 @@ namespace TestApp
             stopWatch.Start();
 
 
-            start.Enabled = true;
+            //   start.Enabled = true;
 
-            //  spinner.Visibility = ViewStates.Invisible;
+            stopCreate.Enabled = true;
 
-        } // en Pause
+        } 
 
 
-        //public void startRouteSettings()
-        //{
-
-        //    try
-        //    {
-
-        //        startLocation = locationManager.GetLastKnownLocation(locationProvider);
-        //        statusImage.SetImageResource(Resource.Drawable.green);
-        //       // routeStatus.Text = "Stauts: Creating...";
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-        //    }
-        //}
-
+     
 
             public List<Location> filterLocationPoints(List<Location> points)
         {
@@ -823,41 +664,6 @@ namespace TestApp
 
       
 
-
-        //private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        //{
-        //   // Spinner spinner = (Spinner)sender;
-
-          
-        //    if (e.Position == 0)
-        //    {
-        //        Toast.MakeText(this, "Walking", ToastLength.Short).Show();
-        //        routeType = "Walking";
-        //    }
-        //    else if (e.Position == 1)
-        //    {
-        //        Toast.MakeText(this, "Running", ToastLength.Short).Show();
-        //        routeType = "Running";
-        //    }
-        //    else if (e.Position == 2)
-        //    {
-        //        Toast.MakeText(this, "Hiking", ToastLength.Short).Show();
-        //        routeType = "Hiking";
-        //    }
-        //    else if (e.Position == 3)
-        //    {
-        //        Toast.MakeText(this, "Bicycling", ToastLength.Short).Show();
-        //        routeType = "Bicycling";
-        //    }
-        //    else if (e.Position == 4)
-        //    {
-        //        Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
-        //        routeType = "Skiing";
-        //    }
-
-
-
-        //}
 
         public double getDistanceForRoute(Location start, Location end)
         {

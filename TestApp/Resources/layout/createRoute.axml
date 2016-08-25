@@ -88,15 +88,30 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:gravity="center">
-        <ToggleButton
-            android:layout_width="280dp"
+        <ImageButton
+            android:src="@drawable/rsz_running"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@null"
+            android:id="@+id/startRunning" />
+        <ImageButton
+            android:src="@drawable/rsz_flag"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@null"
+            android:id="@+id/stopRunning" />
+    <!--<ToggleButton
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/toggleStart"
             android:background="@android:color/holo_green_light"
             android:textOff="Start"
-            android:textOn="Finish" />
+            android:textOn="Finish" />-->
     <!--<Button
+   
             android:text="Finish route"
             android:layout_width="280dp"
             android:layout_height="wrap_content"

@@ -38,28 +38,44 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@android:color/white">
-            <TextView
-                android:text="Tracking"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:id="@+id/textView2"
-                android:textColor="#ff000000" />
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textOn="On"
-                android:textOff="Off"
-                android:id="@+id/switch1" />
-            <TextView
-                android:id="@+id/ContactName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_marginLeft="5dp" />
-        
+                android:background="@android:color/white">
+                <TextView
+                    android:text="Tracking"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:id="@+id/textView2"
+                    android:textColor="#ff000000" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:checked="true"
+                    android:textOn="On"
+                    android:textOff="Off"
+                    android:id="@+id/switch1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp" />
+                <TextView
+                    android:id="@+id/ContactName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_marginLeft="5dp" />
+                <ImageButton
+                    android:src="@drawable/newAlarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/alarmButton"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dp" />
+            </RelativeLayout>
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"

@@ -237,6 +237,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialogWelcome.axml" />
     <AndroidResource Include="Resources\layout\dialogEndRouteCreationStats.axml" />
+    <AndroidResource Include="Resources\layout\drawerLayoutCopy.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />
@@ -400,9 +403,6 @@
     <AndroidResource Include="Resources\values\itemsRouteTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_alarm.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values\itemsRouteDifficulty.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -495,6 +495,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\simple_list_item_checked.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\alarmBell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rsz_route.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rsz_score.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rsz_dist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rsz_running.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\rsz_flag.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

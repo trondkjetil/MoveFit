@@ -34,6 +34,7 @@ using TestApp.Push;
 using System.Net;
 using System.Text;
 using System.IO;
+using Android.Views.Animations;
 
 namespace TestApp
 {
@@ -83,7 +84,7 @@ namespace TestApp
         public static TextView _address;
         public Address oldAddress;
         public static GoogleMap mMap;
-        TextView points;
+        
         public static Activity mainActivity;
         public static User waitingUpload;
         public static User userInstanceOne;
@@ -93,8 +94,10 @@ namespace TestApp
         public static ConnectivityManager connectivityManager;
         public static IMenuItem menItemOnlineIcion;
         public static IMenuItem menItemOnlineText;
+        public static IMenuItem menItemLogo;
 
         TextView messages;
+        //TextView points;
 
         public static string pushNotifUserId;
         public static string myUserName;
@@ -104,6 +107,15 @@ namespace TestApp
 
         public List<NavDrawerItem> data;
         public Android.Views.ViewGroup.LayoutParams param;
+        SpannableString s;
+
+
+
+        public string routesNearby;
+        public string routesCreated;
+        public string friends;
+        public string totalDistance;
+        public string points;
 
         //private RegisterClient registerClient;
         //private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
@@ -231,43 +243,52 @@ namespace TestApp
          // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
 
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
-            TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
-            TextView routesCreated = FindViewById<TextView>(Resource.Id.textView1);
-            TextView friends = FindViewById<TextView>(Resource.Id.friends);
-            TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
 
-            points = FindViewById<TextView>(Resource.Id.points);
-            TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
+            //TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
+            //TextView routesCreated = FindViewById<TextView>(Resource.Id.textView1);
+            //TextView friends = FindViewById<TextView>(Resource.Id.friends);
+            //TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
+
+            //points = FindViewById<TextView>(Resource.Id.points);
+
+        
+        TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
+
+
             Typeface tf = Typeface.CreateFromAsset(Assets,
               "english111.ttf");
+            // s = new SpannableString("MoveFit");
+            // s.SetSpan(tf, 0, s.Length(), SpanTypes.ExclusiveExclusive
+            //);
 
-            appTitle.TextSize = 32;
+
+           // appTitle.SetTextColor(Color.Black);
+            appTitle.TextSize = 38;
             appTitle.Typeface = tf;
 
 
 
+            //routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //routesCreated.TextSize = 15;
 
-            routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            routesCreated.TextSize = 15;
+            //friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //friends.TextSize = 15;
 
-            friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            friends.TextSize = 15;
+            //totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //totalDistance.TextSize = 15;
 
-            totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            totalDistance.TextSize = 15;
+            //points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //points.TextSize = 15;
 
-            points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            points.TextSize = 15;
-
-            routesNearby.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            routesNearby.TextSize = 15;
+            //routesNearby.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
+            //routesNearby.TextSize = 15;
             
 
-            totalDistance.Text = "Total Distance Moved: ";
-            points.Text = "Score: ";
-            friends.Text = "Friends Online: ";
-            routesNearby.Text = "Routes nearby: ";
-            routesCreated.Text = "Routes Created: ";
+            //totalDistance.Text = "Total Distance Moved: ";
+            //points.Text = "Score: ";
+            //friends.Text = "Friends Online: ";
+            //routesNearby.Text = "Routes nearby: ";
+            //routesCreated.Text = "Routes Created: ";
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
@@ -278,13 +299,29 @@ namespace TestApp
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
 
-
+ 
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
             messages.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            messages.TextSize = 15;
+            messages.TextSize = 24;
+
+
+
+            ImageButton distButton = FindViewById<ImageButton>(Resource.Id.distanceButton);
+            ImageButton routeButton = FindViewById<ImageButton>(Resource.Id.routeButton);
+            ImageButton scoreButton = FindViewById<ImageButton>(Resource.Id.scoreButton);
+
+            Bitmap icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_dist);
+            distButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
+
+            icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_route);
+            routeButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
+
+            icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_score);
+            scoreButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
+
 
             var layout = FindViewById<RelativeLayout>(Resource.Id.messages);
-            layout.Visibility = ViewStates.Invisible;
+           // layout.Visibility = ViewStates.Invisible;
 
 
             array = Intent.GetStringArrayExtra("MyData");
@@ -299,27 +336,15 @@ namespace TestApp
          
             SetSupportActionBar(mToolbar);
             mLeftDataSet = new List<string>();
-
-
-            //if (IOUtilz.IsKitKatWithStepCounter(PackageManager))
-            //{
-            //    // mLeftDataSet.Add("STEP COUNTER 2");
-            //}
+          
 
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("Settings");
-           // mLeftDataSet.Add("Messages");
+         
             mLeftDataSet.Add("My Profile");
 
-            //mLeftDataSet.Add("Scoreboard");
-            //mLeftDataSet.Add("Routes");
-            //mLeftDataSet.Add("Social");
-            //mLeftDataSet.Add("Messages");
-            //mLeftDataSet.Add("Step counter");
-            //mLeftDataSet.Add("Calculator");
-            //mLeftDataSet.Add("My profile");
             data = new List<NavDrawerItem>();
 
             data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
@@ -427,7 +452,7 @@ namespace TestApp
 
 
 
-                var RightAdapter = new ContactsAdapter(this);
+                var RightAdapter = new RightDrawer(this);
             //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
             mRightDrawer.Adapter = RightAdapter;
 
@@ -450,6 +475,14 @@ namespace TestApp
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             mDrawerToggle.SyncState();
 
+
+           // Typeface tf = Typeface.CreateFromAsset(Assets,
+           //   "english111.ttf");
+           // s = new SpannableString("MoveFit");
+           // s.SetSpan(tf, 0, s.Length(), SpanTypes.ExclusiveExclusive
+           //);
+
+           // SupportActionBar.TitleFormatted = s;
 
             if (mToolbar != null)
             {
@@ -475,7 +508,7 @@ namespace TestApp
             {
                 //This is the first the time the activity is ran
 
-                SupportActionBar.SetTitle(Resource.String.closeDrawer);
+                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
 
                 //int width = Resources.DisplayMetrics.WidthPixels / 10;
                 //var paramters = mRightDrawer.LayoutParameters;
@@ -493,16 +526,17 @@ namespace TestApp
             {
                 user = await Azure.userRegisteredOnline(userName);
                 List<Route> routes = await Azure.nearbyRoutes();
-                routesNearby.Text = "Routes Nearby: " + routes.Count;
+              //  routesNearby.Text = "Routes Nearby: " + routes.Count;
+                routesNearby = "Routes Nearby: " + routes.Count;
 
                 if (user.Count == 0)
                 {
 
 
-                    points.Text = "Score: 0";
-                    friends.Text = "Friends Online: 0";
-                    routesNearby.Text = "Routes Nearby: 0";
-                    routesCreated.Text = "Routes Created 0";
+                    //points.Text = "Score: 0";
+                    //friends.Text = "Friends Online: 0";
+                    //routesNearby.Text = "Routes Nearby: 0";
+                    //routesCreated.Text = "Routes Created 0";
 
 
                     FragmentTransaction firstWelcome = FragmentManager.BeginTransaction();
@@ -543,10 +577,15 @@ namespace TestApp
                             friendCountOnline++;
                         }
                     }
-                    friends.Text = "Friends Online: " + friendCountOnline;
+                    //  friends.Text = "Friends Online: " + friendCountOnline;
+                    friends = "Friends Online: " + friendCountOnline;
+
+
                     var routeList = await Azure.getMyRoutes(MainStart.userId);
-                    routesCreated.Text = "Routes Created: " + routeList.Count;
-                    points.Text = "Score: " + userInstanceOne.Points;
+                    //routesCreated.Text = "Routes Created: " + routeList.Count;
+                    //points.Text = "Score: " + userInstanceOne.Points;
+                    routesCreated = "Routes Created: " + routeList.Count;
+                    points = "Score: " + userInstanceOne.Points;
 
                 }
 
@@ -574,13 +613,15 @@ namespace TestApp
                     dist = userInstanceOne.DistanceMoved / 1000;
                 }
 
-               totalDistance.Text = "Total Distance Moved: "+ dist.ToString() + unit;
+               totalDistance = "Total Distance Moved: "+ dist.ToString() + unit;
+               // totalDistance.Text = "Total Distance Moved: " + dist.ToString() + unit;
             }
             else
-                totalDistance.Text = "Total Distance Moved: 0";
+               // totalDistance.Text = "Total Distance Moved: 0";
+            totalDistance = "Total Distance Moved: 0";
 
 
-                    initPersonTracker();
+            initPersonTracker();
             
             try
             {
@@ -619,8 +660,59 @@ namespace TestApp
 
             }
 
-          
 
+
+
+            distButton.Click += (a, e) =>
+            {
+                messages.Visibility = ViewStates.Visible;
+
+                //messages.Text = totalDistance.Text;
+                messages.Text = totalDistance;
+                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
+                myAnimation.Duration = 3000;
+                messages.StartAnimation(myAnimation);
+              
+
+                messages.Visibility = ViewStates.Invisible;
+                //     messages.Text = "";
+
+            };
+            routeButton.Click += (a, e) =>
+            {
+                messages.Visibility = ViewStates.Visible;
+              //  messages.Text = routesCreated.Text + " - " + routesNearby.Text;
+                messages.Text = routesCreated + " - " + routesNearby;
+                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_slide_in_top);
+                myAnimation.Duration = 3000;
+                messages.StartAnimation(myAnimation);
+               
+                //   messages.Text = "";
+
+                messages.Visibility = ViewStates.Invisible;
+            };
+            scoreButton.Click += (a, e) =>
+            {
+                messages.Visibility = ViewStates.Visible;
+
+             //   messages.Text = points.Text;
+                messages.Text = points;
+                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
+                myAnimation.Duration = 3000;
+                messages.StartAnimation(myAnimation);
+              
+                messages.Visibility = ViewStates.Invisible;
+                //        messages.Text = "";
+            };
+
+            //routesNearby.Visibility = ViewStates.Invisible;
+            //points.Visibility = ViewStates.Invisible;
+            //routesCreated.Visibility = ViewStates.Invisible;
+            //friends.Visibility = ViewStates.Invisible;
+            //totalDistance.Visibility = ViewStates.Invisible;
+           
+
+           
         }
 
 
@@ -769,8 +861,8 @@ namespace TestApp
                 txt.SetPadding(10, 10, 10, 10);
 
 
-                messages.Text = "New message from:" + System.Environment.NewLine +
-                userName;
+            //    messages.Text = "New message from:" + System.Environment.NewLine +
+              //  userName;
 
                 messageNotification(message, userName);
 
@@ -1030,25 +1122,24 @@ namespace TestApp
 
 
                 // Starts movement tracker (indoor)
-                case Resource.Id.action_alarm:
+                //case Resource.Id.action_alarm:
 
            
 
-                    if (SimpleService.isRunning == false)
-                    {
-                        StartService(new Intent(this, typeof(SimpleService)));
-                        Toast.MakeText(this, "Activity alarm activated", ToastLength.Short).Show();
+                //    if (SimpleService.isRunning == false)
+                //    {
+                //        StartService(new Intent(this, typeof(SimpleService)));
+                //        Toast.MakeText(this, "Activity alarm activated", ToastLength.Short).Show();
                        
-                    }
-                    else if (SimpleService.isRunning == true)
-                    {
-                        StopService(new Intent(this, typeof(SimpleService)));
-                        Toast.MakeText(this, "Activity alarm off", ToastLength.Short).Show();
+                //    }
+                //    else if (SimpleService.isRunning == true)
+                //    {
+                //        StopService(new Intent(this, typeof(SimpleService)));
+                //        Toast.MakeText(this, "Activity alarm off", ToastLength.Short).Show();
                        
-                    }
+                //    }
 
-                    //adde
-                    InvalidateOptionsMenu();
+          
 
                     return true;
 
@@ -1065,6 +1156,11 @@ namespace TestApp
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
             menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline);
             menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Online");
+
+         
+            //menItemLogo = menu.FindItem(Resource.Id.logoApp);
+            //menItemLogo.SetTitle(s);
+
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -1312,16 +1408,16 @@ namespace TestApp
         }
 
 
-        public class ContactsAdapter : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
+        public class RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
         {
             List<Contact> _contactList;
-            public Activity _activity;
+            public Activity activityRightDrawer;
             public static List<User> nearbyUsers;
           
 
-            public ContactsAdapter(Activity activity)
+            public RightDrawer(Activity activity)
             {
-                _activity = activity;
+                activityRightDrawer = activity;
                 FillContacts();
             }
 
@@ -1366,11 +1462,11 @@ namespace TestApp
 
             public override View GetView(int position, View convertView, ViewGroup parent)
             {
-                var view = convertView ?? _activity.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
+                var view = convertView ?? activityRightDrawer.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
                 contactName.Text = _contactList[position].DisplayName;
 
-                MapFragment mapFrag = (MapFragment)_activity.FragmentManager.FindFragmentById(Resource.Id.map);
+                MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
                 mMap = mapFrag.Map;
 
                 if (mMap != null)
@@ -1387,36 +1483,54 @@ namespace TestApp
                 mMap.UiSettings.RotateGesturesEnabled = false;
                 mMap.UiSettings.ScrollGesturesEnabled = false;
 
-                contactName.Text = "You are displayed as Online";
-                contactName.TextSize = 17;
+                
+                
                 TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
+                ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                    alarm.Click += (a, e) =>
+                    {
+
+                        if (SimpleService.isRunning == false)
+                        {
+                           activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
+                            Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
+                        }
+                        else if (SimpleService.isRunning == true)
+                        {
+                            activityRightDrawer.StopService(new Intent(mainActivity, typeof(SimpleService)));
+                            Toast.MakeText(mainActivity, "Activity alarm off", ToastLength.Short).Show();
+
+                        }
+
+                    };
+
 
                     location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
                     if (e.IsChecked == true)
                     {
-                        Toast.MakeText(_activity, "Your location tracking has been turned on", ToastLength.Long).Show();
+                        Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on", ToastLength.Long).Show();
 
-                        _activity.StartService(new Intent(_activity, typeof(LocationService)));
+                        activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
 
                         var a = Azure.SetUserOnline(userId, true);
                         isOnline = true;
 
                         menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
                             menItemOnlineText.SetTitle("Online");
-                            contactName.Text = "You are displayed as Online";
+                          
                         }
                     else
                     {
-                        Toast.MakeText(_activity, "Tracking stopped!", ToastLength.Long).Show();
-                        _activity.StopService(new Intent(_activity, typeof(LocationService)));
+                        Toast.MakeText(activityRightDrawer, "Tracking stopped!", ToastLength.Long).Show();
+                        activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
 
                         var b = Azure.SetUserOnline(userId, false);
                         isOnline = false;
                         menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
                             menItemOnlineText.SetTitle("Offline");
-                            contactName.Text = "You are displayed as Offline";
+                          
 
                         }
                 };
@@ -1438,8 +1552,8 @@ namespace TestApp
             {
                 try
                 {
-                    Intent myIntent = new Intent(_activity, typeof(GoogleMapsPeople));
-                    _activity.StartActivity(myIntent);
+                    Intent myIntent = new Intent(activityRightDrawer, typeof(GoogleMapsPeople));
+                    activityRightDrawer.StartActivity(myIntent);
                 }
                 catch (Exception )
                 {

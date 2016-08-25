@@ -32,7 +32,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobil
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
@@ -44,6 +43,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\settings.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogendroutecreationstats.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
@@ -127,7 +127,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\green.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\orange.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\red.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsroutetypes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_alarm.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsroutedifficulty.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\greenonline.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\redoffline.png
@@ -160,12 +159,17 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\oldsetting.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile_chat.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\simple_list_item_checked.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\alarmbell.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\bell.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_route.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_score.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_dist.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\drawerlayoutcopy.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.Export.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Data.Tds.dll.mdb
@@ -206,6 +210,8 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transa
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogendroutecreationstats.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_running.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_flag.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

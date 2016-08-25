@@ -7,7 +7,15 @@
             android:layout_below="@+id/textView1"
             android:prompt="@string/activity_route"
             android:background="@android:color/background_light"
-            android:layout_centerInParent="true" />--><ListView android:id="@+id/createRoute" android:layout_width="280dp" android:gravity="center" android:layout_height="110dp" android:layout_below="@+id/textView1" android:prompt="@string/activity_route" android:background="@android:color/background_light" android:layout_centerInParent="true" /></RelativeLayout><RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/white" android:gravity="center"><ToggleButton android:layout_width="280dp" android:layout_height="wrap_content" android:gravity="center" android:id="@+id/toggleStart" android:background="@android:color/holo_green_light" android:textOff="Start" android:textOn="Finish" /><!--<Button
+            android:layout_centerInParent="true" />--><ListView android:id="@+id/createRoute" android:layout_width="280dp" android:gravity="center" android:layout_height="110dp" android:layout_below="@+id/textView1" android:prompt="@string/activity_route" android:background="@android:color/background_light" android:layout_centerInParent="true" /></RelativeLayout><RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/white" android:gravity="center"><ImageButton android:src="@drawable/rsz_running" android:layout_width="230dp" android:layout_height="wrap_content" android:gravity="center" android:background="@null" android:id="@+id/startRunning" /><ImageButton android:src="@drawable/rsz_flag" android:layout_width="230dp" android:layout_height="wrap_content" android:gravity="center" android:background="@null" android:id="@+id/stopRunning" /><!--<ToggleButton
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/toggleStart"
+            android:background="@android:color/holo_green_light"
+            android:textOff="Start"
+            android:textOn="Finish" />--><!--<Button
+   
             android:text="Finish route"
             android:layout_width="280dp"
             android:layout_height="wrap_content"

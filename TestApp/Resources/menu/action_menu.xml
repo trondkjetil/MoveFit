@@ -3,6 +3,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:myapp="http://schemas.android.com/apk/res-auto">
 
+  
+
+<!--<item android:id="@+id/logoApp"
+    android:text="MoveFit"
+		android:title="MoveFit"
+		myapp:showAsAction="always"/>-->
+  
 
  <item android:id="@+id/statusOnlineText"
  android:text="Online"
@@ -24,10 +31,12 @@
 		android:title="About"
 		myapp:showAsAction="always"/>
 
-  <item android:id="@+id/action_alarm"
+  <!--<item android:id="@+id/action_alarm"
 		android:icon="@drawable/newAlarm"
 		android:title="Alarm"
-		myapp:showAsAction="always"/>
+		myapp:showAsAction="always"/>-->
+  
+
 
 </menu>
 

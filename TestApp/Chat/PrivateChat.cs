@@ -68,7 +68,7 @@ namespace TestApp
          void Start()
         {
             dateTime = new List<DateTime>(); // Allocate the list
-            timer = new System.Timers.Timer(3000); // Set up the timer for 3 seconds        
+            timer = new System.Timers.Timer(3500); // Set up the timer for 3 seconds        
             timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
             timer.Enabled = true; // Enable it
         }
@@ -84,28 +84,37 @@ namespace TestApp
 
             var NewMessages = await Azure.getMessages(converSationId);
 
-                bool recentMessages = false;
+                if (NewMessages.Count == 0)
+                {
+                    timer.Enabled = true;
+                    return;
+                }
+                   
+
+                bool notAnyNewMessages = true;
 
                 RunOnUiThread( () =>
             {
                 try
                 {
+                    NewMessages = NewMessages;
 
 
-                   
+                    if(PreviousMessages.Count != 0 && NewMessages.Count != 0)
+                    {
+                        notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
 
-                    //if(PreviousMessages.Count == 0)
-                    //{
-                    //    notAnyNewMessages = false;
-                    //}else
+                    }
 
-                    recentMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
+                    notAnyNewMessages = notAnyNewMessages;
 
-
-                    if (NewMessages.Count != 0 && !recentMessages)
+                    if (!notAnyNewMessages && NewMessages.LastOrDefault().Sender != MainStart.userId)
                 {
                 
-                    layout.RemoveAllViews();
+                        if(layout.ChildCount != 0)
+                         layout.RemoveAllViews();
+
+
                     foreach (var message in NewMessages)
                     {
                         messageLayout(message.Message, message.Sender);
@@ -115,9 +124,6 @@ namespace TestApp
                 }
 
 
-                    if(PreviousMessages.Count != 0)
-                    PreviousMessages.Clear();
-
                     PreviousMessages = NewMessages;
 
 
@@ -125,8 +131,10 @@ namespace TestApp
                 }
                 catch (Exception a)
                 {
+                    timer.Enabled = true;
                     throw a;
                    
+
                 }
 
             });
@@ -137,7 +145,7 @@ namespace TestApp
             catch (Exception ea)
             {
 
-                throw ea;
+                timer.Enabled = true;
             }
 
           
@@ -230,11 +238,13 @@ namespace TestApp
                 PreviousMessages = messages;
 
 
-                var list = DateList;
+              
 
               
                 send.Enabled = true;
                 send.SetBackgroundColor(Color.Blue);
+
+                var list = DateList;
 
             }
             catch (Exception e)
