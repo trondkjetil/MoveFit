@@ -628,7 +628,7 @@ namespace TestApp
 
                 
                 List<User> top = await Azure.getUsersFriends(MainStart.userId);
-                List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).ToList<User>();
+                List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
 
                 if (topUsers[0].UserName != "")
                 {
@@ -683,7 +683,7 @@ namespace TestApp
                 messages.Visibility = ViewStates.Visible;
               //  messages.Text = routesCreated.Text + " - " + routesNearby.Text;
                 messages.Text = routesCreated + " - " + routesNearby;
-                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_slide_in_top);
+                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
                 myAnimation.Duration = 3000;
                 messages.StartAnimation(myAnimation);
                

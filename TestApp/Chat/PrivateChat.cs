@@ -16,6 +16,7 @@ using System.Timers;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Graphics.Drawables;
+using Android.Media;
 
 namespace TestApp
 {
@@ -51,6 +52,8 @@ namespace TestApp
         public static IMenuItem itemHome;
         public static IMenuItem itemExit;
         BitmapDrawable icon;
+        NotificationManager notificationManager;
+        Notification.Builder mBuilder;
 
         static System.Timers.Timer timer; // From System.Timers
         static List<DateTime> dateTime; // Stores timer results
@@ -99,8 +102,7 @@ namespace TestApp
                 {
                     NewMessages = NewMessages;
 
-
-                    if(PreviousMessages.Count != 0 && NewMessages.Count != 0)
+                    if (PreviousMessages.Count != 0 && NewMessages.Count != 0)
                     {
                         notAnyNewMessages = PreviousMessages.LastOrDefault().Id.Equals(NewMessages.LastOrDefault().Id) || PreviousMessages.LastOrDefault().Id == NewMessages.LastOrDefault().Id;
 
@@ -120,8 +122,19 @@ namespace TestApp
                         messageLayout(message.Message, message.Sender);
 
                     }
-
-                }
+                
+                        try
+                        {
+                             mBuilder = new Notification.Builder(this)
+                            .SetDefaults(NotificationDefaults.Sound);
+                            notificationManager.Notify(0, mBuilder.Build());
+                        }
+                        catch (Exception )
+                        {
+                            
+                        }
+                    
+                    }
 
 
                     PreviousMessages = NewMessages;
@@ -189,6 +202,9 @@ namespace TestApp
            // send.SetBackgroundColor(Color.Blue);
             send.SetBackgroundColor(Color.White);
             send.Enabled = false;
+
+
+             notificationManager = (NotificationManager)this.GetSystemService(Context.NotificationService);
 
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 

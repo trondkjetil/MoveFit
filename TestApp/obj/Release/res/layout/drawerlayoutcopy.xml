@@ -1,4 +1,4 @@
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#ffffffff" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"><LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@android:color/white"><!--<RelativeLayout
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#ffffffff" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@android:color/white"><!--<RelativeLayout
                 android:id="@+id/testïng"
                 android:orientation="vertical"
                 android:layout_width="match_parent"

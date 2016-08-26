@@ -1,6 +1,5 @@
 using System;
 using Android.App;
-using Android.Content;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
@@ -10,139 +9,179 @@ using Android.Gms.Maps;
 using Android.Graphics;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
-using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
-using Android.Content.PM;
+using Android.Support.V4.View;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.Design.Widget;
+
 namespace TestApp
 {
-    [Activity(Label = "RouteOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class RouteOverview : AppCompatActivity, IOnMapReadyCallback
+    [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
+    public class RouteOverview : AppCompatActivity  //, IOnMapReadyCallback
     {
-        Intent myIntent;
+        //   Intent myIntent;
         GoogleMap mMap;
-        SupportToolbar toolbar;
+        // SupportToolbar toolbar;
 
         public static IMenuItem goBack;
         public static IMenuItem goHome;
-        public List<User> me;
-        string distanceUnit;
-        int[] unit;
-        public void OnMapReady(GoogleMap googleMap)
+       
+        public static string distanceUnit;
+        public static int[] unit;
+        public static Activity act;
+
+        public static List<Route> routes;
+        public List<Route> routeList;
+        public static List<User> me;
+        public static List<Route> myRoutes;
+
+        private Toolbar toolbar;
+        private TabLayout tabLayout;
+        private ViewPager viewPager;
+        private int[] tabIcons = {
+            Resource.Drawable.maps,
+            Resource.Drawable.rsz_running,
+             //Resource.Drawable.startFlag,
+            Resource.Drawable.test
+
+
+    };
+
+
+        private void setupViewPager(ViewPager viewPager)
         {
-            mMap = googleMap;
+            ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
+            adapter.addFragment(new StartMapFragment(), "Map");
+            //adapter.addFragment(new RouteListFragment(), "Create Routes");
+            adapter.addFragment(new RouteListFragment(), "Find Routes");
+            adapter.addFragment(new MyRoutesFragment(), "My Routes");
+            viewPager.Adapter = adapter;
         }
 
+
+        private void setupTabIcons()
+        {
+            tabLayout.GetTabAt(0).SetIcon(tabIcons[0]);
+            tabLayout.GetTabAt(1).SetIcon(tabIcons[1]);
+            tabLayout.GetTabAt(2).SetIcon(tabIcons[2]);
+           // tabLayout.GetTabAt(3).SetIcon(tabIcons[3]);
+
+        }
         protected async override void OnCreate(Bundle savedInstanceState)
         {
            // RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.routesOverview);
-
-            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-
+            act = this;
+            routes = await Azure.getRoutes();
             me = await Azure.getUserByAuthId(MainStart.userName);
+            unit = IOUtilz.LoadPreferences();
+            myRoutes = await Azure.getMyRoutes(MainStart.userId);
 
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
+            setupViewPager(viewPager);
 
-            Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
-            Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
-            Button createRoute = (Button)FindViewById(Resource.Id.createRoutes);
 
-            Typeface tf = Typeface.CreateFromAsset(Assets,
-               "english111.ttf");
-            TextView tv = (TextView)FindViewById(Resource.Id.textRoute);
-            tv.Text = "Create your own route, and earn points!";
-            tv.TextSize = 28;
-            tv.Typeface = tf;
-
-             unit = IOUtilz.LoadPreferences();
-            if (unit[1] == 0)
-            {
-                distanceUnit = " km away";
-            }
-            else
-                distanceUnit = " miles away";
-
-            MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
-            mMap = mapFrag.Map;
-
-            if (mMap != null)
-            {
-                mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
-            }
-
-            mMap.UiSettings.ZoomControlsEnabled = true;
-            mMap.UiSettings.RotateGesturesEnabled = true;
-            mMap.UiSettings.ScrollGesturesEnabled = true;
-
-            List<Route> routes = await Azure.getRoutes();
-            var test = await Azure.nearbyRoutes();
-
-            foreach (var item in routes)
-            {
-                setMarker(item);
-            }
+            tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
+            tabLayout.SetupWithViewPager(viewPager);
+            setupTabIcons();
 
           
 
-            
+         
 
 
-            myRoutes.Click += (sender, e) => {
-                myIntent = new Intent(this, typeof(UserMyRoutes));
-                StartActivity(myIntent);
+            //   toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            //   SetSupportActionBar(toolbar);
 
-            };
-            findRoute.Click += (sender, e) => {
-                myIntent = new Intent(this, typeof(UsersRoutes));
-                StartActivity(myIntent);
-            };
-            createRoute.Click += (sender, e) =>
-            {
-                myIntent = new Intent(this, typeof(CreateRoute));
-                StartActivity(myIntent);
+       
 
-            };
+          //  SupportActionBar.SetDisplayShowTitleEnabled(false);
+          //  SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            //Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
+            //Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
+            //Button createRoute = (Button)FindViewById(Resource.Id.createRoutes);
+
+            //Typeface tf = Typeface.CreateFromAsset(Assets,
+            //   "english111.ttf");
+            //TextView tv = (TextView)FindViewById(Resource.Id.textRoute);
+            //tv.Text = "Create your own route, and earn points!";
+            //tv.TextSize = 28;
+            //tv.Typeface = tf;
+
+            // unit = IOUtilz.LoadPreferences();
+            //if (unit[1] == 0)
+            //{
+            //    distanceUnit = " km away";
+            //}
+            //else
+            //    distanceUnit = " miles away";
+
+            //MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+            //mMap = mapFrag.Map;
+
+            //if (mMap != null)
+            //{
+            //    mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
+            //}
+
+            //mMap.UiSettings.ZoomControlsEnabled = true;
+            //mMap.UiSettings.RotateGesturesEnabled = true;
+            //mMap.UiSettings.ScrollGesturesEnabled = true;
+
+
+
+       
+
+
+
+            //myRoutes.Click += (sender, e) => {
+            //    //myIntent = new Intent(this, typeof(UserMyRoutes));
+            //    //StartActivity(myIntent);
+
+            //};
+            //findRoute.Click += (sender, e) => {
+            //    //myIntent = new Intent(this, typeof(UsersRoutes));
+            //    //StartActivity(myIntent);
+            //};
+            //createRoute.Click += (sender, e) =>
+            //{
+            //    //myIntent = new Intent(this, typeof(CreateRoute));
+            //    //StartActivity(myIntent);
+
+            //};
 
         }
 
-        public void setMarker(Route route)
-        {
-            //if (user.Lat == 0 && user.Lon == 0)
-            //    return;
-
-            //string[] location = loc.Location.Split(',');
-
-
-           // LatLng myPosition = new LatLng(Convert.ToInt32(location[0]), Convert.ToInt32(location[1]));
-            LatLng myPosition = new LatLng(route.Lat, route.Lon);
+     
+        //public void OnMapReady(GoogleMap googleMap)
+        //{
+        //    mMap = googleMap;
+        //}
+        //public void setMarker(Route route)
+        //{
+        //      LatLng myPosition = new LatLng(route.Lat, route.Lon);
 
 
-            //   mMap.AddMarker(new MarkerOptions()
-            //  .SetPosition(new LatLng(10,10))
-            ////  .SetSnippet("Points: " + user.Points)
-            //  .SetTitle("title")).SetIcon(image);//.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan));
+        //    float[] result = new float[1];
+        //    Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
+        //    int dist = Convert.ToInt32(result[0]);
 
-            float[] result = new float[1];
-            Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
-            int dist = Convert.ToInt32(result[0]);
-
-            if (unit[1] == 0)
-            {
-                dist = dist / 1000;
-            }
-            else
-                dist = (int) IOUtilz.ConvertKilometersToMiles(dist / 1000);
+        //    if (unit[1] == 0)
+        //    {
+        //        dist = dist / 1000;
+        //    }
+        //    else
+        //        dist = (int) IOUtilz.ConvertKilometersToMiles(dist / 1000);
                 
 
-            BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
+        //    BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
 
-            mMap.AddMarker(new MarkerOptions()
-           .SetPosition(myPosition)
-           .SetTitle(route.Name + "("+ route.Difficulty +")" )
-           .SetSnippet(dist.ToString() + distanceUnit).SetIcon(image));
+        //    mMap.AddMarker(new MarkerOptions()
+        //   .SetPosition(myPosition)
+        //   .SetTitle(route.Name + "("+ route.Difficulty +")" )
+        //   .SetSnippet(dist.ToString() + distanceUnit).SetIcon(image));
 
             //    markerOpt1 = new MarkerOptions();
             //    markerOpt1.SetPosition(myPosition);
@@ -153,66 +192,67 @@ namespace TestApp
             //    mMap.AddMarker(markerOpt1);
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        //public override bool OnCreateOptionsMenu(IMenu menu)
 
-        {
-            MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
+        //{
+        //    MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
 
-            //itemGender = menu.FindItem(Resource.Id.gender);
-            //itemAge = menu.FindItem(Resource.Id.age);
-            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
-            //itemExit = menu.FindItem(Resource.Id.exit);
-
-
-            //goHome.SetIcon(Resource.Drawable.eexit);
-            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
+        //    //itemGender = menu.FindItem(Resource.Id.gender);
+        //    //itemAge = menu.FindItem(Resource.Id.age);
+        //    //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
+        //    //itemExit = menu.FindItem(Resource.Id.exit);
 
 
-            return base.OnCreateOptionsMenu(menu);
-        }
-
-        public override void OnBackPressed()
-        {
-
-                base.OnBackPressed();
-            Finish();
-
-            }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-
-            switch (item.ItemId)
-            {
-
-                //case Resource.Id.exit:
-                //    Finish();
-                //    return true;
-
-                //case Resource.Id.back:
-                //    OnBackPressed();
-                //    return true;
-                case Android.Resource.Id.Home:// Resource.Id.back:
-                    OnBackPressed();
-                    return true;
-
-                case Resource.Id.home:
-
-                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
-                    //StartActivity(myIntent);
-
-                    OnBackPressed();
-                    Finish();
-
-                    return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-
-            }
+        //    //goHome.SetIcon(Resource.Drawable.eexit);
+        //    //goBack.SetIcon(Resource.Drawable.ic_menu_back);
 
 
-        }
+        //    return base.OnCreateOptionsMenu(menu);
+        //}
 
-    }
+        //public override void OnBackPressed()
+        //{
+
+        //        base.OnBackPressed();
+        //    Finish();
+
+        //    }
+
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
+
+        //    switch (item.ItemId)
+        //    {
+
+        //        //case Resource.Id.exit:
+        //        //    Finish();
+        //        //    return true;
+
+        //        //case Resource.Id.back:
+        //        //    OnBackPressed();
+        //        //    return true;
+        //        case Android.Resource.Id.Home:// Resource.Id.back:
+        //            OnBackPressed();
+        //            return true;
+
+        //        case Resource.Id.home:
+
+        //            //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
+        //            //StartActivity(myIntent);
+
+        //            OnBackPressed();
+        //            Finish();
+
+        //            return true;
+
+        //        default:
+        //            return base.OnOptionsItemSelected(item);
+
+        //    }
+
+
+        //}
+
+      
+    
 }

@@ -33,7 +33,7 @@
   <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <application android:label="TestApp" android:icon="@drawable/tt" android:largeHeap="true" android:debuggable="true" android:name="android.app.Application" android:allowBackup="true">
+  <application android:label="MoveFit" android:allowBackup="true" android:icon="@drawable/tt" android:largeHeap="true" android:theme="@style/PrimaryThemes" android:debuggable="true" android:name="android.app.Application">
     <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="975161479232108" />
@@ -56,7 +56,7 @@
     </receiver>
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.PushHandlerService" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
-    <activity android:label="RouteOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
+    <activity android:label="RouteOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
     <activity android:alwaysRetainTaskState="true" android:label="Route Creator" android:launchMode="singleInstance" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />

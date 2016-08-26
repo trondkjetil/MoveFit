@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="info.androidhive.materialtabs.fragments.OneFragment"
+    android:background="@android:color/background_light">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_container">
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+    </RelativeLayout>
+    <TextView
+        android:text="Get active!"
+        android:layout_below="@+id/map_container"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textRoute"
+        android:layout_centerHorizontal="true" />
+  <ImageButton
+        android:src="@drawable/startFlag"
+        android:background="@null"
+        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+        android:layout_below="@+id/textRoute"
+       android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/createRoute" />
+    <ImageButton
+        android:src="@drawable/ic_menu_home"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/createRoute"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/myRoutes" />
+</RelativeLayout>

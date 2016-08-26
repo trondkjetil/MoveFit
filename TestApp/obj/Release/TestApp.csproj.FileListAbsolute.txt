@@ -45,6 +45,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\settings.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\dialogwelcome.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\dialogendroutecreationstats.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\drawerlayoutcopy.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\routesoverviewcopy.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\tt.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\edit_text_style.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\anim\slide_up.xml
@@ -170,7 +171,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\rsz_flag.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Microsoft.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Mono.Android.dll.mdb
@@ -207,5 +207,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Serv
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb
