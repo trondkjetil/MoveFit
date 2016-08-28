@@ -47,6 +47,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:gravity="right"
                     android:id="@+id/textView2"
                     android:textColor="#ff000000" />
@@ -58,6 +59,7 @@
                     android:textOn="On"
                     android:textOff="Off"
                     android:id="@+id/switch1"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="30dp" />
                 <TextView

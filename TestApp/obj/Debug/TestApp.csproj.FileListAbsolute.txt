@@ -215,5 +215,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Desi
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\compass_basee.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startmapfragment.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usersfriendsmessages.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startmap.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

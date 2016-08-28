@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 using Android.Support.V4.View;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
+using Android.Content;
 
 namespace TestApp
 {
@@ -35,7 +36,7 @@ namespace TestApp
         public static List<User> me;
         public static List<Route> myRoutes;
 
-        private Toolbar toolbar;
+        private SupportToolbar toolbar;
         private TabLayout tabLayout;
         private ViewPager viewPager;
         private int[] tabIcons = {
@@ -78,6 +79,12 @@ namespace TestApp
             unit = IOUtilz.LoadPreferences();
             myRoutes = await Azure.getMyRoutes(MainStart.userId);
 
+
+            //toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
+            //SetSupportActionBar(toolbar);
+            //SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            //SupportActionBar.SetDisplayShowHomeEnabled(false);
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
 
@@ -86,18 +93,8 @@ namespace TestApp
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
 
-          
 
-         
-
-
-            //   toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
-            //   SetSupportActionBar(toolbar);
-
-       
-
-          //  SupportActionBar.SetDisplayShowTitleEnabled(false);
-          //  SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+        
 
             //Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
             //Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
@@ -130,12 +127,6 @@ namespace TestApp
             //mMap.UiSettings.RotateGesturesEnabled = true;
             //mMap.UiSettings.ScrollGesturesEnabled = true;
 
-
-
-       
-
-
-
             //myRoutes.Click += (sender, e) => {
             //    //myIntent = new Intent(this, typeof(UserMyRoutes));
             //    //StartActivity(myIntent);
@@ -153,8 +144,33 @@ namespace TestApp
             //};
 
         }
+        public override bool OnCreateOptionsMenu(IMenu menu)
 
-     
+        {
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.home:
+
+                    Finish();
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+
+            }
+
+
+        }
+
+
         //public void OnMapReady(GoogleMap googleMap)
         //{
         //    mMap = googleMap;
@@ -174,7 +190,7 @@ namespace TestApp
         //    }
         //    else
         //        dist = (int) IOUtilz.ConvertKilometersToMiles(dist / 1000);
-                
+
 
         //    BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
 
@@ -183,76 +199,16 @@ namespace TestApp
         //   .SetTitle(route.Name + "("+ route.Difficulty +")" )
         //   .SetSnippet(dist.ToString() + distanceUnit).SetIcon(image));
 
-            //    markerOpt1 = new MarkerOptions();
-            //    markerOpt1.SetPosition(myPosition);
-            //    markerOpt1.SetTitle(user.UserName + " Position");
-            //    markerOpt1.SetSnippet("Points: " + user.Points);
-            ////  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
-            //    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
-            //    mMap.AddMarker(markerOpt1);
-        }
-
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-
-        //{
-        //    MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
-
-        //    //itemGender = menu.FindItem(Resource.Id.gender);
-        //    //itemAge = menu.FindItem(Resource.Id.age);
-        //    //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
-        //    //itemExit = menu.FindItem(Resource.Id.exit);
+        //    markerOpt1 = new MarkerOptions();
+        //    markerOpt1.SetPosition(myPosition);
+        //    markerOpt1.SetTitle(user.UserName + " Position");
+        //    markerOpt1.SetSnippet("Points: " + user.Points);
+        ////  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+        //    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
+        //    mMap.AddMarker(markerOpt1);
+    }
 
 
-        //    //goHome.SetIcon(Resource.Drawable.eexit);
-        //    //goBack.SetIcon(Resource.Drawable.ic_menu_back);
 
 
-        //    return base.OnCreateOptionsMenu(menu);
-        //}
-
-        //public override void OnBackPressed()
-        //{
-
-        //        base.OnBackPressed();
-        //    Finish();
-
-        //    }
-
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-
-        //    switch (item.ItemId)
-        //    {
-
-        //        //case Resource.Id.exit:
-        //        //    Finish();
-        //        //    return true;
-
-        //        //case Resource.Id.back:
-        //        //    OnBackPressed();
-        //        //    return true;
-        //        case Android.Resource.Id.Home:// Resource.Id.back:
-        //            OnBackPressed();
-        //            return true;
-
-        //        case Resource.Id.home:
-
-        //            //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
-        //            //StartActivity(myIntent);
-
-        //            OnBackPressed();
-        //            Finish();
-
-        //            return true;
-
-        //        default:
-        //            return base.OnOptionsItemSelected(item);
-
-        //    }
-
-
-        //}
-
-      
-    
 }

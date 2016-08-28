@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:orientation="vertical">
-    <!--<android.support.v7.widget.Toolbar 
+<!--<android.support.v7.widget.Toolbar 
       xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/tbar"
         android:layout_width="match_parent"
@@ -13,19 +13,23 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />-->
-  <android.support.v7.widget.Toolbar
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/tbar"
-android:layout_width="match_parent"
-android:layout_height="55dp"
-android:background="#10a1ff"
-android:title="HomeTest"
-/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?android:attr/colorPrimary"
+        android:title="" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleUserRoutes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
+  <TextView
+     android:text ="Nothing found!"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+        
+    />
 <!--<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/userRoutes"
     android:layout_width="match_parent"

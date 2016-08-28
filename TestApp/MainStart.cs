@@ -25,10 +25,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Android.Gms.Maps.GoogleMap;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
-
-
-
-
 using Gcm.Client;
 using TestApp.Push;
 using System.Net;
@@ -40,7 +36,7 @@ namespace TestApp
 {
 
 
-    [Activity(Label = "MainMenu", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "MainMenu", Theme = "@style/MyTheme", Icon = "@drawable/test", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainStart : AppCompatActivity, ILocationListener
     {
         public static MainStart instance;
@@ -221,74 +217,29 @@ namespace TestApp
 
             dialogOpen = false;
 
-             RegisterWithGCM();
-
-  
+         //    RegisterWithGCM(); 
             changed = false;
             user = null;
             chk = false;
-
+            isOnline = false;
             waitingUpload = null;
             userInstanceOne = null;
 
-            isOnline = false;
-           
             StartService(new Intent(this, typeof(SimpleService)));
-            // connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
-
+          
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
-         // mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
-
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
-            //TextView routesNearby = FindViewById<TextView>(Resource.Id.routesNearby);
-            //TextView routesCreated = FindViewById<TextView>(Resource.Id.textView1);
-            //TextView friends = FindViewById<TextView>(Resource.Id.friends);
-            //TextView totalDistance = FindViewById<TextView>(Resource.Id.distance);
-
-            //points = FindViewById<TextView>(Resource.Id.points);
-
-        
-        TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
-
-
             Typeface tf = Typeface.CreateFromAsset(Assets,
-              "english111.ttf");
+                 "english111.ttf");
+            TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
+            appTitle.TextSize = 38;
+            appTitle.Typeface = tf;
             // s = new SpannableString("MoveFit");
             // s.SetSpan(tf, 0, s.Length(), SpanTypes.ExclusiveExclusive
             //);
-
-
-           // appTitle.SetTextColor(Color.Black);
-            appTitle.TextSize = 38;
-            appTitle.Typeface = tf;
-
-
-
-            //routesCreated.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //routesCreated.TextSize = 15;
-
-            //friends.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //friends.TextSize = 15;
-
-            //totalDistance.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //totalDistance.TextSize = 15;
-
-            //points.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //points.TextSize = 15;
-
-            //routesNearby.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-            //routesNearby.TextSize = 15;
-            
-
-            //totalDistance.Text = "Total Distance Moved: ";
-            //points.Text = "Score: ";
-            //friends.Text = "Friends Online: ";
-            //routesNearby.Text = "Routes nearby: ";
-            //routesCreated.Text = "Routes Created: ";
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
@@ -298,13 +249,9 @@ namespace TestApp
             TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
             TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
-
- 
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
             messages.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
             messages.TextSize = 24;
-
-
 
             ImageButton distButton = FindViewById<ImageButton>(Resource.Id.distanceButton);
             ImageButton routeButton = FindViewById<ImageButton>(Resource.Id.routeButton);
@@ -353,13 +300,9 @@ namespace TestApp
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_social_info, "Social"));
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "Settings"));
 
-            //mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
-            //mLeftDrawer.Adapter = mLeftAdapter;
-
+          
             NavDrawerAdapter customAdapter = new NavDrawerAdapter(this, Resource.Layout.leftDrawerAdapter, data );
             mLeftDrawer.Adapter = customAdapter;
-
-         
 
             mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) =>
             {
@@ -391,27 +334,10 @@ namespace TestApp
                 else if (e.Position == 0)
                 {
 
-                    //myIntent = new Intent(this, typeof(ChatRoom));
-                    //StartActivity(myIntent);
-
-
-
                     try
                     {
 
-
-
                         User instance = null;
-
-                        //if (user.Count != 0 || userInstanceOne != null)
-                        //{
-                        //    instance = user.FirstOrDefault();
-
-                        //    if (instance == null)
-                        //        instance = userInstanceOne;
-
-                        //}
-
                         var list = await Azure.getUserByAuthId(auth0UserId);
                         instance = list.FirstOrDefault();
 
@@ -439,9 +365,9 @@ namespace TestApp
                         }
 
                     }
-                    catch (Exception a)
+                    catch (Exception)
                     {
-                        throw a;
+                       
 
                     }
 
@@ -450,11 +376,8 @@ namespace TestApp
             };
 
 
-
-
                 var RightAdapter = new RightDrawer(this);
-            //   var contactsListView = FindViewById<ListView>(Resource.Id.ContactsListView);
-            mRightDrawer.Adapter = RightAdapter;
+                mRightDrawer.Adapter = RightAdapter;
 
 
 
@@ -533,26 +456,11 @@ namespace TestApp
                 {
 
 
-                    //points.Text = "Score: 0";
-                    //friends.Text = "Friends Online: 0";
-                    //routesNearby.Text = "Routes Nearby: 0";
-                    //routesCreated.Text = "Routes Created 0";
-
 
                     FragmentTransaction firstWelcome = FragmentManager.BeginTransaction();
                     DialogWelcome welcome= new DialogWelcome();
                     welcome.DialogClosed += OnDialogClosedWelcome;
                     welcome.Show(firstWelcome, "Welcome");
-
-
-
-
-                    //FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                    //DialogUserInfo newDialog = new DialogUserInfo();
-                    //newDialog.DialogClosed += OnDialogClosed;
-                    //newDialog.Show(transaction, "User Info");
-                    //waitingUpload = await Azure.AddUser();
-                    //Toast.MakeText(this, "User Added!", ToastLength.Short).Show();
 
                   
                 }
@@ -622,7 +530,9 @@ namespace TestApp
 
 
             initPersonTracker();
-            
+
+
+            TextView titleTopFriends = FindViewById<TextView>(Resource.Id.pers11);
             try
             {
 
@@ -630,26 +540,36 @@ namespace TestApp
                 List<User> top = await Azure.getUsersFriends(MainStart.userId);
                 List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
 
-                if (topUsers[0].UserName != "")
+                if(topUsers.Count != 0)
                 {
-                    pers1.Text = "#1 "+topUsers[0].UserName; 
-                    pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+                    titleTopFriends.Text = "Top active friends";
+                    titleTopFriends.TextSize = 19;
+
+
+                    if (topUsers[0].UserName != "")
+                    {
+                        pers1.Text = "#1 " + topUsers[0].UserName;
+                        pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+                    }
+
+
+
+                    if (topUsers[1].UserName != "")
+                    {
+                        pers2.Text = "#2 " + topUsers[1].UserName;
+                        pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
+                    }
+
+
+                    if (topUsers[2].UserName != "")
+                    {
+                        pers3.Text = "#3 " + topUsers[2].UserName;  //"Test friend3 Score: 0";
+                        pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+                    }
+
                 }
-                
+              
 
-
-                if (topUsers[1].UserName != "")
-                {
-                    pers2.Text = "#2 " +topUsers[1].UserName; 
-                    pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
-                }
-
-
-                if (topUsers[2].UserName != "")
-                {
-                    pers3.Text = "#3 "+topUsers[2].UserName;  //"Test friend3 Score: 0";
-                    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
-                }
 
 
             }
@@ -1427,7 +1347,7 @@ namespace TestApp
                 _contactList.Add(new Contact
                 {
                     Id = 123,
-                    DisplayName = "1"
+                    DisplayName = ""
                 });
             }
 
@@ -1464,7 +1384,7 @@ namespace TestApp
             {
                 var view = convertView ?? activityRightDrawer.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
-                contactName.Text = _contactList[position].DisplayName;
+                contactName.Text = "";
 
                 MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
                 mMap = mapFrag.Map;

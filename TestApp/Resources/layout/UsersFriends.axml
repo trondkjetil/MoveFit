@@ -3,6 +3,12 @@
     android:id="@+id/userFriends"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?android:attr/colorPrimary"
+        android:title="HomeTest" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleUserFriends"
         android:layout_width="match_parent"

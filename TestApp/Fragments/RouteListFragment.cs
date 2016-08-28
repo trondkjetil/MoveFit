@@ -29,32 +29,46 @@ namespace TestApp
         public List<Route> routeList;
         public static List<User> me;
 
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+           
+            base.OnCreate(savedInstanceState);
+            HasOptionsMenu = true;
+           
+        }
         public override  View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.UsersRoutes, container, false);
 
-
+           
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this.Activity);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-           
+
             toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
             AppCompatActivity activity = (AppCompatActivity)this.Activity;
             activity.SetSupportActionBar(toolbar);
-            toolbar.Title = "Test";
-            activity.SupportActionBar.SetDisplayShowTitleEnabled(true);
-            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            activity.SupportActionBar.SetDisplayShowHomeEnabled(true);
+            activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
+            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
 
 
             routeList = RouteOverview.routes;
             me = RouteOverview.me;
-            mAdapter = new UsersRoutesAdapterFragment(RouteOverview.routes, mRecyclerView, this.Activity, RouteOverview.me);
-            mRecyclerView.SetAdapter(mAdapter);
+            if (routeList.Count == 0)
+            {
+                IOUtilz.notFound(this.Activity);
+            }
+            else
+            {
 
-
+                mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me);
+                mRecyclerView.SetAdapter(mAdapter);
+            }
+         //   HasOptionsMenu = true;
 
             return view;
 
@@ -65,6 +79,17 @@ namespace TestApp
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 
         {
+            menu.Clear();
+            try
+            {
+               // 
+            }
+            catch (Exception)
+            {
+
+                
+            }
+           
             inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
 
              base.OnCreateOptionsMenu(menu, inflater);
@@ -177,7 +202,7 @@ namespace TestApp
             ////Refresh the listview
             //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
             //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
 
@@ -193,7 +218,7 @@ namespace TestApp
             ////Refresh the listview
             //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
             //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
 
@@ -209,7 +234,7 @@ namespace TestApp
             ////Refresh the listview
             //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
             //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
 
@@ -226,7 +251,7 @@ namespace TestApp
             ////Refresh the listview
             //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
             //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity   , me);
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity   , me);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
 

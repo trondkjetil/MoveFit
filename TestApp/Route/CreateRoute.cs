@@ -75,7 +75,8 @@ namespace TestApp
         public int typeToDraw;
         public static Bitmap snapShot;
         TextView selectRouteType;
-     public static int score;
+        public static int score;
+        public int mypoints;
 
         ImageButton startCreate;
                 ImageButton stopCreate;
@@ -389,10 +390,13 @@ namespace TestApp
 
             drawRoute(typeToDraw );
             dist = calculateDistance();
+
+            if (dist == 0)
+                dist = getDistanceForRoute(startLocation, endLocation);
+                mypoints = MyPoints.calculatePoints(routeType, (int)dist);
+
+
             startDialogNameRoute();
-
-
-        
 
 
             firstRun = true;
@@ -476,11 +480,11 @@ namespace TestApp
                 
                 
                 
-                if (dist == 0)
-                    dist = getDistanceForRoute(startLocation, endLocation);
+                //if (dist == 0)
+                //    dist = getDistanceForRoute(startLocation, endLocation);
 
 
-                int mypoints = MyPoints.calculatePoints(routeType, (int)dist);
+                // mypoints = MyPoints.calculatePoints(routeType, (int)dist);
                 var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
                 score = mypoints;
                 statusImage.SetImageResource(Resource.Drawable.orange);

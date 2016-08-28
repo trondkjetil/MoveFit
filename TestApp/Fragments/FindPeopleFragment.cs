@@ -19,16 +19,22 @@ using System.Threading;
 namespace TestApp
 {
 
-    public class MyRoutesFragment : Fragment
+    public class FindpeopleFragment : Fragment
     {
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
         SwipeRefreshLayout mSwipeRefreshLayout;
         public SupportToolbar toolbar;
-        public List<Route> routeList;
+        public List<User> myFriends;
         public static List<User> me;
+        public override void OnCreate(Bundle savedInstanceState)
+        {
 
+            base.OnCreate(savedInstanceState);
+            HasOptionsMenu = true;
+
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.UsersRoutes, container, false);
@@ -42,12 +48,21 @@ namespace TestApp
             AppCompatActivity activity = (AppCompatActivity)this.Activity;
             activity.SetSupportActionBar(toolbar);
             activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            
-            routeList = RouteOverview.myRoutes;
-            me = RouteOverview.me;
-            mAdapter = new UsersRoutesAdapterFragment(RouteOverview.myRoutes, mRecyclerView, this.Activity, RouteOverview.me);
-            mRecyclerView.SetAdapter(mAdapter);
+            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+
+            myFriends = FriendsOverview.users;
+            me = FriendsOverview.me;
+          
+            if (myFriends.Count == 0)
+            {
+                IOUtilz.notFound(this.Activity);
+            }else
+            {
+                mAdapter =  new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+            }
+          
 
             return view;
 
@@ -56,6 +71,10 @@ namespace TestApp
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 
         {
+           
+              menu.Clear();
+          
+
             inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
 
             base.OnCreateOptionsMenu(menu, inflater);
@@ -69,34 +88,9 @@ namespace TestApp
             switch (item.ItemId)
             {
 
+                   case Resource.Id.home:
 
-                //case Resource.Id.type:
-                //    sortType();
-                //    return true;
-
-                //case Resource.Id.rating:
-                //    sortRating();
-                //    return true;
-
-                //case Resource.Id.nearbyRoutes:
-                //    sortDistance();
-                //    return true;
-
-                //case Resource.Id.difficulty:
-                //    sortDifficulty();
-                //    return true;
-
-
-                //case Resource.Id.back:
-                //    OnBackPressed();
-                //    return true;
-                case Android.Resource.Id.Home:// Resource.Id.back:
-                    this.Activity.OnBackPressed();
-                    return true;
-
-                case Resource.Id.home:
-
-                    this.Activity.OnBackPressed();
+                    this.Activity.Finish();
 
 
                     return true;
@@ -111,7 +105,7 @@ namespace TestApp
         }
 
 
-
+      
         void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
         {
             BackgroundWorker worker = new BackgroundWorker();
@@ -128,7 +122,11 @@ namespace TestApp
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             //Will run on separate thread
-            Thread.Sleep(2000);
+            //  Thread.Sleep(2000);
+            myFriends =  FriendsOverview.updateFriendList().Result;
+              mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, RouteOverview.me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
         }
 
         public override void OnResume()

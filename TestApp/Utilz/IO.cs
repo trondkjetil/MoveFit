@@ -6,6 +6,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Content;
 using Android.App;
+using Android.Widget;
 
 namespace TestApp
 {
@@ -187,7 +188,21 @@ namespace TestApp
 
             return result;
         }
+        public static TextView notFound(Activity act)
+        {
 
+
+            TextView txt = new TextView(act);
+            txt.Text = "Could not find any!";
+            txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+            txt.SetPadding(10, 10, 10, 10);
+            txt.Gravity = Android.Views.GravityFlags.CenterVertical;
+            txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
+            txt.SetBackgroundColor(Color.White);
+            txt.SetTextColor(Color.Black);
+            txt.TextSize = 20;
+            return txt;
+        }
         public static void SavePreferences(int unit, int distance, int interval)
         {
             var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);

@@ -62,7 +62,7 @@ namespace TestApp
 
 
 
-            Log.Info(MyBroadcastReceiver.TAG, "GCM Message Received!");
+           
 
             var msg = new StringBuilder();
 
@@ -75,11 +75,11 @@ namespace TestApp
             string messageText = intent.Extras.GetString("message");
             if (!string.IsNullOrEmpty(messageText))
             {
-                createNotification("New hub message!", messageText);
+            //    createNotification("New hub message!", messageText);
             }
             else
             {
-                createNotification("Unknown message details", msg.ToString());
+             //   createNotification("Unknown message details", msg.ToString());
             }
         }
 
