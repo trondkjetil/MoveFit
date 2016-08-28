@@ -219,7 +219,6 @@
     <Compile Include="Chat\PrivateChat.cs" />
     <Compile Include="Chat\ChatRoom.cs" />
     <Compile Include="Chat\SetUp.cs" />
-    <Compile Include="Social\FriendsOverviews.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserFriendRequestAdapter.cs" />
     <Compile Include="Social\UsersNearbyAdapter.cs" />

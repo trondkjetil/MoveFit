@@ -74,11 +74,10 @@ namespace TestApp
             //   
             //}
             menu.Clear();
-            inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
+            inflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
 
             base.OnCreateOptionsMenu(menu, inflater);
-
-          
+ 
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -87,7 +86,22 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                   case Resource.Id.home:
+                case Resource.Id.online:
+                    showOnline();
+                    return true;
+
+                case Resource.Id.male:
+                    showMale();
+                    return true;
+
+                case Resource.Id.female:
+                    showFemale();
+                    return true;
+
+                case Resource.Id.all:
+                    showAll();
+                    return true;
+                case Resource.Id.home:
 
                     this.Activity.Finish();
 
@@ -103,8 +117,65 @@ namespace TestApp
 
         }
 
+        void showAll()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in myFriends
+                             orderby user.Points
+                             select user).ToList<User>();
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
 
-      
+        }
+        void showOnline()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in myFriends
+                             where user.Online == true
+                             select user).ToList<User>();
+
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
+
+
+        void showMale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in myFriends
+                             where user.Sex != "Female"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+
+        }
+        void showFemale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in myFriends
+                             where user.Sex != "Male"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
         void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
         {
             BackgroundWorker worker = new BackgroundWorker();

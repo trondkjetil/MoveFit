@@ -20,9 +20,7 @@ namespace TestApp
     [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
     public class RouteOverview : AppCompatActivity  //, IOnMapReadyCallback
     {
-        //   Intent myIntent;
-        GoogleMap mMap;
-        // SupportToolbar toolbar;
+     
 
         public static IMenuItem goBack;
         public static IMenuItem goHome;
@@ -75,16 +73,13 @@ namespace TestApp
             SetContentView(Resource.Layout.routesOverview);
             act = this;
             routes = await Azure.getRoutes();
-            me = await Azure.getUserByAuthId(MainStart.userName);
+            me = new List<User>();
+            me.Add(MainStart.userInstanceOne);
             unit = IOUtilz.LoadPreferences();
             myRoutes = await Azure.getMyRoutes(MainStart.userId);
 
 
-            //toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //SetSupportActionBar(toolbar);
-            //SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //SupportActionBar.SetDisplayShowHomeEnabled(false);
+          
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
 

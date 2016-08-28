@@ -1,4 +1,4 @@
-<menu tools:context=".RouteOverview" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"><!--'m not sure if you can do this with onCreateOptionsMenu(). I think your better bet will be onPrepareOptionsMenu().
+<menu tools:context=".RouteOverview" xmlns:tools="http://schemas.android.com/tools" xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><!--'m not sure if you can do this with onCreateOptionsMenu(). I think your better bet will be onPrepareOptionsMenu().
 
   You can force Android to refresh the options menu by simply writing getActivity().invalidateOptionsMenu() in Fragment's onResume().
 
