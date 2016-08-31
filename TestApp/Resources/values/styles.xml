@@ -15,12 +15,7 @@
     <item name="android:background">@drawable/my_rectangle</item>
   </style>
   
-  
-  
-  
-  
-  
-  
+
   
 <!--This is style for the dialog fragment. It displays the animation for sliding up, and right.-->
     <style name="dialog_animation">

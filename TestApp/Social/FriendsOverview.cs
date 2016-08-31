@@ -15,15 +15,16 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
 using Android.Content;
 using System.Threading.Tasks;
-
+using Android.Support.V7.Widget;
+using System.Linq;
 namespace TestApp
 {
     [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
     public class FriendsOverview : AppCompatActivity  //, IOnMapReadyCallback
     {
-        //   Intent myIntent;
-        GoogleMap mMap;
-        // SupportToolbar toolbar;
+       
+       
+        SupportToolbar toolbar;
 
         public static IMenuItem goBack;
         public static IMenuItem goHome;
@@ -37,21 +38,25 @@ namespace TestApp
         public static List<User> me;
         public static List<User> users;
 
-        private SupportToolbar toolbar;
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
+        private RecyclerView.Adapter mAdapter;
+
         private TabLayout tabLayout;
         private ViewPager viewPager;
+        ViewPagerAdapter adapter;
         private int[] tabIcons = {
             Resource.Drawable.maps,
             Resource.Drawable.perm_group_social_info,
             Resource.Drawable.test,
             Resource.Drawable.ic_menu_allfriends
+ };
 
 
-    };
 
         private void setupViewPager(ViewPager viewPager)
         {
-            ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
+            adapter = new ViewPagerAdapter(SupportFragmentManager);
             adapter.addFragment(new StartMapFragment(), "Map");
             adapter.addFragment(new FindpeopleFragment(), "Nearby");
             adapter.addFragment(new MyFriendsFragment(), "Friends");
@@ -93,11 +98,11 @@ namespace TestApp
             users = await Azure.getPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
 
-            //toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //SetSupportActionBar(toolbar);
-            //SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //SupportActionBar.SetDisplayShowHomeEnabled(false);
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowHomeEnabled(true);
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
 
@@ -106,17 +111,16 @@ namespace TestApp
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
 
-
-        
-
-         
+            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
 
         }
+
         public override bool OnCreateOptionsMenu(IMenu menu)
-
         {
-            MenuInflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
 
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -125,12 +129,25 @@ namespace TestApp
 
             switch (item.ItemId)
             {
-                case Resource.Id.home:
 
-                    Finish();
+                case Resource.Id.online:
+                    showOnline();
+                    return true;
 
+                case Resource.Id.male:
+                    showMale();
+                    return true;
 
+                case Resource.Id.female:
+                    showFemale();
+                    return true;
 
+                case Resource.Id.all:
+                    showAll();
+                    return true;
+
+                case Android.Resource.Id.Home:
+                   OnBackPressed();
                     return true;
 
                 default:
@@ -138,11 +155,117 @@ namespace TestApp
 
             }
 
+        }
+
+        public int checkFragment()
+        {
+
+
+            //Doesnt work
+            int tall = 0;
+            var current = viewPager.CurrentItem;
+
+            if (adapter.GetItemPosition(1).Equals(current) || adapter.GetItemPosition(1) == current)
+            {
+                tall = 1;
+            }
+            else if (adapter.GetItemPosition(2).Equals(current) || adapter.GetItemPosition(1) == current)
+            {
+                tall = 2;
+            }
+            else if (adapter.GetItemPosition(3).Equals(current) || adapter.GetItemPosition(1) == current)
+            {
+                tall = 3;
+            }
+            else
+                tall = 1;
+
+            return tall;
+        }
+
+        void showAll()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in friendRequests
+                             orderby user.Points
+                             select user).ToList<User>();
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+        }
+        void showOnline()
+        {
+            List<User> orderedRoutes;
+            if (checkFragment() == 1)
+            {
+                
+                orderedRoutes = (from user in users
+                                 where user.Online == true
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }else if(checkFragment() == 2)
+            {
+                orderedRoutes = (from user in myFriends
+                                 where user.Online == true
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter,me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
+            else if (checkFragment() == 3)
+            {
+                orderedRoutes = (from user in friendRequests
+                                 where user.Online == true
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
+
 
         }
 
 
-    
+
+
+        void showMale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in friendRequests
+                             where user.Sex != "Female"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+
+        }
+        void showFemale()
+        {
+            List<User> orderedRoutes;
+            orderedRoutes = (from user in friendRequests
+                             where user.Sex != "Male"
+                             orderby user.Sex
+                             select user).ToList<User>();
+
+            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+
+        }
+
+
+
     }
 
 

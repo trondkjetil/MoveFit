@@ -39,7 +39,7 @@ namespace TestApp
         }
         public override  View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.UsersRoutes, container, false);
+            var view = inflater.Inflate(Resource.Layout.FragmentRecycleView, container, false);
 
            
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
@@ -48,13 +48,14 @@ namespace TestApp
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
 
-            toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            activity.SetSupportActionBar(toolbar);
-            activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
+            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
+            //activity.SetSupportActionBar(toolbar);
+            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
 
+            //toolbar.Visibility = ViewStates.Invisible;
 
             routeList = RouteOverview.routes;
             me = RouteOverview.me;
@@ -68,7 +69,7 @@ namespace TestApp
                 mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me);
                 mRecyclerView.SetAdapter(mAdapter);
             }
-         //   HasOptionsMenu = true;
+       
 
             return view;
 
@@ -76,71 +77,63 @@ namespace TestApp
 
 
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        //public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 
-        {
-            menu.Clear();
-            try
-            {
-               // 
-            }
-            catch (Exception)
-            {
-
-                
-            }
+        //{
+        //    menu.Clear();
+       
            
-            inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
+        //    inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
 
-             base.OnCreateOptionsMenu(menu, inflater);
-        }
+        //     base.OnCreateOptionsMenu(menu, inflater);
+        //}
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
 
-            switch (item.ItemId)
-            {
-
-
-                case Resource.Id.type:
-                    sortType();
-                    return true;
-
-                case Resource.Id.rating:
-                    sortRating();
-                    return true;
-
-                case Resource.Id.nearbyRoutes:
-                    sortDistance();
-                    return true;
-
-                case Resource.Id.difficulty:
-                    sortDifficulty();
-                    return true;
+        //    switch (item.ItemId)
+        //    {
 
 
-                //case Resource.Id.back:
-                //    OnBackPressed();
-                //    return true;
-                case Android.Resource.Id.Home:// Resource.Id.back:
-                    this.Activity.OnBackPressed();
-                    return true;
+        //        //case Resource.Id.type:
+        //        //    sortType();
+        //        //    return true;
 
-                case Resource.Id.home:
+        //        //case Resource.Id.rating:
+        //        //    sortRating();
+        //        //    return true;
 
-                    this.Activity.OnBackPressed();
+        //        //case Resource.Id.nearbyRoutes:
+        //        //    sortDistance();
+        //        //    return true;
 
-
-                    return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-
-            }
+        //        //case Resource.Id.difficulty:
+        //        //    sortDifficulty();
+        //        //    return true;
 
 
+        //        //case Resource.Id.back:
+        //        //    OnBackPressed();
+        //        //    return true;
+        //        case Android.Resource.Id.Home:// Resource.Id.back:
+        //            this.Activity.OnBackPressed();
+        //            return true;
 
-        }
+        //        case Resource.Id.home:
+
+        //            this.Activity.OnBackPressed();
+
+
+        //            return true;
+
+        //        default:
+        //            return base.OnOptionsItemSelected(item);
+
+        //    }
+
+
+
+        //}
 
       
 
@@ -192,71 +185,71 @@ namespace TestApp
 
 
 
-        void sortRating()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Review
-                             select route).ToList<Route>();
+        //void sortRating()
+        //{
+        //    List<Route> orderedRoutes;
+        //    orderedRoutes = (from route in routeList
+        //                     orderby route.Review
+        //                     select route).ToList<Route>();
 
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
-        void sortDistance()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Distance
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+        //    ////Refresh the listview
+        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+        //    //mListView.Adapter = mAdapter;
+        //    mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
 
 
-        }
-        void sortDifficulty()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Difficulty
-                             select route).ToList<Route>();
+        //}
+        //void sortDistance()
+        //{
+        //    List<Route> orderedRoutes;
+        //    orderedRoutes = (from route in routeList
+        //                     orderby route.Distance
+        //                     select route).ToList<Route>();
 
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
-
-        void sortType()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.RouteType
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity   , me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+        //    ////Refresh the listview
+        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+        //    //mListView.Adapter = mAdapter;
+        //    mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
 
 
-        }
+        //}
+        //void sortDifficulty()
+        //{
+        //    List<Route> orderedRoutes;
+        //    orderedRoutes = (from route in routeList
+        //                     orderby route.Difficulty
+        //                     select route).ToList<Route>();
+
+        //    ////Refresh the listview
+        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+        //    //mListView.Adapter = mAdapter;
+        //    mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
+
+
+        //}
+
+        //void sortType()
+        //{
+        //    List<Route> orderedRoutes;
+        //    orderedRoutes = (from route in routeList
+        //                     orderby route.RouteType
+        //                     select route).ToList<Route>();
+
+        //    ////Refresh the listview
+        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+        //    //mListView.Adapter = mAdapter;
+        //    mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity   , me);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
+
+
+        //}
 
 
 

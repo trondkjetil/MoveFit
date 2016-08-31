@@ -15,23 +15,23 @@
   
   <item android:id="@+id/online"
   android:title="Show Online"
-  android:icon="@drawable/redoffline"
-  android:showAsAction="always|withText" />
+        android:text="Show Online"
+  myapp:showAsAction="never" />
   
   <item android:id="@+id/male"
     android:title="Show Males"
-    android:icon="@drawable/online"
-    android:showAsAction="always|withText" />
+     android:text="Show Males"
+    myapp:showAsAction="never" />
 
   <item android:id="@+id/female"
      android:title="Show Females"
-     android:icon="@drawable/online"
-     android:showAsAction="always|withText" />
+   android:text="Show Females"
+     myapp:showAsAction="never" />
 
   <item android:id="@+id/all"
       android:title="Show All"
-      android:icon="@drawable/online"
-      android:showAsAction="always|withText" />
+      android:text="Show All"
+      myapp:showAsAction="never" />
 
 
 </menu>

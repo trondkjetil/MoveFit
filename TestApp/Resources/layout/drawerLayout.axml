@@ -29,15 +29,15 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ff0000">
-                <TextView
+                android:background="#CC0812">
+            <TextView
                     android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/titleApp"
                     android:textColor="#ffffff"
                     android:layout_alignParentTop="true"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="18dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true" />
@@ -81,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
                     android:layout_below="@+id/titleApp">
                     <ImageButton
                         android:layout_width="wrap_content"

@@ -14,6 +14,8 @@ using Android.Support.V4.View;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
 using Android.Content;
+using System.Linq;
+using Android.Support.V7.Widget;
 
 namespace TestApp
 {
@@ -21,7 +23,6 @@ namespace TestApp
     public class RouteOverview : AppCompatActivity  //, IOnMapReadyCallback
     {
      
-
         public static IMenuItem goBack;
         public static IMenuItem goHome;
        
@@ -30,9 +31,13 @@ namespace TestApp
         public static Activity act;
 
         public static List<Route> routes;
-        public List<Route> routeList;
+        //public List<Route> routeList;
         public static List<User> me;
         public static List<Route> myRoutes;
+
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
+        private RecyclerView.Adapter mAdapter;
 
         private SupportToolbar toolbar;
         private TabLayout tabLayout;
@@ -42,8 +47,6 @@ namespace TestApp
             Resource.Drawable.rsz_running,
              //Resource.Drawable.startFlag,
             Resource.Drawable.test
-
-
     };
 
 
@@ -73,75 +76,41 @@ namespace TestApp
             SetContentView(Resource.Layout.routesOverview);
             act = this;
             routes = await Azure.getRoutes();
+           // routeList = routes;
             me = new List<User>();
             me.Add(MainStart.userInstanceOne);
             unit = IOUtilz.LoadPreferences();
             myRoutes = await Azure.getMyRoutes(MainStart.userId);
+           
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.tools);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowHomeEnabled(true);
 
-
-          
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
-
 
             tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
 
+            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
 
-        
-
-            //Button myRoutes = (Button)FindViewById(Resource.Id.myRoutes);
-            //Button findRoute = (Button)FindViewById(Resource.Id.findRoutes);
-            //Button createRoute = (Button)FindViewById(Resource.Id.createRoutes);
-
-            //Typeface tf = Typeface.CreateFromAsset(Assets,
-            //   "english111.ttf");
-            //TextView tv = (TextView)FindViewById(Resource.Id.textRoute);
-            //tv.Text = "Create your own route, and earn points!";
-            //tv.TextSize = 28;
-            //tv.Typeface = tf;
-
-            // unit = IOUtilz.LoadPreferences();
-            //if (unit[1] == 0)
-            //{
-            //    distanceUnit = " km away";
-            //}
-            //else
-            //    distanceUnit = " miles away";
-
-            //MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
-            //mMap = mapFrag.Map;
-
-            //if (mMap != null)
-            //{
-            //    mMap.MapType = GoogleMap.MapTypeTerrain;  // The GoogleMap object is ready to go.
-            //}
-
-            //mMap.UiSettings.ZoomControlsEnabled = true;
-            //mMap.UiSettings.RotateGesturesEnabled = true;
-            //mMap.UiSettings.ScrollGesturesEnabled = true;
-
-            //myRoutes.Click += (sender, e) => {
-            //    //myIntent = new Intent(this, typeof(UserMyRoutes));
-            //    //StartActivity(myIntent);
-
-            //};
-            //findRoute.Click += (sender, e) => {
-            //    //myIntent = new Intent(this, typeof(UsersRoutes));
-            //    //StartActivity(myIntent);
-            //};
-            //createRoute.Click += (sender, e) =>
-            //{
-            //    //myIntent = new Intent(this, typeof(CreateRoute));
-            //    //StartActivity(myIntent);
-
-            //};
 
         }
-        public override bool OnCreateOptionsMenu(IMenu menu)
 
+        public override bool OnPrepareOptionsMenu(IMenu menu)
         {
+            menu.Clear();
+            MenuInflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+           
             MenuInflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -152,55 +121,95 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                case Resource.Id.home:
-
-                    Finish();
+                case Resource.Id.type:
+                    sortType();
                     return true;
+
+                case Resource.Id.rating:
+                    sortRating();
+                    return true;
+
+                case Resource.Id.nearbyRoutes:
+                    sortDistance();
+                    return true;
+
+                case Resource.Id.difficulty:
+                    sortDifficulty();
+                    return true;
+   
+                case Android.Resource.Id.Home:// Resource.Id.back:
+                    this.OnBackPressed();
+                    return true;
+
+              
 
                 default:
                     return base.OnOptionsItemSelected(item);
 
             }
-
-
         }
 
 
-        //public void OnMapReady(GoogleMap googleMap)
-        //{
-        //    mMap = googleMap;
-        //}
-        //public void setMarker(Route route)
-        //{
-        //      LatLng myPosition = new LatLng(route.Lat, route.Lon);
+        void sortRating()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routes
+                             orderby route.Review
+                             select route).ToList<Route>();
+       
+
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+        }
+        void sortDistance()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routes
+                             orderby route.Distance
+                             select route).ToList<Route>();
+
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
 
 
-        //    float[] result = new float[1];
-        //    Location.DistanceBetween(me[0].Lat, me[0].Lon, route.Lat,route.Lon,result);
-        //    int dist = Convert.ToInt32(result[0]);
+        }
+        void sortDifficulty()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routes
+                             orderby route.Difficulty
+                             select route).ToList<Route>();
 
-        //    if (unit[1] == 0)
-        //    {
-        //        dist = dist / 1000;
-        //    }
-        //    else
-        //        dist = (int) IOUtilz.ConvertKilometersToMiles(dist / 1000);
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
+
+        }
+
+        void sortType()
+        {
+            List<Route> orderedRoutes;
+            orderedRoutes = (from route in routes
+                             orderby route.RouteType
+                             select route).ToList<Route>();
+            ////Refresh the listview
+            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
+            //mListView.Adapter = mAdapter;
+            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+            mRecyclerView.SetAdapter(mAdapter);
+            mAdapter.NotifyDataSetChanged();
 
 
-        //    BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.compass_base); //(Resource.Drawable.test);
-
-        //    mMap.AddMarker(new MarkerOptions()
-        //   .SetPosition(myPosition)
-        //   .SetTitle(route.Name + "("+ route.Difficulty +")" )
-        //   .SetSnippet(dist.ToString() + distanceUnit).SetIcon(image));
-
-        //    markerOpt1 = new MarkerOptions();
-        //    markerOpt1.SetPosition(myPosition);
-        //    markerOpt1.SetTitle(user.UserName + " Position");
-        //    markerOpt1.SetSnippet("Points: " + user.Points);
-        ////  BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
-        //    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan)); //;
-        //    mMap.AddMarker(markerOpt1);
+        }
     }
 
 

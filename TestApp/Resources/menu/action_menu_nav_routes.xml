@@ -1,56 +1,43 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:myapp="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".RouteOverview">
+    
+      >
 
-
-  <!--'m not sure if you can do this with onCreateOptionsMenu(). I think your better bet will be onPrepareOptionsMenu().
-
-  You can force Android to refresh the options menu by simply writing getActivity().invalidateOptionsMenu() in Fragment's onResume().
-
-  So your onPrepareOptionsMenu() will look like:
-
-  @Override
-  public void onPrepareOptionsMenu(Menu menu) {
-  super.onPrepareOptionsMenu(menu);
-  menu.clear();    //remove all items
-  getActivity().getMenuInflater().inflate(R.menu.menu_fragment, menu);-->
-
-
-  <!--<item android:id="@+id/back"
-		myapp:showAsAction="always"
-    android:icon="@drawable/ic_menu_back"
-        />-->
-
-  <!--<item android:id="@+id/home"
-		myapp:showAsAction="always"
-    android:icon="@drawable/ic_menu_home"
-        />-->
+  <!--<item
+        android:id="@+id/empty"
+        android:orderInCategory="101"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_overflow">
+    
+    
+       <menu>-->     
 
   <item android:id="@+id/nearbyRoutes"
   android:title="Sort by Distance"
-  android:icon="@drawable/redoffline"
-   
-  android:showAsAction="always|withText" />
-  
+        android:text="Sort by Distance"
+  myapp:showAsAction="never" />
 
   <item android:id="@+id/difficulty"
     android:title="Sort By Difficulty"
-    android:icon="@drawable/online"
-    android:showAsAction="always|withText" />
+         android:text="Sort by sort By Difficulty"
+    myapp:showAsAction="never" />
 
   <item android:id="@+id/rating"
      android:title="Sort By Rating"
-     android:icon="@drawable/online"
-     android:showAsAction="always|withText" />
-
-
+         android:text="Sort by sort By Rating"
+     myapp:showAsAction="never" />
+  
   <item android:id="@+id/type"
     android:title="Sort By Type"
-    android:icon="@drawable/online"
-    android:showAsAction="always|withText" />
+         android:text="Sort by sort By Type"
+    myapp:showAsAction="never" />
 
+
+
+
+  <!--</menu>
+</item>-->
 
 </menu>
 

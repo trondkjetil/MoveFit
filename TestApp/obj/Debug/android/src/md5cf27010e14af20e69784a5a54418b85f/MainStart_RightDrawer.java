@@ -6,7 +6,8 @@ public class MainStart_RightDrawer
 	implements
 		mono.android.IGCUserPeer,
 		com.google.android.gms.maps.OnMapReadyCallback,
-		com.google.android.gms.maps.GoogleMap.OnMapClickListener
+		com.google.android.gms.maps.GoogleMap.OnMapClickListener,
+		com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 {
 /** @hide */
 	public static final String __md_methods;
@@ -18,6 +19,7 @@ public class MainStart_RightDrawer
 			"n_getView:(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;:GetGetView_ILandroid_view_View_Landroid_view_ViewGroup_Handler\n" +
 			"n_onMapReady:(Lcom/google/android/gms/maps/GoogleMap;)V:GetOnMapReady_Lcom_google_android_gms_maps_GoogleMap_Handler:Android.Gms.Maps.IOnMapReadyCallbackInvoker, Xamarin.GooglePlayServices.Maps\n" +
 			"n_onMapClick:(Lcom/google/android/gms/maps/model/LatLng;)V:GetOnMapClick_Lcom_google_android_gms_maps_model_LatLng_Handler:Android.Gms.Maps.GoogleMap/IOnMapClickListenerInvoker, Xamarin.GooglePlayServices.Maps\n" +
+			"n_onMarkerClick:(Lcom/google/android/gms/maps/model/Marker;)Z:GetOnMarkerClick_Lcom_google_android_gms_maps_model_Marker_Handler:Android.Gms.Maps.GoogleMap/IOnMarkerClickListenerInvoker, Xamarin.GooglePlayServices.Maps\n" +
 			"";
 		mono.android.Runtime.register ("TestApp.MainStart+RightDrawer, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainStart_RightDrawer.class, __md_methods);
 	}
@@ -84,6 +86,14 @@ public class MainStart_RightDrawer
 	}
 
 	private native void n_onMapClick (com.google.android.gms.maps.model.LatLng p0);
+
+
+	public boolean onMarkerClick (com.google.android.gms.maps.model.Marker p0)
+	{
+		return n_onMarkerClick (p0);
+	}
+
+	private native boolean n_onMarkerClick (com.google.android.gms.maps.model.Marker p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

@@ -17,19 +17,19 @@
 
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
-    <item name="colorPrimary">#E53935</item>
+    <item name="colorPrimary">#990000</item>
     <item name="colorPrimaryDark">#D32F2F</item>
 
   </style>
 
   <style name="TabLayoutThemes" parent="Widget.Design.TabLayout">
     <!-- tabIndicatorColor is color of underline each tabs.-->
-    <item name="tabIndicatorColor">#FFFFFF</item>
+    <item name="tabIndicatorColor">#990000</item>
     <!-- tabIndicatorHeight is height of underline-->
-    <item name="tabIndicatorHeight">2dp</item>
+    <item name="tabIndicatorHeight">3dp</item>
     <!-- color of text when tabs be selected-->
-    <item name="tabSelectedTextColor">#212121</item>
-
+    <item name="tabSelectedTextColor">#ffffff</item>
+   
 
   </style>
   

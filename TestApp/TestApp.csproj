@@ -240,7 +240,6 @@
     <Compile Include="Login\WelcomeScreen.cs" />
     <Compile Include="Utilz\Settings.cs" />
     <Compile Include="Utilz\IO.cs" />
-    <Compile Include="UI\MyActionBarDrawerToggle.cs" />
     <Compile Include="Azure\User.cs" />
     <Compile Include="Azure\Azure.cs" />
     <Compile Include="Azure\AzureActivity.cs" />
@@ -266,14 +265,13 @@
     <AndroidResource Include="Resources\layout\drawerLayoutCopy.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\routesOverviewCopy.axml" />
     <AndroidResource Include="Resources\layout\startMapFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\UsersFriendsMessages.axml" />
     <AndroidResource Include="Resources\layout\startMap.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\UsersFriendsMessages.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />
@@ -331,22 +329,17 @@
     <AndroidResource Include="Resources\layout\routesOverview.axml" />
     <AndroidResource Include="Resources\layout\row.axml" />
     <AndroidResource Include="Resources\layout\row_friend.axml" />
-    <AndroidResource Include="Resources\layout\Row_List_To_Do.axml" />
     <AndroidResource Include="Resources\layout\row2.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardMain.axml" />
     <AndroidResource Include="Resources\layout\simpleServiceLayout.axml" />
     <AndroidResource Include="Resources\layout\startRoute.axml" />
-    <AndroidResource Include="Resources\layout\test_Cardview.axml" />
     <AndroidResource Include="Resources\layout\userFriendsContent.axml" />
     <AndroidResource Include="Resources\layout\userMyRoutesContent.axml" />
     <AndroidResource Include="Resources\layout\userRouteContent.axml" />
-    <AndroidResource Include="Resources\layout\UsersFriends.axml" />
-    <AndroidResource Include="Resources\layout\UsersMyRoutes.axml" />
     <AndroidResource Include="Resources\layout\UsersNearby.axml" />
-    <AndroidResource Include="Resources\layout\UsersRoutes.axml" />
+    <AndroidResource Include="Resources\layout\FragmentRecycleView.axml" />
     <AndroidResource Include="Resources\layout\welcome.axml" />
     <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
-    <AndroidResource Include="Resources\layout\UsersFriendRequest.axml" />
     <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />
     <AndroidResource Include="Resources\layout\friendsOverview.axml" />
     <AndroidResource Include="Resources\layout\stepCounter.axml" />

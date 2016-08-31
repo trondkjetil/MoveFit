@@ -58,7 +58,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\menu\actionbar.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\itemsdropdownlist.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\test.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ic_action_forward.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\messages.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ic_action_save.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\anim\slide_left_to_right.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\anim\cardview_up.xml
@@ -118,9 +117,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\row_route.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\userprofile.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\strings.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\female.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\isfriend.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\male.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\offline.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\online.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\startflag.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\maps.png
@@ -132,7 +129,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\itemsroutetypes
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\itemsroutedifficulty.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\greenonline.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\redoffline.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\nalarm.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\menu\actionbarroutescoreboard.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\eexit.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\menu\action_menu_profile.xml
@@ -161,7 +157,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\oldsetting.pn
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\perm_group_system_tools.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\menu\action_menu_profile_chat.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\simple_list_item_checked.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\alarmbell.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\bell.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\rsz_route.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\rsz_score.png
@@ -170,6 +165,14 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\rsz_running.p
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\rsz_flag.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\uploadflags.txt
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Xamarin.Android.Support.Design.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Xamarin.Android.Support.Vector.Drawable.dll
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\startmapfragment.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\usersfriendsmessages.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\layout\startmap.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\compass_basee.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Microsoft.CSharp.dll.mdb
@@ -207,6 +210,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Serv
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb

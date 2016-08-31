@@ -78,13 +78,13 @@ namespace TestApp
         public static bool chk;
         public ProgressBar loadingImage;
         public static TextView _address;
-        public Address oldAddress;
+       
         public static GoogleMap mMap;
         
         public static Activity mainActivity;
         public static User waitingUpload;
         public static User userInstanceOne;
-
+        static Geocoder geocoder;
 
         public static bool isOnline;
         public static ConnectivityManager connectivityManager;
@@ -104,8 +104,6 @@ namespace TestApp
         public List<NavDrawerItem> data;
         public Android.Views.ViewGroup.LayoutParams param;
         SpannableString s;
-
-
 
         public string routesNearby;
         public string routesCreated;
@@ -212,7 +210,7 @@ namespace TestApp
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
              mainActivity = this;
-
+            geocoder = new Geocoder(this);
             instance = this;
 
             dialogOpen = false;
@@ -232,14 +230,20 @@ namespace TestApp
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
-            Typeface tf = Typeface.CreateFromAsset(Assets,
-                 "english111.ttf");
-            TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
-            appTitle.TextSize = 38;
-            appTitle.Typeface = tf;
+            //Typeface tf = Typeface.CreateFromAsset(Assets,
+            //     "english111.ttf");
+            //TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
+            //appTitle.TextSize = 38;
+            //appTitle.Typeface = tf;
             // s = new SpannableString("MoveFit");
             // s.SetSpan(tf, 0, s.Length(), SpanTypes.ExclusiveExclusive
             //);
+
+
+
+          
+
+
 
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
@@ -264,6 +268,7 @@ namespace TestApp
             routeButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
 
             icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_score);
+
             scoreButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
 
 
@@ -590,7 +595,7 @@ namespace TestApp
                 //messages.Text = totalDistance.Text;
                 messages.Text = totalDistance;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
-                myAnimation.Duration = 3000;
+                myAnimation.Duration = 4500;
                 messages.StartAnimation(myAnimation);
               
 
@@ -604,7 +609,7 @@ namespace TestApp
               //  messages.Text = routesCreated.Text + " - " + routesNearby.Text;
                 messages.Text = routesCreated + " - " + routesNearby;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
-                myAnimation.Duration = 3000;
+                myAnimation.Duration = 4500;
                 messages.StartAnimation(myAnimation);
                
                 //   messages.Text = "";
@@ -618,7 +623,7 @@ namespace TestApp
              //   messages.Text = points.Text;
                 messages.Text = points;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
-                myAnimation.Duration = 3000;
+                myAnimation.Duration = 4500;
                 messages.StartAnimation(myAnimation);
               
                 messages.Visibility = ViewStates.Invisible;
@@ -1041,27 +1046,7 @@ namespace TestApp
                     return true;
 
 
-                // Starts movement tracker (indoor)
-                //case Resource.Id.action_alarm:
-
-           
-
-                //    if (SimpleService.isRunning == false)
-                //    {
-                //        StartService(new Intent(this, typeof(SimpleService)));
-                //        Toast.MakeText(this, "Activity alarm activated", ToastLength.Short).Show();
-                       
-                //    }
-                //    else if (SimpleService.isRunning == true)
-                //    {
-                //        StopService(new Intent(this, typeof(SimpleService)));
-                //        Toast.MakeText(this, "Activity alarm off", ToastLength.Short).Show();
-                       
-                //    }
-
-          
-
-                    return true;
+         
 
 
                 default:
@@ -1208,41 +1193,7 @@ namespace TestApp
 
 
 
-        async Task<Address> ReverseGeocodeCurrentLocation()
-        {
-            Geocoder geocoder = new Geocoder(this);
-            IList<Address> addressList =
-            await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
-
-            Address address = addressList.FirstOrDefault();
-            return address;
-        }
-
-        void DisplayAddress(Address address)
-        {
-            if (address != null)
-            {
-                System.Text.StringBuilder deviceAddress = new System.Text.StringBuilder();
-                for (int i = 0; i < address.MaxAddressLineIndex; i++)
-                {
-                    deviceAddress.AppendLine(address.GetAddressLine(i));
-                }
-                // Remove the last comma from the end of the address.
-                if (_address.Text == deviceAddress.ToString())
-                {
-
-                }
-                else
-                    _address.Text = deviceAddress.ToString();
-            }
-
-
-            else
-            {
-                _address.Text = "Unable to determine the address";
-            }
-        }
-
+       
 
 
         public static void setMarker(LatLng myPosition, GoogleMap mMap)
@@ -1269,49 +1220,21 @@ namespace TestApp
 
             }
         }
+      
+   
 
-
-
-        public async void OnLocationChanged(Location location)
+        public void OnLocationChanged(Location location)
         {
             currentLocation = location;
-            if (currentLocation == null)
-            {
-                _address.Text = "Unable to determine your location. Try again in a short while.";
-            }
-            else
-            {
+
+            var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
+
+            setMarker(currentPos, mMap);
+            mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            // mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 15));
 
 
-                try
-                {
-
-                  
-                        Address address = await ReverseGeocodeCurrentLocation();
-                        if (oldAddress != address)
-                        {
-                            oldAddress = address;
-                            DisplayAddress(address);
-
-                        }
-
-
-                  
-                    var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
-
-                    setMarker(currentPos, mMap);
-                    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
-
-                }
-                catch (Exception )
-                {
-
-                  
-                }
-
-
-            }
         }
 
         public void OnProviderDisabled(string provider)
@@ -1328,18 +1251,109 @@ namespace TestApp
         }
 
 
-        public class RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener
+        public class RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener,IOnMarkerClickListener
         {
             List<Contact> _contactList;
             public Activity activityRightDrawer;
             public static List<User> nearbyUsers;
-          
+            public Address oldAddress;
+
 
             public RightDrawer(Activity activity)
             {
                 activityRightDrawer = activity;
                 FillContacts();
             }
+
+
+            public async Task<string> lookupAddress()
+            {
+
+                string addressValue = "";
+                if (currentLocation == null)
+                {
+                    _address.Text = "Unable to determine your location. Try again in a short while.";
+                    addressValue = _address.Text;
+                }
+                else
+                {
+
+
+                    try
+                    {
+
+
+                        Address address = await ReverseGeocodeCurrentLocation();
+                        if (oldAddress != address)
+                        {
+                            oldAddress = address;
+                            addressValue = DisplayAddress(address);
+
+                        }
+
+
+
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+
+
+
+                }
+
+
+                /*MainStart.Address = */
+                return addressValue;
+            }
+
+
+            async Task<Address> ReverseGeocodeCurrentLocation()
+            {
+               
+
+                IList<Address> addressList =
+                await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
+
+                Address address = addressList.FirstOrDefault();
+                return address;
+            }
+
+            static string DisplayAddress(Address address)
+            {
+                if (address != null)
+                {
+                    StringBuilder deviceAddress = new StringBuilder();
+                    for (int i = 0; i < address.MaxAddressLineIndex; i++)
+                    {
+                        deviceAddress.AppendLine(address.GetAddressLine(i));
+                    }
+                    // Remove the last comma from the end of the address.
+                    if (_address.Text == deviceAddress.ToString())
+                    {
+
+                    }
+                    else
+                        _address.Text = deviceAddress.ToString();
+                }
+
+
+                else
+                {
+                    _address.Text = "Unable to determine the address";
+                }
+
+
+
+                return _address.Text;
+            }
+
+
+
+          
 
             void FillContacts()
             {
@@ -1399,6 +1413,7 @@ namespace TestApp
 
               
                 mMap.SetOnMapClickListener(this);
+                mMap.SetOnMarkerClickListener(this);
                 mMap.UiSettings.ZoomControlsEnabled = true;
                 mMap.UiSettings.RotateGesturesEnabled = false;
                 mMap.UiSettings.ScrollGesturesEnabled = false;
@@ -1466,8 +1481,37 @@ namespace TestApp
                 return view;
             }
 
+       
 
-         
+            public bool OnMarkerClick(Marker marker)
+            {
+                MarkerOptions markerOpt1;
+
+                //marker.Snippet = "Finding Address..";
+                //marker.Snippet = "My pos"; //lookupAddress().Result;
+                //mMap.AddMarker(marker);
+                //return true;
+                //MarkerOptions markerOpt1;
+                marker.Title = "My Location";
+               
+                try
+                {
+                    mainActivity.RunOnUiThread( async () => {
+                        marker.Snippet = await lookupAddress();
+                        marker.ShowInfoWindow();
+                    });
+                  
+                }
+                catch (Exception)
+                {
+
+                    
+                }
+              
+
+                return true;
+
+            }
             public void OnMapClick(LatLng point)
             {
                 try
@@ -1482,6 +1526,15 @@ namespace TestApp
                 }
 
             }
+            //private async void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
+            //{
+            //    //markerClickEventArgs.Handled = true;
+            //    //Marker marker = markerClickEventArgs.Marker;
+            //    //marker.Snippet = "Finding Address..";
+            //    //marker.Snippet = await lookupAddress();
+            //}
+          
+       // }
         }
 
         public  override void OnBackPressed()

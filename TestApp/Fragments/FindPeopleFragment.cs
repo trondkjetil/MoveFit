@@ -11,7 +11,7 @@ using Android.Locations;
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Support.V4.Widget;
-using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+//using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using System.ComponentModel;
 using System.Threading;
@@ -25,7 +25,7 @@ namespace TestApp
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
         SwipeRefreshLayout mSwipeRefreshLayout;
-        public SupportToolbar toolbar;
+        //public SupportToolbar toolbar;
         public List<User> myFriends;
         public static List<User> me;
         public override void OnCreate(Bundle savedInstanceState)
@@ -37,23 +37,29 @@ namespace TestApp
         }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.UsersRoutes, container, false);
+            var view = inflater.Inflate(Resource.Layout.FragmentRecycleView, container, false);
 
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this.Activity);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-            toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            activity.SetSupportActionBar(toolbar);
-            activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
+            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
+            //activity.SetSupportActionBar(toolbar);
+            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+            //toolbar.Visibility = ViewStates.Invisible;
+
 
             myFriends = FriendsOverview.users;
             me = FriendsOverview.me;
+
+
           
+
+
             if (myFriends.Count == 0)
             {
                 IOUtilz.notFound(this.Activity);
@@ -68,114 +74,114 @@ namespace TestApp
 
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        //public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 
-        {
+        //{
            
-              menu.Clear();
+        //      menu.Clear();
           
 
-            inflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
+        //    inflater.Inflate(Resource.Menu.action_menu_nav_people, menu);
 
-            base.OnCreateOptionsMenu(menu, inflater);
+        //    base.OnCreateOptionsMenu(menu, inflater);
 
           
-        }
+        //}
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
 
-            switch (item.ItemId)
-            {
+        //    switch (item.ItemId)
+        //    {
 
-                case Resource.Id.online:
-                    showOnline();
-                    return true;
+        //        case Resource.Id.online:
+        //            showOnline();
+        //            return true;
 
-                case Resource.Id.male:
-                    showMale();
-                    return true;
+        //        case Resource.Id.male:
+        //            showMale();
+        //            return true;
 
-                case Resource.Id.female:
-                    showFemale();
-                    return true;
+        //        case Resource.Id.female:
+        //            showFemale();
+        //            return true;
 
-                case Resource.Id.all:
-                    showAll();
-                    return true;
-                case Resource.Id.home:
+        //        case Resource.Id.all:
+        //            showAll();
+        //            return true;
+        //        case Resource.Id.home:
 
-                    this.Activity.Finish();
-
-
-                    return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-
-            }
+        //            this.Activity.Finish();
 
 
+        //            return true;
 
-        }
+        //        default:
+        //            return base.OnOptionsItemSelected(item);
 
-        void showAll()
-        {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in myFriends
-                             orderby user.Points
-                             select user).ToList<User>();
-            mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-        }
-        void showOnline()
-        {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in myFriends
-                             where user.Online == true
-                             select user).ToList<User>();
-
-            mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
+        //    }
 
 
 
+        //}
 
-        void showMale()
-        {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in myFriends
-                             where user.Sex != "Female"
-                             orderby user.Sex
-                             select user).ToList<User>();
+        //void showAll()
+        //{
+        //    List<User> orderedRoutes;
+        //    orderedRoutes = (from user in myFriends
+        //                     orderby user.Points
+        //                     select user).ToList<User>();
+        //    mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
 
-            mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+        //}
+        //void showOnline()
+        //{
+        //    List<User> orderedRoutes;
+        //    orderedRoutes = (from user in myFriends
+        //                     where user.Online == true
+        //                     select user).ToList<User>();
 
-
-
-        }
-        void showFemale()
-        {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in myFriends
-                             where user.Sex != "Male"
-                             orderby user.Sex
-                             select user).ToList<User>();
-
-            mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+        //    mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
 
 
-        }
+        //}
+
+
+
+
+        //void showMale()
+        //{
+        //    List<User> orderedRoutes;
+        //    orderedRoutes = (from user in myFriends
+        //                     where user.Sex != "Female"
+        //                     orderby user.Sex
+        //                     select user).ToList<User>();
+
+        //    mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
+
+
+
+        //}
+        //void showFemale()
+        //{
+        //    List<User> orderedRoutes;
+        //    orderedRoutes = (from user in myFriends
+        //                     where user.Sex != "Male"
+        //                     orderby user.Sex
+        //                     select user).ToList<User>();
+
+        //    mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this.Activity, this.Activity, mAdapter);
+        //    mRecyclerView.SetAdapter(mAdapter);
+        //    mAdapter.NotifyDataSetChanged();
+
+
+        //}
 
 
 
@@ -228,79 +234,6 @@ namespace TestApp
             base.OnLowMemory();
 
         }
-
-
-
-        //void sortRating()
-        //{
-        //    List<Route> orderedRoutes;
-        //    orderedRoutes = (from route in routeList
-        //                     orderby route.Review
-        //                     select route).ToList<Route>();
-
-        //    ////Refresh the listview
-        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-        //    //mListView.Adapter = mAdapter;
-        //    mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
-        //    mRecyclerView.SetAdapter(mAdapter);
-        //    mAdapter.NotifyDataSetChanged();
-
-
-        //}
-        //void sortDistance()
-        //{
-        //    List<Route> orderedRoutes;
-        //    orderedRoutes = (from route in routeList
-        //                     orderby route.Distance
-        //                     select route).ToList<Route>();
-
-        //    ////Refresh the listview
-        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-        //    //mListView.Adapter = mAdapter;
-        //    mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
-        //    mRecyclerView.SetAdapter(mAdapter);
-        //    mAdapter.NotifyDataSetChanged();
-
-
-        //}
-        //void sortDifficulty()
-        //{
-        //    List<Route> orderedRoutes;
-        //    orderedRoutes = (from route in routeList
-        //                     orderby route.Difficulty
-        //                     select route).ToList<Route>();
-
-        //    ////Refresh the listview
-        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-        //    //mListView.Adapter = mAdapter;
-        //    mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
-        //    mRecyclerView.SetAdapter(mAdapter);
-        //    mAdapter.NotifyDataSetChanged();
-
-
-        //}
-
-        //void sortType()
-        //{
-        //    List<Route> orderedRoutes;
-        //    orderedRoutes = (from route in routeList
-        //                     orderby route.RouteType
-        //                     select route).ToList<Route>();
-
-        //    ////Refresh the listview
-        //    //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-        //    //mListView.Adapter = mAdapter;
-        //    mAdapter = new UsersRoutesAdapter(orderedRoutes, mRecyclerView, this.Activity, me);
-        //    mRecyclerView.SetAdapter(mAdapter);
-        //    mAdapter.NotifyDataSetChanged();
-
-
-        //}
-
-
-
-
-
 
 
     }

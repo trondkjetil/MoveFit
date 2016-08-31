@@ -109,7 +109,19 @@ namespace TestApp
             float[] result = null;
             // Calculate distance to User
             result = new float[1];
+
+            try
+            {
+
+          
             Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
+                result = result;
+            }
+            catch (Exception)
+            {
+
+               
+            }
 
             var res = Convert.ToInt32(result[0]);
             //  myHolder.mDist.Text = res.ToString()+ " meters away";

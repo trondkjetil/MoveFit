@@ -108,9 +108,19 @@ namespace TestApp
                 // Calculate distance to User
                 float[] result = null;
                 result = new float[1];
-                Location.DistanceBetween(mRoutes[position].Lat, mRoutes[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
+            try
+            {
 
-                var res = Convert.ToInt32(result[0]);
+
+
+                Location.DistanceBetween(mRoutes[position].Lat, mRoutes[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
+            }
+            catch (Exception)
+            {
+
+
+            }
+            var res = Convert.ToInt32(result[0]);
 
                 int routeDistanceMeters = Convert.ToInt32(mRoutes[position].Distance);
                 string unit = " km";

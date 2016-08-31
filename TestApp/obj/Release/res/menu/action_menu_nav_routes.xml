@@ -1,7 +1,14 @@
-<menu xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><!--<item android:id="@+id/back"
+<menu tools:context=".RouteOverview" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"><!--'m not sure if you can do this with onCreateOptionsMenu(). I think your better bet will be onPrepareOptionsMenu().
+
+  You can force Android to refresh the options menu by simply writing getActivity().invalidateOptionsMenu() in Fragment's onResume().
+
+  So your onPrepareOptionsMenu() will look like:
+
+  @Override
+  public void onPrepareOptionsMenu(Menu menu) {
+  super.onPrepareOptionsMenu(menu);
+  menu.clear();    //remove all items
+  getActivity().getMenuInflater().inflate(R.menu.menu_fragment, menu);--><!--<item android:id="@+id/back"
 		myapp:showAsAction="always"
     android:icon="@drawable/ic_menu_back"
-        />--><!--<item android:id="@+id/home"
-		myapp:showAsAction="always"
-    android:icon="@drawable/ic_menu_home"
-        />--><item android:id="@+id/nearbyRoutes" android:title="Sort by Distance" android:icon="@drawable/offline" android:showAsAction="always|withText" /><item android:id="@+id/difficulty" android:title="Sort By Difficulty" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/rating" android:title="Sort By Rating" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/type" android:title="Sort By Type" android:icon="@drawable/online" android:showAsAction="always|withText" /></menu>
+        />--><item android:id="@+id/home" myapp:showAsAction="always" android:icon="@drawable/ic_menu_home" /><item android:id="@+id/nearbyRoutes" android:title="Sort by Distance" android:icon="@drawable/redoffline" android:showAsAction="always|withText" /><item android:id="@+id/difficulty" android:title="Sort By Difficulty" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/rating" android:title="Sort By Rating" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/type" android:title="Sort By Type" android:icon="@drawable/online" android:showAsAction="always|withText" /></menu>

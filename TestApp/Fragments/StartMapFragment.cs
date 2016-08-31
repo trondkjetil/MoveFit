@@ -13,7 +13,7 @@ using Android.Locations;
 using System.Collections.Generic;
 using Android.Graphics;
 using Android.Content;
-using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+//using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 
 namespace TestApp
@@ -26,7 +26,7 @@ namespace TestApp
         private GoogleMap mMap;
         int[] unit;    
         List<User> me;
-        public SupportToolbar toolbar;
+     //   public SupportToolbar toolbar;
  
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,17 +40,20 @@ namespace TestApp
             var view = inflater.Inflate(Resource.Layout.startMapFragment, container, false);
 
 
-            toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            activity.SetSupportActionBar(toolbar);
-            activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
+            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
+            //activity.SetSupportActionBar(toolbar);
+            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
+            //toolbar.Visibility = ViewStates.Invisible;
+
 
             ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
             ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
             TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
-           
+
+        
 
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
@@ -105,52 +108,52 @@ namespace TestApp
 
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        //public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 
-        {
-            try
-            {
-              menu.Clear();
-               menu.FindItem(Resource.Id.type).SetVisible(false);
-            }
-            catch (Exception)
-            {
-
-
-            }
-            inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
-
-            base.OnCreateOptionsMenu(menu, inflater);
+        //{
+        //    try
+        //    {
+        //      menu.Clear();
+        //       menu.FindItem(Resource.Id.type).SetVisible(false);
+        //    }
+        //    catch (Exception)
+        //    {
 
 
-        }
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
+        //    }
+        //    inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
 
-            switch (item.ItemId)
-            {
+        //    base.OnCreateOptionsMenu(menu, inflater);
 
 
-                case Resource.Id.type:
+        //}
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
+
+        //    switch (item.ItemId)
+        //    {
+
+
+        //        case Resource.Id.type:
                     
-                    return true;
+        //            return true;
 
              
-                case Resource.Id.home:
+        //        case Resource.Id.home:
 
-                    this.Activity.Finish();
-
-
-                    return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
-
-            }
+        //            this.Activity.Finish();
 
 
+        //            return true;
 
-        }
+        //        default:
+        //            return base.OnOptionsItemSelected(item);
+
+        //    }
+
+
+
+        //}
 
 
 

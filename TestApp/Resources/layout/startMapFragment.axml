@@ -3,28 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
+    <!--<android.support.v7.widget.Toolbar
         android:id="@+id/tbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="?android:attr/colorPrimary"
-        android:title="" />
-
-  <RelativeLayout
-          android:layout_below="@+id/tbar"
+        android:title="" />-->
+    <RelativeLayout
+        android:layout_below="@+id/tbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_container">
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/map_container">
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-        </RelativeLayout>
-  <RelativeLayout
-         android:layout_below="@+id/map_container"
+            android:layout_height="300dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/map_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/background_light">
+        <TextView
+            android:text=""
+            android:layout_below="@+id/createRoute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/textRoute"
+            android:layout_centerHorizontal="true" />
         <TextView
             android:text=""
             android:layout_below="@+id/map_container"
@@ -32,14 +40,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:id="@+id/textRoute"
+            android:id="@+id/empty"
             android:layout_centerHorizontal="true" />
         <ImageButton
             android:src="@drawable/startFlag"
             android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textRoute"
+            android:layout_below="@+id/empty"
             android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/createRoute" />
