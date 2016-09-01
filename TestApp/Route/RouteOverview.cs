@@ -38,7 +38,7 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-
+        private int currentPage;
         private SupportToolbar toolbar;
         private TabLayout tabLayout;
         private ViewPager viewPager;
@@ -141,8 +141,6 @@ namespace TestApp
                     this.OnBackPressed();
                     return true;
 
-              
-
                 default:
                     return base.OnOptionsItemSelected(item);
 
@@ -153,60 +151,132 @@ namespace TestApp
         void sortRating()
         {
             List<Route> orderedRoutes;
-            orderedRoutes = (from route in routes
-                             orderby route.Review
-                             select route).ToList<Route>();
-       
+            currentPage = viewPager.CurrentItem;
+            if (currentPage == 1)
+            {
+                mRecyclerView = RouteListFragment.mRecyclerView;
+                orderedRoutes = (from route in routes
+                                 orderby route.Review
+                                 select route).ToList<Route>();
 
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }else if(currentPage == 2)
+            {
+                mRecyclerView = MyRoutesFragment.mRecyclerView;
+                orderedRoutes = (from route in myRoutes
+                                 orderby route.Review
+                                 select route).ToList<Route>();
+
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
 
         }
         void sortDistance()
         {
             List<Route> orderedRoutes;
-            orderedRoutes = (from route in routes
-                             orderby route.Distance
-                             select route).ToList<Route>();
+            currentPage = viewPager.CurrentItem;
+            if (currentPage == 1)
+            {
+                mRecyclerView = RouteListFragment.mRecyclerView;
+                orderedRoutes = (from route in routes
+                                 orderby route.Review
+                                 select route).ToList<Route>();
 
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 2)
+            {
+                mRecyclerView = MyRoutesFragment.mRecyclerView;
+                orderedRoutes = (from route in myRoutes
+                                 orderby route.Distance
+                                 select route).ToList<Route>();
+
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+
 
 
         }
         void sortDifficulty()
         {
             List<Route> orderedRoutes;
-            orderedRoutes = (from route in routes
-                             orderby route.Difficulty
-                             select route).ToList<Route>();
+            currentPage = viewPager.CurrentItem;
+            if (currentPage == 1)
+            {
+                mRecyclerView = RouteListFragment.mRecyclerView;
+                orderedRoutes = (from route in routes
+                                 orderby route.Review
+                                 select route).ToList<Route>();
 
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 2)
+            {
+                mRecyclerView = MyRoutesFragment.mRecyclerView;
+                orderedRoutes = (from route in myRoutes
+                                 orderby route.Difficulty
+                                 select route).ToList<Route>();
+
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+
 
         }
 
         void sortType()
         {
             List<Route> orderedRoutes;
-            orderedRoutes = (from route in routes
-                             orderby route.RouteType
-                             select route).ToList<Route>();
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+            currentPage = viewPager.CurrentItem;
+            if (currentPage == 1)
+            {
+                mRecyclerView = RouteListFragment.mRecyclerView;
+                orderedRoutes = (from route in routes
+                                 orderby route.Review
+                                 select route).ToList<Route>();
+
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 2)
+            {
+                mRecyclerView = MyRoutesFragment.mRecyclerView;
+                orderedRoutes = (from route in myRoutes
+                                 orderby route.RouteType
+                                 select route).ToList<Route>();
+
+
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
 
 
         }

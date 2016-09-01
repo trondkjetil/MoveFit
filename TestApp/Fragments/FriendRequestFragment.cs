@@ -22,7 +22,7 @@ namespace TestApp
 
     public class FriendRequestFragment : Fragment
     {
-        private RecyclerView mRecyclerView;
+        public static RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
         SwipeRefreshLayout mSwipeRefreshLayout;

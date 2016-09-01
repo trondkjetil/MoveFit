@@ -21,7 +21,7 @@ namespace TestApp
 
     public class MyRoutesFragment : Fragment
     {
-        private RecyclerView mRecyclerView;
+        public static RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
         SwipeRefreshLayout mSwipeRefreshLayout;

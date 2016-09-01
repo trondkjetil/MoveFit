@@ -100,6 +100,8 @@ namespace TestApp
             users = await Azure.getPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
 
+            
+
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
@@ -163,13 +165,56 @@ namespace TestApp
 
         void showAll()
         {
+            mAdapter = null;
+            currentPage = viewPager.CurrentItem;
             List<User> orderedRoutes;
-            orderedRoutes = (from user in friendRequests
-                             orderby user.Points
-                             select user).ToList<User>();
-            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+
+            if (currentPage == 1)
+            {
+                mRecyclerView = FindpeopleFragment.mRecyclerView;
+
+                orderedRoutes = (from user in users
+                             
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+                
+
+            }
+            else if (currentPage == 2)
+            {
+
+                mRecyclerView = MyFriendsFragment.mRecyclerView;
+                orderedRoutes = (from user in myFriends
+                                
+                                 select user).ToList<User>();
+
+               
+                mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 3)
+            {
+
+                mRecyclerView = FriendRequestFragment.mRecyclerView;
+                orderedRoutes = (from user in friendRequests
+                                
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
+            //orderedRoutes = (from user in friendRequests
+            //                 orderby user.Points
+            //                 select user).ToList<User>();
+            //mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+            //mRecyclerView.SetAdapter(mAdapter);
+            //mAdapter.NotifyDataSetChanged();
 
         }
         void showOnline()
@@ -180,7 +225,7 @@ namespace TestApp
 
             if (currentPage == 1)
             {
-                
+                mRecyclerView = FindpeopleFragment.mRecyclerView;
                 orderedRoutes = (from user in users
                                  where user.Online == true
                                  select user).ToList<User>();
@@ -192,6 +237,7 @@ namespace TestApp
             }
             else if(currentPage == 2)
             {
+                mRecyclerView = MyFriendsFragment.mRecyclerView;
                 orderedRoutes = (from user in myFriends
                                  where user.Online == true
                                  select user).ToList<User>();
@@ -203,6 +249,7 @@ namespace TestApp
             }
             else if (currentPage == 3)
             {
+                mRecyclerView = FriendRequestFragment.mRecyclerView;
                 orderedRoutes = (from user in friendRequests
                                  where user.Online == true
                                  select user).ToList<User>();
@@ -220,30 +267,106 @@ namespace TestApp
 
         void showMale()
         {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in friendRequests
-                             where user.Sex != "Female"
-                             orderby user.Sex
-                             select user).ToList<User>();
+           
 
-            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+            List<User> orderedRoutes;
+            currentPage = viewPager.CurrentItem;
+
+
+            if (currentPage == 1)
+            {
+                mRecyclerView = FindpeopleFragment.mRecyclerView;
+                orderedRoutes = (from user in users
+                                 where user.Sex != "Female"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+                
+                mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 2)
+            {
+                mRecyclerView = MyFriendsFragment.mRecyclerView;
+                orderedRoutes = (from user in myFriends
+                                 where user.Sex != "Female"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 3)
+            {
+                mRecyclerView = FriendRequestFragment.mRecyclerView;
+                orderedRoutes = (from user in friendRequests
+                                 where user.Sex != "Female"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+                mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
 
 
 
         }
         void showFemale()
         {
-            List<User> orderedRoutes;
-            orderedRoutes = (from user in friendRequests
-                             where user.Sex != "Male"
-                             orderby user.Sex
-                             select user).ToList<User>();
+            //List<User> orderedRoutes;
+            //orderedRoutes = (from user in friendRequests
+            //                 where user.Sex != "Male"
+            //                 orderby user.Sex
+            //                 select user).ToList<User>();
 
-            mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+            //mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+            //mRecyclerView.SetAdapter(mAdapter);
+            //mAdapter.NotifyDataSetChanged();
+            List<User> orderedRoutes;
+            currentPage = viewPager.CurrentItem;
+
+
+            if (currentPage == 1)
+            {
+                mRecyclerView = FindpeopleFragment.mRecyclerView;
+                orderedRoutes = (from user in users
+                                 where user.Sex != "Male"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 2)
+            {
+                mRecyclerView = MyFriendsFragment.mRecyclerView;
+                orderedRoutes = (from user in myFriends
+                                 where user.Sex != "Male"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if (currentPage == 3)
+            {
+                mRecyclerView = FriendRequestFragment.mRecyclerView;
+                orderedRoutes = (from user in friendRequests
+                                 where user.Sex != "Male"
+                                 orderby user.Sex
+                                 select user).ToList<User>();
+
+                mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
 
 
         }

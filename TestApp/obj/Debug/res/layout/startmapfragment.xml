@@ -1,4 +1,4 @@
-<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"><!--<android.support.v7.widget.Toolbar
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"><!--<android.support.v7.widget.Toolbar
         android:id="@+id/tbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
