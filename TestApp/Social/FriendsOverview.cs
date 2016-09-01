@@ -42,6 +42,8 @@ namespace TestApp
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
 
+        private int currentPage;
+
         private TabLayout tabLayout;
         private ViewPager viewPager;
         ViewPagerAdapter adapter;
@@ -157,31 +159,7 @@ namespace TestApp
 
         }
 
-        public int checkFragment()
-        {
-
-
-            //Doesnt work
-            int tall = 0;
-            var current = viewPager.CurrentItem;
-
-            if (adapter.GetItemPosition(1).Equals(current) || adapter.GetItemPosition(1) == current)
-            {
-                tall = 1;
-            }
-            else if (adapter.GetItemPosition(2).Equals(current) || adapter.GetItemPosition(1) == current)
-            {
-                tall = 2;
-            }
-            else if (adapter.GetItemPosition(3).Equals(current) || adapter.GetItemPosition(1) == current)
-            {
-                tall = 3;
-            }
-            else
-                tall = 1;
-
-            return tall;
-        }
+     
 
         void showAll()
         {
@@ -197,7 +175,10 @@ namespace TestApp
         void showOnline()
         {
             List<User> orderedRoutes;
-            if (checkFragment() == 1)
+            currentPage = viewPager.CurrentItem;
+
+
+            if (currentPage == 1)
             {
                 
                 orderedRoutes = (from user in users
@@ -207,7 +188,9 @@ namespace TestApp
                 mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
-            }else if(checkFragment() == 2)
+             
+            }
+            else if(currentPage == 2)
             {
                 orderedRoutes = (from user in myFriends
                                  where user.Online == true
@@ -216,8 +199,9 @@ namespace TestApp
                 mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter,me);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
+
             }
-            else if (checkFragment() == 3)
+            else if (currentPage == 3)
             {
                 orderedRoutes = (from user in friendRequests
                                  where user.Online == true

@@ -226,15 +226,15 @@ namespace TestApp
                     OnBackPressed();
                     return true;
 
-                case Resource.Id.home:
+                //case Resource.Id.home:
 
-                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
-                    //StartActivity(myIntent);
+                //    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
+                //    //StartActivity(myIntent);
 
-                    OnBackPressed();
+                //    OnBackPressed();
 
 
-                    return true;
+                //    return true;
 
                 default:
                     return base.OnOptionsItemSelected(item);
