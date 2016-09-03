@@ -42,6 +42,15 @@ namespace TestApp
             mContext = context;
             mActivity = act;
             mAdapter = adapter;
+
+
+            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
+            {
+
+                TextView txt = act.FindViewById<TextView>(Resource.Id.empty);
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -65,24 +74,24 @@ namespace TestApp
         {
 
             //card view
-            View peopleNearbyContent = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.peopleNearByContent, parent, false);
+            View usersNearby = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.peopleNearByContent, parent, false);
 
-            TextView name = peopleNearbyContent.FindViewById<TextView>(Resource.Id.nameId);
-            TextView status = peopleNearbyContent.FindViewById<TextView>(Resource.Id.statusId);
-            TextView text = peopleNearbyContent.FindViewById<TextView>(Resource.Id.textId);
+            TextView name = usersNearby.FindViewById<TextView>(Resource.Id.nameId);
+            TextView status = usersNearby.FindViewById<TextView>(Resource.Id.statusId);
+            TextView text = usersNearby.FindViewById<TextView>(Resource.Id.textId);
 
-            ImageView profile = peopleNearbyContent.FindViewById<ImageView>(Resource.Id.ppt);
+            ImageView profile = usersNearby.FindViewById<ImageView>(Resource.Id.ppt);
 
-            ImageButton addToFriends = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
+            ImageButton addToFriends = usersNearby.FindViewById<ImageButton>(Resource.Id.sendFriendRequest);
             addToFriends.Focusable = false;
             addToFriends.FocusableInTouchMode = false;
             addToFriends.Clickable = true;
-            ImageButton gender = peopleNearbyContent.FindViewById<ImageButton>(Resource.Id.gender);
+            ImageButton gender = usersNearby.FindViewById<ImageButton>(Resource.Id.gender);
 
 
             //  addToFriends.Click += MSendFriendRequest_Click;
 
-            MyView view = new MyView(peopleNearbyContent) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends, mGender = gender };
+            MyView view = new MyView(usersNearby) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends, mGender = gender };
 
             return view;
 
@@ -211,8 +220,10 @@ namespace TestApp
 
                 if (mUsers.Count == 0)
                 {
-
-                    mActivity.Finish();
+                    mAdapter = new UsersNearbyAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+                    //mActivity.Finish();
                 }
 
 

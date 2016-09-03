@@ -779,7 +779,8 @@ namespace TestApp
             List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == false && UserFriends.UserLink2 == myUserId).ToListAsync();
 
 
-            List<User> userList = await table.Where(user => user.Id != null && user.Id != myUserId).ToListAsync();
+          // THE REAL ONE  List<User> userList = await table.Where(user => user.Id != null && user.Id != myUserId).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id != null ).ToListAsync();
 
             List<User> userProfiles = new List<User>();
 
@@ -807,7 +808,8 @@ namespace TestApp
 
             List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && UserFriends.IsDeleted == false && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
 
-            List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
+            //Real one  List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id != null).ToListAsync();
 
             List<User> userProfiles = new List<User>();
 

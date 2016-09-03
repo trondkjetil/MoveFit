@@ -43,7 +43,7 @@ namespace TestApp
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-           // RequestWindowFeature(WindowFeatures.NoTitle);
+            // RequestWindowFeature(WindowFeatures.NoTitle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.UsersFriendsMessages);
 
@@ -104,6 +104,11 @@ namespace TestApp
             Finish();
         }
     }
+
+
+
+
+
     //public class UsersFriendsAdapter : RecyclerView.Adapter
     //{
     //    private List<User> mUsers;

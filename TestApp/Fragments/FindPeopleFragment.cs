@@ -37,38 +37,32 @@ namespace TestApp
         //}
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.FragmentRecycleView, container, false);
+            var view = inflater.Inflate(Resource.Layout.friendNearbyRecycleView, container, false);
 
-            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            //Create our layout manager
-            mLayoutManager = new LinearLayoutManager(this.Activity);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
-
-            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            //activity.SetSupportActionBar(toolbar);
-            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
-            //toolbar.Visibility = ViewStates.Invisible;
-
-
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclePeopleNearby);
+           
             myFriends = FriendsOverview.users;
             me = FriendsOverview.me;
 
-
-          
-
-
-            if (myFriends.Count == 0)
+            if (myFriends.Count != 0)
             {
-                IOUtilz.notFound(this.Activity);
-            }else
-            {
-                mAdapter =  new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
+                mLayoutManager = new LinearLayoutManager(this.Activity);
+                mRecyclerView.SetLayoutManager(mLayoutManager);
+
+
+                mAdapter = new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
+
             }
-          
+            else
+
+            {
+                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
+
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
+
 
             return view;
 

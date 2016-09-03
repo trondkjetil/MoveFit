@@ -272,6 +272,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\UsersFriendsMessages.axml" />
+    <AndroidResource Include="Resources\layout\FriendRequestRecycleView.axml" />
+    <AndroidResource Include="Resources\layout\FriendsRecycleView.axml" />
+    <AndroidResource Include="Resources\layout\routesNearbyRecycleView.axml" />
+    <AndroidResource Include="Resources\layout\myRoutesRecycleView.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />
@@ -337,7 +341,7 @@
     <AndroidResource Include="Resources\layout\userMyRoutesContent.axml" />
     <AndroidResource Include="Resources\layout\userRouteContent.axml" />
     <AndroidResource Include="Resources\layout\UsersNearby.axml" />
-    <AndroidResource Include="Resources\layout\FragmentRecycleView.axml" />
+    <AndroidResource Include="Resources\layout\friendNearbyRecycleView.axml" />
     <AndroidResource Include="Resources\layout\welcome.axml" />
     <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
     <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />

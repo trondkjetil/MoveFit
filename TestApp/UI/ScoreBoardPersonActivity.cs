@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace TestApp
 {
-	[Activity(Label = "Scoreboard People", Icon = "@drawable/tt")]
+	[Activity(Label = "Scoreboard People")]
 	public class ScoreBoardPersonActivity : Activity
 	{
 		private List<User> mUsers;
@@ -58,7 +58,9 @@ namespace TestApp
 			mContainer.BringToFront();
 			mSearch.TextChanged += mSearch_TextChanged;
 
-        
+            ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            
 
             try
             {
@@ -278,6 +280,8 @@ namespace TestApp
                 case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
+
+                   
 
                 case Resource.Id.search:
 				//Search icon has been clicked

@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace TestApp
 {
-	[Activity(Label = "Scoreboard Routes", Icon = "@drawable/tt")]
+	[Activity(Label = "Scoreboard Routes")]
 	public class ScoreBoardRouteActivity : Activity
 	{
 		private List<Route> mRoutes;

@@ -43,10 +43,13 @@ namespace TestApp
         private RecyclerView.Adapter mAdapter;
 
         private int currentPage;
-
+        LinearLayout layout;
         private TabLayout tabLayout;
-        private ViewPager viewPager;
+        public static ViewPager viewPager;
         ViewPagerAdapter adapter;
+
+        public static int currentFragment;
+
         private int[] tabIcons = {
             Resource.Drawable.maps,
             Resource.Drawable.perm_group_social_info,
@@ -115,10 +118,11 @@ namespace TestApp
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
 
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
-
+            //layout = FindViewById<LinearLayout>(Resource.Id.layout);
+            //mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
+            //mLayoutManager = new LinearLayoutManager(this);
+            //mRecyclerView.SetLayoutManager(mLayoutManager);
+            currentPage = viewPager.CurrentItem;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -191,7 +195,8 @@ namespace TestApp
                                 
                                  select user).ToList<User>();
 
-               
+              
+
                 mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter, me);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
@@ -205,9 +210,30 @@ namespace TestApp
                                 
                                  select user).ToList<User>();
 
-                mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                //if (orderedRoutes.Count == 0)
+                //{
+                //    // mRecyclerView.Visibility = ViewStates.Gone;
+
+                //    layout.RemoveAllViews();
+                //    TextView txt = new TextView(this);
+                //    txt.Text = "Could not find any!";
+                //    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+                //    txt.SetPadding(10, 10, 10, 10);
+                //    txt.Gravity = Android.Views.GravityFlags.CenterVertical;
+                //    txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
+
+                //    txt.SetTextColor(Color.Black);
+                //    txt.TextSize = 20;
+                //    layout.AddView(txt);
+                //}
+                //else
+                //{
+              
+                    mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+                
+                
             }
             //orderedRoutes = (from user in friendRequests
             //                 orderby user.Points
@@ -221,7 +247,6 @@ namespace TestApp
         {
             List<User> orderedRoutes;
             currentPage = viewPager.CurrentItem;
-
 
             if (currentPage == 1)
             {
@@ -261,9 +286,6 @@ namespace TestApp
 
 
         }
-
-
-
 
         void showMale()
         {

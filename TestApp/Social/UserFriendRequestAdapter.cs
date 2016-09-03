@@ -33,15 +33,27 @@ namespace TestApp
         public int userPoints;
         public string userAboutMe;
         public string userID;
-
+        TextView txt;
         public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
 
             mActivity = act;
             mUsers = users;
+            
             mRecyclerView = recyclerView;
             mContext = context;
             mAdapter = adapter;
+
+
+            txt = act.FindViewById<TextView>(Resource.Id.empty);
+
+            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 3)
+            {
+                
+              
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -64,8 +76,10 @@ namespace TestApp
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
+            
+           
 
-            //card view
+
             View userFriendRequest = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userFriendsRequestContent, parent, false);
 
             ImageView profile = userFriendRequest.FindViewById<ImageView>(Resource.Id.profilePicture);
@@ -84,9 +98,14 @@ namespace TestApp
             acceptFriend.FocusableInTouchMode = false;
             acceptFriend.Clickable = true;
 
-
+          
             MyView view = new MyView(userFriendRequest) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mDeleteFriend = rejectFriendReq, mAcceptFriend = acceptFriend };
-            return view;
+
+          
+                return view;
+            
+
+          
 
         }
 
@@ -132,7 +151,9 @@ namespace TestApp
                     //Intent myInt = new Intent(mContext, typeof(RouteOverview));
                     //mContext.StartActivity(myInt);
 
-                    mActivity.Finish();
+                    // mActivity.Finish();
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
                 }
 
                 //    var pos = ((View)sender).Tag;
@@ -156,7 +177,9 @@ namespace TestApp
 
                     //Intent myInt = new Intent(mContext, typeof(RouteOverview));
                     //mContext.StartActivity(myInt);
-                    mActivity.Finish();
+                    //  mActivity.Finish();
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
 
                 }
 

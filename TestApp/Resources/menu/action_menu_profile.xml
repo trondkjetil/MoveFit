@@ -24,10 +24,10 @@ myapp:showAsAction="always" />
     android:icon="@drawable/ic_menu_back"
         />-->
   
-  <item android:id="@+id/home"
+  <!--<item android:id="@+id/home"
      myapp:showAsAction="always"
      android:icon="@drawable/ic_menu_home"
-        />
+        />-->
   <!--<item android:id="@+id/exit"
    android:icon="@drawable/eexit"
    android:title="Exit"

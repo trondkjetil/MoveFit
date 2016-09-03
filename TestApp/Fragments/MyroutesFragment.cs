@@ -28,114 +28,38 @@ namespace TestApp
         public SupportToolbar toolbar;
         public List<Route> routeList;
         public static List<User> me;
-        //public override void OnCreate(Bundle savedInstanceState)
-        //{
-
-        //    base.OnCreate(savedInstanceState);
-        //    HasOptionsMenu = true;
-
-        //}
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.FragmentRecycleView, container, false);
-         
-          
-            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            //Create our layout manager
-            mLayoutManager = new LinearLayoutManager(this.Activity);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
-
-    
-            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            //activity.SetSupportActionBar(toolbar);
-            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
-
-            //toolbar.Visibility = ViewStates.Invisible;
-
+            var view = inflater.Inflate(Resource.Layout.myRoutesRecycleView, container, false);
+                 
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclemyRoutes);           
             routeList = RouteOverview.myRoutes;
             me = RouteOverview.me;
-            if (routeList.Count == 0)
+           
+            if (routeList.Count != 0)
             {
-                IOUtilz.notFound(this.Activity);
-            }
-            else
-            {
+                mLayoutManager = new LinearLayoutManager(this.Activity);
+                mRecyclerView.SetLayoutManager(mLayoutManager);
+
                 mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me);
                 mRecyclerView.SetAdapter(mAdapter);
+
+            }
+            else
+
+            {
+                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
+
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
             }
             return view;
 
         }
         
 
-        void sortRating()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Review
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
-        void sortDistance()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Distance
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
-        void sortDifficulty()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.Difficulty
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
-
-        void sortType()
-        {
-            List<Route> orderedRoutes;
-            orderedRoutes = (from route in routeList
-                             orderby route.RouteType
-                             select route).ToList<Route>();
-
-            ////Refresh the listview
-            //mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
-            //mListView.Adapter = mAdapter;
-            mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this.Activity, me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-
-        }
+     
         void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
         {
             BackgroundWorker worker = new BackgroundWorker();

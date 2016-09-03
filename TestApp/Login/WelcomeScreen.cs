@@ -82,9 +82,11 @@ namespace TestApp
                     txt.SetTextSize(ComplexUnitType.Sp, 20);
                     //txt.SetPadding(10, 10, 10, 10);
                     txt.Gravity = GravityFlags.CenterHorizontal;
-                    
+                    txt.TextAlignment = TextAlignment.Center;
+                 
                     txt.SetBackgroundColor(Color.White);
                     txt.SetTextColor(Color.Blue);
+                  
                     layout.AddView(txt);
 
 

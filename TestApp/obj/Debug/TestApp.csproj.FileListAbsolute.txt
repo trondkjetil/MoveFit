@@ -210,6 +210,10 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\compass_basee.p
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startmapfragment.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usersfriendsmessages.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startmap.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\fragmentrecycleview.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendrequestrecycleview.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendsrecycleview.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\routesnearbyrecycleview.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\myroutesrecycleview.xml
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendnearbyrecycleview.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

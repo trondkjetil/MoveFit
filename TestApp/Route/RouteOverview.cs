@@ -95,9 +95,10 @@ namespace TestApp
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
 
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
+            //mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
+             //mLayoutManager = new LinearLayoutManager(this);
+            //mRecyclerView.SetLayoutManager(mLayoutManager);
+            
 
 
         }
@@ -187,7 +188,7 @@ namespace TestApp
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
                 orderedRoutes = (from route in routes
-                                 orderby route.Review
+                                 orderby route.Distance
                                  select route).ToList<Route>();
 
 
@@ -221,7 +222,7 @@ namespace TestApp
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
                 orderedRoutes = (from route in routes
-                                 orderby route.Review
+                                 orderby route.Difficulty
                                  select route).ToList<Route>();
 
 
@@ -255,7 +256,7 @@ namespace TestApp
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
                 orderedRoutes = (from route in routes
-                                 orderby route.Review
+                                 orderby route.RouteType
                                  select route).ToList<Route>();
 
 

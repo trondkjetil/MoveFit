@@ -198,7 +198,20 @@ namespace TestApp
 
                 points.Text = "Points: " + array[4];
 
-                if(array[5] != "")
+
+                if (MainStart.userId != array[6])
+                {
+                    aboutMeEdit.Focusable = false;
+                  //  aboutMeEdit.Enabled = false;
+                }
+                else
+                {
+                    aboutMeEdit.Focusable = true;
+                   
+                }
+
+
+                if (array[5] != "")
                 {
                     aboutMeEdit.Text = array[5];
                 }
@@ -206,15 +219,9 @@ namespace TestApp
                 {
                     aboutMeEdit.Hint = "Write something about your self here..";
                 }
-               
 
-                if (MainStart.userId != array[6])
-                {
-                    aboutMeEdit.Focusable = false;
-                }
-                else
-                    aboutMeEdit.Focusable = true;
 
+              
                 if(instance.Count > 0 && instance[0].Image[0] != 0)
                 {
 

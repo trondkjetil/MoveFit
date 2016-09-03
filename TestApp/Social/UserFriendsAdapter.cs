@@ -33,6 +33,7 @@ namespace TestApp
         private RecyclerView.Adapter mAdapter;
         private Activity mActivity;
         List<User> mMyInstance;
+        TextView txt;
         public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
         {
             mUsers = users;
@@ -41,6 +42,16 @@ namespace TestApp
             mActivity = act;
             mAdapter = adapter;
             mMyInstance = me;
+
+            txt = act.FindViewById<TextView>(Resource.Id.empty);
+
+            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 2)
+            {
+
+               
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
 
         }
 
@@ -115,7 +126,7 @@ namespace TestApp
 
           
             Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
-                result = result;
+                
             }
             catch (Exception)
             {
@@ -201,8 +212,12 @@ namespace TestApp
             if (mUsers.Count == 0)
             {
 
-                Intent myInt = new Intent(mContext, typeof(RouteOverview));
-                mContext.StartActivity(myInt);
+                //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                //mContext.StartActivity(myInt);
+
+                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
             }
 
 

@@ -26,68 +26,60 @@ namespace TestApp
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
         SwipeRefreshLayout mSwipeRefreshLayout;
-       // public SupportToolbar toolbar;
+       //public SupportToolbar toolbar;
         public List<User> myFriends;
         public static List<User> me;
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-
-            base.OnCreate(savedInstanceState);
-            HasOptionsMenu = true;
-
-        }
+       
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.FragmentRecycleView, container, false);
 
-            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            //Create our layout manager
-            mLayoutManager = new LinearLayoutManager(this.Activity);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
-
-            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            //activity.SetSupportActionBar(toolbar);
-            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
-            //toolbar.Visibility = ViewStates.Invisible;
+            View view;
             myFriends = FriendsOverview.friendRequests;
             me = FriendsOverview.me;
 
+            view = inflater.Inflate(Resource.Layout.FriendRequestRecycleView, container, false);
 
+      
+            //TextView txt = new TextView(this.Activity);
+            //txt.Text = "Could not find any!";
+            //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
+            //txt.SetPadding(10, 10, 10, 10);
+            //txt.Gravity = Android.Views.GravityFlags.CenterVertical;
+            //txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
+            //txt.SetBackgroundColor(Color.Black);
+            //txt.SetTextColor(Color.Black);
+            //txt.TextSize = 20;
+            //layout.AddView(txt);
 
-            if (myFriends.Count == 0)
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleFriendRequest);
+            //Create our layout manager
+            //mLayoutManager = new LinearLayoutManager(this.Activity);
+            //mRecyclerView.SetLayoutManager(mLayoutManager);
+
+            //mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            //mRecyclerView.SetAdapter(mAdapter);
+
+            //LinearLayout layout = view.FindViewById<LinearLayout>(Resource.Id.layout);
+             if (myFriends.Count != 0)
             {
-                //// IOUtilz.notFound(this.Activity);
-                //TextView txt = new TextView(this.Activity);
-                //txt.Text = "Could not find any!";
-                //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-                //txt.SetPadding(10, 10, 10, 10);
-                //txt.Gravity = Android.Views.GravityFlags.CenterVertical;
-                //txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
-                //txt.SetBackgroundColor(Color.White);
-                //txt.SetTextColor(Color.Black);
-                //txt.TextSize = 20;
+                mLayoutManager = new LinearLayoutManager(this.Activity);
+                mRecyclerView.SetLayoutManager(mLayoutManager);
 
-                // mLayoutManager.AddView(txt);
-
-                RecyclerView lv = view.FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-
-                lv.Visibility = ViewStates.Invisible;
-                TextView emptyText = (TextView)view.FindViewById<TextView>(Resource.Id.empty);
-                emptyText.Text = "Nothing found!";
-
-
-                //ListView lv = new ListView(view);
-                //TextView emptyText = (TextView)findViewById(android.R.id.empty);
-                //lv.setEmptyView(emptyText);
-            }
-            else
-            {
                 mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
-               }
+
+            }
+            else
+
+            {
+                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
+
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
+
+
+
             return view;
 
         }
@@ -112,7 +104,7 @@ namespace TestApp
             //Will run on separate thread
             //  Thread.Sleep(2000);
             myFriends =  FriendsOverview.updateFriendList().Result;
-              mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, RouteOverview.me);
+            mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
         }
