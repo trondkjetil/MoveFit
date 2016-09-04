@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/profile"
     android:minWidth="25px"
     android:minHeight="25px">
-    <android.support.v7.widget.Toolbar
+    <!--<android.support.v7.widget.Toolbar
         android:id="@+id/toolbarNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,11 +15,18 @@
         android:background="@android:color/holo_blue_light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />-->
+  <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarNew"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"      
+        android:background="@drawable/toolbar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content">
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
             android:layout_width="wrap_content"
@@ -38,8 +45,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profilePic2"
-        android:background="@android:color/white">
+        android:layout_below="@+id/profilePic2">
         <TextView
             android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -77,8 +83,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gender"
-        android:background="@android:color/white">
+        android:layout_below="@+id/gender">
         <TextView
             android:text="About me: "
             android:textAppearance="?android:attr/textAppearanceMedium"

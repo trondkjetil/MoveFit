@@ -59,6 +59,9 @@ namespace TestApp
 			mContainer.BringToFront();
 			mSearch.TextChanged += mSearch_TextChanged;
 
+            // ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetDisplayShowTitleEnabled(true);
 
             try
             {

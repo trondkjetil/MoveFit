@@ -50,7 +50,7 @@ namespace TestApp
 
 
             ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
-            ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
+           // ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
             TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
 
         
@@ -65,13 +65,13 @@ namespace TestApp
                     Intent myIntent = new Intent(this.Activity, typeof(CreateRoute));
                     StartActivity(myIntent);
                 };
-                myRoutes.Click += (sender, e) =>
-                {
+                //myRoutes.Click += (sender, e) =>
+                //{
 
-                    RouteOverview.act.Finish();
-                };
+                //    RouteOverview.act.Finish();
+                //};
 
-                myRoutes.Visibility = ViewStates.Invisible;
+               // myRoutes.Visibility = ViewStates.Invisible;
 
                 me = RouteOverview.me;
                 unit = RouteOverview.unit;

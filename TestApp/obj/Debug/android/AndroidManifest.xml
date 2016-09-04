@@ -54,8 +54,8 @@
     <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
     <activity android:label="FriendsOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
-    <activity android:icon="@drawable/tt" android:label="Scoreboard Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
-    <activity android:icon="@drawable/tt" android:label="Scoreboard People" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
+    <activity android:label="Scoreboard Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
+    <activity android:label="Scoreboard People" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
     <activity android:label="Friends" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
     <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
     <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">

@@ -554,7 +554,10 @@ namespace TestApp
                     if (topUsers[0].UserName != "")
                     {
                         pers1.Text = "#1 " + topUsers[0].UserName;
-                        pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+                      //  pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+
+                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[0].ProfilePicture));
+
                     }
 
 
@@ -562,14 +565,22 @@ namespace TestApp
                     if (topUsers[1].UserName != "")
                     {
                         pers2.Text = "#2 " + topUsers[1].UserName;
-                        pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
+                        // pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
+
+
+                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
+
                     }
 
 
                     if (topUsers[2].UserName != "")
                     {
                         pers3.Text = "#3 " + topUsers[2].UserName;  //"Test friend3 Score: 0";
-                        pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+                                                                    //    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+
+                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[2].ProfilePicture));
+
+
                     }
 
                 }

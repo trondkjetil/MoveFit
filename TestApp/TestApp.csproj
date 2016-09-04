@@ -262,13 +262,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialogWelcome.axml" />
     <AndroidResource Include="Resources\layout\dialogEndRouteCreationStats.axml" />
-    <AndroidResource Include="Resources\layout\drawerLayoutCopy.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\startMapFragment.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\startMap.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\UsersFriendsMessages.axml" />
@@ -276,6 +270,7 @@
     <AndroidResource Include="Resources\layout\FriendsRecycleView.axml" />
     <AndroidResource Include="Resources\layout\routesNearbyRecycleView.axml" />
     <AndroidResource Include="Resources\layout\myRoutesRecycleView.axml" />
+    <AndroidResource Include="Resources\layout\profile.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />
@@ -306,7 +301,6 @@
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
     <AndroidResource Include="Resources\layout\accelerometer.axml" />
     <AndroidResource Include="Resources\layout\calculator.axml" />
-    <AndroidResource Include="Resources\layout\cardViewMain.axml" />
     <AndroidResource Include="Resources\layout\chatMessageDialog.axml" />
     <AndroidResource Include="Resources\layout\ContactListItem.axml" />
     <AndroidResource Include="Resources\layout\createRoute.axml">
@@ -314,19 +308,15 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\customListView.axml" />
     <AndroidResource Include="Resources\layout\dialogEndRouteRating.axml" />
-    <AndroidResource Include="Resources\layout\dialogPopup.axml" />
     <AndroidResource Include="Resources\layout\dialogStartRoute.axml" />
     <AndroidResource Include="Resources\layout\drawerLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dropDownList.axml" />
-    <AndroidResource Include="Resources\layout\getinfo.axml" />
     <AndroidResource Include="Resources\layout\chat.axml" />
     <AndroidResource Include="Resources\layout\map.axml" />
     <AndroidResource Include="Resources\layout\mapPeople.axml" />
-    <AndroidResource Include="Resources\layout\pager_item.axml" />
     <AndroidResource Include="Resources\layout\peopleNearByContent.axml" />
-    <AndroidResource Include="Resources\layout\profile.axml" />
     <AndroidResource Include="Resources\layout\progressBar.axml" />
     <AndroidResource Include="Resources\layout\resultList.axml" />
     <AndroidResource Include="Resources\layout\rightDrawerMenu.axml" />
@@ -537,6 +527,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\compass_base.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\imagebackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\profile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\borderLayout.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\toolbar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\walk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\menu.jpg" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,4 +1,13 @@
-<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#ffffff" xmlns:android="http://schemas.android.com/apk/res/android"><android.support.v7.widget.Toolbar android:keepScreenOn="true" android:id="@+id/toolbars" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="?attr/actionBarSize" android:background="@android:color/holo_blue_light" app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:background="?attr/colorPrimary" app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" xmlns:app="http://schemas.android.com/apk/res-auto" /><!--<TextView
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/profile" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><!--<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:keepScreenOn="true"
+        android:id="@+id/toolbars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />--><android.support.v7.widget.Toolbar android:id="@+id/toolbars" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:minHeight="?attr/actionBarSize" android:background="@drawable/toolbar" app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" /><!--<TextView
         android:text="Settings"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
