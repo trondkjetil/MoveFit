@@ -7,12 +7,14 @@ using Android.OS;
 using System.Collections.Generic;
 using Android.Views.InputMethods;
 using System.Linq;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 
 namespace TestApp
 {
-	[Activity(Label = "Scoreboard Routes")]
-	public class ScoreBoardRouteActivity : Activity
-	{
+	[Activity(Label = "Scoreboard Routes", Theme = "@style/Theme2")]
+	public class ScoreBoardRouteActivity : AppCompatActivity
+    {
 		private List<Route> mRoutes;
 		private ListView mListView;
 		private EditText mSearch;
@@ -20,9 +22,9 @@ namespace TestApp
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
 		private RouteAdapterScoreboard mAdapter;
-
-		//private TextView mTxtHeaderFirstName;
-		private TextView routeName;
+        SupportToolbar toolbar;
+        //private TextView mTxtHeaderFirstName;
+        private TextView routeName;
 		private TextView review;
 		private TextView distance;
 		private TextView routeType;
@@ -60,8 +62,13 @@ namespace TestApp
 			mSearch.TextChanged += mSearch_TextChanged;
 
             // ActionBar.SetDisplayShowHomeEnabled(true);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetDisplayShowTitleEnabled(true);
+            //ActionBar.SetDisplayHomeAsUpEnabled(true);
+            //ActionBar.SetDisplayShowTitleEnabled(true);
+
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
 
             try
             {

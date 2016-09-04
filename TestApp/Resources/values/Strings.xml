@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ApplicationName">TestApp</string>
+    <string name="ApplicationName">MoveFit</string>
    <!--<string name="facebook_app_id">434629220047124</string> -->
    <string name="facebook_app_id">975161479232108</string>
     <string name="sample_show_log">Show Log</string>

@@ -81,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
-                   
                     android:layout_below="@+id/titleApp">
                     <ImageButton
                         android:layout_width="wrap_content"
@@ -118,10 +117,11 @@
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
+              android:id="@+id/borderLayoutRef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                 android:background="@drawable/borderLayout"
+                android:background="@drawable/borderLayout"
                 android:layout_gravity="center">
             <!--android:background="@android:color/white"-->
                 <TextView

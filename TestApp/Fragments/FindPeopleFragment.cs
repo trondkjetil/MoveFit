@@ -11,7 +11,6 @@ using Android.Locations;
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Support.V4.Widget;
-//using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using System.ComponentModel;
 using System.Threading;

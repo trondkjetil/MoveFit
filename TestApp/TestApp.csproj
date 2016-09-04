@@ -321,9 +321,7 @@
     <AndroidResource Include="Resources\layout\resultList.axml" />
     <AndroidResource Include="Resources\layout\rightDrawerMenu.axml" />
     <AndroidResource Include="Resources\layout\routesOverview.axml" />
-    <AndroidResource Include="Resources\layout\row.axml" />
     <AndroidResource Include="Resources\layout\row_friend.axml" />
-    <AndroidResource Include="Resources\layout\row2.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardMain.axml" />
     <AndroidResource Include="Resources\layout\simpleServiceLayout.axml" />
     <AndroidResource Include="Resources\layout\startRoute.axml" />

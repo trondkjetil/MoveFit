@@ -7,12 +7,14 @@ using Android.OS;
 using System.Collections.Generic;
 using Android.Views.InputMethods;
 using System.Linq;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
 
 namespace TestApp
 {
-	[Activity(Label = "Scoreboard People")]
-	public class ScoreBoardPersonActivity : Activity
-	{
+	[Activity(Label = "Scoreboard People", Theme = "@style/Theme2")]
+	public class ScoreBoardPersonActivity : AppCompatActivity
+    {
 		private List<User> mUsers;
 		private ListView mListView;
 		private EditText mSearch;
@@ -25,8 +27,8 @@ namespace TestApp
 		private TextView mTxtHeaderAge;
 		private TextView mTxtHeaderGender;
 		private TextView mTxtHeaderScore;
-
-		private bool mFirstNameAscending;
+        SupportToolbar toolbar;
+        private bool mFirstNameAscending;
 		private bool mLastNameAscending;
 		private bool mAgeAscending;
 		private bool mGenderAscending;
@@ -59,8 +61,12 @@ namespace TestApp
 			mSearch.TextChanged += mSearch_TextChanged;
 
            // ActionBar.SetDisplayShowHomeEnabled(true);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetDisplayShowTitleEnabled(true);
+            //ActionBar.SetDisplayHomeAsUpEnabled(true);
+            //ActionBar.SetDisplayShowTitleEnabled(true);
+            toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
 
             try
             {

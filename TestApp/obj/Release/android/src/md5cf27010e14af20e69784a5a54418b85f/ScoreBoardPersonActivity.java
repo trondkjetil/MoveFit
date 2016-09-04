@@ -2,7 +2,7 @@ package md5cf27010e14af20e69784a5a54418b85f;
 
 
 public class ScoreBoardPersonActivity
-	extends android.app.Activity
+	extends android.support.v7.app.AppCompatActivity
 	implements
 		mono.android.IGCUserPeer
 {

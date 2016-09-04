@@ -100,7 +100,7 @@ namespace TestApp
             me = new List<User>();
             me.Add( MainStart.userInstanceOne); //await Azure.getUserByAuthId(MainStart.userId);
             unit = IOUtilz.LoadPreferences();
-            users = await Azure.getPeople();
+            users = await Azure.nearbyPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
 
             

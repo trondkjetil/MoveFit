@@ -1,4 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto"><!--<item android:id="@+id/back"
 		myapp:showAsAction="always"
     android:icon="@drawable/ic_menu_back"
-        />--><item android:id="@+id/home" myapp:showAsAction="always" android:icon="@drawable/ic_menu_home" /><item android:id="@+id/online" android:title="Show Online" android:icon="@drawable/redoffline" android:showAsAction="always|withText" /><item android:id="@+id/male" android:title="Show Males" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/female" android:title="Show Females" android:icon="@drawable/online" android:showAsAction="always|withText" /><item android:id="@+id/all" android:title="Show All" android:icon="@drawable/online" android:showAsAction="always|withText" /></menu>
+        />--><!--<item android:id="@+id/home"
+		myapp:showAsAction="always"
+    android:icon="@drawable/ic_menu_home"
+        />--><item android:id="@+id/online" android:title="Show Online" android:text="Show Online" myapp:showAsAction="never" /><item android:id="@+id/male" android:title="Show Males" android:text="Show Males" myapp:showAsAction="never" /><item android:id="@+id/female" android:title="Show Females" android:text="Show Females" myapp:showAsAction="never" /><item android:id="@+id/all" android:title="Show All" android:text="Show All" myapp:showAsAction="never" /></menu>

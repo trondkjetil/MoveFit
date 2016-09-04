@@ -27,34 +27,20 @@
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <uses-permission android:name="android.permission.BODY_SENSORS" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <!--android:theme="@style/PrimaryThemes"-->
   <permission android:name="testApp.TestApp.permission.C2D_MESSAGE" />
   <uses-permission android:name="testApp.TestApp.permission.C2D_MESSAGE" />
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
   <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <application android:label="MoveFit" android:allowBackup="true" android:icon="@drawable/tt" android:largeHeap="true" android:theme="@style/PrimaryThemes" android:debuggable="true" android:name="android.app.Application">
+  <application android:label="MoveFit" android:allowBackup="true" android:icon="@drawable/tt" android:largeHeap="true" android:debuggable="true" android:name="android.app.Application">
     <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="975161479232108" />
     <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="TestApp" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
-    <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="md5cf27010e14af20e69784a5a54418b85f.MyBroadcastReceiver">
-      <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-        <category android:name="testApp.TestApp" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-        <category android:name="testApp.TestApp" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="com.google.android.gcm.intent.RETRY" />
-        <category android:name="testApp.TestApp" />
-      </intent-filter>
-    </receiver>
-    <service android:name="md5cf27010e14af20e69784a5a54418b85f.PushHandlerService" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
     <activity android:label="RouteOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
@@ -68,8 +54,8 @@
     <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
     <activity android:label="FriendsOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
-    <activity android:icon="@drawable/tt" android:label="Scoreboard Routes" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
-    <activity android:icon="@drawable/tt" android:label="Scoreboard People" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
+    <activity android:label="Scoreboard Routes" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
+    <activity android:label="Scoreboard People" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
     <activity android:label="Friends" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
     <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
     <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">

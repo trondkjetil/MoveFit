@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_height="match_parent"
+      android:layout_width="match_parent"
+      android:orientation="vertical">
+  <android.support.v7.widget.Toolbar
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:minHeight="?attr/actionBarSize"
+       android:background="@drawable/toolbar"
+       app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+       app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -80,3 +101,4 @@
         android:hint="Search Friends"
         android:textColor="#000" />
 </FrameLayout>
+  </LinearLayout>

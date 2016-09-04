@@ -241,10 +241,10 @@ namespace TestApp
 
 
 
-          
 
 
-
+            RelativeLayout borderLayout = FindViewById<RelativeLayout>(Resource.Id.borderLayoutRef);
+            borderLayout.Visibility = ViewStates.Invisible;
             ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
             ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
             ImageView pictureFriend3 = FindViewById<ImageView>(Resource.Id.pic3);
@@ -547,6 +547,7 @@ namespace TestApp
 
                 if(topUsers.Count != 0)
                 {
+                    borderLayout.Visibility = ViewStates.Visible;
                     titleTopFriends.Text = "Top active friends";
                     titleTopFriends.TextSize = 19;
 

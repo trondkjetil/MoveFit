@@ -35,7 +35,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobil
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
@@ -95,9 +94,7 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\progressbar.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\resultlist.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\rightdrawermenu.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\routesoverview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row_friend.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row2.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\scoreboardmain.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\simpleservicelayout.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startroute.xml
