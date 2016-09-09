@@ -17,12 +17,12 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/imagebackground">
+        android:background="@drawable/st">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-        <!--android:background="#ff00bfa5" greenish   android:background="@android:color/white"-->
+        <!--android:background="#ff00bfa5" greenish  imagebackground android:background="@android:color/white"-->
             <RelativeLayout
                 android:id="@+id/overView"
                 android:orientation="vertical"
@@ -116,14 +116,14 @@
                     android:layout_below="@+id/messages"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
-            <RelativeLayout
-              android:id="@+id/borderLayoutRef"
+            <!--<RelativeLayout
+                android:id="@+id/borderLayoutRef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/borderLayout"
                 android:layout_gravity="center">
-            <!--android:background="@android:color/white"-->
+            --><!--android:background="@android:color/white"--><!--
                 <TextView
                     android:text=""
                     android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                         android:textColor="#ff000000"
                         android:layout_marginTop="6dp" />
                 </RelativeLayout>
-            </RelativeLayout>
+            </RelativeLayout>-->
         </LinearLayout>
     <!--</RelativeLayout>-->
     <!-- The Left Navigation Drawer -->

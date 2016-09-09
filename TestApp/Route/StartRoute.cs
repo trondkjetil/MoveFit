@@ -104,10 +104,11 @@ namespace TestApp
 
                 RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
-                LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
-                stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-                stars.GetDrawable(0).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-                stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+                //LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
+                //stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+                //stars.GetDrawable(0).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+                //stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
+
                 ratingbar.Clickable = false;
                 ratingbar.Visibility = ViewStates.Visible;
                 ratingbar.Rating = 0;
@@ -132,7 +133,7 @@ namespace TestApp
                 trips.Text = "Trips: " + routeTrips;
                 time.Text = "Best time: " + routeTime;
 
-                 instance = await Azure.getUser(userId);
+                instance = await Azure.getUser(userId);
                 record = false;
 
                 try
@@ -154,10 +155,6 @@ namespace TestApp
                         ratingbar.Rating = Convert.ToInt32(routeRating);
 
                     }
-
-
-
-                    
 
                     drawRoute();
 

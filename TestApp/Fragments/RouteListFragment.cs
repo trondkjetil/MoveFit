@@ -54,7 +54,7 @@ namespace TestApp
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
 
-                mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me);
+                mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me,0);
                 mRecyclerView.SetAdapter(mAdapter);
 
             }

@@ -20,7 +20,7 @@ using Android.Support.V7.Widget;
 namespace TestApp
 {
     [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
-    public class RouteOverview : AppCompatActivity  //, IOnMapReadyCallback
+    public class RouteOverview : AppCompatActivity, ViewPager.IOnPageChangeListener  //, IOnMapReadyCallback
     {
      
         public static IMenuItem goBack;
@@ -75,11 +75,12 @@ namespace TestApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.routesOverview);
             act = this;
-            routes = await Azure.getRoutes();
-           // routeList = routes;
+           
             me = new List<User>();
             me.Add(MainStart.userInstanceOne);
             unit = IOUtilz.LoadPreferences();
+            routes = await Azure.getRoutes();
+            // routeList = routes;
             myRoutes = await Azure.getMyRoutes(MainStart.userId);
            
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tools);
@@ -90,7 +91,7 @@ namespace TestApp
 
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
-
+            viewPager.AddOnPageChangeListener(this);
             tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
             tabLayout.SetupWithViewPager(viewPager);
             setupTabIcons();
@@ -161,7 +162,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -173,7 +174,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersMyRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -192,7 +193,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -205,7 +206,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersMyRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -226,7 +227,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -239,7 +240,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersMyRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -260,7 +261,7 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
@@ -273,11 +274,50 @@ namespace TestApp
                                  select route).ToList<Route>();
 
 
-                mAdapter = new UsersRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me);
+                mAdapter = new UsersMyRoutesAdapterFragment(orderedRoutes, mRecyclerView, this, me, currentPage);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
             }
+
+
+        }
+
+        public void OnPageScrollStateChanged(int state)
+        {
+
+        }
+
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+
+        }
+
+        public async void OnPageSelected(int position)
+        {
+            
+            // routeList = routes;
+          
+            if (position == 1)
+            {
+                mRecyclerView = RouteListFragment.mRecyclerView;
+                routes = await Azure.getRoutes();
+                mAdapter = new UsersRoutesAdapterFragment(routes, mRecyclerView, this, me, 0);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }
+            else if (position == 2)
+            {
+                mRecyclerView = MyRoutesFragment.mRecyclerView;
+                myRoutes = await Azure.getMyRoutes(MainStart.userId);
+                mAdapter = new UsersMyRoutesAdapterFragment(myRoutes, mRecyclerView, this, me, 0);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+          
+
+
 
 
         }

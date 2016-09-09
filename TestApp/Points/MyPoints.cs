@@ -10,9 +10,9 @@ namespace TestApp.Points
             
         }
 
-        public static int calculatePoints(string type, int distance)
+        public static int calculatePoints(string type, double distance)
         {
-            int sumPoints = 0;
+            double sumPoints = 0;
 
             if (type == "Walking")
             {
@@ -46,7 +46,7 @@ namespace TestApp.Points
             else
                 sumPoints = 0;
 
-                return sumPoints;
+                return Convert.ToInt32( sumPoints);
         }
 
     }

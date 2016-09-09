@@ -198,6 +198,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Health\ActivityLevelTracker.cs" />
     <Compile Include="Dialogs\DialogEndRouteRate .cs" />
+    <Compile Include="Route\AdapterMyUserRoutes.cs" />
     <Compile Include="Route\AdapterUserRoutes.cs" />
     <Compile Include="Route\CreateRouteFragment.cs" />
     <Compile Include="Fragments\RouteListFragment.cs" />
@@ -299,7 +300,9 @@
     <AndroidResource Include="Resources\drawable\ic_action_help.png" />
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
-    <AndroidResource Include="Resources\layout\accelerometer.axml" />
+    <AndroidResource Include="Resources\layout\accelerometer.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\calculator.axml" />
     <AndroidResource Include="Resources\layout\chatMessageDialog.axml" />
     <AndroidResource Include="Resources\layout\ContactListItem.axml" />
@@ -333,7 +336,9 @@
     <AndroidResource Include="Resources\layout\welcome.axml" />
     <AndroidResource Include="Resources\layout\dialogUserInfo.axml" />
     <AndroidResource Include="Resources\layout\userFriendsRequestContent.axml" />
-    <AndroidResource Include="Resources\layout\friendsOverview.axml" />
+    <AndroidResource Include="Resources\layout\friendsOverview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\stepCounter.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardRoutes.axml" />
     <AndroidResource Include="Resources\layout\row_route.axml" />
@@ -539,10 +544,19 @@
     <AndroidResource Include="Resources\drawable\toolbar.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\menu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\walk.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\menu.jpg" />
+    <AndroidResource Include="Resources\drawable\at.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\st.jpg" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

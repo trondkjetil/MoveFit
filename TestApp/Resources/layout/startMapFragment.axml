@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profile">
-<!--<android.support.v7.widget.Toolbar
+  >
+<!-- android:background="@drawable/profile"   <android.support.v7.widget.Toolbar
         android:id="@+id/tbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -14,17 +14,17 @@
         android:layout_below="@+id/tbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+      
         android:id="@+id/map_container">
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="230dp" />
+            android:layout_height="325dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_below="@+id/map_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
         <TextView
             android:text=""
             android:layout_below="@+id/createRoute"
@@ -52,14 +52,5 @@
             android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/createRoute" />
-    <!--<ImageButton
-            android:src="@drawable/ic_menu_home"
-            android:background="@null"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/createRoute"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/myRoutes" />-->
     </RelativeLayout>
 </RelativeLayout>

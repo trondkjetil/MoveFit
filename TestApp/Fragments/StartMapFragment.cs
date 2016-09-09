@@ -1,6 +1,3 @@
-
-
-
 using System;
 using Android;
 using Android.OS;
@@ -15,19 +12,44 @@ using Android.Graphics;
 using Android.Content;
 //using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
+using static Android.Gms.Maps.GoogleMap;
+using Java.Util;
+using System.Threading.Tasks;
 
 namespace TestApp
 {
 
-    public class StartMapFragment : Fragment, IOnMapReadyCallback
+    public class StartMapFragment : Fragment, IOnMapReadyCallback, IOnMarkerClickListener
     {
 
         MapView mMapView;
         private GoogleMap mMap;
         int[] unit;    
         List<User> me;
-     //   public SupportToolbar toolbar;
- 
+        //   public SupportToolbar toolbar;
+        HashMap mHashMapRoute;
+        HashMap mHashMapUser;
+
+        public string routeName;
+        public string routeInfo;
+        public string routeRating;
+        public string routeDifficulty;
+        public string routeLength;
+        public string routeType;
+        public int routeTrips;
+        public string routeId;
+        public string routeTime;
+        public string routeUserId;
+
+        public int activeScreen;
+
+        public string userName;
+        public string userGender;
+        public int userAge;
+        public string userProfileImage;
+        public int userPoints;
+        public string userAboutMe;
+        public string userID;
         public override void OnCreate(Bundle savedInstanceState)
         {
 
@@ -58,8 +80,8 @@ namespace TestApp
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
                  Bitmap icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startFlag);
-                createRoute.SetImageBitmap(IOUtilz.getRoundedShape(icon));
-                createRouteLabel.Text = "Create Route";
+                createRoute.SetImageBitmap(IOUtilz.scaleDown(icon,160,false));
+              //  createRouteLabel.Text = "Create Route";
                 createRoute.Click += (sender, e) =>
                 {
                     Intent myIntent = new Intent(this.Activity, typeof(CreateRoute));
@@ -71,21 +93,29 @@ namespace TestApp
                 //    RouteOverview.act.Finish();
                 //};
 
-               // myRoutes.Visibility = ViewStates.Invisible;
-
+                // myRoutes.Visibility = ViewStates.Invisible;
+                mHashMapRoute = new HashMap();
                 me = RouteOverview.me;
                 unit = RouteOverview.unit;
-            }else
+                activeScreen = 0;
+            }
+            else
             {
+
+                activeScreen = 1;
+                mHashMapUser = new HashMap();
                 me = FriendsOverview.me;
                 unit = FriendsOverview.unit;
                 createRoute.Visibility = ViewStates.Invisible;
                 createRouteLabel.Text = "Find your self a partner to do activities with!";
+
+               
             }
 
            
 
             mMapView = view.FindViewById<MapView>(Resource.Id.map);
+           
             mMapView.OnCreate(savedInstanceState);
             mMapView.OnResume();
 
@@ -186,10 +216,15 @@ namespace TestApp
                 Bitmap largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.compass_base);     
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape( largeIcon)); //(Resource.Drawable.test);
                
-            mMap.AddMarker(new MarkerOptions()
+            Marker m = mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
            .SetTitle(route.Name + "(" + route.Difficulty + ")")
            .SetSnippet(dist.ToString() + RouteOverview.distanceUnit).SetIcon(image));
+           
+                mHashMapRoute.Put(m, route.Id);
+
+
+
             }
             catch (Exception a)
             {
@@ -228,10 +263,18 @@ namespace TestApp
                 Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
 
-                mMap.AddMarker(new MarkerOptions()
+                string online = "Online";
+                if (!user.Online)
+                {
+                    online = "Offline";
+                }
+
+               Marker mark =   mMap.AddMarker(new MarkerOptions()
                .SetPosition(myPosition)
-               .SetTitle(user.UserName + "(" + user.Online + ")")
+               .SetTitle(user.UserName + "(" + online + ")")
                .SetSnippet(dist.ToString() + FriendsOverview.distanceUnit).SetIcon(image));
+                mHashMapUser.Put(mark, user.Id);
+              
             }
             catch (Exception a)
             {
@@ -250,8 +293,12 @@ namespace TestApp
             mMap.UiSettings.ZoomControlsEnabled = true;
             mMap.UiSettings.RotateGesturesEnabled = true;
             mMap.UiSettings.ScrollGesturesEnabled = true;
+            mMap.SetOnMarkerClickListener(this);
 
-
+            mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            var myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
+            
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
                 foreach (var item in RouteOverview.routes)
@@ -270,6 +317,105 @@ namespace TestApp
             }
 
 
+
+        }
+
+
+        public bool OnMarkerClick(Marker marker)
+        {
+            Activity.RunOnUiThread( async () =>
+            {
+
+           
+           
+           
+                if(activeScreen == 0)
+                {
+
+                    string routeIdentification = (string)mHashMapRoute.Get(marker);
+                    List<Route> routeList = await Azure.getRouteById(routeIdentification);
+                    Route routeInstance = routeList[0];
+
+
+                    routeName = routeInstance.Name;
+                    routeInfo = routeInstance.Info;
+                    routeDifficulty = routeInstance.Difficulty;
+                    routeLength = routeInstance.Distance;
+                    routeType = routeInstance.RouteType;
+                    routeRating = routeInstance.Review;
+                    routeTrips = routeInstance.Trips;
+                    routeId = routeInstance.Id;
+                    routeTime = routeInstance.Time;
+                    routeUserId = routeInstance.User_id;
+
+
+
+                    Bundle b = new Bundle();
+                    b.PutStringArray("MyData", new String[] {
+
+            routeName,
+            routeInfo,
+            routeDifficulty,
+            routeLength,
+            routeType,
+            routeRating,
+            routeTrips.ToString(),
+            routeId,
+            routeTime,
+            routeUserId
+
+        });
+
+                    Intent myIntent = new Intent(this.Activity, typeof(StartRoute));
+                    myIntent.PutExtras(b);
+                    Activity.StartActivity(myIntent);
+                }
+
+
+                else
+                {
+
+                    string userIdentiication = (string)mHashMapUser.Get(marker);
+
+                    User userInstance =  await Azure.getUser(userIdentiication);
+
+                    userName = userInstance.UserName;
+                    userGender = userInstance.Sex;
+                    userAge = userInstance.Age;
+                    userProfileImage = userInstance.ProfilePicture;
+                    userPoints = userInstance.Points;
+                    userAboutMe = userInstance.AboutMe;
+                    userID = userInstance.Id;
+
+                    Bundle ba = new Bundle();
+                    ba.PutStringArray("MyData", new String[] {
+
+                    userName,
+                    userGender,
+                    userAge.ToString(),
+                    userProfileImage,
+                    userPoints.ToString(),
+                    userAboutMe,
+                    userID
+
+                });
+
+                    Intent myIntent = new Intent(this.Activity, typeof(UserProfile));
+                    myIntent.PutExtras(ba);
+                    this.Activity.StartActivity(myIntent);
+
+
+                }
+
+
+
+
+          
+
+            });
+
+
+            return true;
 
         }
 

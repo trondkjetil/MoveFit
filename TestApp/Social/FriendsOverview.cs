@@ -20,7 +20,7 @@ using System.Linq;
 namespace TestApp
 {
     [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
-    public class FriendsOverview : AppCompatActivity  //, IOnMapReadyCallback
+    public class FriendsOverview : AppCompatActivity, ViewPager.IOnPageChangeListener  //, IOnMapReadyCallback
     {
        
        
@@ -96,10 +96,11 @@ namespace TestApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.friendsOverview);
             act = this;
-            myFriends = await Azure.getUsersFriends(MainStart.userId);
+           
             me = new List<User>();
             me.Add( MainStart.userInstanceOne); //await Azure.getUserByAuthId(MainStart.userId);
             unit = IOUtilz.LoadPreferences();
+            myFriends = await Azure.getUsersFriends(MainStart.userId);
             users = await Azure.nearbyPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
 
@@ -113,9 +114,11 @@ namespace TestApp
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             setupViewPager(viewPager);
 
+            viewPager.AddOnPageChangeListener(this);
 
             tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
             tabLayout.SetupWithViewPager(viewPager);
+            
             setupTabIcons();
 
             //layout = FindViewById<LinearLayout>(Resource.Id.layout);
@@ -393,8 +396,51 @@ namespace TestApp
 
         }
 
+        public void OnPageScrollStateChanged(int state)
+        {
+            
+        }
+
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+          
+        }
+
+        public async void OnPageSelected(int position)
+        {
+           
+             if (position == 1)
+            {
+                mRecyclerView = FindpeopleFragment.mRecyclerView;
+                users = await Azure.nearbyPeople();
+                mAdapter = new UsersNearbyAdapter(users, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+            }else if(position == 2)
+            {
+                mRecyclerView = MyFriendsFragment.mRecyclerView;
+                myFriends = await Azure.getUsersFriends(MainStart.userId);
+                mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this, this, mAdapter, me);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
+            else if(position == 3)
+            {
+                mRecyclerView = FriendRequestFragment.mRecyclerView;
+                friendRequests = await Azure.getFriendRequests(MainStart.userId);
+
+                mAdapter = new UsersFriendRequestAdapter(friendRequests, mRecyclerView, this, this, mAdapter);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+            }
 
 
+
+    
+
+        }
     }
 
 

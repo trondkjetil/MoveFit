@@ -164,8 +164,11 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\imagebackground
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\profile.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\borderlayout.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\toolbar.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\walk.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\menu.jpg
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_delete.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\walk.jpg
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\at.jpg
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\st.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
@@ -212,5 +215,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transa
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

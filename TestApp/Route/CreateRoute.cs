@@ -158,7 +158,7 @@ namespace TestApp
         }
       
 
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected  override void OnCreate(Bundle savedInstanceState)
         {
            // RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
@@ -392,8 +392,11 @@ namespace TestApp
             dist = calculateDistance();
 
             if (dist == 0)
+            {
                 dist = getDistanceForRoute(startLocation, endLocation);
-                mypoints = MyPoints.calculatePoints(routeType, (int)dist);
+
+            }
+            mypoints = MyPoints.calculatePoints(routeType, dist);
 
 
             startDialogNameRoute();
@@ -529,7 +532,7 @@ namespace TestApp
             routeStatus.Text = "Aquiring your position...";
 
             var loc = App.Current.LocationService.getLastKnownLocation();
-
+          
             if (loc != null)
             {
                 mMap.Clear();

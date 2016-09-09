@@ -34,9 +34,12 @@
     <!-- tabIndicatorHeight is height of underline-->
     <item name="tabIndicatorHeight">3dp</item>
     <!-- color of text when tabs be selected-->
-    <item name="tabSelectedTextColor">#ffffff</item>
-   
+    <item name="tabPaddingStart">5dp</item>
+    <item name="tabPaddingEnd">5dp</item>
+    
+    <item name="tabSelectedTextColor">#00e600</item>
 
+    <!--#ffffff-->
   </style>
   
   

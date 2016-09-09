@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/myRoutesId"
+    android:id="@+id/userRoutecontent"
     android:background="#E2E2E2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="center" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -66,6 +66,14 @@
                     android:padding="2dp"
                     android:textSize="14sp"
                     android:singleLine="true" />
+                <ImageButton
+                    android:src="@drawable/ic_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/deleteRoute"
+                    android:background="@null"
+                    android:paddingTop="4dp"
+                    android:scaleType="center" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -75,22 +83,31 @@
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:paddingRight="5dp">
-              <ImageButton
-                android:src="@drawable/green"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageButton3"
-                android:background="@android:color/transparent"
-                android:paddingTop="5dp"
-                android:scaleType="center" />
+                <ImageButton
+                    android:src="@drawable/green"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton3"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:scaleType="center" />
+                <TextView
+                    android:text="Dist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/distAway"
+                    android:textSize="9dp"
+                    android:textColor="#000000"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="5dp" />
             <!--<TextView
                     android:text="Reviews: "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtTime"
                     android:gravity="center_horizontal"
-                    android:paddingTop="5dp" />
-                <CheckBox
+                    android:paddingTop="5dp" />-->
+            <!--<CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/cbxStart"
@@ -121,15 +138,15 @@
                 android:id="@+id/startRoute"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter" />-->
-            <!--<ImageButton
+        <!--<ImageButton
                 android:src="@drawable/ic_action_save"
                 android:layout_width="0dp"
                 android:layout_weight="33"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton2"
                 android:background="@android:color/transparent"
-                android:scaleType="centerInside" />-->
-            <!--<ImageButton
+                android:scaleType="fitCenter" />-->
+        <!--<ImageButton
                 android:src="@drawable/green"
                 android:layout_width="0dp"
                 android:layout_weight="33"

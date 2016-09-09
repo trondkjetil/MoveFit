@@ -56,6 +56,7 @@ namespace TestApp
 
                 var pref = IOUtilz.LoadPreferences();
                 timeInterval = pref[2];
+                timeInterval = timeInterval * 60;
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 				
@@ -136,7 +137,10 @@ namespace TestApp
             }
             if (timeInterval == 0)
                 timeInterval = 60;
-            if (mAccel < 5 && timer.Elapsed.Seconds == timeInterval * 60) { //TIME_FOR_ALARM > 10 ){  //1800
+
+           
+           
+            if (mAccel < 5 && (timer.Elapsed.Seconds == timeInterval) || (timer.Elapsed.Seconds >= timeInterval && timer.Elapsed.Seconds <= timeInterval + 8)) { //TIME_FOR_ALARM > 10 ){  //1800
                 mAccel = 0.00f;
 
 

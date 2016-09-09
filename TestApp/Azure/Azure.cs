@@ -409,7 +409,6 @@ namespace TestApp
         }
 
 
-
         public static async Task<User> getUser(String id)
         {
 
@@ -448,6 +447,14 @@ namespace TestApp
         {
 
             List<Route> routeList = await routeTable.Where(Route => Route.Id != null).ToListAsync();
+            return routeList;
+
+        }
+        public static async Task<List<Route>> getRouteById(string routeId)
+        {
+
+            List<Route> routeList = await routeTable.Where(Route => Route.Id == routeId).ToListAsync();
+            //Route instance = routeList.FirstOrDefault();
             return routeList;
 
         }
@@ -493,15 +500,9 @@ namespace TestApp
             //List<User> a3 = await table.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
             //a3 = a3;
 
-            List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < 1000 && (p.Lon - user.Lon) > -1000 && (p.Lat - user.Lat) < 1000 && (p.Lat - user.Lat) > -1000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+            List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < 1000 && (p.Lon - user.Lon) > -1000 && (p.Lat - user.Lat) < 1000 && (p.Lat - user.Lat) > -1000  && (p.Id != MainStart.userId )).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
 
             List<User> potentialUsers = await table.Where(p => p.Lon - user.Lon < 1 && (p.Lon - user.Lon) > -1 && (p.Lat - user.Lat) < 1 && (p.Lat - user.Lat) > -1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-
-
-
-
-
-         
 
             float[] result = new float[1];
             List<User> verifiedUsers = new List<User>();
@@ -639,6 +640,17 @@ namespace TestApp
             List<Route> routeList = await routeTable.Where(Route => Route.User_id == MainStart.userId).ToListAsync();
             return routeList;
 
+        }
+
+        public static async Task<List<Route>> deleteRoute(string routeId)
+        {
+            List<Route> routeList = await routeTable.Where(Route => Route.User_id == MainStart.userId && Route.Id == routeId).ToListAsync();
+
+            // userList.Find(UserImage => UserImage.Userid == userId).Image = profileImage;
+            Route route = routeList.FirstOrDefault();
+            await routeTable.DeleteAsync(route);
+
+            return routeList;
         }
 
 

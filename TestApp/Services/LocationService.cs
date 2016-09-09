@@ -216,7 +216,11 @@ namespace TestApp
 
         public Location getLastKnownLocation()
         {
-         
+         if(currentLocation != null)
+            {
+                return currentLocation;
+            }else
+
             return LocMgr.GetLastKnownLocation(locationProvider);
         }
 

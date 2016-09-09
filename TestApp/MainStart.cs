@@ -111,6 +111,17 @@ namespace TestApp
         public string totalDistance;
         public string points;
 
+       public static List<User> top;
+       public static List<User> topUsers;
+
+        static TextView titleTopFriends;
+        static ImageView pictureFriend1;
+        static ImageView pictureFriend2;
+        static ImageView pictureFriend3;
+        static TextView pers2;
+        static TextView pers3;
+        static TextView pers1;
+
         //private RegisterClient registerClient;
         //private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
 
@@ -209,7 +220,20 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
-             mainActivity = this;
+
+
+            array = Intent.GetStringArrayExtra("MyData");
+
+            userName = array[0];
+            profilePictureUrl = array[1];
+            profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
+            auth0UserId = array[3] + "-" + array[2];
+            top = await Azure.getUsersFriends(auth0UserId);
+            topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
+
+
+
+            mainActivity = this;
             geocoder = new Geocoder(this);
             instance = this;
 
@@ -223,6 +247,7 @@ namespace TestApp
             waitingUpload = null;
             userInstanceOne = null;
 
+          
             StartService(new Intent(this, typeof(SimpleService)));
           
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
@@ -230,6 +255,10 @@ namespace TestApp
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
 
+
+            mLeftDrawer.Tag = 0;
+            //mRightDrawer.Tag = 1;
+            mRightDrawer.Tag = 1;
             //Typeface tf = Typeface.CreateFromAsset(Assets,
             //     "english111.ttf");
             //TextView appTitle = FindViewById<TextView>(Resource.Id.titleApp);
@@ -242,16 +271,17 @@ namespace TestApp
 
 
 
+            //RelativeLayout borderLayout = FindViewById<RelativeLayout>(Resource.Id.borderLayoutRef);
+            //borderLayout.Visibility = ViewStates.Invisible;
 
-            RelativeLayout borderLayout = FindViewById<RelativeLayout>(Resource.Id.borderLayoutRef);
-            borderLayout.Visibility = ViewStates.Invisible;
-            ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
-            ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
-            ImageView pictureFriend3 = FindViewById<ImageView>(Resource.Id.pic3);
 
-            TextView pers1 = FindViewById<TextView>(Resource.Id.pers1);
-            TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
-            TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
+            //ImageView pictureFriend1 = FindViewById<ImageView>(Resource.Id.pic1);
+            //ImageView pictureFriend2 = FindViewById<ImageView>(Resource.Id.pic2);
+            //ImageView pictureFriend3 = FindViewById<ImageView>(Resource.Id.pic3);
+
+            //TextView pers1 = FindViewById<TextView>(Resource.Id.pers1);
+            //TextView pers2 = FindViewById<TextView>(Resource.Id.pers2);
+            //TextView pers3 = FindViewById<TextView>(Resource.Id.pers3);
 
             messages = FindViewById<TextView>(Resource.Id.messageInfo);
             messages.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
@@ -276,16 +306,11 @@ namespace TestApp
            // layout.Visibility = ViewStates.Invisible;
 
 
-            array = Intent.GetStringArrayExtra("MyData");
-       
-            userName = array[0];
-            profilePictureUrl = array[1];
-            profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
-            auth0UserId = array[3] +"-"+ array[2];
-            mLeftDrawer.Tag = 0;
-            //mRightDrawer.Tag = 1;
-            mRightDrawer.Tag = 1;
          
+
+
+          
+
             SetSupportActionBar(mToolbar);
             mLeftDataSet = new List<string>();
           
@@ -293,7 +318,7 @@ namespace TestApp
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
-            mLeftDataSet.Add("Settings");
+            mLeftDataSet.Add("My Settings");
          
             mLeftDataSet.Add("My Profile");
 
@@ -537,65 +562,65 @@ namespace TestApp
             initPersonTracker();
 
 
-            TextView titleTopFriends = FindViewById<TextView>(Resource.Id.pers11);
-            try
-            {
+            //TextView titleTopFriends = FindViewById<TextView>(Resource.Id.pers11);
+            //try
+            //{
 
                 
-                List<User> top = await Azure.getUsersFriends(MainStart.userId);
-                List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
+            //    List<User> top = await Azure.getUsersFriends(MainStart.userId);
+            //    List<User> topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
 
-                if(topUsers.Count != 0)
-                {
-                    borderLayout.Visibility = ViewStates.Visible;
-                    titleTopFriends.Text = "Top active friends";
-                    titleTopFriends.TextSize = 19;
-
-
-                    if (topUsers[0].UserName != "")
-                    {
-                        pers1.Text = "#1 " + topUsers[0].UserName;
-                      //  pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
-
-                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[0].ProfilePicture));
-
-                    }
+            //    if(topUsers.Count != 0)
+            //    {
+            //        borderLayout.Visibility = ViewStates.Visible;
+            //        titleTopFriends.Text = "Top active friends";
+            //        titleTopFriends.TextSize = 19;
 
 
+            //        if (topUsers[0].UserName != "")
+            //        {
+            //            pers1.Text = "#1 " + topUsers[0].UserName;
+            //          //  pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
 
-                    if (topUsers[1].UserName != "")
-                    {
-                        pers2.Text = "#2 " + topUsers[1].UserName;
-                        // pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
+            //            pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[0].ProfilePicture));
 
-
-                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
-
-                    }
+            //        }
 
 
-                    if (topUsers[2].UserName != "")
-                    {
-                        pers3.Text = "#3 " + topUsers[2].UserName;  //"Test friend3 Score: 0";
-                                                                    //    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
 
-                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[2].ProfilePicture));
+            //        if (topUsers[1].UserName != "")
+            //        {
+            //            pers2.Text = "#2 " + topUsers[1].UserName;
+            //            // pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));
 
 
-                    }
+            //            pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
 
-                }
+            //        }
+
+
+            //        if (topUsers[2].UserName != "")
+            //        {
+            //            pers3.Text = "#3 " + topUsers[2].UserName;  //"Test friend3 Score: 0";
+            //                                                        //    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+
+            //            pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[2].ProfilePicture));
+
+
+            //        }
+
+            //    }
               
 
 
 
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
 
 
-            }
+            //}
 
 
 
@@ -647,9 +672,59 @@ namespace TestApp
             //routesCreated.Visibility = ViewStates.Invisible;
             //friends.Visibility = ViewStates.Invisible;
             //totalDistance.Visibility = ViewStates.Invisible;
-           
 
-           
+            topUsers = topUsers;
+            top = top;
+
+            try
+            {
+
+
+                if (topUsers.Count != 0)
+                {
+                    //borderLayout.Visibility = ViewStates.Visible;
+                    titleTopFriends.Text = "Top active friends";
+                    titleTopFriends.TextSize = 19;
+
+                    if (topUsers[0].UserName != "")
+                    {
+                        pers1.Text = "#1 " + topUsers[0].UserName;
+                        //  pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
+
+                        pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[0].ProfilePicture));
+
+                    }
+
+
+                    if (topUsers[1].UserName != "")
+                    {
+                        pers2.Text = "#2 " + topUsers[1].UserName;
+                        // pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));                                pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
+                        pictureFriend2.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
+
+                    }
+
+
+                    if (topUsers[2].UserName != "")
+                    {
+                        pers3.Text = "#3 " + topUsers[2].UserName;  //"Test friend3 Score: 0";                                                                           //    pictureFriend3.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[2].ProfilePicture));
+                        pictureFriend3.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[2].ProfilePicture));
+
+                    }
+
+
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+
         }
 
 
@@ -679,8 +754,6 @@ namespace TestApp
             });
 
           
-
-
             await hubConnection.Start();
 
 
@@ -1012,7 +1085,7 @@ namespace TestApp
                     Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                     alert.SetTitle("About MoveFit");
                     alert.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
-                     "As this is a part of my thesis, I kindly ask if you could be so kind and help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine
+                     "As this is a part of my thesis, I kindly ask if you could help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine
                      +
                      System.Environment.NewLine + "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
                     );
@@ -1262,22 +1335,26 @@ namespace TestApp
 
         }
 
-
-        public class RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener,IOnMarkerClickListener
+    
+        public class  RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener,IOnMarkerClickListener
         {
             List<Contact> _contactList;
             public Activity activityRightDrawer;
             public static List<User> nearbyUsers;
             public Address oldAddress;
+        
 
 
             public RightDrawer(Activity activity)
             {
                 activityRightDrawer = activity;
                 FillContacts();
+                
             }
 
-
+          
+            
+          
             public async Task<string> lookupAddress()
             {
 
@@ -1406,12 +1483,12 @@ namespace TestApp
                 return _contactList[position].Id;
             }
 
-            public override View GetView(int position, View convertView, ViewGroup parent)
+            public  override View GetView(int position, View convertView, ViewGroup parent)
             {
+               
                 var view = convertView ?? activityRightDrawer.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
                 contactName.Text = "";
-
                 MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
                 mMap = mapFrag.Map;
 
@@ -1422,17 +1499,29 @@ namespace TestApp
 
                 try
                 {
+            
+                    mMap.SetOnMapClickListener(this);
+                    mMap.SetOnMarkerClickListener(this);
+                    mMap.UiSettings.ZoomControlsEnabled = true;
+                    mMap.UiSettings.RotateGesturesEnabled = false;
+                    mMap.UiSettings.ScrollGesturesEnabled = false;
 
-              
-                mMap.SetOnMapClickListener(this);
-                mMap.SetOnMarkerClickListener(this);
-                mMap.UiSettings.ZoomControlsEnabled = true;
-                mMap.UiSettings.RotateGesturesEnabled = false;
-                mMap.UiSettings.ScrollGesturesEnabled = false;
+                     titleTopFriends = view.FindViewById<TextView>(Resource.Id.pers11);
+                     pictureFriend1 = view.FindViewById<ImageView>(Resource.Id.pic1);
+                     pictureFriend2 = view.FindViewById<ImageView>(Resource.Id.pic2);
+                     pictureFriend3 = view.FindViewById<ImageView>(Resource.Id.pic3);
+                     pers1 = view.FindViewById<TextView>(Resource.Id.pers1);
+                     pers2 = view.FindViewById<TextView>(Resource.Id.pers2);
+                     pers3 = view.FindViewById<TextView>(Resource.Id.pers3);
 
+
+                   
                 
-                
-                TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
+
+                     
+                       
+
+                    TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
                 ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);

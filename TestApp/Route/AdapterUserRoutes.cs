@@ -34,13 +34,18 @@ namespace TestApp
             public string routeTime;
             public string routeUserId;
 
+            private RecyclerView.Adapter mAdapter;
 
-            public UsersRoutesAdapterFragment(List<Route> routes, RecyclerView recyclerView, Context context, List<User> myInstance)
+        public int origin;
+
+            public UsersRoutesAdapterFragment(List<Route> routes, RecyclerView recyclerView, Context context, List<User> myInstance, int sender)
             {
                 mRoutes = routes;
                 mRecyclerView = recyclerView;
                 mContext = context;
                 mMyInstance = myInstance;
+               
+                mAdapter = this;
             }
 
             public class MyView : RecyclerView.ViewHolder
@@ -49,7 +54,8 @@ namespace TestApp
                 public TextView mRouteName { get; set; }
                 public TextView mStatus { get; set; }
                 public TextView mRouteInfo { get; set; }
-                public TextView mDistanceAway { get; set; }
+                 //public ImageButton mDeleteRoute { get; set; }
+                 public TextView mDistanceAway { get; set; }
                 public ImageView mIconForRoute { get; set; }
                 public ImageButton mStartRouteFlag { get; set; }
                 public ImageButton mRouteDifficulty { get; set; }
@@ -65,8 +71,14 @@ namespace TestApp
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
             {
 
-                //card view
-                View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
+
+            View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
+              //  deleteRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.delete);
+
+             
+            
+           
+
 
                 ImageView profile = userRoutes.FindViewById<ImageView>(Resource.Id.profilePicture);
                 TextView name = userRoutes.FindViewById<TextView>(Resource.Id.nameId);
@@ -74,13 +86,19 @@ namespace TestApp
                 TextView text = userRoutes.FindViewById<TextView>(Resource.Id.textId);
                 TextView distanceFromMe = userRoutes.FindViewById<TextView>(Resource.Id.distAway);
 
+
                 ImageButton startRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.startRoute);
                 ImageButton routeDifficultyImage = userRoutes.FindViewById<ImageButton>(Resource.Id.imageButton3);
 
-
+  
                 MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage, mDistanceAway = distanceFromMe };
 
                 return view;
+      
+
+
+              
+              
 
             }
 
@@ -105,12 +123,18 @@ namespace TestApp
                 //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
 
-                // Calculate distance to User
-                float[] result = null;
-                result = new float[1];
+
+
+            //  if(myHolder.mDeleteRoute != null)
+        
+
+
+
+            // Calculate distance to User
+            float[] result = null;
+            result = new float[1];
             try
             {
-
 
 
                 Location.DistanceBetween(mRoutes[position].Lat, mRoutes[position].Lon, mMyInstance[0].Lat, mMyInstance[0].Lon, result);
