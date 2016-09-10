@@ -1,4 +1,6 @@
 using System;
+using Android.Content;
+using Android.Content.PM;
 using Android.App;
 using Android.Locations;
 using Android.OS;
@@ -19,7 +21,7 @@ using Android.Support.V7.Widget;
 
 namespace TestApp
 {
-    [Activity(Label = "RouteOverview", Theme = "@style/Theme2")]
+    [Activity(Label = "RouteOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
     public class RouteOverview : AppCompatActivity, ViewPager.IOnPageChangeListener  //, IOnMapReadyCallback
     {
      

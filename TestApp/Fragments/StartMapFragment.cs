@@ -211,12 +211,58 @@ namespace TestApp
                 else
                 dist = Convert.ToInt32(IOUtilz.ConvertKilometersToMiles(dist / 1000));
 
-              
 
-                Bitmap largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.compass_base);     
-                BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape( largeIcon)); //(Resource.Drawable.test);
-               
-            Marker m = mMap.AddMarker(new MarkerOptions()
+
+                Bitmap largeIcon = null;
+                BitmapDescriptor image = null;
+                if (route.RouteType == "Walking")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.wa);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+                    
+                }
+                else if (route.RouteType == "Running")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.ru);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+                }
+                else if (route.RouteType == "Hiking")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.tr);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+
+                }
+                else if (route.RouteType == "Bicycling")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.cy);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+
+                }
+                else if (route.RouteType == "Skiing")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.sk);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+
+                }
+                else if (route.RouteType == "Kayaking")
+                {
+                    largeIcon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.ka);
+                    image = BitmapDescriptorFactory.FromBitmap(IOUtilz.getRoundedShape(largeIcon)); //(Resource.Drawable.test);
+
+
+                }
+
+
+
+
+
+
+                Marker m = mMap.AddMarker(new MarkerOptions()
            .SetPosition(myPosition)
            .SetTitle(route.Name + "(" + route.Difficulty + ")")
            .SetSnippet(dist.ToString() + RouteOverview.distanceUnit).SetIcon(image));

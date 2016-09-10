@@ -1,4 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto"><!--This is for the actionbar on scoreboard--><item android:id="@+id/switchRoutes" android:showAsAction="never" android:title="Show Routes Scoreboard" android:text="Show Routes Scoreboard" /><!--<item android:id="@+id/switchFriends"
+<menu xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><!--This is for the actionbar on scoreboard--><item android:id="@+id/switchRoutes" android:showAsAction="never" android:title="Show Routes Scoreboard" android:text="Show Routes Scoreboard" /><!--<item android:id="@+id/switchFriends"
      android:showAsAction="always"
      android:title="Show Friends"
      android:icon="@drawable/ic_menu_forward"/>--><item android:id="@+id/random" android:title="Show Best Nearby Scoreboard" android:text="Show Best Nearby Scoreboard" myapp:showAsAction="never" /><item android:id="@+id/search" android:showAsAction="always" android:title="search" android:icon="@drawable/ic_action_search" /></menu>

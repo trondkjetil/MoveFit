@@ -1317,7 +1317,7 @@ namespace TestApp
             setMarker(currentPos, mMap);
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
             // mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
-            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 15));
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 14));
 
 
         }

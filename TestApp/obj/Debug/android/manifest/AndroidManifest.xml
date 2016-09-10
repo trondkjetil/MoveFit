@@ -42,7 +42,7 @@
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="Calculator" android:name="md5cf27010e14af20e69784a5a54418b85f.Calculator" />
     <activity android:label="Activity" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.ActivityLevelTracker" />
-    <activity android:label="RouteOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
+    <activity android:label="RouteOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
     <activity android:alwaysRetainTaskState="true" android:label="Route Creator" android:launchMode="singleInstance" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />
@@ -52,7 +52,7 @@
     <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
     <activity android:label="PrivateChat" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.PrivateChat" />
     <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
-    <activity android:label="FriendsOverview" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
+    <activity android:label="FriendsOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
     <activity android:label="Scoreboard Routes" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
     <activity android:label="Scoreboard People" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />

@@ -207,9 +207,44 @@ namespace TestApp
                 }
 
 
-                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.maps);
+              //  myHolder.mIconForRoute.SetImageResource(Resource.Drawable.maps);
 
-                if (position > mCurrentPosition)
+            if (mRoutes[position].RouteType == "Walking")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.wa);
+            }
+            else if (mRoutes[position].RouteType == "Running")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.ru);
+
+            }
+            else if (mRoutes[position].RouteType == "Hiking")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.tr);
+
+            }
+            else if (mRoutes[position].RouteType == "Bicycling")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.cy);
+
+            }
+            else if (mRoutes[position].RouteType == "Skiing")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.sk);
+
+            }
+            else if (mRoutes[position].RouteType == "Kayaking")
+            {
+                myHolder.mIconForRoute.SetImageResource(Resource.Drawable.ka);
+
+            }
+
+
+
+
+
+
+            if (position > mCurrentPosition)
                 {
                     int currentAnim = Resource.Animation.slide_left_to_right;
                     SetAnimation(myHolder.mMainView, currentAnim);

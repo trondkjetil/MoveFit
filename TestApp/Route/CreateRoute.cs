@@ -204,7 +204,7 @@ namespace TestApp
           //  list.ItemSelected += List_ItemSelected;
            
 
-          String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing" };
+          String[] array = { "Walking", "Running", "Hiking", "Bicycling", "Skiing","Kayaking" };
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, array);
             //spinner.Adapter = adapter;
             //spinner.SetSelection(0);
@@ -250,6 +250,13 @@ namespace TestApp
                     Toast.MakeText(this, "Skiing", ToastLength.Short).Show();
                     routeType = "Skiing";
                     typeToDraw = 5;
+                }
+
+                else if (e.Position == 5)
+                {
+                    Toast.MakeText(this, "kayaking", ToastLength.Short).Show();
+                    routeType = "kayaking";
+                    typeToDraw = 6;
                 }
             };
 
@@ -371,7 +378,7 @@ namespace TestApp
             try
             {
 
-                points = filterLocationPoints(points);
+           //     points = filterLocationPoints(points);
 
             }
             catch (Exception)
@@ -845,8 +852,15 @@ namespace TestApp
             else if (type == 4)
             {
                 opt.InvokeColor(Color.DarkOrchid);
-            }else
+            }else if(type == 5)
+            {
                 opt.InvokeColor(Color.DarkOliveGreen);
+            }else
+            {
+
+                opt.InvokeColor(Color.HotPink);
+            }
+            
 
 
 

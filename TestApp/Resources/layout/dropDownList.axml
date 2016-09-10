@@ -8,10 +8,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
-        android:text="@string/planet_prompt" />
-    <Spinner
+       />
+  <!--android:text="@string/planet_prompt"-->
+  <Spinner
         android:id="@+id/spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/planet_prompt" />
+        />
+  <!--android:prompt="@string/planet_prompt"-->
 </LinearLayout>

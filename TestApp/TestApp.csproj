@@ -287,7 +287,6 @@
     <AndroidResource Include="Resources\drawable\customLoadbar.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_search.png" />
     <AndroidResource Include="Resources\menu\actionbar.xml" />
-    <AndroidResource Include="Resources\values\itemsDropDownList.xml" />
     <AndroidResource Include="Resources\drawable\test.png" />
     <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
     <AndroidResource Include="Resources\drawable\ic_action_save.png" />
@@ -557,6 +556,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\st.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\sk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\wa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ka.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

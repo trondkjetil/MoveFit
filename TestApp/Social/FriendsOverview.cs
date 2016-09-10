@@ -1,5 +1,7 @@
 using System;
 using Android.App;
+using Android.Content;
+using Android.Content.PM;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
@@ -19,7 +21,7 @@ using Android.Support.V7.Widget;
 using System.Linq;
 namespace TestApp
 {
-    [Activity(Label = "FriendsOverview", Theme = "@style/Theme2")]
+    [Activity(Label = "FriendsOverview", Theme = "@style/Theme2", ScreenOrientation = ScreenOrientation.Portrait)]
     public class FriendsOverview : AppCompatActivity, ViewPager.IOnPageChangeListener  //, IOnMapReadyCallback
     {
        
