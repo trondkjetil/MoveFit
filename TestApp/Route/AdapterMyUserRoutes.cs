@@ -72,9 +72,6 @@ namespace TestApp
             {
         
 
-
-
-
                View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userMyRoutesContent, parent, false);
            
 
@@ -90,7 +87,7 @@ namespace TestApp
                 ImageButton routeDifficultyImage = userRoutes.FindViewById<ImageButton>(Resource.Id.imageButton3);
 
 
-            ImageButton deleteRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.deleteRoute);
+                ImageButton deleteRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.deleteRoute);
 
             deleteRoute.Visibility = ViewStates.Visible;
             deleteRoute.Focusable = false;
@@ -98,8 +95,8 @@ namespace TestApp
             deleteRoute.Clickable = true;
 
             MyView view = new MyView(userRoutes) { mRouteName = name, mStatus = status, mRouteInfo = text, mIconForRoute = profile, mStartRouteFlag = startRoute, mRouteDifficulty = routeDifficultyImage, mDistanceAway = distanceFromMe, mDeleteRoute = deleteRoute };
-
-                return view;
+          
+            return view;
 
 
             }
@@ -120,15 +117,68 @@ namespace TestApp
                 routeUserId = "";
 
                 MyView myHolder = holder as MyView;
-                myHolder.mMainView.Click += mMainView_Click;
+              //  myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mRouteName.Text = mRoutes[position].Name;
                 //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
 
                 myHolder.mDeleteRoute.SetTag(Resource.Id.deleteRoute, position);
-             
 
-                myHolder.mDeleteRoute.Click +=async (sender, args) =>
+                myHolder.mMainView.SetTag(myHolder.mRouteName.Id,position);
+
+            myHolder.mMainView.Click += (sender, arg) =>
+            {
+
+                try
+                {
+                 
+                    int pos = (int) myHolder.mMainView.GetTag(myHolder.mRouteName.Id);
+
+                   // int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+                    routeName = mRoutes[position].Name;
+                    routeInfo = mRoutes[position].Info;
+                    routeDifficulty = mRoutes[position].Difficulty;
+                    routeLength = mRoutes[position].Distance;
+                    routeType = mRoutes[position].RouteType;
+                    routeRating = mRoutes[position].Review;
+                    routeTrips = mRoutes[position].Trips;
+                    routeId = mRoutes[position].Id;
+                    routeTime = mRoutes[position].Time;
+                    routeUserId = mRoutes[position].User_id;
+
+
+
+                    Bundle b = new Bundle();
+                    b.PutStringArray("MyData", new String[] {
+
+            routeName,
+            routeInfo,
+            routeDifficulty,
+            routeLength,
+            routeType,
+            routeRating,
+            routeTrips.ToString(),
+            routeId,
+            routeTime,
+            routeUserId
+
+        });
+
+                    Intent myIntent = new Intent(mContext, typeof(StartRoute));
+                    myIntent.PutExtras(b);
+                    mContext.StartActivity(myIntent);
+
+                }
+                catch (Exception)
+                {
+
+
+                }
+            };
+
+
+             myHolder.mDeleteRoute.Click +=async (sender, args) =>
                 {
 
                     int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.deleteRoute));
@@ -265,57 +315,57 @@ namespace TestApp
             //view.StartAnimation(anim);
         }
 
-        void mMainView_Click(object sender, EventArgs e)
-        {
+        //void mMainView_Click(object sender, EventArgs e)
+        //{
 
 
-            try
-            {
+        //    try
+        //    {
 
-                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+        //        int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
-                routeName = mRoutes[position].Name;
-                routeInfo = mRoutes[position].Info;
-                routeDifficulty = mRoutes[position].Difficulty;
-                routeLength = mRoutes[position].Distance;
-                routeType = mRoutes[position].RouteType;
-                routeRating = mRoutes[position].Review;
-                routeTrips = mRoutes[position].Trips;
-                routeId = mRoutes[position].Id;
-                routeTime = mRoutes[position].Time;
-                routeUserId = mRoutes[position].User_id;
-
-
-
-                Bundle b = new Bundle();
-                b.PutStringArray("MyData", new String[] {
-
-            routeName,
-            routeInfo,
-            routeDifficulty,
-            routeLength,
-            routeType,
-            routeRating,
-            routeTrips.ToString(),
-            routeId,
-            routeTime,
-            routeUserId
-
-        });
-
-                Intent myIntent = new Intent(mContext, typeof(StartRoute));
-                myIntent.PutExtras(b);
-                mContext.StartActivity(myIntent);
-
-            }
-            catch (Exception)
-            {
+        //        routeName = mRoutes[position].Name;
+        //        routeInfo = mRoutes[position].Info;
+        //        routeDifficulty = mRoutes[position].Difficulty;
+        //        routeLength = mRoutes[position].Distance;
+        //        routeType = mRoutes[position].RouteType;
+        //        routeRating = mRoutes[position].Review;
+        //        routeTrips = mRoutes[position].Trips;
+        //        routeId = mRoutes[position].Id;
+        //        routeTime = mRoutes[position].Time;
+        //        routeUserId = mRoutes[position].User_id;
 
 
-            }
+
+        //        Bundle b = new Bundle();
+        //        b.PutStringArray("MyData", new String[] {
+
+        //    routeName,
+        //    routeInfo,
+        //    routeDifficulty,
+        //    routeLength,
+        //    routeType,
+        //    routeRating,
+        //    routeTrips.ToString(),
+        //    routeId,
+        //    routeTime,
+        //    routeUserId
+
+        //});
+
+        //        Intent myIntent = new Intent(mContext, typeof(StartRoute));
+        //        myIntent.PutExtras(b);
+        //        mContext.StartActivity(myIntent);
+
+        //    }
+        //    catch (Exception)
+        //    {
 
 
-        }
+        //    }
+
+
+        //}
 
         public override int ItemCount
         {

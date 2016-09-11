@@ -2,7 +2,18 @@
     
 
            app:background="?attr/colorPrimary"      
---><android.support.v7.widget.Toolbar android:id="@+id/tools" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:minHeight="@dimen/abc_action_bar_default_height_material" android:background="?attr/colorPrimary" app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" /><android.support.design.widget.TabLayout android:id="@+id/sliding_tabs" style="@style/TabLayoutThemes" android:layout_width="match_parent" android:layout_height="72dp" android:background="?attr/colorPrimary" app:tabGravity="fill" app:tabMode="fixed" /><android.support.v4.view.ViewPager android:id="@+id/viewpager" android:layout_width="match_parent" android:layout_height="match_parent" /><!--<android.support.v4.view.ViewPager
+--><android.support.v7.widget.Toolbar android:id="@+id/tools" android:layout_width="match_parent" android:layout_height="128dp" android:minHeight="@dimen/abc_action_bar_default_height_material" android:background="@drawable/toolbar" app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" android:gravity="bottom"><android.support.design.widget.TabLayout android:id="@+id/sliding_tabs" style="@style/TabLayoutThemes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" app:tabGravity="fill" app:tabMode="fixed" app:tabBackground="@android:color/transparent" /><!--<android.support.design.widget.TabLayout
+       android:id="@+id/sliding_tabs"
+       style="@style/TabLayoutThemes"
+       android:layout_width="match_parent"
+       android:layout_height="128dp"
+       app:tabGravity="fill"
+       app:tabMode="fixed"
+        
+       app:tabBackground="@android:color/transparent"
+        />--></android.support.v7.widget.Toolbar><android.support.v4.view.ViewPager android:id="@+id/viewpager" android:layout_width="match_parent" android:layout_height="match_parent" /><!--
+ android:background="?attr/colorPrimary"
+<android.support.v4.view.ViewPager
         android:id="@+id/viewPage"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />--><!--<ImageView

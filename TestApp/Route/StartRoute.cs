@@ -21,7 +21,7 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 namespace TestApp
 {
-    [Activity(Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+    [Activity(LaunchMode = Android.Content.PM.LaunchMode.SingleInstance,Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
     public class StartRoute : AppCompatActivity, ILocationListener
     {
 

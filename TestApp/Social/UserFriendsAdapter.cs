@@ -51,6 +51,9 @@ namespace TestApp
                
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
+            }else
+            {
+                txt.Visibility = ViewStates.Gone;
             }
 
         }

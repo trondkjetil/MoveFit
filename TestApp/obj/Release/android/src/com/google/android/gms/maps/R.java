@@ -34,9 +34,8 @@ public final class R {
     }
     public static final class array {
         public static int activity_array=0x7f0d0000;
-        public static int activity_routeDifficulty=0x7f0d0002;
-        public static int activity_routeTypes=0x7f0d0003;
-        public static int planets_array=0x7f0d0001;
+        public static int activity_routeDifficulty=0x7f0d0001;
+        public static int activity_routeTypes=0x7f0d0002;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -2709,57 +2708,63 @@ containing a value of this type.
         public static int compass_base=0x7f02007a;
         public static int compass_basee=0x7f02007b;
         public static int customloadbar=0x7f02007c;
-        public static int deletefriend=0x7f02007d;
-        public static int design_fab_background=0x7f02007e;
-        public static int design_snackbar_background=0x7f02007f;
-        public static int dialogstartbutton=0x7f020080;
-        public static int edit_text_style=0x7f020081;
-        public static int eexit=0x7f020082;
-        public static int female=0x7f020083;
-        public static int green=0x7f020084;
-        public static int greenonline=0x7f020085;
-        public static int ic_action_forward=0x7f020086;
-        public static int ic_action_help=0x7f020087;
-        public static int ic_action_read=0x7f020088;
-        public static int ic_action_refresh=0x7f020089;
-        public static int ic_action_save=0x7f02008a;
-        public static int ic_action_search=0x7f02008b;
-        public static int ic_delete=0x7f02008c;
-        public static int ic_menu_allfriends=0x7f02008d;
-        public static int ic_menu_back=0x7f02008e;
-        public static int ic_menu_btn_add=0x7f02008f;
-        public static int ic_menu_forward=0x7f020090;
-        public static int ic_menu_home=0x7f020091;
-        public static int ic_menu_send=0x7f020092;
-        public static int imagebackground=0x7f020093;
-        public static int male=0x7f020094;
-        public static int maps=0x7f020095;
-        public static int menu=0x7f020096;
-        public static int msg=0x7f020097;
-        public static int my_rectangle=0x7f020098;
-        public static int newalarm=0x7f020099;
-        public static int notification_template_icon_bg=0x7f0200af;
-        public static int oldsetting=0x7f02009a;
-        public static int online=0x7f02009b;
-        public static int orange=0x7f02009c;
-        public static int perm_group_social_info=0x7f02009d;
-        public static int perm_group_system_tools=0x7f02009e;
-        public static int profile=0x7f02009f;
-        public static int red=0x7f0200a0;
-        public static int redoffline=0x7f0200a1;
-        public static int rsz_dist=0x7f0200a2;
-        public static int rsz_flag=0x7f0200a3;
-        public static int rsz_route=0x7f0200a4;
-        public static int rsz_running=0x7f0200a5;
-        public static int rsz_score=0x7f0200a6;
-        public static int spinner=0x7f0200a7;
-        public static int st=0x7f0200a8;
-        public static int startflag=0x7f0200a9;
-        public static int sym_action_email=0x7f0200aa;
-        public static int test=0x7f0200ab;
-        public static int toolbar=0x7f0200ac;
-        public static int tt=0x7f0200ad;
-        public static int walk=0x7f0200ae;
+        public static int cy=0x7f02007d;
+        public static int deletefriend=0x7f02007e;
+        public static int design_fab_background=0x7f02007f;
+        public static int design_snackbar_background=0x7f020080;
+        public static int dialogstartbutton=0x7f020081;
+        public static int edit_text_style=0x7f020082;
+        public static int eexit=0x7f020083;
+        public static int female=0x7f020084;
+        public static int green=0x7f020085;
+        public static int greenonline=0x7f020086;
+        public static int ic_action_forward=0x7f020087;
+        public static int ic_action_help=0x7f020088;
+        public static int ic_action_read=0x7f020089;
+        public static int ic_action_refresh=0x7f02008a;
+        public static int ic_action_save=0x7f02008b;
+        public static int ic_action_search=0x7f02008c;
+        public static int ic_delete=0x7f02008d;
+        public static int ic_menu_allfriends=0x7f02008e;
+        public static int ic_menu_back=0x7f02008f;
+        public static int ic_menu_btn_add=0x7f020090;
+        public static int ic_menu_forward=0x7f020091;
+        public static int ic_menu_home=0x7f020092;
+        public static int ic_menu_send=0x7f020093;
+        public static int imagebackground=0x7f020094;
+        public static int ka=0x7f020095;
+        public static int male=0x7f020096;
+        public static int maps=0x7f020097;
+        public static int menu=0x7f020098;
+        public static int msg=0x7f020099;
+        public static int my_rectangle=0x7f02009a;
+        public static int newalarm=0x7f02009b;
+        public static int notification_template_icon_bg=0x7f0200b5;
+        public static int oldsetting=0x7f02009c;
+        public static int online=0x7f02009d;
+        public static int orange=0x7f02009e;
+        public static int perm_group_social_info=0x7f02009f;
+        public static int perm_group_system_tools=0x7f0200a0;
+        public static int profile=0x7f0200a1;
+        public static int red=0x7f0200a2;
+        public static int redoffline=0x7f0200a3;
+        public static int rsz_dist=0x7f0200a4;
+        public static int rsz_flag=0x7f0200a5;
+        public static int rsz_route=0x7f0200a6;
+        public static int rsz_running=0x7f0200a7;
+        public static int rsz_score=0x7f0200a8;
+        public static int ru=0x7f0200a9;
+        public static int sk=0x7f0200aa;
+        public static int spinner=0x7f0200ab;
+        public static int st=0x7f0200ac;
+        public static int startflag=0x7f0200ad;
+        public static int sym_action_email=0x7f0200ae;
+        public static int test=0x7f0200af;
+        public static int toolbar=0x7f0200b0;
+        public static int tr=0x7f0200b1;
+        public static int tt=0x7f0200b2;
+        public static int wa=0x7f0200b3;
+        public static int walk=0x7f0200b4;
     }
     public static final class id {
         public static int ContactImage=0x7f0b00f7;
@@ -3233,7 +3238,7 @@ containing a value of this type.
         public static int moveit=0x7f050000;
     }
     public static final class string {
-        public static int ApplicationName=0x7f060040;
+        public static int ApplicationName=0x7f06003f;
         public static int abc_action_bar_home_description=0x7f060025;
         public static int abc_action_bar_home_description_format=0x7f060026;
         public static int abc_action_bar_home_subtitle_description_format=0x7f060027;
@@ -3255,10 +3260,10 @@ containing a value of this type.
         public static int abc_toolbar_collapse_description=0x7f060037;
         public static int accept=0x7f060021;
         public static int activity_prompt=0x7f06003d;
-        public static int activity_route=0x7f06003f;
-        public static int add_button_text=0x7f060048;
-        public static int add_textbox_hint=0x7f060047;
-        public static int app_name=0x7f060044;
+        public static int activity_route=0x7f06003e;
+        public static int add_button_text=0x7f060047;
+        public static int add_textbox_hint=0x7f060046;
+        public static int app_name=0x7f060043;
         public static int appbar_scrolling_view_behavior=0x7f060039;
         /**  Brand name for Facebook [DO NOT TRANSLATE] 
          */
@@ -3268,8 +3273,8 @@ containing a value of this type.
         public static int auth_google_play_services_client_google_display_name=0x7f060000;
         public static int bottom_sheet_behavior=0x7f06003a;
         public static int character_counter_pattern=0x7f06003b;
-        public static int checkbox_text=0x7f06004b;
-        public static int closeDrawer=0x7f060046;
+        public static int checkbox_text=0x7f06004a;
+        public static int closeDrawer=0x7f060045;
         /**  Message in confirmation dialog informing the user that one of the APIs they attepmt to access is not available. [CHAR LIMIT=NONE] 
          */
         public static int common_google_play_services_api_unavailable_text=0x7f060018;
@@ -3375,14 +3380,13 @@ containing a value of this type.
         public static int decline=0x7f060022;
         /** <string name="facebook_app_id">434629220047124</string> 
          */
-        public static int facebook_app_id=0x7f060041;
+        public static int facebook_app_id=0x7f060040;
         public static int library_name=0x7f06003c;
-        public static int menu_refresh=0x7f06004a;
-        public static int mobile_services=0x7f060049;
-        public static int openDrawer=0x7f060045;
-        public static int planet_prompt=0x7f06003e;
-        public static int sample_hide_log=0x7f060043;
-        public static int sample_show_log=0x7f060042;
+        public static int menu_refresh=0x7f060049;
+        public static int mobile_services=0x7f060048;
+        public static int openDrawer=0x7f060044;
+        public static int sample_hide_log=0x7f060042;
+        public static int sample_show_log=0x7f060041;
         public static int status_bar_notification_info_overflow=0x7f060038;
         public static int store_picture_message=0x7f060020;
         public static int store_picture_title=0x7f06001f;

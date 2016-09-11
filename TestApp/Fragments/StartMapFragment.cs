@@ -342,7 +342,22 @@ namespace TestApp
             mMap.SetOnMarkerClickListener(this);
 
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-            var myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+
+            LatLng myPos = null;
+            try
+            {
+                myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+               
+            }
+            catch (Exception)
+            {
+                if (myPos == null)
+                {
+                    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+                }
+
+            }
+
             mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
             
             if (this.Activity.Class.SimpleName != "FriendsOverview")

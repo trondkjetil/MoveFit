@@ -63,7 +63,6 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\themes.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\customloadbar.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ic_action_search.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\menu\actionbar.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\values\itemsdropdownlist.xml
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\test.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ic_action_forward.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ic_action_save.png
@@ -171,7 +170,14 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\at.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\st.jpg
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\R.cs.flag
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\uploadflags.txt
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ru.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\sk.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\tr.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\wa.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\cy.png
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\res\drawable\ka.png
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb
+C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Java.Interop.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Microsoft.CSharp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\Mono.Android.dll.mdb
@@ -208,6 +214,5 @@ C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Serv
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Release\TestApp.dll.mdb
 C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Release\TestApp.dll.mdb

@@ -72,7 +72,7 @@ namespace TestApp
             {
 
 
-            View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
+               View userRoutes = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userRouteContent, parent, false);
               //  deleteRoute = userRoutes.FindViewById<ImageButton>(Resource.Id.delete);
 
              
@@ -118,15 +118,65 @@ namespace TestApp
                 routeUserId = "";
 
                 MyView myHolder = holder as MyView;
-                myHolder.mMainView.Click += mMainView_Click;
+            //    myHolder.mMainView.Click += mMainView_Click;
                 myHolder.mRouteName.Text = mRoutes[position].Name;
                 //  myHolder.mStartRouteFlag.Click += StartRouteFlag_Click;
                 myHolder.mStatus.Text = mRoutes[position].RouteType;
 
+           
+            myHolder.mMainView.SetTag(myHolder.mRouteName.Id, position);
+
+            myHolder.mMainView.Click += (sender, arg) =>
+            {
+
+                try
+                {
+
+                    int pos = (int)myHolder.mMainView.GetTag(myHolder.mRouteName.Id);
+
+                    // int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+
+                    routeName = mRoutes[pos].Name;
+                    routeInfo = mRoutes[pos].Info;
+                    routeDifficulty = mRoutes[pos].Difficulty;
+                    routeLength = mRoutes[pos].Distance;
+                    routeType = mRoutes[pos].RouteType;
+                    routeRating = mRoutes[pos].Review;
+                    routeTrips = mRoutes[pos].Trips;
+                    routeId = mRoutes[pos].Id;
+                    routeTime = mRoutes[pos].Time;
+                    routeUserId = mRoutes[pos].User_id;
 
 
-            //  if(myHolder.mDeleteRoute != null)
-        
+
+                    Bundle b = new Bundle();
+                    b.PutStringArray("MyData", new String[] {
+
+                                routeName,
+                                routeInfo,
+                                routeDifficulty,
+                                routeLength,
+                                routeType,
+                                routeRating,
+                                routeTrips.ToString(),
+                                routeId,
+                                routeTime,
+                                routeUserId
+
+                            });
+
+                    Intent myIntent = new Intent(mContext, typeof(StartRoute));
+                    myIntent.PutExtras(b);
+                    mContext.StartActivity(myIntent);
+
+                }
+                catch (Exception)
+                {
+
+
+                }
+            };
+
 
 
 
@@ -246,57 +296,57 @@ namespace TestApp
             //view.StartAnimation(anim);
         }
 
-        void mMainView_Click(object sender, EventArgs e)
-        {
+        //void mMainView_Click(object sender, EventArgs e)
+        //{
 
 
-            try
-            {
+        //    try
+        //    {
 
-                int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+        //        int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
-                routeName = mRoutes[position].Name;
-                routeInfo = mRoutes[position].Info;
-                routeDifficulty = mRoutes[position].Difficulty;
-                routeLength = mRoutes[position].Distance;
-                routeType = mRoutes[position].RouteType;
-                routeRating = mRoutes[position].Review;
-                routeTrips = mRoutes[position].Trips;
-                routeId = mRoutes[position].Id;
-                routeTime = mRoutes[position].Time;
-                routeUserId = mRoutes[position].User_id;
-
-
-
-                Bundle b = new Bundle();
-                b.PutStringArray("MyData", new String[] {
-
-            routeName,
-            routeInfo,
-            routeDifficulty,
-            routeLength,
-            routeType,
-            routeRating,
-            routeTrips.ToString(),
-            routeId,
-            routeTime,
-            routeUserId
-
-        });
-
-                Intent myIntent = new Intent(mContext, typeof(StartRoute));
-                myIntent.PutExtras(b);
-                mContext.StartActivity(myIntent);
-
-            }
-            catch (Exception)
-            {
+        //        routeName = mRoutes[position].Name;
+        //        routeInfo = mRoutes[position].Info;
+        //        routeDifficulty = mRoutes[position].Difficulty;
+        //        routeLength = mRoutes[position].Distance;
+        //        routeType = mRoutes[position].RouteType;
+        //        routeRating = mRoutes[position].Review;
+        //        routeTrips = mRoutes[position].Trips;
+        //        routeId = mRoutes[position].Id;
+        //        routeTime = mRoutes[position].Time;
+        //        routeUserId = mRoutes[position].User_id;
 
 
-            }
+
+        //        Bundle b = new Bundle();
+        //        b.PutStringArray("MyData", new String[] {
+
+        //    routeName,
+        //    routeInfo,
+        //    routeDifficulty,
+        //    routeLength,
+        //    routeType,
+        //    routeRating,
+        //    routeTrips.ToString(),
+        //    routeId,
+        //    routeTime,
+        //    routeUserId
+
+        //});
+
+        //        Intent myIntent = new Intent(mContext, typeof(StartRoute));
+        //        myIntent.PutExtras(b);
+        //        mContext.StartActivity(myIntent);
+
+        //    }
+        //    catch (Exception)
+        //    {
 
 
-        }
+        //    }
+
+
+        //}
 
         public override int ItemCount
         {
