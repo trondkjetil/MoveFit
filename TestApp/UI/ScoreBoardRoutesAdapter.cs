@@ -58,7 +58,44 @@ namespace TestApp
             //TextView firstName = row.FindViewById<TextView>(Resource.Id.txtFirstName);
             //firstName.Text = users[position].UserName;
             ImageView image = row.FindViewById<ImageView>(Resource.Id.profileImage_score);
-            image.SetImageResource(Resource.Drawable.maps);
+            //  image.SetImageResource(Resource.Drawable.maps);
+
+
+
+            if (routes[position].RouteType == "Walking")
+            {
+                image.SetImageResource(Resource.Drawable.wa);
+            }
+            else if (routes[position].RouteType == "Running")
+            {
+                image.SetImageResource(Resource.Drawable.ru);
+
+            }
+            else if (routes[position].RouteType == "Hiking")
+            {
+                image.SetImageResource(Resource.Drawable.tr);
+
+            }
+            else if (routes[position].RouteType == "Bicycling")
+            {
+                image.SetImageResource(Resource.Drawable.cy);
+
+            }
+            else if (routes[position].RouteType == "Skiing")
+            {
+                image.SetImageResource(Resource.Drawable.sk);
+
+            }
+            else if (routes[position].RouteType == "Kayaking")
+            {
+                image.SetImageResource(Resource.Drawable.ka);
+
+            }
+
+
+
+
+
 
             TextView lastName = row.FindViewById<TextView>(Resource.Id.routeName);
             lastName.Text = routes[position].Name;

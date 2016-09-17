@@ -39,10 +39,6 @@ namespace TestApp
 
         public static readonly int PickImageId = 1000;
 
-
-
-
-
         public static Bitmap getImageProper(string fileName, int width, int height)
         {
 
@@ -100,13 +96,10 @@ namespace TestApp
                         break;
                 }
 
-            
-           
+                
            
             return resizedBitmap;
         }
-
-
 
 
 
@@ -192,7 +185,6 @@ namespace TestApp
                 }
                 else
                     gender.SetImageResource(Resource.Drawable.female);
-
 
                 age.Text =  "Age: " +array[2];
 

@@ -11,17 +11,17 @@
      android:icon="@drawable/ic_menu_forward"/>-->
 
   <item android:id="@+id/switchFriends"
- android:title="Show Friends"
- android:text="Show Friend Scoreboard"
+ android:title="Show People"
+ android:text="Show People "
  myapp:showAsAction="never" />
 
   <item android:id="@+id/random"
- android:title="Show Best Nearby Scoreboard"
- android:text="Show Best Nearby Scoreboard"
+ android:title="Show Routes"
+ android:text="Show Routes"
  myapp:showAsAction="never" />
 
   <item android:id="@+id/search"
-        android:showAsAction="always"
+        myapp:showAsAction="always"
         android:title="search"
         android:icon="@drawable/ic_action_search"/>
 </menu>

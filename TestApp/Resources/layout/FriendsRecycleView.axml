@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:id="@+id/layout"
-     android:background="@drawable/profile"
+    android:background="@drawable/profile"
     android:orientation="vertical">
 <!--<android.support.v7.widget.Toolbar 
       xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,8 +29,9 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:textSize="32dp"
+        android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="Nothing found!" />
+        android:text="No Friends yet, send some requests!" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleFriend"
         android:layout_width="match_parent"

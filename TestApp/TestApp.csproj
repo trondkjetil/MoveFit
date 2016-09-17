@@ -208,6 +208,7 @@
     <Compile Include="Route\StartRoute.cs" />
     <Compile Include="Route\CreateRoute.cs" />
     <Compile Include="Fragments\MyroutesFragment.cs" />
+    <Compile Include="Services\LogoutService.cs" />
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\App.cs" />
     <Compile Include="Services\CreateRouteService.cs" />
@@ -273,9 +274,7 @@
     <AndroidResource Include="Resources\layout\myRoutesRecycleView.axml" />
     <AndroidResource Include="Resources\layout\profile.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
-    <None Include="app.config" />
     <AndroidAsset Include="Assets\english111.ttf" />
-    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\drawable\tt.png" />
@@ -366,7 +365,7 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="azure-messaging">
       <Visible>False</Visible>
-      <Version>1.1.5.6</Version>
+      <Version>1.2.5.2</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="GCMClient">
       <Visible>False</Visible>
@@ -574,6 +573,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_ab_back_holo_light_am.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logout.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

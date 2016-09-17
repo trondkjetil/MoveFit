@@ -50,6 +50,9 @@ namespace TestApp
         public int userPoints;
         public string userAboutMe;
         public string userID;
+        Bitmap picMe;
+        BitmapDescriptor imageMe;
+        Marker myMark;
         public override void OnCreate(Bundle savedInstanceState)
         {
 
@@ -74,8 +77,8 @@ namespace TestApp
             ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
            // ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
             TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
+            mHashMapUser = new HashMap();
 
-        
 
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
@@ -103,7 +106,7 @@ namespace TestApp
             {
 
                 activeScreen = 1;
-                mHashMapUser = new HashMap();
+              
                 me = FriendsOverview.me;
                 unit = FriendsOverview.unit;
                 createRoute.Visibility = ViewStates.Invisible;
@@ -112,7 +115,7 @@ namespace TestApp
                
             }
 
-           
+            App.Current.LocationService.LocationChanged += HandleCustomEvent;
 
             mMapView = view.FindViewById<MapView>(Resource.Id.map);
            
@@ -306,8 +309,8 @@ namespace TestApp
                     dist = Convert.ToInt32(IOUtilz.ConvertKilometersToMiles(dist / 1000));
 
 
-                Bitmap pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-                BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+               var  pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
+              var   image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
 
                 string online = "Online";
                 if (!user.Online)
@@ -343,6 +346,16 @@ namespace TestApp
 
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
 
+             picMe = MainStart.profilePic;
+             imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
+
+            Location loc = App.Current.LocationService.getLastKnownLocation();
+            myMark = mMap.AddMarker(new MarkerOptions()
+           .SetPosition(new LatLng(loc.Latitude, loc.Longitude))
+           .SetTitle(MainStart.userName)
+           .SetSnippet("My Location").SetIcon(imageMe));
+            mHashMapUser.Put(myMark, MainStart.userId);
+
             LatLng myPos = null;
             try
             {
@@ -377,6 +390,9 @@ namespace TestApp
 
             }
 
+         
+            
+          
 
 
         }
@@ -384,11 +400,15 @@ namespace TestApp
 
         public bool OnMarkerClick(Marker marker)
         {
+
+
+            if (marker == myMark || marker.Equals(myMark)) 
+                return false;
+
             Activity.RunOnUiThread( async () =>
             {
 
-           
-           
+
            
                 if(activeScreen == 0)
                 {
@@ -485,6 +505,21 @@ namespace TestApp
         //    base.OnCreate(savedInstanceState);
         //    mMapView.OnCreate(savedInstanceState);
         //}
+
+        void HandleCustomEvent(object e, LocationChangedEventArgs a)
+        {
+            if(myMark != null)
+            myMark.Remove();
+
+
+            Location loc = App.Current.LocationService.getLastKnownLocation();
+            myMark = mMap.AddMarker(new MarkerOptions()
+               .SetPosition(new LatLng(loc.Latitude, loc.Longitude))
+               .SetTitle(MainStart.userName)
+               .SetSnippet("My Location").SetIcon(imageMe));
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng (a.Location.Latitude,a.Location.Longitude), 11));
+        }
+
         public override void OnResume()
         {
             base.OnResume();
@@ -502,6 +537,7 @@ namespace TestApp
      public override void OnDestroy()
         {
             base.OnDestroy();
+            App.Current.LocationService.LocationChanged -= HandleCustomEvent;
             mMapView.OnDestroy();
         }
 

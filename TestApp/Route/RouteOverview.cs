@@ -96,10 +96,11 @@ namespace TestApp
             viewPager.AddOnPageChangeListener(this);
             tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
             tabLayout.SetupWithViewPager(viewPager);
+            tabLayout.TabGravity = TabLayout.GravityFill;
             setupTabIcons();
 
             //mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-             //mLayoutManager = new LinearLayoutManager(this);
+            //mLayoutManager = new LinearLayoutManager(this);
             //mRecyclerView.SetLayoutManager(mLayoutManager);
             
 

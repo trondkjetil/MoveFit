@@ -46,9 +46,7 @@ namespace TestApp
             txt = act.FindViewById<TextView>(Resource.Id.empty);
 
             if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 2)
-            {
-
-               
+            {              
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }else

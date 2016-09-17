@@ -11,22 +11,22 @@ using System.Diagnostics;
 
 namespace TestApp
 {
-	[Service]
-	public class SimpleService : Service,ISensorEventListener
-	{
+    [Service]
+    public class SimpleService : Service, ISensorEventListener
+    {
 
-		static readonly string TAG = "X:" + typeof (SimpleService).Name;
-     
+        static readonly string TAG = "X:" + typeof(SimpleService).Name;
+
         public static bool isChecked;
         public static bool isRunning;
         SensorManager sensorManager;
 
-		private float[] mGravity;
-		private float mAccel;
-		private float mAccelCurrent;
-		private float mAccelLast;
+        private float[] mGravity;
+        private float mAccel;
+        private float mAccelCurrent;
+        private float mAccelLast;
         public static Stopwatch timer;
-       public TimeSpan start;
+        public TimeSpan start;
         public TimeSpan end;
 
 
@@ -47,9 +47,10 @@ namespace TestApp
 
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
-			{
-          
-            new Task (() => {
+        {
+
+            new Task(() =>
+            {
 
                 isChecked = true;
                 isRunning = true;
@@ -59,15 +60,15 @@ namespace TestApp
                 timeInterval = timeInterval * 60;
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
-				
-				sensorManager = (SensorManager) GetSystemService(Context.SensorService);
-				mAccel = 0.00f;
-				mAccelCurrent = SensorManager.GravityEarth;
-				mAccelLast = SensorManager.GravityEarth;
 
-				    sensorManager.RegisterListener(this,
-					sensorManager.GetDefaultSensor(SensorType.Accelerometer),
-					SensorDelay.Ui);
+                sensorManager = (SensorManager)GetSystemService(Context.SensorService);
+                mAccel = 0.00f;
+                mAccelCurrent = SensorManager.GravityEarth;
+                mAccelLast = SensorManager.GravityEarth;
+
+                sensorManager.RegisterListener(this,
+                sensorManager.GetDefaultSensor(SensorType.Accelerometer),
+                SensorDelay.Ui);
 
                 timer = new Stopwatch();
 
@@ -84,15 +85,15 @@ namespace TestApp
 
             }).Start();
 
-				return StartCommandResult.NotSticky;
-			}
-       
+            return StartCommandResult.NotSticky;
+        }
 
-	
-		
-		
-		public override void OnDestroy()
-		{
+
+
+
+
+        public override void OnDestroy()
+        {
 
             // childThread.Abort();
 
@@ -103,32 +104,32 @@ namespace TestApp
             isChecked = false;
 
             base.OnDestroy();
-           
-			
-		}
 
-	
 
-		public override IBinder OnBind(Intent intent)
-		{
-			// This example isn't of a bound service, so we just return NULL.
-			return null;
-		}
+        }
 
 
 
-		public void OnSensorChanged (SensorEvent e)
-		{
-			mGravity = e.Values.ToArray();
-		
-			// Shake detection
-			float x = mGravity[0];
-			float y = mGravity[1];
-			float z = mGravity[2];
-			mAccelLast = mAccelCurrent;
-			mAccelCurrent = (float) Math.Sqrt(x*x + y*y + z*z);
-			float delta = mAccelCurrent - mAccelLast;
-			mAccel = mAccel * 0.9f + delta;
+        public override IBinder OnBind(Intent intent)
+        {
+            // This example isn't of a bound service, so we just return NULL.
+            return null;
+        }
+
+
+
+        public void OnSensorChanged(SensorEvent e)
+        {
+            mGravity = e.Values.ToArray();
+
+            // Shake detection
+            float x = mGravity[0];
+            float y = mGravity[1];
+            float z = mGravity[2];
+            mAccelLast = mAccelCurrent;
+            mAccelCurrent = (float)Math.Sqrt(x * x + y * y + z * z);
+            float delta = mAccelCurrent - mAccelLast;
+            mAccel = mAccel * 0.9f + delta;
 
 
             if (mAccel >= 7)
@@ -138,34 +139,58 @@ namespace TestApp
             if (timeInterval == 0)
                 timeInterval = 60;
 
-           
-           
-            if (mAccel < 5 && (timer.Elapsed.Seconds == timeInterval) || (timer.Elapsed.Seconds >= timeInterval && timer.Elapsed.Seconds <= timeInterval + 8)) { //TIME_FOR_ALARM > 10 ){  //1800
+
+
+            if (mAccel < 5 && (timer.Elapsed.Seconds == timeInterval) || (timer.Elapsed.Seconds >= timeInterval && timer.Elapsed.Seconds <= timeInterval + 8))
+            { //TIME_FOR_ALARM > 10 ){  //1800
                 mAccel = 0.00f;
 
 
 
-                if (isChecked == true && DateTime.Now.TimeOfDay <= end   && DateTime.Now.TimeOfDay >= start)
-              {
-                    
+                if (isChecked == true && DateTime.Now.TimeOfDay <= end && DateTime.Now.TimeOfDay >= start)
+                {
+
                     var inte = new Intent(this, typeof(ActivityLevelTracker));
                     inte.AddFlags(ActivityFlags.NewTask);
                     StartActivity(inte);
                     isChecked = false;
 
                 }
-               
+
                 timer.Stop();
                 timer.Reset();
             }
-		
-		}
 
-		public void OnAccuracyChanged (Sensor sensor, SensorStatus accuracy)
-		{
+        }
 
-		}
+        public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
+        {
 
-	}
+        }
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

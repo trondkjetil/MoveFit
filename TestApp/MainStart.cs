@@ -200,7 +200,7 @@ namespace TestApp
 
         }
 
-
+      
 
         public class NavDrawerItem
         {
@@ -212,6 +212,7 @@ namespace TestApp
                 this.icon = icon;
                 this.name = name;
             }
+         
         }
       
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -220,7 +221,7 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
-
+            mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
 
             array = Intent.GetStringArrayExtra("MyData");
 
@@ -250,7 +251,7 @@ namespace TestApp
           
             StartService(new Intent(this, typeof(SimpleService)));
           
-            mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            //mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
@@ -299,6 +300,7 @@ namespace TestApp
 
             icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_score);
 
+
             scoreButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
 
 
@@ -328,7 +330,7 @@ namespace TestApp
             data.Add(new NavDrawerItem(Resource.Drawable.startFlag, "Scoreboard"));
             data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_social_info, "Social"));
-            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "Settings"));
+            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "My Settings"));
 
           
             NavDrawerAdapter customAdapter = new NavDrawerAdapter(this, Resource.Layout.leftDrawerAdapter, data );
@@ -421,7 +423,8 @@ namespace TestApp
             //added
             mDrawerToggle.DrawerIndicatorEnabled = true;
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
-            //addedds
+          
+            //added
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
            
             SupportActionBar.SetHomeButtonEnabled(true);
@@ -502,8 +505,17 @@ namespace TestApp
                    ///setPoints();
                    
                     userInstanceOne = waitingUpload;
-                    var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
-                    isOnline = true;
+                    try
+                    {
+                        var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
+
+                    }
+                    catch (Exception)
+                    {
+
+                       
+                    }
+                     isOnline = true;
 
                     List<User> userList = await Azure.getUsersFriends(MainStart.userId);
 
@@ -633,6 +645,7 @@ namespace TestApp
                 messages.Text = totalDistance;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
                 myAnimation.Duration = 4500;
+                myAnimation.BackgroundColor = Color.LawnGreen;
                 messages.StartAnimation(myAnimation);
               
 
@@ -647,6 +660,8 @@ namespace TestApp
                 messages.Text = routesCreated + " - " + routesNearby;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
                 myAnimation.Duration = 4500;
+                myAnimation.BackgroundColor = Color.MediumVioletRed;
+          
                 messages.StartAnimation(myAnimation);
                
                 //   messages.Text = "";
@@ -661,6 +676,8 @@ namespace TestApp
                 messages.Text = points;
                 Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
                 myAnimation.Duration = 4500;
+                myAnimation.BackgroundColor = Color.Azure;
+
                 messages.StartAnimation(myAnimation);
               
                 messages.Visibility = ViewStates.Invisible;
@@ -672,9 +689,6 @@ namespace TestApp
             //routesCreated.Visibility = ViewStates.Invisible;
             //friends.Visibility = ViewStates.Invisible;
             //totalDistance.Visibility = ViewStates.Invisible;
-
-            topUsers = topUsers;
-            top = top;
 
             try
             {
@@ -724,6 +738,7 @@ namespace TestApp
 
             }
 
+        // StartService(new Intent(this, typeof(LogoutService)));
 
         }
 
@@ -778,17 +793,17 @@ namespace TestApp
         {
             base.OnStop();
             // Clean up: shut down the service when the Activity is no longer visible.
-
+            var wait = await logOff();
             //try
             //{
-            //    var wait = await logOff();
+            //  
             //}
             //catch (Exception)
             //{
 
-              
+
             //}
-           
+
             //adde
             InvalidateOptionsMenu();
 
@@ -818,31 +833,45 @@ namespace TestApp
         }
       
 
-
-
-
-
         protected async override void OnDestroy()
         {
 
-            //var a = await Azure.SetUserOnline(userName, false);
-          
             base.OnDestroy();
+             Azure.SetUserOnline(userId, false);
 
             // var b = await Azure.SetUserOnline(userName, false);
-            var wait = await logOff();
+            try
+            {
+                var wait = await logOff();
+            }
+            catch (Exception)
+            {
 
+               
+            }
+          
 
+           
 
         }
 
         public async Task<List<User>> logOff()
         {
-            if (isOnline)
-            {
-                var user = await Azure.SetUserOnline(userId, false);
+
+            //if (isOnline)
+            //{
+                try
+                {
+                    var user = await Azure.SetUserOnline(userId, false);
+                }
+                catch (Exception)
+                {
+
+               
+                }
+               
                 isOnline = false;
-            }
+          //  }
            
             StopService(new Intent(this, typeof(LocationService)));
             return user;
@@ -1056,7 +1085,7 @@ namespace TestApp
             }
             return false;
         }
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        public  override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
@@ -1073,12 +1102,28 @@ namespace TestApp
                     return true;
 
                 case Resource.Id.messages:
-                    var inten = new Intent(this, typeof(UsersFriends));             
-                    StartActivity(inten);
-                    //InvalidateOptionsMenu();
-                   return true;
+                    
+                    RunOnUiThread(async () =>
+                    {
+                        List<User> friendList = null;
+                        friendList = await Azure.getUsersFriends(MainStart.userId);
+                       
+                        if (friendList.Count == 0)
+                        {
+                            Toast.MakeText(this, "No messages available!", ToastLength.Long).Show();
 
-              
+                        } else 
+                        {
+                            var inten = new Intent(this, typeof(UsersFriends));
+                            StartActivity(inten);
+                            //InvalidateOptionsMenu();      
+                        }                          
+
+                    });
+
+
+                    return true;
+
 
 
                 case Resource.Id.action_help:
@@ -1109,6 +1154,28 @@ namespace TestApp
 
                  
 
+                    //if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
+                    //{
+                    //    //Right Drawer is already open, close it
+                    //    mDrawerLayout.CloseDrawer(mRightDrawer);
+
+                    //    //adde
+                    //    InvalidateOptionsMenu();
+                    //}
+                    //else
+                    //{
+                    //    //Right Drawer is closed, open it and just in case close left drawer
+                    //    mDrawerLayout.OpenDrawer(mRightDrawer);
+                    //    //  mDrawerLayout.CloseDrawer(mLeftDrawer);
+
+                    //    //adde
+                    //    InvalidateOptionsMenu();
+                    //}
+
+                   
+                    return true;
+
+                case Resource.Id.right:
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
                     {
                         //Right Drawer is already open, close it
@@ -1126,13 +1193,7 @@ namespace TestApp
                         //adde
                         InvalidateOptionsMenu();
                     }
-
-                   
                     return true;
-
-
-         
-
 
                 default:
                     return base.OnOptionsItemSelected(item);
@@ -1229,14 +1290,21 @@ namespace TestApp
                 //    userInstanceOne = newwaitingDownload.FirstOrDefault();
 
                 userId = auth0UserId;
+              
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
                 var setOnline = await Azure.SetUserOnline(userId, true);
                 isOnline = true;
             }
             catch (Exception)
             {
 
-
-
+               
             }
 
 
@@ -1515,16 +1583,21 @@ namespace TestApp
                      pers3 = view.FindViewById<TextView>(Resource.Id.pers3);
 
 
-                   
-                
-
-                     
-                       
 
                     TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                 _address = view.FindViewById<TextView>(Resource.Id.location_text);
                 Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
-                ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                    ImageButton logout = view.FindViewById<ImageButton>(Resource.Id.logout);
+                    logout.Click += (a, e) =>
+                    {
+                        var logoutApp = Azure.SetUserOnline(userId, false);
+                       
+                        Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                        
+
+                    };
+                        ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+
                     alarm.Click += (a, e) =>
                     {
 
@@ -1546,24 +1619,42 @@ namespace TestApp
                     location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
                     if (e.IsChecked == true)
                     {
-                        Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on", ToastLength.Long).Show();
+                        Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
 
                         activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
+                            try
+                            {
+                                var a = Azure.SetUserOnline(userId, true);
+                                isOnline = true;
 
-                        var a = Azure.SetUserOnline(userId, true);
-                        isOnline = true;
+                            }
+                            catch (Exception)
+                            {
 
+                                
+                            }
+                       
                         menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
                             menItemOnlineText.SetTitle("Online");
                           
                         }
                     else
                     {
-                        Toast.MakeText(activityRightDrawer, "Tracking stopped!", ToastLength.Long).Show();
+                        Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
                         activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
 
-                        var b = Azure.SetUserOnline(userId, false);
-                        isOnline = false;
+
+                            try
+                            {
+                                var b = Azure.SetUserOnline(userId, false);
+                                isOnline = false;
+                            }
+                            catch (Exception)
+                            {
+
+                                
+                            }
+                       
                         menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
                             menItemOnlineText.SetTitle("Offline");
                           
@@ -1654,17 +1745,18 @@ namespace TestApp
                 var wait = await logOff();
                 try
                 {
-                    WelcomeScreen.instance.FinishAffinity();
-                    System.Environment.Exit(0);
-                    WelcomeScreen.instance.Finish();
-                    
+                    //WelcomeScreen.instance.FinishAffinity();
+                    //Takes you to the home screen
+                    //System.Environment.Exit(0);
+                    //WelcomeScreen.instance.Finish();
+                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 
 
                 }
                 catch (Exception a)
                 {
 
-                    throw a;
+                  //  throw a;
                 }
 
 

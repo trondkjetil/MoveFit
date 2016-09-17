@@ -96,19 +96,24 @@ namespace TestApp
             }
 
 
-           // CreateRoute.activity.RunOnUiThread(() =>
-           // {
+            // CreateRoute.activity.RunOnUiThread(() =>
+            // {
 
-           ////     Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
+            ////     Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
 
-           // });
+            // });
 
-        
-    }
+
+        }
         
 
     public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 			{
+
+            //CreateRoute.routeStatus.Text = "Stauts: Creating...";
+            ////    locationFound = true;
+            //CreateRoute.statusImage.SetImageResource(Resource.Drawable.green);
+
 
             new Task (() => {
 
@@ -120,12 +125,8 @@ namespace TestApp
                 points.Clear();
 
 
-
-
                 App.Current.LocationService.LocationChanged += HandleCustomEvent;
-
-
-                
+              
                 //App.Current.LocationService.LocationChanged += (ae, e) =>
                 //{
 

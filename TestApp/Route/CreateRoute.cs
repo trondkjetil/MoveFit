@@ -403,9 +403,11 @@ namespace TestApp
                 dist = getDistanceForRoute(startLocation, endLocation);
 
             }
+
+
             mypoints = MyPoints.calculatePoints(routeType, dist);
-
-
+            score = mypoints;
+            mMap.Snapshot(this);
             startDialogNameRoute();
 
 
@@ -496,7 +498,7 @@ namespace TestApp
 
                 // mypoints = MyPoints.calculatePoints(routeType, (int)dist);
                 var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
-                score = mypoints;
+              //  score = mypoints;
                 statusImage.SetImageResource(Resource.Drawable.orange);
                 Toast.MakeText(this, "Uploading successful", ToastLength.Long).Show();
                 routeStatus.Text = "Status: Idle";
@@ -536,7 +538,7 @@ namespace TestApp
 
          
 
-            routeStatus.Text = "Aquiring your position...";
+            routeStatus.Text = "Acquiring your position...";
 
             var loc = App.Current.LocationService.getLastKnownLocation();
           
@@ -871,7 +873,7 @@ namespace TestApp
 
             mMap.AddPolyline(opt);
 
-            mMap.Snapshot(this);
+         //   mMap.Snapshot(this);
 
         }
 

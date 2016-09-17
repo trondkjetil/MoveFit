@@ -30,6 +30,17 @@
 		android:icon="@drawable/ic_action_help"
 		android:title="About"
 		myapp:showAsAction="always"/>
+  
+  <item android:id="@+id/right"
+		android:icon="@drawable/ic_ab_back_holo_light_am"
+		android:title="RightMenu"
+		myapp:showAsAction="always"/>
+  <!--<item
+        android:id="@+id/action_openRight"
+        android:orderInCategory="100"
+        android:title="Right"
+        android:icon="@android:drawable/ic_open_right"
+        myapp:showAsAction="always" />-->
 
   <!--<item android:id="@+id/action_alarm"
 		android:icon="@drawable/newAlarm"

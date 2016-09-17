@@ -6,15 +6,33 @@ using Android.OS;
 using Android.Locations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace TestApp
 {
-	[Service]
-	public class LocationService : Service, ILocationListener
-	{
+    [Service]
+    public class LocationService : Service, ILocationListener
+    {
+        public string userId;
+        private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
+        private static readonly int MIN_DISTANCE = 10;
 
-        private static readonly int UPDATE_INTERVAL = 1000 * 35 * 1;
-        private static readonly int MIN_DISTANCE = 20;
+        public static int timeInterval;
+        public static int distance;
+        public static int TimeInterval {
+
+            get{ return timeInterval;}
+            set { timeInterval = value; }
+            }
+
+        public static int Distance
+        {
+
+            get { return distance; }
+            set { distance = value; }
+        }
+
+
 
 
         public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
@@ -41,13 +59,53 @@ namespace TestApp
 			base.OnCreate ();
 			Log.Debug (logTag, "OnCreate called in the Location Service");
 		}
+        public async void logout()
+        {
+            try
+            {
+                var user = await Azure.SetUserOnline(userId, false);
+            }
+            catch (Exception)
+            {
 
-		// This gets called when StartService is called in our App class
-		public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
+            }
+        }
+        public void updateLocationTimer()
+        {
+            var timer = new Timer((e) =>
+            {
+                User timerTest = null;
+                try
+                {
+                    timerTest = MainStart.userInstanceOne;
+                }
+                catch (Exception)
+                {
+                    logout();
+
+                }
+
+                if (timerTest == null)
+                {
+                    logout();
+                    StopService(new Intent(this, typeof(LogoutService)));
+                    StopService(new Intent(this, typeof(LocationService)));
+                }
+
+
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
+
+        }
+        // This gets called when StartService is called in our App class
+        public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
 			Log.Debug (logTag, "LocationService started");
 
-			return StartCommandResult.Sticky;
+            //userId = MainStart.userId;
+                    
+            //updateLocationTimer();
+
+            return StartCommandResult.Sticky;
 		}
 
 		// This gets called once, the first time any client bind to the Service
@@ -76,44 +134,71 @@ namespace TestApp
 
             IList<string> acceptableLocationProviders = null;
 
+            Criteria fine = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+                //PowerRequirement = Power.High
+
+
+            };
+
+            Criteria coarse = new Criteria
+            {
+                Accuracy = Accuracy.Coarse
+             
+
+
+                };
+
+              
+
+            //Criteria high = new Criteria
+            //{
+            //    Accuracy = Accuracy.High
+
+
+            //};
+
+            //Criteria medium = new Criteria
+            //{
+            //    Accuracy = Accuracy.Medium
+
+
+            //};
             try
             {
-
-                Criteria criteriaForLocationService = new Criteria
-                {
-                    Accuracy = Accuracy.Fine
-                    //PowerRequirement = Power.High
-
-
-                };
-
-                Criteria medium = new Criteria
-                {
-                    Accuracy = Accuracy.Medium,
-                    PowerRequirement = Power.Medium
-
-                };
-
-                acceptableLocationProviders = LocMgr.GetProviders(criteriaForLocationService, true);
-
-                if (acceptableLocationProviders.Count == 0)
-                {
-                    acceptableLocationProviders = LocMgr.GetProviders(medium, true);
-
-                }
-                else
-                {
-
-                    acceptableLocationProviders = LocMgr.GetProviders(medium, false);
-
-                }
+                acceptableLocationProviders = LocMgr.GetProviders(fine, true);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
 
             }
+
+            if (acceptableLocationProviders.Count == 0)
+                {
+                    try
+                    {
+                        acceptableLocationProviders = LocMgr.GetProviders(coarse, true);
+
+                    }
+                    catch (Exception)
+                    {
+
+                       
+                    }
+                  
+                }
+            //else
+            //{
+
+            //    acceptableLocationProviders = LocMgr.GetProviders(high, false);
+
+            //}
+
+
+
+
 
             if (acceptableLocationProviders.Any())
             {
@@ -126,7 +211,7 @@ namespace TestApp
 
             try
             {
-                LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, 0, this);
+                LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
             }
             catch (Exception a)
             {
@@ -146,7 +231,7 @@ namespace TestApp
             //// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
             //LocMgr.RequestLocationUpdates(locationProvider, 10000, 0, this);
 
-            Log.Debug(logTag, "Now sending location updates");
+           
         }
 
 
@@ -170,13 +255,16 @@ namespace TestApp
 
 
             currentLocation = location;
+
             if(isBetterLocation(currentLocation, currentBestLocation))
             {
                 currentBestLocation = currentLocation;
                 this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
             }
+              //  this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
 
-            this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
+          //  }
+
 
         }
 
@@ -192,8 +280,8 @@ namespace TestApp
 
 		public void OnStatusChanged (string provider, Availability status, Bundle extras)
 		{
-            
 
+            
             if (!isSameProvider(provider, locationProvider))
             {
                 LocMgr.RequestLocationUpdates(provider, UPDATE_INTERVAL, MIN_DISTANCE, this);
@@ -202,9 +290,7 @@ namespace TestApp
 
             }
 
-            StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
-
-
+           // StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
 
 
 
@@ -212,20 +298,16 @@ namespace TestApp
 
         #endregion
 
-
-
         public Location getLastKnownLocation()
         {
          if(currentLocation != null)
             {
-                return currentLocation;
+             return currentLocation;
+
             }else
 
             return LocMgr.GetLastKnownLocation(locationProvider);
         }
-
-
-
 
 
 

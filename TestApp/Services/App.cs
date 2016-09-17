@@ -28,9 +28,12 @@ namespace TestApp
 		{
 			get {
 				if (this.locationServiceConnection.Binder == null)
-					throw new Exception ("Service not bound yet");
-				// note that we use the ServiceConnection to get the Binder, and the Binder to get the Service here
-				return this.locationServiceConnection.Binder.Service;
+                {
+                    //throw new Exception ("Service not bound yet");
+                }
+
+                // note that we use the ServiceConnection to get the Binder, and the Binder to get the Service here
+                return this.locationServiceConnection.Binder.Service;
 			}
 		}
 

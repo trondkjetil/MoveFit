@@ -36,7 +36,7 @@
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp">
                 <TextView
-                    android:text="Name"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                     android:padding="2dp"
                     android:textSize="18sp" />
                 <TextView
-                    android:text="Online status"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                     android:padding="2dp"
                     android:textSize="16sp" />
                 <TextView
-                    android:text="Age"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:minHeight="25px"
                 android:paddingRight="5dp">
                 <TextView
-                    android:text="Dist"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/distAway"

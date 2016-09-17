@@ -35,7 +35,7 @@ namespace TestApp
             speed.Text = "You have used " + CreateRoute.elapsedTime + " to create a route with distance: " + CreateRoute.dist + " meters";
        
             TextView points = view.FindViewById<TextView>(Resource.Id.infoPropt);
-            points.Text = "You have earned " + CreateRoute.score+  " points!";
+            points.Text = "You have earned " + CreateRoute.score +  " points!";
 
             share.Click += (a, e) =>
             {

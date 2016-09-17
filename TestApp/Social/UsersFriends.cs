@@ -53,10 +53,9 @@ namespace TestApp
             mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
             mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
+          //  mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleFriend);
 
-
-
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserFriends);
+           mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserFriends);
             //Create our layout manager
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
@@ -73,9 +72,10 @@ namespace TestApp
                 //StartActivity(myInt);
                 Finish();
             }
-
+          
             mAdapter = new UsersFriendsAdapter(userList, mRecyclerView, this, act, mAdapter, me);
             mRecyclerView.SetAdapter(mAdapter);
+           
 
         }
 

@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="center" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -66,7 +66,6 @@
                     android:padding="2dp"
                     android:textSize="14sp"
                     android:singleLine="true" />
-              
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"

@@ -523,8 +523,8 @@ namespace TestApp
                 {
 
 
-                    mMap.UiSettings.RotateGesturesEnabled = false;
-                    mMap.UiSettings.ScrollGesturesEnabled = false;
+                    mMap.UiSettings.RotateGesturesEnabled = true;
+                    mMap.UiSettings.ScrollGesturesEnabled = true;
 
 
 
