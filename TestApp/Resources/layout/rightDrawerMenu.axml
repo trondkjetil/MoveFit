@@ -51,7 +51,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <!--<TextView
                 android:text="Tracking"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="right"
                 android:id="@+id/textView2"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000" />-->
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,6 +77,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginLeft="5dp" />
+            <!--<TextView
+                android:text="Alarm"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:layout_above="@+id/alarmButton"
+                android:id="@+id/alarm"
+                android:textColor="#ff000000" />-->
             <ImageButton
                 android:src="@drawable/newAlarm"
                 android:layout_width="wrap_content"

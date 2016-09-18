@@ -110,10 +110,6 @@ TestApp.MyRoutesFragment, TestApp;md5cf27010e14af20e69784a5a54418b85f.MyRoutesFr
 TestApp.MyRoutesFragment, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MyRoutesFragment
 TestApp.MyRoutesFragment;md5cf27010e14af20e69784a5a54418b85f.MyRoutesFragment
 testapp.MyRoutesFragment;md5cf27010e14af20e69784a5a54418b85f.MyRoutesFragment
-TestApp.LogoutService, TestApp;md5cf27010e14af20e69784a5a54418b85f.LogoutService
-TestApp.LogoutService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.LogoutService
-TestApp.LogoutService;md5cf27010e14af20e69784a5a54418b85f.LogoutService
-testapp.LogoutService;md5cf27010e14af20e69784a5a54418b85f.LogoutService
 TestApp.SimpleService, TestApp;md5cf27010e14af20e69784a5a54418b85f.SimpleService
 TestApp.SimpleService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.SimpleService
 TestApp.SimpleService;md5cf27010e14af20e69784a5a54418b85f.SimpleService

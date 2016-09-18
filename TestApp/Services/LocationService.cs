@@ -15,7 +15,7 @@ namespace TestApp
     {
         public string userId;
         private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
-        private static readonly int MIN_DISTANCE = 10;
+        private static readonly int MIN_DISTANCE = 15;
 
         public static int timeInterval;
         public static int distance;
@@ -88,7 +88,7 @@ namespace TestApp
                 if (timerTest == null)
                 {
                     logout();
-                    StopService(new Intent(this, typeof(LogoutService)));
+                   // StopService(new Intent(this, typeof(LogoutService)));
                     StopService(new Intent(this, typeof(LocationService)));
                 }
 
@@ -213,9 +213,9 @@ namespace TestApp
             {
                 LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
             }
-            catch (Exception a)
+            catch (Exception )
             {
-                throw a;
+               
             }
 
             //         var locationCriteria = new Criteria();

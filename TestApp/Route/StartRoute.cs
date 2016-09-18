@@ -108,7 +108,7 @@ namespace TestApp
                 //stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
                 //stars.GetDrawable(0).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
                 //stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-
+                ratingbar.Enabled = false;
                 ratingbar.Clickable = false;
                 ratingbar.Visibility = ViewStates.Visible;
                 ratingbar.Rating = 0;
@@ -125,10 +125,28 @@ namespace TestApp
                 userId = array[9];
 
 
-                name.Text = "Name:" + routeName;
+                name.Text = "Name: " + routeName;
                 description.Text = "Description: " + routeInfo;
                 difficulty.Text = "Difficulty: " + routeDifficulty;
-                length.Text = "Length: " + routeLength;
+
+                string unit = " km";
+                double lengthOfRoute = 0;
+                var test = IOUtilz.LoadPreferences();
+                if (test[1] == 1)
+                {
+                    unit = " miles";
+                    lengthOfRoute = (int)IOUtilz.ConvertKilometersToMiles(Convert.ToDouble(routeLength) / 1000);
+
+                }
+                else
+                {
+                    lengthOfRoute = Convert.ToDouble(routeLength) / 1000;
+                }
+
+
+
+
+                length.Text = "Length: " + lengthOfRoute + unit;  //routeLength;
                 type.Text = "Type: " + routeType;
                 trips.Text = "Trips: " + routeTrips;
                 time.Text = "Best time: " + routeTime;
@@ -234,18 +252,19 @@ namespace TestApp
             else
                 Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
 
-
-
+          
                 start.Enabled = true;
 
             //InitializeLocationManager();
             //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
-
-
+            SupportActionBar.SetDisplayShowTitleEnabled(true);
+            SupportActionBar.Title = "Route active..";
 
         }
         private async void endRoute()
         {
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.Title = "";
             if (StartRouteService.serviceIsRunning == false)
             {
                 Toast.MakeText(this, "Nothing to stop!", ToastLength.Short).Show();
@@ -542,16 +561,24 @@ namespace TestApp
 
                     markerOpt1 = new MarkerOptions();
                     markerOpt1.SetPosition(new LatLng(firstElement.Lat, firstElement.Lon));
-                     // markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
-                   
+                    // markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
+
+
+                    Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
+                    var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
 
                     markerOpt1.SetTitle("Starting Point");
                     markerOpt1.Draggable(false);
                     markerOpt1.SetSnippet("Starting point of route");
-                    markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+                  //  markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+                    markerOpt1.SetIcon(startPoint);
+
                     mMap.AddMarker(markerOpt1);
 
-                    
+
+                    Bitmap flagEnd = BitmapFactory.DecodeResource(Resources, Resource.Drawable.finishF);
+                    var endPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagEnd, 80, false)); //(Resource.Drawable.test);
+
 
                     markerOpt2 = new MarkerOptions();
                     markerOpt2.SetPosition(new LatLng(lastItem.Lat, lastItem.Lon));
@@ -560,7 +587,10 @@ namespace TestApp
                     markerOpt2.SetTitle("Ending Point");
                     markerOpt2.Draggable(false);
                     markerOpt2.SetSnippet("End point of route");
-                    markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+                  //  markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+                    markerOpt2.SetIcon(endPoint);
+
+                    
                     mMap.AddMarker(markerOpt2);
 
                     mMap.MoveCamera(CameraUpdateFactory.ZoomIn());

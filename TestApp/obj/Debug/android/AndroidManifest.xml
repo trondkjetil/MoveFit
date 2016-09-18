@@ -45,11 +45,6 @@
     <activity android:label="RouteOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.RouteOverview" />
     <activity android:label="StartRoute" android:launchMode="singleInstance" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.StartRoute" />
     <activity android:alwaysRetainTaskState="true" android:label="Route Creator" android:launchMode="singleInstance" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRoute" />
-    <service android:isolatedProcess="true" android:name="md5cf27010e14af20e69784a5a54418b85f.LogoutService">
-      <intent-filter>
-        <action android:name="com.xamarin.DemoService" />
-      </intent-filter>
-    </service>
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.SimpleService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRouteService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />

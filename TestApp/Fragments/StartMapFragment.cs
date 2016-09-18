@@ -364,12 +364,26 @@ namespace TestApp
             }
             catch (Exception)
             {
-                if (myPos == null)
-                {
-                    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
-                }
+                
 
             }
+
+            if (myPos == null)
+            {
+                try
+                {
+
+
+                    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+
+                }
+                catch (Exception)
+                {
+
+
+                }
+            }
+
 
             mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
             

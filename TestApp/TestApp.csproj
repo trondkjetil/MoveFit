@@ -208,7 +208,6 @@
     <Compile Include="Route\StartRoute.cs" />
     <Compile Include="Route\CreateRoute.cs" />
     <Compile Include="Fragments\MyroutesFragment.cs" />
-    <Compile Include="Services\LogoutService.cs" />
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\App.cs" />
     <Compile Include="Services\CreateRouteService.cs" />
@@ -579,6 +578,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\finishF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\startF.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

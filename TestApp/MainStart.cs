@@ -42,7 +42,7 @@ namespace TestApp
         public static MainStart instance;
 
         public readonly string logTag = "MainActivity";
-        SupportToolbar mToolbar;
+        //SupportToolbar mToolbar;
         ActionBarDrawerToggle mDrawerToggle;
         DrawerLayout mDrawerLayout;
         ListView mLeftDrawer;
@@ -221,7 +221,8 @@ namespace TestApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
-            mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SupportToolbar  mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+
 
             array = Intent.GetStringArrayExtra("MyData");
 
@@ -305,15 +306,18 @@ namespace TestApp
 
 
             var layout = FindViewById<RelativeLayout>(Resource.Id.messages);
-           // layout.Visibility = ViewStates.Invisible;
+            // layout.Visibility = ViewStates.Invisible;
 
 
-         
-
-
-          
 
             SetSupportActionBar(mToolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+
+
+            //SetSupportActionBar(mToolbar);
             mLeftDataSet = new List<string>();
           
 
@@ -425,10 +429,10 @@ namespace TestApp
             mDrawerLayout.SetDrawerListener(mDrawerToggle);
           
             //added
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
            
-            SupportActionBar.SetHomeButtonEnabled(true);
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //SupportActionBar.SetHomeButtonEnabled(true);
+            //SupportActionBar.SetDisplayShowTitleEnabled(false);
             mDrawerToggle.SyncState();
 
 
@@ -793,7 +797,7 @@ namespace TestApp
         {
             base.OnStop();
             // Clean up: shut down the service when the Activity is no longer visible.
-            var wait = await logOff();
+            //var wait = await logOff();
             //try
             //{
             //  

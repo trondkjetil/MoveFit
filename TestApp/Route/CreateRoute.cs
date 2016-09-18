@@ -404,16 +404,27 @@ namespace TestApp
 
             }
 
+            if(dist < 150)
+            {
+                Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
 
-            mypoints = MyPoints.calculatePoints(routeType, dist);
-            score = mypoints;
-            mMap.Snapshot(this);
-            startDialogNameRoute();
+                Finish();
+            }
+            else
+            {
+
+                mypoints = MyPoints.calculatePoints(routeType, dist);
+                score = mypoints;
+                mMap.Snapshot(this);
+                startDialogNameRoute();
 
 
-            firstRun = true;
+                firstRun = true;
 
-          
+            }
+
+
+
         }
 
         //public void startDialogRouteStats()
@@ -818,19 +829,32 @@ namespace TestApp
 
             mMap.Clear();
 
+
+            Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
+            var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
+
             markerOpt1.SetPosition(new LatLng(firstElement.Latitude, firstElement.Longitude));
             markerOpt1.SetTitle("Starting Point");
             markerOpt1.Draggable(false);
             markerOpt1.SetSnippet("Starting point of route");
-            markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+
+          //  markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+            markerOpt1.SetIcon(startPoint);
             mMap.AddMarker(markerOpt1);
+
+
+            Bitmap flagEnd = BitmapFactory.DecodeResource(Resources, Resource.Drawable.finishF);
+            var endPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagEnd, 80, false)); //(Resource.Drawable.test);
+
 
             markerOpt2 = new MarkerOptions();
             markerOpt2.SetPosition(new LatLng(lastItem.Latitude, lastItem.Longitude));
             markerOpt2.SetTitle("Ending Point");
             markerOpt2.Draggable(false);
             markerOpt2.SetSnippet("End point of route");
-            markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+           // markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+            markerOpt2.SetIcon(endPoint);
+
             mMap.AddMarker(markerOpt2);
 
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
