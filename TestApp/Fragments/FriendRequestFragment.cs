@@ -52,14 +52,7 @@ namespace TestApp
             //layout.AddView(txt);
 
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleFriendRequest);
-            //Create our layout manager
-            //mLayoutManager = new LinearLayoutManager(this.Activity);
-            //mRecyclerView.SetLayoutManager(mLayoutManager);
-
-            //mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
-            //mRecyclerView.SetAdapter(mAdapter);
-
-            //LinearLayout layout = view.FindViewById<LinearLayout>(Resource.Id.layout);
+          
              if (myFriends.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);

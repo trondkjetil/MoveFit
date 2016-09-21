@@ -73,16 +73,15 @@ namespace TestApp
         }
         protected async override void OnCreate(Bundle savedInstanceState)
         {
-           // RequestWindowFeature(WindowFeatures.NoTitle);
+           
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.routesOverview);
             act = this;
            
             me = new List<User>();
             me.Add(MainStart.userInstanceOne);
-            unit = IOUtilz.LoadPreferences();
-            routes = await Azure.getRoutes();
-            // routeList = routes;
+            unit = IOUtilz.LoadPreferences();           
+            routes = await Azure.nearbyRoutes();           
             myRoutes = await Azure.getMyRoutes(MainStart.userId);
            
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tools);
@@ -304,7 +303,7 @@ namespace TestApp
             if (position == 1)
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
-                routes = await Azure.getRoutes();
+                routes = await Azure.nearbyRoutes();
                 mAdapter = new UsersRoutesAdapterFragment(routes, mRecyclerView, this, me, 0);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();

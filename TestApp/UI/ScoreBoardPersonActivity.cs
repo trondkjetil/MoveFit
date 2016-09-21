@@ -70,8 +70,8 @@ namespace TestApp
 
             try
             {
-             //   mUsers = new List<User>();
-                mUsers = await Azure.getPeople();
+                //   mUsers = new List<User>();
+                mUsers = await Azure.nearbyPeople();
 
                 if (mUsers.Count > 0)
                 {
@@ -80,8 +80,8 @@ namespace TestApp
                 }
                 else
                 {
-                    //Intent myIntent = new Intent(this, typeof(RouteOverview));
-                    //StartActivity(myIntent);
+                    Intent myIntent = new Intent(this, typeof(ScoreBoardRouteActivity));
+                    StartActivity(myIntent);
                     Toast.MakeText(this, "No People found!", ToastLength.Long).Show();
                     Finish();
                 }

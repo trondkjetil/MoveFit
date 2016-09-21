@@ -49,11 +49,15 @@ namespace TestApp
 
             if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 3)
             {
-                
-              
+                           
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }
+            else
+            {
+                txt.Visibility = ViewStates.Gone;
+            }
+
         }
 
         public class MyView : RecyclerView.ViewHolder

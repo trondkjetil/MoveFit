@@ -100,7 +100,7 @@ namespace TestApp
             {
                 try
                 {
-                    NewMessages = NewMessages;
+                   
 
                     if (PreviousMessages.Count != 0 && NewMessages.Count != 0)
                     {
@@ -108,7 +108,7 @@ namespace TestApp
 
                     }
 
-                    notAnyNewMessages = notAnyNewMessages;
+                  
 
                     if (!notAnyNewMessages && NewMessages.LastOrDefault().Sender != MainStart.userId)
                 {
@@ -119,6 +119,10 @@ namespace TestApp
 
                     foreach (var message in NewMessages)
                     {
+                            if(message.Sender != MainStart.userId)
+                            {
+                              Azure.setMessageRead(message.Id);
+                            }
                         messageLayout(message.Message, message.Sender);
 
                     }
@@ -246,9 +250,12 @@ namespace TestApp
 
                 foreach (var item in messages)
                 {
-
                     messageLayout(item.Message, item.Sender);
-
+                    if(item.Sender != MainStart.userId)
+                    {
+                        Azure.setMessageRead(item.Id);
+                    }
+                   
                 }
 
                 PreviousMessages = messages;

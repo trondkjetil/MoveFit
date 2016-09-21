@@ -89,7 +89,7 @@ namespace TestApp
         }
         public async static Task<List<User>> updatePeopleNearby()
         {
-            users = await Azure.getPeople();
+            users = await Azure.nearbyPeople();
             return myFriends;
         }
         protected async override void OnCreate(Bundle savedInstanceState)
@@ -100,13 +100,13 @@ namespace TestApp
             act = this;
            
             me = new List<User>();
-            me.Add( MainStart.userInstanceOne); //await Azure.getUserByAuthId(MainStart.userId);
+            me.Add(MainStart.userInstanceOne); //await Azure.getUserByAuthId(MainStart.userId);
             unit = IOUtilz.LoadPreferences();
             myFriends = await Azure.getUsersFriends(MainStart.userId);
             users = await Azure.nearbyPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
 
-            
+    
 
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
             SetSupportActionBar(toolbar);

@@ -28,6 +28,9 @@ namespace TestApp
         [JsonProperty(PropertyName = "createdat")]
         public string CreatedAt { get; set; }
 
+        [JsonProperty(PropertyName = "read")]
+        public bool Read { get; set; }
+
 
         // override object.Equals
         public override bool Equals(object obj)

@@ -24,6 +24,7 @@ namespace TestApp
         private Context mContext;
         private int mCurrentPosition = -1;
         private Activity mActivity;
+        TextView txt;
         private RecyclerView.Adapter mAdapter;
 
 
@@ -34,7 +35,7 @@ namespace TestApp
         public int userPoints;
         public string userAboutMe;
         public string userID;
-
+        
         public UsersNearbyAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
             mUsers = users;
@@ -44,12 +45,18 @@ namespace TestApp
             mAdapter = adapter;
 
 
+            txt = act.FindViewById<TextView>(Resource.Id.empty);
+
+
             if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
             {
-
-                TextView txt = act.FindViewById<TextView>(Resource.Id.empty);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                if (txt != null)
+                    txt.Visibility = ViewStates.Gone;
             }
         }
 
@@ -150,43 +157,7 @@ namespace TestApp
             }
 
 
-            //myHolder.mSendFriendRequest.Click += (object sender, EventArgs e) =>
-            //{
-
-            //    try
-            //    {
-
-
-            //        int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
-
-            //        Toast.MakeText(mContext, "Friend request is sent to " + mUsers[pos].UserName.ToString(), ToastLength.Long).Show();
-
-            //        Azure.AddFriendShip(MainStart.userId, mUsers[pos].Id);
-            //        deleteIndex(pos);
-            //        NotifyDataSetChanged();
-
-            //        //   mAdapter.NotifyDataSetChanged();
-
-
-
-            //        if (mUsers.Count == 0)
-            //        {
-
-            //            mActivity.Finish();
-            //        }
-
-
-            //    }
-            //    catch (Exception)
-            //    {
-
-
-            //    }
-
-
-
-            //};
-
+      
 
 
         }

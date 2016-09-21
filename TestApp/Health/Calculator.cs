@@ -135,10 +135,10 @@ namespace TestApp
 
                 }
                 //   results = CalcBmi(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text) , Convert.ToInt32(_weight.Text) );
-                results = results + CalcBmi(height,weight);
-                resultView.Text = results + System.Environment.NewLine + System.Environment.NewLine + "Calories needed to maintain current weight: " + CalcNeededKcals(age,height,weight) + System.Environment.NewLine +
-               "BMR is: " + CalcBmr(age, height,weight, gender);
 
+                double avg = CalcNeededKcals(age, height, weight) + CalcBmr(age, height, weight, gender) / 2;
+                results = results + CalcBmi(height,weight);
+                resultView.Text = results + System.Environment.NewLine + System.Environment.NewLine + "Calories needed to maintain current weight: ca " + avg; /*CalcNeededKcals(age,height,weight) + System.Environment.NewLine +*/
 
 
             };
@@ -147,17 +147,7 @@ namespace TestApp
         }
 
 
-        public double CalcNeededKcals(double age, double height, double weight)
-        {
-
-            double calories = (66 + (13.7 * weight) + (5 * height) - (6.8 * age)); //finally we calculate the final variable which is the number of calories equal to the rest metabolic rate
-
-        //    double activity = Double.parseDouble(reader.nextLine()); //we are using the Double.parseDouble command to convert the user input into a doble variable (a decimal number)
-
-            //     System.out.println(name + ", the ammount of calories you need to intake in order to maintain your weight is " + calories * activity); //and in the process of displaying it we multiply it by the activity coefficient and display the final result to the user.
-
-            return calories * activityLevel;
-        }
+       
 
         public string CalcBmi(double height, double weight)
         {
@@ -220,7 +210,17 @@ namespace TestApp
             return res;
         }
 
+        public double CalcNeededKcals(double age, double height, double weight)
+        {
 
+            double calories = (66 + (13.7 * weight) + (5 * height) - (6.8 * age)); //finally we calculate the final variable which is the number of calories equal to the rest metabolic rate
+
+            //    double activity = Double.parseDouble(reader.nextLine()); //we are using the Double.parseDouble command to convert the user input into a doble variable (a decimal number)
+
+            //     System.out.println(name + ", the ammount of calories you need to intake in order to maintain your weight is " + calories * activity); //and in the process of displaying it we multiply it by the activity coefficient and display the final result to the user.
+
+            return calories * activityLevel;
+        }
         public double CalcBmr(double age,double height,double weight, bool gender)
         {
 

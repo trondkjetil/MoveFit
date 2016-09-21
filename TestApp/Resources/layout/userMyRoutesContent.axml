@@ -66,14 +66,41 @@
                     android:padding="2dp"
                     android:textSize="14sp"
                     android:singleLine="true" />
-                <ImageButton
-                    android:src="@drawable/ic_delete"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
                     android:layout_height="wrap_content"
-                    android:id="@+id/deleteRoute"
-                    android:background="@null"
-                    android:paddingTop="4dp"
-                    android:scaleType="center" />
+                    android:layout_width="wrap_content">
+                    <TextView
+                        android:text="Delete Route"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/delRoute"
+                        android:textColor="#000"
+                        android:gravity="left"
+                        android:padding="2dp"
+                        android:layout_marginRight="8dp"
+                        android:textSize="10sp"
+                        android:singleLine="true"
+                        android:layout_centerInParent="true"
+                        android:layout_alignParentLeft="true" />
+                    <ImageButton
+                        android:src="@drawable/ic_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deleteRoute"
+                        android:background="@null"
+                        android:layout_toRightOf="@+id/delRoute"
+                        android:scaleType="center" />
+                </RelativeLayout>
+            <!--<ImageButton
+                       android:src="@drawable/ic_delete"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:id="@+id/deleteRoute"
+                       android:background="@null"
+                       android:layout_toRightOf="@+id/delRoute"
+                       android:paddingTop="4dp"
+                       android:scaleType="center" />-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"

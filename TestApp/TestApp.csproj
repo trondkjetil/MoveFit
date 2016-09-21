@@ -69,12 +69,8 @@
       <HintPath>..\packages\Bolts.1.4.0\lib\MonoAndroid403\Bolts.AppLinks.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bolts.Tasks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bolts.Tasks">
       <HintPath>..\packages\Bolts.1.4.0\lib\MonoAndroid403\Bolts.Tasks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="GCM.Client">
-      <HintPath>..\Components\GCMClient-1.0\lib\android\GCM.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client">
       <HintPath>..\Components\signalr-2.1.2.2\lib\android\Microsoft.AspNet.SignalR.Client.dll</HintPath>
@@ -222,6 +218,7 @@
     <Compile Include="Chat\SetUp.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserFriendRequestAdapter.cs" />
+    <Compile Include="Social\UserMessageFriendsAdapter.cs" />
     <Compile Include="Social\UsersNearbyAdapter.cs" />
     <Compile Include="Social\UserFriendsAdapter.cs" />
     <Compile Include="Social\UserProfile.cs" />
@@ -231,11 +228,7 @@
     <Compile Include="UI\ScoreBoardExtMethods.cs" />
     <Compile Include="UI\ScoreBoardRoutesAdapter.cs" />
     <Compile Include="UI\ScoreBoardFriendsAdapter.cs" />
-    <Compile Include="Social\UsersMyRoutes.cs" />
-    <Compile Include="Social\UsersFriendRequest.cs" />
-    <Compile Include="Social\UsersRoutes.cs" />
     <Compile Include="Social\UsersFriends.cs" />
-    <Compile Include="Social\UsersNearby.cs" />
     <Compile Include="Dialogs\DialogStartRoute.cs" />
     <Compile Include="Login\AuthActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
@@ -274,6 +267,8 @@
     <AndroidResource Include="Resources\layout\profile.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <AndroidAsset Include="Assets\english111.ttf" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\drawable\tt.png" />
@@ -319,7 +314,9 @@
     <AndroidResource Include="Resources\layout\peopleNearByContent.axml" />
     <AndroidResource Include="Resources\layout\progressBar.axml" />
     <AndroidResource Include="Resources\layout\resultList.axml" />
-    <AndroidResource Include="Resources\layout\rightDrawerMenu.axml" />
+    <AndroidResource Include="Resources\layout\rightDrawerMenu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\routesOverview.axml" />
     <AndroidResource Include="Resources\layout\row_friend.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardMain.axml" />
@@ -362,25 +359,17 @@
       <Visible>False</Visible>
       <Version>0.5.0</Version>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="azure-messaging">
-      <Visible>False</Visible>
-      <Version>1.2.5.2</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="GCMClient">
-      <Visible>False</Visible>
-      <Version>1.0</Version>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="signalr">
       <Visible>False</Visible>
       <Version>2.1.2.2</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
-      <Version>23.1.1.1</Version>
       <Visible>False</Visible>
+      <Version>23.4.0.1</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7appcompat">
-      <Version>23.1.1.1</Version>
       <Visible>False</Visible>
+      <Version>23.4.0.1</Version>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
@@ -584,6 +573,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\startF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\notif.png" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

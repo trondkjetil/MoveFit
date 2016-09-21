@@ -23,10 +23,13 @@ namespace TestApp
            
             TextView finish = view.FindViewById<TextView>(Resource.Id.finish);
 
+            rate = "0";
+
+
             if (StartRoute.record)
             {
-                finish.Text = "Congratulations!" + System.Environment.NewLine + "You have made a new RECORD on this route!"
-                    + System.Environment.NewLine + "Your time: " + StartRoute.newRecordTime + " vs " + StartRoute.oldRecordTime;
+                finish.Text = "Congratulations!" + System.Environment.NewLine + System.Environment.NewLine + "You have made a new RECORD on this route!"
+                    + System.Environment.NewLine + System.Environment.NewLine + "Your time: " + StartRoute.newRecordTime + " vs " + StartRoute.oldRecordTime;
 
             }
             else
@@ -38,6 +41,7 @@ namespace TestApp
 
             RatingBar ratingbar = view. FindViewById<RatingBar>(Resource.Id.ratingbarEndRoute);
             ratingbar.Visibility = ViewStates.Visible;
+            
 
             ratingbar.RatingBarChange += (o, e) =>
             {

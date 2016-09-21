@@ -25,7 +25,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Android.Gms.Maps.GoogleMap;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
-using Gcm.Client;
+//using Gcm.Client;
 using TestApp.Push;
 using System.Net;
 using System.Text;
@@ -127,13 +127,13 @@ namespace TestApp
 
 
         public bool dialogOpen;
-        private void RegisterWithGCM()
-        {
-            // Check to ensure everything's set up right
-            GcmClient.CheckDevice(this);
-            GcmClient.CheckManifest(this);
-             GcmClient.Register(this, Constants.SenderID);
-        }
+        //private void RegisterWithGCM()
+        //{
+        //    // Check to ensure everything's set up right
+        //    GcmClient.CheckDevice(this);
+        //    GcmClient.CheckManifest(this);
+        //     GcmClient.Register(this, Constants.SenderID);
+        //}
 
 
       
@@ -486,14 +486,18 @@ namespace TestApp
             {
                 user = await Azure.userRegisteredOnline(userName);
                 List<Route> routes = await Azure.nearbyRoutes();
-              //  routesNearby.Text = "Routes Nearby: " + routes.Count;
+             
                 routesNearby = "Routes Nearby: " + routes.Count;
 
-                if (user.Count == 0)
+            }
+            catch (Exception)
+            {
+                routesNearby = "Routes Nearby: 0";
+            }
+
+
+            if (user.Count == 0)
                 {
-
-
-
                     FragmentTransaction firstWelcome = FragmentManager.BeginTransaction();
                     DialogWelcome welcome= new DialogWelcome();
                     welcome.DialogClosed += OnDialogClosedWelcome;
@@ -509,20 +513,22 @@ namespace TestApp
                    ///setPoints();
                    
                     userInstanceOne = waitingUpload;
+
+                 List<User> userList = null;
                     try
                     {
                         var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
+                        isOnline = true;
 
-                    }
-                    catch (Exception)
+                        userList = await Azure.getUsersFriends(MainStart.userId);
+
+                }
+                   catch (Exception)
                     {
 
                        
                     }
-                     isOnline = true;
-
-                    List<User> userList = await Azure.getUsersFriends(MainStart.userId);
-
+                   
                     var friendCountOnline = 0;
                     foreach (var item in userList)
                     {
@@ -545,11 +551,7 @@ namespace TestApp
 
 
 
-            }
-            catch (Exception)
-            {
-
-            }
+          
 
 
             if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
@@ -841,7 +843,7 @@ namespace TestApp
         {
 
             base.OnDestroy();
-             Azure.SetUserOnline(userId, false);
+            Azure.SetUserOnline(userId, false);
 
             // var b = await Azure.SetUserOnline(userName, false);
             try
@@ -862,8 +864,7 @@ namespace TestApp
         public async Task<List<User>> logOff()
         {
 
-            //if (isOnline)
-            //{
+            
                 try
                 {
                     var user = await Azure.SetUserOnline(userId, false);
@@ -874,9 +875,7 @@ namespace TestApp
                
                 }
                
-                isOnline = false;
-          //  }
-           
+                isOnline = false;           
             StopService(new Intent(this, typeof(LocationService)));
             return user;
         }
@@ -1221,6 +1220,11 @@ namespace TestApp
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
+
+            try
+            {
+
+           
             if (mDrawerLayout.IsDrawerOpen((int)GravityFlags.Left))
             {
                 outState.PutString("DrawerState", "Opened");
@@ -1230,7 +1234,12 @@ namespace TestApp
             {
                 outState.PutString("DrawerState", "Closed");
             }
+            }
+            catch (Exception)
+            {
 
+               
+            }
             base.OnSaveInstanceState(outState);
         }
 
@@ -1294,7 +1303,7 @@ namespace TestApp
                 //    userInstanceOne = newwaitingDownload.FirstOrDefault();
 
                 userId = auth0UserId;
-              
+                IOUtilz.SavePreferences(0, 100, 45);
             }
             catch (Exception)
             {

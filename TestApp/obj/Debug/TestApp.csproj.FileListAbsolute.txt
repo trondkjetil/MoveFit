@@ -1,227 +1,229 @@
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.pdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\testApp.TestApp.apk
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\testApp.TestApp-Signed.apk
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Auth0Client.Android.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.AppLinks.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Bolts.Tasks.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\GCM.Client.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Messaging.Android.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\SQLitePCL.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\SQLitePCL.Ext.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Design.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v4.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.CardView.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.Auth.Android.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Ads.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Base.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Basement.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Maps.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.pdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatroom.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatgroup.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\spinneritemroutetypes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\auth.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\settings.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogendroutecreationstats.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startmapfragment.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usersfriendsmessages.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendrequestrecycleview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendsrecycleview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\routesnearbyrecycleview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\myroutesrecycleview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\profile.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tt.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_right.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\styles.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\themes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\customloadbar.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_search.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\actionbar.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\test.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_forward.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_save.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_left_to_right.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\cardview_up.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\flip.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\anim\slide_right_to_left.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\dialogstartbutton.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_help.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refresh.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chatmessagedialog.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\contactlistitem.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\createroute.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\customlistview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogendrouterating.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialogstartroute.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\drawerlayout.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dropdownlist.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\chat.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\map.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\mappeople.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\peoplenearbycontent.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\progressbar.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\resultlist.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\rightdrawermenu.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\routesoverview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row_friend.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\scoreboardmain.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\simpleservicelayout.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\startroute.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userfriendscontent.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usermyroutescontent.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userroutecontent.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\usersnearby.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendnearbyrecycleview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\welcome.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\dialoguserinfo.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userfriendsrequestcontent.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\friendsoverview.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\stepcounter.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\scoreboardroutes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\row_route.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\userprofile.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\strings.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\female.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\male.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\online.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\startflag.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\maps.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsactivitylevel.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\green.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\orange.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\red.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsroutetypes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\values\itemsroutedifficulty.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\greenonline.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\redoffline.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\actionbarroutescoreboard.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\eexit.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_send.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\raw\moveit.mp3
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\addfriend.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_forward.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\my_rectangle.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\spinner.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_back.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\newalarm.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_home.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\deletefriend.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_btn_add.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\acceptfriend.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\msg.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\compass_basee.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_routes.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_people.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_allfriends.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_social_info.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\oldsetting.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile_chat.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\layout\simple_list_item_checked.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\bell.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_route.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_score.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_dist.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_running.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\rsz_flag.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\compass_base.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\imagebackground.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\profile.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\borderlayout.xml
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\toolbar.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\menu.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_delete.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\walk.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\at.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\st.jpg
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ru.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\sk.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\tr.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\wa.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\cy.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ka.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\R.cs.flag
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\uploadflags.txt
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\ic_ab_back_holo_light_am.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\logout.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Android.Export.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.CSharp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\Mono.Data.Tds.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\mscorlib.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.ComponentModel.Composition.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.ComponentModel.DataAnnotations.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Core.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Data.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Json.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Net.Http.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Numerics.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Runtime.Serialization.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.ServiceModel.Internals.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Transactions.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Xml.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\bin\Debug\System.Xml.Linq.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Java.Interop.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.Export.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\Mono.Data.Tds.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\mscorlib.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.DataAnnotations.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Core.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Data.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Json.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Net.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Net.Http.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Numerics.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Transactions.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\finishf.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\res\drawable\startf.png
-C:\Users\Trond\Desktop\Go\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.pdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\testApp.TestApp.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\testApp.TestApp-Signed.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Auth0Client.Android.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Bolts.AppLinks.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Bolts.Tasks.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Messaging.Android.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Newtonsoft.Json.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\SQLitePCL.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\SQLitePCL.Ext.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Design.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v4.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.CardView.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.Auth.Android.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Ads.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Base.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Basement.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Xamarin.GooglePlayServices.Maps.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.xml
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.xml
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.dll
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.pdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chatroom.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chatgroup.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\spinneritemroutetypes.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\auth.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\settings.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dialogwelcome.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dialogendroutecreationstats.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\startmapfragment.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\usersfriendsmessages.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendrequestrecycleview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendsrecycleview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\routesnearbyrecycleview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\myroutesrecycleview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\profile.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\tt.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_right.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\styles.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\themes.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\customloadbar.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_search.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\actionbar.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\test.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_forward.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_save.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_left_to_right.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\cardview_up.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\flip.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_right_to_left.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\dialogstartbutton.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_help.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_refresh.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\buttonsignupstyle.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\accelerometer.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\calculator.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chatmessagedialog.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\contactlistitem.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\createroute.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\customlistview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dialogendrouterating.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dialogstartroute.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\drawerlayout.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dropdownlist.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chat.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\map.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\mappeople.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\peoplenearbycontent.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\progressbar.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\resultlist.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\rightdrawermenu.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\routesoverview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\row_friend.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\scoreboardmain.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\simpleservicelayout.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\startroute.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\userfriendscontent.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\usermyroutescontent.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\userroutecontent.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\usersnearby.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendnearbyrecycleview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\welcome.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\dialoguserinfo.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\userfriendsrequestcontent.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendsoverview.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\stepcounter.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\scoreboardroutes.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\row_route.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\userprofile.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\strings.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\female.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\male.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\online.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\startflag.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\maps.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\itemsactivitylevel.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\green.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\orange.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\red.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\itemsroutetypes.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\itemsroutedifficulty.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\greenonline.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\redoffline.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\actionbarroutescoreboard.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\eexit.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_send.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\raw\moveit.mp3
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\addfriend.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_forward.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\my_rectangle.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\spinner.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_back.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\newalarm.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_home.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\deletefriend.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_btn_add.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\acceptfriend.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\msg.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_read.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\sym_action_email.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\compass_basee.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_routes.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu_nav_people.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_menu_allfriends.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\perm_group_social_info.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\oldsetting.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\perm_group_system_tools.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\action_menu_profile_chat.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\simple_list_item_checked.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\bell.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_route.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_score.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_dist.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_running.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_flag.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\compass_base.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\imagebackground.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\profile.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\borderlayout.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\toolbar.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\menu.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_delete.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\walk.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\at.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\st.jpg
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ru.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\sk.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\tr.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\wa.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\cy.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ka.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_ab_back_holo_light_am.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\logout.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\finishf.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\startf.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\notif.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\R.cs.flag
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\uploadflags.txt
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Mono.Android.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Mono.Android.Export.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Mono.CSharp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Mono.Data.Tds.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\mscorlib.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.ComponentModel.Composition.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.ComponentModel.DataAnnotations.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Core.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Data.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Json.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Numerics.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Runtime.Serialization.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.ServiceModel.Internals.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Transactions.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Xml.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Xml.Linq.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Java.Interop.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.Export.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Data.Tds.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\mscorlib.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.DataAnnotations.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Core.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Data.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Json.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Net.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Net.Http.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Numerics.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Transactions.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.config
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

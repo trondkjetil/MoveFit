@@ -27,19 +27,12 @@ namespace TestApp
         //public SupportToolbar toolbar;
         public List<User> myFriends;
         public static List<User> me;
-        //public override void OnCreate(Bundle savedInstanceState)
-        //{
-
-        //    base.OnCreate(savedInstanceState);
-        //    HasOptionsMenu = true;
-
-        //}
+       
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.friendNearbyRecycleView, container, false);
 
-            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclePeopleNearby);
-           
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclePeopleNearby);       
             myFriends = FriendsOverview.users;
             me = FriendsOverview.me;
 
@@ -47,7 +40,6 @@ namespace TestApp
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
-
 
                 mAdapter = new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
@@ -57,7 +49,6 @@ namespace TestApp
 
             {
                 TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
-
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }
@@ -85,10 +76,10 @@ namespace TestApp
         {
             //Will run on separate thread
             //  Thread.Sleep(2000);
-            myFriends =  FriendsOverview.updateFriendList().Result;
-              mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, RouteOverview.me);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
+            //myFriends =  FriendsOverview.updateFriendList().Result;
+            //mAdapter = new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, RouteOverview.me);
+            //mRecyclerView.SetAdapter(mAdapter);
+            //mAdapter.NotifyDataSetChanged();
         }
 
         public override void OnResume()

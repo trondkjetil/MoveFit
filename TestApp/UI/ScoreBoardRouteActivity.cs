@@ -73,8 +73,8 @@ namespace TestApp
             try
             {
                 mRoutes = new List<Route>();
-              
-                mRoutes = await Azure.getRoutes();
+
+                mRoutes = await Azure.nearbyRoutes();
 
                 if (mRoutes.Count > 0)
                 {

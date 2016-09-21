@@ -19,6 +19,18 @@
             android:layout_alignParentTop="true"
             android:layout_marginBottom="7dp"
             android:layout_alignParentRight="true" />
+        <TextView
+            android:text="Logout"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/logoutText"
+            android:textColor="#ff000000"
+            android:layout_toLeftOf="@+id/logout"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp"
+            android:textSize="16dp" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/gpsReadings"
@@ -51,7 +63,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--<TextView
+            <TextView
                 android:text="Tracking"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
@@ -59,7 +71,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="right"
                 android:id="@+id/textView2"
-                android:textColor="#ff000000" />-->
+                android:textColor="#ff000000" />
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,16 +89,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginLeft="5dp" />
-            <!--<TextView
+            <TextView
                 android:text="Alarm"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
-                android:layout_above="@+id/alarmButton"
                 android:id="@+id/alarm"
-                android:textColor="#ff000000" />-->
+                android:textColor="@android:color/background_dark"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp" />
             <ImageButton
                 android:src="@drawable/newAlarm"
                 android:layout_width="wrap_content"

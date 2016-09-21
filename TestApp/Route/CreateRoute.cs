@@ -103,32 +103,6 @@ namespace TestApp
             //base.OnBackPressed();
             MoveTaskToBack(true);
 
-            //AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            
-            //alert.SetTitle("Exit route creation");
-            //alert.SetMessage("Do you want to abort the current route creation?");
-            //alert.SetPositiveButton("Yes", (senderAlert, args) =>
-            //{
-            //    //change value write your own set of instructions
-            //    //you can also create an event for the same in xamarin
-            //    //instead of writing things here
-            //    StopService(new Intent(this, typeof(CreateRouteService)));
-            //   
-            //    StopService(new Intent(this, typeof(CreateRouteService)));
-            //});
-
-            //alert.SetNegativeButton("Cancel", (senderAlert, args) =>
-            //{
-            //    //perform your own task for this conditional button click
-
-            //});
-            ////run the alert in UI thread to display in the screen
-            //RunOnUiThread(() =>
-            //{
-            //    alert.Show();
-            //});
-
-
         }
 
         public void Share(string title, string content)
@@ -822,6 +796,59 @@ namespace TestApp
             });
             return val;
         }
+
+
+        //public void drawRouteLive()
+        //{
+
+
+        //    mMap.Clear();
+
+        //    Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
+        //    var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
+
+        //    markerOpt1.SetPosition(new LatLng(firstElement.Latitude, firstElement.Longitude));
+        //    markerOpt1.SetTitle("Starting Point");
+        //    markerOpt1.Draggable(false);
+        //    markerOpt1.SetSnippet("Starting point of route");
+
+        //    //  markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
+        //    markerOpt1.SetIcon(startPoint);
+        //    mMap.AddMarker(markerOpt1);
+
+
+        //    Bitmap flagEnd = BitmapFactory.DecodeResource(Resources, Resource.Drawable.finishF);
+        //    var endPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagEnd, 80, false)); //(Resource.Drawable.test);
+
+
+        //    markerOpt2 = new MarkerOptions();
+        //    markerOpt2.SetPosition(new LatLng(lastItem.Latitude, lastItem.Longitude));
+        //    markerOpt2.SetTitle("Ending Point");
+        //    markerOpt2.Draggable(false);
+        //    markerOpt2.SetSnippet("End point of route");
+        //    // markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
+        //    markerOpt2.SetIcon(endPoint);
+
+        //    mMap.AddMarker(markerOpt2);
+
+        //    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+        //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(firstElement.Latitude, firstElement.Longitude), 14));
+
+        //    PolylineOptions opt = new PolylineOptions();
+
+
+        //    foreach (var item in points)
+        //    {
+        //        opt.Add(new LatLng(item.Latitude, item.Longitude));
+        //    }
+
+        //    mMap.AddPolyline(opt);
+
+        //    //   mMap.Snapshot(this);
+
+        //}
+
+
         public void drawRoute(int type)
         {
             Location lastItem = points.LastOrDefault();

@@ -59,11 +59,11 @@ namespace TestApp
 
             SeekBar _seekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
             _seekBar.Max = 100;
-            _seekBar.Progress = 0;
+            _seekBar.Progress = 100;
 
 
             unitType = 0;
-            distance = 0;
+            distance = 100;
             interval = 45;
 
 

@@ -10,7 +10,9 @@ public class UsersFriends
 	public static final String __md_methods;
 	static {
 		__md_methods = 
+			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onStop:()V:GetOnStopHandler\n" +
+			"n_onStart:()V:GetOnStartHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onBackPressed:()V:GetOnBackPressedHandler\n" +
@@ -27,12 +29,28 @@ public class UsersFriends
 	}
 
 
+	public void onResume ()
+	{
+		n_onResume ();
+	}
+
+	private native void n_onResume ();
+
+
 	public void onStop ()
 	{
 		n_onStop ();
 	}
 
 	private native void n_onStop ();
+
+
+	public void onStart ()
+	{
+		n_onStart ();
+	}
+
+	private native void n_onStart ();
 
 
 	public void onDestroy ()

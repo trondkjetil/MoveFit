@@ -1,7 +1,0 @@
-<!--This is for the sliding drawer navigation menu--><menu xmlns:myapp="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"><!--<item android:id="@+id/logoApp"
-    android:text="MoveFit"
-		android:title="MoveFit"
-		myapp:showAsAction="always"/>--><item android:id="@+id/statusOnlineText" android:text="Online" android:title="Status" myapp:showAsAction="always" /><item android:id="@+id/statusOnline" android:icon="@drawable/greenonline" android:title="Status" myapp:showAsAction="always" /><item android:id="@+id/messages" android:icon="@drawable/sym_action_email" android:title="Msg" myapp:showAsAction="always" /><item android:id="@+id/action_help" android:icon="@drawable/ic_action_help" android:title="About" myapp:showAsAction="always" /><!--<item android:id="@+id/action_alarm"
-		android:icon="@drawable/newAlarm"
-		android:title="Alarm"
-		myapp:showAsAction="always"/>--></menu>

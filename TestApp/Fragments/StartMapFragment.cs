@@ -141,54 +141,7 @@ namespace TestApp
 
         }
 
-        //public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-
-        //{
-        //    try
-        //    {
-        //      menu.Clear();
-        //       menu.FindItem(Resource.Id.type).SetVisible(false);
-        //    }
-        //    catch (Exception)
-        //    {
-
-
-        //    }
-        //    inflater.Inflate(Resource.Menu.action_menu_nav_routes, menu);
-
-        //    base.OnCreateOptionsMenu(menu, inflater);
-
-
-        //}
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-
-        //    switch (item.ItemId)
-        //    {
-
-
-        //        case Resource.Id.type:
-                    
-        //            return true;
-
-             
-        //        case Resource.Id.home:
-
-        //            this.Activity.Finish();
-
-
-        //            return true;
-
-        //        default:
-        //            return base.OnOptionsItemSelected(item);
-
-        //    }
-
-
-
-        //}
-
-
+      
 
         public void setMarkerRoutes(Route route)
         {
@@ -310,7 +263,7 @@ namespace TestApp
 
 
                var  pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-              var   image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+              var image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
 
                 string online = "Online";
                 if (!user.Online)
@@ -318,7 +271,7 @@ namespace TestApp
                     online = "Offline";
                 }
 
-               Marker mark =   mMap.AddMarker(new MarkerOptions()
+               Marker mark = mMap.AddMarker(new MarkerOptions()
                .SetPosition(myPosition)
                .SetTitle(user.UserName + "(" + online + ")")
                .SetSnippet(dist.ToString() + FriendsOverview.distanceUnit).SetIcon(image));
@@ -350,11 +303,22 @@ namespace TestApp
              imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
 
             Location loc = App.Current.LocationService.getLastKnownLocation();
+
+            try
+            {
+
+          
             myMark = mMap.AddMarker(new MarkerOptions()
            .SetPosition(new LatLng(loc.Latitude, loc.Longitude))
            .SetTitle(MainStart.userName)
            .SetSnippet("My Location").SetIcon(imageMe));
             mHashMapUser.Put(myMark, MainStart.userId);
+            }
+            catch (Exception)
+            {
+
+               
+            }
 
             LatLng myPos = null;
             try
@@ -399,7 +363,10 @@ namespace TestApp
 
                 foreach (var item in FriendsOverview.myFriends)
                 {
+
+                  //  if(item.Online == true)
                     setMarkerUser(item);
+
                 }
 
             }

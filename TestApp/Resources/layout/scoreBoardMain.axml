@@ -15,9 +15,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-          android:orientation="vertical"
-        >
-      <!--<android.support.v7.widget.Toolbar
+        android:orientation="vertical">
+    <!--<android.support.v7.widget.Toolbar
           android:id="@+id/toolbar"
           android:layout_width="match_parent"
           android:layout_height="?attr/actionBarSize"
@@ -99,6 +98,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/edit_text_style"
             android:hint="Search Friends"
+            android:maxLines="1"
             android:textColor="#000" />
     </FrameLayout>
 </LinearLayout>

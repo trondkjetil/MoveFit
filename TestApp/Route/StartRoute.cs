@@ -19,6 +19,8 @@ using Android.Graphics.Drawables;
 using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
+using System.Text.RegularExpressions;
+
 namespace TestApp
 {
     [Activity(LaunchMode = Android.Content.PM.LaunchMode.SingleInstance,Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
@@ -57,9 +59,11 @@ namespace TestApp
         public ToggleButton start;
         public static bool record;
         public static string newRecordTime;
-       public static string oldRecordTime;
+        public static string oldRecordTime;
         string userId;
         User instance;
+        RatingBar ratingbar;
+        TextView time;
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
@@ -95,14 +99,14 @@ namespace TestApp
                 TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
                 TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
                 TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
-                TextView time = FindViewById<TextView>(Resource.Id.startRouteTime);
+                 time = FindViewById<TextView>(Resource.Id.startRouteTime);
 
                 TextView createdBy = FindViewById<TextView>(Resource.Id.createdby);
 
                 start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
 
 
-                RatingBar ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
+                 ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
                 //LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
                 //stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
@@ -258,7 +262,7 @@ namespace TestApp
             //InitializeLocationManager();
             //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
-            SupportActionBar.Title = "Route active..";
+            SupportActionBar.Title = "Route Active...";
 
         }
         private async void endRoute()
@@ -285,7 +289,14 @@ namespace TestApp
 
             }
 
-            avgSpeed = sum / speedList.Count();
+
+            if (sum != 0)
+            {
+                avgSpeed = sum / speedList.Count();
+            }
+            else
+                avgSpeed = 0;
+
 
             StopService(new Intent(this, typeof(StartRouteService)));
 
@@ -298,50 +309,70 @@ namespace TestApp
 
             double distance = getDistanceFromStart();
 
+            newRecordTime = "";
+            oldRecordTime = "";
 
             if (distance <= 70)
             {
-                DateTime newTime = Convert.ToDateTime(elapsedTime);
-                DateTime oldTime = Convert.ToDateTime(routeTime);
+
+                DateTime newTime = new DateTime();
+                DateTime oldTime = new DateTime();
+                try
+                {
+
+
+                    newTime = Convert.ToDateTime(elapsedTime);
+                    routeTime = Regex.Replace(routeTime, "[^0-9.+-: ]", "");
+                    oldTime = Convert.ToDateTime(routeTime);
+                }
+                catch (Exception)
+                {
+                   
+                 
+
+                }
+
+
+
                 int result = DateTime.Compare(newTime, oldTime);
 
                 if (result <= 0 )
                 {
                     Toast.MakeText(this, "Congratulations! You have made a new Record!", ToastLength.Short).Show();
                     record = true;
-                    newRecordTime = newTime.ToString();
-                    oldRecordTime = oldRecordTime.ToString();
 
-                    var setRecord = await Azure.updateRouteBestTimeUser(routeId,newRecordTime,instance.UserName);
+                    //newRecordTime = newTime.ToString();
+                    //oldRecordTime = oldRecordTime.ToString();
 
+                    newRecordTime = elapsedTime;
+                    oldRecordTime = routeTime;
+                  
+
+                    var setRecord = await Azure.updateRouteBestTimeUser(routeId,newRecordTime, MainStart.userName);
+                    time.Text = "Best time: " + routeTime + " by " + MainStart.userName;
                 }
                 else
                 {
-                    Toast.MakeText(this, "Congratulations! You have finished the route", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Congratulations! You have finished the route!", ToastLength.Long).Show();
 
                 }
 
-                startDialogNameRoute();
+                //startDialogNameRoute();
 
                 if (locationManager != null)
                     locationManager.RemoveUpdates(this);
-
-
 
                 int mypoints = MyPoints.calculatePoints(routeType, (int)Math.Round(distance));
                 var done = Azure.addToMyPoints(routeId, mypoints);
                 var complete = Azure.increaseTripCount(routeId);
                 Azure.addToMyDistance(MainStart.userId, distance);
-
+                startDialogNameRoute();
                 Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
 
 
             }
             else
                 Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finish - point is: " + distance, ToastLength.Long).Show();
-
-
-
 
             start.Enabled = true;
 
@@ -389,32 +420,70 @@ namespace TestApp
         {
 
             routeRating = e.ReturnValue.ToString();
-            //  await Azure.giveRouteRating(routeId, "TestUserID", routeRating);
+           
+            if(routeRating == "" || routeRating == null)
+            {
+                routeRating = "0";
+            }
 
             var user = await Azure.getUserByAuthId(MainStart.userId);
-            var userName = user.First().UserName;
-
-            Azure.AddReview(routeId, Convert.ToInt32(routeRating), userName);
-
+            //   var userName = user.First().UserName;
+           
             // Gets all the reviews for a route
             var reviewInstance = await Azure.getRouteReview(routeId);
             int amountOfRatings = reviewInstance.Count();
 
-            int rating = 0;
+
+            bool noPreviousReview = false;
             foreach (var item in reviewInstance)
             {
-                rating = rating + item.Rating;
+                if(item.UserId == MainStart.userId)
+                {
+                    noPreviousReview = true;
+                }
+            }
+
+            if (!noPreviousReview)
+            {
+                Azure.AddReview(routeId, Convert.ToInt32(routeRating), user.FirstOrDefault().Id);
 
             }
 
-            int totalRate = rating / amountOfRatings;
-            await Azure.giveRouteRating(routeId, totalRate.ToString());
 
+
+
+
+            reviewInstance = await Azure.getRouteReview(routeId);
+
+            int rating = 0;
+            foreach (var item in reviewInstance)
+            {
+                if(item.UserId != MainStart.userId)
+                {
+                    rating = rating + item.Rating;
+                }
+               
+
+            }
+
+            double totalRate = 0;
+            if (rating != 0)
+            {
+                totalRate = rating / amountOfRatings;
+            }
+
+            totalRate = (int) Math.Round(totalRate);
+
+             await Azure.giveRouteRating(routeId, totalRate.ToString());
+
+
+            ratingbar.Rating = (float) totalRate;
         }
 
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
+
         }
 
         void InitializeLocationManager()

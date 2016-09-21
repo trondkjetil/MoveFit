@@ -34,6 +34,7 @@ namespace TestApp
         private Activity mActivity;
         List<User> mMyInstance;
         TextView txt;
+
         public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
         {
             mUsers = users;
@@ -51,6 +52,7 @@ namespace TestApp
                 txt.Visibility = ViewStates.Visible;
             }else
             {
+                if(txt != null)
                 txt.Visibility = ViewStates.Gone;
             }
 

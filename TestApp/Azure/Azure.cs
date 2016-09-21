@@ -84,7 +84,6 @@ namespace TestApp
 
             //Cloud 
 
-
             table = client.GetTable<User>();
             locationsTable = client.GetTable<Locations>();
             routeTable = client.GetTable<Route>();
@@ -117,8 +116,6 @@ namespace TestApp
                 await SyncAsync();
                
 
-
-
                 List<User> ta = await userTable.Where(user => user.Id != null).ToListAsync();
                 ta = ta;
 
@@ -132,35 +129,6 @@ namespace TestApp
 
 
 
-
-                //    List<User> pointlist = null;
-                //    userTable =  client.GetSyncTable<User>();
-
-                //    await userTable.ReadAsync(userTable.Where(item => item.Id != null));
-                //    List<User> tablee = await userTable.Where(user => user.UserName != null).ToListAsync();
-
-
-
-
-                //    if (tablee.Count == 0)
-                //    {
-                //       pointlist = await client.GetTable<User>().Where(user => user.UserName != null).ToListAsync();
-
-                //    }
-
-                //    //  List<User> pointlist = await userTable.Where(user => user.UserName == userName).ToListAsync();
-
-
-
-                //    if (pointlist.Count != 0)
-                //{
-                //    me = pointlist.FirstOrDefault();
-                //}
-                //else
-                //    me = tablee.FirstOrDefault();
-                //}
-
-
             }
             catch (Exception)
             {
@@ -171,17 +139,11 @@ namespace TestApp
             return me;
         }
 
-
-
-
-
         public static double ToRadians(double val)
         {
             return (Math.PI / 180) * val;
         }
       
-
-     //   List<Route> newList = await routeTable.Where(p =>  < 100).ToListAsync();
 
         public static double HaversineDistance(LatLng pos1, LatLng pos2, DistanceUnit unit)
         {
@@ -198,63 +160,6 @@ namespace TestApp
         }
 
 
-
-
-
-
-
-      
-
-        public static async Task<List<User>> find
-            (string userName)
-        {
-
-            var list = await getUserByAuthId(userName);
-            User me = list.FirstOrDefault();
-
-           
-            
-
-            List<User> userList = await table.Where(User => User.Id != null).ToListAsync();
-            //  userList.FindAll(Route => Route.Id == routeId);
-
-            //List<User> list2 = await table.Where(p => calc.Distance(me, p, DistanceType.Kilometers) <= 35).ToListAsync();
-
-            //list2 = list2;
-
-            string names = "";
-            float[] result = new float[1];
-            foreach (var item in userList)
-            {
-                Location.DistanceBetween(Convert.ToDouble(item.Lat), Convert.ToDouble(item.Lon), 11.9443326, 108.4343983, result);
-                if (result[0] < 100)
-                {
-                    names += " " + item.UserName;
-                }
-            }
-            if (names == "")
-                names = "None";
-              
-
-         AlertDialog alertMessage = new AlertDialog.Builder(MainStart.mainActivity).Create();
-            alertMessage.SetTitle("Info");
-            alertMessage.SetMessage(names);
-            alertMessage.Show();
-
-            //}catch(Exception e)
-            //{
-            //    throw e;
-            //}
-
-            //var members = (from member in db.Stops_edited_smalls
-            //               where Math.Abs(Convert.ToDouble(member.Latitude) - curLatitude) < 0.05
-            //               && Math.Abs(Convert.ToDouble(member.Longitude) - curLongitude) < 0.05
-            //               select new { member, DistanceFromAddress = Math.Sqrt(Math.Pow(Convert.ToDouble(member.Latitude) - curLatitude, 2) + Math.Pow(Convert.ToDouble(member.Longitude) - curLongitude, 2)) * 62.1371192 }).Take(25);
-
-
-            return null;
-
-        }
 
 
         public static async Task<List<Route>> updateRouteBestTimeUser(string routeId, string time, string user)
@@ -333,13 +238,25 @@ namespace TestApp
         }
 
 
-       
-
+      
         public static async Task<List<Messages>> getMessages(string conversationId)
         {
            
             List<Messages> messages = await userMessages.Where(Messages => Messages.Conversation == conversationId ).OrderBy(Messages => Messages.CreatedAt).ToListAsync();  //                                                                                                                        //  List<User> userList = await table.Where(user => user.Id != null && user.Deleted == false).ToListAsync();
             return messages;
+
+        }
+
+
+        public static async Task<bool> setMessageRead(string messageId)
+        {
+
+            List<Messages> messages = await userMessages.Where(Messages => Messages.Id == messageId).ToListAsync();  //                                                                                                                        //  List<User> userList = await table.Wher
+            var instance = messages.FirstOrDefault();
+            instance.Read = true;
+            await userMessages.UpdateAsync(instance);
+
+            return true;
 
         }
 
@@ -384,16 +301,7 @@ namespace TestApp
 
         }
 
-        //public static async Task<List<UserFriends>> removeUser(String providedUserName)
-        //{
-
-        //    List<UserFriends> userList = await userFriendsTable.Where(user => user.UserName == providedUserName).ToListAsync();
-        //     await  table.DeleteAsync(userList.FirstOrDefault());
-           
-
-        //    return userList;
-
-        //}
+  
         public static async Task<List<UserFriends>> deleteFriend(string myUser, string providedUserName)
         {
             
@@ -420,22 +328,6 @@ namespace TestApp
         }
 
 
-        //public class GeoPoint 
-        //{
-        //    public double Latitude { get; set; }
-        //    public double Longitude { get; set; }
-        //}
-
-        //public class TodoItem 
-        //{
-        //    public string Text { get; set; }
-
-        //    public bool Complete { get; set; }
-
-
-        //    public virtual GeoPoint Location { get; set; }
-        //}
-
         public static async Task<List<User>> nearbyPeople()
         {
 
@@ -451,23 +343,20 @@ namespace TestApp
 
             var pref = IOUtilz.LoadPreferences();
             double distance = pref[0];
-
+            if(distance == 0)
+            {
+                distance = 100;
+            }
             if (pref[1] == 1)
             {
                 distance = IOUtilz.ConvertMilesToKilometers(pref[0]);
             }
 
-            //List<User> a3 = await table.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-            //a3 = a3;
-
-
-
-
-
-
             //List<User> nearByPeople = await table.Where(p => p.Lon - user.Lon < 1000 && (p.Lon - user.Lon) > -1000 && (p.Lat - user.Lat) < 1000 && (p.Lat - user.Lat) > -1000  && (p.Id != MainStart.userId )).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
 
             List<User> potentialUsers = await table.Where(p => p.Lon - user.Lon < 1 && (p.Lon - user.Lon) > -1 && (p.Lat - user.Lat) < 1 && (p.Lat - user.Lat) > -1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+
+            potentialUsers = potentialUsers.FindAll(User => User.Id != MainStart.userId);
 
             float[] result = new float[1];
             List<User> verifiedUsers = new List<User>();
@@ -486,14 +375,46 @@ namespace TestApp
 
             }
 
+            List<User> usersToShow = null;
+            usersToShow = new List<User>();
 
-            List<User> show = await getUsersFriends(MainStart.userId);
+            var list = await getAllUserRelations(MainStart.userId);
 
-          //  List<User> nearbyUsers = nearByPeople.Except(show).ToList();
-            List<User> nearbyUsers = verifiedUsers.Except(show).ToList();
+            foreach (var potentialUser in verifiedUsers)
+            {
+                foreach (var userRelation in list)
+                {
+                    if(userRelation.UserLink1 == potentialUser.Id || userRelation.UserLink2 == potentialUser.Id)
+                    {
+                        
+                        try
+                        {
+                            if(!usersToShow.Contains(potentialUser))
+                            usersToShow.Add(potentialUser);
+                        }
+                        catch (Exception)
+                        {
 
+                            
+                        }
+                      
+                        break;
+                       // ids.Add(potentialUser.Id);
+                    }
+                 
+                }
+               
 
-            return nearbyUsers;
+            }
+           
+         
+            //  List<User> show = await getUsersFriends(MainStart.userId);
+            //List<User> nearbyUsers = nearByPeople.Except(show).ToList();
+            verifiedUsers = verifiedUsers.Except(usersToShow).ToList();
+
+            //   List<User> nearbyUsers = verifiedUsers.Except(show).ToList();
+
+            return verifiedUsers;
 
         }
         public static async Task<List<Route>> nearbyRoutes()
@@ -513,24 +434,15 @@ namespace TestApp
                 }
                 var pref = IOUtilz.LoadPreferences();
                 double distance = pref[0];
-
-                if(pref[1] == 1)
+            if (distance == 0)
+            {
+                distance = 100;
+            }
+            if (pref[1] == 1)
                 {
                     distance = IOUtilz.ConvertMilesToKilometers(pref[0]);
                 }
-            //Works!
-            //List <Route> tee =  await routeTable.Where(p => p.Lon - user.Lon < .1 && (p.Lon - user.Lon ) > -.1 && (p.Lat - user.Lat) < .1  && (p.Lat -  user.Lat) > -.1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-            //tee = tee;
-
-            //Works!
-            //List<Route> a3 = await routeTable.Where(p => p.Lon - user.Lon < 5 && (p.Lon - user.Lon) > -5 && (p.Lat - user.Lat) < 5 && (p.Lat - user.Lat) > -5).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-            //a3 = a3;
-
-            //List<Route> a33 = await routeTable.Where(p => p.Lon - user.Lon < 10 && (p.Lon - user.Lon) > -10 && (p.Lat - user.Lat) < 10 && (p.Lat - user.Lat) > -10).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-            //a33= a33;
-
-            //List<Route> a333 = await routeTable.Where(p => p.Lon - user.Lon < 8 && (p.Lon - user.Lon) > -8 && (p.Lat - user.Lat) < 8 && (p.Lat - user.Lat) > -8).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-            //a333= a333;
+      
 
             //List<Route> b = await routeTable.Where(p => p.Lon - user.Lon < 3 && (p.Lon - user.Lon) > -3 && (p.Lat - user.Lat) < 3 && (p.Lat - user.Lat) > -3).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
             //b = b;
@@ -541,8 +453,6 @@ namespace TestApp
             try
             {
                 potentialLocations = await routeTable.Where(p => p.Lon - user.Lon < 1 && (p.Lon - user.Lon) > -1 && (p.Lat - user.Lat) < 1 && (p.Lat - user.Lat) > -1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
-
-
 
             }
             catch (Exception)
@@ -566,29 +476,12 @@ namespace TestApp
                       }
 
                 }
-              
-                //Works!
-                //  List<Route> abba = await routeTable.Where(p => p.Lon - user.Lon < 100000000000 && (p.Lon - user.Lon) > -100000000000 && (p.Lat - user.Lat) < 100000000000 && (p.Lat - user.Lat) > -100000000000).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
 
 
-                //var tab = from r in routeTable
-                //             select new
-                //             {
-                //                 lat = r.Lat,
-                //                 lng = r.Lon,
-                //                 name = r.Name,
-                //                 id = r.Id
-                //                    };
+       //     List<Route> show = await getMyRoutes(MainStart.userId);
+     
+        //    List<Route> nearbyRoutes = verifiedRoutes.Except(show).ToList();
 
-                //var ab = await tab.Where(p => p.id != null).ToListAsync();
-
-
-            
-           
-          //  List<Route> routeList = await routeTable.Where(p => p.Lat != 0).ToListAsync();
-
-
-           
 
             return verifiedRoutes;
             
@@ -633,14 +526,7 @@ namespace TestApp
             return locationsList;
 
         }
-        public static async Task<List<Locations>> getLocations()
-        {
-
-            List<Locations> locationsList = await locationsTable.Where(Locations => Locations.Route_id != null).ToListAsync();
-
-            return locationsList;
-
-        }
+       
 
 
         public static async Task<List<User>> updateUserLocation(string userName)
@@ -648,11 +534,6 @@ namespace TestApp
 
             List<User> userList = await table.Where(User => User.UserName == userName).ToListAsync();
             // await table.UpdateAsync(userList.Find(User => User.UserName == userName ));
-
-            //JObject jo = new JObject();
-            //jo.Add("Id", userList.Find(User => User.UserName == userName).Id);
-            //jo.Add("Text", "Hello World");
-            //jo.Add("Lon", "5000");
 
             userList.Find(User => User.UserName == userName).Lat = MainStart.currentLocation.Latitude;
             userList.Find(User => User.UserName == userName).Lon = MainStart.currentLocation.Longitude;
@@ -733,9 +614,6 @@ namespace TestApp
         }
 
 
-
-
-
         public static async Task<List<UserFriends>> setFriendAcceptance(string myId,string userId, bool accept)
         {
 
@@ -743,14 +621,6 @@ namespace TestApp
 
             UserFriends acceptRequest = userFriendList.FirstOrDefault();
             acceptRequest.IsAccepted = accept;
-
-
-            /*Find(UserFriends => UserFriends.FriendRequest == true && UserFriends.UserLink2 == myId).IsAccepted = accept;
-*/
-
-
-            //  UserFriends acceptRequest = userFriendList.Find(UserFriends => UserFriends.FriendRequest == true && UserFriends.UserLink2 == myId);
-
 
             await userFriendsTable.UpdateAsync(acceptRequest);
             return userFriendList;
@@ -787,6 +657,17 @@ namespace TestApp
 
         }
 
+        public static async Task<List<UserFriends>> getAllUserRelations(string userId)
+        {
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.IsDeleted == false && (UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
+
+            
+        //    List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
+            
+            return userFriendList;
+        }
+
+
         public static async Task<List<User>> getUsersFriends(string userId)
         {
 
@@ -811,24 +692,6 @@ namespace TestApp
                 }
 
             }
-
-
-
-            //var commonUsers = userFriendList.Select((a => a.UserLink2)).Intersect(userList.Select(b => b.Id));
-
-            //List<User> userProfiles = await table.Where(user => commonUsers.Contains(user.Id)).ToListAsync();
-
-
-
-
-
-            //List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.IsAccepted == true && UserFriends.UserLink1 == userId).ToListAsync();
-
-            //List<User> userList = await table.Where(user => user.Id != null && user.Id != userId).ToListAsync();
-
-            //var commonUsers = userFriendList.Select(a => a.UserLink1).Intersect(userList.Select(b => b.Id));
-
-            //List<User> userProfiles = await table.Where(user => commonUsers.Contains(user.Id)).ToListAsync();
 
 
             return userProfiles;
@@ -1117,7 +980,8 @@ namespace TestApp
             {
                 Sender = userId,
                 Message = msg,
-                Conversation = conversatioonId
+                Conversation = conversatioonId,
+                Read = false
                 
 
 
@@ -1165,9 +1029,9 @@ namespace TestApp
 
 
 
-            catch (Java.Net.MalformedURLException a)
+            catch (Java.Net.MalformedURLException )
             {
-                throw a;
+            
             }
          catch (MobileServicePushFailedException)
                 {
@@ -1208,52 +1072,6 @@ namespace TestApp
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Local stuff
-
-
-        //public Task InitializeAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<global::Newtonsoft.Json.Linq.JToken> ReadAsync(MobileServiceTableQueryDescription query)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task UpsertAsync(string tableName, IEnumerable<global::Newtonsoft.Json.Linq.JObject> items, bool ignoreMissingColumns)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task DeleteAsync(MobileServiceTableQueryDescription query)
-        //{
-
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task DeleteAsync(string tableName, IEnumerable<string> ids)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<global::Newtonsoft.Json.Linq.JObject> LookupAsync(string tableName, string id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
     }
 }
