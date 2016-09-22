@@ -39,17 +39,7 @@ namespace TestApp
 
             view = inflater.Inflate(Resource.Layout.FriendRequestRecycleView, container, false);
 
-      
-            //TextView txt = new TextView(this.Activity);
-            //txt.Text = "Could not find any!";
-            //txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-            //txt.SetPadding(10, 10, 10, 10);
-            //txt.Gravity = Android.Views.GravityFlags.CenterVertical;
-            //txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
-            //txt.SetBackgroundColor(Color.Black);
-            //txt.SetTextColor(Color.Black);
-            //txt.TextSize = 20;
-            //layout.AddView(txt);
+    
 
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleFriendRequest);
           

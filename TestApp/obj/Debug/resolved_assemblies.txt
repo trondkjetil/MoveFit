@@ -33,6 +33,7 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Core.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Data.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Net.Http.dll
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Runtime.InteropServices.RuntimeInformation.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Net.dll

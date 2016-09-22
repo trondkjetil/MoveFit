@@ -234,10 +234,6 @@ TestApp.UserWrapper, TestApp;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 TestApp.UserWrapper, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 TestApp.UserWrapper;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
 testapp.UserWrapper;md5cf27010e14af20e69784a5a54418b85f.UserWrapper
-TestApp.GoogleMapsPeople, TestApp;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
-TestApp.GoogleMapsPeople, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
-TestApp.GoogleMapsPeople;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
-testapp.GoogleMapsPeople;md5cf27010e14af20e69784a5a54418b85f.GoogleMapsPeople
 TestApp.MainStart, TestApp;md5cf27010e14af20e69784a5a54418b85f.MainStart
 TestApp.MainStart, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.MainStart
 TestApp.MainStart;md5cf27010e14af20e69784a5a54418b85f.MainStart

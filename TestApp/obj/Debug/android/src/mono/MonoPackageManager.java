@@ -125,6 +125,7 @@ class MonoPackageManager_Resources {
 		"Xamarin.GooglePlayServices.Basement.dll",
 		"Xamarin.GooglePlayServices.Maps.dll",
 		"Java.Interop.dll",
+		"System.Runtime.InteropServices.RuntimeInformation.dll",
 		"System.Runtime.dll",
 		"System.ObjectModel.dll",
 		"System.Collections.dll",

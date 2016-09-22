@@ -1575,43 +1575,43 @@ namespace TestApp
 
                 try
                 {
-            
+
                     mMap.SetOnMapClickListener(this);
                     mMap.SetOnMarkerClickListener(this);
                     mMap.UiSettings.ZoomControlsEnabled = true;
                     mMap.UiSettings.RotateGesturesEnabled = false;
                     mMap.UiSettings.ScrollGesturesEnabled = false;
 
-                     titleTopFriends = view.FindViewById<TextView>(Resource.Id.pers11);
-                     pictureFriend1 = view.FindViewById<ImageView>(Resource.Id.pic1);
-                     pictureFriend2 = view.FindViewById<ImageView>(Resource.Id.pic2);
-                     pictureFriend3 = view.FindViewById<ImageView>(Resource.Id.pic3);
-                     pers1 = view.FindViewById<TextView>(Resource.Id.pers1);
-                     pers2 = view.FindViewById<TextView>(Resource.Id.pers2);
-                     pers3 = view.FindViewById<TextView>(Resource.Id.pers3);
+                    titleTopFriends = view.FindViewById<TextView>(Resource.Id.pers11);
+                    pictureFriend1 = view.FindViewById<ImageView>(Resource.Id.pic1);
+                    pictureFriend2 = view.FindViewById<ImageView>(Resource.Id.pic2);
+                    pictureFriend3 = view.FindViewById<ImageView>(Resource.Id.pic3);
+                    pers1 = view.FindViewById<TextView>(Resource.Id.pers1);
+                    pers2 = view.FindViewById<TextView>(Resource.Id.pers2);
+                    pers3 = view.FindViewById<TextView>(Resource.Id.pers3);
 
 
 
                     TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
-                _address = view.FindViewById<TextView>(Resource.Id.location_text);
-                Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
+                    _address = view.FindViewById<TextView>(Resource.Id.location_text);
+                    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
                     ImageButton logout = view.FindViewById<ImageButton>(Resource.Id.logout);
                     logout.Click += (a, e) =>
                     {
                         var logoutApp = Azure.SetUserOnline(userId, false);
-                       
+
                         Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-                        
+
 
                     };
-                        ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                    ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
 
                     alarm.Click += (a, e) =>
                     {
 
                         if (SimpleService.isRunning == false)
                         {
-                           activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
+                            activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
                             Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
                         }
                         else if (SimpleService.isRunning == true)
@@ -1624,12 +1624,13 @@ namespace TestApp
                     };
 
 
-                    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
-                    if (e.IsChecked == true)
+                    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
                     {
-                        Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
+                        if (e.IsChecked == true)
+                        {
+                            Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
 
-                        activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
+                            activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
                             try
                             {
                                 var a = Azure.SetUserOnline(userId, true);
@@ -1639,17 +1640,17 @@ namespace TestApp
                             catch (Exception)
                             {
 
-                                
+
                             }
-                       
-                        menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+
+                            menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
                             menItemOnlineText.SetTitle("Online");
-                          
+
                         }
-                    else
-                    {
-                        Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
-                        activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
+                        else
+                        {
+                            Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
+                            activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
 
 
                             try
@@ -1660,17 +1661,28 @@ namespace TestApp
                             catch (Exception)
                             {
 
-                                
+
                             }
-                       
-                        menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+
+                            menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
                             menItemOnlineText.SetTitle("Offline");
-                          
+
 
                         }
-                };
+                    };
 
-                   
+
+                    Location loc = App.Current.LocationService.getLastKnownLocation();
+                    LatLng posHere = new LatLng(loc.Latitude, loc.Longitude);
+
+                    //if (loc.Latitude == 000000 && loc.Longitude == 000000)
+                    //{
+
+                    //    posHere = new LatLng(userInstanceOne.Lat, userInstanceOne.Lon);
+                    //}
+
+                    setMarker(posHere, mMap);
+
                 }
                 catch (Exception)
                 {

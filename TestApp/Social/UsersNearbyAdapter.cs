@@ -178,7 +178,7 @@ namespace TestApp
 
                 Toast.MakeText(mContext, "Friend request is sent to " + mUsers[pos].UserName.ToString(), ToastLength.Long).Show();
 
-                Azure.AddFriendShip(MainStart.userId, mUsers[pos].Id);
+                var wait = Azure.AddFriendShip(MainStart.userId, mUsers[pos].Id);
                 mUsers.RemoveAt(pos);
                 //deleteIndex(pos);
                 //NotifyDataSetChanged();

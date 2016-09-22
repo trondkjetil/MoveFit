@@ -16,25 +16,27 @@ using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using System.Text.RegularExpressions;
+using Android.Media;
+
 namespace TestApp
 {
-    [Activity(LaunchMode = Android.Content.PM.LaunchMode.SingleInstance,Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
+    [Activity(LaunchMode = LaunchMode.SingleInstance,Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
     public class StartRoute : AppCompatActivity, ILocationListener
     {
 
-        const long MIN_TIME = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+        const long MIN_TIME = 10 * 1000;
         const long MIN_DISTANCE = 5;
 
         SupportToolbar toolbar;
-        LocationManager locationManager;
-        string locationProvider;
+       // LocationManager locationManager;
+       // string locationProvider;
         MarkerOptions markerOpt1;
         MarkerOptions markerOpt2;
         GoogleMap mMap;
         List<Route> routes;
         public static String[] array;
         public List<Locations> locationPointsForRoute;
-
+        public List<Locations> locationPointsForRouteVerify;
         public static string routeName;
         private string routeInfo;
         private string routeRating;
@@ -44,10 +46,8 @@ namespace TestApp
         private string routeTrips;
         private string routeId;
         private string routeTime;
-
         public Stopwatch stopWatch;
         public string elapsedTime;
-
         public static float avgSpeed;
         public ToggleButton start;
         public static bool record;
@@ -55,11 +55,65 @@ namespace TestApp
         public static string oldRecordTime;
         string userId;
         User instance;
-       public RatingBar ratingbar;
+        public RatingBar ratingbar;
+
         TextView time;
+        TextView name;
+        TextView description;
+        TextView length;
+        TextView difficulty;
+        TextView rating;
+        TextView trips;
+        TextView type;
+        TextView createdBy;
 
+        MapFragment mapFrag;
 
+        Android.Net.Uri notification;
+        Ringtone r;
 
+        public void toggleInfoVisibility(bool visible)
+        {
+            
+            if (visible)
+            {
+                time.Visibility = ViewStates.Visible;
+                 name.Visibility = ViewStates.Visible;
+                description.Visibility = ViewStates.Visible;
+                length.Visibility = ViewStates.Visible;
+                difficulty.Visibility = ViewStates.Visible;
+                rating.Visibility = ViewStates.Visible;
+                trips.Visibility = ViewStates.Visible;
+                type.Visibility = ViewStates.Visible;
+                createdBy.Visibility = ViewStates.Visible;
+
+                ratingbar.Visibility = ViewStates.Visible;
+
+                
+                            ViewGroup.LayoutParams paramseters = mapFrag.View.LayoutParameters;
+                            paramseters.Height = 450;
+                            mapFrag.View.LayoutParameters=paramseters;
+            }
+            else
+            {
+                time.Visibility = ViewStates.Gone;
+                name.Visibility = ViewStates.Gone;
+                description.Visibility = ViewStates.Gone;
+                length.Visibility = ViewStates.Gone;
+                difficulty.Visibility = ViewStates.Gone;
+                rating.Visibility = ViewStates.Gone;
+                trips.Visibility = ViewStates.Gone;
+                type.Visibility = ViewStates.Gone;
+                createdBy.Visibility = ViewStates.Gone;
+                ratingbar.Visibility = ViewStates.Gone;
+
+                ViewGroup.LayoutParams paramseters = mapFrag.View.LayoutParameters;
+                paramseters.Height = 850;
+                mapFrag.View.LayoutParameters = paramseters;
+
+            }
+
+        }
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -67,9 +121,12 @@ namespace TestApp
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.startRoute);
 
+           notification = RingtoneManager.GetDefaultUri(RingtoneType.Alarm);
+            r = RingtoneManager.GetRingtone(ApplicationContext, notification);
+
 
             routes = new List<Route>();
-            MapFragment mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapForStartingRoute);
+             mapFrag = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapForStartingRoute);
             mMap = mapFrag.Map;
 
             if (mMap != null)
@@ -87,39 +144,35 @@ namespace TestApp
 
                 locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
 
+                locationPointsForRouteVerify = locationPointsForRoute;
+
                 toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-                TextView name = FindViewById<TextView>(Resource.Id.startRouteName);
-                TextView description = FindViewById<TextView>(Resource.Id.startRouteDesc);
-                TextView length = FindViewById<TextView>(Resource.Id.startRouteLength);
-                TextView difficulty = FindViewById<TextView>(Resource.Id.startRouteDiff);
-                TextView rating = FindViewById<TextView>(Resource.Id.startRouteRating);
-                TextView trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
-                TextView type = FindViewById<TextView>(Resource.Id.startRouteType);
+                 name = FindViewById<TextView>(Resource.Id.startRouteName);
+                 description = FindViewById<TextView>(Resource.Id.startRouteDesc);
+                 length = FindViewById<TextView>(Resource.Id.startRouteLength);
+                 difficulty = FindViewById<TextView>(Resource.Id.startRouteDiff);
+                 rating = FindViewById<TextView>(Resource.Id.startRouteRating);
+                 trips = FindViewById<TextView>(Resource.Id.startRouteTrips);
+                 type = FindViewById<TextView>(Resource.Id.startRouteType);
                  time = FindViewById<TextView>(Resource.Id.startRouteTime);
+                 createdBy = FindViewById<TextView>(Resource.Id.createdby);
+                 start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
 
-                TextView createdBy = FindViewById<TextView>(Resource.Id.createdby);
-
-                start = FindViewById<ToggleButton>(Resource.Id.toggleStart);
-
-
+              
                  ratingbar = FindViewById<RatingBar>(Resource.Id.ratingbar);
 
-                //LayerDrawable stars = (LayerDrawable)ratingbar.ProgressDrawable;
-                //stars.GetDrawable(2).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-                //stars.GetDrawable(0).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-                //stars.GetDrawable(1).SetColorFilter(Color.Yellow, PorterDuff.Mode.SrcAtop);
-                ratingbar.Enabled = false;
+                 ratingbar.Enabled = false;
                 //ratingbar.Clickable = false;
                 //ratingbar.Visibility = ViewStates.Visible;
                 ratingbar.Rating = 0;
 
-
-                List<Route> route =await  Azure.getRouteById(routeId);
+                List<Route> route = await Azure.getRouteById(routeId);
                 var routeInstance = route.FirstOrDefault();
+
                 routeName = routeInstance.Name;
                 routeInfo = routeInstance.Info;
                 routeDifficulty = routeInstance.Difficulty;
@@ -159,9 +212,6 @@ namespace TestApp
                     lengthOfRoute = Convert.ToDouble(routeLength) / 1000;
                 }
 
-
-
-
                 length.Text = "Length: " + lengthOfRoute + unit;  //routeLength;
                 type.Text = "Type: " + routeType;
                 trips.Text = "Trips: " + routeTrips;
@@ -185,9 +235,7 @@ namespace TestApp
                     }
                     else
                     {
-                        rating.Text = "Rating: " + routeRating;
-
-                       
+                        rating.Text = "Rating: " + routeRating;                      
                         ratingbar.Rating = Convert.ToInt32(routeRating);
                         
 
@@ -202,8 +250,6 @@ namespace TestApp
                 }
 
 
-
-
                 start.Click += (sender, e) =>
                 {
 
@@ -215,25 +261,6 @@ namespace TestApp
                         endRoute();
 
                 };
-
-
-
-
-
-
-                //    start.Click += (sender, e) =>
-                //{
-                    
-                //};
-
-                //end.Click += (sender, e) =>
-                //{
-                  
-
-                //};
-
-            
-
 
             }
 
@@ -267,17 +294,23 @@ namespace TestApp
 
                 stopWatch = new Stopwatch();
                 stopWatch.Start();
+                toggleInfoVisibility(false);
+
+                SupportActionBar.SetDisplayShowTitleEnabled(true);
+                SupportActionBar.Title = "Route Active...";
             }
             else
+            {
                 Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
 
-          
-                start.Enabled = true;
+            }
+
+
+            start.Enabled = true;
 
             //InitializeLocationManager();
             //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
-            SupportActionBar.SetDisplayShowTitleEnabled(true);
-            SupportActionBar.Title = "Route Active...";
+           
 
         }
         private async void endRoute()
@@ -290,6 +323,9 @@ namespace TestApp
                 return;
 
             }
+
+            toggleInfoVisibility(true);
+            verifyRoute(null);
 
             start.Enabled = false;
             List<float> speedList = StartRouteService.points;
@@ -355,9 +391,6 @@ namespace TestApp
                     Toast.MakeText(this, "Congratulations! You have made a new Record!", ToastLength.Short).Show();
                     record = true;
 
-                    //newRecordTime = newTime.ToString();
-                    //oldRecordTime = oldRecordTime.ToString();
-
                     newRecordTime = elapsedTime;
                     oldRecordTime = routeTime;
                   
@@ -374,8 +407,8 @@ namespace TestApp
 
                 //startDialogNameRoute();
 
-                if (locationManager != null)
-                    locationManager.RemoveUpdates(this);
+                //if (locationManager != null)
+                //    locationManager.RemoveUpdates(this);
 
                 int mypoints = MyPoints.calculatePoints(routeType, Math.Round(distance));
 
@@ -386,13 +419,11 @@ namespace TestApp
                 else
                     mypoints = 0;
 
-
                 var complete = Azure.increaseTripCount(routeId);
                 Azure.addToMyDistance(MainStart.userId, distance);
 
                 startDialogNameRoute();
                 Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
-
 
             }
             else
@@ -407,9 +438,8 @@ namespace TestApp
             double distance = 0;
             try
             {
-
-          
-            Location myLocation = App.Current.LocationService.getLastKnownLocation();// locationManager.GetLastKnownLocation(locationProvider);
+        
+            Location myLocation = App.Current.LocationService.getLastKnownLocation();
             Locations firstElement = locationPointsForRoute.First();
 
             float[] results = new float[1];
@@ -417,14 +447,35 @@ namespace TestApp
             Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, firstElement.Lat, firstElement.Lon, results);
             //Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
 
-
             distance = (int)results[0];
 
             }
             catch (Exception)
             {
+           
+            }
 
-              
+            return distance;
+        }
+        private double calculateDistance(Location location1, Locations location2)
+        {
+            double distance = 0;
+            try
+            {
+
+                  float[] results = new float[1];
+                // double[] LatLngFirst = firstElement.Location.Split(',');
+                Location.DistanceBetween(location1.Latitude, location1.Longitude, location2.Lat, location2.Lon, results);
+                //Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
+
+
+                distance = (int)results[0];
+
+            }
+            catch (Exception)
+            {
+
+
             }
 
             return distance;
@@ -515,8 +566,8 @@ namespace TestApp
         protected async override void OnResume()
         {
             base.OnResume();
-            if (locationManager != null)
-                locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
+            //if (locationManager != null)
+            //    locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
 
             routes = await Azure.getRouteById(routeId);
             if(routes.Count != 0)
@@ -566,13 +617,62 @@ namespace TestApp
 
         }
 
+     
+        public void verifyRoute(Location loc)
+        {
+
+            bool drifting = false;
+            Locations instanceToRemove = null;
+
+
+            //foreach (var item in locationPointsForRouteVerify)
+            //{
+
+            //   if(calculateDistance(loc, item) >= 200)
+            //    {
+            //        drifting = true;
+
+            //    }
+
+            //   //play stop alarm
+
+            //}
+            // instanceToRemove = item;
+
+            //locationPointsForRouteVerify.Remove(instanceToRemove);
+            drifting = true;
+            if (drifting)
+            {
+             //  locationManager.RemoveUpdates(this);
+
+                
+
+                Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+            alert.SetTitle("Out of track");
+            alert.SetMessage("You seem to be drifting away from the route! Get back on track to finish route");
+            alert.SetPositiveButton("Ok", (senderAlert, args) =>
+            {
+                //   locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
+                r.Play();
+            });
+
+            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            {
+                //    locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
+                r.Stop();
+            });
+         
+                alert.Show();
+
+            }
+
+        }
+
+
 
 
         public override void OnBackPressed()
         {
-            // MoveTaskToBack(true);
-            // base.OnBackPressed();
-
             Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 
             alert.SetTitle("Exit route");
@@ -608,32 +708,20 @@ namespace TestApp
             else
             {
 
-
                 try
                 {
 
-
                     mMap.UiSettings.RotateGesturesEnabled = true;
                     mMap.UiSettings.ScrollGesturesEnabled = true;
-
-
-
 
                     Locations lastItem = locationPointsForRoute.LastOrDefault();
                     Locations firstElement = locationPointsForRoute.First();
 
                     Locations middlePoint = locationPointsForRoute[locationPointsForRoute.Count / 2];
 
-                   // string[] LatLngLast = lastItem.Location.Split(',');
-                  //  string[] LatLngFirst = firstElement.Location.Split(',');
-                  //  string[] LatMid= middlePoint.Location.Split(',');
-                    
-
-
                     markerOpt1 = new MarkerOptions();
                     markerOpt1.SetPosition(new LatLng(firstElement.Lat, firstElement.Lon));
                     // markerOpt1.SetPosition(new LatLng(Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1])));
-
 
                     Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
                     var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
@@ -641,15 +729,12 @@ namespace TestApp
                     markerOpt1.SetTitle("Starting Point");
                     markerOpt1.Draggable(false);
                     markerOpt1.SetSnippet("Starting point of route");
-                  //  markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
                     markerOpt1.SetIcon(startPoint);
 
                     mMap.AddMarker(markerOpt1);
 
-
                     Bitmap flagEnd = BitmapFactory.DecodeResource(Resources, Resource.Drawable.finishF);
                     var endPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagEnd, 80, false)); //(Resource.Drawable.test);
-
 
                     markerOpt2 = new MarkerOptions();
                     markerOpt2.SetPosition(new LatLng(lastItem.Lat, lastItem.Lon));
@@ -660,7 +745,6 @@ namespace TestApp
                     markerOpt2.SetSnippet("End point of route");
                   //  markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
                     markerOpt2.SetIcon(endPoint);
-
                     
                     mMap.AddMarker(markerOpt2);
 
@@ -683,7 +767,6 @@ namespace TestApp
                     }
 
                     mMap.AddPolyline(opt);
-
 
                 }
                 catch (Exception)
@@ -728,16 +811,6 @@ namespace TestApp
         {
             MenuInflater.Inflate(Resource.Menu.action_menu_nav, menu);
 
-            //itemGender = menu.FindItem(Resource.Id.gender);
-            //itemAge = menu.FindItem(Resource.Id.age);
-            //itemProfilePic = menu.FindItem(Resource.Id.profilePicture);
-            //itemExit = menu.FindItem(Resource.Id.exit);
-
-
-            //goHome.SetIcon(Resource.Drawable.eexit);
-            //goBack.SetIcon(Resource.Drawable.ic_menu_back);
-
-
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -747,22 +820,11 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                //case Resource.Id.exit:
-                //    Finish();
-                //    return true;
-
-                //case Resource.Id.back:
-                //    OnBackPressed();
-                //    return true;
-                case Android.Resource.Id.Home:// Resource.Id.back:
+                         case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
 
                 case Resource.Id.home:
-
-                    //Intent myIntent = new Intent(this, typeof(WelcomeScreen));
-                    //StartActivity(myIntent);
-
                     OnBackPressed();
                     Finish();
 

@@ -71,7 +71,7 @@ namespace TestApp
             try
             {
                 //   mUsers = new List<User>();
-                mUsers = await Azure.nearbyPeople();
+                mUsers = await Azure.nearbyPeopleScoreboard();
 
                 if (mUsers.Count > 0)
                 {

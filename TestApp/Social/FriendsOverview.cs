@@ -105,9 +105,7 @@ namespace TestApp
             myFriends = await Azure.getUsersFriends(MainStart.userId);
             users = await Azure.nearbyPeople();
             friendRequests = await Azure.getFriendRequests(MainStart.userId);
-
     
-
             toolbar = FindViewById<SupportToolbar>(Resource.Id.tbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);

@@ -417,6 +417,54 @@ namespace TestApp
             return verifiedUsers;
 
         }
+
+
+        public static async Task<List<User>> nearbyPeopleScoreboard()
+        {
+
+
+            User user = null;
+
+            user = MainStart.userInstanceOne;
+
+            if (user == null || user.Id == "")
+            {
+                user = MainStart.waitingUpload;
+            }
+
+            var pref = IOUtilz.LoadPreferences();
+            double distance = pref[0];
+            if (distance == 0)
+            {
+                distance = 100;
+            }
+            if (pref[1] == 1)
+            {
+                distance = IOUtilz.ConvertMilesToKilometers(pref[0]);
+            }
+
+            List<User> potentialUsers = await table.Where(p => p.Lon - user.Lon < 1 && (p.Lon - user.Lon) > -1 && (p.Lat - user.Lat) < 1 && (p.Lat - user.Lat) > -1).ToListAsync(); // - user.Lon  < .5 && (  - lon) > -.5 && (Latitude - lat) < .5 && (Latitude - lat) > -.5
+      
+            float[] result = new float[1];
+            List<User> verifiedUsers = new List<User>();
+
+            foreach (var item in potentialUsers)
+            {
+                result[0] = 0;
+                Location.DistanceBetween(user.Lat, user.Lon, item.Lat, item.Lon, result);
+                if ((result[0] / 1000) <= distance)
+                {
+                    verifiedUsers.Add(item);
+
+
+                }
+
+            }
+            
+        
+            return verifiedUsers;
+
+        }
         public static async Task<List<Route>> nearbyRoutes()
         {
 
@@ -630,12 +678,9 @@ namespace TestApp
         {
 
             List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == false && UserFriends.UserLink2 == myUserId).ToListAsync();
-
-
-            // THE REAL ONE  
+       
             List<User> userList = await table.Where(user => user.Id != null && user.Id != myUserId).ToListAsync();
-           // List<User> userList = await table.Where(user => user.Id != null ).ToListAsync();
-
+         
             List<User> userProfiles = new List<User>();
 
             for (int i = 0; i < userFriendList.Count; i++)
