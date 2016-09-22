@@ -22,7 +22,6 @@ namespace TestApp
     public class StartRoute : AppCompatActivity, ILocationListener
     {
 
-
         const long MIN_TIME = 10 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
         const long MIN_DISTANCE = 5;
 
