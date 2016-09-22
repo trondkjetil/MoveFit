@@ -556,10 +556,10 @@ namespace TestApp
         public static async Task<List<User>> SetUserOnline(string userID, bool onlineStatus)
         {
             List<User> userList = await table.Where(User => User.Id == userID).ToListAsync();
-            userList.Find(User => User.Id == userID).Online = onlineStatus;
-            User myUser = userList.FirstOrDefault();
+            User inst = userList.FirstOrDefault();
+            inst.Online = onlineStatus;
 
-            await table.UpdateAsync(myUser);
+            await table.UpdateAsync(inst);
             return userList;
         }
 

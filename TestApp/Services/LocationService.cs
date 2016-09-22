@@ -14,8 +14,8 @@ namespace TestApp
     public class LocationService : Service, ILocationListener
     {
         public string userId;
-        private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
-        private static readonly int MIN_DISTANCE = 15;
+        private static readonly int UPDATE_INTERVAL = 1000 * 45 * 1;
+        private static readonly int MIN_DISTANCE = 20;
 
         public static int timeInterval;
         public static int distance;
@@ -31,8 +31,6 @@ namespace TestApp
             get { return distance; }
             set { distance = value; }
         }
-
-
 
 
         public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
@@ -189,12 +187,7 @@ namespace TestApp
                     }
                   
                 }
-            //else
-            //{
-
-            //    acceptableLocationProviders = LocMgr.GetProviders(high, false);
-
-            //}
+        
 
 
 
@@ -239,6 +232,7 @@ namespace TestApp
         public override void OnDestroy ()
 		{
 			base.OnDestroy ();
+            logout();
 			Log.Debug (logTag, "Service has been terminated");
 		}
 

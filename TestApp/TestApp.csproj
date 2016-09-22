@@ -237,7 +237,6 @@
     <Compile Include="Azure\User.cs" />
     <Compile Include="Azure\Azure.cs" />
     <Compile Include="Azure\AzureActivity.cs" />
-    <Compile Include="Maps\GoogleMapsPeople.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainStart.cs" />

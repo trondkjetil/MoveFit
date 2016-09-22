@@ -297,60 +297,35 @@ namespace TestApp
             mMap.UiSettings.ScrollGesturesEnabled = true;
             mMap.SetOnMarkerClickListener(this);
 
-            mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-
              picMe = MainStart.profilePic;
              imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
 
+
             Location loc = App.Current.LocationService.getLastKnownLocation();
+            LatLng myPos = null;
+          
 
             try
             {
+                if(loc.Latitude != 000000 && loc.Longitude != 000000)
+                {
+                    myPos = new LatLng(loc.Latitude, loc.Longitude);
+                }else
+                    myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+
+
+                if (myPos == null)
+                myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+
+            }
+            catch (Exception)
+            {
+                myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+             
+            }
 
           
-            myMark = mMap.AddMarker(new MarkerOptions()
-           .SetPosition(new LatLng(loc.Latitude, loc.Longitude))
-           .SetTitle(MainStart.userName)
-           .SetSnippet("My Location").SetIcon(imageMe));
-            mHashMapUser.Put(myMark, MainStart.userId);
-            }
-            catch (Exception)
-            {
-
-               
-            }
-
-            LatLng myPos = null;
-            try
-            {
-                myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
-               
-            }
-            catch (Exception)
-            {
-                
-
-            }
-
-            if (myPos == null)
-            {
-                try
-                {
-
-
-                    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
-
-                }
-                catch (Exception)
-                {
-
-
-                }
-            }
-
-
-            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
-            
+                   
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
                 foreach (var item in RouteOverview.routes)
@@ -364,16 +339,33 @@ namespace TestApp
                 foreach (var item in FriendsOverview.myFriends)
                 {
 
-                  //  if(item.Online == true)
+                    if(item.Online == true)
                     setMarkerUser(item);
 
                 }
 
             }
 
+
          
-            
-          
+          //  mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
+
+            try
+            {
+
+                myMark = mMap.AddMarker(new MarkerOptions()
+               .SetPosition(myPos)
+               .SetTitle(MainStart.userName)
+               .SetSnippet("My Location").SetIcon(imageMe));
+                mHashMapUser.Put(myMark, MainStart.userId);
+            }
+            catch (Exception)
+            {
+
+
+            }
+
 
 
         }

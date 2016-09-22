@@ -33,57 +33,9 @@ namespace TestApp
             return points;
         }
 
-        //public override void OnCreate()
-        //{
-        //    base.OnCreate();
-
-        //locationFound = false;
-
-        //points = new List<Location>();
-        //serviceIntent = new Intent(LocationService);
-        //con = new LocationServiceConnection(new LocationServiceBinder(App.Current.LocationService));
-        //App.Current.LocationService.BindService(serviceIntent, con, Bind.AutoCreate);
-        //binder = App.Current.LocationService.OnBind(serviceIntent);
-
-        //con.ServiceConnected += (object sender, ServiceConnectedEventArgs e) =>
-        //{
-        //    Toast.MakeText(CreateRoute.activity, "Connected to LocationService", ToastLength.Long).Show();
-
-
-        //};
-
-
-
-        //App.Current.LocationService.LocationChanged += (ae, e) =>
-        //{
-
-        //    currentLocation = e.Location;
-
-        //    points.Add(e.Location);
-
-        //    if (!locationFound){
-        //        CreateRoute.routeStatus.Text = "Stauts: Creating...";
-        //        locationFound = true;
-        //        CreateRoute.statusImage.SetImageResource(Resource.Drawable.green);
-        //    }
-
-
-        //    CreateRoute.activity.RunOnUiThread(() =>
-        //    {
-        //        Toast.MakeText(CreateRoute.activity, "Location added!", ToastLength.Long).Show();
-
-        //    });
-
-        //};
-
-
-
-
-
-        //  }
+ 
         void HandleCustomEvent(object e, LocationChangedEventArgs a)
         {
-
 
             currentLocation = a.Location;
             points.Add(a.Location);
@@ -95,25 +47,13 @@ namespace TestApp
                 CreateRoute.statusImage.SetImageResource(Resource.Drawable.green);
             }
 
-
-            // CreateRoute.activity.RunOnUiThread(() =>
-            // {
-
-            ////     Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
-
-            // });
-
-
         }
         
 
     public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 			{
 
-            //CreateRoute.routeStatus.Text = "Stauts: Creating...";
-            ////    locationFound = true;
-            //CreateRoute.statusImage.SetImageResource(Resource.Drawable.green);
-
+  
 
             new Task (() => {
 

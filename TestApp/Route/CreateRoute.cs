@@ -77,9 +77,13 @@ namespace TestApp
         TextView selectRouteType;
         public static int score;
         public int mypoints;
-
+        Marker myMark;
+        Marker myFirstMark;
         ImageButton startCreate;
-                ImageButton stopCreate;
+        ImageButton stopCreate;
+        Location previousLocation;
+
+        PolylineOptions trackingLine;
         public bool Ischecked
         {
 
@@ -267,7 +271,31 @@ namespace TestApp
                   return;
               }
               selectRouteType.Visibility = ViewStates.Invisible;
-              startRouteCreation();
+
+              Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+
+              alert.SetTitle("Tracking");
+              alert.SetMessage("Do you want to enable live tracking?");
+              alert.SetPositiveButton("Yes", (senderAlert, args) =>
+              {
+                  startRouteCreation();
+                  trackingLine = new PolylineOptions();
+                  App.Current.LocationService.LocationChanged += HandleLocationChanged;
+
+              });
+
+              alert.SetNegativeButton("No", (senderAlert, args) =>
+              {
+                  startRouteCreation();
+
+              });
+              //run the alert in UI thread to display in the screen
+              RunOnUiThread(() =>
+              {
+                  alert.Show();
+              });
+
+             
               
           };
 
@@ -340,7 +368,9 @@ namespace TestApp
 
             }
 
-            //start.Enabled = false;
+
+            App.Current.LocationService.LocationChanged -= HandleLocationChanged;
+
             points = CreateRouteService.getPoints();
 
             stopWatch.Stop();
@@ -349,11 +379,20 @@ namespace TestApp
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
 
+
+            if (points.Count == 0)
+            {
+                Finish();
+                Intent myIntent = new Intent(this, typeof(CreateRoute));
+                StartActivity(myIntent);
+                Toast.MakeText(this, "Unable to create route, no location found!", ToastLength.Long).Show();
+                return;
+            }          
             try
             {
 
-           //     points = filterLocationPoints(points);
-
+                points = filterLocationPoints(points);
+                
             }
             catch (Exception)
             {
@@ -361,8 +400,8 @@ namespace TestApp
 
             }
 
-            StopService(new Intent(this, typeof(CreateRouteService)));
 
+            StopService(new Intent(this, typeof(CreateRouteService)));
 
             routeStatus.Text = "Stauts: Stopped";
             dist = 0;
@@ -391,8 +430,6 @@ namespace TestApp
                 score = mypoints;
                 mMap.Snapshot(this);
                 startDialogNameRoute();
-
-
                 firstRun = true;
 
             }
@@ -401,10 +438,7 @@ namespace TestApp
 
         }
 
-        //public void startDialogRouteStats()
-        //{
-
-        //}
+     
         public void startDialogNameRoute()
         {
 
@@ -443,10 +477,7 @@ namespace TestApp
             //    dist = calculateDistance();
                 var first = points[0];
 
-                //Dont upload unless route is more than 500 meters 
-                //
-                //
-                //
+
 
                 List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime, first.Latitude, first.Longitude);
                 var addedDistance = Azure.addToMyDistance(MainStart.userId, dist);
@@ -520,13 +551,13 @@ namespace TestApp
 
                 points.Clear();
             }
-
-         
-
+        
             routeStatus.Text = "Acquiring your position...";
 
             var loc = App.Current.LocationService.getLastKnownLocation();
           
+
+
             if (loc != null)
             {
                 mMap.Clear();
@@ -537,40 +568,36 @@ namespace TestApp
                 markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
                 markerMe.SetTitle("My position");
                 markerMe.Draggable(false);
-                markerMe.SetSnippet("My Location");
                 BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
                 markerMe.SetIcon(image);
-                mMap.AddMarker(markerMe);
-
-             
-              
+                myFirstMark = mMap.AddMarker(markerMe);
 
             }
 
 
 
             StartService(new Intent(this, typeof(CreateRouteService)));
-
-            //mMap.Clear();
             isReady = false;
             Ischecked = false;
             alreadyDone = false;
 
-
             stopWatch = new Stopwatch();
             stopWatch.Start();
-
-
-            //   start.Enabled = true;
-
             stopCreate.Enabled = true;
 
-        } 
+           
+        }
+
+        public void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+        {
+            if (myFirstMark != null)
+                myFirstMark.Remove();
+
+            drawRouteLive(e.Location);
+        }
 
 
-     
-
-            public List<Location> filterLocationPoints(List<Location> points)
+        public List<Location> filterLocationPoints(List<Location> points)
         {
             List<Location> sortedLocation = new List<Location>();
             double dist = 0;
@@ -584,7 +611,7 @@ namespace TestApp
                     var secondPoint = points[i + 1];
 
                     dist = getDistanceForRoute(firstPoint, secondPoint);
-                    if(dist >= 10)
+                    if(dist >= 8)
                     {
                         sortedLocation.Add(points[i]);
 
@@ -594,10 +621,6 @@ namespace TestApp
           
 
             }
-
-
-
-
 
             return sortedLocation;
         }
@@ -655,8 +678,7 @@ namespace TestApp
 
         public void OnProviderEnabled(string provider)
         {
-            //OnProviderEnabled: called when the user enables a provider, such as GPS or network.
-        }
+               }
 
         public void OnStatusChanged(string provider, Availability status, Bundle extras)
         {
@@ -677,7 +699,7 @@ namespace TestApp
             catch (Exception)
             {
 
-                //throw;
+               
             }
             return distance;
         }
@@ -743,13 +765,6 @@ namespace TestApp
             switch (item.ItemId)
             {
 
-                //case Resource.Id.exit:
-                //    OnBackPressed();
-                //    return true;
-
-                //case Resource.Id.back:
-                //    OnBackPressed();
-                //    return true;
                 case Android.Resource.Id.Home:// Resource.Id.back:
                     OnBackPressed();
                     return true;
@@ -796,57 +811,36 @@ namespace TestApp
             });
             return val;
         }
+        public void drawRouteLive(Location loc)
+        {
 
+            if(myMark != null)
+            {
+                myMark.Remove();
+            }
 
-        //public void drawRouteLive()
-        //{
+            Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
+            var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
+           
+            MarkerOptions liveTrackingMarker = new MarkerOptions();
+            liveTrackingMarker.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
+            liveTrackingMarker.SetTitle("My position");
+            liveTrackingMarker.Draggable(false);
+            
+            BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
+            liveTrackingMarker.SetIcon(image);
+            myMark = mMap.AddMarker(liveTrackingMarker);
+           
+              
+            if(previousLocation != null && calculateDistance(loc.Latitude,loc.Longitude, previousLocation.Latitude, previousLocation.Longitude) >= 20 )
+            {
+                trackingLine.Add(new LatLng(loc.Latitude, loc.Longitude));
+                mMap.AddPolyline(trackingLine);
+            }
+            previousLocation = loc;
 
-
-        //    mMap.Clear();
-
-        //    Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
-        //    var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
-
-        //    markerOpt1.SetPosition(new LatLng(firstElement.Latitude, firstElement.Longitude));
-        //    markerOpt1.SetTitle("Starting Point");
-        //    markerOpt1.Draggable(false);
-        //    markerOpt1.SetSnippet("Starting point of route");
-
-        //    //  markerOpt1.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueGreen));
-        //    markerOpt1.SetIcon(startPoint);
-        //    mMap.AddMarker(markerOpt1);
-
-
-        //    Bitmap flagEnd = BitmapFactory.DecodeResource(Resources, Resource.Drawable.finishF);
-        //    var endPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagEnd, 80, false)); //(Resource.Drawable.test);
-
-
-        //    markerOpt2 = new MarkerOptions();
-        //    markerOpt2.SetPosition(new LatLng(lastItem.Latitude, lastItem.Longitude));
-        //    markerOpt2.SetTitle("Ending Point");
-        //    markerOpt2.Draggable(false);
-        //    markerOpt2.SetSnippet("End point of route");
-        //    // markerOpt2.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueRed));
-        //    markerOpt2.SetIcon(endPoint);
-
-        //    mMap.AddMarker(markerOpt2);
-
-        //    mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-        //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(firstElement.Latitude, firstElement.Longitude), 14));
-
-        //    PolylineOptions opt = new PolylineOptions();
-
-
-        //    foreach (var item in points)
-        //    {
-        //        opt.Add(new LatLng(item.Latitude, item.Longitude));
-        //    }
-
-        //    mMap.AddPolyline(opt);
-
-        //    //   mMap.Snapshot(this);
-
-        //}
+           
+        }
 
 
         public void drawRoute(int type)
@@ -914,8 +908,6 @@ namespace TestApp
                 opt.InvokeColor(Color.HotPink);
             }
             
-
-
 
             foreach (var item in points)
             {

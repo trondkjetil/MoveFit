@@ -843,40 +843,35 @@ namespace TestApp
         {
 
             base.OnDestroy();
-            Azure.SetUserOnline(userId, false);
+            await Azure.SetUserOnline(userId, false);
+            isOnline = false;
+            StopService(new Intent(this, typeof(LocationService)));
+            await Azure.SetUserOnline(userId, false);
+            // Azure.SetUserOnline(userName, false);
+            // await logOff();
+            //try
+            //{
+            //    var wait = logOff();
+            //}
+            //catch (Exception)
+            //{
 
-            // var b = await Azure.SetUserOnline(userName, false);
-            try
-            {
-                var wait = await logOff();
-            }
-            catch (Exception)
-            {
 
-               
-            }
-          
+            //}
 
-           
+
+
 
         }
 
         public async Task<List<User>> logOff()
         {
 
-            
-                try
-                {
-                    var user = await Azure.SetUserOnline(userId, false);
-                }
-                catch (Exception)
-                {
 
-               
-                }
-               
-                isOnline = false;           
+            isOnline = false;
             StopService(new Intent(this, typeof(LocationService)));
+            await Azure.SetUserOnline(userId, false);
+                     
             return user;
         }
 
@@ -1719,16 +1714,7 @@ namespace TestApp
             }
             public void OnMapClick(LatLng point)
             {
-                try
-                {
-                    Intent myIntent = new Intent(activityRightDrawer, typeof(GoogleMapsPeople));
-                    activityRightDrawer.StartActivity(myIntent);
-                }
-                catch (Exception )
-                {
-
-                  
-                }
+               
 
             }
             //private async void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
