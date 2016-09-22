@@ -16,7 +16,6 @@ using Android.Graphics;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using System.Text.RegularExpressions;
-
 namespace TestApp
 {
     [Activity(LaunchMode = Android.Content.PM.LaunchMode.SingleInstance,Label = "StartRoute", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
