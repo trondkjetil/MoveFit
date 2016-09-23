@@ -26,18 +26,20 @@ namespace TestApp
         NotificationManager notificationManager;
 
         public static List<float> points;
-
+        public static List<Location> locationPoints;
 
 
         void HandleCustomEvent(object e, LocationChangedEventArgs a)
         {
 
-
             currentLocation = a.Location;
+            if(a.Location != null)
+            {
+                points.Add(a.Location.Speed);
+                //locationPoints.Add(a.Location);
+            }
+         
 
-            points.Add(a.Location.Speed);
-          
-               
     }
         
 
@@ -57,10 +59,10 @@ namespace TestApp
                 BindService(serviceIntent, con, Bind.AutoCreate);
                 binder = OnBind(serviceIntent);
 
-               
-             
+                locationPoints = new List<Location>();
 
-                Intent newIntent = new Intent(this, typeof(StartRouteService));
+
+                 Intent newIntent = new Intent(this, typeof(StartRouteService));
                 // Pass some information to SecondActivity:
                 newIntent.PutExtra("message", "testData");
 

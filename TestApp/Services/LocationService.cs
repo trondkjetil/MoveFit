@@ -15,7 +15,7 @@ namespace TestApp
     {
         public string userId;
         private static readonly int UPDATE_INTERVAL = 1000 * 45 * 1;
-        private static readonly int MIN_DISTANCE = 20;
+        private static readonly int MIN_DISTANCE = 0; // 20
 
         public static int timeInterval;
         public static int distance;

@@ -7,6 +7,7 @@
     android:background="@android:color/white">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:keepScreenOn="true"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:minHeight="?attr/actionBarSize"
@@ -101,7 +102,7 @@
             android:id="@+id/toggleStart"
             android:background="@android:color/holo_green_light"
             android:textOff="Start"
+            android:layout_marginBottom="4dp"
             android:textOn="Finish" />
-
     </RelativeLayout>
 </LinearLayout>

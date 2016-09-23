@@ -26,6 +26,8 @@ namespace TestApp
 
         const long MIN_TIME = 10 * 1000;
         const long MIN_DISTANCE = 5;
+        readonly int DISTANCE_AWAY = 100;
+        static bool completed;
 
         SupportToolbar toolbar;
        // LocationManager locationManager;
@@ -55,6 +57,8 @@ namespace TestApp
         public static string oldRecordTime;
         string userId;
         User instance;
+        Marker myMark;
+
         public RatingBar ratingbar;
 
         TextView time;
@@ -71,7 +75,8 @@ namespace TestApp
 
         Android.Net.Uri notification;
         Ringtone r;
-
+        List<Location> myRoutePoints;
+        static bool alarm;
         public void toggleInfoVisibility(bool visible)
         {
             
@@ -108,7 +113,7 @@ namespace TestApp
                 ratingbar.Visibility = ViewStates.Gone;
 
                 ViewGroup.LayoutParams paramseters = mapFrag.View.LayoutParameters;
-                paramseters.Height = 850;
+                paramseters.Height = 800;
                 mapFrag.View.LayoutParameters = paramseters;
 
             }
@@ -139,13 +144,7 @@ namespace TestApp
                 mMap.UiSettings.MapToolbarEnabled = true;
                 mMap.UiSettings.MyLocationButtonEnabled = true;
 
-                array = Intent.GetStringArrayExtra("MyData");
-                routeId = array[7];
-
-                locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
-
-                locationPointsForRouteVerify = locationPointsForRoute;
-
+              
                 toolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
@@ -170,6 +169,15 @@ namespace TestApp
                 //ratingbar.Visibility = ViewStates.Visible;
                 ratingbar.Rating = 0;
 
+
+                array = Intent.GetStringArrayExtra("MyData");
+
+                routeId = array[7];
+
+                locationPointsForRoute = await Azure.getLocationsForRoute(routeId);
+
+                locationPointsForRouteVerify = locationPointsForRoute;
+
                 List<Route> route = await Azure.getRouteById(routeId);
                 var routeInstance = route.FirstOrDefault();
 
@@ -181,8 +189,11 @@ namespace TestApp
                 routeRating = routeInstance.Review;
                 routeTrips = routeInstance.Trips.ToString();
                 routeTime = routeInstance.Time;
+                userId = routeInstance.User_id;
 
-                userId = array[9];
+
+                completed = false;
+                //userId = array[9];
                 //routeName = array[0];
                 //routeInfo = array[1];
                 //routeDifficulty = array[2];
@@ -200,6 +211,7 @@ namespace TestApp
 
                 string unit = " km";
                 double lengthOfRoute = 0;
+
                 var test = IOUtilz.LoadPreferences();
                 if (test[1] == 1)
                 {
@@ -244,7 +256,7 @@ namespace TestApp
                     drawRoute();
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                    
                 }
@@ -257,8 +269,12 @@ namespace TestApp
                     {
                         startRoute();
                     }
-                    else
+                    else if(!start.Checked)
+                    {
                         endRoute();
+                        
+                    }
+                      
 
                 };
 
@@ -274,7 +290,7 @@ namespace TestApp
                 return;
             }
 
-            start.Enabled = false;
+    
 
             if (StartRouteService.serviceIsRunning == true)
             {
@@ -285,38 +301,69 @@ namespace TestApp
 
             }
 
-            double distance = getDistanceFromStart();
+            start.Enabled = false;
 
-            if (distance <= 100)
+            double distance = distanceFromRoutePoint(true);
+
+            if (distance <= DISTANCE_AWAY)
+
             {
+
+
                 Toast.MakeText(this, "Starting route...", ToastLength.Long).Show();
                 StartService(new Intent(this, typeof(StartRouteService)));
-
+                myRoutePoints = new List<Location>();
+                completed = false;
+                alarm = true;
                 stopWatch = new Stopwatch();
                 stopWatch.Start();
                 toggleInfoVisibility(false);
 
+                App.Current.LocationService.LocationChanged += HandleCustomEvent;
+
+
                 SupportActionBar.SetDisplayShowTitleEnabled(true);
                 SupportActionBar.Title = "Route Active...";
+                
             }
             else
             {
                 Toast.MakeText(this, "Please move closer to the starting point!", ToastLength.Short).Show();
-
+                start.Checked = false;
+                
             }
-
-
-            start.Enabled = true;
-
-            //InitializeLocationManager();
-            //locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
            
+            start.Enabled = true;
+        }
 
+        void HandleCustomEvent(object e, LocationChangedEventArgs a)
+        {
+
+            if (myMark != null)
+            {
+                myMark.Remove();
+            }
+            myRoutePoints.Add(a.Location);
+            Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
+            var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
+
+            MarkerOptions liveTrackingMarker = new MarkerOptions();
+            liveTrackingMarker.SetPosition(new LatLng(a.Location.Latitude, a.Location.Longitude));
+            liveTrackingMarker.SetTitle("My position");
+            liveTrackingMarker.Draggable(false);
+
+            BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
+            liveTrackingMarker.SetIcon(image);
+            myMark = mMap.AddMarker(liveTrackingMarker);
+
+
+            verifyRoute(a.Location);  
+            
+                   
         }
         private async void endRoute()
         {
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-            SupportActionBar.Title = "";
+           
             if (StartRouteService.serviceIsRunning == false)
             {
                 Toast.MakeText(this, "Nothing to stop!", ToastLength.Short).Show();
@@ -324,8 +371,45 @@ namespace TestApp
 
             }
 
-            toggleInfoVisibility(true);
-            verifyRoute(null);
+         
+
+            //if (!completed)
+            //{
+            //    Toast.MakeText(this, "You did not complete this route properly!", ToastLength.Short).Show();
+            //    StopService(new Intent(this, typeof(StartRouteService)));
+            //    start.Checked = true;
+            //    start.Enabled = true;
+            //    return;
+            //}
+
+            // Distance from finish
+            double distance = distanceFromRoutePoint(false);
+            bool completed = routeCompleted();
+
+            if (!completed)
+            {
+                App.Current.LocationService.LocationChanged -= HandleCustomEvent;
+                StopService(new Intent(this, typeof(StartRouteService)));
+                start.Checked = true;
+                start.Enabled = true;
+                SupportActionBar.SetDisplayShowTitleEnabled(false);
+                SupportActionBar.Title = "";
+                toggleInfoVisibility(true);
+                alarm = false;
+                return;
+            }
+
+            if (distance <= DISTANCE_AWAY && completed)
+            {
+
+
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.Title = "";
+            alarm = false;
+            App.Current.LocationService.LocationChanged -= HandleCustomEvent;
+                StopService(new Intent(this, typeof(StartRouteService)));
+                toggleInfoVisibility(true);
+            
 
             start.Enabled = false;
             List<float> speedList = StartRouteService.points;
@@ -349,7 +433,7 @@ namespace TestApp
                 avgSpeed = 0;
 
 
-            StopService(new Intent(this, typeof(StartRouteService)));
+          
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -357,15 +441,11 @@ namespace TestApp
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
 
-
-            double distance = getDistanceFromStart();
-
+          
             newRecordTime = "";
             oldRecordTime = "";
-
-            if (distance <= 70)
-            {
-
+            
+         
                 DateTime newTime = new DateTime();
                 DateTime oldTime = new DateTime();
                 try
@@ -425,24 +505,40 @@ namespace TestApp
                 startDialogNameRoute();
                 Toast.MakeText(this, "You have earned " + mypoints + " points!", ToastLength.Long).Show();
 
+               
+
             }
             else
+            {
                 Toast.MakeText(this, "Please move closer to the finish-line!" + "Distance to finishline is: " + distance, ToastLength.Long).Show();
 
-               start.Enabled = true;
+                start.Checked = true;
+            }
 
+            
+            start.Enabled = true;
         }
 
-        private double getDistanceFromStart()
+        private double distanceFromRoutePoint(bool start)
         {
             double distance = 0;
             try
             {
-        
-            Location myLocation = App.Current.LocationService.getLastKnownLocation();
-            Locations firstElement = locationPointsForRoute.First();
 
-            float[] results = new float[1];
+                Location myLocation = App.Current.LocationService.getLastKnownLocation();
+                Locations firstElement = null;
+                if (start)
+                {
+                    firstElement = locationPointsForRoute.First();
+                }
+                else
+                    firstElement = locationPointsForRoute.LastOrDefault();
+
+
+
+
+
+                float[] results = new float[1];
            // double[] LatLngFirst = firstElement.Location.Split(',');
             Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, firstElement.Lat, firstElement.Lon, results);
             //Location.DistanceBetween(myLocation.Latitude, myLocation.Longitude, Convert.ToDouble(LatLngFirst[0]), Convert.ToDouble(LatLngFirst[1]), results);
@@ -562,7 +658,22 @@ namespace TestApp
 
         }
 
-       
+          protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            try
+            {
+                App.Current.LocationService.LocationChanged -= HandleCustomEvent;
+                StopService(new Intent(this, typeof(StartRouteService)));
+
+            }
+            catch (Exception)
+            {
+
+              
+            }
+        
+        }
         protected async override void OnResume()
         {
             base.OnResume();
@@ -617,53 +728,156 @@ namespace TestApp
 
         }
 
-     
+     public bool routeCompleted()
+        {
+
+           // var approvedList = new List<Location>();
+            // locationPointsForRoute();
+            int count = 0;
+            int randomIndex = new Random().Next(1, locationPointsForRouteVerify.Count-1);
+            int indexx = 0;
+
+            int middle = 0;
+            double mid = 0;
+
+            try
+            {
+                mid = Math.Round(locationPointsForRouteVerify.Count / 2.0);
+                middle = Convert.ToInt32(mid);
+            }
+            catch (Exception)
+            {
+                middle = middle - 1;
+            }
+          
+
+
+            try
+            {
+    
+            double almostThere = Math.Round(locationPointsForRouteVerify.Count / 3.0);
+             indexx = Convert.ToInt32(almostThere);
+
+            }
+            catch (Exception)
+            {
+                indexx = 0;
+
+
+            }
+
+            bool[] checkList = new bool[5];
+            foreach (var myPoint in myRoutePoints)
+            {
+
+                if (checkList[0] != true && calculateDistance(myPoint, locationPointsForRouteVerify[0]) <= 200)
+                {
+                    checkList[0] = true;
+                }
+
+                if (checkList[1] != true && calculateDistance(myPoint, locationPointsForRouteVerify[middle]) <= 200)
+                {
+                    checkList[1] = true;
+
+                }
+
+                if (checkList[2] != true && calculateDistance(myPoint, locationPointsForRouteVerify.LastOrDefault()) <= 200)
+                {
+                    checkList[2] = true;
+
+                }
+
+
+                try
+                {
+             
+                if (checkList[3] != true && calculateDistance(myPoint, locationPointsForRouteVerify[randomIndex]) <= 200)
+                {
+                    checkList[3] = true;
+
+                }
+
+                    if (checkList[4] != true && calculateDistance(myPoint, locationPointsForRouteVerify[indexx]) <= 200)
+                    {
+                        checkList[4] = true;
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                   
+                }
+
+            }
+
+
+            for(int i = 0; i < checkList.Length; i++)
+            {
+                if(checkList[i] == true)
+                {
+                    count++;
+                }
+            }
+
+
+            if (count >= 3 && checkList[1] == true)
+            {
+                return true;
+            }
+            else
+                return false;
+               
+        }
         public void verifyRoute(Location loc)
         {
 
-            bool drifting = false;
-            Locations instanceToRemove = null;
+            bool drifting = false;      
+           
+            List<int> checks = new List<int>();
 
-
-            //foreach (var item in locationPointsForRouteVerify)
-            //{
-
-            //   if(calculateDistance(loc, item) >= 200)
-            //    {
-            //        drifting = true;
-
-            //    }
-
-            //   //play stop alarm
-
-            //}
-            // instanceToRemove = item;
-
-            //locationPointsForRouteVerify.Remove(instanceToRemove);
-            drifting = true;
-            if (drifting)
+            foreach (var item in locationPointsForRouteVerify)
             {
-             //  locationManager.RemoveUpdates(this);
+                if (calculateDistance(loc, item) >= 2)
+                {
+                   checks.Add(1);
+                }
+            }
 
-                
+            if(checks.Count == locationPointsForRouteVerify.Count)
+            {
+                drifting = true;
+            }
 
-                Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+            //instanceToRemove = locationPointsForRouteVerify.FirstOrDefault();
+            //locationPointsForRouteVerify.Remove(instanceToRemove);
+            App.Current.LocationService.LocationChanged -= HandleCustomEvent;
+
+
+            if (drifting && alarm)
+            {
+               
+                  r.Play();
+
+            Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
             alert.SetTitle("Out of track");
             alert.SetMessage("You seem to be drifting away from the route! Get back on track to finish route");
             alert.SetPositiveButton("Ok", (senderAlert, args) =>
             {
-                //   locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
-                r.Play();
+                      r.Stop();
+                App.Current.LocationService.LocationChanged += HandleCustomEvent;
             });
 
-            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            alert.SetNegativeButton("Deactivate alarm", (senderAlert, args) =>
             {
                 //    locationManager.RequestLocationUpdates(this.locationProvider, MIN_TIME, MIN_DISTANCE, this);
                 r.Stop();
+                alarm = false;
+                App.Current.LocationService.LocationChanged += HandleCustomEvent;
+
             });
          
                 alert.Show();
-
             }
 
         }

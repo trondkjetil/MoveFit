@@ -225,5 +225,8 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.config
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Runtime.InteropServices.RuntimeInformation.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ab.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.mdb

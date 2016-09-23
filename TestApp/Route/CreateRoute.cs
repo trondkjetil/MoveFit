@@ -25,8 +25,7 @@ using static Android.Gms.Maps.GoogleMap;
 namespace TestApp
 {
   //  [Activity(Label = "Route", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/Theme2")]
-
-    [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = Android.Content.PM.LaunchMode.SingleInstance, Label = "Route Creator", Theme = "@style/Theme2")]
+    [Activity(AlwaysRetainTaskState = true, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = LaunchMode.SingleInstance, Label = "Route Creator", Theme = "@style/Theme2")]
   //  [IntentFilter(new[] { Intent.ActionAssist }, Categories = new[] { Intent.CategoryDefault })]
 
     public class CreateRoute : AppCompatActivity, IOnMapReadyCallback, ISnapshotReadyCallback //, ILocationListener

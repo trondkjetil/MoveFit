@@ -1672,16 +1672,16 @@ namespace TestApp
                     };
 
 
-                    Location loc = App.Current.LocationService.getLastKnownLocation();
-                    LatLng posHere = new LatLng(loc.Latitude, loc.Longitude);
+                    //Location loc = App.Current.LocationService.getLastKnownLocation();
+                    //LatLng posHere = new LatLng(loc.Latitude, loc.Longitude);
 
-                    //if (loc.Latitude == 000000 && loc.Longitude == 000000)
-                    //{
+                    ////if (loc.Latitude == 000000 && loc.Longitude == 000000)
+                    ////{
 
-                    //    posHere = new LatLng(userInstanceOne.Lat, userInstanceOne.Lon);
-                    //}
+                    ////    posHere = new LatLng(userInstanceOne.Lat, userInstanceOne.Lon);
+                    ////}
 
-                    setMarker(posHere, mMap);
+                    //setMarker(posHere, mMap);
 
                 }
                 catch (Exception)
