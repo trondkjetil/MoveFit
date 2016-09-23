@@ -387,6 +387,8 @@ namespace TestApp
                 SupportActionBar.Title = "";
                 toggleInfoVisibility(true);
                 alarm = false;
+                Toast.MakeText(this, "You didnt reach all the check-points! Try again..", ToastLength.Short).Show();
+
                 return;
             }
 

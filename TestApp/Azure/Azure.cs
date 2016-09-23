@@ -293,15 +293,16 @@ namespace TestApp
             return userList.FirstOrDefault();
 
         }
+
+
         public static async Task<List<User>> getUserByAuthId(String authId)
         {
-
-            List<User> userList = await table.Where(user => user.Id == MainStart.auth0UserId).ToListAsync();
+            List<User> userList = await table.Where(user => user.Id == authId).ToListAsync();
             return userList;
-
         }
 
-  
+      
+
         public static async Task<List<UserFriends>> deleteFriend(string myUser, string providedUserName)
         {
             
@@ -712,34 +713,51 @@ namespace TestApp
             return userFriendList;
         }
 
+        //public static async Task<List<User>> getGivenUsers(List<UserFriends> lis)
+        //{
+        //    //  List<User> userList = await table.Where(users => list.Any(t1 => t1.UserLink1 == users.Id || t1.UserLink2 == users.Id)).ToListAsync();
+
+        //    List<User> userList = await table.Select(users => users.Id).ToListAsync();
+
+          
+        //    return null;
+            
+        //}
 
         public static async Task<List<User>> getUsersFriends(string userId)
         {
 
-            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && UserFriends.IsDeleted == false && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
+            List<string> id = new List<string>();
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
 
-            //Real one
-            List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
-           // List<User> userList = await table.Where(user => user.Id != null).ToListAsync();
-
-            List<User> userProfiles = new List<User>();
-
-            for (int i = 0; i < userFriendList.Count; i++)
+            foreach (var item in userFriendList)
             {
-
-                for (int x = 0; x < userList.Count; x++)
-                {
-
-                    if (userFriendList[i].UserLink2 == userList[x].Id || userFriendList[i].UserLink1 == userList[x].Id)
-                    {
-                        userProfiles.Add(userList[x]);
-                    }
-                }
-
+                id.Add(item.UserLink1);
+                id.Add(item.UserLink2);
             }
 
+         //   List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
+          List<User> userList = await table.Where(user => id.Contains(user.Id)).Select(a => a).ToListAsync();
+            userList = userList;
+            //   List<User> userList = await getGivenUsers(userFriendList);
+            userList = userList.FindAll(user => user.Id != MainStart.userId);
+            userList = userList;
+            //List<User> userProfiles = new List<User>();
 
-            return userProfiles;
+            //for (int i = 0; i < userFriendList.Count; i++)
+            //{
+            //    for (int x = 0; x < userList.Count; x++)
+            //    {
+
+            //        if (userFriendList[i].UserLink2 == userList[x].Id || userFriendList[i].UserLink1 == userList[x].Id)
+            //        {
+            //            userProfiles.Add(userList[x]);
+            //        }
+            //    }
+
+            //}
+
+            return userList;
         }
 
 

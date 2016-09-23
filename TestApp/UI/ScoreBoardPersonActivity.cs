@@ -292,35 +292,35 @@ namespace TestApp
                 case Resource.Id.search:
 				mSearch.Visibility = ViewStates.Visible;
 
-				if (mIsAnimating)
-				{
-					return true;
-				}
+                    if (mIsAnimating)
+                    {
+                        return true;
+                    }
 
-				if (!mAnimatedDown)
-				{
-					//Listview is up
-					MyAnimation anim = new MyAnimation(mListView, mListView.Height - mSearch.Height);
-					anim.Duration = 500;
-					mListView.StartAnimation(anim);
-					anim.AnimationStart += anim_AnimationStartDown;
-					anim.AnimationEnd += anim_AnimationEndDown;
-					mContainer.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
-				}
+                    if (!mAnimatedDown)
+                    {
+                        //Listview is up
+                        MyAnimation anim = new MyAnimation(mListView, mListView.Height - mSearch.Height);
+                        anim.Duration = 500;
+                        mListView.StartAnimation(anim);
+                        anim.AnimationStart += anim_AnimationStartDown;
+                        anim.AnimationEnd += anim_AnimationEndDown;
+                        mContainer.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+                    }
 
-				else
-				{
-					//Listview is down
-					MyAnimation anim = new MyAnimation(mListView, mListView.Height + mSearch.Height);
-					anim.Duration = 500;
-					mListView.StartAnimation(anim);
-					anim.AnimationStart += anim_AnimationStartUp;
-					anim.AnimationEnd += anim_AnimationEndUp;
-					mContainer.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
-				}
+                    else
+                    {
+                        //Listview is down
+                        MyAnimation anim = new MyAnimation(mListView, mListView.Height + mSearch.Height);
+                        anim.Duration = 500;
+                        mListView.StartAnimation(anim);
+                        anim.AnimationStart += anim_AnimationStartUp;
+                        anim.AnimationEnd += anim_AnimationEndUp;
+                        mContainer.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+                    }
 
-				mAnimatedDown = !mAnimatedDown;
-				return true;
+                    mAnimatedDown = !mAnimatedDown;
+                    return true;
 
 			default:
 				return base.OnOptionsItemSelected(item);

@@ -277,8 +277,9 @@ namespace TestApp
               alert.SetMessage("Do you want to enable live tracking?");
               alert.SetPositiveButton("Yes", (senderAlert, args) =>
               {
-                  startRouteCreation();
                   trackingLine = new PolylineOptions();
+                  startRouteCreation();
+                
                   App.Current.LocationService.LocationChanged += HandleLocationChanged;
 
               });
