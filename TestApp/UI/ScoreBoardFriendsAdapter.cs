@@ -54,9 +54,6 @@ namespace TestApp
 
             row.SetBackgroundColor(GetColorFromInteger(mAlternatingColors[position % mAlternatingColors.Length]));
 
-            
-            //TextView firstName = row.FindViewById<TextView>(Resource.Id.txtFirstName);
-            //firstName.Text = users[position].UserName;
             ImageView image = row.FindViewById<ImageView>(Resource.Id.profileImage_score);
             image.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(users[position].ProfilePicture));
 

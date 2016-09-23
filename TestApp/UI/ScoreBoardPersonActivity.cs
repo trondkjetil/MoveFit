@@ -290,8 +290,6 @@ namespace TestApp
                    
 
                 case Resource.Id.search:
-				//Search icon has been clicked
-
 				mSearch.Visibility = ViewStates.Visible;
 
 				if (mIsAnimating)

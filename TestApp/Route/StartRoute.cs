@@ -373,15 +373,6 @@ namespace TestApp
 
          
 
-            //if (!completed)
-            //{
-            //    Toast.MakeText(this, "You did not complete this route properly!", ToastLength.Short).Show();
-            //    StopService(new Intent(this, typeof(StartRouteService)));
-            //    start.Checked = true;
-            //    start.Enabled = true;
-            //    return;
-            //}
-
             // Distance from finish
             double distance = distanceFromRoutePoint(false);
             bool completed = routeCompleted();
@@ -390,7 +381,7 @@ namespace TestApp
             {
                 App.Current.LocationService.LocationChanged -= HandleCustomEvent;
                 StopService(new Intent(this, typeof(StartRouteService)));
-                start.Checked = true;
+                start.Checked = false;
                 start.Enabled = true;
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
                 SupportActionBar.Title = "";
