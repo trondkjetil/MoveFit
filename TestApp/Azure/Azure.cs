@@ -723,25 +723,26 @@ namespace TestApp
         //    return null;
             
         //}
-
+       
         public static async Task<List<User>> getUsersFriends(string userId)
         {
 
-            List<string> id = new List<string>();
-            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
-
+            List<User> users = new List<User>();
+            List<UserFriends> userFriendList = await userFriendsTable.Where(UserFriends => UserFriends.FriendRequest == true && UserFriends.IsAccepted == true && UserFriends.Deleted == false && ( UserFriends.UserLink1 == userId || UserFriends.UserLink2 == userId)).ToListAsync();
+         
+            User inst = null;
             foreach (var item in userFriendList)
             {
-                id.Add(item.UserLink1);
-                id.Add(item.UserLink2);
+               inst = await getUser(item.UserLink1);
+                users.Add(inst);
+                inst = await getUser(item.UserLink2);
+                users.Add(inst);
             }
+             users = users.FindAll(user => user.Id != MainStart.userId);
+            //List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
 
-         //   List<User> userList = await table.Where(user => user.Id != userId).ToListAsync();
-          List<User> userList = await table.Where(user => id.Contains(user.Id)).Select(a => a).ToListAsync();
-            userList = userList;
-            //   List<User> userList = await getGivenUsers(userFriendList);
-            userList = userList.FindAll(user => user.Id != MainStart.userId);
-            userList = userList;
+            //userList = userList.FindAll(user => user.Id != MainStart.userId);
+
             //List<User> userProfiles = new List<User>();
 
             //for (int i = 0; i < userFriendList.Count; i++)
@@ -757,7 +758,7 @@ namespace TestApp
 
             //}
 
-            return userList;
+            return users;
         }
 
 
@@ -771,7 +772,8 @@ namespace TestApp
                 FriendRequest = true,
                 UserLink1 = userId1,
                 UserLink2 = userId2,
-                IsAccepted = false
+                IsAccepted = false,
+                Deleted = false
 
             };
 

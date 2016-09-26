@@ -191,7 +191,7 @@ namespace TestApp
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
                 orderedRoutes = (from route in routes
-                                 orderby route.Distance
+                                 orderby Convert.ToInt32(route.Distance)
                                  select route).ToList<Route>();
 
 
@@ -204,7 +204,7 @@ namespace TestApp
             {
                 mRecyclerView = MyRoutesFragment.mRecyclerView;
                 orderedRoutes = (from route in myRoutes
-                                 orderby route.Distance
+                                 orderby Convert.ToInt32(route.Distance)
                                  select route).ToList<Route>();
 
 
@@ -297,30 +297,56 @@ namespace TestApp
 
         public async void OnPageSelected(int position)
         {
-            
+
             // routeList = routes;
+            TextView txt = null;
           
             if (position == 1)
             {
                 mRecyclerView = RouteListFragment.mRecyclerView;
                 routes = await Azure.nearbyRoutes();
-                mAdapter = new UsersRoutesAdapterFragment(routes, mRecyclerView, this, me, 0);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                txt = act.FindViewById<TextView>(Resource.Id.emptyRouteNearby);
+                if (routes.Count != 0)
+                {
+                    mRecyclerView.Visibility = ViewStates.Visible;
+                    txt.Visibility = ViewStates.Gone;
+                    mAdapter = new UsersRoutesAdapterFragment(routes, mRecyclerView, this, me, 0);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+
+                }
+                else
+                {
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
+
+                }
+           
+             
             }
             else if (position == 2)
             {
                 mRecyclerView = MyRoutesFragment.mRecyclerView;
                 myRoutes = await Azure.getMyRoutes(MainStart.userId);
-                mAdapter = new UsersMyRoutesAdapterFragment(myRoutes, mRecyclerView, this, me, 0);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                txt = act.FindViewById<TextView>(Resource.Id.emptyMyRoute);
+                if (myRoutes.Count != 0)
+                {
+                    mRecyclerView.Visibility = ViewStates.Visible;
+                    txt.Visibility = ViewStates.Gone;
+                    mAdapter = new UsersMyRoutesAdapterFragment(myRoutes, mRecyclerView, this, me, 0);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+
+                }
+                else
+                {
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
+
+                }           
 
             }
-          
-
-
-
+         
 
         }
     }

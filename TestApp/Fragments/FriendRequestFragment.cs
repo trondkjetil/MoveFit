@@ -38,25 +38,26 @@ namespace TestApp
             me = FriendsOverview.me;
 
             view = inflater.Inflate(Resource.Layout.FriendRequestRecycleView, container, false);
-
-    
-
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recycleFriendRequest);
-          
-             if (myFriends.Count != 0)
+
+
+            mLayoutManager = new LinearLayoutManager(this.Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
+
+            if (myFriends.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
-
                 mAdapter = new UsersFriendRequestAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
-
+                mAdapter.NotifyDataSetChanged();
             }
             else
 
             {
-                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
-
+                TextView txt = view.FindViewById<TextView>(Resource.Id.emptyRequest);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }

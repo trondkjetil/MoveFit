@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.Widget;
@@ -45,19 +46,24 @@ namespace TestApp
             mAdapter = adapter;
 
 
-            txt = act.FindViewById<TextView>(Resource.Id.empty);
 
+           // txt = act.FindViewById<TextView>(Resource.Id.empty);
+            //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
+            //{
+            //    mRecyclerView.Visibility = ViewStates.Invisible;
+            //    txt.Visibility = ViewStates.Visible;
+            //}
 
-            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
-            {
-                mRecyclerView.Visibility = ViewStates.Invisible;
-                txt.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                if (txt != null)
-                    txt.Visibility = ViewStates.Gone;
-            }
+            //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
+            //{
+            //    mRecyclerView.Visibility = ViewStates.Invisible;
+            //    txt.Visibility = ViewStates.Visible;
+            //}
+            //else
+            //{
+            //    if (txt != null)
+            //        txt.Visibility = ViewStates.Gone;
+            //}
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -191,9 +197,14 @@ namespace TestApp
 
                 if (mUsers.Count == 0)
                 {
-                    mAdapter = new UsersNearbyAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
-                    mRecyclerView.SetAdapter(mAdapter);
-                    mAdapter.NotifyDataSetChanged();
+                    //mAdapter = new UsersNearbyAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
+                    //mRecyclerView.SetAdapter(mAdapter);
+                    //mAdapter.NotifyDataSetChanged();
+
+                    txt = mActivity.FindViewById<TextView>(Resource.Id.emptyNearby);
+                 
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
                     //mActivity.Finish();
                 }
 

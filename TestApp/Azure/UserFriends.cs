@@ -24,6 +24,9 @@ namespace TestApp
         [JsonProperty(PropertyName = "isdeleted")]
         public bool IsDeleted { get; set; }
 
+        [JsonProperty(PropertyName = "deleted")]
+        public bool Deleted { get; set; }
+
 
 
     }

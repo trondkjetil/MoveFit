@@ -46,23 +46,26 @@ namespace TestApp
           
             routeList = RouteOverview.routes;
             me = RouteOverview.me;
-           
 
-              
+            mLayoutManager = new LinearLayoutManager(this.Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me, 0);
+            mRecyclerView.SetAdapter(mAdapter);
+
+
             if (routeList.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
-
                 mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me,0);
                 mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
 
             }
             else
 
             {
-                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
-
+                TextView txt = view.FindViewById<TextView>(Resource.Id.emptyRouteNearby);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }

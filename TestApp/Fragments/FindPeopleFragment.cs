@@ -32,23 +32,30 @@ namespace TestApp
         {
             var view = inflater.Inflate(Resource.Layout.friendNearbyRecycleView, container, false);
 
-            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclePeopleNearby);       
-            myFriends = FriendsOverview.users;
+             myFriends = FriendsOverview.users;
             me = FriendsOverview.me;
+
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclePeopleNearby);
+
+
+            mLayoutManager = new LinearLayoutManager(this.Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mAdapter = new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
 
             if (myFriends.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
-
                 mAdapter = new UsersNearbyAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
 
             }
             else
 
             {
-                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
+                TextView txt = view.FindViewById<TextView>(Resource.Id.emptyNearby);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }

@@ -825,13 +825,13 @@ namespace TestApp
         public void verifyRoute(Location loc)
         {
 
-            bool drifting = false;      
-           
-            List<int> checks = new List<int>();
+            bool drifting = false;
+            List<int> checks = null;
+            checks = new List<int>();
 
             foreach (var item in locationPointsForRouteVerify)
             {
-                if (calculateDistance(loc, item) >= 2)
+                if (calculateDistance(loc, item) >= 200)
                 {
                    checks.Add(1);
                 }

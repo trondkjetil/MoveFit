@@ -117,14 +117,10 @@ namespace TestApp
             viewPager.AddOnPageChangeListener(this);
 
             tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
-            tabLayout.SetupWithViewPager(viewPager);
-            
+            tabLayout.SetupWithViewPager(viewPager);            
             setupTabIcons();
 
-            //layout = FindViewById<LinearLayout>(Resource.Id.layout);
-            //mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserRoutes);
-            //mLayoutManager = new LinearLayoutManager(this);
-            //mRecyclerView.SetLayoutManager(mLayoutManager);
+
             currentPage = viewPager.CurrentItem;
         }
 
@@ -168,8 +164,7 @@ namespace TestApp
 
         }
 
-     
-
+    
         void showAll()
         {
             mAdapter = null;
@@ -183,23 +178,18 @@ namespace TestApp
                 orderedRoutes = (from user in users
                              
                                  select user).ToList<User>();
-
                 mAdapter = new UsersNearbyAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
                 
-
             }
             else if (currentPage == 2)
             {
-
                 mRecyclerView = MyFriendsFragment.mRecyclerView;
                 orderedRoutes = (from user in myFriends
                                 
                                  select user).ToList<User>();
-
-              
-
+           
                 mAdapter = new UsersFriendsAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter, me);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
@@ -211,39 +201,13 @@ namespace TestApp
                 mRecyclerView = FriendRequestFragment.mRecyclerView;
                 orderedRoutes = (from user in friendRequests
                                 
-                                 select user).ToList<User>();
-
-                //if (orderedRoutes.Count == 0)
-                //{
-                //    // mRecyclerView.Visibility = ViewStates.Gone;
-
-                //    layout.RemoveAllViews();
-                //    TextView txt = new TextView(this);
-                //    txt.Text = "Could not find any!";
-                //    txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-                //    txt.SetPadding(10, 10, 10, 10);
-                //    txt.Gravity = Android.Views.GravityFlags.CenterVertical;
-                //    txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
-
-                //    txt.SetTextColor(Color.Black);
-                //    txt.TextSize = 20;
-                //    layout.AddView(txt);
-                //}
-                //else
-                //{
-              
+                                 select user).ToList<User>();           
                     mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
                     mRecyclerView.SetAdapter(mAdapter);
                     mAdapter.NotifyDataSetChanged();
                 
                 
             }
-            //orderedRoutes = (from user in friendRequests
-            //                 orderby user.Points
-            //                 select user).ToList<User>();
-            //mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-            //mRecyclerView.SetAdapter(mAdapter);
-            //mAdapter.NotifyDataSetChanged();
 
         }
         void showOnline()
@@ -341,15 +305,6 @@ namespace TestApp
         }
         void showFemale()
         {
-            //List<User> orderedRoutes;
-            //orderedRoutes = (from user in friendRequests
-            //                 where user.Sex != "Male"
-            //                 orderby user.Sex
-            //                 select user).ToList<User>();
-
-            //mAdapter = new UsersFriendRequestAdapter(orderedRoutes, mRecyclerView, this, this, mAdapter);
-            //mRecyclerView.SetAdapter(mAdapter);
-            //mAdapter.NotifyDataSetChanged();
             List<User> orderedRoutes;
             currentPage = viewPager.CurrentItem;
 
@@ -393,7 +348,6 @@ namespace TestApp
                 mAdapter.NotifyDataSetChanged();
             }
 
-
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -408,31 +362,69 @@ namespace TestApp
 
         public async void OnPageSelected(int position)
         {
-           
-             if (position == 1)
+            TextView txt = null;
+            if (position == 1)
             {
                 mRecyclerView = FindpeopleFragment.mRecyclerView;
+               
                 users = await Azure.nearbyPeople();
-                mAdapter = new UsersNearbyAdapter(users, mRecyclerView, this, this, mAdapter);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                txt = act.FindViewById<TextView>(Resource.Id.emptyNearby);
+                if (users.Count != 0)
+                {
+                    mRecyclerView.Visibility = ViewStates.Visible;
+                    txt.Visibility = ViewStates.Gone;                 
+                    mAdapter = new UsersNearbyAdapter(users, mRecyclerView, this, this, mAdapter);
+                    mRecyclerView.SetAdapter(mAdapter);
+                     mAdapter.NotifyDataSetChanged();
+
+                }
+                else
+                {
+                    
+                        mRecyclerView.Visibility = ViewStates.Invisible;
+                        txt.Visibility = ViewStates.Visible;
+                    }
+                
+
             }else if(position == 2)
             {
+                 myFriends = await Azure.getUsersFriends(MainStart.userId);
+                txt = act.FindViewById<TextView>(Resource.Id.emptyFriends);
                 mRecyclerView = MyFriendsFragment.mRecyclerView;
-                myFriends = await Azure.getUsersFriends(MainStart.userId);
-                mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this, this, mAdapter, me);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                if (myFriends.Count != 0)
+                {
+                   txt.Visibility = ViewStates.Gone;
+                    mRecyclerView.Visibility = ViewStates.Visible;
+                    mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this, this, mAdapter, me);
+                   mRecyclerView.SetAdapter(mAdapter);
+                       mAdapter.NotifyDataSetChanged();
+                    
+                }else
+                {
+                               
+                        mRecyclerView.Visibility = ViewStates.Invisible;                   
+                         txt.Visibility = ViewStates.Visible;
+                    }
+                        
 
             }
             else if(position == 3)
             {
+                 friendRequests = await Azure.getFriendRequests(MainStart.userId);
+                txt = act.FindViewById<TextView>(Resource.Id.emptyRequest);
                 mRecyclerView = FriendRequestFragment.mRecyclerView;
-                friendRequests = await Azure.getFriendRequests(MainStart.userId);
-
-                mAdapter = new UsersFriendRequestAdapter(friendRequests, mRecyclerView, this, this, mAdapter);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                if (friendRequests.Count != 0) 
+                {
+                    mRecyclerView.Visibility = ViewStates.Visible;
+                    txt.Visibility = ViewStates.Gone;
+                    mAdapter = new UsersFriendRequestAdapter(friendRequests, mRecyclerView, this, this, mAdapter);
+                    mRecyclerView.SetAdapter(mAdapter);
+                   mAdapter.NotifyDataSetChanged();
+                }else
+                {
+                    mRecyclerView.Visibility = ViewStates.Invisible;
+                    txt.Visibility = ViewStates.Visible;
+                }
 
             }
 

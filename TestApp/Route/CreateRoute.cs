@@ -83,6 +83,7 @@ namespace TestApp
         Location previousLocation;
 
         PolylineOptions trackingLine;
+        List<Polyline> polylines;
         public bool Ischecked
         {
 
@@ -278,9 +279,10 @@ namespace TestApp
               alert.SetPositiveButton("Yes", (senderAlert, args) =>
               {
                   trackingLine = new PolylineOptions();
+                  polylines = new List<Polyline>();
                   startRouteCreation();
-                
                   App.Current.LocationService.LocationChanged += HandleLocationChanged;
+
 
               });
 
@@ -382,10 +384,12 @@ namespace TestApp
 
             if (points.Count == 0)
             {
+                StopService(new Intent(this, typeof(CreateRouteService)));
+
                 Finish();
                 Intent myIntent = new Intent(this, typeof(CreateRoute));
                 StartActivity(myIntent);
-                Toast.MakeText(this, "Unable to create route, no location found!", ToastLength.Long).Show();
+                Toast.MakeText(this, "Unable to create route, no gps data found!", ToastLength.Long).Show();
                 return;
             }          
             try
@@ -407,8 +411,20 @@ namespace TestApp
             dist = 0;
             Toast.MakeText(this, "Ending route...", ToastLength.Short).Show();
             statusImage.SetImageResource(Resource.Drawable.red);
+         
+           if(polylines != null && polylines.Count > 0)
+            {
+                //foreach (var item in polylines)
+                //{
+                //    item.Remove();
+                //}
+                //polylines.Clear();
+              //  mMap.Snapshot(this);
+            }else
+            drawRoute(typeToDraw);
 
-            drawRoute(typeToDraw );
+          //  mMap.Snapshot(this);
+
             dist = calculateDistance();
 
             if (dist == 0)
@@ -417,28 +433,37 @@ namespace TestApp
 
             }
 
-            if(dist < 150)
-            {
-                Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
+            //if(dist < 200)
+            //{
+            //    Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
+            //    App.Current.LocationService.LocationChanged -= HandleLocationChanged;
 
-                Finish();
-            }
-            else
-            {
+            //    StopService(new Intent(this, typeof(CreateRouteService)));
+            //    Finish();
+            //}
+            //else
+            //{
 
-                mypoints = MyPoints.calculatePoints(routeType, dist);
-                score = mypoints;
-                mMap.Snapshot(this);
-                startDialogNameRoute();
-                firstRun = true;
+            //    mypoints = MyPoints.calculatePoints(routeType, dist);
+            //    score = mypoints;
+               
+            //    startDialogNameRoute();
+            //    firstRun = true;
 
-            }
+            //}
 
+            mypoints = MyPoints.calculatePoints(routeType, dist);
+            score = mypoints;
+
+
+          //  mMap.Snapshot(this);
+            startDialogNameRoute();
+            firstRun = true;
 
 
         }
 
-     
+
         public void startDialogNameRoute()
         {
 
@@ -526,13 +551,19 @@ namespace TestApp
                 list.Visibility = ViewStates.Visible;
 
             }
-            catch (Exception eg)
+            catch (Exception)
             {
 
-                throw eg;
+               
             }
             startCreate.Visibility = ViewStates.Visible;
             stopCreate.Visibility = ViewStates.Invisible;
+
+            Finish();
+            Intent myIntent = new Intent(this, typeof(CreateRoute));
+            StartActivity(myIntent);
+            
+
 
         }
         public void startRouteCreation()
@@ -555,8 +586,8 @@ namespace TestApp
             routeStatus.Text = "Acquiring your position...";
 
             var loc = App.Current.LocationService.getLastKnownLocation();
-          
 
+            loc = loc;
 
             if (loc != null)
             {
@@ -575,7 +606,6 @@ namespace TestApp
             }
 
 
-
             StartService(new Intent(this, typeof(CreateRouteService)));
             isReady = false;
             Ischecked = false;
@@ -584,8 +614,7 @@ namespace TestApp
             stopWatch = new Stopwatch();
             stopWatch.Start();
             stopCreate.Enabled = true;
-
-           
+        
         }
 
         public void HandleLocationChanged(object sender, LocationChangedEventArgs e)
@@ -819,6 +848,8 @@ namespace TestApp
                 myMark.Remove();
             }
 
+       
+
             Bitmap flagStart = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startF);
             var startPoint = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(flagStart, 80, false)); //(Resource.Drawable.test);
            
@@ -830,16 +861,17 @@ namespace TestApp
             BitmapDescriptor image = BitmapDescriptorFactory.FromBitmap(MainStart.profilePic);
             liveTrackingMarker.SetIcon(image);
             myMark = mMap.AddMarker(liveTrackingMarker);
-           
-              
-            if(previousLocation != null && calculateDistance(loc.Latitude,loc.Longitude, previousLocation.Latitude, previousLocation.Longitude) >= 20 )
+
+            Polyline line = null; 
+            if(previousLocation != null && calculateDistance(loc.Latitude,loc.Longitude, previousLocation.Latitude, previousLocation.Longitude) >= 15 )
             {
                 trackingLine.Add(new LatLng(loc.Latitude, loc.Longitude));
-                mMap.AddPolyline(trackingLine);
+               line = mMap.AddPolyline(trackingLine);
+                polylines.Add(line);
             }
             previousLocation = loc;
 
-           
+            mMap.Snapshot(this);
         }
 
 
@@ -916,7 +948,7 @@ namespace TestApp
 
             mMap.AddPolyline(opt);
 
-         //   mMap.Snapshot(this);
+            mMap.Snapshot(this);
 
         }
 

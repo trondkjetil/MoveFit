@@ -14,8 +14,8 @@ namespace TestApp
     public class LocationService : Service, ILocationListener
     {
         public string userId;
-        private static readonly int UPDATE_INTERVAL = 1000 * 45 * 1;
-        private static readonly int MIN_DISTANCE = 16; // 20
+        private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
+        private static readonly int MIN_DISTANCE = 15; // 20
 
         public static int timeInterval;
         public static int distance;

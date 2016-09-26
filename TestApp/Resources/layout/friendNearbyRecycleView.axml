@@ -5,9 +5,8 @@
     android:id="@+id/layout"
     android:background="@drawable/profile"
     android:orientation="vertical">
-
     <TextView
-        android:id="@+id/empty"
+        android:id="@+id/emptyNearby"
         android:textColor="#000000"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"
@@ -18,7 +17,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:textSize="32dp"
-        android:text="No One Nearby.." />
+        android:text="No One New Nearby.." />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclePeopleNearby"
         android:layout_width="match_parent"

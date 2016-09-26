@@ -33,8 +33,8 @@ namespace TestApp
             public string routeId;
             public string routeTime;
             public string routeUserId;
-
-            private RecyclerView.Adapter mAdapter;
+        TextView txt;
+        private RecyclerView.Adapter mAdapter;
 
       
 
@@ -193,6 +193,20 @@ namespace TestApp
                     mAdapter = new UsersMyRoutesAdapterFragment(mRoutes, mRecyclerView, mContext, mMyInstance,2);
                     mRecyclerView.SetAdapter(mAdapter);
                     mAdapter.NotifyDataSetChanged();
+
+
+                    if (mRoutes.Count == 0)
+                    {
+
+                        //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                        //mContext.StartActivity(myInt);
+                        //  mActivity.Finish();
+                        Activity activity = (Activity)mContext;
+                        txt = activity.FindViewById<TextView>(Resource.Id.emptyMyRoute);
+                        mRecyclerView.Visibility = ViewStates.Invisible;
+                        txt.Visibility = ViewStates.Visible;
+
+                    }
 
                 };
                 

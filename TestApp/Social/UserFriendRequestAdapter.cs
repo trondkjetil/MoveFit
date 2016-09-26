@@ -24,8 +24,6 @@ namespace TestApp
         private int mCurrentPosition = -1;
         private Activity mActivity;
         private RecyclerView.Adapter mAdapter;
-
-
         public string userName;
         public string userGender;
         public int userAge;
@@ -34,30 +32,26 @@ namespace TestApp
         public string userAboutMe;
         public string userID;
         TextView txt;
+
         public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
-
             mActivity = act;
-            mUsers = users;
-            
+            mUsers = users;           
             mRecyclerView = recyclerView;
             mContext = context;
             mAdapter = adapter;
 
-
-            txt = act.FindViewById<TextView>(Resource.Id.empty);
-
-            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 3)
-            {
-                           
-                mRecyclerView.Visibility = ViewStates.Invisible;
-                txt.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                txt.Visibility = ViewStates.Gone;
-            }
-
+            //txt = act.FindViewById<TextView>(Resource.Id.empty);
+            //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 3)
+            //{                          
+            //    mRecyclerView.Visibility = ViewStates.Invisible;
+            //    txt.Visibility = ViewStates.Visible;
+            //}
+            //else
+            //{
+            //    txt.Visibility = ViewStates.Gone;
+            //}
+           
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -67,9 +61,7 @@ namespace TestApp
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
             public ImageView mProfilePicture { get; set; }
-
             public ImageButton mDeleteFriend { get; set; }
-
             public ImageButton mAcceptFriend { get; set; }
             public MyView(View view) : base(view)
             {
@@ -80,10 +72,7 @@ namespace TestApp
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            
-           
-
-
+                      
             View userFriendRequest = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.userFriendsRequestContent, parent, false);
 
             ImageView profile = userFriendRequest.FindViewById<ImageView>(Resource.Id.profilePicture);
@@ -96,55 +85,40 @@ namespace TestApp
             rejectFriendReq.FocusableInTouchMode = false;
             rejectFriendReq.Clickable = true;
 
-
             ImageButton acceptFriend = userFriendRequest.FindViewById<ImageButton>(Resource.Id.acceptFriend);
             acceptFriend.Focusable = false;
             acceptFriend.FocusableInTouchMode = false;
             acceptFriend.Clickable = true;
-
-          
+        
             MyView view = new MyView(userFriendRequest) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mDeleteFriend = rejectFriendReq, mAcceptFriend = acceptFriend };
-
-          
-                return view;
-            
-
-          
+                   
+                return view;                 
 
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             Bitmap userImage;
-
             MyView myHolder = holder as MyView;
             myHolder.mMainView.Click += mMainView_Click;
             myHolder.mUserName.Text = mUsers[position].UserName;
-
             userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
-
-
             myHolder.mDeleteFriend.SetTag(Resource.Id.rejectFriend, position);
             myHolder.mAcceptFriend.SetTag(Resource.Id.acceptFriend, position);
 
             myHolder.mDeleteFriend.Click += (sender, args) =>
             {
 
-
                 int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.rejectFriend));
 
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Rejected", ToastLength.Long).Show();
-
                 var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id, false);
-
                 mUsers.RemoveAt(pos);
                 mAdapter = new UsersFriendRequestAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter);
                 mRecyclerView.SetAdapter(mAdapter);
                 mAdapter.NotifyDataSetChanged();
 
-
             };
-
 
 
             myHolder.mAcceptFriend.Click += (sender, args) =>
@@ -154,18 +128,15 @@ namespace TestApp
 
                     //Intent myInt = new Intent(mContext, typeof(RouteOverview));
                     //mContext.StartActivity(myInt);
-
                     // mActivity.Finish();
+                    txt = mActivity.FindViewById<TextView>(Resource.Id.emptyRequest);
                     mRecyclerView.Visibility = ViewStates.Invisible;
                     txt.Visibility = ViewStates.Visible;
                 }
 
                 //    var pos = ((View)sender).Tag;
-
                 int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.acceptFriend));
-
                 Toast.MakeText(mContext, mUsers[position].UserName.ToString() + " Added!", ToastLength.Long).Show();
-
                 var waiting = Azure.setFriendAcceptance(MainStart.userId, mUsers[position].Id, true);
 
                 mUsers.RemoveAt(pos);
@@ -182,11 +153,11 @@ namespace TestApp
                     //Intent myInt = new Intent(mContext, typeof(RouteOverview));
                     //mContext.StartActivity(myInt);
                     //  mActivity.Finish();
+                    txt = mActivity.FindViewById<TextView>(Resource.Id.emptyRequest);
                     mRecyclerView.Visibility = ViewStates.Invisible;
                     txt.Visibility = ViewStates.Visible;
 
                 }
-
             };
 
 
@@ -202,7 +173,6 @@ namespace TestApp
 
             myHolder.mText.Text = "Age " + mUsers[position].Age;
 
-
             if (userImage == null)
             {
                 myHolder.mProfilePicture.SetImageResource(Resource.Drawable.tt);
@@ -216,8 +186,6 @@ namespace TestApp
                 SetAnimation(myHolder.mMainView, currentAnim);
                 mCurrentPosition = position;
             }
-
-
 
         }
 

@@ -38,22 +38,26 @@ namespace TestApp
          
             myFriends = FriendsOverview.myFriends;
             me = FriendsOverview.me;
-           
-              
+
+
+            mLayoutManager = new LinearLayoutManager(this.Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, FriendsOverview.me);
+            mRecyclerView.SetAdapter(mAdapter);
+
+
             if (myFriends.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
                 mRecyclerView.SetLayoutManager(mLayoutManager);
-
                 mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, FriendsOverview.me);
                 mRecyclerView.SetAdapter(mAdapter);
-
+                mAdapter.NotifyDataSetChanged();
             }
             else
 
             {
-                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
-
+                TextView txt = view.FindViewById<TextView>(Resource.Id.emptyFriends);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }
@@ -80,7 +84,7 @@ namespace TestApp
             //Will run on separate thread
             //  Thread.Sleep(2000);
             myFriends =  FriendsOverview.updateFriendList().Result;
-              mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, RouteOverview.me);
+              mAdapter = new UsersFriendsAdapter(myFriends, mRecyclerView, this.Activity, this.Activity, mAdapter, FriendsOverview.me);
             mRecyclerView.SetAdapter(mAdapter);
             mAdapter.NotifyDataSetChanged();
         }

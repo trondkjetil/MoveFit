@@ -44,17 +44,19 @@ namespace TestApp
             mAdapter = adapter;
             mMyInstance = me;
 
-            txt = act.FindViewById<TextView>(Resource.Id.empty);
+            //txt = act.FindViewById<TextView>(Resource.Id.emptyFriends);
+           
+            //if (mUsers.Count == 0 )
+            //{
 
-            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 2)
-            {              
-                mRecyclerView.Visibility = ViewStates.Invisible;
-                txt.Visibility = ViewStates.Visible;
-            }else
-            {
-                if(txt != null)
-                txt.Visibility = ViewStates.Gone;
-            }
+            //    mRecyclerView.Visibility = ViewStates.Invisible;
+            //    if (txt != null)
+            //        txt.Visibility = ViewStates.Visible;
+            //}else
+            //{
+            //    if(txt != null)
+            //    txt.Visibility = ViewStates.Gone;
+            //}
 
         }
 
@@ -218,9 +220,13 @@ namespace TestApp
                 //Intent myInt = new Intent(mContext, typeof(RouteOverview));
                 //mContext.StartActivity(myInt);
 
-                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
+                //mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+                //mRecyclerView.SetAdapter(mAdapter);
+                //mAdapter.NotifyDataSetChanged();
+         
+                txt = mActivity.FindViewById<TextView>(Resource.Id.emptyFriends);
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
             }
 
 

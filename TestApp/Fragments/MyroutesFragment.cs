@@ -36,24 +36,26 @@ namespace TestApp
             mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclemyRoutes);           
             routeList = RouteOverview.myRoutes;
             me = RouteOverview.me;
-           
+
+
+
+            mLayoutManager = new LinearLayoutManager(this.Activity);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mAdapter = new UsersMyRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me, 2);
+            mRecyclerView.SetAdapter(mAdapter);
+
             if (routeList.Count != 0)
             {
                 mLayoutManager = new LinearLayoutManager(this.Activity);
-                mRecyclerView.SetLayoutManager(mLayoutManager);
-
-                //  mAdapter = new UsersRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me,2);
+                mRecyclerView.SetLayoutManager(mLayoutManager);  
                 mAdapter = new UsersMyRoutesAdapterFragment(routeList, mRecyclerView, this.Activity, RouteOverview.me, 2);
-
-                
                 mRecyclerView.SetAdapter(mAdapter);
-
+                mAdapter.NotifyDataSetChanged();
             }
             else
 
             {
-                TextView txt = view.FindViewById<TextView>(Resource.Id.empty);
-
+                TextView txt = view.FindViewById<TextView>(Resource.Id.emptyMyRoute);
                 mRecyclerView.Visibility = ViewStates.Invisible;
                 txt.Visibility = ViewStates.Visible;
             }

@@ -967,15 +967,12 @@ namespace TestApp
 
                     return true;
 
-
-
                 case Resource.Id.action_help:
                     Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                     alert.SetTitle("About MoveFit");
-                    alert.SetMessage("About: This is a prototype app in a masters project. Developed by Trond Tufte" + System.Environment.NewLine +
-                     "As this is a part of my thesis, I kindly ask if you could help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine
-                     +
-                     System.Environment.NewLine + "Instructions: Open right and left menu by sliding left and right with your finger from the sides towrds the middle" + System.Environment.NewLine
+                    alert.SetMessage("About: This is an app that I have developed as a part of my master thesis." + System.Environment.NewLine +
+                        "The purpose of the app is to promote a social and active lifestyle." + System.Environment.NewLine +
+                     "In that regard, I kindly ask if you could help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine                   
                     );
                     alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
 
