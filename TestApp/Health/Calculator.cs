@@ -296,7 +296,18 @@ namespace TestApp
 
 
 
+        public override void OnBackPressed()
+        {
 
+            base.OnBackPressed();
+            Finish();
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+
+        }
 
 
 

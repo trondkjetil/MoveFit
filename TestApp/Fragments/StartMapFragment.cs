@@ -65,15 +65,6 @@ namespace TestApp
             var view = inflater.Inflate(Resource.Layout.startMapFragment, container, false);
 
 
-            //toolbar = view.FindViewById<SupportToolbar>(Resource.Id.tbar);
-            //AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            //activity.SetSupportActionBar(toolbar);
-            //activity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //activity.SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            //activity.SupportActionBar.SetDisplayShowHomeEnabled(false);
-            //toolbar.Visibility = ViewStates.Invisible;
-
-
             ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
            // ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
             TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
@@ -212,10 +203,6 @@ namespace TestApp
 
 
                 }
-
-
-
-
 
 
                 Marker m = mMap.AddMarker(new MarkerOptions()

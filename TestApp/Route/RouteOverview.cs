@@ -105,7 +105,18 @@ namespace TestApp
 
 
         }
+        public override void OnBackPressed()
+        {
 
+            base.OnBackPressed();
+            Finish();
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+
+        }
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             menu.Clear();
@@ -284,7 +295,7 @@ namespace TestApp
 
 
         }
-
+  
         public void OnPageScrollStateChanged(int state)
         {
 

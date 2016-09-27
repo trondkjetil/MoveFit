@@ -134,22 +134,10 @@ TestApp.StartRouteService, TestApp;md5cf27010e14af20e69784a5a54418b85f.StartRout
 TestApp.StartRouteService, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 TestApp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
 testapp.StartRouteService;md5cf27010e14af20e69784a5a54418b85f.StartRouteService
-TestApp.Chat, TestApp;md5cf27010e14af20e69784a5a54418b85f.Chat
-TestApp.Chat, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.Chat
-TestApp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
-testapp.Chat;md5cf27010e14af20e69784a5a54418b85f.Chat
 TestApp.PrivateChat, TestApp;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
 TestApp.PrivateChat, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
 TestApp.PrivateChat;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
 testapp.PrivateChat;md5cf27010e14af20e69784a5a54418b85f.PrivateChat
-TestApp.ChatRoom, TestApp;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
-TestApp.ChatRoom, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
-TestApp.ChatRoom;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
-testapp.ChatRoom;md5cf27010e14af20e69784a5a54418b85f.ChatRoom
-TestApp.HelloWebViewClient, TestApp;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
-TestApp.HelloWebViewClient, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
-TestApp.HelloWebViewClient;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
-testapp.HelloWebViewClient;md5cf27010e14af20e69784a5a54418b85f.HelloWebViewClient
 TestApp.FriendsOverview, TestApp;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
 TestApp.FriendsOverview;md5cf27010e14af20e69784a5a54418b85f.FriendsOverview
@@ -218,10 +206,6 @@ TestApp.DialogStartRoute, TestApp;md5cf27010e14af20e69784a5a54418b85f.DialogStar
 TestApp.DialogStartRoute, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.DialogStartRoute
 TestApp.DialogStartRoute;md5cf27010e14af20e69784a5a54418b85f.DialogStartRoute
 testapp.DialogStartRoute;md5cf27010e14af20e69784a5a54418b85f.DialogStartRoute
-TestApp.AuthActivity, TestApp;md5cf27010e14af20e69784a5a54418b85f.AuthActivity
-TestApp.AuthActivity, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.AuthActivity
-TestApp.AuthActivity;md5cf27010e14af20e69784a5a54418b85f.AuthActivity
-testapp.AuthActivity;md5cf27010e14af20e69784a5a54418b85f.AuthActivity
 TestApp.WelcomeScreen, TestApp;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
 TestApp.WelcomeScreen, TestApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen
 TestApp.WelcomeScreen;md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen

@@ -213,10 +213,7 @@
     <Compile Include="Services\LocationServiceConnection.cs" />
     <Compile Include="Services\ServiceConnectedEventArgs.cs" />
     <Compile Include="Services\StartRouteService.cs" />
-    <Compile Include="Chat\Chat.cs" />
     <Compile Include="Chat\PrivateChat.cs" />
-    <Compile Include="Chat\ChatRoom.cs" />
-    <Compile Include="Chat\SetUp.cs" />
     <Compile Include="Social\FriendsOverview.cs" />
     <Compile Include="Social\UserFriendRequestAdapter.cs" />
     <Compile Include="Social\UserMessageFriendsAdapter.cs" />
@@ -231,7 +228,6 @@
     <Compile Include="UI\ScoreBoardFriendsAdapter.cs" />
     <Compile Include="Social\UsersFriends.cs" />
     <Compile Include="Dialogs\DialogStartRoute.cs" />
-    <Compile Include="Login\AuthActivity.cs" />
     <Compile Include="Login\WelcomeScreen.cs" />
     <Compile Include="Utilz\Settings.cs" />
     <Compile Include="Utilz\IO.cs" />
@@ -241,13 +237,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainStart.cs" />
-    <AndroidResource Include="Resources\layout\chatRoom.axml" />
     <AndroidResource Include="Resources\layout\chatPrivate.axml" />
-    <AndroidResource Include="Resources\layout\chatGroup.axml" />
     <AndroidResource Include="Resources\layout\spinnerItemRouteTypes.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\auth.axml" />
     <AndroidResource Include="Resources\layout\leftDrawerAdapter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -281,8 +274,6 @@
     <AndroidResource Include="Resources\drawable\ic_action_search.png" />
     <AndroidResource Include="Resources\menu\actionbar.xml" />
     <AndroidResource Include="Resources\drawable\test.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_forward.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_save.png" />
     <AndroidResource Include="Resources\anim\slide_left_to_right.xml" />
     <AndroidResource Include="Resources\anim\cardView_up.xml" />
     <AndroidResource Include="Resources\anim\flip.xml" />
@@ -290,13 +281,11 @@
     <AndroidResource Include="Resources\drawable\dialogStartButton.xml" />
     <AndroidResource Include="Resources\menu\action_menu.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_help.png" />
-    <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable\buttonSignUpStyle.xml" />
     <AndroidResource Include="Resources\layout\accelerometer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\calculator.axml" />
-    <AndroidResource Include="Resources\layout\chatMessageDialog.axml" />
     <AndroidResource Include="Resources\layout\ContactListItem.axml" />
     <AndroidResource Include="Resources\layout\createRoute.axml">
       <SubType>Designer</SubType>
@@ -308,11 +297,8 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dropDownList.axml" />
-    <AndroidResource Include="Resources\layout\chat.axml" />
     <AndroidResource Include="Resources\layout\map.axml" />
-    <AndroidResource Include="Resources\layout\mapPeople.axml" />
     <AndroidResource Include="Resources\layout\peopleNearByContent.axml" />
-    <AndroidResource Include="Resources\layout\progressBar.axml" />
     <AndroidResource Include="Resources\layout\resultList.axml" />
     <AndroidResource Include="Resources\layout\rightDrawerMenu.axml">
       <SubType>Designer</SubType>
@@ -333,7 +319,6 @@
     <AndroidResource Include="Resources\layout\friendsOverview.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\stepCounter.axml" />
     <AndroidResource Include="Resources\layout\scoreBoardRoutes.axml" />
     <AndroidResource Include="Resources\layout\row_route.axml" />
     <AndroidResource Include="Resources\layout\userProfile.axml">
@@ -382,9 +367,6 @@
     <AndroidResource Include="Resources\drawable\male.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\online.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\startFlag.png" />
   </ItemGroup>
   <ItemGroup>
@@ -418,9 +400,6 @@
     <AndroidResource Include="Resources\menu\actionbarRouteScoreBoard.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\eexit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\menu\action_menu_profile.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -449,28 +428,16 @@
     <AndroidResource Include="Resources\drawable\newAlarm.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu_home.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\deletefriend.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu_btn_add.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\acceptfriend.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\msg.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_action_read.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\sym_action_email.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\compass_basee.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\action_menu_nav_routes.xml" />
@@ -495,9 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\simple_list_item_checked.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bell.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\rsz_route.png" />
@@ -537,9 +501,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\walk.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\at.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\st.jpg" />

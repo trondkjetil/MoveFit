@@ -49,15 +49,12 @@
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRouteService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.StartRouteService" />
-    <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
     <activity android:label="PrivateChat" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.PrivateChat" />
-    <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
     <activity android:label="FriendsOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
     <activity android:label="Scoreboard Routes" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
     <activity android:label="Scoreboard People" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
     <activity android:label="Friends" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
-    <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
     <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
