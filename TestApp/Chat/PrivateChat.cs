@@ -9,7 +9,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
-using Microsoft.AspNet.SignalR.Client;
 using System.Text.RegularExpressions;
 using Java.Util;
 using System.Timers;
@@ -31,9 +30,6 @@ namespace TestApp
         EditText writeMessage;
 
         string[] array;
-
-        HubConnection hubConnection;
-        IHubProxy chatHubProxy;
         ScrollView scroll;
 
         List<MessageDetail> currentMessagesWritten;

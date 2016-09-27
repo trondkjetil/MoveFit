@@ -13,19 +13,11 @@ namespace TestApp
     public class IOUtilz
 	{
 
-		public static Bitmap profileImage  {set;get;}
-
 		public IOUtilz ()
 		{
                    }
-        public static bool isOnline(ConnectivityManager mng)
-        {
+  
 
-            NetworkInfo activeConnection = mng.ActiveNetworkInfo;
-            bool isOnline = (activeConnection != null) && activeConnection.IsConnected;
-
-            return isOnline;
-        }
         //Simple read and write
         //        string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         //        string filename = Path.Combine(path, "myfile.txt");
@@ -164,18 +156,6 @@ namespace TestApp
             int value2 = 0;
             int value3 = 0;
             var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
-
-            //if (prefs.Contains("distance"))
-            //{
-            //    value = prefs.GetInt("distance", 0);
-            //}else if (prefs.Contains("unit"))
-            //{
-            //    value = prefs.GetInt("unit", 0);
-            //}else if (prefs.Contains("interval"))
-            //{
-            //    value = prefs.GetInt("interval", 0);
-            //}
-
             value1 = prefs.GetInt("distance", 0);
             value2 = prefs.GetInt("unit", 0);
             value3 = prefs.GetInt("interval", 0);
@@ -188,21 +168,7 @@ namespace TestApp
 
             return result;
         }
-        public static TextView notFound(Activity act)
-        {
-
-
-            TextView txt = new TextView(act);
-            txt.Text = "Could not find any!";
-            txt.SetTextSize(Android.Util.ComplexUnitType.Sp, 20);
-            txt.SetPadding(10, 10, 10, 10);
-            txt.Gravity = Android.Views.GravityFlags.CenterVertical;
-            txt.Gravity = Android.Views.GravityFlags.CenterHorizontal;
-            txt.SetBackgroundColor(Color.White);
-            txt.SetTextColor(Color.Black);
-            txt.TextSize = 20;
-            return txt;
-        }
+     
         public static void SavePreferences(int unit, int distance, int interval)
         {
             var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
@@ -213,26 +179,17 @@ namespace TestApp
             editor.Commit();
         }
 
-        public static bool IsKitKatWithStepCounter(PackageManager pm)
-        {
-
-            // Require at least Android KitKat
-            int currentApiVersion = (int)Build.VERSION.SdkInt;
-            // Check that the device supports the step counter and detector sensors
-            return currentApiVersion >= 19
-            && pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureSensorStepCounter)
-            && pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureSensorStepDetector);
-
-        }
+      
 
         public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
 			bool filter) {
+            Bitmap newBitmap = null;
 
-			float ratio = Math.Min((float) maxImageSize / realImage.GetBitmapInfo ().Width,(float) maxImageSize / realImage.GetBitmapInfo ().Height);
+            float ratio = Math.Min((float) maxImageSize / realImage.GetBitmapInfo ().Width,(float) maxImageSize / realImage.GetBitmapInfo ().Height);
 			int width = (int)Math.Round ((float)ratio * realImage.GetBitmapInfo ().Width);
 			int height = (int)Math.Round ((float)ratio * realImage.GetBitmapInfo ().Height);
 
-			Bitmap newBitmap = Bitmap.CreateScaledBitmap(realImage, width,
+			 newBitmap = Bitmap.CreateScaledBitmap(realImage, width,
 				height, filter);
 			return newBitmap;
 		}
@@ -292,10 +249,11 @@ namespace TestApp
 
         public static Bitmap getRoundedShape(Bitmap scaleBitmapImage)
         {
+            Bitmap targetBitmap = null;
             const int targetWidth = 115;
             const int targetHeight = 115;
-            Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth,
-                targetHeight, Bitmap.Config.Argb8888);
+             targetBitmap = Bitmap.CreateBitmap(targetWidth,
+             targetHeight, Bitmap.Config.Argb8888);
 
             Canvas canvas = new Canvas(targetBitmap);
             Path path = new Path();
@@ -313,36 +271,6 @@ namespace TestApp
                 new Rect(0, 0, targetWidth, targetHeight), null);
             return targetBitmap;
         }
-
-  //      public static Bitmap getProfileImage(string url){
-		//	string url_profilePic = url;
-		//	//profilePicture = GetImageBitmapFromUrl(url_profilePic);
-		//	WebClient web = new WebClient();
-		//	web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
-		//	web.DownloadDataAsync(new Uri(url_profilePic)); 
-
-
-		//	return profileImage;
-		//}
-
-		//static void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-		//{
-		//	if (e.Error != null)
-		//	{
-				
-		//		Console.WriteLine (e.Result);
-		//	}
-		//	else
-		//	{
-
-		//		Bitmap bm = BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
-		//		bm = IOUtilz.scaleDown (bm,180,false);
-		//		bm = IOUtilz.getRoundedShape (bm);
-		//		profileImage = bm;
-					
-		//	}
-
-		//}
 
 	
 

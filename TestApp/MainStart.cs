@@ -11,12 +11,9 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Text;
-using Android.Text.Util;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Microsoft.AspNet.SignalR.Client;
-using Microsoft.WindowsAzure.MobileServices.Query;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using System;
 using System.Collections.Generic;
@@ -26,10 +23,7 @@ using System.Threading.Tasks;
 using static Android.Gms.Maps.GoogleMap;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 //using Gcm.Client;
-using TestApp.Push;
-using System.Net;
 using System.Text;
-using System.IO;
 using Android.Views.Animations;
 
 namespace TestApp
@@ -40,17 +34,12 @@ namespace TestApp
     public class MainStart : AppCompatActivity, ILocationListener
     {
         public static MainStart instance;
-
-        public readonly string logTag = "MainActivity";
-        //SupportToolbar mToolbar;
+        public readonly string logTag = "MainActivity"; 
         ActionBarDrawerToggle mDrawerToggle;
         DrawerLayout mDrawerLayout;
         ListView mLeftDrawer;
         ListView mRightDrawer;
-        ArrayAdapter mLeftAdapter;
-        ArrayAdapter mRightAdapter;
-        List<string> mLeftDataSet;
-        List<string> mRightDataSet;
+        List<string> mLeftDataSet; 
         public string[] table;
         public string text;
         public static string auth0UserId;
@@ -59,15 +48,8 @@ namespace TestApp
         public static Bitmap profilePic;
         public string profilePictureUrl;
 
-        TextView latText;
-        TextView longText;
-        TextView altText;
-        TextView speedText;
         TextView bearText;
-        TextView accText;
-
         Intent myIntent;
-
         public Azure azure;
         public static bool changed;
         public static Location loc;
@@ -76,44 +58,31 @@ namespace TestApp
         public static String[] array;
         public List<User> user;
         public static bool chk;
-        public ProgressBar loadingImage;
-        public static TextView _address;
-       
-        public static GoogleMap mMap;
-        
+        public static TextView _address;       
+        public static GoogleMap mMap;      
         public static Activity mainActivity;
         public static User waitingUpload;
         public static User userInstanceOne;
         static Geocoder geocoder;
-
         public static bool isOnline;
         public static ConnectivityManager connectivityManager;
         public static IMenuItem menItemOnlineIcion;
         public static IMenuItem menItemOnlineText;
         public static IMenuItem menItemLogo;
-
         TextView messages;
-        //TextView points;
-
         public static string pushNotifUserId;
         public static string myUserName;
         public static string userList;
         public static List<MessageDetail> currentMessagesWritten;
         public static List<UserDetail> listOfConnectedUsers;
-
         public List<NavDrawerItem> data;
-        public Android.Views.ViewGroup.LayoutParams param;
-        SpannableString s;
-
         public string routesNearby;
         public string routesCreated;
         public string friends;
         public string totalDistance;
         public string points;
-
-       public static List<User> top;
-       public static List<User> topUsers;
-
+        public static List<User> top;
+        public static List<User> topUsers;
         static TextView titleTopFriends;
         static ImageView pictureFriend1;
         static ImageView pictureFriend2;
@@ -121,23 +90,10 @@ namespace TestApp
         static TextView pers2;
         static TextView pers3;
         static TextView pers1;
-
-        //private RegisterClient registerClient;
-        //private static readonly String BACKEND_ENDPOINT = "http://appbackend201615.azurewebsites.net";
-
-
         public bool dialogOpen;
-        //private void RegisterWithGCM()
-        //{
-        //    // Check to ensure everything's set up right
-        //    GcmClient.CheckDevice(this);
-        //    GcmClient.CheckManifest(this);
-        //     GcmClient.Register(this, Constants.SenderID);
-        //}
+        Animation myAnimation;
 
-
-      
-        public class NavDrawerAdapter :  BaseAdapter //ArrayAdapter<NavDrawerItem>
+        public class NavDrawerAdapter :  BaseAdapter 
 {
         
             private readonly Context context;
@@ -148,7 +104,7 @@ namespace TestApp
                     this.context = context;
                     this.layoutResourceId = layoutResourceId;
                     this.data = data;
-                   // fillAdapter();
+                 
             }
           
             public override int Count
@@ -170,12 +126,8 @@ namespace TestApp
 
             public override View GetView(int position, View convertView, ViewGroup parent)
         {
-                //LayoutInflater inflater = ((Activity)context).LayoutInflater;
-
-                //View v = inflater.Inflate(layoutResourceId, parent, false);
+            
                 var v = convertView ?? MainStart.mainActivity.LayoutInflater.Inflate(Resource.Layout.leftDrawerAdapter, parent, false);
-
-
             ImageView imageView = v.FindViewById<ImageView>(Resource.Id.img);
             TextView textView =v.FindViewById<TextView>(Resource.Id.titleMen);
 
@@ -218,7 +170,6 @@ namespace TestApp
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.drawerLayout);
             TestIfGooglePlayServicesIsInstalled();
             SupportToolbar  mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
@@ -228,14 +179,11 @@ namespace TestApp
             profilePictureUrl = array[1];
             profilePic = IOUtilz.GetImageBitmapFromUrl(array[1]);
             auth0UserId = array[3] + "-" + array[2];
-            //top = await Azure.getUsersFriends(auth0UserId);
-            //topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
 
             geocoder = new Geocoder(this);
             mainActivity = this;
             instance = this;
             dialogOpen = false;
-
             changed = false;
             user = null;
             chk = false;
@@ -244,8 +192,6 @@ namespace TestApp
             userInstanceOne = null;
           
             StartService(new Intent(this, typeof(SimpleService)));
-          
-            //mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
 
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             SetSupportActionBar(mToolbar);
@@ -255,9 +201,6 @@ namespace TestApp
 
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
             mRightDrawer = FindViewById<ListView>(Resource.Id.ContactsListView);
-
-            //top = await Azure.getUsersFriends(auth0UserId);
-            //topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
             mLeftDrawer.Tag = 0;
             mRightDrawer.Tag = 1;      
 
@@ -274,11 +217,10 @@ namespace TestApp
             routeButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
             icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.rsz_score);
             scoreButton.SetImageBitmap(IOUtilz.getRoundedShape(icon));
-
+            
             var layout = FindViewById<RelativeLayout>(Resource.Id.messages);
             mLeftDataSet = new List<string>();
           
-
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
@@ -286,7 +228,6 @@ namespace TestApp
             mLeftDataSet.Add("My Profile");
 
             data = new List<NavDrawerItem>();
-
             data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
             data.Add(new NavDrawerItem(Resource.Drawable.startFlag, "Scoreboard"));
             data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
@@ -300,8 +241,7 @@ namespace TestApp
             mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) =>
             {
                 var item = customAdapter.GetItem(e.Position);
-             
-               
+                           
                 if (e.Position == 1)
                 {
                     myIntent = new Intent(this, typeof( ScoreBoardPersonActivity));
@@ -322,7 +262,6 @@ namespace TestApp
                     myIntent = new Intent(this, typeof(Settings));
                     StartActivity(myIntent);
                 }
-
 
                 else if (e.Position == 0)
                 {
@@ -369,11 +308,8 @@ namespace TestApp
             };
 
 
-                var RightAdapter = new RightDrawer(this);
-                mRightDrawer.Adapter = RightAdapter;
-
-
-
+            var RightAdapter = new RightDrawer(this);
+            mRightDrawer.Adapter = RightAdapter;
             mDrawerToggle = new ActionBarDrawerToggle(
                 this,                           //Host Activity
                 mDrawerLayout,                  //DrawerLayout
@@ -381,26 +317,10 @@ namespace TestApp
                 Resource.String.closeDrawer     //Closed Message
             );
 
-            //added
+  
             mDrawerToggle.DrawerIndicatorEnabled = true;
-            // mDrawerLayout.SetDrawerListener(mDrawerToggle);
             mDrawerLayout.AddDrawerListener(mDrawerToggle);
-
-            //added
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
-            //SupportActionBar.SetHomeButtonEnabled(true);
-            //SupportActionBar.SetDisplayShowTitleEnabled(false);
             mDrawerToggle.SyncState();
-
-
-           // Typeface tf = Typeface.CreateFromAsset(Assets,
-           //   "english111.ttf");
-           // s = new SpannableString("MoveFit");
-           // s.SetSpan(tf, 0, s.Length(), SpanTypes.ExclusiveExclusive
-           //);
-
-           // SupportActionBar.TitleFormatted = s;
 
             if (mToolbar != null)
             {
@@ -424,17 +344,8 @@ namespace TestApp
 
             else
             {
-                //This is the first the time the activity is ran
 
                  SupportActionBar.SetTitle(Resource.String.closeDrawer);
-
-                //int width = Resources.DisplayMetrics.WidthPixels / 10;
-                //var paramters = mRightDrawer.LayoutParameters;
-
-                //paramters.Width = width;
-                //mRightDrawer.LayoutParameters = paramters;
-
-                //mDrawerLayout.OpenDrawer(mRightDrawer);
 
             }
 
@@ -468,22 +379,16 @@ namespace TestApp
                    
                    waitingUpload = user.FirstOrDefault();
                    userId = user.FirstOrDefault().Id;
-                   ///setPoints();
-                   
-                    userInstanceOne = waitingUpload;
+                   userInstanceOne = waitingUpload;
 
                
                     try
                     {
                         var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
                         isOnline = true;
-
-                      
-
                 }
                    catch (Exception)
                     {
-
                        
                     }
 
@@ -509,17 +414,17 @@ namespace TestApp
                 }
 
                totalDistance = "Total Distance Moved: "+ dist.ToString() + unit;
-               // totalDistance.Text = "Total Distance Moved: " + dist.ToString() + unit;
             }
             else
-               // totalDistance.Text = "Total Distance Moved: 0";
             totalDistance = "Total Distance Moved: 0";
-            initPersonTracker();      
+            initPersonTracker();  
+            
+                
             distButton.Click += (a, e) =>
             {
                 messages.Visibility = ViewStates.Visible;
                 messages.Text = totalDistance;
-                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
+                myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
                 myAnimation.Duration = 4500;
                 myAnimation.BackgroundColor = Color.LawnGreen;
                 messages.StartAnimation(myAnimation);             
@@ -531,7 +436,7 @@ namespace TestApp
             {
                 messages.Visibility = ViewStates.Visible;
                 messages.Text = routesCreated + " - " + routesNearby;
-                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
+                myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
                 myAnimation.Duration = 4500;
                 myAnimation.BackgroundColor = Color.MediumVioletRed;         
                 messages.StartAnimation(myAnimation);
@@ -541,13 +446,13 @@ namespace TestApp
             {
                 messages.Visibility = ViewStates.Visible;
                 messages.Text = points;
-                Animation myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
+                myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
                 myAnimation.Duration = 4500;
                 myAnimation.BackgroundColor = Color.Azure;
 
                 messages.StartAnimation(myAnimation);            
                 messages.Visibility = ViewStates.Invisible;
-                //        messages.Text = "";
+               
             };
 
 
@@ -569,8 +474,6 @@ namespace TestApp
                     if (topUsers[0].UserName != "")
                     {
                         pers1.Text = "#1 " + topUsers[0].UserName;
-                        //  pictureFriend1.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[0].ProfilePicture));
-
                         pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[0].ProfilePicture));
 
                     }
@@ -579,7 +482,6 @@ namespace TestApp
                     if (topUsers[1].UserName != "")
                     {
                         pers2.Text = "#2 " + topUsers[1].UserName;
-                        // pictureFriend2.SetImageBitmap(IOUtilz.GetImageBitmapFromUrl(topUsers[1].ProfilePicture));                                pictureFriend1.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
                         pictureFriend2.SetImageBitmap(IOUtilz.DownloadImageUrl(topUsers[1].ProfilePicture));
 
                     }
@@ -604,56 +506,9 @@ namespace TestApp
 
             }
 
-        // StartService(new Intent(this, typeof(LogoutService)));
 
         }
 
-
-        public async void connectToChat()
-        {
-            var hubConnection = new HubConnection("http://chatservices.azurewebsites.net/");
-            var chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-
-            // currentMessagesWritten;
-            //listOfconnectedUser;
-
-            chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (currentUserId, userName, connectedUsers, messageDetails) =>
-            {
-
-                //chatHubProxy.On<string, string, List<UserDetail>, List<MessageDetail>>("onConnected", (id, userName, ConnectedUsers, CurrentMessage) =>
-                //{
-                RunOnUiThread(() =>
-                {
-
-                    pushNotifUserId = currentUserId;
-                    myUserName = userName;
-                    listOfConnectedUsers = connectedUsers;
-                    
-
-                });
-
-            });
-
-          
-            await hubConnection.Start();
-
-
-            try
-            {
-             
-               
-                await chatHubProxy.Invoke("Connect", new object[] { MainStart.userName});
-                Toast.MakeText(this, "You are now online!", ToastLength.Short).Show();
-
-            }
-            catch (Exception a)
-            {
-                throw a; 
-
-            }
-
-
-        }
 
         protected  override void OnStop()
         {
@@ -683,7 +538,6 @@ namespace TestApp
 
         }
       
-
         protected async override void OnDestroy()
         {
 
@@ -701,18 +555,12 @@ namespace TestApp
             //catch (Exception)
             //{
 
-
             //}
-
-
-
 
         }
 
         public async Task<List<User>> logOff()
         {
-
-
             isOnline = false;
             StopService(new Intent(this, typeof(LocationService)));
             await Azure.SetUserOnline(userId, false);
@@ -720,7 +568,6 @@ namespace TestApp
             return user;
         }
 
-        //This is only being executed once
         public bool Changed
         {
             get { return changed; }
@@ -802,13 +649,9 @@ namespace TestApp
             {
 
                 case Android.Resource.Id.Home:
-                    //The hamburger icon was clicked which means the drawer toggle will handle the event
-                    //all we need to do is ensure the right drawer is closed so the don't overlap
                     mDrawerLayout.CloseDrawer(mRightDrawer);
                     mDrawerToggle.OnOptionsItemSelected(item);
 
-
-                    //adde
                     InvalidateOptionsMenu();
                     return true;
 
@@ -838,10 +681,10 @@ namespace TestApp
                 case Resource.Id.action_help:
                     Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                     alert.SetTitle("About MoveFit");
-                    alert.SetMessage("About: This is an app that I have developed as a part of my master thesis." + System.Environment.NewLine +
-                        "The purpose of the app is to promote a social and active lifestyle." + System.Environment.NewLine +
-                     "In that regard, I kindly ask if you could help me by answering a survey. It will not taker more than one minutte of your time! :)" + System.Environment.NewLine                   
-                    );
+                    alert.SetMessage("The purpose of this app is to promote a social and active lifestyle." + System.Environment.NewLine +
+                        "I have developed this app as a part of my master thesis." + System.Environment.NewLine + System.Environment.NewLine +
+                     "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time! :)" + System.Environment.NewLine                   
+                    ); 
                     alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
 
                         var uri = Android.Net.Uri.Parse("https://www.surveymonkey.com/r/WT798BM");
@@ -860,26 +703,7 @@ namespace TestApp
                         alert.Show();
                     });
 
-                 
-
-                    //if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
-                    //{
-                    //    //Right Drawer is already open, close it
-                    //    mDrawerLayout.CloseDrawer(mRightDrawer);
-
-                    //    //adde
-                    //    InvalidateOptionsMenu();
-                    //}
-                    //else
-                    //{
-                    //    //Right Drawer is closed, open it and just in case close left drawer
-                    //    mDrawerLayout.OpenDrawer(mRightDrawer);
-                    //    //  mDrawerLayout.CloseDrawer(mLeftDrawer);
-
-                    //    //adde
-                    //    InvalidateOptionsMenu();
-                    //}
-
+               
                    
                     return true;
 
@@ -915,11 +739,6 @@ namespace TestApp
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
             menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline);
             menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Online");
-
-         
-            //menItemLogo = menu.FindItem(Resource.Id.logoApp);
-            //menItemLogo.SetTitle(s);
-
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -973,7 +792,6 @@ namespace TestApp
             catch (Exception)
             {
 
-
             }
 
         }
@@ -1003,9 +821,6 @@ namespace TestApp
                 waitingUpload = await Azure.AddUser(auth0UserId,"", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
                 userInstanceOne = waitingUpload;
 
-                //var newwaitingDownload = await Azure.getUserByAuthId(auth0UserId);
-                //if (newwaitingDownload.Count != 0)
-                //    userInstanceOne = newwaitingDownload.FirstOrDefault();
 
                 userId = auth0UserId;
                 IOUtilz.SavePreferences(0, 100, 45);
@@ -1358,16 +1173,7 @@ namespace TestApp
                     };
 
 
-                    //Location loc = App.Current.LocationService.getLastKnownLocation();
-                    //LatLng posHere = new LatLng(loc.Latitude, loc.Longitude);
-
-                    ////if (loc.Latitude == 000000 && loc.Longitude == 000000)
-                    ////{
-
-                    ////    posHere = new LatLng(userInstanceOne.Lat, userInstanceOne.Lon);
-                    ////}
-
-                    //setMarker(posHere, mMap);
+         
 
                 }
                 catch (Exception)

@@ -1,11 +1,97 @@
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"><!--android:background="@android:color/holo_blue_light"--><android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:minHeight="?attr/actionBarSize" android:background="@drawable/toolbar" app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" /><android.support.v4.widget.DrawerLayout android:id="@+id/drawer_layout" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/ab"><LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"><!--android:background="#ff00bfa5" greenish  imagebackground android:background="@android:color/white"--><RelativeLayout android:id="@+id/overView" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"><!--android:background="#ff9999"--><TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/titleApp" android:textColor="#ffffff" android:layout_alignParentTop="true" android:layout_marginBottom="20dp" android:layout_marginTop="18dp" android:layout_centerHorizontal="true" android:layout_centerInParent="true" /><RelativeLayout android:id="@+id/messages" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerInParent="true" android:layout_below="@+id/titleApp"><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/distanceButton" android:background="@null" android:layout_marginRight="25dp" /><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/routeButton" android:background="@null" android:layout_toRightOf="@+id/distanceButton" android:layout_marginRight="25dp" /><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/scoreButton" android:background="@null" android:layout_toRightOf="@+id/routeButton" android:layout_marginRight="25dp" android:layout_marginBottom="7dp" /></RelativeLayout><TextView android:text="" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/messageInfo" android:textColor="#ff000000" android:layout_marginTop="5dp" android:layout_marginBottom="5dp" android:layout_below="@+id/messages" android:layout_centerHorizontal="true" /></RelativeLayout><!--<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<!--android:background="@android:color/holo_blue_light"-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ab">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <!--android:background="#ff00bfa5" greenish  imagebackground android:background="@android:color/white"-->
+            <RelativeLayout
+                android:id="@+id/overView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <!--android:background="#ff9999"-->
+                <TextView
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/titleApp"
+                    android:textColor="#ffffff"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true" />
+          
+                <RelativeLayout
+                    android:id="@+id/messages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/titleApp">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/distanceButton"
+                        android:background="@null"
+                        android:layout_marginRight="25dp" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/routeButton"
+                        android:background="@null"
+                        android:layout_toRightOf="@+id/distanceButton"
+                        android:layout_marginRight="25dp" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/scoreButton"
+                        android:background="@null"
+                        android:layout_toRightOf="@+id/routeButton"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="7dp" />
+                </RelativeLayout>
+                <TextView
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/messageInfo"
+                    android:textColor="#ff000000"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/messages"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        <!--<RelativeLayout
                 android:id="@+id/borderLayoutRef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/borderLayout"
                 android:layout_gravity="center">
-            --><!--android:background="@android:color/white"--><!--
+            -->
+        <!--android:background="@android:color/white"-->
+        <!--
                 <TextView
                     android:text=""
                     android:layout_width="match_parent"
@@ -79,4 +165,28 @@
                         android:textColor="#ff000000"
                         android:layout_marginTop="6dp" />
                 </RelativeLayout>
-            </RelativeLayout>--></LinearLayout><!--</RelativeLayout>--><!-- The Left Navigation Drawer --><ListView android:id="@+id/left_drawer" android:layout_width="240dp" android:layout_height="match_parent" android:layout_gravity="start" android:choiceMode="singleChoice" android:divider="#818181" android:dividerHeight="1dp" android:background="@drawable/menu" /><!--android:background="#D9FFFFFF"--><ListView android:id="@+id/ContactsListView" android:layout_width="300dp" android:layout_height="match_parent" android:layout_gravity="right" android:choiceMode="singleChoice" android:divider="#E2E2E2" android:dividerHeight="1dp" android:background="#FFFFFF" /></android.support.v4.widget.DrawerLayout></LinearLayout>
+            </RelativeLayout>-->
+        </LinearLayout>
+    <!--</RelativeLayout>-->
+    <!-- The Left Navigation Drawer -->
+        <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="#818181"
+            android:dividerHeight="1dp"
+            android:background="@drawable/menu" />
+    <!--android:background="#D9FFFFFF"-->
+        <ListView
+            android:id="@+id/ContactsListView"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:choiceMode="singleChoice"
+            android:divider="#E2E2E2"
+            android:dividerHeight="1dp"
+            android:background="#FFFFFF" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

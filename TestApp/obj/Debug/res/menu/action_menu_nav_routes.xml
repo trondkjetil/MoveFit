@@ -1,9 +1,43 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:myapp="http://schemas.android.com/apk/res-auto"><!--<item
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    
+      >
+
+  <!--<item
         android:id="@+id/empty"
         android:orderInCategory="101"
         android:showAsAction="always"
         android:icon="@drawable/ic_action_overflow">
     
     
-       <menu>--><item android:id="@+id/nearbyRoutes" android:title="Sort by Distance" android:text="Sort by Distance" myapp:showAsAction="never" /><item android:id="@+id/difficulty" android:title="Sort By Difficulty" android:text="Sort by sort By Difficulty" myapp:showAsAction="never" /><item android:id="@+id/rating" android:title="Sort By Rating" android:text="Sort by sort By Rating" myapp:showAsAction="never" /><item android:id="@+id/type" android:title="Sort By Type" android:text="Sort by sort By Type" myapp:showAsAction="never" /><!--</menu>
-</item>--></menu>
+       <menu>-->     
+
+  <item android:id="@+id/nearbyRoutes"
+  android:title="Sort by Distance"
+        android:text="Sort by Distance"
+  myapp:showAsAction="never" />
+
+  <item android:id="@+id/difficulty"
+    android:title="Sort By Difficulty"
+         android:text="Sort by sort By Difficulty"
+    myapp:showAsAction="never" />
+
+  <item android:id="@+id/rating"
+     android:title="Sort By Rating"
+         android:text="Sort by sort By Rating"
+     myapp:showAsAction="never" />
+  
+  <item android:id="@+id/type"
+    android:title="Sort By Type"
+         android:text="Sort by sort By Type"
+    myapp:showAsAction="never" />
+
+
+
+
+  <!--</menu>
+</item>-->
+
+</menu>
+

@@ -1,1 +1,13 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android"><string name="activity_route">Select type of route:</string><string-array name="activity_routeTypes"><item>Walking</item><item>Running</item><item>Hiking </item><item>Bicycling</item><item>Skiing</item><item>Kayaking</item></string-array></resources>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="activity_route">Select type of route:</string>
+    <string-array name="activity_routeTypes">
+        <item >Walking</item>
+        <item >Running</item>
+        <item>Hiking </item>
+        <item>Bicycling</item>
+        <item>Skiing</item>
+      <item>Kayaking</item>
+       
+    </string-array>
+</resources>

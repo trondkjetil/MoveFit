@@ -1,1 +1,70 @@
-<RelativeLayout android:background="@drawable/profile" android:layout_width="fill_parent" android:layout_height="fill_parent" android:minWidth="340dp" android:minHeight="350dp" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"><TextView android:text="" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/finish" android:textColor="@android:color/background_dark" android:layout_gravity="center" android:textSize="25dp" android:gravity="center_horizontal" /><TextView android:text="" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/finish" android:id="@+id/avgSpeed" android:textColor="@android:color/background_dark" android:layout_gravity="center" android:textSize="25dp" android:layout_marginTop="60dp" android:gravity="center_horizontal" /><RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/avgSpeed" android:layout_centerInParent="true"><TextView android:text="Please rate the route" android:layout_width="match_parent" android:layout_height="30dp" android:id="@+id/ratingPropt" android:textColor="@android:color/background_dark" android:layout_gravity="center" android:textSize="24dp" android:layout_centerHorizontal="true" android:gravity="center_horizontal" /><RatingBar android:id="@+id/ratingbarEndRoute" android:theme="@style/RatingBar" android:layout_below="@+id/ratingPropt" android:layout_marginTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numStars="5" android:stepSize="1.0" android:layout_centerHorizontal="true" /></RelativeLayout><Button android:text="Done" android:layout_width="110dp" android:layout_height="50dp" android:layout_weight="25" android:id="@+id/startRoute1" android:textSize="20dp" android:textColor="#fff" android:textStyle="bold" android:height="70dp" android:background="@drawable/dialogstartbutton" android:layout_centerHorizontal="true" android:layout_x="260dp" android:layout_gravity="bottom" android:layout_marginTop="480dp" /></RelativeLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/profile"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="340dp"
+    android:minHeight="350dp">
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/finish"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finish"
+        android:id="@+id/avgSpeed"
+        android:textColor="@android:color/background_dark"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avgSpeed"
+        android:layout_centerInParent="true">
+        <TextView
+            android:text="Please rate the route"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/ratingPropt"
+            android:textColor="@android:color/background_dark"
+            android:layout_gravity="center"
+            android:textSize="24dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
+        <RatingBar
+            android:id="@+id/ratingbarEndRoute"
+            android:theme="@style/RatingBar"
+            android:layout_below="@+id/ratingPropt"
+            android:layout_marginTop="5dp"         
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <Button
+        android:text="Done"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_weight="25"
+        android:id="@+id/startRoute1"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:height="70dp"
+        android:background="@drawable/dialogstartbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_x="260dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="480dp" />
+</RelativeLayout>
