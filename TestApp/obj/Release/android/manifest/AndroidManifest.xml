@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="testApp.TestApp" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="22" />
+  <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="22" />
   <!-- Google Maps for Android v2 requires OpenGL ES v2 -->
   <uses-feature android:glEsVersion="0x00020000" android:required="true" />
   <!-- We need to be able to download map tiles and access Google Play Services-->
@@ -28,12 +28,6 @@
   <uses-permission android:name="android.permission.BODY_SENSORS" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <!--android:theme="@style/PrimaryThemes"-->
-  <permission android:name="testApp.TestApp.permission.C2D_MESSAGE" />
-  <uses-permission android:name="testApp.TestApp.permission.C2D_MESSAGE" />
-  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-  <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
   <application android:label="MoveFit" android:allowBackup="true" android:icon="@drawable/tt" android:largeHeap="true" android:debuggable="true" android:name="android.app.Application">
     <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDMnYmPbz3om7pEhwvuBXzOCz0GJ9iuGrQ" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
@@ -49,15 +43,12 @@
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.CreateRouteService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.LocationService" />
     <service android:name="md5cf27010e14af20e69784a5a54418b85f.StartRouteService" />
-    <activity android:label="Messaging" android:name="md5cf27010e14af20e69784a5a54418b85f.Chat" />
     <activity android:label="PrivateChat" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.PrivateChat" />
-    <activity android:label="ChatRoom" android:name="md5cf27010e14af20e69784a5a54418b85f.ChatRoom" />
     <activity android:label="FriendsOverview" android:screenOrientation="portrait" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.FriendsOverview" />
     <activity android:label="UserProfile" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UserProfile" />
     <activity android:label="Scoreboard Routes" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardRouteActivity" />
     <activity android:label="Scoreboard People" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.ScoreBoardPersonActivity" />
     <activity android:label="Friends" android:theme="@style/Theme2" android:name="md5cf27010e14af20e69784a5a54418b85f.UsersFriends" />
-    <activity android:label="Auth0Client" android:name="md5cf27010e14af20e69784a5a54418b85f.AuthActivity" />
     <activity android:icon="@drawable/tt" android:label="MoveFit" android:screenOrientation="portrait" android:name="md5cf27010e14af20e69784a5a54418b85f.WelcomeScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

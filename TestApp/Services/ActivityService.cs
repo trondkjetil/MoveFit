@@ -57,7 +57,13 @@ namespace TestApp
 
                 var pref = IOUtilz.LoadPreferences();
                 timeInterval = pref[2];
+
+                if (timeInterval == 0)
+                    timeInterval = 60;
+
                 timeInterval = timeInterval * 60;
+
+             
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 
@@ -136,8 +142,7 @@ namespace TestApp
             {
                 timer.Restart();
             }
-            if (timeInterval == 0)
-                timeInterval = 60;
+           
 
 
 

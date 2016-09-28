@@ -355,7 +355,9 @@ namespace TestApp
             {
                 user = await Azure.userRegisteredOnline(userName);
                 List<Route> routes = await Azure.nearbyRoutes();
-             
+
+
+         
                 routesNearby = "Routes Nearby: " + routes.Count;
 
             }
@@ -394,7 +396,8 @@ namespace TestApp
 
                     var routeList = await Azure.getMyRoutes(MainStart.userId);
                     routesCreated = "Routes Created: " + routeList.Count;
-                    points = "Score: " + userInstanceOne.Points;
+                
+                   points = "Score: " + userInstanceOne.Points;
 
                 }
 
@@ -681,13 +684,13 @@ namespace TestApp
                 case Resource.Id.action_help:
                     Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                     alert.SetTitle("About MoveFit");
-                    alert.SetMessage("The purpose of this app is to promote a social and active lifestyle." + System.Environment.NewLine +
+                    alert.SetMessage("The purpose of this app is to promote an active and social lifestyle." + System.Environment.NewLine +
                         "I have developed this app as a part of my master thesis." + System.Environment.NewLine + System.Environment.NewLine +
-                     "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time! :)" + System.Environment.NewLine                   
+                     "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time, and it will be anonymous :)" + System.Environment.NewLine                   
                     ); 
                     alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
 
-                        var uri = Android.Net.Uri.Parse("https://www.surveymonkey.com/r/WT798BM");
+                        var uri = Android.Net.Uri.Parse("https://no.surveymonkey.com/r/F7KLKDW");
                         var intent = new Intent(Intent.ActionView, uri);
                         StartActivity(intent);
 
@@ -820,8 +823,8 @@ namespace TestApp
             {
                 waitingUpload = await Azure.AddUser(auth0UserId,"", userName, gender, age, 0, profilePictureUrl, "0", "0", true, activityLevel, 0);
                 userInstanceOne = waitingUpload;
-
-
+                points = "Score: 0";
+                routesCreated= "Routes Created: 0";
                 userId = auth0UserId;
                 IOUtilz.SavePreferences(0, 100, 45);
             }

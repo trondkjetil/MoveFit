@@ -433,24 +433,24 @@ namespace TestApp
 
             }
 
-            //if(dist < 200)
-            //{
-            //    Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
-            //    App.Current.LocationService.LocationChanged -= HandleLocationChanged;
+            if (dist < 180)
+            {
+                Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
+                App.Current.LocationService.LocationChanged -= HandleLocationChanged;
 
-            //    StopService(new Intent(this, typeof(CreateRouteService)));
-            //    Finish();
-            //}
-            //else
-            //{
+                StopService(new Intent(this, typeof(CreateRouteService)));
+                Finish();
+            }
+            else
+            {
 
-            //    mypoints = MyPoints.calculatePoints(routeType, dist);
-            //    score = mypoints;
-               
-            //    startDialogNameRoute();
-            //    firstRun = true;
+                mypoints = MyPoints.calculatePoints(routeType, dist);
+                score = mypoints;
 
-            //}
+                //startDialogNameRoute();
+                //firstRun = true;
+
+            }
 
             mypoints = MyPoints.calculatePoints(routeType, dist);
             score = mypoints;

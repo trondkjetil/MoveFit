@@ -102,8 +102,6 @@ class MonoPackageManager_Resources {
 		"Auth0Client.Android.dll",
 		"Bolts.AppLinks.dll",
 		"Bolts.Tasks.dll",
-		"Microsoft.AspNet.SignalR.Client.dll",
-		"Microsoft.WindowsAzure.Messaging.Android.dll",
 		"Microsoft.WindowsAzure.Mobile.dll",
 		"Microsoft.WindowsAzure.Mobile.Ext.dll",
 		"Microsoft.WindowsAzure.Mobile.SQLiteStore.dll",

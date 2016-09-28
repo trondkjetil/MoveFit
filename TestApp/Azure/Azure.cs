@@ -22,14 +22,13 @@ namespace TestApp
     public class Azure //, IMobileServiceLocalStore
     {
 
-      //  const string applicationURL = @"https://movefitt.azurewebsites.net";
+        //  const string applicationURL = @"https://movefitt.azurewebsites.net";
 
-      //  const string applicationURL = @"https://moveit.azurewebsites.net";
-
-        const string applicationURL = @"http://movefit.azurewebsites.net";
+        //  const string applicationURL = @"https://moveit.azurewebsites.net";
+        // @"http://movefit.azurewebsites.net";
+        const string applicationURL = @"https://movefitt.azurewebsites.net";
         const string localDbFilename = "localstore1.db";
      
-
         //Mobile Service Client reference
         public static MobileServiceClient client { get; set; }
 

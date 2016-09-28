@@ -230,7 +230,6 @@
     <Compile Include="Utilz\IO.cs" />
     <Compile Include="Azure\User.cs" />
     <Compile Include="Azure\Azure.cs" />
-    <Compile Include="Azure\AzureActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainStart.cs" />
@@ -257,8 +256,6 @@
     <AndroidResource Include="Resources\layout\profile.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <AndroidAsset Include="Assets\english111.ttf" />
-    <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\drawable\tt.png" />
