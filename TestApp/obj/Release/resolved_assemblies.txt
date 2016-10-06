@@ -1,4 +1,4 @@
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\TestApp.dll
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\moveFit.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Auth0Client.Android.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Bolts.AppLinks.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Bolts.Tasks.dll

@@ -14,11 +14,22 @@ namespace TestApp
     public class LocationService : Service, ILocationListener
     {
         public string userId;
-        private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
-        private static readonly int MIN_DISTANCE = 15; // 20
+        //private static readonly int UPDATE_INTERVAL = 1000 * 30 * 1;
+        //private static readonly int MIN_DISTANCE = 10; // 20
 
-        public static int timeInterval;
+        private static readonly int UPDATE_INTERVAL = 1000 * 35 * 1;
+        private static readonly int MIN_DISTANCE = 18; // 20
+        bool firstFix;
+        public  bool accuracyHigh;
+        public  bool AccuracyHigh
+        {
+            get { return accuracyHigh; }
+            set { accuracyHigh = value; }
+        }
+
+
         public static int distance;
+        public static int timeInterval;
         public static int TimeInterval {
 
             get{ return timeInterval;}
@@ -56,44 +67,13 @@ namespace TestApp
 		{
 			base.OnCreate ();
 			Log.Debug (logTag, "OnCreate called in the Location Service");
-		}
-        public async void logout()
-        {
-            try
-            {
-                var user = await Azure.SetUserOnline(userId, false);
-            }
-            catch (Exception)
-            {
 
-            }
+            LocMgr = (LocationManager)GetSystemService(LocationService);
+            AccuracyHigh = false;
+            firstFix = false;
         }
-        public void updateLocationTimer()
-        {
-            var timer = new Timer((e) =>
-            {
-                User timerTest = null;
-                try
-                {
-                    timerTest = MainStart.userInstanceOne;
-                }
-                catch (Exception)
-                {
-                    logout();
-
-                }
-
-                if (timerTest == null)
-                {
-                    logout();
-                   // StopService(new Intent(this, typeof(LogoutService)));
-                    StopService(new Intent(this, typeof(LocationService)));
-                }
-
-
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(1).TotalMilliseconds));
-
-        }
+      
+     
         // This gets called when StartService is called in our App class
         public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
@@ -120,60 +100,58 @@ namespace TestApp
         // Handle location updates from the location manager
         public void StartLocationUpdates()
         {
-            //we can set different location criteria based on requirements for our app -
-            //for example, we might want to preserve power, or get extreme accuracy
 
 
-
-            LocMgr = (LocationManager)GetSystemService(LocationService);
-
-
-
+            try
+            {
+                LocMgr.RemoveUpdates(this);
+            }
+            catch (Exception)
+            {
+                      
+            }
+          
 
             IList<string> acceptableLocationProviders = null;
-
             Criteria fine = new Criteria
             {
                 Accuracy = Accuracy.Fine
-                //PowerRequirement = Power.High
-
-
             };
 
             Criteria coarse = new Criteria
             {
                 Accuracy = Accuracy.Coarse
-             
 
+            };
 
-                };
-
-              
-
-            //Criteria high = new Criteria
-            //{
-            //    Accuracy = Accuracy.High
-
-
-            //};
-
-            //Criteria medium = new Criteria
-            //{
-            //    Accuracy = Accuracy.Medium
-
-
-            //};
-            try
+            Criteria medium = new Criteria
             {
-                acceptableLocationProviders = LocMgr.GetProviders(fine, true);
+                Accuracy = Accuracy.Medium
 
-            }
-            catch (Exception)
+            };
+
+            Criteria low = new Criteria
+            {
+                Accuracy = Accuracy.Low
+
+            };
+
+
+            if (AccuracyHigh == true)
             {
 
-            }
 
-            if (acceptableLocationProviders.Count == 0)
+                try
+                {
+                    acceptableLocationProviders = LocMgr.GetProviders(fine, true);
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                if (acceptableLocationProviders.Count == 0)
                 {
                     try
                     {
@@ -183,48 +161,90 @@ namespace TestApp
                     catch (Exception)
                     {
 
-                       
+
                     }
-                  
+
                 }
-        
 
 
+                if (acceptableLocationProviders.Any())
+                {
+                    locationProvider = acceptableLocationProviders.First();
+                }
+                else
+                {
+                    locationProvider = string.Empty;
+                }
 
+                try
+                {
+                    LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
+                }
+                catch (Exception)
+                {
 
+                }
 
-            if (acceptableLocationProviders.Any())
+            }else if (!AccuracyHigh)
             {
-                locationProvider = acceptableLocationProviders.First();
-            }
-            else
-            {
-                locationProvider = string.Empty;
-            }
-
-            try
-            {
-                LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
-            }
-            catch (Exception )
-            {
-               
-            }
-
-            //         var locationCriteria = new Criteria();
-
-            //locationCriteria.Accuracy = Accuracy.Medium;
-            //locationCriteria.PowerRequirement = Power.Medium;
-
-            //// get provider: GPS, Network, etc.
-            //var locationProvider = LocMgr.GetBestProvider(locationCriteria, true);
-
-            //Log.Debug (logTag, string.Format ("You are about to get location updates via {0}", locationProvider));
-
-            //// Get an initial fix on location (MODIFIED FOR LONGER BREAKS)
-            //LocMgr.RequestLocationUpdates(locationProvider, 10000, 0, this);
-
            
+                       if(LocMgr.IsProviderEnabled(LocationManager.NetworkProvider))
+                    {
+
+
+                        try
+                        {
+                            LocMgr.RequestLocationUpdates(LocationManager.NetworkProvider, 30, 0, this);
+
+                        }
+                        catch (Exception)
+                        {
+
+
+                        }
+
+
+                    }
+                else
+                {
+             
+                    try
+                    {
+
+                        acceptableLocationProviders = LocMgr.GetProviders(coarse, true);
+                        if (acceptableLocationProviders.Any())
+                        {
+                            locationProvider = acceptableLocationProviders.First();
+                            LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
+
+                        }else
+                        {
+                            acceptableLocationProviders = LocMgr.GetProviders(medium, true);
+                            locationProvider = acceptableLocationProviders.First();
+                            LocMgr.RequestLocationUpdates(locationProvider, UPDATE_INTERVAL, MIN_DISTANCE, this);
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
+
+                }
+
+
+
+
+
+            }
+
+
+
+
+
+
+
         }
 
 
@@ -250,14 +270,26 @@ namespace TestApp
 
             currentLocation = location;
 
-            if(isBetterLocation(currentLocation, currentBestLocation))
+            if (!firstFix)
+            {
+                this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
+                firstFix = true;
+               
+                accuracyHigh = true;
+                StartLocationUpdates();
+            }
+            else
+            {
+          
+                 if (isBetterLocation(currentLocation, currentBestLocation))
             {
                 currentBestLocation = currentLocation;
                 this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
             }
-              //  this.LocationChanged(this, new LocationChangedEventArgs(currentLocation));
 
-          //  }
+            }
+
+
 
 
         }
@@ -276,13 +308,13 @@ namespace TestApp
 		{
 
             
-            if (!isSameProvider(provider, locationProvider))
-            {
-                LocMgr.RequestLocationUpdates(provider, UPDATE_INTERVAL, MIN_DISTANCE, this);
-                LocMgr.RemoveUpdates(this);
-                StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
+            //if (!isSameProvider(provider, locationProvider))
+            //{
+            //    LocMgr.RequestLocationUpdates(provider, UPDATE_INTERVAL, MIN_DISTANCE, this);
+            //    LocMgr.RemoveUpdates(this);
+            //    StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
 
-            }
+            //}
 
            // StatusChanged(this, new StatusChangedEventArgs(provider, status, extras));
 
@@ -314,43 +346,57 @@ namespace TestApp
             }
 
             // Check whether the new location fix is newer or older
-            long timeDelta = location.Time - currentBestLocation.Time;
-            bool isSignificantlyNewer = timeDelta > UPDATE_INTERVAL;
-            bool isSignificantlyOlder = timeDelta < -UPDATE_INTERVAL;
-            bool isNewer = timeDelta > 0;
+            //long timeDelta = location.Time - currentBestLocation.Time;
+            //bool isSignificantlyNewer = timeDelta > UPDATE_INTERVAL;
+            //bool isSignificantlyOlder = timeDelta < -UPDATE_INTERVAL;
+            //bool isNewer = timeDelta > 0;
 
             // If it's been more than two minutes since the current location, use the new location
             // because the user has likely moved
-            if (isSignificantlyNewer)
-            {
-                return true;
-                // If the new location is more than two minutes older, it must be worse
-            }
-            else if (isSignificantlyOlder)
-            {
-                return false;
-            }
+
+
+            //if (isSignificantlyNewer)
+            //{
+            //    return true;
+            //    // If the new location is more than two minutes older, it must be worse
+            //}
+            //else if (isSignificantlyOlder)
+            //{
+            //    return false;
+            //}
 
             // Check whether the new location fix is more or less accurate
             int accuracyDelta = (int)(location.Accuracy - currentBestLocation.Accuracy);
             bool isLessAccurate = accuracyDelta > 0;
-            bool isMoreAccurate = accuracyDelta < 0;
+            bool isMoreAccurate = accuracyDelta <= 0;
             bool isSignificantlyLessAccurate = accuracyDelta > 200;
 
             // Check if the old and new location are from the same provider
             bool isFromSameProvider = isSameProvider(location.Provider,
                     currentBestLocation.Provider);
 
+            //if (isMoreAccurate)
+            //{
+            //    return true;
+            //}
+            //else if (isNewer && !isLessAccurate)
+            //{
+            //    return true;
+            //}
+            //else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider)
+            //{
+            //    return true;
+            //}
             // Determine location quality using a combination of timeliness and accuracy
             if (isMoreAccurate)
             {
                 return true;
             }
-            else if (isNewer && !isLessAccurate)
+            else if (!isLessAccurate)
             {
                 return true;
             }
-            else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider)
+            else if (!isSignificantlyLessAccurate && isFromSameProvider)
             {
                 return true;
             }
@@ -368,7 +414,17 @@ namespace TestApp
         }
 
 
+        public async void logout()
+        {
+            try
+            {
+                Azure.SetUserOnline(userId, false);
+            }
+            catch (Exception)
+            {
 
+            }
+        }
 
     }
 }

@@ -159,13 +159,12 @@ namespace TestApp
             value1 = prefs.GetInt("distance", 0);
             value2 = prefs.GetInt("unit", 0);
             value3 = prefs.GetInt("interval", 0);
-
-
+            
             int[] result = new int[3];
             result[0] = value1;
             result[1] = value2;
             result[2] = value3;
-
+            result[2] = result[2];
             return result;
         }
      

@@ -577,19 +577,20 @@ namespace TestApp
        
 
 
-        public static async Task<List<User>> updateUserLocation(string userName)
+        public static async Task<bool> updateUserLocation(string userName, double latitude, double longtitude)
         {
 
-            List<User> userList = await table.Where(User => User.UserName == userName).ToListAsync();
-            // await table.UpdateAsync(userList.Find(User => User.UserName == userName ));
+            // List<User> userList = await table.Where(User => User.UserName == userName).ToListAsync();
 
-            userList.Find(User => User.UserName == userName).Lat = MainStart.currentLocation.Latitude;
-            userList.Find(User => User.UserName == userName).Lon = MainStart.currentLocation.Longitude;
-            User user = userList.Find(User => User.UserName == userName);
-            //  var inserted 
-            await table.UpdateAsync(user);
-            return userList;
+            User inst = MainStart.userInstanceOne;
+            inst.Lat = latitude;
+            inst.Lon = longtitude;
+          
 
+            await table.UpdateAsync(inst);
+
+            return true;
+           
         }
 
 
@@ -601,14 +602,16 @@ namespace TestApp
             return userList;
         }
 
-        public static async Task<List<User>> SetUserOnline(string userID, bool onlineStatus)
+        public static async Task<bool> SetUserOnline(string userID, bool onlineStatus)
         {
-            List<User> userList = await table.Where(User => User.Id == userID).ToListAsync();
-            User inst = userList.FirstOrDefault();
+            //List<User> userList = await table.Where(User => User.Id == userID).ToListAsync();
+            //User inst = userList.FirstOrDefault();
+
+            User inst = MainStart.userInstanceOne;
             inst.Online = onlineStatus;
 
             await table.UpdateAsync(inst);
-            return userList;
+            return true;
         }
 
 

@@ -72,22 +72,24 @@ namespace TestApp
                 }
                 else
                 {
-                   var layout = FindViewById<RelativeLayout>(Resource.Id.rel);
+                    // var layout = FindViewById<RelativeLayout>(Resource.Id.rel);
 
+                    TextView status = FindViewById<TextView>(Resource.Id.status);
+                    status.Text = "No internet connection!";
 
                     Toast.MakeText(this,"No internet connection!", ToastLength.Long).Show();
                    
-                    TextView txt = new TextView(this);
-                    txt.Text = "No internet Connection!";
-                    txt.SetTextSize(ComplexUnitType.Sp, 20);
-                    //txt.SetPadding(10, 10, 10, 10);
-                    txt.Gravity = GravityFlags.CenterHorizontal;
-                    txt.TextAlignment = TextAlignment.Center;
+                    //TextView txt = new TextView(this);
+                    //txt.Text = "No internet Connection!";
+                    //txt.SetTextSize(ComplexUnitType.Sp, 20);
+                    ////txt.SetPadding(10, 10, 10, 10);
+                    //txt.Gravity = GravityFlags.CenterHorizontal;
+                    //txt.TextAlignment = TextAlignment.Center;
                  
-                    txt.SetBackgroundColor(Color.White);
-                    txt.SetTextColor(Color.Blue);
+                    //txt.SetBackgroundColor(Color.White);
+                    //txt.SetTextColor(Color.Blue);
                   
-                    layout.AddView(txt);
+                    //layout.AddView(txt);
 
 
                     User login =  await Azure.getOfflineUser();
@@ -152,8 +154,10 @@ namespace TestApp
             }
         }
 
-        private void startUp()
+        private async void startUp()
         {
+       
+            await Task.Delay(1600);
             Bundle b = new Bundle();
             b.PutStringArray("MyData", new[] {
                 name,
@@ -168,23 +172,7 @@ namespace TestApp
             Finish();
 
         }
-        async Task startMain()
-        {
-
-
-            await Task.Delay(50);//3000);
-            Bundle b = new Bundle();
-            b.PutStringArray("MyData", new[] {
-                name,
-                profilePic,
-                userID
-            });
-
-            Intent myIntent = new Intent(this, typeof(MainStart));
-            myIntent.PutExtras(b);
-            StartActivity(myIntent);
-            Finish();
-        }
+     
 
       
 

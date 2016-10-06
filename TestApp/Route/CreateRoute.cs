@@ -440,6 +440,7 @@ namespace TestApp
 
                 StopService(new Intent(this, typeof(CreateRouteService)));
                 Finish();
+                return;
             }
             else
             {
@@ -593,7 +594,7 @@ namespace TestApp
             {
                 mMap.Clear();
                 mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 14));
+                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(loc.Latitude, loc.Longitude), 13));
 
                 MarkerOptions markerMe = new MarkerOptions();
                 markerMe.SetPosition(new LatLng(loc.Latitude, loc.Longitude));
@@ -911,7 +912,7 @@ namespace TestApp
             mMap.AddMarker(markerOpt2);
 
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(firstElement.Latitude, firstElement.Longitude), 14));
+            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(firstElement.Latitude, firstElement.Longitude), 13));
 
             PolylineOptions opt = new PolylineOptions();
 

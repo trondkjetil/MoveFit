@@ -93,6 +93,7 @@ namespace TestApp
         public bool dialogOpen;
         Animation myAnimation;
 
+        bool firstLocationUpdate;
         public class NavDrawerAdapter :  BaseAdapter 
 {
         
@@ -171,8 +172,11 @@ namespace TestApp
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.drawerLayout);
+         
             TestIfGooglePlayServicesIsInstalled();
             SupportToolbar  mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+
+            firstLocationUpdate = false;
 
             array = Intent.GetStringArrayExtra("MyData");
             userName = array[0];
@@ -190,8 +194,10 @@ namespace TestApp
             isOnline = false;
             waitingUpload = null;
             userInstanceOne = null;
+
+
           
-            StartService(new Intent(this, typeof(SimpleService)));
+
 
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             SetSupportActionBar(mToolbar);
@@ -394,12 +400,20 @@ namespace TestApp
                        
                     }
 
-                    var routeList = await Azure.getMyRoutes(MainStart.userId);
+                //currentLocation = App.Current.LocationService.getLastKnownLocation();
+                //Azure.updateUserLocation(userName, currentLocation.Latitude, currentLocation.Longitude);
+
+                var routeList = await Azure.getMyRoutes(MainStart.userId);
                     routesCreated = "Routes Created: " + routeList.Count;
                 
                    points = "Score: " + userInstanceOne.Points;
 
                 }
+
+
+
+
+
 
             if (userInstanceOne != null && userInstanceOne.DistanceMoved != 0)
             {
@@ -420,9 +434,12 @@ namespace TestApp
             }
             else
             totalDistance = "Total Distance Moved: 0";
-            initPersonTracker();  
-            
-                
+            //   initPersonTracker();  
+
+            StartService(new Intent(this, typeof(LocationService)));
+            initPersonTracker();
+
+
             distButton.Click += (a, e) =>
             {
                 messages.Visibility = ViewStates.Visible;
@@ -510,6 +527,10 @@ namespace TestApp
             }
 
 
+
+       
+            StartService(new Intent(this, typeof(SimpleService)));
+           
         }
 
 
@@ -545,20 +566,10 @@ namespace TestApp
         {
 
             base.OnDestroy();
-            await Azure.SetUserOnline(userId, false);
+            Azure.SetUserOnline(userId, false);
             isOnline = false;
             StopService(new Intent(this, typeof(LocationService)));
-            await Azure.SetUserOnline(userId, false);
-            // Azure.SetUserOnline(userName, false);
-            // await logOff();
-            //try
-            //{
-            //    var wait = logOff();
-            //}
-            //catch (Exception)
-            //{
-
-            //}
+         
 
         }
 
@@ -566,7 +577,7 @@ namespace TestApp
         {
             isOnline = false;
             StopService(new Intent(this, typeof(LocationService)));
-            await Azure.SetUserOnline(userId, false);
+            Azure.SetUserOnline(userId, false);
                      
             return user;
         }
@@ -591,14 +602,15 @@ namespace TestApp
         {
             var timer = new Timer((e) =>
             {
-                var timerTest = Azure.updateUserLocation(userName);
+                //  var timerTest = Azure.updateUserLocation(userName);
+              var timerTest =  Azure.updateUserLocation(userName, currentLocation.Latitude, currentLocation.Longitude);
 
-            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(3).TotalMilliseconds));
+            }, null, 0, Convert.ToInt32(TimeSpan.FromMinutes(4).TotalMilliseconds));
 
         }
 
 
-        public void initPersonTracker()
+        public  void initPersonTracker()
         {
 
             //PersonTracker service
@@ -614,7 +626,7 @@ namespace TestApp
             };
 
             //Starts the person activity tracker
-            StartService(new Intent(this, typeof(LocationService)));
+          //  StartService(new Intent(this, typeof(LocationService)));
         }
 
         public bool TestIfGooglePlayServicesIsInstalled()
@@ -826,7 +838,7 @@ namespace TestApp
                 points = "Score: 0";
                 routesCreated= "Routes Created: 0";
                 userId = auth0UserId;
-                IOUtilz.SavePreferences(0, 100, 45);
+               
             }
             catch (Exception)
             {
@@ -836,6 +848,12 @@ namespace TestApp
             {
                 var setOnline = await Azure.SetUserOnline(userId, true);
                 isOnline = true;
+
+               
+                //currentLocation = App.Current.LocationService.getLastKnownLocation();
+                //var timerTest = Azure.updateUserLocation(userName, currentLocation.Latitude, currentLocation.Longitude);
+
+
             }
             catch (Exception)
             {
@@ -843,7 +861,7 @@ namespace TestApp
                
             }
 
-
+            IOUtilz.SavePreferences(0, 100, 45);
             dialogOpen = false;
 
         }
@@ -859,7 +877,7 @@ namespace TestApp
             changed = true;
             if (changed && !chk)
             {
-                chk = true;
+                   chk = true;
             }
         }
 
@@ -918,7 +936,14 @@ namespace TestApp
 
             var currentPos = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 
+            if (!firstLocationUpdate)
+            {
+                Azure.updateUserLocation(userName, currentLocation.Latitude, currentLocation.Longitude);
+                firstLocationUpdate = true;
+            }
+
             setMarker(currentPos, mMap);
+           
             mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
             // mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
             mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 14));
@@ -1070,6 +1095,7 @@ namespace TestApp
                 var view = convertView ?? activityRightDrawer.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
                 contactName.Text = "";
+               
                 MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
                 mMap = mapFrag.Map;
 
@@ -1184,6 +1210,27 @@ namespace TestApp
 
                    
                 }
+
+
+                //try
+                //{
+             
+             
+                //currentLocation = App.Current.LocationService.getLastKnownLocation();
+
+                //var myPos = new LatLng(currentLocation.Longitude, currentLocation.Longitude);
+                //setMarker(myPos, mMap);
+                //mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+                //mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 14));
+                //myPos = myPos;
+                //currentLocation = currentLocation;
+
+                //}
+                //catch (Exception)
+                //{
+
+                   
+                //}
 
                 return view;
             }

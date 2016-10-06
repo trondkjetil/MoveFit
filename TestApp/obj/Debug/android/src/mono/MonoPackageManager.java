@@ -97,8 +97,8 @@ public class MonoPackageManager {
 
 class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
-		/* We need to ensure that "TestApp.dll" comes first in this list. */
-		"TestApp.dll",
+		/* We need to ensure that "moveFit.dll" comes first in this list. */
+		"moveFit.dll",
 		"Auth0Client.Android.dll",
 		"Bolts.AppLinks.dll",
 		"Bolts.Tasks.dll",

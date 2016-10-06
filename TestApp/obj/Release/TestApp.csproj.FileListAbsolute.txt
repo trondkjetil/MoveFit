@@ -1,7 +1,8 @@
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\TestApp.dll
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\TestApp.pdb
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\testApp.TestApp.apk
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\testApp.TestApp-Signed.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll.config
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.pdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\movefit.movefit.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\movefit.movefit-Signed.apk
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Auth0Client.Android.dll
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Bolts.AppLinks.dll
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Bolts.Tasks.dll
@@ -30,9 +31,9 @@ D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Microsoft.WindowsAzure.Mobile.Ext.
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Newtonsoft.Json.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\System.Net.Http.Extensions.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\System.Net.Http.Primitives.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.dll
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.pdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\bin\testApp.TestApp.apk
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.dll
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.pdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\bin\movefit.movefit.apk
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\chatprivate.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\spinneritemroutetypes.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\leftdraweradapter.xml
@@ -158,8 +159,7 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\rsz_dist.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\rsz_route.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\R.cs.flag
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\uploadflags.txt
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Java.Interop.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Microsoft.CSharp.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Mono.Android.dll.mdb
@@ -186,6 +186,7 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Microsoft.CSharp.dl
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Mono.Android.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Mono.Android.Export.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\Mono.CSharp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\mscorlib.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Core.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.dll.mdb
@@ -196,6 +197,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Runtime.Seri
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.ServiceModel.Internals.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\bin\Release\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll.mdb

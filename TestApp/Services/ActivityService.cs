@@ -28,9 +28,9 @@ namespace TestApp
         public static Stopwatch timer;
         public TimeSpan start;
         public TimeSpan end;
+        int[] pref;
 
-
-        public double timeInterval;
+        public float timeInterval;
 
 
         public override void OnCreate()
@@ -39,7 +39,7 @@ namespace TestApp
 
             //start = TimeSpan.Parse("21:00"); // 10 PM
             //end = TimeSpan.Parse("09:00");
-
+            pref = IOUtilz.LoadPreferences();
             start = new TimeSpan(09, 0, 0);
             end = new TimeSpan(21, 0, 0);
         }
@@ -48,22 +48,18 @@ namespace TestApp
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-
+            timer = new Stopwatch();
             new Task(() =>
             {
 
                 isChecked = true;
                 isRunning = true;
 
-                var pref = IOUtilz.LoadPreferences();
+                
                 timeInterval = pref[2];
+                if (timeInterval == 0 || timeInterval == 60)
+                    timeInterval = 59;
 
-                if (timeInterval == 0)
-                    timeInterval = 60;
-
-                timeInterval = timeInterval * 60;
-
-             
 
                 Log.Debug(TAG, "OnStartCommand called at {2}, flags={0}, startid={1}", flags, startId, DateTime.UtcNow);
 
@@ -76,16 +72,8 @@ namespace TestApp
                 sensorManager.GetDefaultSensor(SensorType.Accelerometer),
                 SensorDelay.Ui);
 
-                timer = new Stopwatch();
-
+              
                 timer.Start();
-
-                // th = new ThreadStart (Counter);
-                // childThread = new Thread(th);
-                // childThread.Start();
-
-                //Thread.Sleep (1000);
-
                 Log.Debug(TAG, "Counter: {0}, startid={1}", timer.Elapsed, DateTime.UtcNow);
 
 
@@ -95,22 +83,14 @@ namespace TestApp
         }
 
 
-
-
-
         public override void OnDestroy()
         {
-
-            // childThread.Abort();
-
             isRunning = false;
             StopService(new Intent(this, typeof(SimpleService)));
             sensorManager.UnregisterListener(this);
             Log.Debug(TAG, "SimpleService destroyed at {0}.", DateTime.UtcNow);
             isChecked = false;
-
             base.OnDestroy();
-
 
         }
 
@@ -138,36 +118,59 @@ namespace TestApp
             mAccel = mAccel * 0.9f + delta;
 
 
-            if (mAccel >= 7)
+            if (mAccel >= 6)
             {
                 timer.Restart();
             }
-           
+
+            //  if (mAccel < 5 && (Convert.ToDouble(timer.Elapsed.Seconds) == timeInterval) || (Convert.ToDouble(timer.Elapsed.Seconds) >= timeInterval && Convert.ToDouble(timer.Elapsed.Seconds) <= timeInterval + 8))
+
+                double minutesPassed = Convert.ToDouble(timer.Elapsed.Minutes);
+                double hourPassed = Convert.ToDouble(timer.Elapsed.Hours);
 
 
 
-            if (mAccel < 5 && (timer.Elapsed.Seconds == timeInterval) || (timer.Elapsed.Seconds >= timeInterval && timer.Elapsed.Seconds <= timeInterval + 8))
-            { //TIME_FOR_ALARM > 10 ){  //1800
-                mAccel = 0.00f;
+            if (pref[2] == 120)
+            {
 
-
-
-                if (isChecked == true && DateTime.Now.TimeOfDay <= end && DateTime.Now.TimeOfDay >= start)
+                if ((mAccel < 5 && hourPassed == 2))
                 {
+                    soundAlarm();
+                }
 
-                    var inte = new Intent(this, typeof(ActivityLevelTracker));
-                    inte.AddFlags(ActivityFlags.NewTask);
-                    StartActivity(inte);
-                    isChecked = false;
+            }
+            else
+            {
+
+                if ((mAccel < 5 && minutesPassed == timeInterval) || (minutesPassed >= timeInterval && minutesPassed <= timeInterval + 1))
+                {
+                    mAccel = 0.00f;
+
+
+                    soundAlarm();
+
 
                 }
 
-                timer.Stop();
-                timer.Reset();
             }
 
-        }
 
+        }
+        public void soundAlarm()
+        {
+            if (isChecked == true && DateTime.Now.TimeOfDay <= end && DateTime.Now.TimeOfDay >= start)
+            {
+
+                var inte = new Intent(this, typeof(ActivityLevelTracker));
+                inte.AddFlags(ActivityFlags.NewTask);
+                StartActivity(inte);
+                isChecked = false;
+
+            }
+
+            timer.Stop();
+            timer.Reset();
+        }
         public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
         {
 

@@ -2780,7 +2780,7 @@ containing a value of this type.
         public static int action_bar_title=0x7f0b0045;
         public static int action_context_bar=0x7f0b0066;
         public static int action_divider=0x7f0b00dc;
-        public static int action_help=0x7f0b0143;
+        public static int action_help=0x7f0b0144;
         public static int action_menu_divider=0x7f0b0003;
         public static int action_menu_presenter=0x7f0b0004;
         public static int action_mode_bar=0x7f0b0062;
@@ -2795,7 +2795,7 @@ containing a value of this type.
         public static int alarm=0x7f0b00ef;
         public static int alarmButton=0x7f0b00f0;
         public static int alertTitle=0x7f0b0054;
-        public static int all=0x7f0b0147;
+        public static int all=0x7f0b0148;
         public static int alt=0x7f0b008e;
         public static int always=0x7f0b0029;
         public static int auto=0x7f0b0015;
@@ -2805,7 +2805,7 @@ containing a value of this type.
         public static int b3=0x7f0b0112;
         public static int bear=0x7f0b0091;
         public static int beginning=0x7f0b0026;
-        public static int bmi=0x7f0b014c;
+        public static int bmi=0x7f0b014d;
         public static int borderLayoutRef=0x7f0b00f1;
         public static int bottom=0x7f0b0035;
         public static int btnSend=0x7f0b0088;
@@ -2837,7 +2837,7 @@ containing a value of this type.
         public static int design_menu_item_action_area_stub=0x7f0b00a4;
         public static int design_menu_item_text=0x7f0b00a3;
         public static int design_navigation_view=0x7f0b00a2;
-        public static int difficulty=0x7f0b0149;
+        public static int difficulty=0x7f0b014a;
         public static int difficultyPrompt=0x7f0b00b2;
         public static int disableHome=0x7f0b001a;
         public static int distAway=0x7f0b0128;
@@ -2864,7 +2864,7 @@ containing a value of this type.
         public static int expand_activities_button=0x7f0b0049;
         public static int expanded_menu=0x7f0b005c;
         public static int facts=0x7f0b0075;
-        public static int female=0x7f0b0146;
+        public static int female=0x7f0b0147;
         public static int fill=0x7f0b0040;
         public static int fill_horizontal=0x7f0b0041;
         public static int fill_vertical=0x7f0b0039;
@@ -2882,7 +2882,7 @@ containing a value of this type.
         public static int image=0x7f0b004a;
         public static int imageButton3=0x7f0b012b;
         public static int imageStatus=0x7f0b0096;
-        public static int imageView1=0x7f0b0140;
+        public static int imageView1=0x7f0b0141;
         public static int img=0x7f0b00cf;
         public static int info=0x7f0b0076;
         public static int infoPropt=0x7f0b00a9;
@@ -2907,7 +2907,7 @@ containing a value of this type.
         public static int logout=0x7f0b00ed;
         public static int logoutText=0x7f0b00ee;
         public static int longx=0x7f0b008d;
-        public static int male=0x7f0b0145;
+        public static int male=0x7f0b0146;
         public static int map=0x7f0b0095;
         public static int mapForStartingRoute=0x7f0b011b;
         public static int map_container=0x7f0b0118;
@@ -2922,12 +2922,12 @@ containing a value of this type.
         public static int nameOfroute=0x7f0b00b0;
         public static int namePropt=0x7f0b00a8;
         public static int navigation_header_container=0x7f0b00a1;
-        public static int nearbyRoutes=0x7f0b0148;
+        public static int nearbyRoutes=0x7f0b0149;
         public static int never=0x7f0b002c;
         public static int none=0x7f0b000c;
         public static int normal=0x7f0b000d;
         public static int numberPicker=0x7f0b00b7;
-        public static int online=0x7f0b0144;
+        public static int online=0x7f0b0145;
         public static int onlineStatus=0x7f0b0129;
         public static int overView=0x7f0b00bb;
         public static int parallax=0x7f0b0033;
@@ -2952,8 +2952,8 @@ containing a value of this type.
         public static int radioButton1=0x7f0b007f;
         public static int radioButton2=0x7f0b0080;
         public static int radioGroup1=0x7f0b007e;
-        public static int random=0x7f0b014e;
-        public static int rating=0x7f0b014a;
+        public static int random=0x7f0b014f;
+        public static int rating=0x7f0b014b;
         public static int ratingPropt=0x7f0b00ad;
         public static int ratingbar=0x7f0b0125;
         public static int ratingbarEndRoute=0x7f0b00ae;
@@ -3033,9 +3033,10 @@ containing a value of this type.
         public static int startRouteType=0x7f0b0122;
         public static int startRunning=0x7f0b009a;
         public static int startService=0x7f0b0115;
+        public static int status=0x7f0b0140;
         public static int statusId=0x7f0b00e7;
-        public static int statusOnline=0x7f0b0142;
-        public static int statusOnlineText=0x7f0b0141;
+        public static int statusOnline=0x7f0b0143;
+        public static int statusOnlineText=0x7f0b0142;
         public static int statusRoute=0x7f0b0098;
         public static int status_bar_latest_event_content=0x7f0b00da;
         public static int stop=0x7f0b0077;
@@ -3043,8 +3044,8 @@ containing a value of this type.
         public static int stopService=0x7f0b0116;
         public static int submit_area=0x7f0b0070;
         public static int switch1=0x7f0b0093;
-        public static int switchFriends=0x7f0b014f;
-        public static int switchRoutes=0x7f0b014d;
+        public static int switchFriends=0x7f0b0150;
+        public static int switchRoutes=0x7f0b014e;
         public static int swp=0x7f0b013d;
         public static int tabMode=0x7f0b0019;
         public static int tbar=0x7f0b00ca;
@@ -3085,7 +3086,7 @@ containing a value of this type.
         public static int txtHeaderScore=0x7f0b0109;
         public static int txtLastName=0x7f0b00fd;
         public static int txtScore=0x7f0b0100;
-        public static int type=0x7f0b014b;
+        public static int type=0x7f0b014c;
         public static int up=0x7f0b0009;
         public static int useLogo=0x7f0b001f;
         public static int userFriendRequest=0x7f0b012c;

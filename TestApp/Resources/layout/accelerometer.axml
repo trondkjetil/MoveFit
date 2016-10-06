@@ -43,7 +43,7 @@ android:minWidth="100dp"
             android:gravity="center"
             android:layout_below="@+id/facts"
             android:text="By moving around you can disable the alarm and get points!"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@android:color/black"
             android:layout_marginTop="100dp" />
         <Button
             android:text="Stop"

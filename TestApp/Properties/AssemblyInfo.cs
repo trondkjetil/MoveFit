@@ -23,11 +23,13 @@ using Android;
 [assembly: UsesPermission(Manifest.Permission.AccessCoarseLocation)]
 
 
-#if DEBUG
-[assembly: Application(Debuggable=true)]
-#else
-[assembly: Application(Debuggable = false)]
-#endif
+[assembly: Application(Debuggable = true)]
+
+//#if DEBUG
+//[assembly: Application(Debuggable = true)]
+//#else
+//[assembly: Application(Debuggable = false)]
+//#endif
 
 // Version information for an assembly consists of the following four values:
 //

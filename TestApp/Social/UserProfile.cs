@@ -120,7 +120,7 @@ namespace TestApp
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             profilePic2 = FindViewById<ImageView>(Resource.Id.profilePic2);
-            profilePic2.SetImageResource(Resource.Drawable.tt);
+            profilePic2.SetImageResource(Resource.Drawable.test);
 
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
             TextView points = FindViewById<TextView>(Resource.Id.points);

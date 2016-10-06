@@ -1,7 +1,8 @@
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.pdb
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\testApp.TestApp.apk
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\testApp.TestApp-Signed.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.config
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.pdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\movefit.movefit.apk
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\movefit.movefit-Signed.apk
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Auth0Client.Android.dll
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Bolts.AppLinks.dll
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Bolts.Tasks.dll
@@ -30,9 +31,10 @@ D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.xm
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.dll
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.pdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\bin\testApp.TestApp.apk
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.dll
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.pdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\bin\movefit.movefit.apk
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\chatprivate.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\spinneritemroutetypes.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\leftdraweradapter.xml
@@ -46,7 +48,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendsrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\routesnearbyrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\myroutesrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\profile.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_right.xml
@@ -55,7 +56,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\values\themes.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\customloadbar.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_action_search.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\menu\actionbar.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\test.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_left_to_right.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\cardview_up.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\flip.xml
@@ -156,10 +156,11 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\menu.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_score.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_dist.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_route.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\tt.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\test.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\R.cs.flag
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\uploadflags.txt
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Java.Interop.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.CSharp.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Mono.Android.dll.mdb
@@ -187,6 +188,7 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Android.Export.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\Mono.Data.Tds.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\mscorlib.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ComponentModel.DataAnnotations.dll.mdb
@@ -202,6 +204,5 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ServiceModel.I
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Transactions.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\TestApp.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.dll.mdb
+D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.mdb

@@ -12,7 +12,7 @@
         android:id="@+id/profilePicture"
         android:background="#ff00bfa5" />
     <TextView
-        android:text="Greetings "
+        android:text="Greetings"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -53,7 +53,8 @@ namespace TestApp
     public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 			{
 
-  
+            //App.Current.LocationService.AccuracyHigh = true;
+            //App.Current.LocationService.StartLocationUpdates();
 
             new Task (() => {
 
@@ -64,33 +65,10 @@ namespace TestApp
                 points = new List<Location>();
                 points.Clear();
 
+              
 
                 App.Current.LocationService.LocationChanged += HandleCustomEvent;
               
-                //App.Current.LocationService.LocationChanged += (ae, e) =>
-                //{
-
-                //    currentLocation = e.Location;
-
-                //    points.Add(e.Location);
-
-                //    if (!locationFound)
-                //    {
-                //        CreateRoute.routeStatus.Text = "Stauts: Creating...";
-                //        locationFound = true;
-                //        CreateRoute.statusImage.SetImageResource(Resource.Drawable.green);
-                //    }
-
-
-                //    CreateRoute.activity.RunOnUiThread(() =>
-                //    {
-                //        Toast.MakeText(CreateRoute.activity, "Location added", ToastLength.Long).Show();
-
-                //    });
-
-                //};
-
-
                 locationFound = false;
                 Intent serviceIntent = new Intent(LocationService);
                 con = new LocationServiceConnection(new LocationServiceBinder(App.Current.LocationService));
@@ -99,49 +77,6 @@ namespace TestApp
 
 
                 messageNotification();
-
-
-               // Intent newIntent = new Intent(this, typeof(CreateRoute));
-               // // Pass some information to SecondActivity:
-               // newIntent.PutExtra("message", "Greetings from main!");
-
-                // // Create a task stack builder to manage the back stack:
-                // TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
-
-                // // Add all parents of SecondActivity to the stack: 
-                // stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(CreateRoute)));
-
-                // // Push the intent that starts SecondActivity onto the stack:
-                // stackBuilder.AddNextIntent(newIntent);
-
-                // const int pendingIntentId = 0;
-
-                // PendingIntent pendingIntent =
-                // PendingIntent.GetActivity(this, pendingIntentId, intent, PendingIntentFlags.OneShot);
-
-
-
-                // builder = new Notification.Builder(this)
-                // .SetContentIntent(pendingIntent)
-                // .SetContentTitle("MoveFit")
-                // .SetContentText("Route is being created...")
-                // .SetDefaults(NotificationDefaults.Sound)
-                //// .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                // .SetSmallIcon(Resource.Drawable.tt);
-
-                // // Build the notification:
-                //  notification = builder.Build();
-
-
-                // // Get the notification manager:
-                //      notificationManager =
-                //     GetSystemService(Context.NotificationService) as NotificationManager;
-
-
-
-                // // Publish the notification:
-                // const int notificationId = 0;
-                // notificationManager.Notify(notificationId, notification);
 
 
             }).Start();
@@ -219,7 +154,11 @@ namespace TestApp
                 notificationManager.CancelAll();
                 notificationManager.Dispose();
             }
-            
+
+            //App.Current.LocationService.AccuracyHigh = false;
+            //App.Current.LocationService.StartLocationUpdates();
+
+
             App.Current.LocationService.LocationChanged -= HandleCustomEvent;
             //App.Current.LocationService.LocationChanged -= (ae, e) =>
             // {
