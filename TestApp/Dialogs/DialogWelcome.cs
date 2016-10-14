@@ -28,8 +28,7 @@ namespace TestApp
             introText.Text = "Hello " + MainStart.userName + "! Welcome to MoveFit"
                 + System.Environment.NewLine
                 + System.Environment.NewLine
-                + "MoveFit is all about making friends, and being active at the same time!"
-                + System.Environment.NewLine
+                + "MoveFit is all about making friends, and being active! "
                 + "Hopefully you will be able to meet new people, and go on a hike or a walk together. "
                 + System.Environment.NewLine
                 + "The app has point system rewarding you for being active. This allows for competition between you and your friends."

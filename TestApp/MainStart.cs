@@ -389,9 +389,11 @@ namespace TestApp
                    userId = user.FirstOrDefault().Id;
                    userInstanceOne = waitingUpload;
 
-               
-                    try
-                    {
+                StartService(new Intent(this, typeof(LocationService)));
+                initPersonTracker();
+
+                try
+                {
                         var setOnline = await Azure.SetUserOnline(MainStart.userId, true);
                         isOnline = true;
                 }
@@ -436,43 +438,69 @@ namespace TestApp
             totalDistance = "Total Distance Moved: 0";
             //   initPersonTracker();  
 
-            StartService(new Intent(this, typeof(LocationService)));
-            initPersonTracker();
+            //StartService(new Intent(this, typeof(LocationService)));
+            //initPersonTracker();
+           var fade = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_out);
+            bool ready = true;
 
-
-            distButton.Click += (a, e) =>
+            distButton.Click += async (a, e) =>
             {
-                messages.Visibility = ViewStates.Visible;
-                messages.Text = totalDistance;
-                myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
-                myAnimation.Duration = 4500;
-                myAnimation.BackgroundColor = Color.LawnGreen;
-                messages.StartAnimation(myAnimation);             
-                messages.Visibility = ViewStates.Invisible;
+                if (ready)
+                {
+                    ready = false;
+                    messages.Visibility = ViewStates.Visible;
+                    messages.Text = totalDistance;
+                    myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
+                    myAnimation.Duration = 3000;
+                    myAnimation.BackgroundColor = Color.LawnGreen;
+                    messages.StartAnimation(myAnimation);
+                    await Task.Delay(5000);
+                    messages.StartAnimation(fade);
+                    messages.Visibility = ViewStates.Invisible;
+                    ready = true;
+                }
+               
              
 
             };
-            routeButton.Click += (a, e) =>
+            routeButton.Click += async(a, e) =>
             {
+                if (ready) {
+                    ready = false;
                 messages.Visibility = ViewStates.Visible;
                 messages.Text = routesCreated + " - " + routesNearby;
                 myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
-                myAnimation.Duration = 4500;
+                myAnimation.Duration = 3000;
                 myAnimation.BackgroundColor = Color.MediumVioletRed;         
                 messages.StartAnimation(myAnimation);
+                await Task.Delay(5000);
+                messages.StartAnimation(fade);
                 messages.Visibility = ViewStates.Invisible;
+                    ready = true;
+                }
             };
-            scoreButton.Click += (a, e) =>
+            scoreButton.Click +=  async (a, e) =>
             {
+                if (ready)
+                {
+
+                    ready = false;
                 messages.Visibility = ViewStates.Visible;
                 messages.Text = points;
                 myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
-                myAnimation.Duration = 4500;
+              
+                myAnimation.Duration = 3000;
                 myAnimation.BackgroundColor = Color.Azure;
-
-                messages.StartAnimation(myAnimation);            
-                messages.Visibility = ViewStates.Invisible;
+                
+                messages.StartAnimation(myAnimation);
+                await Task.Delay(5000);
+                messages.StartAnimation(fade);
                
+                messages.Visibility = ViewStates.Invisible;
+                ready = true;
+
+                }
+
             };
 
 
@@ -733,10 +761,11 @@ namespace TestApp
                     }
                     else
                     {
+                        mDrawerLayout.CloseDrawer(mLeftDrawer);
                         //Right Drawer is closed, open it and just in case close left drawer
                         mDrawerLayout.OpenDrawer(mRightDrawer);
                         //  mDrawerLayout.CloseDrawer(mLeftDrawer);
-
+                        
                         //adde
                         InvalidateOptionsMenu();
                     }
@@ -860,6 +889,8 @@ namespace TestApp
 
                
             }
+            StartService(new Intent(this, typeof(LocationService)));
+            initPersonTracker();
 
             IOUtilz.SavePreferences(0, 100, 45);
             dialogOpen = false;

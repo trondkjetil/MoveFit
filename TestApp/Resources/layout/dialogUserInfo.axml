@@ -72,13 +72,12 @@
         android:id="@+id/spinnerUserInfo"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-       
         android:layout_y="20dp"
         android:visibility="visible"
         android:spinnerMode="dropdown"
         android:layout_below="@+id/actlevel" />
-  <!--android:prompt="activity_prompt"-->
-  <RadioGroup
+<!--android:prompt="activity_prompt"-->
+    <RadioGroup
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="wrap_content"

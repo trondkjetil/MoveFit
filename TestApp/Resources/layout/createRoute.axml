@@ -89,15 +89,15 @@
         android:gravity="center">
         <ImageButton
             android:src="@drawable/rsz_running"
-            android:layout_width="230dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-             android:layout_marginBottom="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@null"
             android:id="@+id/startRunning" />
         <ImageButton
             android:src="@drawable/rsz_flag"
-            android:layout_width="230dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="5dp"

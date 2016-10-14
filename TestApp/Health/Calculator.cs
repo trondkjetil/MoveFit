@@ -134,13 +134,13 @@ namespace TestApp
                     
 
                 }
-                //   results = CalcBmi(Convert.ToInt32(_age.Text), Convert.ToInt32(_height.Text) , Convert.ToInt32(_weight.Text) );
-
+               
                 double avg = CalcNeededKcals(age, height, weight) + CalcBmr(age, height, weight, gender) / 2;
-                results = results + CalcBmi(height,weight);
-                resultView.Text = results + System.Environment.NewLine + System.Environment.NewLine + "Calories needed to maintain current weight: ca " + avg; /*CalcNeededKcals(age,height,weight) + System.Environment.NewLine +*/
+                avg = (int) Math.Round(avg);
 
+                results = CalcBmi(height,weight);
 
+                resultView.Text = results + System.Environment.NewLine + System.Environment.NewLine + "Calories needed to maintain current weight: ca " + avg; 
             };
 
 
@@ -156,18 +156,32 @@ namespace TestApp
             string bmiDescription = "";
             double bmi = 0;
 
-       
+            string testen = height.ToString();
 
-         try
+
+
+         
+            try
             {
 
 
-                string testen = height.ToString();
+                //   testen = testen.Substring(0, 1) + "." + testen.Substring(1, 2);
+                //if (testen.Contains("."))
+                //{
+                //    testen = testen.Replace(".", "");
+                //    bmi = weight / (Convert.ToDouble(testen) * Convert.ToDouble(testen));
+               // bmi = weight / (height * height);
+                //}else
+                //{
 
                 testen = testen.Substring(0, 1) + "." + testen.Substring(1, 2);
-                Toast.MakeText(this, testen, ToastLength.Long).Show();
-
                 bmi = weight / (Convert.ToDouble(testen) * Convert.ToDouble(testen));
+
+          
+
+
+               // }
+
 
 
 
@@ -204,6 +218,11 @@ namespace TestApp
             else
                 bmiDescription = "morbidly obese";
 
+
+
+            bmi = Convert.ToInt32(bmi);
+
+           
 
             res = string.Format("Your Body Mass Index (BMI) is: {0}. This would be considered {1}.", bmi, bmiDescription);
 

@@ -40,7 +40,7 @@ namespace TestApp
             radio_blue.Click += RadioButtonClick;
 
             TextView introText = view.FindViewById<TextView>(Resource.Id.intro);
-            introText.Text = "Hello!" + System.Environment.NewLine + "Please tell a bit about yourself";
+            introText.Text = "Please tell a bit about yourself";
         
           //  TextView age = view.FindViewById<TextView>(Resource.Id.age);
             TextView activityLevel = view.FindViewById<TextView>(Resource.Id.actlevel);

@@ -191,7 +191,6 @@
     <Compile Include="Dialogs\DialogEndRouteRate .cs" />
     <Compile Include="Route\AdapterMyUserRoutes.cs" />
     <Compile Include="Route\AdapterUserRoutes.cs" />
-    <Compile Include="Route\CreateRouteFragment.cs" />
     <Compile Include="Fragments\RouteListFragment.cs" />
     <Compile Include="Fragments\StartMapFragment.cs" />
     <Compile Include="Route\RouteOverview.cs" />
@@ -533,6 +532,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\createRouteButton.xml" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

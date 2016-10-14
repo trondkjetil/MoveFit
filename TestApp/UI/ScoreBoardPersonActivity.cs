@@ -75,7 +75,12 @@ namespace TestApp
 
                 if (mUsers.Count > 0)
                 {
-                    mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, mUsers);
+                    List<User> filteredFriends;
+                    filteredFriends = (from friend in mUsers
+                                       orderby friend.Points descending
+                                       select friend).ToList<User>();
+
+                    mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);
                     mListView.Adapter = mAdapter;
                 }
                 else
@@ -101,8 +106,8 @@ namespace TestApp
 			if (!mScoreAscending)
 			{
 				filteredFriends = (from friend in mUsers
-					orderby friend.Points
-					select friend).ToList<User>();
+					orderby friend.Points descending
+                                   select friend).ToList<User>();
 
 				//Refresh the listview
 				mAdapter = new UserAdapterScoreboard(this, Resource.Layout.row_friend, filteredFriends);

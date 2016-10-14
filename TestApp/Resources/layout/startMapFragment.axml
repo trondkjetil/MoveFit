@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 <!-- android:background="@drawable/profile"   <android.support.v7.widget.Toolbar
         android:id="@+id/tbar"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:layout_below="@+id/tbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      
         android:id="@+id/map_container">
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
@@ -43,14 +41,25 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/empty"
             android:layout_centerHorizontal="true" />
-        <ImageButton
-            android:src="@drawable/startFlag"
+        <Button        
+             android:background="@drawable/createRouteButton"
+            android:text="Create Route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/empty"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/createRoute"
+            android:textColor="@android:color/background_dark" />
+    <!--<ImageButton  
+     android:background="@android:color/holo_green_light"
             android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/empty"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:id="@+id/createRoute" />
+            android:id="@+id/createRoute" />-->
     </RelativeLayout>
+<!--android:src="@drawable/startFlag"-->
 </RelativeLayout>

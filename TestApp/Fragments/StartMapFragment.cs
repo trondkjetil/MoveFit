@@ -64,9 +64,10 @@ namespace TestApp
         {
             var view = inflater.Inflate(Resource.Layout.startMapFragment, container, false);
 
+            Button createRoute = view.FindViewById<Button>(Resource.Id.createRoute);
 
-            ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
-           // ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
+            //  ImageButton createRoute = view.FindViewById<ImageButton>(Resource.Id.createRoute);
+            // ImageButton myRoutes = view.FindViewById<ImageButton>(Resource.Id.myRoutes);
             TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
             mHashMapUser = new HashMap();
 
@@ -74,8 +75,8 @@ namespace TestApp
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
                  Bitmap icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startFlag);
-                createRoute.SetImageBitmap(IOUtilz.scaleDown(icon,160,false));
-              //  createRouteLabel.Text = "Create Route";
+              //  createRoute.SetImageBitmap(IOUtilz.scaleDown(icon,160,false));
+            
                 createRoute.Click += (sender, e) =>
                 {
                     Intent myIntent = new Intent(this.Activity, typeof(CreateRoute));
@@ -101,7 +102,7 @@ namespace TestApp
                 me = FriendsOverview.me;
                 unit = FriendsOverview.unit;
                 createRoute.Visibility = ViewStates.Invisible;
-                createRouteLabel.Text = "Find your self a partner to do activities with!";
+                createRouteLabel.Text = "Find someone to do activities with!";
 
                
             }

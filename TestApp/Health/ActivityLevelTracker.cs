@@ -141,8 +141,8 @@ namespace TestApp
 
             if (moving)
             {
-                var uploadPoints = await Azure.addToMyPoints(MainStart.userId, 5);
-                Toast.MakeText(this, "You just earned 5 points!", ToastLength.Long).Show();
+                var uploadPoints = await Azure.addToMyPoints(MainStart.userId, 50);
+                Toast.MakeText(this, "You just earned 50 points!", ToastLength.Long).Show();
                 Azure.AddActivityAlert(true);
 
             }else

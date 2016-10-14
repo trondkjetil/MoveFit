@@ -88,21 +88,20 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:layout_below="@+id/startRouteTrips"
-            android:backgroundTint="#f0f8ffff"/>
-    
+            android:backgroundTint="#f0f8ffff" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:gravity="center">
-        <ToggleButton
-            android:layout_width="280dp"
+      <ToggleButton        
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/toggleStart"
-            android:background="@android:color/holo_green_light"
+            android:background="@drawable/createRouteButton"
             android:textOff="Start"
             android:layout_marginBottom="4dp"
             android:textOn="Finish" />

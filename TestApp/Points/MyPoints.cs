@@ -17,36 +17,39 @@ namespace TestApp.Points
             if (type == "Walking")
             {
 
-                sumPoints += distance / 5;    // (int)Math.Round(0.4) / 2;
+                sumPoints = (int)Math.Round(distance / 5);    // (int)Math.Round(0.4) / 2;
 
             }
            else if (type == "Running")
             {
 
-                sumPoints +=  distance / 5; //* (int)Math.Round(0.4) / 2;
+                sumPoints = (int)Math.Round(distance / 4);   //* (int)Math.Round(0.4) / 2;
 
             }
             else if (type == "Hiking")
             {
 
-                sumPoints += distance / 5; //* (int)Math.Round(0.3) / 2;
+                sumPoints = (int)Math.Round(distance / 4);  //* (int)Math.Round(0.3) / 2;
 
             }
             else if (type == "Bicycling")
             {
-                sumPoints += distance / 5; // * (int)Math.Round(0.2) / 2;
+                sumPoints = (int)Math.Round(distance / 6);   // * (int)Math.Round(0.2) / 2;
 
             }
             else if (type == "Skiing")
             {
 
-                sumPoints += distance / 5; //* (int) Math.Round(0.45) / 2;
+                sumPoints = (int)Math.Round(distance / 5);   //* (int) Math.Round(0.45) / 2;
 
             }
             else
                 sumPoints = 0;
 
-                return Convert.ToInt32( sumPoints);
+
+            int result = Convert.ToInt32(sumPoints);
+
+            return result;
         }
 
     }

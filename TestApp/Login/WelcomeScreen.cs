@@ -153,7 +153,17 @@ namespace TestApp
                 startUp();
             }
         }
+        public override void OnBackPressed()
+        {
 
+
+
+            base.OnBackPressed();
+            Finish();
+            Intent intent = new Intent(this, typeof(WelcomeScreen));      
+            StartActivity(intent);       
+
+        }
         private async void startUp()
         {
        
