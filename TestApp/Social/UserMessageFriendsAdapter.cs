@@ -23,7 +23,6 @@ namespace TestApp
         private RecyclerView mRecyclerView;
         private Context mContext;
         private int mCurrentPosition = -1;
-
         public string userName;
         public string userGender;
         public int userAge;
@@ -35,28 +34,9 @@ namespace TestApp
         private Activity mActivity;
         List<User> mMyInstance;
         TextView txt;
-        public UserMessageFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
-        {
-            mUsers = users;
-            mRecyclerView = recyclerView;
-            mContext = context;
-            mActivity = act;
-            mAdapter = adapter;
-            mMyInstance = me;
+        public static bool check;
 
-            txt = act.FindViewById<TextView>(Resource.Id.empty);
 
-            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 2)
-            {
-                mRecyclerView.Visibility = ViewStates.Invisible;
-                txt.Visibility = ViewStates.Visible;
-            }
-                //}else
-            //{
-            //    txt.Visibility = ViewStates.Gone;
-            //}
-
-        }
 
         public class MyView : RecyclerView.ViewHolder
         {
@@ -76,6 +56,30 @@ namespace TestApp
                 mMainView = view;
             }
         }
+
+        public UserMessageFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
+        {
+            mUsers = users;
+            mRecyclerView = recyclerView;
+            mContext = context;
+            mActivity = act;
+            mAdapter = adapter;
+            mMyInstance = me;
+
+            check = false;
+
+            txt = act.FindViewById<TextView>(Resource.Id.empty);
+
+            if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 2)
+            {
+                mRecyclerView.Visibility = ViewStates.Invisible;
+                txt.Visibility = ViewStates.Visible;
+            }
+                
+
+        }
+
+       
 
         public async Task<bool> unreadMessages(string targetId)
         {
@@ -143,10 +147,14 @@ namespace TestApp
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
+           
             Bitmap userImage;
             //First view
             MyView myHolder = holder as MyView;
             myHolder.mMainView.Click += mMainView_Click;
+            myHolder.mDeleteFriend.Click += deleteFriend_Click;
+            myHolder.mSendMessage.Click += sendMessage_Click;
+
             myHolder.mUserName.Text = mUsers[position].UserName;
             myHolder.mDeleteFriend.SetTag(Resource.Id.imageButton3, position);
             myHolder.mSendMessage.SetTag(Resource.Id.sendMsg, position);
@@ -171,8 +179,7 @@ namespace TestApp
 
            });
                 
-                
-           
+                        
 
             float[] result = null;
             // Calculate distance to User
@@ -220,92 +227,69 @@ namespace TestApp
 
 
 
-            myHolder.mSendMessage.Click += (sender, args) =>
-           {
+           // myHolder.mSendMessage.Click += (sender, args) =>
+           //{
 
-               int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendMsg));
+           //    int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendMsg));
             
 
 
-              Bundle b = new Bundle();
-               b.PutStringArray("MyData", new String[] {
+           //   Bundle b = new Bundle();
+           //    b.PutStringArray("MyData", new String[] {
 
-                           mUsers[pos].UserName.ToString(),
-                           mUsers[pos].Id.ToString(),
-                            mUsers[pos].ProfilePicture.ToString()
-                   // createNewConversation.Id.ToString()
-
-
-               });
+           //                mUsers[pos].UserName.ToString(),
+           //                mUsers[pos].Id.ToString(),
+           //                 mUsers[pos].ProfilePicture.ToString()
+           //        // createNewConversation.Id.ToString()
 
 
-
-
-               Intent myInt = new Intent(mContext, typeof(PrivateChat));
-               myInt.PutExtras(b);
-               mContext.StartActivity(myInt);
-               //mActivity.Finish();
-
-
-           };
+           //    });
 
 
 
-            myHolder.mDeleteFriend.Click += (sender, args) =>
-        {
 
-            int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
+           //    Intent myInt = new Intent(mContext, typeof(PrivateChat));
+           //    myInt.PutExtras(b);
+           //    mContext.StartActivity(myInt);
+           //    //mActivity.Finish();
 
-                    //     var pos = ((View)sender).Tag;
+
+           //};
+
+           
+
+            //    myHolder.mDeleteFriend.Click += (sender, args) =>
+            //{
+
+            //    int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
+
+            //            //     var pos = ((View)sender).Tag;
 
 
-                    Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
+            //            Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
-            var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
+            //    var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
 
-            mUsers.RemoveAt((int)pos);
+            //    mUsers.RemoveAt((int)pos);
+            //    mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+            //    mRecyclerView.SetAdapter(mAdapter);
+            //    mAdapter.NotifyDataSetChanged();
+
+            //    if (mUsers.Count == 0)
+            //    {
+
+            //        //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+            //        //mContext.StartActivity(myInt);
+
+            //        mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+            //        mRecyclerView.SetAdapter(mAdapter);
+            //        mAdapter.NotifyDataSetChanged();
+            //    }
+
+
+            //};
+
             mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
-            mRecyclerView.SetAdapter(mAdapter);
-            mAdapter.NotifyDataSetChanged();
-
-            if (mUsers.Count == 0)
-            {
-
-                //Intent myInt = new Intent(mContext, typeof(RouteOverview));
-                //mContext.StartActivity(myInt);
-
-                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
-                mRecyclerView.SetAdapter(mAdapter);
-                mAdapter.NotifyDataSetChanged();
-            }
-
-
-        };
-
-            mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
-
-            // myHolder.mDeleteFriend.Click += MDeleteFriend_Click;  //+= (e, a) => //{
-            // //  Azure.removeUser(mUsers[position].UserName);
-            //   AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-            //   alert.SetTitle("Delete friend");
-            //   alert.SetMessage("You want to delete " + mUsers[position].UserName + " ?");
-            //   alert.SetPositiveButton("Yes", (senderAlert, args) =>
-            //   {
-            //       //change value write your own set of instructions
-            //       //you can also create an event for the same in xamarin
-            //       //instead of writing things here
-            //       Azure.removeUser(mUsers[position].UserName);
-            //   });
-
-            //   alert.SetNegativeButton("Cancel", (senderAlert, args) =>
-            //   {
-            //       //perform your own task for this conditional button click
-
-            //   });
-
-
-            //    };// 
-
             userImage = IOUtilz.GetImageBitmapFromUrl(mUsers[position].ProfilePicture);
 
             if (mUsers[position].Online)
@@ -333,7 +317,7 @@ namespace TestApp
             }
 
 
-
+            
         }
 
 
@@ -346,6 +330,71 @@ namespace TestApp
             //view.StartAnimation(anim);
         }
 
+        void sendMessage_Click(object sender, EventArgs e)
+        {
+
+                int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendMsg));
+
+            if (!check)
+            {
+
+            
+                Bundle b = new Bundle();
+                b.PutStringArray("MyData", new String[] {
+
+                           mUsers[pos].UserName.ToString(),
+                           mUsers[pos].Id.ToString(),
+                            mUsers[pos].ProfilePicture.ToString()
+                   // createNewConversation.Id.ToString()
+
+
+               });
+
+
+                check = true;
+
+                Intent myInt = new Intent(mContext, typeof(PrivateChat));
+                myInt.PutExtras(b);
+                mContext.StartActivity(myInt);
+                //mActivity.Finish();
+
+
+            }
+
+
+        }
+        void deleteFriend_Click(object sender, EventArgs e)
+        {
+           
+
+                int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
+
+                //     var pos = ((View)sender).Tag;
+
+
+                Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
+
+                var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
+
+                mUsers.RemoveAt((int)pos);
+                mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+                mRecyclerView.SetAdapter(mAdapter);
+                mAdapter.NotifyDataSetChanged();
+
+                if (mUsers.Count == 0)
+                {
+
+                    //Intent myInt = new Intent(mContext, typeof(RouteOverview));
+                    //mContext.StartActivity(myInt);
+
+                    mAdapter = new UsersFriendsAdapter(mUsers, mRecyclerView, mActivity, mActivity, mAdapter, mMyInstance);
+                    mRecyclerView.SetAdapter(mAdapter);
+                    mAdapter.NotifyDataSetChanged();
+                }
+
+
+            
+        }
         void mMainView_Click(object sender, EventArgs e)
         {
             //  int position = mRecyclerView.GetChildPosition((View)sender);
@@ -394,27 +443,7 @@ namespace TestApp
 
         void MDeleteFriend_Click(object sender, EventArgs e)
         {
-            //int position = mRecyclerView.GetChildPosition((View)sender);
-            //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
-
-
-            // Azure.removeUser(mUsers[position].UserName);
-            //AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-            //alert.SetTitle("Delete friend");
-            //alert.SetMessage("You want to delete " + mUsers[position].UserName +" ?");
-            //alert.SetPositiveButton("Yes", (senderAlert, args) => {
-            //    //change value write your own set of instructions
-            //    //you can also create an event for the same in xamarin
-            //    //instead of writing things here
-            //    Azure.removeUser(mUsers[position].UserName);
-            //});
-
-            //alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-            //    //perform your own task for this conditional button click
-
-            //});
-            //Azure.removeUser(mUsers[position].UserName);
-            // Console.WriteLine(mUsers[position].UserName);
+            
         }
 
         public override int ItemCount

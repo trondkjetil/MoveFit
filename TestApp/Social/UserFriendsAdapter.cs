@@ -34,6 +34,7 @@ namespace TestApp
         private Activity mActivity;
         List<User> mMyInstance;
         TextView txt;
+        public static bool check;
 
         public UsersFriendsAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter, List<User> me)
         {
@@ -44,7 +45,7 @@ namespace TestApp
             mAdapter = adapter;
             mMyInstance = me;
 
-        
+            check = false;
 
         }
 
@@ -290,7 +291,10 @@ namespace TestApp
         {
             //  int position = mRecyclerView.GetChildPosition((View)sender);
             ///    int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+            if (!check)
+            {
 
+            
             try
             {
                
@@ -317,8 +321,8 @@ namespace TestApp
                     userID
 
                 });
-
-                Intent myIntent = new Intent(mContext, typeof(UserProfile));
+                    check = true;
+                    Intent myIntent = new Intent(mContext, typeof(UserProfile));
                 myIntent.PutExtras(b);
                 mContext.StartActivity(myIntent);
 
@@ -330,7 +334,7 @@ namespace TestApp
 
             }
 
-
+            }
         }
 
         void MDeleteFriend_Click(object sender, EventArgs e)

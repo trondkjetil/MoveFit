@@ -40,13 +40,31 @@ namespace TestApp
         protected async override void OnStart()
         {
             base.OnStart();
-            
+
+           // mAdapter = null;
+          //if(mAdapter != null && mAdapter.ItemCount > 0 )
+          //  {
+          //      mAdapter.UnregisterFromRuntime();
+          //      mAdapter.Dispose();
+          //  }
+          //  mAdapter.
+
             userList = await Azure.getUsersFriends(MainStart.userId);
-            me = await Azure.getUserByAuthId(MainStart.userId);
+
+            if(me == null)
+            {
+                me = new List<User>();
+
+                me.Add(MainStart.userInstanceOne);
+
+            }
+            if (mAdapter != null)
+                mAdapter.Dispose();
+
             mAdapter = new UserMessageFriendsAdapter(userList, mRecyclerView, this, this, mAdapter, me);
             mRecyclerView.SetAdapter(mAdapter);
+          // mAdapter.NotifyDataSetChanged();
         }
-
 
 
         protected override void OnDestroy()
@@ -58,20 +76,18 @@ namespace TestApp
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // RequestWindowFeature(WindowFeatures.NoTitle);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.UsersFriendsMessages);
 
             act = this;
 
-            mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
-            mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
-            mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
+            //mSwipeRefreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.userFriends);
+            //mSwipeRefreshLayout.SetColorSchemeColors(Color.Orange, Color.Green, Color.Yellow, Color.Turquoise, Color.Turquoise);
+            //mSwipeRefreshLayout.Refresh += mSwipeRefreshLayout_Refresh;
 
       
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recycleUserFriends);
-            //Create our layout manager
+  
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
@@ -105,21 +121,21 @@ namespace TestApp
 
         void mSwipeRefreshLayout_Refresh(object sender, EventArgs e)
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
+            //BackgroundWorker worker = new BackgroundWorker();
+            //worker.DoWork += worker_DoWork;
+            //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            //worker.RunWorkerAsync();
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
+            //RunOnUiThread(() => { mSwipeRefreshLayout.Refreshing = false; });
         }
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             //Will run on separate thread
-            Thread.Sleep(3000);
+          //  Thread.Sleep(3000);
         }
 
         public override void OnBackPressed()

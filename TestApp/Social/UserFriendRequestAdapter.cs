@@ -32,7 +32,7 @@ namespace TestApp
         public string userAboutMe;
         public string userID;
         TextView txt;
-
+        public static bool check;
         public UsersFriendRequestAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
             mActivity = act;
@@ -41,6 +41,7 @@ namespace TestApp
             mContext = context;
             mAdapter = adapter;
 
+            check = false;
             //txt = act.FindViewById<TextView>(Resource.Id.empty);
             //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 3)
             //{                          
@@ -51,7 +52,7 @@ namespace TestApp
             //{
             //    txt.Visibility = ViewStates.Gone;
             //}
-           
+
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -202,7 +203,10 @@ namespace TestApp
         {
             //   int position = mRecyclerView.GetChildPosition((View)sender);
             //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+            if (!check)
+            {
 
+           
             try
             {
 
@@ -229,6 +233,7 @@ namespace TestApp
 
             });
 
+                    check = true;
                 Intent myIntent = new Intent(mContext, typeof(UserProfile));
                 myIntent.PutExtras(b);
                 mContext.StartActivity(myIntent);
@@ -240,7 +245,7 @@ namespace TestApp
 
 
             }
-
+            }
         }
 
         public override int ItemCount

@@ -36,6 +36,7 @@ namespace TestApp
         public int userPoints;
         public string userAboutMe;
         public string userID;
+        public static bool check;
         
         public UsersNearbyAdapter(List<User> users, RecyclerView recyclerView, Context context, Activity act, RecyclerView.Adapter adapter)
         {
@@ -44,6 +45,8 @@ namespace TestApp
             mContext = context;
             mActivity = act;
             mAdapter = adapter;
+
+            check = false;
 
         }
 
@@ -258,7 +261,10 @@ namespace TestApp
         {
             //   int position = mRecyclerView.GetChildPosition((View)sender);
             // int position = mRecyclerView.GetChildAdapterPosition((View)sender);
+            if (!check)
+            {
 
+           
             try
             {
 
@@ -285,7 +291,9 @@ namespace TestApp
 
             });
 
-                Intent myIntent = new Intent(mContext, typeof(UserProfile));
+                    check = true;
+
+                    Intent myIntent = new Intent(mContext, typeof(UserProfile));
                 myIntent.PutExtras(b);
                 mContext.StartActivity(myIntent);
 
@@ -296,7 +304,7 @@ namespace TestApp
 
 
             }
-
+            }
 
         }
         public bool deleteIndex(int position)
