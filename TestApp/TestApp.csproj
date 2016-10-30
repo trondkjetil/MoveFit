@@ -249,10 +249,10 @@
     <AndroidResource Include="Resources\layout\FriendsRecycleView.axml" />
     <AndroidResource Include="Resources\layout\routesNearbyRecycleView.axml" />
     <AndroidResource Include="Resources\layout\myRoutesRecycleView.axml" />
-    <AndroidResource Include="Resources\layout\profile.axml" />
     <ProguardConfiguration Include="proguard.cfg" />
     <AndroidAsset Include="Assets\english111.ttf" />
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -468,9 +468,6 @@
     <AndroidResource Include="Resources\drawable\ic_delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\walk.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\st.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -507,9 +504,6 @@
     <AndroidResource Include="Resources\drawable\notif.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ab.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\toolbar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +529,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\createRouteButton.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ab.jpg" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -880,6 +880,11 @@ namespace TestApp
 
         public override void OnBackPressed()
         {
+
+            if (StartRouteService.serviceIsRunning)
+            {
+
+           
             Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 
             alert.SetTitle("Exit route");
@@ -902,7 +907,9 @@ namespace TestApp
                 alert.Show();
             });
 
+            }else
 
+                base.OnBackPressed();
         }
 
 

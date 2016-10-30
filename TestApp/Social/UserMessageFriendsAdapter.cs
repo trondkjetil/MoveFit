@@ -149,7 +149,7 @@ namespace TestApp
             myHolder.mMainView.Click += mMainView_Click;
             myHolder.mUserName.Text = mUsers[position].UserName;
             myHolder.mDeleteFriend.SetTag(Resource.Id.imageButton3, position);
-
+            myHolder.mSendMessage.SetTag(Resource.Id.sendMsg, position);
 
             bool isMessageUnread = false;
           
@@ -223,14 +223,16 @@ namespace TestApp
             myHolder.mSendMessage.Click += (sender, args) =>
            {
 
+               int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendMsg));
+            
 
 
-               Bundle b = new Bundle();
+              Bundle b = new Bundle();
                b.PutStringArray("MyData", new String[] {
 
-                           mUsers[position].UserName.ToString(),
-                           mUsers[position].Id.ToString(),
-                            mUsers[position].ProfilePicture.ToString()
+                           mUsers[pos].UserName.ToString(),
+                           mUsers[pos].Id.ToString(),
+                            mUsers[pos].ProfilePicture.ToString()
                    // createNewConversation.Id.ToString()
 
 

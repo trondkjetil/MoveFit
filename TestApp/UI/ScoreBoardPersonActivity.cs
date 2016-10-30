@@ -44,8 +44,9 @@ namespace TestApp
 			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 			mContainer = FindViewById<LinearLayout>(Resource.Id.llContainer);
 
-			//mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
-			mTxtHeaderLastName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
+            Window.SetSoftInputMode(SoftInput.StateHidden);
+            //mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
+            mTxtHeaderLastName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
 			mTxtHeaderAge = FindViewById<TextView>(Resource.Id.txtHeaderAge);
 			mTxtHeaderGender = FindViewById<TextView>(Resource.Id.txtHeaderGender);
 			mTxtHeaderScore = FindViewById<TextView>(Resource.Id.txtHeaderScore);

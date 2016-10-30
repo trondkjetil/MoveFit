@@ -45,25 +45,6 @@ namespace TestApp
             mActivity = act;
             mAdapter = adapter;
 
-
-
-           // txt = act.FindViewById<TextView>(Resource.Id.empty);
-            //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
-            //{
-            //    mRecyclerView.Visibility = ViewStates.Invisible;
-            //    txt.Visibility = ViewStates.Visible;
-            //}
-
-            //if (mUsers.Count == 0 && FriendsOverview.viewPager.CurrentItem == 1)
-            //{
-            //    mRecyclerView.Visibility = ViewStates.Invisible;
-            //    txt.Visibility = ViewStates.Visible;
-            //}
-            //else
-            //{
-            //    if (txt != null)
-            //        txt.Visibility = ViewStates.Gone;
-            //}
         }
 
         public class MyView : RecyclerView.ViewHolder
@@ -72,6 +53,7 @@ namespace TestApp
             public TextView mUserName { get; set; }
             public TextView mStatus { get; set; }
             public TextView mText { get; set; }
+            public TextView mDist { get; set; }
             public ImageView mProfilePicture { get; set; }
             public ImageButton mSendFriendRequest { get; set; }
             public ImageButton mGender { get; set; }
@@ -92,6 +74,8 @@ namespace TestApp
             TextView name = usersNearby.FindViewById<TextView>(Resource.Id.nameId);
             TextView status = usersNearby.FindViewById<TextView>(Resource.Id.statusId);
             TextView text = usersNearby.FindViewById<TextView>(Resource.Id.textId);
+            TextView distanceFromMe = usersNearby.FindViewById<TextView>(Resource.Id.distAwayMe);
+
 
             ImageView profile = usersNearby.FindViewById<ImageView>(Resource.Id.ppt);
 
@@ -104,7 +88,7 @@ namespace TestApp
 
             //  addToFriends.Click += MSendFriendRequest_Click;
 
-            MyView view = new MyView(usersNearby) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends, mGender = gender };
+            MyView view = new MyView(usersNearby) { mUserName = name, mStatus = status, mText = text, mProfilePicture = profile, mSendFriendRequest = addToFriends, mGender = gender, mDist = distanceFromMe };
 
             return view;
 
@@ -122,6 +106,46 @@ namespace TestApp
             myHolder.mSendFriendRequest.SetTag(Resource.Id.sendFriendRequest, position);
 
             myHolder.mSendFriendRequest.Click += MSendFriendRequest_Click;
+
+
+
+            float[] result = null;
+            // Calculate distance to User
+            result = new float[1];
+
+            try
+            {
+
+
+                Location.DistanceBetween(mUsers[position].Lat, mUsers[position].Lon, MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon, result);
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+            var res = Convert.ToInt32(result[0]);
+            //  myHolder.mDist.Text = res.ToString()+ " meters away";
+
+
+            string unit = " km";
+            double dist = 0;
+            var test = IOUtilz.LoadPreferences();
+            if (test[1] == 1)
+            {
+                unit = " miles";
+                dist = (int)IOUtilz.ConvertKilometersToMiles(res / 1000);
+            }
+            else
+            {
+                dist = res / 1000;
+            }
+
+
+            myHolder.mDist.Text = dist.ToString() + unit + " away";
+
 
 
             if (mUsers[position].Sex == "Male")

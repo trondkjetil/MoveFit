@@ -78,7 +78,7 @@ namespace TestApp
         public int mypoints;
         Marker myMark;
         Marker myFirstMark;
-        ImageButton startCreate;
+        Button startCreate;
         ImageButton stopCreate;
         Location previousLocation;
 
@@ -249,7 +249,7 @@ namespace TestApp
             routeStatus.Text = "Stauts: Idle";
 
           
-             startCreate = FindViewById<ImageButton>(Resource.Id.startRunning);
+             startCreate = FindViewById<Button>(Resource.Id.startRunning);
              stopCreate = FindViewById<ImageButton>(Resource.Id.stopRunning);
             stopCreate.Visibility = ViewStates.Invisible;
 
@@ -433,25 +433,25 @@ namespace TestApp
 
             }
 
-            if (dist < 180)
-            {
-                Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
-                App.Current.LocationService.LocationChanged -= HandleLocationChanged;
+            //if (dist < 180)
+            //{
+            //    Toast.MakeText(this, "Route is too short to be uploaded!", ToastLength.Long).Show();
+            //    App.Current.LocationService.LocationChanged -= HandleLocationChanged;
 
-                StopService(new Intent(this, typeof(CreateRouteService)));
-                Finish();
-                return;
-            }
-            else
-            {
+            //    StopService(new Intent(this, typeof(CreateRouteService)));
+            //    Finish();
+            //    return;
+            //}
+            //else
+            //{
 
-                mypoints = MyPoints.calculatePoints(routeType, dist);
-                score = mypoints;
+            //    mypoints = MyPoints.calculatePoints(routeType, dist);
+            //    score = mypoints;
 
-                //startDialogNameRoute();
-                //firstRun = true;
+            //    //startDialogNameRoute();
+            //    //firstRun = true;
 
-            }
+            //}
 
             mypoints = MyPoints.calculatePoints(routeType, dist);
             score = mypoints;
@@ -506,8 +506,8 @@ namespace TestApp
 
 
                 List<Route> routeHere = await Azure.AddRoute(givenRouteName, routeInfo, dist.ToString(), "0", 1, routeDifficulty, routeType, routeUserId, elapsedTime, first.Latitude, first.Longitude);
-                var addedDistance = Azure.addToMyDistance(MainStart.userId, dist);
-
+                var addedDistance = await Azure.addToMyDistance(MainStart.userId, dist);
+             
                 string routeID = "";
              
                 List<Route> te = await Azure.getLatestRouteId(routeUserId);
@@ -530,16 +530,14 @@ namespace TestApp
 
                     return;
                 }
-                   
-                
-                
-                
+
                 //if (dist == 0)
                 //    dist = getDistanceForRoute(startLocation, endLocation);
 
 
                 // mypoints = MyPoints.calculatePoints(routeType, (int)dist);
-                var pointAdded = Azure.addToMyPoints(routeUserId, mypoints);
+                mypoints = Convert.ToInt32(mypoints);
+                var pointAdded = await Azure.addToMyPoints(routeUserId, mypoints);
               //  score = mypoints;
                 statusImage.SetImageResource(Resource.Drawable.orange);
                 Toast.MakeText(this, "Uploading successful", ToastLength.Long).Show();
@@ -587,8 +585,6 @@ namespace TestApp
             routeStatus.Text = "Acquiring your position...";
 
             var loc = App.Current.LocationService.getLastKnownLocation();
-
-            loc = loc;
 
             if (loc != null)
             {
@@ -662,30 +658,7 @@ namespace TestApp
         }
 
         // Set very accurate Accuracy for locating
-        void InitializeLocationManager()
-        {
-            locationManager = (LocationManager)GetSystemService(LocationService);
-            Criteria criteriaForLocationService = new Criteria
-            {
-                Accuracy = Accuracy.Medium,
-                PowerRequirement = Power.Medium
-
-
-            };
-            IList<string> acceptableLocationProviders = locationManager.GetProviders(criteriaForLocationService, true);
-
-            if (acceptableLocationProviders.Any())
-            {
-                locationProvider = acceptableLocationProviders.First();
-            }
-            else
-            {
-                locationProvider = string.Empty;
-            }
-
-
-        }
-
+      
 
 
         protected override void OnResume()
@@ -701,23 +674,7 @@ namespace TestApp
         }
 
 
-        public void OnProviderDisabled(string provider)
-        {
-
-        }
-
-        public void OnProviderEnabled(string provider)
-        {
-               }
-
-        public void OnStatusChanged(string provider, Availability status, Bundle extras)
-        {
-
-        }
-
-      
-
-
+     
         public double getDistanceForRoute(Location start, Location end)
         {
 
@@ -817,30 +774,7 @@ namespace TestApp
 
         }
 
-        bool routeIsRunning()
-        {
-
-            bool val = false;
-            Android.Support.V7.App.AlertDialog.Builder alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-
-            alert.SetTitle("Route is already being created!");
-            alert.SetMessage("Route is already being created! Start a new Route?");
-            alert.SetPositiveButton("Yes", (senderAlert, args) => {
-
-                StopService(new Intent(this, typeof(CreateRouteService)));
-                val = true;
-            });
-
-            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-
-                val = false;
-            });
-            //run the alert in UI thread to display in the screen
-            RunOnUiThread(() => {
-                alert.Show();
-            });
-            return val;
-        }
+    
         public void drawRouteLive(Location loc)
         {
 

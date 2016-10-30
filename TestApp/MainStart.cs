@@ -232,6 +232,8 @@ namespace TestApp
             mLeftDataSet.Add("Social");
             mLeftDataSet.Add("My Settings");     
             mLeftDataSet.Add("My Profile");
+            mLeftDataSet.Add("About");
+            mLeftDataSet.Add("Logout");
 
             data = new List<NavDrawerItem>();
             data.Add(new NavDrawerItem(Resource.Drawable.test, "My Profile"));
@@ -239,35 +241,107 @@ namespace TestApp
             data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_social_info, "Social"));
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "My Settings"));
+            data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "About"));
+            data.Add(new NavDrawerItem(Resource.Drawable.logout, "Logout"));
 
-          
             NavDrawerAdapter customAdapter = new NavDrawerAdapter(this, Resource.Layout.leftDrawerAdapter, data );
             mLeftDrawer.Adapter = customAdapter;
 
             mLeftDrawer.ItemClick += async (object sender, AdapterView.ItemClickEventArgs e) =>
             {
                 var item = customAdapter.GetItem(e.Position);
-                           
+
                 if (e.Position == 1)
                 {
-                    myIntent = new Intent(this, typeof( ScoreBoardPersonActivity));
+                    myIntent = new Intent(this, typeof(ScoreBoardPersonActivity));
                     StartActivity(myIntent);
                 }
                 else if (e.Position == 2)
                 {
-                    myIntent = new Intent(this, typeof( RouteOverview));
-                    StartActivity(myIntent);
+                    if (App.Current.LocationService.isGpsOn())
+                    {
+                        myIntent = new Intent(this, typeof(RouteOverview));
+                        StartActivity(myIntent);
+                    }
+                    else
+                    {
+                        Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                        alert.SetTitle("GPS Off");
+                        alert.SetMessage("Please turn on your GPS");
+                        alert.SetNeutralButton("Ok", (senderAlert, args) =>
+                        {
+
+                        });
+
+                        alert.Show();
+                    }
+
                 }
                 else if (e.Position == 3)
                 {
-                    myIntent = new Intent(this, typeof(FriendsOverview));
-                    StartActivity(myIntent);
+                    if (App.Current.LocationService.isGpsOn())
+                    {
+                        myIntent = new Intent(this, typeof(FriendsOverview));
+                        StartActivity(myIntent);
+                    }
+                    else
+                    {
+                        Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                        alert.SetTitle("GPS Off");
+                        alert.SetMessage("Please turn on your GPS");
+                        alert.SetNeutralButton("Ok", (senderAlert, args) =>
+                        {
+
+                        });
+
+                        alert.Show();
+                    }
+
                 }
                 else if (e.Position == 4)
                 {
                     myIntent = new Intent(this, typeof(Settings));
                     StartActivity(myIntent);
                 }
+                else if (e.Position == 5)
+                {
+                    Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                    alert.SetTitle("About MoveFit");
+                    alert.SetMessage("The purpose of this app is to promote an active and social lifestyle." + System.Environment.NewLine +
+                        "I have developed this app as a part of my master thesis." + System.Environment.NewLine + System.Environment.NewLine +
+                     "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time, and it will be anonymous :)" + System.Environment.NewLine
+                    );
+                    alert.SetPositiveButton("Take Survey", (senderAlert, args) => {
+
+                        var uri = Android.Net.Uri.Parse("https://no.surveymonkey.com/r/LK39RKC");
+                        var intent = new Intent(Intent.ActionView, uri);
+                        StartActivity(intent);
+
+                    });
+
+                    alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                        //perform your own task for this conditional button click
+
+
+                    });
+
+                    RunOnUiThread(() => {
+                        alert.Show();
+                    });
+
+                }
+                else if (e.Position == 6)
+                {
+                    var logoutApp = Azure.SetUserOnline(userId, false);
+
+                   // Process.KillProcess(Android.OS.Process.MyPid());
+                    Finish();
+                    myIntent = new Intent(this, typeof(WelcomeScreen));
+                    StartActivity(myIntent);
+                    Toast.MakeText(this, "Logged out!", ToastLength.Long).Show();
+
+                }
+
 
                 else if (e.Position == 0)
                 {
@@ -305,7 +379,7 @@ namespace TestApp
                     }
                     catch (Exception)
                     {
-                       
+
 
                     }
 
@@ -422,6 +496,17 @@ namespace TestApp
                 string unit = " km";
                 double dist = 0;
                 var test = IOUtilz.LoadPreferences();
+
+                if(test[3] == 2)
+                {
+                    menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+                    menItemOnlineText.SetTitle("Offline");
+                }else if (test[3] == 1 || test[3] == 0)
+                {
+                    menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+                    menItemOnlineText.SetTitle("Online");
+                }
+                   
                 if (test[1] == 1)
                 {
                     unit = " miles";
@@ -447,33 +532,38 @@ namespace TestApp
             {
                 if (ready)
                 {
+                    
                     ready = false;
+                    var me = await Azure.getUserByAuthId(userId);
+
                     messages.Visibility = ViewStates.Visible;
-                    messages.Text = totalDistance;
+                    messages.Text = "Distance Moved: "+ me.FirstOrDefault().DistanceMoved.ToString();
                     myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_right_to_left);
-                    myAnimation.Duration = 3000;
+                    myAnimation.Duration = 1600;
                     myAnimation.BackgroundColor = Color.LawnGreen;
                     messages.StartAnimation(myAnimation);
-                    await Task.Delay(5000);
+                    await Task.Delay(4000);
                     messages.StartAnimation(fade);
                     messages.Visibility = ViewStates.Invisible;
                     ready = true;
                 }
-               
-             
+                          
 
             };
             routeButton.Click += async(a, e) =>
             {
                 if (ready) {
+
                     ready = false;
-                messages.Visibility = ViewStates.Visible;
+                 
+
+                    messages.Visibility = ViewStates.Visible;
                 messages.Text = routesCreated + " - " + routesNearby;
                 myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.abc_fade_in);
-                myAnimation.Duration = 3000;
+                myAnimation.Duration = 1600;
                 myAnimation.BackgroundColor = Color.MediumVioletRed;         
                 messages.StartAnimation(myAnimation);
-                await Task.Delay(5000);
+                await Task.Delay(4000);
                 messages.StartAnimation(fade);
                 messages.Visibility = ViewStates.Invisible;
                     ready = true;
@@ -483,17 +573,18 @@ namespace TestApp
             {
                 if (ready)
                 {
-
+                  
                     ready = false;
+                var me = await Azure.getUserByAuthId(userId);
                 messages.Visibility = ViewStates.Visible;
-                messages.Text = points;
+                messages.Text = "Score: " + me.FirstOrDefault().Points;
                 myAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.slide_left_to_right);
               
-                myAnimation.Duration = 3000;
+                myAnimation.Duration = 1600;
                 myAnimation.BackgroundColor = Color.Azure;
                 
                 messages.StartAnimation(myAnimation);
-                await Task.Delay(5000);
+                await Task.Delay(4000);
                 messages.StartAnimation(fade);
                
                 messages.Visibility = ViewStates.Invisible;
@@ -721,34 +812,34 @@ namespace TestApp
 
                     return true;
 
-                case Resource.Id.action_help:
-                    Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
-                    alert.SetTitle("About MoveFit");
-                    alert.SetMessage("The purpose of this app is to promote an active and social lifestyle." + System.Environment.NewLine +
-                        "I have developed this app as a part of my master thesis." + System.Environment.NewLine + System.Environment.NewLine +
-                     "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time, and it will be anonymous :)" + System.Environment.NewLine                   
-                    ); 
-                    alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
+                //case Resource.Id.action_help:
+                    //Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                    //alert.SetTitle("About MoveFit");
+                    //alert.SetMessage("The purpose of this app is to promote an active and social lifestyle." + System.Environment.NewLine +
+                    //    "I have developed this app as a part of my master thesis." + System.Environment.NewLine + System.Environment.NewLine +
+                    // "In that regard, I kindly ask if you could help me by answering a survey. It will not take more than one minute of your time, and it will be anonymous :)" + System.Environment.NewLine                   
+                    //); 
+                    //alert.SetPositiveButton("Take Survey",  (senderAlert, args) => {
 
-                        var uri = Android.Net.Uri.Parse("https://no.surveymonkey.com/r/F7KLKDW");
-                        var intent = new Intent(Intent.ActionView, uri);
-                        StartActivity(intent);
+                    //    var uri = Android.Net.Uri.Parse("https://no.surveymonkey.com/r/LK39RKC");
+                    //    var intent = new Intent(Intent.ActionView, uri);
+                    //    StartActivity(intent);
 
-                    });
+                    //});
 
-                    alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-                        //perform your own task for this conditional button click
+                    //alert.SetNegativeButton("Cancel", (senderAlert, args) => {
+                    //    //perform your own task for this conditional button click
                         
 
-                    });
+                    //});
 
-                    RunOnUiThread(() => {
-                        alert.Show();
-                    });
+                    //RunOnUiThread(() => {
+                    //    alert.Show();
+                    //});
 
                
                    
-                    return true;
+                 //   return true;
 
                 case Resource.Id.right:
                     if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
@@ -781,8 +872,26 @@ namespace TestApp
 
 
             MenuInflater.Inflate(Resource.Menu.action_menu, menu);
-            menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline);
-            menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Online");
+          
+            var te = IOUtilz.LoadPreferences();
+            if(te[3] == 0)
+            {
+       
+                menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline).SetIcon(Resource.Drawable.redoffline);
+
+                menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Offline");
+               
+
+            }
+            else
+            {
+                menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline).SetIcon(Resource.Drawable.greenonline);
+
+                //menItemOnlineIcion = menu.FindItem(Resource.Id.statusOnline);
+                menItemOnlineText = menu.FindItem(Resource.Id.statusOnlineText).SetTitle("Online");
+
+            }
+
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -892,7 +1001,7 @@ namespace TestApp
             StartService(new Intent(this, typeof(LocationService)));
             initPersonTracker();
 
-            IOUtilz.SavePreferences(0, 100, 45);
+            IOUtilz.SavePreferences(0, 100, 45, 1);
             dialogOpen = false;
 
         }
@@ -1144,6 +1253,15 @@ namespace TestApp
                     mMap.UiSettings.RotateGesturesEnabled = false;
                     mMap.UiSettings.ScrollGesturesEnabled = false;
 
+
+                }
+                catch (Exception)
+                {
+
+
+                }
+
+  
                     titleTopFriends = view.FindViewById<TextView>(Resource.Id.pers11);
                     pictureFriend1 = view.FindViewById<ImageView>(Resource.Id.pic1);
                     pictureFriend2 = view.FindViewById<ImageView>(Resource.Id.pic2);
@@ -1154,114 +1272,81 @@ namespace TestApp
 
 
                     TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
+                   
                     _address = view.FindViewById<TextView>(Resource.Id.location_text);
-                    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
-                    ImageButton logout = view.FindViewById<ImageButton>(Resource.Id.logout);
-                    logout.Click += (a, e) =>
-                    {
-                        var logoutApp = Azure.SetUserOnline(userId, false);
 
-                      Process.KillProcess(Android.OS.Process.MyPid());
+                    //    ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                    //    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
 
+                    //    alarm.Click += (a, e) =>
+                    //    {
 
-                    };
-                    ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                    //        if (SimpleService.isRunning == false)
+                    //        {
+                    //            activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
+                    //            Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
+                    //        }
+                    //        else if (SimpleService.isRunning == true)
+                    //        {
+                    //            activityRightDrawer.StopService(new Intent(mainActivity, typeof(SimpleService)));
+                    //            Toast.MakeText(mainActivity, "Activity alarm off", ToastLength.Short).Show();
 
-                    alarm.Click += (a, e) =>
-                    {
+                    //        }
 
-                        if (SimpleService.isRunning == false)
-                        {
-                            activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
-                            Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
-                        }
-                        else if (SimpleService.isRunning == true)
-                        {
-                            activityRightDrawer.StopService(new Intent(mainActivity, typeof(SimpleService)));
-                            Toast.MakeText(mainActivity, "Activity alarm off", ToastLength.Short).Show();
-
-                        }
-
-                    };
+                    //    };
 
 
-                    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
-                    {
-                        if (e.IsChecked == true)
-                        {
-                            Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
+                    //    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
+                    //    {
+                    //        if (e.IsChecked == true)
+                    //        {
+                    //            Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
 
-                            activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
-                            try
-                            {
-                                var a = Azure.SetUserOnline(userId, true);
-                                isOnline = true;
+                    //            activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
+                    //            try
+                    //            {
+                    //                var a = Azure.SetUserOnline(userId, true);
+                    //                isOnline = true;
 
-                            }
-                            catch (Exception)
-                            {
-
-
-                            }
-
-                            menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
-                            menItemOnlineText.SetTitle("Online");
-
-                        }
-                        else
-                        {
-                            Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
-                            activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
+                    //            }
+                    //            catch (Exception)
+                    //            {
 
 
-                            try
-                            {
-                                var b = Azure.SetUserOnline(userId, false);
-                                isOnline = false;
-                            }
-                            catch (Exception)
-                            {
+                    //            }
+
+                    //            menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+                    //            menItemOnlineText.SetTitle("Online");
+
+                    //        }
+                    //        else
+                    //        {
+                    //            Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
+                    //            activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
 
 
-                            }
-
-                            menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
-                            menItemOnlineText.SetTitle("Offline");
-
-
-                        }
-                    };
-
-
-         
-
-                }
-                catch (Exception)
-                {
-
-                   
-                }
+                    //            try
+                    //            {
+                    //                var b = Azure.SetUserOnline(userId, false);
+                    //                isOnline = false;
+                    //            }
+                    //            catch (Exception)
+                    //            {
 
 
-                //try
-                //{
-             
-             
-                //currentLocation = App.Current.LocationService.getLastKnownLocation();
+                    //            }
 
-                //var myPos = new LatLng(currentLocation.Longitude, currentLocation.Longitude);
-                //setMarker(myPos, mMap);
-                //mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-                //mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 14));
-                //myPos = myPos;
-                //currentLocation = currentLocation;
+                    //            menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+                    //            menItemOnlineText.SetTitle("Offline");
 
-                //}
-                //catch (Exception)
-                //{
 
-                   
-                //}
+                    //        }
+                    //    };
+
+
+
+
+
 
                 return view;
             }
@@ -1327,8 +1412,10 @@ namespace TestApp
                     //Takes you to the home screen
                     //System.Environment.Exit(0);
                     //WelcomeScreen.instance.Finish();
-                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-
+                    // Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                    Finish();
+                    myIntent = new Intent(this, typeof(WelcomeScreen));
+                    StartActivity(myIntent);
 
                 }
                 catch (Exception)

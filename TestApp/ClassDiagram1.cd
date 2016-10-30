@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TestApp.MainStart" Collapsed="true">
+    <Position X="1" Y="2" Width="2" />
+    <NestedTypes>
+      <Class Name="TestApp.MainStart.NavDrawerAdapter" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MainStart.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="TestApp.MainStart.NavDrawerItem" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MainStart.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="TestApp.MainStart.RightDrawer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MainStart.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>MFAPuAOACEE1ADnLHigGiI0AwCjc4aYJFFAwI1lEhYA=</HashCode>
+      <FileName>MainStart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TestApp.IOUtilz" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIABACAAAAAAAAAAACAACAAAAAEAAAAAAAIAABA=</HashCode>
+      <FileName>Utilz\IO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestApp.Settings" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAgGAAggAAAAQAAAAAAAA=</HashCode>
+      <FileName>Utilz\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="@drawable/edit_text_style"
-            android:hint="Search Friends"
+            android:hint="Search Routes"
             android:maxLines="1"
             android:textColor="#000" />
     </FrameLayout>

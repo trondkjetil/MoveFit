@@ -5,16 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/profile">
-<!--<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:keepScreenOn="true"
-        android:id="@+id/toolbars"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@android:color/holo_blue_light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbars"
         android:layout_width="match_parent"
@@ -23,15 +13,57 @@
         android:background="@drawable/toolbar"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-<!--<TextView
-        android:text="Settings"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textColor="@android:color/black"
-        android:textSize="32dp"
-        android:gravity="center_horizontal" />-->
+        android.layout_marginTop="10dp"
+        android:paddingTop="10dp">
+        <TextView
+            android:text="Tracking"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="right"
+            android:id="@+id/textView2"
+            android:textColor="#ff000000" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:checked="true"
+            android:textOn="On"
+            android:textOff="Off"
+            android:id="@+id/switch1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp" />
+        <TextView
+            android:id="@+id/ContactName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="5dp" />
+        <TextView
+            android:text="Alarm"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarm"
+            android:textColor="@android:color/background_dark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" />
+        <ImageButton
+            android:src="@drawable/newAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarmButton"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp" />
+    </RelativeLayout>
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -43,7 +75,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:id="@+id/textView2"
-            android:paddingTop="40dp" />
+            android:paddingTop="10dp" />
         <RadioGroup
             android:minWidth="25px"
             android:minHeight="25px"

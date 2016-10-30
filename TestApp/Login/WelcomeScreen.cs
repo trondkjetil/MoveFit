@@ -39,6 +39,7 @@ namespace TestApp
         string profilePic;
         string userID;
         string idProvider;
+        bool error;
 
         public bool isOnline()
         {
@@ -56,11 +57,10 @@ namespace TestApp
             RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.welcome);
             instance = this;
-            //New database in Azure requires initialisation with ToDoItem setup in order to work
-            //  CurrentPlatform.Init ();
-            Azure.initAzure();
 
-            wt = new Stopwatch();
+            Azure.initAzure();
+            error = false;
+         //   wt = new Stopwatch();
 
 
             try
@@ -78,18 +78,7 @@ namespace TestApp
                     status.Text = "No internet connection!";
 
                     Toast.MakeText(this,"No internet connection!", ToastLength.Long).Show();
-                   
-                    //TextView txt = new TextView(this);
-                    //txt.Text = "No internet Connection!";
-                    //txt.SetTextSize(ComplexUnitType.Sp, 20);
-                    ////txt.SetPadding(10, 10, 10, 10);
-                    //txt.Gravity = GravityFlags.CenterHorizontal;
-                    //txt.TextAlignment = TextAlignment.Center;
-                 
-                    //txt.SetBackgroundColor(Color.White);
-                    //txt.SetTextColor(Color.Blue);
-                  
-                    //layout.AddView(txt);
+ 
 
 
                     User login =  await Azure.getOfflineUser();
@@ -115,42 +104,55 @@ namespace TestApp
 
             progressDialog = new ProgressDialog(this);
             progressDialog.SetMessage("loading...");
-
+            Auth0User user = null;
             try
             {
-                var user = await client.LoginAsync(this);
+                user = await client.LoginAsync(this);
                 name = user.Profile["name"].ToString();
                 profilePic = user.Profile["picture"].ToString();
-                userID = user.Profile["user_id"].ToString();
-              	//email = user.Profile["email"].ToString();
+                userID = user.Profile["user_id"].ToString();             
                 accessToken = user.Auth0AccessToken;
-                idProvider = user.Profile["provider"].ToString();
-
+                
 
             }
             catch (AggregateException )
             {
                 // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Flatten().Message;
-              //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
+                //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
+                error = true;
+                Finish();
+                Intent intent = new Intent(this, typeof(WelcomeScreen));
+                StartActivity(intent);
+              
             }
             catch (Exception )
             {
                 // FindViewById<TextView>(Resource.Id.txtResult).Text = e.Message;
-              //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
+                //  Toast.MakeText(this, e.Message + " Login", ToastLength.Long).Show();
+                
+                error = true;
+                Finish();
+                Intent intent = new Intent(this, typeof(WelcomeScreen));
+                StartActivity(intent);
 
             }
-            finally
+
+
+            if (!error)
+            {
+  
+                try
+            {
+                idProvider = user.Profile["provider"].ToString();
+
+            }
+            catch (Exception)
             {
 
-                //	startMain (); 
-               // await startMain();
+              
+            }
 
-               wt.Start();
-               while(wt.Elapsed.Seconds < 1)
-                {
-                }
-                wt.Stop();
-                startUp();
+            startUp();
             }
         }
         public override void OnBackPressed()
@@ -159,15 +161,22 @@ namespace TestApp
 
 
             base.OnBackPressed();
-            Finish();
-            Intent intent = new Intent(this, typeof(WelcomeScreen));      
-            StartActivity(intent);       
+          
+            //Intent intent = new Intent(this, typeof(WelcomeScreen));      
+            //StartActivity(intent);       
 
         }
         private async void startUp()
         {
-       
-            await Task.Delay(1600);
+
+            if (name == "")
+            {
+                Finish();
+                Intent intent = new Intent(this, typeof(WelcomeScreen));
+                StartActivity(intent);
+            }else
+            { 
+            await Task.Delay(1000);
             Bundle b = new Bundle();
             b.PutStringArray("MyData", new[] {
                 name,
@@ -180,6 +189,8 @@ namespace TestApp
             myIntent.PutExtras(b);
             StartActivity(myIntent);
             Finish();
+
+            }
 
         }
      

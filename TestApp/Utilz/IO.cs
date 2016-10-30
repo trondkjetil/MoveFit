@@ -155,26 +155,31 @@ namespace TestApp
             int value1 = 0;
             int value2 = 0;
             int value3 = 0;
+            int value4 = 0;
+
             var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
             value1 = prefs.GetInt("distance", 0);
             value2 = prefs.GetInt("unit", 0);
             value3 = prefs.GetInt("interval", 0);
-            
-            int[] result = new int[3];
+            value4 = prefs.GetInt("tracker", 0);
+
+            int[] result = new int[4];
             result[0] = value1;
             result[1] = value2;
             result[2] = value3;
-            result[2] = result[2];
+            result[3] = value4;
+
             return result;
         }
      
-        public static void SavePreferences(int unit, int distance, int interval)
+        public static void SavePreferences(int unit, int distance, int interval, int state)
         {
             var prefs = Application.Context.GetSharedPreferences("preferences", FileCreationMode.Private);
             var editor = prefs.Edit();
             editor.PutInt("unit",unit );
             editor.PutInt("distance", distance);
             editor.PutInt("interval", interval);
+            editor.PutInt("tracker", state);
             editor.Commit();
         }
 

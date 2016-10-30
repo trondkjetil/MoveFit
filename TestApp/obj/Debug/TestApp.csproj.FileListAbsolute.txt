@@ -1,3 +1,4 @@
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.config
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.pdb
@@ -31,7 +32,6 @@ D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Microsoft.WindowsAzure.Mobile.Ext.xm
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\Newtonsoft.Json.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Extensions.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\System.Net.Http.Primitives.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.pdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\bin\movefit.movefit.apk
@@ -47,7 +47,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendrequestrecycleview.
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\friendsrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\routesnearbyrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\myroutesrecycleview.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\layout\profile.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\edit_text_style.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_up.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\anim\slide_right.xml
@@ -136,7 +135,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\compass_base.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\imagebackground.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\borderlayout.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ic_delete.png
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\walk.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\st.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ru.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\sk.png
@@ -149,7 +147,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\logout.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\finishf.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\startf.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\notif.png
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ab.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\toolbar.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\profile.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\menu.png
@@ -158,6 +155,8 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_dist.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\rsz_route.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\tt.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\test.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\createroutebutton.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\ab.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\R.cs.flag
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\uploadflags.txt
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.mdb
@@ -204,6 +203,5 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.ServiceModel.I
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Transactions.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\res\drawable\createroutebutton.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Debug\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Debug\moveFit.dll.mdb

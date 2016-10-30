@@ -29,15 +29,13 @@ namespace TestApp
                 + System.Environment.NewLine
                 + System.Environment.NewLine
                 + "MoveFit is all about making friends, and being active! "
-                + "Hopefully you will be able to meet new people, and go on a hike or a walk together. "
+                + "Connect with other people and do some activities together."
                 + System.Environment.NewLine
-                + "The app has point system rewarding you for being active. This allows for competition between you and your friends."
                 + System.Environment.NewLine
                 + "You get points by creating routes, using other peoples routes, or by being active through out the day!"
                  + System.Environment.NewLine
                 + "Have fun being healthy!"
                 ;
-
 
 
             introText.SetTypeface(Typeface.SansSerif, TypefaceStyle.Italic);

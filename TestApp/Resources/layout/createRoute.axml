@@ -87,14 +87,23 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:gravity="center">
-        <ImageButton
+        <!--<ImageButton
             android:src="@drawable/rsz_running"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="5dp"
             android:background="@null"
+            android:id="@+id/startRunning" />-->
+      <Button
+           android:background="@drawable/createRouteButton"          
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="Start"
             android:id="@+id/startRunning" />
+      
         <ImageButton
             android:src="@drawable/rsz_flag"
             android:layout_width="wrap_content"

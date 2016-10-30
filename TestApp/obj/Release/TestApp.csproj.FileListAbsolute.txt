@@ -31,6 +31,7 @@ D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Microsoft.WindowsAzure.Mobile.Ext.
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\Newtonsoft.Json.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\System.Net.Http.Extensions.xml
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\System.Net.Http.Primitives.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.dll
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.pdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\bin\movefit.movefit.apk
@@ -46,8 +47,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\friendrequestrecyclevie
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\friendsrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\routesnearbyrecycleview.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\myroutesrecycleview.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\layout\profile.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\tt.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\edit_text_style.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\anim\slide_up.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\anim\slide_right.xml
@@ -56,7 +55,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\values\themes.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\customloadbar.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\ic_action_search.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\menu\actionbar.xml
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\test.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\anim\slide_left_to_right.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\anim\cardview_up.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\anim\flip.xml
@@ -137,7 +135,6 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\compass_base.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\imagebackground.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\borderlayout.xml
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\ic_delete.png
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\walk.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\st.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\ru.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\sk.png
@@ -150,13 +147,16 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\logout.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\finishf.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\startf.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\notif.png
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\ab.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\toolbar.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\profile.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\menu.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\rsz_score.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\rsz_dist.png
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\rsz_route.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\tt.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\test.png
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\createroutebutton.xml
+D:\TestpApp 20.09\TestApp\TestApp\obj\Release\res\drawable\ab.jpg
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\R.cs.flag
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\uploadflags.txt
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll.mdb
@@ -197,6 +197,5 @@ D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Runtime.Seri
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.ServiceModel.Internals.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Xml.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\android\assets\System.Xml.Linq.dll.mdb
-D:\TestpApp 20.09\TestApp\TestApp\obj\Release\TestApp.csprojResolveAssemblyReference.cache
 D:\TestpApp 20.09\TestApp\TestApp\obj\Release\moveFit.dll.mdb
 D:\TestpApp 20.09\TestApp\TestApp\bin\Release\moveFit.dll.mdb

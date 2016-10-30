@@ -44,19 +44,7 @@ namespace TestApp
             mAdapter = adapter;
             mMyInstance = me;
 
-            //txt = act.FindViewById<TextView>(Resource.Id.emptyFriends);
-           
-            //if (mUsers.Count == 0 )
-            //{
-
-            //    mRecyclerView.Visibility = ViewStates.Invisible;
-            //    if (txt != null)
-            //        txt.Visibility = ViewStates.Visible;
-            //}else
-            //{
-            //    if(txt != null)
-            //    txt.Visibility = ViewStates.Gone;
-            //}
+        
 
         }
 
@@ -119,7 +107,9 @@ namespace TestApp
             MyView myHolder = holder as MyView;
             myHolder.mMainView.Click += mMainView_Click;
             myHolder.mUserName.Text = mUsers[position].UserName;
-            myHolder.mDeleteFriend.SetTag(Resource.Id.imageButton3, position);
+
+       //    myHolder.mMainView.SetTag(myHolder.ItemViewType, position); 
+           myHolder.mDeleteFriend.SetTag(Resource.Id.imageButton3, position);
 
 
             float[] result = null;
@@ -199,13 +189,13 @@ namespace TestApp
 
             myHolder.mDeleteFriend.Click += (sender, args) =>
         {
-
+           
             int pos = (int)(((ImageButton)sender).GetTag(Resource.Id.sendFriendRequest));
 
                     //     var pos = ((View)sender).Tag;
 
 
-                    Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
+           Toast.MakeText(mContext, mUsers[(int)pos].UserName.ToString() + " Deleted", ToastLength.Long).Show();
 
             var wait = Azure.deleteFriend(MainStart.userId, (mUsers[(int)pos].Id));
 
@@ -303,6 +293,7 @@ namespace TestApp
 
             try
             {
+               
 
                 int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
@@ -347,24 +338,6 @@ namespace TestApp
             //int position = mRecyclerView.GetChildPosition((View)sender);
             //  int position = mRecyclerView.GetChildAdapterPosition((View)sender);
 
-
-            // Azure.removeUser(mUsers[position].UserName);
-            //AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-            //alert.SetTitle("Delete friend");
-            //alert.SetMessage("You want to delete " + mUsers[position].UserName +" ?");
-            //alert.SetPositiveButton("Yes", (senderAlert, args) => {
-            //    //change value write your own set of instructions
-            //    //you can also create an event for the same in xamarin
-            //    //instead of writing things here
-            //    Azure.removeUser(mUsers[position].UserName);
-            //});
-
-            //alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-            //    //perform your own task for this conditional button click
-
-            //});
-            //Azure.removeUser(mUsers[position].UserName);
-            // Console.WriteLine(mUsers[position].UserName);
         }
 
         public override int ItemCount

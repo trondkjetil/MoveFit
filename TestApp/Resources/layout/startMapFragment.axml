@@ -41,8 +41,8 @@
             android:layout_marginBottom="5dp"
             android:id="@+id/empty"
             android:layout_centerHorizontal="true" />
-        <Button        
-             android:background="@drawable/createRouteButton"
+        <Button
+            android:background="@drawable/createRouteButton"
             android:text="Create Route"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

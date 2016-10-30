@@ -55,8 +55,9 @@ namespace TestApp
             gender = "Male";
 
             NumberPicker np = (NumberPicker)view.FindViewById(Resource.Id.numberPicker);
-            np.MaxValue = 5; // restricted number to minimum value i.e 1
+            np.MinValue = 12; // restricted number to minimum value i.e 1
             np.MaxValue = 99;// restricked number to maximum value i.e. 31
+            np.Value = 12;
             np.WrapSelectorWheel = true;  /*setWrapSelectorWheel(true);*/
            
 

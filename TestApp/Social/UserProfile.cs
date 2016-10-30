@@ -17,6 +17,7 @@ using System.Drawing;
 using Android.Provider;
 using Android.Database;
 using System.IO.Compression;
+using Android.Views.InputMethods;
 
 namespace TestApp
 {
@@ -194,13 +195,34 @@ namespace TestApp
                 if (MainStart.userId != array[6])
                 {
                     aboutMeEdit.Focusable = false;
-                  //  aboutMeEdit.Enabled = false;
+                    //  aboutMeEdit.Enabled = false;
+                    aboutMeEdit.Enabled = false;
                 }
                 else
                 {
+                    aboutMeEdit.Enabled = true;
                     aboutMeEdit.Focusable = true;
-                   
+                    aboutMeEdit.FocusChange += async (object sender, View.FocusChangeEventArgs e) =>
+                    {
+                        if (!e.HasFocus)
+                        {
+                           
+                            if(aboutMeEdit.Text != "")
+                            {
+                                var instance = await Azure.setAboutMeInfo(array[6], aboutMeEdit.Text);
+                                Toast.MakeText(this, "Profile Saved", ToastLength.Long).Show();
+
+                            }
+                            InputMethodManager inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+                            inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+
+
+                        }
+
+
+                    };
                 }
+                
 
 
                 if (array[5] != "")
@@ -209,7 +231,9 @@ namespace TestApp
                 }
                 else
                 {
+                    if(array[6] == MainStart.userId)
                     aboutMeEdit.Hint = "Write something about your self here..";
+
                 }
 
 

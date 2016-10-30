@@ -74,18 +74,16 @@
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:paddingRight="5dp">
-            <!--<TextView
-                    android:text="15m"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtTime"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="5dp" />
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/cbxStart"
-                    android:button="@android:drawable/btn_star" />-->
+              <TextView
+                 android:text=""
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/distAwayMe"
+                 android:textSize="9dp"
+                 android:textColor="#000000"
+                 android:gravity="center_horizontal"
+                 android:paddingTop="5dp" />
+         
                 <ImageButton
                     android:src="@drawable/female"
                     android:layout_width="match_parent"
@@ -100,14 +98,42 @@
             android:weightSum="100"
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
+          <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content">
+            <TextView
+                       android:text="Add Friend"                 
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:id="@+id/sendActRequest"
+                       android:textColor="#000"
+                       android:gravity="left"
+                       android:padding="2dp"
+                       android:layout_marginLeft="15dp"
+                       android:layout_marginRight="8dp"
+                       android:textSize="12sp"
+                       android:singleLine="true"
+                       android:layout_centerInParent="true"
+                       android:layout_alignParentLeft="true" />
             <ImageButton
+                android:src="@drawable/addfriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sendFriendRequest"
+                android:layout_toRightOf="@+id/sendActRequest"
+                android:background="@android:color/transparent"
+                android:scaleType="center" />
+             <!--<ImageButton
                 android:src="@drawable/addfriend"
                 android:layout_width="0dp"
                 android:layout_weight="33"
                 android:layout_height="match_parent"
                 android:id="@+id/sendFriendRequest"
+                android:layout_toRightOf="@+id/sendActRequest"
                 android:background="@android:color/transparent"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter" />-->
+
+          </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

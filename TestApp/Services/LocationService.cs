@@ -98,6 +98,19 @@ namespace TestApp
 		}
 
         // Handle location updates from the location manager
+
+            public bool isGpsOn()
+        {
+
+               if (!LocMgr.IsProviderEnabled(LocationManager.GpsProvider) && !LocMgr.IsProviderEnabled(LocationManager.NetworkProvider))
+            {
+                return false;
+            }else
+
+            return true;
+        }
+
+
         public void StartLocationUpdates()
         {
 

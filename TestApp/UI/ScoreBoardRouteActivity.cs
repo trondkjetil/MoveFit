@@ -45,8 +45,9 @@ namespace TestApp
 			mSearch = FindViewById<EditText>(Resource.Id.search);
 			mContainer = FindViewById<LinearLayout>(Resource.Id.container);
 
-			//mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
-			routeName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
+            Window.SetSoftInputMode(SoftInput.StateHidden);
+            //mTxtHeaderFirstName = FindViewById<TextView>(Resource.Id.txtHeaderFirstName);
+            routeName = FindViewById<TextView>(Resource.Id.txtHeaderLastName);
 			review = FindViewById<TextView>(Resource.Id.txtHeaderAge);
 			distance = FindViewById<TextView>(Resource.Id.txtHeaderGender);
 			routeType = FindViewById<TextView>(Resource.Id.txtHeaderScore);

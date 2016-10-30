@@ -43,6 +43,12 @@ namespace TestApp.Points
                 sumPoints = (int)Math.Round(distance / 5);   //* (int) Math.Round(0.45) / 2;
 
             }
+            else if (type == "Kayaking")
+            {
+
+                sumPoints = (int)Math.Round(distance / 5);   //* (int) Math.Round(0.45) / 2;
+
+            }
             else
                 sumPoints = 0;
 

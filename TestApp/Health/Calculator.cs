@@ -134,8 +134,9 @@ namespace TestApp
                     
 
                 }
-               
-                double avg = CalcNeededKcals(age, height, weight) + CalcBmr(age, height, weight, gender) / 2;
+             //   double avg = CalcNeededKcals(age, height, weight) + CalcBmr(age, height, weight, gender) / 2;
+
+                double avg = CalcBmr(age, height, weight, gender);
                 avg = (int) Math.Round(avg);
 
                 results = CalcBmi(height,weight);

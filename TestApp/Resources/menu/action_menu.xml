@@ -26,10 +26,10 @@
       android:title="Msg"
       myapp:showAsAction="always" />
 
-	<item android:id="@+id/action_help"
+	<!--<item android:id="@+id/action_help"
 		android:icon="@drawable/ic_action_help"
 		android:title="About"
-		myapp:showAsAction="always"/>
+		myapp:showAsAction="always"/>-->
   
   <item android:id="@+id/right"
 		android:icon="@drawable/ic_ab_back_holo_light_am"

@@ -21,6 +21,7 @@ namespace TestApp
         int unitType;
         int distance;
         int interval;
+        int tracker;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,16 +37,6 @@ namespace TestApp
             Button save = FindViewById<Button>(Resource.Id.save);
 
 
-            //RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
-            //RadioButton radioButton = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
-            //RadioButton radioButton2 = FindViewById<RadioButton>(radioGroup.CheckedRadioButtonId);
-
-
-            //RadioGroup timeInterValGroup = FindViewById<RadioGroup>(Resource.Id.rad1);
-            //RadioButton min45 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
-            //RadioButton min60 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
-            //RadioButton min120 = FindViewById<RadioButton>(timeInterValGroup.CheckedRadioButtonId);
-
             TextView dist = FindViewById<TextView>(Resource.Id.textView4);
             RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup1);
             RadioButton radioButton = FindViewById<RadioButton>(Resource.Id.radioButton1);
@@ -57,10 +48,92 @@ namespace TestApp
             RadioButton min60 = FindViewById<RadioButton>(Resource.Id.b2);
             RadioButton min120 = FindViewById<RadioButton>(Resource.Id.b3);
 
+            if (tracker == 0)
+            {
+                tracker = 1;
+            }
+
+
+            ImageButton alarm = FindViewById<ImageButton>(Resource.Id.alarmButton);
+            Switch location = FindViewById<Switch>(Resource.Id.switch1);
+
+            alarm.Click += (a, e) =>
+            {
+
+                if (SimpleService.isRunning == false)
+                {
+                    StartService(new Intent(this, typeof(SimpleService)));
+                    Toast.MakeText(this, "Activity alarm activated", ToastLength.Short).Show();
+                }
+                else if (SimpleService.isRunning == true)
+                {
+                   StopService(new Intent(this, typeof(SimpleService)));
+                    Toast.MakeText(this, "Activity alarm off", ToastLength.Short).Show();
+
+                }
+
+            };
+
+
+         
+
+            location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
+            {
+                if (e.IsChecked == true)
+                {
+                    Toast.MakeText(this, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
+                    tracker = 1;
+                    StartService(new Intent(this, typeof(LocationService)));
+                    try
+                    {
+                        var a = Azure.SetUserOnline(MainStart.userId, true);
+
+                        MainStart.isOnline = true;
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+
+                   MainStart. menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+                    MainStart.menItemOnlineText.SetTitle("Online");
+
+                }
+                else if (e.IsChecked == false)
+                {
+                    Toast.MakeText(this, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
+                    StopService(new Intent(this, typeof(LocationService)));
+
+                    tracker = 2;
+                    try
+                    {
+                        var b = Azure.SetUserOnline(MainStart.userId, false);
+                        MainStart.isOnline = true;
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+
+                    MainStart.menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+                    MainStart.menItemOnlineText.SetTitle("Offline");
+
+                }
+                
+            };
+
+
+
             SeekBar _seekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
             _seekBar.Max = 100;
             _seekBar.Progress = 100;
 
+
+
+            
 
             unitType = 0;
             distance = 100;
@@ -69,7 +142,9 @@ namespace TestApp
 
             save.Click += (e, a) =>
              {
-                 IOUtilz.SavePreferences(unitType, distance, interval);
+
+              
+                 IOUtilz.SavePreferences(unitType, distance, interval, tracker);
                  Toast.MakeText(this, "Settings Saved", ToastLength.Short).Show();
 
              };
@@ -132,7 +207,19 @@ namespace TestApp
 
 
             var list = IOUtilz.LoadPreferences();
-            list = list;
+
+
+
+            if (list[3] == 2)
+            {
+                location.Checked = false;
+            }
+            else if (list[3] == 1 || list[3] == 0)
+            {
+                location.Checked = true;
+            }
+
+
             if (list[2] != 0)
             {
                 if (list[2] == 45)
@@ -142,8 +229,6 @@ namespace TestApp
                     min45.Checked = true;
                     //min45.Enabled = true;
                     
-
-
 
                 }
                 else if (list[2] == 60)
@@ -161,8 +246,6 @@ namespace TestApp
                     //min120.Enabled = true;
                 }
                
-
-
 
                 if (list[1] == 0)
                 {

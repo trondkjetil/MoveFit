@@ -604,9 +604,7 @@ namespace TestApp
 
         public static async Task<bool> SetUserOnline(string userID, bool onlineStatus)
         {
-            //List<User> userList = await table.Where(User => User.Id == userID).ToListAsync();
-            //User inst = userList.FirstOrDefault();
-
+         
             User inst = MainStart.userInstanceOne;
             inst.Online = onlineStatus;
 
@@ -617,24 +615,40 @@ namespace TestApp
 
         public static async Task<User> addToMyPoints(string userId, int points)
         {
+            int newScore = 0;
+            int oldScore = 0;
+
             List<User> userlist = await table.Where(User => User.Id == userId).ToListAsync();
+            User user = userlist.FirstOrDefault();
 
-            userlist.Find(User => User.Id == userId).Points = points;
-            User user = userlist.Find(User => User.Id == userId);
-
+            oldScore = user.Points;
+            newScore = oldScore + points;            
+            user.Points = newScore;      
+                
             await table.UpdateAsync(user);
+           
+
             return user;
 
         }
 
         public static async Task<User> addToMyDistance(string userId, double  distance)
         {
+
+            double oldDist = 0;
+            double newDist = 0;
+
             List<User> userlist = await table.Where(User => User.Id == userId).ToListAsync();
+            User user = userlist.FirstOrDefault();
 
-            userlist.Find(User => User.Id == userId).DistanceMoved = distance;
-            User user = userlist.Find(User => User.Id == userId);
+            oldDist = user.DistanceMoved;
 
+            newDist = oldDist + distance;
+
+            user.DistanceMoved = newDist;
+        
             await table.UpdateAsync(user);
+
             return user;
 
         }

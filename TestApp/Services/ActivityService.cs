@@ -40,8 +40,8 @@ namespace TestApp
             //start = TimeSpan.Parse("21:00"); // 10 PM
             //end = TimeSpan.Parse("09:00");
             pref = IOUtilz.LoadPreferences();
-            start = new TimeSpan(09, 0, 0);
-            end = new TimeSpan(21, 0, 0);
+            start = new TimeSpan(08, 0, 0);
+            end = new TimeSpan(22, 0, 0);
         }
 
 
@@ -118,7 +118,7 @@ namespace TestApp
             mAccel = mAccel * 0.9f + delta;
 
 
-            if (mAccel >= 6)
+            if (mAccel >= 7)
             {
                 timer.Restart();
             }

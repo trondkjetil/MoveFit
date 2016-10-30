@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:background="@drawable/profile">
+    android:background="@drawable/profile">
     <TextView
         android:text="Type in Age"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:hint="e.g 30"
         android:id="@+id/editText1"
+        android:maxLines="1"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/darker_gray" />
     <TextView
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+             android:maxLines="1"
         android:id="@+id/editText2"
         android:textColorHint="@android:color/darker_gray" />
     <TextView
@@ -44,6 +46,7 @@
         android:layout_height="wrap_content"
         android:hint="e.g 70"
         android:textColor="@android:color/black"
+             android:maxLines="1"
         android:id="@+id/editText3"
         android:textColorHint="@android:color/darker_gray" />
     <RadioGroup
