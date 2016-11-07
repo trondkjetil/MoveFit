@@ -12,12 +12,12 @@ public class StartMapFragment
 	public static final String __md_methods;
 	static {
 		__md_methods = 
-			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onCreateView:(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;:GetOnCreateView_Landroid_view_LayoutInflater_Landroid_view_ViewGroup_Landroid_os_Bundle_Handler\n" +
+			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
+			"n_onStart:()V:GetOnStartHandler\n" +
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onPause:()V:GetOnPauseHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
-			"n_onLowMemory:()V:GetOnLowMemoryHandler\n" +
 			"n_onMapReady:(Lcom/google/android/gms/maps/GoogleMap;)V:GetOnMapReady_Lcom_google_android_gms_maps_GoogleMap_Handler:Android.Gms.Maps.IOnMapReadyCallbackInvoker, Xamarin.GooglePlayServices.Maps\n" +
 			"n_onMarkerClick:(Lcom/google/android/gms/maps/model/Marker;)Z:GetOnMarkerClick_Lcom_google_android_gms_maps_model_Marker_Handler:Android.Gms.Maps.GoogleMap/IOnMarkerClickListenerInvoker, Xamarin.GooglePlayServices.Maps\n" +
 			"";
@@ -33,6 +33,14 @@ public class StartMapFragment
 	}
 
 
+	public android.view.View onCreateView (android.view.LayoutInflater p0, android.view.ViewGroup p1, android.os.Bundle p2)
+	{
+		return n_onCreateView (p0, p1, p2);
+	}
+
+	private native android.view.View n_onCreateView (android.view.LayoutInflater p0, android.view.ViewGroup p1, android.os.Bundle p2);
+
+
 	public void onCreate (android.os.Bundle p0)
 	{
 		n_onCreate (p0);
@@ -41,12 +49,12 @@ public class StartMapFragment
 	private native void n_onCreate (android.os.Bundle p0);
 
 
-	public android.view.View onCreateView (android.view.LayoutInflater p0, android.view.ViewGroup p1, android.os.Bundle p2)
+	public void onStart ()
 	{
-		return n_onCreateView (p0, p1, p2);
+		n_onStart ();
 	}
 
-	private native android.view.View n_onCreateView (android.view.LayoutInflater p0, android.view.ViewGroup p1, android.os.Bundle p2);
+	private native void n_onStart ();
 
 
 	public void onResume ()
@@ -71,14 +79,6 @@ public class StartMapFragment
 	}
 
 	private native void n_onDestroy ();
-
-
-	public void onLowMemory ()
-	{
-		n_onLowMemory ();
-	}
-
-	private native void n_onLowMemory ();
 
 
 	public void onMapReady (com.google.android.gms.maps.GoogleMap p0)

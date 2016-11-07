@@ -73,6 +73,7 @@ namespace TestApp
 
             // Recreate();
         }
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

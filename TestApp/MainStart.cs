@@ -25,6 +25,7 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 //using Gcm.Client;
 using System.Text;
 using Android.Views.Animations;
+using Android.Support.V7.Widget;
 
 namespace TestApp
 {
@@ -48,7 +49,6 @@ namespace TestApp
         public static Bitmap profilePic;
         public string profilePictureUrl;
 
-        TextView bearText;
         Intent myIntent;
         public Azure azure;
         public static bool changed;
@@ -65,6 +65,9 @@ namespace TestApp
         public static User userInstanceOne;
         static Geocoder geocoder;
         public static bool isOnline;
+       public static RecyclerView mRecyclerView;
+      public static  RecyclerView.LayoutManager mLayoutManager;
+     public static   RecyclerView.Adapter adpter;
         public static ConnectivityManager connectivityManager;
         public static IMenuItem menItemOnlineIcion;
         public static IMenuItem menItemOnlineText;
@@ -94,6 +97,11 @@ namespace TestApp
         Animation myAnimation;
 
         bool firstLocationUpdate;
+
+        List<User> listOfUserFriends;
+
+
+        List<User> moa;
         public class NavDrawerAdapter :  BaseAdapter 
 {
         
@@ -167,7 +175,9 @@ namespace TestApp
             }
          
         }
-      
+
+        
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -230,7 +240,7 @@ namespace TestApp
             mLeftDataSet.Add("Scoreboard");
             mLeftDataSet.Add("Routes");
             mLeftDataSet.Add("Social");
-            mLeftDataSet.Add("My Settings");     
+            mLeftDataSet.Add("Settings");     
             mLeftDataSet.Add("My Profile");
             mLeftDataSet.Add("About");
             mLeftDataSet.Add("Logout");
@@ -240,7 +250,7 @@ namespace TestApp
             data.Add(new NavDrawerItem(Resource.Drawable.startFlag, "Scoreboard"));
             data.Add(new NavDrawerItem(Resource.Drawable.maps, "Routes"));
             data.Add(new NavDrawerItem(Resource.Drawable.perm_group_social_info, "Social"));
-            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "My Settings"));
+            data.Add(new NavDrawerItem(Resource.Drawable.perm_group_system_tools, "Settings"));
             data.Add(new NavDrawerItem(Resource.Drawable.ic_action_help, "About"));
             data.Add(new NavDrawerItem(Resource.Drawable.logout, "Logout"));
 
@@ -396,11 +406,14 @@ namespace TestApp
                 Resource.String.openDrawer,     //Opened Message
                 Resource.String.closeDrawer     //Closed Message
             );
+       
 
-  
             mDrawerToggle.DrawerIndicatorEnabled = true;
             mDrawerLayout.AddDrawerListener(mDrawerToggle);
             mDrawerToggle.SyncState();
+
+        
+        
 
             if (mToolbar != null)
             {
@@ -597,8 +610,10 @@ namespace TestApp
 
 
             top = await Azure.getUsersFriends(MainStart.userId);
-            topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
-
+            //   topUsers = top.FindAll(User => User.Id != null).OrderBy(User => User.Points).Take(3).Distinct().ToList<User>();
+            topUsers  = (from friend in top
+                         orderby friend.Points descending                 
+                select friend ).Take(3).ToList<User>();
 
             try
             {
@@ -646,8 +661,17 @@ namespace TestApp
             }
 
 
+            moa = await Azure.getUserByAuthId(userId);
 
-       
+
+            mainActivity.RunOnUiThread(async () =>
+            {
+                listOfUserFriends = await Azure.getUsersFriends(MainStart.userId);
+                adpter = new UserMessageFriendsAdapter(listOfUserFriends, mRecyclerView, this, this, adpter, moa);
+                mRecyclerView.SetAdapter(adpter);
+
+            });
+
             StartService(new Intent(this, typeof(SimpleService)));
            
         }
@@ -789,28 +813,28 @@ namespace TestApp
                     InvalidateOptionsMenu();
                     return true;
 
-                case Resource.Id.messages:
+                //case Resource.Id.messages:
                     
-                    RunOnUiThread(async () =>
-                    {
-                        List<User> friendList = null;
-                        friendList = await Azure.getUsersFriends(userId);
+                //    RunOnUiThread(async () =>
+                //    {
+                //        List<User> friendList = null;
+                //        friendList = await Azure.getUsersFriends(userId);
                        
-                        if (friendList.Count == 0)
-                        {
-                            Toast.MakeText(this, "No messages available!", ToastLength.Long).Show();
+                //        if (friendList.Count == 0)
+                //        {
+                //            Toast.MakeText(this, "No messages available!", ToastLength.Long).Show();
 
-                        } else 
-                        {
-                            var inten = new Intent(this, typeof(UsersFriends));
-                            StartActivity(inten);
-                            //InvalidateOptionsMenu();      
-                        }                          
+                //        } else 
+                //        {
+                //            var inten = new Intent(this, typeof(UsersFriends));
+                //            StartActivity(inten);
+                //            //InvalidateOptionsMenu();      
+                //        }                          
 
-                    });
+                //    });
 
 
-                    return true;
+                //    return true;
 
                 //case Resource.Id.action_help:
                     //Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
@@ -856,7 +880,14 @@ namespace TestApp
                         //Right Drawer is closed, open it and just in case close left drawer
                         mDrawerLayout.OpenDrawer(mRightDrawer);
                         //  mDrawerLayout.CloseDrawer(mLeftDrawer);
-                        
+                        RunOnUiThread(async () =>
+                        {
+                            listOfUserFriends = await Azure.getUsersFriends(MainStart.userId);
+                            adpter = new UserMessageFriendsAdapter(listOfUserFriends, mRecyclerView, this, this, adpter, moa);
+                            mRecyclerView.SetAdapter(adpter);
+                        });
+                           
+                       
                         //adde
                         InvalidateOptionsMenu();
                     }
@@ -1082,11 +1113,11 @@ namespace TestApp
                 firstLocationUpdate = true;
             }
 
-            setMarker(currentPos, mMap);
+            //setMarker(currentPos, mMap);
            
-            mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-            // mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
-            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 14));
+            //mMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            //// mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 14));
+            //mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(currentPos, 14));
 
 
         }
@@ -1105,7 +1136,7 @@ namespace TestApp
         }
 
     
-        public class  RightDrawer : BaseAdapter, IOnMapReadyCallback, IOnMapClickListener,IOnMarkerClickListener
+        public class  RightDrawer : BaseAdapter  //, IOnMapReadyCallback, IOnMapClickListener,IOnMarkerClickListener
         {
             List<Contact> _contactList;
             public Activity activityRightDrawer;
@@ -1124,72 +1155,72 @@ namespace TestApp
 
 
 
-            public async Task<string> lookupAddress()
-            {
+            //public async Task<string> lookupAddress()
+            //{
 
-                string addressValue = "";
-                if (currentLocation == null)
-                {
-                    _address.Text = "Unable to determine your location. Try again in a short while.";
-                    addressValue = _address.Text;
-                }
-                else
-                {
-                   try
-                    {
-
-
-                        Address address = await ReverseGeocodeCurrentLocation();
-                        if (oldAddress != address)
-                        {
-                            oldAddress = address;
-                            addressValue = DisplayAddress(address);
-                        }
-                    }
-                    catch (Exception)
-                    {
+            //    string addressValue = "";
+            //    if (currentLocation == null)
+            //    {
+            //        _address.Text = "Unable to determine your location. Try again in a short while.";
+            //        addressValue = _address.Text;
+            //    }
+            //    else
+            //    {
+            //       try
+            //        {
 
 
-                    }
-                }
+            //            Address address = await ReverseGeocodeCurrentLocation();
+            //            if (oldAddress != address)
+            //            {
+            //                oldAddress = address;
+            //                addressValue = DisplayAddress(address);
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
 
-                return addressValue;
-            }
 
-            async Task<Address> ReverseGeocodeCurrentLocation()
-            {
+            //        }
+            //    }
+
+            //    return addressValue;
+            //}
+
+            //async Task<Address> ReverseGeocodeCurrentLocation()
+            //{
               
-                IList<Address> addressList =
-                await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
-                Address address = addressList.FirstOrDefault();
-                return address;
-            }
+            //    IList<Address> addressList =
+            //    await geocoder.GetFromLocationAsync(currentLocation.Latitude, currentLocation.Longitude, 10);
+            //    Address address = addressList.FirstOrDefault();
+            //    return address;
+            //}
 
-            static string DisplayAddress(Address address)
-            {
-                if (address != null)
-                {
-                    StringBuilder deviceAddress = new StringBuilder();
-                    for (int i = 0; i < address.MaxAddressLineIndex; i++)
-                    {
-                        deviceAddress.AppendLine(address.GetAddressLine(i));
-                    }
-                    // Remove the last comma from the end of the address.
-                    if (_address.Text == deviceAddress.ToString())
-                    {
+            //static string DisplayAddress(Address address)
+            //{
+            //    if (address != null)
+            //    {
+            //        StringBuilder deviceAddress = new StringBuilder();
+            //        for (int i = 0; i < address.MaxAddressLineIndex; i++)
+            //        {
+            //            deviceAddress.AppendLine(address.GetAddressLine(i));
+            //        }
+            //        // Remove the last comma from the end of the address.
+            //        if (_address.Text == deviceAddress.ToString())
+            //        {
 
-                    }
-                    else
-                        _address.Text = deviceAddress.ToString();
-                }
+            //        }
+            //        else
+            //            _address.Text = deviceAddress.ToString();
+            //    }
 
-                else
-                {
-                    _address.Text = "Unable to determine the address";
-                }
+            //    else
+            //    {
+            //        _address.Text = "Unable to determine the address";
+            //    }
 
-                return _address.Text;
-            }
+            //    return _address.Text;
+            //}
 
             void FillContacts()
             {
@@ -1201,10 +1232,10 @@ namespace TestApp
                 });
             }
 
-            public void OnMapReady(GoogleMap googleMap)
-            {
-                mMap = googleMap;
-            }
+            //public void OnMapReady(GoogleMap googleMap)
+            //{
+            //    mMap = googleMap;
+            //}
 
             class Contact
             {
@@ -1229,37 +1260,37 @@ namespace TestApp
                 return _contactList[position].Id;
             }
 
-            public  override View GetView(int position, View convertView, ViewGroup parent)
+            public override  View GetView(int position, View convertView, ViewGroup parent)
             {
                
                 var view = convertView ?? activityRightDrawer.LayoutInflater.Inflate(Resource.Layout.rightDrawerMenu, parent, false);
                 var contactName = view.FindViewById<TextView>(Resource.Id.ContactName);
                 contactName.Text = "";
                
-                MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
-                mMap = mapFrag.Map;
+                //MapFragment mapFrag = (MapFragment)activityRightDrawer.FragmentManager.FindFragmentById(Resource.Id.map);
+                //mMap = mapFrag.Map;
 
-                if (mMap != null)
-                {
-                    mMap.MapType = GoogleMap.MapTypeTerrain;  
-                }
+                //if (mMap != null)
+                //{
+                //    mMap.MapType = GoogleMap.MapTypeTerrain;  
+                //}
 
-                try
-                {
+                //try
+                //{
 
-                    mMap.SetOnMapClickListener(this);
-                    mMap.SetOnMarkerClickListener(this);
-                    mMap.UiSettings.ZoomControlsEnabled = true;
-                    mMap.UiSettings.RotateGesturesEnabled = false;
-                    mMap.UiSettings.ScrollGesturesEnabled = false;
-
-
-                }
-                catch (Exception)
-                {
+                //    mMap.SetOnMapClickListener(this);
+                //    mMap.SetOnMarkerClickListener(this);
+                //    mMap.UiSettings.ZoomControlsEnabled = true;
+                //    mMap.UiSettings.RotateGesturesEnabled = false;
+                //    mMap.UiSettings.ScrollGesturesEnabled = false;
 
 
-                }
+                //}
+                //catch (Exception)
+                //{
+
+
+                //}
 
   
                     titleTopFriends = view.FindViewById<TextView>(Resource.Id.pers11);
@@ -1270,78 +1301,89 @@ namespace TestApp
                     pers2 = view.FindViewById<TextView>(Resource.Id.pers2);
                     pers3 = view.FindViewById<TextView>(Resource.Id.pers3);
 
-
-                    TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
+                
+                //    TextView bearText = view.FindViewById<TextView>(Resource.Id.bear);
                    
-                    _address = view.FindViewById<TextView>(Resource.Id.location_text);
-
-                    //    ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
-                    //    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
-
-                    //    alarm.Click += (a, e) =>
-                    //    {
-
-                    //        if (SimpleService.isRunning == false)
-                    //        {
-                    //            activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
-                    //            Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
-                    //        }
-                    //        else if (SimpleService.isRunning == true)
-                    //        {
-                    //            activityRightDrawer.StopService(new Intent(mainActivity, typeof(SimpleService)));
-                    //            Toast.MakeText(mainActivity, "Activity alarm off", ToastLength.Short).Show();
-
-                    //        }
-
-                    //    };
+                //    _address = view.FindViewById<TextView>(Resource.Id.location_text);
 
 
-                    //    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
-                    //    {
-                    //        if (e.IsChecked == true)
-                    //        {
-                    //            Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
 
-                    //            activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
-                    //            try
-                    //            {
-                    //                var a = Azure.SetUserOnline(userId, true);
-                    //                isOnline = true;
+             
 
-                    //            }
-                    //            catch (Exception)
-                    //            {
+                mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.messagesRec);
+                mLayoutManager = new LinearLayoutManager(activityRightDrawer);
+                mRecyclerView.SetLayoutManager(mLayoutManager);
 
+               
+              
 
-                    //            }
+                //    ImageButton alarm = view.FindViewById<ImageButton>(Resource.Id.alarmButton);
+                //    Switch location = view.FindViewById<Switch>(Resource.Id.switch1);
 
-                    //            menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
-                    //            menItemOnlineText.SetTitle("Online");
+                //    alarm.Click += (a, e) =>
+                //    {
 
-                    //        }
-                    //        else
-                    //        {
-                    //            Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
-                    //            activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
+                //        if (SimpleService.isRunning == false)
+                //        {
+                //            activityRightDrawer.StartService(new Intent(mainActivity, typeof(SimpleService)));
+                //            Toast.MakeText(mainActivity, "Activity alarm activated", ToastLength.Short).Show();
+                //        }
+                //        else if (SimpleService.isRunning == true)
+                //        {
+                //            activityRightDrawer.StopService(new Intent(mainActivity, typeof(SimpleService)));
+                //            Toast.MakeText(mainActivity, "Activity alarm off", ToastLength.Short).Show();
 
+                //        }
 
-                    //            try
-                    //            {
-                    //                var b = Azure.SetUserOnline(userId, false);
-                    //                isOnline = false;
-                    //            }
-                    //            catch (Exception)
-                    //            {
+                //    };
 
 
-                    //            }
+                //    location.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
+                //    {
+                //        if (e.IsChecked == true)
+                //        {
+                //            Toast.MakeText(activityRightDrawer, "Your location tracking has been turned on, you are now visible!", ToastLength.Long).Show();
 
-                    //            menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
-                    //            menItemOnlineText.SetTitle("Offline");
+                //            activityRightDrawer.StartService(new Intent(activityRightDrawer, typeof(LocationService)));
+                //            try
+                //            {
+                //                var a = Azure.SetUserOnline(userId, true);
+                //                isOnline = true;
+
+                //            }
+                //            catch (Exception)
+                //            {
 
 
-                    //        }
-                    //    };
+                //            }
+
+                //            menItemOnlineIcion.SetIcon(Resource.Drawable.greenonline);
+                //            menItemOnlineText.SetTitle("Online");
+
+                //        }
+                //        else
+                //        {
+                //            Toast.MakeText(activityRightDrawer, "Tracking stopped, you are now invisible!", ToastLength.Long).Show();
+                //            activityRightDrawer.StopService(new Intent(activityRightDrawer, typeof(LocationService)));
+
+
+                //            try
+                //            {
+                //                var b = Azure.SetUserOnline(userId, false);
+                //                isOnline = false;
+                //            }
+                //            catch (Exception)
+                //            {
+
+
+                //            }
+
+                //            menItemOnlineIcion.SetIcon(Resource.Drawable.redoffline);
+                //            menItemOnlineText.SetTitle("Offline");
+
+
+                //        }
+                //    };
 
 
 
@@ -1353,34 +1395,34 @@ namespace TestApp
 
        
 
-            public bool OnMarkerClick(Marker marker)
-            {
+            //public bool OnMarkerClick(Marker marker)
+            //{
                
-                marker.Title = "My Location";
+            //    marker.Title = "My Location";
                
-                try
-                {
-                    mainActivity.RunOnUiThread( async () => {
-                        marker.Snippet = await lookupAddress();
-                        marker.ShowInfoWindow();
-                    });
+            //    try
+            //    {
+            //        mainActivity.RunOnUiThread( async () => {
+            //            marker.Snippet = await lookupAddress();
+            //            marker.ShowInfoWindow();
+            //        });
                   
-                }
-                catch (Exception)
-                {
+            //    }
+            //    catch (Exception)
+            //    {
 
                     
-                }
+            //    }
               
 
-                return true;
+            //    return true;
 
-            }
-            public void OnMapClick(LatLng point)
-            {
+            //}
+            //public void OnMapClick(LatLng point)
+            //{
                
 
-            }
+            //}
             //private async void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
             //{
             //    //markerClickEventArgs.Handled = true;

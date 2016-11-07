@@ -21,10 +21,10 @@
    android:title="Status"
    myapp:showAsAction="always" />
   
-  <item android:id="@+id/messages"
+  <!--<item android:id="@+id/messages"
       android:icon="@drawable/sym_action_email"
       android:title="Msg"
-      myapp:showAsAction="always" />
+      myapp:showAsAction="always" />-->
 
 	<!--<item android:id="@+id/action_help"
 		android:icon="@drawable/ic_action_help"

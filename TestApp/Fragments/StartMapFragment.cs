@@ -10,7 +10,6 @@ using Android.Locations;
 using System.Collections.Generic;
 using Android.Graphics;
 using Android.Content;
-//using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using static Android.Gms.Maps.GoogleMap;
 using Java.Util;
@@ -57,17 +56,14 @@ namespace TestApp
         public override  View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.startMapFragment, container, false);
-
             Button createRoute = view.FindViewById<Button>(Resource.Id.createRoute);
-
-               TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
-
             mHashMapUser = new HashMap();
 
             if (this.Activity.Class.SimpleName != "FriendsOverview")
             {
                  Bitmap icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.startFlag);
-
+                //  TextView createRouteLabel = view.FindViewById<TextView>(Resource.Id.textRoute);
+              
                 createRoute.Click += (sender, e) =>
                 {
                     Intent myIntent = new Intent(this.Activity, typeof(CreateRoute));
@@ -81,7 +77,7 @@ namespace TestApp
             }
             else
             {
-
+             
                 activeScreen = 1;
               
                 me = FriendsOverview.me;
@@ -106,7 +102,7 @@ namespace TestApp
 
                
             }
-           
+
 
 
             try
@@ -118,16 +114,111 @@ namespace TestApp
             catch (Exception)
             {
 
-                     }
+            }
 
-       
 
+        
 
             return view;
 
         }
 
-      
+
+      public void setUp()
+        {
+            picMe = MainStart.profilePic;
+            imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
+
+            Location loc = null;
+            try
+            {
+                loc = App.Current.LocationService.getLastKnownLocation();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+            LatLng myPos = null;
+
+
+            try
+            {
+                if (loc.Latitude != 000000 && loc.Longitude != 000000 && loc != null)
+                {
+                    myPos = new LatLng(loc.Latitude, loc.Longitude);
+                }
+                else
+                    myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+
+
+                if (myPos == null)
+                    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+
+            if (this.Activity.Class.SimpleName != "FriendsOverview")
+            {
+                foreach (var item in RouteOverview.routes)
+                {
+                    try
+                    {
+                        setMarkerRoutes(item);
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+
+                }
+
+            }
+            else
+            {
+
+                foreach (var item in FriendsOverview.myFriends)
+                {
+
+                    if (item != null && item.Online == true)
+                    {
+
+                            setMarkerUser(item);
+                    
+                    }
+
+                }
+
+            }
+
+
+            try
+            {
+                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
+                myMark = mMap.AddMarker(new MarkerOptions()
+               .SetPosition(myPos)
+               .SetTitle(MainStart.userName)
+               .SetSnippet("My Location").SetIcon(imageMe));
+
+                mHashMapUser.Put(myMark, MainStart.userId);
+
+            }
+            catch (Exception )
+            {
+
+                
+            }
+
+
+        }
 
         public void setMarkerRoutes(Route route)
         {
@@ -253,24 +344,20 @@ namespace TestApp
 
 
                var  pic = IOUtilz.GetImageBitmapFromUrl(user.ProfilePicture);
-              var image = BitmapDescriptorFactory.FromBitmap(pic); //(Resource.Drawable.test);
+              var image = BitmapDescriptorFactory.FromBitmap(pic);
 
-                string online = "Online";
-                if (!user.Online)
-                {
-                    online = "Offline";
-                }
-
-               Marker mark = mMap.AddMarker(new MarkerOptions()
+               
+                 
+                Marker mark = mMap.AddMarker(new MarkerOptions()
                .SetPosition(myPosition)
-               .SetTitle(user.UserName + "(" + online + ")")
-               .SetSnippet(dist.ToString() + FriendsOverview.distanceUnit).SetIcon(image));
+               .SetTitle(user.UserName)
+               .SetSnippet(dist.ToString() +" km").SetIcon(image));
                 mHashMapUser.Put(mark, user.Id);
               
             }
             catch (Exception a)
             {
-               
+                   
 
             }
 
@@ -288,104 +375,104 @@ namespace TestApp
             mMap.UiSettings.ScrollGesturesEnabled = true;
             mMap.SetOnMarkerClickListener(this);
 
-            picMe = MainStart.profilePic;
-            imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
+            //picMe = MainStart.profilePic;
+            //imageMe = BitmapDescriptorFactory.FromBitmap(IOUtilz.scaleDown(picMe, 70, false)); //(Resource.Drawable.test);
 
-            Location loc = null;
-            try
-            {
-                 loc = App.Current.LocationService.getLastKnownLocation();
+            //Location loc = null;
+            //try
+            //{
+            //     loc = App.Current.LocationService.getLastKnownLocation();
 
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-            }
-           
-
-            LatLng myPos = null;
-          
-
-            try
-            {
-                if(loc.Latitude != 000000 && loc.Longitude != 000000 && loc != null)
-                {
-                    myPos = new LatLng(loc.Latitude, loc.Longitude);
-                }else
-                    myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
+            //}
 
 
-                if (myPos == null)
-                myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
-
-            }
-            catch (Exception)
-            {
-               
-            }
-
-          
-                   
-            if (this.Activity.Class.SimpleName != "FriendsOverview")
-            {
-                foreach (var item in RouteOverview.routes)
-                {
-                    try
-                    {
-                        setMarkerRoutes(item);
-                    }
-                    catch (Exception)
-                    {
-
-                       
-                    }
-                    
-                }
-
-            }else
-            {
-
-                foreach (var item in FriendsOverview.myFriends)
-                {
-
-                    if(item.Online == true)
-                    {
-
-                    
-                        try
-                        {
-                            setMarkerUser(item);
-                        }
-                        catch (Exception)
-                        {
-
-                           
-                        }
-             
-
-                    }
-
-                }
-
-            }
-
-           
-            try
-            {
-                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
-                myMark = mMap.AddMarker(new MarkerOptions()
-               .SetPosition(myPos)
-               .SetTitle(MainStart.userName)
-               .SetSnippet("My Location").SetIcon(imageMe));
-                mHashMapUser.Put(myMark, MainStart.userId);
-            }
-            catch (Exception)
-            {
+            //LatLng myPos = null;
 
 
-            }
+            //try
+            //{
+            //    if(loc.Latitude != 000000 && loc.Longitude != 000000 && loc != null)
+            //    {
+            //        myPos = new LatLng(loc.Latitude, loc.Longitude);
+            //    }else
+            //        myPos = new LatLng(MainStart.currentLocation.Latitude, MainStart.currentLocation.Longitude);
 
 
+            //    if (myPos == null)
+            //    myPos = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+
+            //}
+            //catch (Exception)
+            //{
+
+            //}
+
+
+
+            //if (this.Activity.Class.SimpleName != "FriendsOverview")
+            //{
+            //    foreach (var item in RouteOverview.routes)
+            //    {
+            //        try
+            //        {
+            //            setMarkerRoutes(item);
+            //        }
+            //        catch (Exception)
+            //        {
+
+
+            //        }
+
+            //    }
+
+            //}else
+            //{
+
+            //    foreach (var item in FriendsOverview.myFriends)
+            //    {
+
+            //        if(item.Online == true)
+            //        {
+
+
+            //            try
+            //            {
+            //                setMarkerUser(item);
+            //            }
+            //            catch (Exception a)
+            //            {
+
+            //                throw a;
+            //            }
+
+
+            //        }
+
+            //    }
+
+            //}
+
+
+            //try
+            //{
+            //    mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(myPos, 11));
+            //    myMark = mMap.AddMarker(new MarkerOptions()
+            //   .SetPosition(myPos)
+            //   .SetTitle(MainStart.userName)
+            //   .SetSnippet("My Location").SetIcon(imageMe));
+            //    mHashMapUser.Put(myMark, MainStart.userId);
+            //}
+            //catch (Exception r)
+            //{
+
+            //    throw r;
+            //}
+
+            setUp();
 
         }
 
@@ -504,18 +591,40 @@ namespace TestApp
 
               
             }
+            LatLng locat = null; 
 
-            if(loc == null)
+            if (loc == null)
             {
-                loc.Latitude = MainStart.userInstanceOne.Lat;
-                loc.Longitude = MainStart.userInstanceOne.Lon;
+                //   loc.Latitude = MainStart.userInstanceOne.Lat;
+                //   loc.Longitude = MainStart.userInstanceOne.Lon;
+                
+
+                locat = new LatLng(MainStart.userInstanceOne.Lat, MainStart.userInstanceOne.Lon);
+            }else
+            {
+
+                locat = new LatLng(loc.Latitude, loc.Longitude);
             }
 
-             myMark = mMap.AddMarker(new MarkerOptions()
-               .SetPosition(new LatLng(loc.Latitude, loc.Longitude))
+            try
+            {
+
+          
+            myMark = mMap.AddMarker(new MarkerOptions()
+               .SetPosition(locat)
                .SetTitle(MainStart.userName)
                .SetSnippet("My Location").SetIcon(imageMe));
-            mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng (a.Location.Latitude,a.Location.Longitude), 11));
+
+                mMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng (a.Location.Latitude,a.Location.Longitude), 11));
+
+            }
+            catch (Exception)
+            {
+
+              
+            }
+
+
         }
 
 
@@ -526,8 +635,11 @@ namespace TestApp
             base.OnCreate(savedInstanceState);
             HasOptionsMenu = true;
 
-            if(mHashMapUser == null)
-            mHashMapUser = new HashMap();
+            //if(mHashMapUser == null)
+            //mHashMapUser = new HashMap();
+
+       
+
         }
 
         public override void OnStart()
@@ -538,17 +650,17 @@ namespace TestApp
         public override void OnResume()
         {
             base.OnResume();
-            mMapView.OnResume();
+           mMapView.OnResume();
 
-            if (mHashMapUser == null)
-                mHashMapUser = new HashMap();
+            //if (mHashMapUser == null)
+            //    mHashMapUser = new HashMap();
         }
 
        
         public override void OnPause()
         {
             base.OnPause();
-            mMapView.OnPause();
+          mMapView.OnPause();
         }
 
         

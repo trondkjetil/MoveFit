@@ -23,7 +23,7 @@ using Android;
 [assembly: UsesPermission(Manifest.Permission.AccessCoarseLocation)]
 
 
-[assembly: Application(Debuggable = false)]
+[assembly: Application(Debuggable = true)]
 
 //#if DEBUG
 //[assembly: Application(Debuggable = true)]
